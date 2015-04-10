@@ -86,7 +86,11 @@ class PS_2 {
   virtual FV const& get_k(int i) const = 0;
   virtual int whattype() const = 0;
   virtual void print() const;
-  virtual void FillDistributions(std::vector<HistArray*>& dist, int id, double const& wgt) const = 0;
+  virtual void FillDistributions(
+				 std::vector<HistArray*>& dist,
+				 int id,
+				 double const& wgt,
+				 double const& mScale=1.0) const = 0;
 };
 ////// class PS_2_1 ///////////////////////////////////////////////////////////////////////////////////////
 /*!
@@ -120,7 +124,11 @@ class PS_2_1: public PS_2 {
   int set_child(int i, PS_2* child) { if (child->set_parent(this)) { d_child = child; return 1;} return 0; }
   int whattype() const { return 21; }
   void print() const;
-  void FillDistributions(std::vector<HistArray*>& dist, int id, double const& wgt) const;
+  void FillDistributions(
+			 std::vector<HistArray*>& dist,
+			 int id,
+			 double const& wgt,
+			 double const& mScale=1.0) const;
 };
 ////// class PS_2_2 ///////////////////////////////////////////////////////////////////////////////////////
 /*!
@@ -198,7 +206,11 @@ class PS_2_2: public PS_2 {
   int set_child(int i, PS_2* child) { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} if (child->set_parent(this)) { d_child[i] = child; return 1;} return 0; }
   int whattype() const { return 22; }
   void print() const;
-  void FillDistributions(std::vector<HistArray*>& dist, int id, double const& wgt) const;
+  void FillDistributions(
+			 std::vector<HistArray*>& dist,
+			 int id,
+			 double const& wgt,
+			 double const& mScale=1.0) const;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////////////////
@@ -276,7 +288,11 @@ class PS_2_3: public PS_2 {
 
   int whattype() const { return 23; }
   void print() const;
-  void FillDistributions(std::vector<HistArray*>& dist, int id, double const& wgt) const;
+  void FillDistributions(
+			 std::vector<HistArray*>& dist,
+			 int id,
+			 double const& wgt,
+			 double const& mScale=1.0) const;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -3,6 +3,9 @@
 
 
 
+#define PREFACTORS(HM)						\
+  const AmplitudePrefactors& ap = HM.GetAmpPrefactors();	\
+  const HiggsPrefactors&     hp = HM.GetHiggsPrefactors();	\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #ifdef WITH_T_SPIN
@@ -70,32 +73,33 @@ double Eval_R_GG(
 		 HiggsModel& hm,
 		 const ulong& flags)
 {
-  using namespace RunParameters;
+  PREFACTORS(hm); // defines ap and hp
+
   double res = 0.0;
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-FSR contributions with p1+p2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
   double s12 = ps.get_s();
-  HiggsBosons::ResetHiggsPrefactors(s12);
+  hm.SetHiggsPrefactors(s12,1);
   // interference terms QCDxPHI
 #ifndef WITH_T_SPIN
   if (flags & F_EVAL_R_FSR_FSR) // DIV !
     {
-      res += Eval_R_FSR_FSR (ps);
+      res += Eval_R_FSR_FSR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_ISR_FSR) // DIV !
     {
-      res += Eval_R_ISR_FSR (ps);
+      res += Eval_R_ISR_FSR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_INT_FSR)
     {
-      res += Eval_R_INT_FSR (ps);
+      res += Eval_R_INT_FSR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
@@ -104,18 +108,16 @@ double Eval_R_GG(
   // PHI^2 terms
   if (flags & F_EVAL_R_PHIxPHI_FSR)
     {
-      res += Eval_R_PHIxPHI_FSR(ps);
-      // these additional interference terms are only needed when spins are involved
-      if (TwoHDM==1)
-	{ // include Phi1 * Phi2 interference via prefactors
+      res += Eval_R_PHIxPHI_FSR(ps,ap,hp);
+
 #ifdef WITH_T_SPIN
-	  res -= Eval_R_PHIxPHI_FSR_IM_INTab(ps);
-#endif
+      // these additional interference terms are only needed when spins are involved
+      if (RunParameters::TwoHDM==1)
+	{ 
+	  res -= Eval_R_PHIxPHI_FSR_IM_INTab(ps,ap,hp);
 	}
-      // else if (TwoHDM==2)
-      // 	{ // add Phi1 * Phi2 interference explicitly
-      // 	  res += Eval_R_PHIxPHI_FSR_INT12(ps);
-      // 	}
+#endif
+
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
@@ -123,49 +125,49 @@ double Eval_R_GG(
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-ISR / INT contributions with k1+k2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
-  double S12 = 2.0*(mt2 + sp(ps.k1(),ps.k2()));
-  HiggsBosons::ResetHiggsPrefactors(S12);
+  double S12 = 2.0*(hm.mt2() + sp(ps.k1(),ps.k2()));
+  hm.SetHiggsPrefactors(S12,1);
   // interference terms QCDxPHI
     
 #ifndef WITH_T_SPIN
   if (flags & F_EVAL_R_ISR_ISR) // DIV !
     {
-      res += Eval_R_ISR_ISR (ps);
+      res += Eval_R_ISR_ISR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_INT_ISR)
     {
-      res += Eval_R_INT_ISR (ps);
+      res += Eval_R_INT_ISR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_FSR_ISR) // DIV ! (corresponds to non-factorizable virtual amplitudes)
     {
-      res += Eval_R_FSR_ISR (ps);
+      res += Eval_R_FSR_ISR (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_ISR_INT)
     {
-      res += Eval_R_ISR_INT (ps);
+      res += Eval_R_ISR_INT (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_FSR_INT) // (corresponds to non-factorizable virtual amplitudes)
     {
-      res += Eval_R_FSR_INT (ps);
+      res += Eval_R_FSR_INT (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
   if (flags & F_EVAL_R_INT_INT)
     {
-      res += Eval_R_INT_INT (ps);
+      res += Eval_R_INT_INT (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
@@ -174,18 +176,16 @@ double Eval_R_GG(
   //Phi^2 terms
   if (flags & F_EVAL_R_PHIxPHI_ISR)
     {
-      res += Eval_R_PHIxPHI_ISR(ps);
-      // these additional interference terms are only needed when spins are involved
-      if (TwoHDM==1)
-	{ // include Phi1 * Phi2 interference via prefactors
+      res += Eval_R_PHIxPHI_ISR(ps,ap,hp);
+
 #ifdef WITH_T_SPIN
-	  res -= Eval_R_PHIxPHI_ISR_IM_INTab(ps);
-#endif
+      // these additional interference terms are only needed when spins are involved
+      if (RunParameters::TwoHDM==1)
+	{
+	  res -= Eval_R_PHIxPHI_ISR_IM_INTab(ps,ap,hp);
 	}
-      // else if (TwoHDM==2)
-      // 	{ // add Phi1 * Phi2 interference explicitly
-      // 	  res += Eval_R_PHIxPHI_ISR_INT12(ps);
-      // 	}
+#endif
+
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
@@ -202,30 +202,33 @@ double Eval_R_QQ(
 		 HiggsModel& hm,
 		 const ulong& flags)
 {
-  using namespace RunParameters;
+  PREFACTORS(hm); // defines ap and hp
+
   double res = 0.0;
 
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-ISR / INT contributions with k1+k2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
-  double S12 = 2.0*(mt2 + sp(ps.k1(),ps.k2()));
-  HiggsBosons::ResetHiggsPrefactors(S12);
+  double S12 = 2.0*(hm.mt2() + sp(ps.k1(),ps.k2()));
+  hm.SetHiggsPrefactors(S12,1);
   // interference terms QCDxPHI
   if (flags & F_EVAL_R_PHIxQCD_QQ)
     {
-      res += Eval_R_FSR_INT_QQ(ps); 
+      res += Eval_R_FSR_INT_QQ(ps,ap,hp); 
     }
   //Phi^2 terms
   if (flags & F_EVAL_R_PHIxPHI_QQ)
     {
-      res += Eval_R_PHIxPHI_QQ(ps);
-      // these additional interference terms are only needed when spins are involved
-      if (TwoHDM==1)
-	{ // include Phi1 * Phi2 interference via prefactors
+      res += Eval_R_PHIxPHI_QQ(ps,ap,hp);
+      
 #ifdef WITH_T_SPIN
+      // these additional interference terms are only needed when spins are involved
+      if (RunParameters::TwoHDM==1)
+	{
 	  // res -= Eval_R_PHIxPHI_QQ_IM_INTab(ps);
-#endif
 	}
+#endif
+      
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
@@ -244,30 +247,33 @@ double Eval_R_QG(
 		 HiggsModel& hm,
 		 const ulong& flags)
 {
-  using namespace RunParameters;
+  PREFACTORS(hm); // defines ap and hp
+
   double res = 0.0;
 
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-ISR / INT contributions with k1+k2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
-  double S12 = 2.0*(mt2 + sp(ps.k1(),ps.k2()));
-  HiggsBosons::ResetHiggsPrefactors(S12);
+  double S12 = 2.0*(hm.mt2() + sp(ps.k1(),ps.k2()));
+  hm.SetHiggsPrefactors(S12,1);
   // interference terms QCDxPHI
   if (flags & F_EVAL_R_PHIxQCD_QG)
     {
-      res += Eval_R_INT_INT_QG(ps);
+      res += Eval_R_INT_INT_QG(ps,ap,hp);
     }
   //Phi^2 terms
   if (flags & F_EVAL_R_PHIxPHI_QG)
     {
-      res += Eval_R_PHIxPHI_QG(ps);
-      // these additional interference terms are only needed when spins are involved
-      if (TwoHDM==1)
-	{ // include Phi1 * Phi2 interference via prefactors
+      res += Eval_R_PHIxPHI_QG(ps,ap,hp);
+      
 #ifdef WITH_T_SPIN
+      // these additional interference terms are only needed when spins are involved
+      if (RunParameters::TwoHDM==1)
+	{
 	  // res -= Eval_R_PHIxPHI_QG_IM_INTab(ps);
-#endif
 	}
+#endif
+      
 #ifdef DEBUG
       CHECKNAN(res);
 #endif

@@ -4,7 +4,10 @@
 double Eval_R_ISR_FSR (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
+AMP_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_R(ap);
+
 
 
   double t1;

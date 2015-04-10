@@ -115,13 +115,13 @@ public:
   c_double const& GetFH0() const { return d_FH_eff; }
   c_double const& GetFA0() const { return d_FA_eff; }
 
-  //! compute 1-loop form factors for given c.m.e., top- and bottom mass and store values in member variables
+  //! Compute 1-loop form factors for given c.m.e., top- and bottom mass and store values in member variables. Note that the form factors are recomputed only if the c.m.e. changes (compared to last call)! The values stored in the respective member variables are - F_s / (4 s) and F_p / (8 s).
   /*!
     \param S c.m.e.
     \param mt2 top-mass squared
     \param mb2 bottom-mass squared
   */
-  void SetFormFactors(double S,double mt2,double mb2);
+  void SetFormFactors(double const& S,double const& mt2,double const& mb2);
   c_double const& GetFs() const { return d_FH_full; }
   c_double const& GetFp() const { return d_FA_full; }
 
@@ -252,6 +252,9 @@ class HiggsModel
   double d_mb2; 
   //! combined Higgs VEV
   double d_VH;
+  //! mass scale for normalization of dimensionful quantities
+  double d_Scale;
+  double d_Scale2;
   
   //! contains the pointers to the Higgs bosons
   std::vector<HPtr> d_Bosons;
@@ -276,16 +279,19 @@ class HiggsModel
   double const& mb()  	    const { return d_mb; }
   double const& mb2() 	    const { return d_mb2; }
   double const& VH()  	    const { return d_VH; }
+  double const& Scale()     const { return d_Scale; }
+  double const& Scale2()    const { return d_Scale2; }  
   int NBosons()             const { return d_Bosons.size(); }
   
   //! Use this member to change AlphaS. It automatically resets the values of the amplitude prefactors.
   void SetAlphaS(double const& val) { d_AlphaS = val; d_AlphaS2 = std::pow(val,2); SetAmpPrefactors(); }
-  void SetMUR(double const& val)    { d_MUR = val; d_MUR2 = std::pow(val,2); d_APref.MUR2 = d_MUR2; }
-  void SetMUF(double const& val)    { d_MUF = val; d_MUF2 = std::pow(val,2); }
-  void SetMt(double const& val)     { d_mt  = val; d_mt2  = std::pow(val,2); }
-  void SetMb(double const& val)     { d_mb  = val; d_mb2  = std::pow(val,2); }
-  void SetVH(double const& val)     { d_VH  = val; }
-
+  void SetMUR(double const& val)    { d_MUR = val/d_Scale; d_MUR2 = std::pow(d_MUR,2); d_APref.MUR2 = d_MUR2; }
+  void SetMUF(double const& val)    { d_MUF = val/d_Scale; d_MUF2 = std::pow(d_MUF,2); }
+  void SetMt(double const& val)     { d_mt  = val/d_Scale; d_mt2  = std::pow(d_mt,2); }
+  void SetMb(double const& val)     { d_mb  = val/d_Scale; d_mb2  = std::pow(d_mb,2); }
+  void SetVH(double const& val)     { d_VH  = val/d_Scale; }
+  void SetScale(double const& val)  { d_Scale  = val; d_Scale2 = val*val; }
+  
   //! Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into account.
   /*!
     \param S momentum squared in the Higgs propagators
@@ -298,7 +304,7 @@ class HiggsModel
   void SetAmpPrefactors();
   AmplitudePrefactors const& GetAmpPrefactors()   const { return d_APref; }
 
-  //! Add a Higgs boson to the vector d_Bosons.
+  //! Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d_Scale.
   /*!
     \param M mass
     \param G width
@@ -315,7 +321,7 @@ class HiggsModel
 		double const& a_b=0.0,
 		double const& b_b=0.0);
 
-  //! Add a scalar Higgs boson to the vector d_Bosons.
+  //! Add a scalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d_Scale.
   /*!
     \param M mass
     \param G width
@@ -328,7 +334,7 @@ class HiggsModel
 		 double const& a_t=1.0,
 		 double const& a_b=0.0);
 
-  //! Add a pseudoscalar Higgs boson to the vector d_Bosons.
+  //! Add a pseudoscalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d_Scale.
   /*!
     \param M mass
     \param G width

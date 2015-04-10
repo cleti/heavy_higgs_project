@@ -224,10 +224,9 @@ double Eval_UID_GG(
 		   const double& norm_factor, // normalization factor for distribution weights
 		   std::vector<HistArray*>* dist )
 {
-  using namespace RunParameters;
-  using namespace AmpPrefactors;
-
-  PREFACTORS(hm) // defines ap and hp
+  PREFACTORS(hm); // defines ap and hp
+  double const& mt2    = hm.mt2();
+  double const& mScale = hm.Scale();
   
   double res = 0.0;
 
@@ -303,22 +302,22 @@ double Eval_UID_GG(
 	// instead they are boosted along the z-axis
 	// for distributions of Lorentz non-invariants this has to be taken into account
 	//==============================================================================	
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-	double PF_VggII  = PREF_UID_CA*VggII(p1,p3,p2);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	double PF_VggII  = ap.PREF_UID_CA*VggII(p1,p3,p2);
 	double PF_VggIIc = VggIIc(p1,p3,p2);
 	if (flags & F_EVAL_UID_ES00)
 	  {
 	    dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_ES00(ps,ps_red);
+	    dip += PF_VggIIc*Eval_UID_ES00(ps,ps_red,ap,hp);
 	  }
 	if (flags & F_EVAL_R_PHIxPHI_ISR)
 	  {
 	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_PHIxPHI_ES00(ps,ps_red);
+	    dip += PF_VggIIc*Eval_UID_PHIxPHI_ES00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    if (TwoHDM>0)
 	      {
-		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red);
+		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red,ap,hp);
 	      }
 #endif
 	  }
@@ -357,7 +356,7 @@ double Eval_UID_GG(
 	    ////////////////////////////
 	    // ps_red.P1() = 1.0/x(p3,p1,p2)*ps.P1();
 	    // ps_red.P2() = ps.P2();
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
 	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -400,23 +399,23 @@ double Eval_UID_GG(
 	// lt.apply_G(S2);
 #endif
 	//==============================================================================       	
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-	double PF_VggII  = PREF_UID_CA*VggII(p2,p3,p1);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	double PF_VggII  = ap.PREF_UID_CA*VggII(p2,p3,p1);
 	double PF_VggIIc = VggIIc(p2,p3,p1);
 	if (flags & F_EVAL_UID_SE00)
 	  {
 	    dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_SE00(ps,ps_red);
+	    dip += PF_VggIIc*Eval_UID_SE00(ps,ps_red,ap,hp);
 	  }
 	if (flags & F_EVAL_R_PHIxPHI_ISR)
 	  {
 	    // !!! need to change in case USE2H = true !!!
 	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_PHIxPHI_SE00(ps,ps_red);
+	    dip += PF_VggIIc*Eval_UID_PHIxPHI_SE00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    if (TwoHDM>0)
 	      {
-		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red);
+		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red,ap,hp);
 	      }
 #endif
 	  }
@@ -444,7 +443,7 @@ double Eval_UID_GG(
 	    ////////////////////////////
 	    // ps_red.P1() = ps.P1();
 	    // ps_red.P2() = 1.0/x(p3,p2,p1)*ps.P2();
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
 	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -483,8 +482,8 @@ double Eval_UID_GG(
 #endif
 	//==============================================================================
 
-	double PF_VQgFF = PREF_UID_CF*VQgFF(k1,p3,k2);
-	HiggsBosons::ResetHiggsPrefactors(ps.get_s());
+	double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k1,p3,k2);
+	hm.SetHiggsPrefactors(ps.get_s(),1);
 	if (flags & F_EVAL_UID_00ES)
 	  {
 	    dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
@@ -511,7 +510,7 @@ double Eval_UID_GG(
 	  {
 	    // ps_red.print();
 	    // ps.print();
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
 	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -542,8 +541,8 @@ double Eval_UID_GG(
 #endif	
 	//==============================================================================
 
-	double PF_VQgFF = PREF_UID_CF*VQgFF(k2,p3,k1);
-	HiggsBosons::ResetHiggsPrefactors(ps.get_s());
+	double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k2,p3,k1);
+	hm.SetHiggsPrefactors(ps.get_s(),1);
 	if (flags & F_EVAL_UID_00SE)
 	  {
 	    dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
@@ -568,7 +567,7 @@ double Eval_UID_GG(
 	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
 	if (DIST)
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
 	////////////////////////////////////////////////////////////////////////////
 	res += dip;
@@ -596,8 +595,8 @@ double Eval_UID_GG(
       	K2 = k2;
 	ps_red.set();
 	//(sp(K1,P2)-sp(K1,P1))/sp(P1,P2);// = -0.5*CA*beta*y
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip += 0.25*ps_red.get_beta_y()*PREF_UID_CA*VQgFI(k1,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
       	dip *= f;
 	
 #ifdef DUMP_DIPOLE_PS
@@ -620,7 +619,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -637,8 +636,8 @@ double Eval_UID_GG(
       	K1 = (x-1.0)*p2 + k1 + p3;
       	K2 = k2;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip -= 0.25*ps_red.get_beta_y()*PREF_UID_CA*VQgFI(k1,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
       	dip *= f;
 
 #ifdef DUMP_DIPOLE_PS
@@ -661,7 +660,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -678,8 +677,8 @@ double Eval_UID_GG(
       	K2 = (x-1.0)*p1 + k2 + p3;
       	K1 = k1;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip -= 0.25*ps_red.get_beta_y()*PREF_UID_CA*VQgFI(k2,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
       	dip *= f;
 
 #ifdef DUMP_DIPOLE_PS
@@ -702,7 +701,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -719,8 +718,8 @@ double Eval_UID_GG(
       	K2 = (x-1.0)*p2 + k2 + p3;
       	K1 = k1;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip += 0.25*ps_red.get_beta_y()*PREF_UID_CA*VQgFI(k2,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
       	dip *= f;
 	
 #ifdef DUMP_DIPOLE_PS
@@ -743,7 +742,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -762,9 +761,9 @@ double Eval_UID_GG(
       	K1 = (x-1.0)*p1 + k1 + p3;
       	K2 = k2;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip += 0.5*ps_red.get_beta_y()*PREF_UID_CA*VggIF(p1,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p1,p3,k1)*Eval_UID_E0S0(ps,ps_red);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+      	dip += VggIFc(p1,p3,k1)*Eval_UID_E0S0(ps,ps_red,ap,hp);
       	dip *= f;
 
 #ifdef DUMP_DIPOLE_PS
@@ -787,7 +786,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -804,9 +803,9 @@ double Eval_UID_GG(
       	K2 = (x-1.0)*p1 + k2 + p3;
       	K1 = k1;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip -= 0.5*ps_red.get_beta_y()*PREF_UID_CA*VggIF(p1,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p1,p3,k2)*Eval_UID_E00S(ps,ps_red);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+      	dip += VggIFc(p1,p3,k2)*Eval_UID_E00S(ps,ps_red,ap,hp);
       	dip *= f;
 	
 #ifdef DUMP_DIPOLE_PS
@@ -829,7 +828,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -846,9 +845,9 @@ double Eval_UID_GG(
       	K1 = (x-1.0)*p2 + k1 + p3;
       	K2 = k2;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip -= 0.5*ps_red.get_beta_y()*PREF_UID_CA*VggIF(p2,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p2,p3,k1)*Eval_UID_0ES0(ps,ps_red);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+      	dip += VggIFc(p2,p3,k1)*Eval_UID_0ES0(ps,ps_red,ap,hp);
       	dip *= f;
 		
 #ifdef DUMP_DIPOLE_PS
@@ -871,7 +870,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -888,9 +887,9 @@ double Eval_UID_GG(
       	K2 = (x-1.0)*p2 + k2 + p3;
       	K1 = k1;
 	ps_red.set();
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());
-      	dip += 0.5*ps_red.get_beta_y()*PREF_UID_CA*VggIF(p2,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p2,p3,k2)*Eval_UID_0E0S(ps,ps_red);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);
+      	dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+      	dip += VggIFc(p2,p3,k2)*Eval_UID_0E0S(ps,ps_red,ap,hp);
       	dip *= f;
 			
 #ifdef DUMP_DIPOLE_PS
@@ -913,7 +912,7 @@ double Eval_UID_GG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -927,22 +926,22 @@ double Eval_UID_GG(
     {
       //the real FSRxISR + FSRxINT contributions are subtracted by their SGA
       {
-	HiggsBosons::ResetHiggsPrefactors(2.0*(mt2+sp(k1,k2)));
+	hm.SetHiggsPrefactors(2.0*(mt2+sp(k1,k2)),1);
 #ifdef SGA_WITH_GAUGEVEC
 	static FV gv;
 	gv[0] = +p3[0];
 	gv[1] = -p3[1];
 	gv[2] = -p3[2];
 	gv[3] = -p3[3];
-      	double sga = Eval_R_FSR_ISR_SGA(ps,gv);
+      	double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp,gv);
 #else
-      	double sga = Eval_R_FSR_ISR_SGA(ps);
+      	double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp);
 #endif
       	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
       	if (DIST)
 	  {
 	    // in case of the SGA collect distributions from 2->3 phase space
-	    ps.FillDistributions(*dist,H_NLO_R,sga*norm_factor);
+	    ps.FillDistributions(*dist,H_NLO_R,sga*norm_factor,mScale);
 	  }
       	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
@@ -969,11 +968,9 @@ double Eval_UID_QG(
 		   const double& norm_factor, // normalization factor for distribution weights
 		   std::vector<HistArray*>* dist )
 {
-  using namespace RunParameters;
-  using namespace AmpPrefactors;
-
-  PREFACTORS(hm) // defines ap and hp
-      
+  PREFACTORS(hm); // defines ap and hp
+  double const& mScale = hm.Scale();
+  
   double res = 0.0;
 
   bool DIST = (dist != nullptr);
@@ -1049,19 +1046,19 @@ double Eval_UID_QG(
 	// for distributions of Lorentz non-invariants this has to be taken into account
 	//==============================================================================	
 
-	HiggsBosons::ResetHiggsPrefactors(ps_red.get_s());	
-	double PF_VqqII  = PREF_UID_TF*VqqII(p1,p3,p2);
+	hm.SetHiggsPrefactors(ps_red.get_s(),1);	
+	double PF_VqqII  = ap.PREF_UID_TF*VqqII(p1,p3,p2);
 	double PF_VqqIIc = VqqIIc(p1,p3,p2);
 
 	if (flags & F_EVAL_R_PHIxQCD_QG)
 	  {
 	    dip += PF_VqqII*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	    dip += PF_VqqIIc*Eval_UID_Q_QG_ES00(ps,ps_red);
+	    dip += PF_VqqIIc*Eval_UID_Q_QG_ES00(ps,ps_red,ap,hp);
 	  }
 	if (flags & F_EVAL_R_PHIxPHI_QG)
 	  {
 	    dip += PF_VqqII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
-	    dip += PF_VqqIIc*Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red);
+	    dip += PF_VqqIIc*Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    // if (TwoHDM>0)
 	    //   {
@@ -1091,7 +1088,7 @@ double Eval_UID_QG(
 	    // lt.apply(K1);
 	    // lt.apply(K2);
 	    ////////////////////////////
-	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor);
+	    ps_red.FillDistributions(*dist,H_NLO_R,dip*norm_factor,mScale);
 	  }
 	////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG

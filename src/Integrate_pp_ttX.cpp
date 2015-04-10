@@ -61,11 +61,11 @@ int main(int argc, char** argv)
   // the teestream has problems when no file is openened, so just dump to /dev/null
   else log_file.open("/dev/null");
  
-  // create teestream object to tee output to std::couT and file
+  // create teestream object to tee output to std::cout and the selected file
   teestream couT(std::cout,log_file);
   PRINTS(couT,run_id.str());
 
-  // the PDFs
+  // create the PDFs
   LHAPDF::PDF* pdf_ct10nlo = LHAPDF::mkPDF("CT10nlo", 0);
   
   // init external libraries
@@ -83,15 +83,18 @@ int main(int argc, char** argv)
   // all dimensionful quantities will be normalized to top-mass
   const double MT = 173.34;
   HiggsModel THDM_1;
+  // from now on all dimensionful parameters will be normalized to MT
+  THDM_1.SetScale(MT);
   // default values
-  THDM_1.SetVH(246.0/MT);
-  THDM_1.SetMUR(1.0);
-  THDM_1.SetMUF(1.0);
-  THDM_1.SetMt(1.0);
+  THDM_1.SetVH(246.0);
+  THDM_1.SetMUR(MT);
+  THDM_1.SetMUF(MT);
+  THDM_1.SetMt(MT);
   THDM_1.SetMb(0.0);
   parse_arguments(argc,argv,g_options,THDM_1);
   // MUR may be changed by user -> set AlphaS after parsing the arguments
-  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*mScale));
+  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*MT));
+  THDM_1.Print(couT,MT);
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -188,8 +191,6 @@ int main(int argc, char** argv)
   
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
-
-  THDM_1.Print(cout,1);
   
   // collect integration results and errors
   int const N_res = 6;
@@ -490,6 +491,15 @@ int main(int argc, char** argv)
 		       string("#frac{d#sigma}{d #Delta Y_{t#bar{t}}} [pb]"),
 		       WRITE_TO_FILE,
 		       PLOT_NLO);
+
+      CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
+      DrawDistribution(c2,
+		       PT12Distributions,
+		       &norm[0],
+		       string("p_{T,t+#bar{t}} [GeV]"),
+		       string("#frac{d#sigma}{dp_{T,t+#bar{t}}} [pb/GeV]"),
+		       WRITE_TO_FILE,
+		       PLOT_NLO);      
 
       // CanvasPtr c0 = MakeCanvas("Partonic cross section",1400,1000);
       // DrawDistribution(c0,

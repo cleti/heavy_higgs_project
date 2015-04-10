@@ -44,10 +44,10 @@ HiggsBoson::HiggsBoson(
 }
 
 
-void HiggsBoson::SetFormFactors(// qli3_ does not accept const values!
-				double S,
-				double mt2,
-				double mb2)
+void HiggsBoson::SetFormFactors(
+				double const& S,
+				double const& mt2,
+				double const& mb2)
 {
   static int I = 0;// finite part (the integrals here are not divergent)
   static double zero = 0.0;
@@ -74,6 +74,9 @@ void HiggsBoson::SetFormFactors(// qli3_ does not accept const values!
 	  d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );
 	  d_FA_full += mb2 * d_Bb * S * I3b;
 	}
+
+      d_FH_full /= -(4.0*S);
+      d_FA_full /=  (8.0*S);
     }
 }
 
@@ -184,7 +187,9 @@ HiggsModel::HiggsModel(std::string const & name):
   d_mt2(0),
   d_mb(0),
   d_mb2(0),
-  d_VH(1)
+  d_VH(1),
+  d_Scale(1),
+  d_Scale2(1)
 {
 
 }
@@ -215,6 +220,7 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       double const& Bti = (*phi_i)->Bt();
       double At2i = std::pow(Ati,2);
       double Bt2i = std::pow(Bti,2);
+
       
       // prefactors in PHIxQCD amplitudes
       // these are just the sum of individual phi contributions
@@ -308,11 +314,17 @@ void HiggsModel::SetAmpPrefactors()
     d_APref.PREF_UID_TF =  4.0*Pi*d_AlphaS;
     d_APref.PREF_UID_CA = 16.0*Pi*d_AlphaS*CA;
     d_APref.PREF_UID_CF =  8.0*Pi*d_AlphaS*CF;
-
     /* Needed in  EVAL_V  */
     d_APref.MUR2   = d_MUR2;
     d_APref.AlphaS = d_AlphaS;
 }
+
+// void SetScale(double const& val)
+// {
+//   // // first rescale all values with the previous scale
+
+// }
+
 
 void HiggsModel::AddBoson(
 			  double const& M,
@@ -324,7 +336,10 @@ void HiggsModel::AddBoson(
 {
   if (d_VH>0.0)
     {
-      d_Bosons.push_back(std::make_shared<HiggsBoson>(M,G,d_VH,a_t,b_t,a_b,b_b));
+      d_Bosons.push_back(std::make_shared<HiggsBoson>(M/d_Scale,
+						      G/d_Scale,
+						      d_VH,// already normalized to d_Scale
+						      a_t,b_t,a_b,b_b));
     }
   else
     {
@@ -340,7 +355,10 @@ void HiggsModel::AddScalar(
 {
   if (d_VH>0.0)
     {
-      d_Bosons.push_back(std::make_shared<HiggsBoson>(M,G,d_VH,a_t,0.0,a_b,0.0));
+      d_Bosons.push_back(std::make_shared<HiggsBoson>(M/d_Scale,
+						      G/d_Scale,
+						      d_VH,// already normalized to d_Scale
+						      a_t,0.0,a_b,0.0));
     }
   else
     {
@@ -356,7 +374,10 @@ void HiggsModel::AddPseudoscalar(
 {
   if (d_VH>0.0)
     {
-      d_Bosons.push_back(std::make_shared<HiggsBoson>(M,G,d_VH,0.0,b_t,0.0,b_b));
+      d_Bosons.push_back(std::make_shared<HiggsBoson>(M/d_Scale,
+						      G/d_Scale,
+						      d_VH,// already normalized to d_Scale
+						      0.0,b_t,0.0,b_b));
     }
   else
     {
@@ -378,7 +399,9 @@ void HiggsModel::Print(std::ostream& ost, double const& mScale)
   PRINTS(ost,d_mt*mScale);
   PRINTS(ost,d_mb*mScale);
   PRINTS(ost,d_VH*mScale);
-
+  PRINTS(ost,d_Scale);
+  PRINTS(ost,d_Scale2);
+  
   ost << std::endl;
   if (d_Bosons.size()>0)
     {
@@ -396,7 +419,7 @@ void HiggsModel::Print(std::ostream& ost, double const& mScale)
     {
       ost << " no Higgs bosons added so far. " << std::endl;
     }
-  d_APref.Print(ost);
+  // d_APref.Print(ost);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////

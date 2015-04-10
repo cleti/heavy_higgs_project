@@ -232,8 +232,8 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
   if (!hm.NBosons())
     {
       hm.AddBoson(
-		  500.0/RunParameters::mScale,
-		  3.245439053359254e+01/RunParameters::mScale,
+		  500.0,
+		  3.245439053359254e+01,
 		  1.0,
 		  1.0,
 		  0.0,

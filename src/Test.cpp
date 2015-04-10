@@ -47,140 +47,70 @@ double fnc2(double* x, size_t dim, void* par)
 //////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
-
-
-  
-  double MT = 173.5; // normalize everything to top-mass
-  const double S = 5.0;//pow(550.0/mScale,2); // sqrt(s) in units of mt^2
-  int GGH_EFF = 1; // use the effective ggH vertex?
-  
-  HiggsModel CPC_TwoHDM_1;
-  CPC_TwoHDM_1.SetAlphaS(0.105117798954049);
-  CPC_TwoHDM_1.SetMUR(2.0);
-  CPC_TwoHDM_1.SetMUF(2.0);
-  CPC_TwoHDM_1.SetVH(246.0/MT); 
-  CPC_TwoHDM_1.SetMt(1.0);
-  CPC_TwoHDM_1.SetMb(0.0);
-
-  
-  CPC_TwoHDM_1.AddBoson(500.0/MT,
-			3.245439053359254e+01/MT);
-
-
-  CPC_TwoHDM_1.SetHiggsPrefactors(S,true);
-  CPC_TwoHDM_1.Print(cout,MT);
-
-  
   using namespace Constants;
-  using namespace RunParameters;
-  using namespace HiggsBosons;
-  using namespace AmpPrefactors;
+  using RunParameters::g_flags_eval_v;
+  using RunParameters::g_flags_eval_id;
+  using RunParameters::g_flags_eval_r; 
 
   qlinit_();
   ltini();
 
   int PREC = (argc>1) ? atoi(argv[1]) : 5;
   cout << setprecision(PREC);
+  
   ////////////////////////////////////////////////////////////////////////////////////////////
   // input parameters ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
-  // scalar boson mass, width and couplings
-  // SetPhi1(500.0,
-  // 	  3.245439053359254e+01,
-  // 	  1.0,
-  // 	  1.0,
-  // 	  0.0,
-  // 	  0.0);
-  // SetPhi2(600.0,
-  // 	  67.71,
-  // 	  -1.19,
-  // 	  1.18,
-  // 	  0.0,
-  // 	  0.0);
+  double MT = 173.5;
+  const double S = 5.0;
+  int GGH_EFF = 0;
   
-  //   // WB: set 1
-  // SetPhi1(500.0,
-  // 	  11.45,
-  // 	  0.63,
-  // 	  0.54,
-  // 	  0.0,
-  // 	  0.0);
-  //   // WB: set 2
-  // SetPhi1(500.0,
-  // 	  45.38,
-  // 	  1.19,
-  // 	  1.18,
-  // 	  0.0,
-  // 	  0.0);
-  // // WB: set 3
-  // SetPhi1(600.0,
-  // 	  67.71,
-  // 	  -1.190,
-  // 	  1.180,
-  // 	  0.0,
-  // 	  0.0);
+  HiggsModel THDM;
+  // from now on all dimensionfull quantities are normalized to the top mass
+  THDM.SetScale(MT);
+  THDM.SetAlphaS(0.105117798954049);
+  THDM.SetMUR(2.0*MT);
+  THDM.SetMUF(2.0*MT);
+  THDM.SetVH(246.0); 
+  THDM.SetMt(MT);
+  THDM.SetMb(0.0);
 
-  //    // WB: set 5
-  // SetPhi1(500.0,
-  // 	  45.38,
-  // 	  1.19,
-  // 	  1.179,
-  // 	  0.0,
-  // 	  0.0);
-  // SetPhi2(600.0,
-  // 	  67.71,
-  // 	  -1.19,
-  // 	  1.179,
-  // 	  0.0,
-  // 	  0.0);
   
+  THDM.AddBoson(
+  		500.0,
+  		3.245439053359254e+01,
+  		1,1,
+  		0,0);
+  // THDM.AddBoson(
+  // 		600.0,
+  // 		67.71,
+  // 		-1.19,1.18,
+  // 		0,0);
 
-  // TwoHDM = 0;
-  // HiggsBosons::ResetHiggsPrefactors(S);
-  // get value of AlphaS from PDF
-  
-  // SetAlphaS(0.105117798954049);
-  // SetMUR(2.0);
-  // SetMUF(2.0);
-
-  // print parameters
-  PRINT(mt*mScale);
-  PRINT(Vh*mScale);
-  PRINT(AlphaS);
-  PRINT(M_1*mScale);
-  PRINT(G_1*mScale);
-  PRINT(At_1*Vh);
-  PRINT(Bt_1*Vh);
-  PRINT(FH_eff_1/mScale);
-  PRINT(FA_eff_1/mScale);
-  PRINT(MUR*mScale);
-  PRINT(MUF*mScale);
-  PRINT(S*mScale2);
-
-//   PRINT(PREF_B_PHIxQCD);
-//   PRINT(PREF_B_PHIxPHI);
-  
-//   PRINT(At_fH_re);
-//   PRINT(Bt_fH_re);
-//   PRINT(At_fA_re);
-//   PRINT(Bt_fA_re);
-//   PRINT(At_fH_im);
-//   PRINT(Bt_fH_im);
-//   PRINT(At_fA_im);
-//   PRINT(Bt_fA_im);
-
-//   PRINT(At2_fH2_De);
-//   PRINT(At2_fA2_De);
-// #ifdef WITH_T_SPIN
-//   PRINT(At_Bt_fH2_De);
-//   PRINT(At_Bt_fA2_De);
-//   PRINT(At_Bt_fH2_DeIM);
-//   PRINT(At_Bt_fA2_DeIM);
-// #endif
-//   PRINT(Bt2_fH2_De);
-//   PRINT(Bt2_fA2_De);
-
-
+  THDM.SetHiggsPrefactors(S,GGH_EFF);
+  THDM.Print(cout,MT);
+  double const& mt2 = THDM.mt2();
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  // {
+  //   using namespace HiggsBosons;
+  //   SetPhi1(500.0,
+  //   	    3.245439053359254e+01,
+  //   	    1.0,
+  //   	    1.0,
+  //   	    0.0,
+  //   	    0.0
+  //   	    );
+  //   SetPhi2(600.0,
+  //   	    67.71,
+  //   	    -1.19,
+  //   	    1.18,
+  //   	    0.0,
+  //   	    0.0);
+  //   RunParameters::TwoHDM = 1;
+  //   ResetHiggsPrefactors(S,GGH_EFF);
+  //   PrintHiggsPrefactors();
+  // }
   ////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
   // born + virtual + dipoles  integration
@@ -191,12 +121,12 @@ int main(int argc, char** argv)
     USET_EVAL_ALL(g_flags_eval_v);
     // Born
     SET_EVAL_B_PHIxPHI(g_flags_eval_v);
-    SET_EVAL_B_PHIxQCD(g_flags_eval_v);
-    SET_EVAL_B_QCDxQCD(g_flags_eval_v);
+    USET_EVAL_B_PHIxQCD(g_flags_eval_v);
+    USET_EVAL_B_QCDxQCD(g_flags_eval_v);
     // virtual corrections
-    SET_EVAL_V_PHIxPHI(g_flags_eval_v);
+    USET_EVAL_V_PHIxPHI(g_flags_eval_v);
     SET_EVAL_V_PHI1xQCD0(g_flags_eval_v);
-    SET_EVAL_V_PHI0xQCD1(g_flags_eval_v);
+    USET_EVAL_V_PHI0xQCD1(g_flags_eval_v);
     //SET_EVAL_V_NF(g_flags_eval_v);
 
     
@@ -255,10 +185,10 @@ int main(int argc, char** argv)
 		// cout << endl << " Setting '" << ps_gg_tt.d_name << "' to ";
 		cout << endl << "sqrt(s) = " << ps_gg_tt.get_rs() << "*mScale , y = " << y << ", x = " << x;
 		cout << endl << "---------------------------------------------------";
-		cout << endl << " Born                   = " << (res_b = PREF_GG*Eval_B   (ps_gg_tt,CPC_TwoHDM_1,g_flags_eval_v,GGH_EFF)) << "  " << endl;
-		cout << endl << " Virt.                  = " << (res_v = PREF_GG*Eval_V   (ps_gg_tt,CPC_TwoHDM_1,g_flags_eval_v)) << "  " << endl;
-		cout << endl << " DIP                    = " << (res_d = PREF_GG*Eval_ID  (ps_gg_tt,CPC_TwoHDM_1,g_flags_eval_id)) << "  " << endl;		
-		cout << endl << " DIP_X                  = " << (res_dx= PREF_GG*Eval_ID_X(ps_gg_tt_x,CPC_TwoHDM_1,g_flags_eval_id)) << "  " << endl;
+		cout << endl << " Born                   = " << (res_b = PREF_GG*Eval_B   (ps_gg_tt,THDM,g_flags_eval_v,GGH_EFF)) << "  " << endl;
+		cout << endl << " Virt.                  = " << (res_v = PREF_GG*Eval_V   (ps_gg_tt,THDM,g_flags_eval_v)) << "  " << endl;
+		cout << endl << " DIP                    = " << (res_d = PREF_GG*Eval_ID  (ps_gg_tt,THDM,g_flags_eval_id)) << "  " << endl;		
+		cout << endl << " DIP_X                  = " << (res_dx= PREF_GG*Eval_ID_X(ps_gg_tt_x,THDM,g_flags_eval_id)) << "  " << endl;
 		cout << endl << " DIP Sum                = " << res_d+res_dx;
 		cout << endl << "---------------------------------------------------";
 		cout << endl << " NLO                    = " << (res_d+res_dx+res_v+res_b) << "  " << endl;
@@ -271,153 +201,121 @@ int main(int argc, char** argv)
   
 //   // exit(1);
   
-//   // test real corrections
-//   {
-//     PS_2_3 ps_gg_ttg(mt2,mt2,0.0,"gg->tt-bar+g");
+  // test real corrections
+  {
+    PS_2_3 ps_gg_ttg(mt2,mt2,0.0,"gg->tt-bar+g");
 
-//     double res_r_phi  = 0.0;
-//     double res_r_int  = 0.0;
-//     double res_d_phi  = 0.0;
-//     double res_d_int  = 0.0;
-//     double sum_r = 0.0;
-//     double sum_d = 0.0;
-//     double rs_part= 5.0*mt;
-//     double y_cmf  = 0.5;// 0.5!!!
-//     double phi_cmf= 0.0;
-//     double M_tt   = 3.0*mt;
-//     double y_tt   = 0.0;
-//     double phi_tt = 0.0;
-//     FV n;
+    double res_r_phi  = 0.0;
+    double res_r_int  = 0.0;
+    double res_d_phi  = 0.0;
+    double res_d_int  = 0.0;
+    double sum_r = 0.0;
+    double sum_d = 0.0;
+    double rs_part= 5.0;
+    double y_cmf  = 0.5;// 0.5!!!
+    double phi_cmf= 0.0;
+    double M_tt   = 3.0;
+    double y_tt   = 0.0;
+    double phi_tt = 0.0;
+    FV n;
   
-//     if ( ps_gg_ttg.set(rs_part,y_cmf,phi_cmf,M_tt,y_tt,phi_tt) )
-//       {
-// 	PRINT(ps_gg_ttg.get_wgt()*mScale2);
-// 	PRINT(TwoPi*ps_gg_ttg.get_wgt()/(2.0*pow(rs_part,2))*mScale2);
-
-// #ifdef WITH_T_SPIN
-// 	// ALWAYS use spin vectors with the properties
-// 	// s_i.s_i = -1 and s_i.k_i = 0 !!!
-// 	// otherwise tests will fail, since these eqs. are used in the MEs
-// 	FV& k1 = ps_gg_ttg.k1();
-// 	FV& k2 = ps_gg_ttg.k2();
-// 	LT boost;
-// 	FV& s1 = ps_gg_ttg.s1();
-// 	FV& s2 = ps_gg_ttg.s2();
-// 	s1 = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
-// 	s2 = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
-// 	boost.set_boost(k1,1);
-// 	boost.apply_G(s1);
-// 	boost.set_boost(k2,1);
-// 	boost.apply_G(s2);
-// 	PRINT_4VEC(s1);
-// 	PRINT_4VEC(s2);
-// 	PRINT(sp(s1,k1));
-// 	PRINT(sp(s2,k2));
-// 	PRINT(EPS_(k1,k2,s1,s2));
-// 	boost.set_boost(k1+k2,1);
-// 	boost.apply_G(s1);
-// 	boost.apply_G(s2);
-// 	PRINT_4VEC(s1);
-// 	PRINT_4VEC(s2);
-// 	PRINT(sp(s1,k1));
-// 	PRINT(sp(s2,k2));
-// 	PRINT(EPS_(k1,k2,s1,s2));
-// #endif
-
+    if ( ps_gg_ttg.set(rs_part,y_cmf,phi_cmf,M_tt,y_tt,phi_tt) )
+      {
+	double const& mScale2 = THDM.Scale2();
+	
+	// FV& p1 = ps_gg_ttg.p1();
+	// FV& p2 = ps_gg_ttg.p2();
+	// FV& p3 = ps_gg_ttg.p3();
+	// n = {p3[0],-p3[1],-p3[2],-p3[3]};
       
-// 	// FV& p1 = ps_gg_ttg.p1();
-// 	// FV& p2 = ps_gg_ttg.p2();
-// 	// FV& p3 = ps_gg_ttg.p3();
-// 	// n = {p3[0],-p3[1],-p3[2],-p3[3]};
-      
-// 	// double k1k2 = sp(k1,k2);
-// 	// double p1p2 = sp(p1,p2);
-// 	// double k1p1 = sp(k1,p1);
-// 	// double k1p2 = sp(k1,p2);
-// 	// double k2p1 = sp(k2,p1);
-// 	// double k2p2 = sp(k2,p2);
-// 	// double p1q  = sp(p1,p3);
-// 	// double p2q  = sp(p2,p3);
-// 	// double k1q  = sp(k1,p3);
-// 	// double k2q  = sp(k2,p3);
-// 	// double k1n  = sp(k1,n);
-// 	// double k2n  = sp(k2,n);
-// 	// double p1n  = sp(p1,n);
-// 	// double p2n  = sp(p2,n);
-// 	// double qn   = sp(p3,n);
+	// double k1k2 = sp(k1,k2);
+	// double p1p2 = sp(p1,p2);
+	// double k1p1 = sp(k1,p1);
+	// double k1p2 = sp(k1,p2);
+	// double k2p1 = sp(k2,p1);
+	// double k2p2 = sp(k2,p2);
+	// double p1q  = sp(p1,p3);
+	// double p2q  = sp(p2,p3);
+	// double k1q  = sp(k1,p3);
+	// double k2q  = sp(k2,p3);
+	// double k1n  = sp(k1,n);
+	// double k2n  = sp(k2,n);
+	// double p1n  = sp(p1,n);
+	// double p2n  = sp(p2,n);
+	// double qn   = sp(p3,n);
 			
-// 	// cout << setprecision(15);
+	// cout << setprecision(15);
       
-// 	// PRINT(k1k2);
-// 	// PRINT(p1p2);
-// 	// PRINT(k1p1);
-// 	// PRINT(k1p2);
-// 	// PRINT(k2p1);
-// 	// PRINT(k2p2);
-// 	// PRINT(p1q);
-// 	// PRINT(p2q);
-// 	// PRINT(k1q);
-// 	// PRINT(k2q);
-// 	// PRINT(k1n);
-// 	// PRINT(k2n);
-// 	// PRINT(p1n);
-// 	// PRINT(p2n);
-// 	// PRINT(qn);
+	// PRINT(k1k2);
+	// PRINT(p1p2);
+	// PRINT(k1p1);
+	// PRINT(k1p2);
+	// PRINT(k2p1);
+	// PRINT(k2p2);
+	// PRINT(p1q);
+	// PRINT(p2q);
+	// PRINT(k1q);
+	// PRINT(k2q);
+	// PRINT(k1n);
+	// PRINT(k2n);
+	// PRINT(p1n);
+	// PRINT(p2n);
+	// PRINT(qn);
 		
-// 	// ps_gg_ttg.print();
-// 	// interference terms
-// 	USET_EVAL_R_ALL(g_flags_eval_r);
-// 	USET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
-// 	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
-// 	SET_EVAL_R_ISR_ISR(g_flags_eval_r);
-// 	// USET_EVAL_R_ISR_ISR(g_flags_eval_r);
-// 	// USET_EVAL_R_FSR_ISR(g_flags_eval_r);
-// 	// USET_EVAL_R_FSR_INT(g_flags_eval_r);
-// 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << endl;
-// 	cout << endl << " 2*RE[M_QCD * M_phi ]     = " << (res_r_int = PREF_GG*Eval_R_GG(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-// 	cout << endl << " dip 2*RE[M_QCD * M_phi ] = " << (res_d_int = PREF_GG*Eval_UID_GG(ps_gg_ttg,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
-// 	// phi^2 terms [FSR]
-// 	USET_EVAL_R_ALL(g_flags_eval_r);
-// 	SET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
-// 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [FSR] " << endl;
-// 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-// 	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
-// 	sum_r += res_r_phi;
-// 	sum_d += res_d_phi;
-// 	// phi^2 terms [ISR]
-// 	USET_EVAL_R_ALL(g_flags_eval_r);
-// 	SET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
-// 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [ISR] " << endl;
-// 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-// 	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
-// 	sum_r += res_r_phi;
-// 	sum_d += res_d_phi;
+	// ps_gg_ttg.print();
+	// interference terms
+	USET_EVAL_R_ALL(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
+	SET_EVAL_R_ISR_ISR(g_flags_eval_r);
+	// USET_EVAL_R_ISR_ISR(g_flags_eval_r);
+	// USET_EVAL_R_FSR_ISR(g_flags_eval_r);
+	// USET_EVAL_R_FSR_INT(g_flags_eval_r);
+	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << endl;
+	cout << endl << " 2*RE[M_QCD * M_phi ]     = " << (res_r_int = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip 2*RE[M_QCD * M_phi ] = " << (res_d_int = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	// phi^2 terms [FSR]
+	USET_EVAL_R_ALL(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
+	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [FSR] " << endl;
+	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	sum_r += res_r_phi;
+	sum_d += res_d_phi;
+	// phi^2 terms [ISR]
+	USET_EVAL_R_ALL(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
+	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [ISR] " << endl;
+	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	sum_r += res_r_phi;
+	sum_d += res_d_phi;
 
-// 	// qq
-// 	USET_EVAL_R_ALL(g_flags_eval_r);
-// 	USET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
-// 	SET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
-// 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QQ] " << endl;
-// 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	// qq
+	USET_EVAL_R_ALL(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
+	SET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
+	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QQ] " << endl;
+	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 
-// 	// qg
-// 	USET_EVAL_R_ALL(g_flags_eval_r);
-// 	USET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
-// 	SET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
-// 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QG] " << endl;
-// 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-// 	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_QG*Eval_UID_QG(ps_gg_ttg,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	// qg
+	USET_EVAL_R_ALL(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
+	SET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
+	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QG] " << endl;
+	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_QG*Eval_UID_QG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
 
-// 	cout << endl << " === SWAP !!! === " << endl;
-//         ps_gg_ttg.swap();
-// 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-// 	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_QG*Eval_UID_QG(ps_gg_ttg,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
-// 	ps_gg_ttg.swap();
+	cout << endl << " === SWAP !!! === " << endl;
+        ps_gg_ttg.swap();
+	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_QG*Eval_UID_QG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	ps_gg_ttg.swap();
 
-// 	cout << endl << " sum_r = " << sum_r/mScale2;
-// 	cout << endl << " sum_d = " << sum_d/mScale2 << endl;
-//       }
-//   }
+	cout << endl << " sum_r = " << sum_r/mScale2;
+	cout << endl << " sum_d = " << sum_d/mScale2 << endl;
+      }
+  }
   return 1;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////

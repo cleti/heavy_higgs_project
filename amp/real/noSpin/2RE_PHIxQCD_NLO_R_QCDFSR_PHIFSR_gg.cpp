@@ -4,8 +4,9 @@
 double Eval_R_FSR_FSR (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
-
+  AMP_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_R(ap);
 
   double t1;
   double t10;

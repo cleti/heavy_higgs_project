@@ -17,6 +17,10 @@
 #include "Lorentz.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*!
+\typedef observable function type
+ */
+typedef double (*OBS)(FV const&);
 
 
 const char* cat(std::string str, int number);
@@ -45,9 +49,12 @@ class HistArray {
   std::string d_label;
   //! mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
   int d_mass_dim;
+  //! the observable that will be plotted
+  OBS d_obs;
+
   //! running histogram id
   static int d_ID;
-
+  
  public:
   HistArray(int nbinsx,
 	    double xlow,
@@ -62,38 +69,50 @@ class HistArray {
     \param i histogram index, NO RANGE CHECK!
   */
   TH1D* operator[](unsigned i) { return &d_histograms[i]; }
+  
   //! check if a specific histogram is active
   bool IsActive(unsigned i) { return d_active & (1<<i);}
+  
   //! set the flags, use for example SetActive(BOOST_BINARY(000 000 1)) to activate only the first
   void SetActive(unsigned i) { d_active = i; }
+  
   //! deactivate all histograms, used for VEGAS warmup run
   void Pause() { if (d_active != 0) std::swap(d_active_t,d_active); }
+  
   //! reset flags to previous state
   void Resume() { if (d_active == 0) std::swap(d_active_t,d_active); }
+  
   //! set the description of the distribution
   void SetLabel(std::string const& label) { d_label = label; }
+  
   //! get the description of the distribution, const char* for ROOT classes/functions
   const char* GetLabel() { return d_label.c_str(); }
+  
   //! fill weight into all active histograms
   /*!
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
   void FillAll(double const& x, double const& wgt) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Fill(x,wgt);} }
+  
   //! fill weight into a single histogram if activated
   /*!
     \param i histogram index, NO RANGE CHECK!
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
+  
   void FillOne(unsigned i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
   //! draw all histograms into the currently selected canvas
   /*!
     \param opt ROOT drawing options
   */
+  
   void Draw(const char* opt="") { for (unsigned i=0;i<NHIST;i++) {d_histograms[i].Draw(opt);} }
+
   //! rescale all active histograms by a factor of 1/c
   void Scale(double c) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Scale(1.0/c); } }
+  
   //! normalize all histograms such that sum(b_i) = sigma, where b_i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!!
   /*!
     \param mScale if dimensionful observables have been normalized to mass scale mScale this can be used to restore the original mass scale (provided d_mass_dim was set up correctly)

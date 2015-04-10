@@ -4,7 +4,9 @@
 double Eval_UID_ES00 (UID_ARGS)
 {
 
-UID_DEFINITIONS
+  UID_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_R(ap);
 
 
   double t10;

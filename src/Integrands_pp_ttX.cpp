@@ -20,13 +20,16 @@ double Integrand_poly2(double* x, size_t dim, void* arg)
 double Integrand_2_2(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  using namespace RunParameters;
+  //using namespace RunParameters;
 
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_2*         ps    = dynamic_cast<PS_2_2*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
   HiggsModel*     hm    = ip->higgs_model;
   
+  double const&   mScale = hm->Scale();  
+  double const&   mScale2= hm->Scale2();
+   
   double rs_part = 0.0;
   double y = 0.0;
   if (dim==1)
@@ -51,7 +54,7 @@ double Integrand_2_2(double* x, size_t dim, void* arg)
       
       // include spin/color average of initial gluons and PFDs, convert to units of picobarn
       //// no initial gluon helicity average ! only the sum !
-      double cf = 4.0*PREF_GG*CONV_mt2i_pbarn;
+      double cf = 4.0*PREF_GG*CONV_GeV2i_pbarn/mScale2;
 
       // born matrix elements (GG)
       double res_b = Eval_B(*ps,*hm,flags,0)*jac_flux_1*cf;
@@ -65,11 +68,11 @@ double Integrand_2_2(double* x, size_t dim, void* arg)
 	  double vwgt  = ip->cmp_v_weight();
 	  if (flags & F_EVAL_B_QCDxQCD)
 	    { // only the s_part distribution
-	      (*dist)[0]->FillOne(H_LO_QCD,obs_M12(p1,p2),res_b*vwgt);
+	      (*dist)[0]->FillOne(H_LO_QCD,obs_M12(p1,p2)*mScale,res_b*vwgt);
 	    }
 	  else
 	    { // only the s_part distribution 
-	      (*dist)[0]->FillOne(H_LO_PHI,obs_M12(p1,p2),res_b*vwgt);
+	      (*dist)[0]->FillOne(H_LO_PHI,obs_M12(p1,p2)*mScale,res_b*vwgt);
 	    }
 	}
       ////////////////////////////////////////////////////////////////////////////
@@ -86,7 +89,7 @@ double Integrand_2_2(double* x, size_t dim, void* arg)
 double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  using namespace RunParameters;
+  //using namespace RunParameters;
 
   if (unlikely(dim!=3))
     {
@@ -97,7 +100,11 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
   PS_2_2*         ps    = dynamic_cast<PS_2_2*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
   HiggsModel*     hm    = ip->higgs_model;
-
+  
+  double const&   MUF2   = hm->MUF2();
+  double const&   mScale = hm->Scale(); 
+  double const&   mScale2= hm->Scale2();
+  
   // hadronic c.m.e.
   double& s_hadr = ip->s_hadr;
   // partonic c.m.e.
@@ -179,7 +186,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
       double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
       
       // include spin/color average of initial gluons and PFDs, convert to units of picobarn
-      double cf = PREF_GG*f1*f2*CONV_mt2i_pbarn;
+      double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
 
       // born matrix elements (GG)
       if (EVAL_B(flags)) res_b = Eval_B(*ps,*hm,flags,0)*jac_flux_1*cf;
@@ -220,13 +227,13 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 	  double vwgt  = ip->cmp_v_weight();
 	  if (flags & F_EVAL_B_QCDxQCD)
 	    { // only QCD LO: fill in the 0-th hostogram
-	      ps->FillDistributions(*dist,H_LO_QCD,res_b*vwgt);
+	      ps->FillDistributions(*dist,H_LO_QCD,res_b*vwgt,mScale);
 	    }
 	  else
 	    { // PHI + INT LO: fill in the first histogram
-	      ps->FillDistributions(*dist,H_LO_PHI,res_b*vwgt);
+	      ps->FillDistributions(*dist,H_LO_PHI,res_b*vwgt,mScale);
 	    }
-	  ps->FillDistributions(*dist,H_NLO_V,res_v*vwgt);
+	  ps->FillDistributions(*dist,H_NLO_V,res_v*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       return  (res_b+res_v);
@@ -241,7 +248,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  using namespace RunParameters;
+  //using namespace RunParameters;
 
   if (unlikely(dim!=4))
     {
@@ -252,8 +259,12 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
   PS_2_2*         ps    = dynamic_cast<PS_2_2*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
   HiggsModel*     hm    = ip->higgs_model;
-
-
+  
+  double const&   MUF2   = hm->MUF2();
+  double const&   mt2    = hm->mt2();
+  double const&   mScale = hm->Scale(); 
+  double const&   mScale2= hm->Scale2();
+  
   // hadronic c.m.e.
   double& s_hadr = ip->s_hadr;
   // partonic c.m.e.
@@ -268,7 +279,7 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
   double f1 = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
   double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
   // include spin/color average of initial gluons and PFDs, convert to units of picobarn
-  double cf = PREF_GG*f1*f2*CONV_mt2i_pbarn;
+  double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
 
   if (ps->set(sqrt(s_part),x[2],0.0))
     {
@@ -344,8 +355,8 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 	  ps_x.P2() = (ps->P2());
 
 	  double vwgt  = ip->cmp_v_weight();
-	  ps->FillDistributions(*dist,H_NLO_ID,(res_d+res_dx)*vwgt);
-	  //ps_x.FillDistributions(*dist,H_NLO_ID,res_dx*vwgt);
+	  ps->FillDistributions(*dist,H_NLO_ID,(res_d+res_dx)*vwgt,mScale);
+	  //ps_x.FillDistributions(*dist,H_NLO_ID,res_dx*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////   
     }
@@ -365,12 +376,15 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  using namespace RunParameters;
+  //using namespace RunParameters;
   
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_3*         ps    = dynamic_cast<PS_2_3*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
   HiggsModel*     hm    = ip->higgs_model;
+  
+  double const&   MUF2   = hm->MUF2();
+  double const&   mScale2= hm->Scale2();
   
   // hadronic c.m.e.
   double const& s_hadr = ip->s_hadr;
@@ -412,7 +426,7 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
       double f1 = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
       double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
       
-      double cf_gg = PREF_GG*f1*f2*CONV_mt2i_pbarn;
+      double cf_gg = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
       double res_r_gg = Eval_R_GG(*ps,*hm,flags)*cf_gg*jac_flux;
       
       // for the unint. dipoles we need here already the VEGAS weight
@@ -444,13 +458,16 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  using namespace RunParameters;
+  //using namespace RunParameters;
   
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_3*         ps    = dynamic_cast<PS_2_3*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
   HiggsModel*     hm    = ip->higgs_model;
-
+  
+  double const&   MUF2   = hm->MUF2();
+  double const&   mScale2= hm->Scale2();
+  
   // hadronic c.m.e.
   double s_hadr = ip->s_hadr;
   // partonic c.m.e.
@@ -488,9 +505,9 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
 	}
       //////////////////////////////////////////////////////////////////
       
-      double cf_qq = PREF_QQ*qq_pdf*CONV_mt2i_pbarn;
-      double cf_qg = PREF_QG*qg_pdf*CONV_mt2i_pbarn;
-      double cf_gq = PREF_QG*gq_pdf*CONV_mt2i_pbarn;
+      double cf_qq = PREF_QQ*qq_pdf*CONV_GeV2i_pbarn/mScale2;
+      double cf_qg = PREF_QG*qg_pdf*CONV_GeV2i_pbarn/mScale2;
+      double cf_gq = PREF_QG*gq_pdf*CONV_GeV2i_pbarn/mScale2;
       
       double res_r_qq = Eval_R_QQ(*ps,*hm,flags)*cf_qq*jac_flux;
       double res_r_qg = Eval_R_QG(*ps,*hm,flags)*cf_qg*jac_flux;

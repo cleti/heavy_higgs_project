@@ -4,8 +4,10 @@
 double Eval_R_PHIxPHI_FSR_INT12 (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
-AMP_H12_REFS
+AMP_DEFINITIONS;
+  HP_REFS_PHIxPHI(hp);
+  AP_REFS_R(ap);
+  AMP_H12_REFS;
 
   double t1;
   double t11;

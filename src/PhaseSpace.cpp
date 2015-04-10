@@ -88,10 +88,12 @@ void PS_2_1::print() const
   PRINT_4VEC(k);
   PRINT_4VEC(S);
 }
+
 void PS_2_1::FillDistributions(
 			       std::vector<HistArray*> & dist,
 			       int id,
-			       double const & wgt) const
+			       double const & wgt,
+			       double const& mScale) const
 {
   std::cout << "\n FillDistributions: no distributions in case PS 2->1 !!! \n"; exit(1);
 }
@@ -305,7 +307,8 @@ void PS_2_2::print() const
 void PS_2_2::FillDistributions(
 			       std::vector<HistArray*> & dist,
 			       int id,
-			       double const & wgt) const
+			       double const & wgt,
+			       double const& mScale) const
 {
   // need the lab frame 4-vectors K1,K2 of top/antitop
   static LT boost_to_lab_frame;
@@ -326,14 +329,32 @@ void PS_2_2::FillDistributions(
   //     PRINT_4VEC(K2);
   //     exit(1);
   //   }
+
+  // PRINT(dist[0]->IsActive(0));
+  // PRINT(dist[0]->IsActive(1));
+
+  // PRINT(dist[1]->IsActive(0));
+  // PRINT(dist[1]->IsActive(1));
+
+  // PRINT(dist[3]->IsActive(0));
+  // PRINT(dist[3]->IsActive(1));
+
+  // PRINT(dist[4]->IsActive(0));
+  // PRINT(dist[4]->IsActive(1));
+
+  // PRINT(dist[6]->IsActive(0));
+  // PRINT(dist[6]->IsActive(1));
+  
+  // exit(1);
   // tt distributions
-  dist[0]->FillOne(id,obs_M12(K1,K2),wgt);
-  dist[1]->FillOne(id,obs_PT(K1)    ,wgt);
+  dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
+  dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
+  dist[3]->FillOne(id,obs_PT(K1+K2)*mScale ,wgt);
   // need lab frame vectors for these
-  dist[3]->FillOne(id,obs_Y(K1)     ,wgt);
+  dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
-  dist[5]->FillOne(id,obs_DY(K1,K2) ,wgt);
+  dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////////////////
@@ -472,10 +493,12 @@ void PS_2_3::print() const
   PRINT_4VEC(S[1]);
   PRINT_4VEC(S[2]);
 }
+
 void PS_2_3::FillDistributions(
 			       std::vector<HistArray*> & dist,
 			       int id,
-			       double const & wgt) const
+			       double const & wgt,
+			       double const& mScale) const
 {
   // need the lab frame 4-vectors K1,K2 of top/antitop
   static LT boost_to_lab_frame;
@@ -488,11 +511,12 @@ void PS_2_3::FillDistributions(
   boost_to_lab_frame.apply(K2);
   
   // tt distributions
-  dist[0]->FillOne(id,obs_M12(K1,K2),wgt);
-  dist[1]->FillOne(id,obs_PT(K1)    ,wgt);
+  dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
+  dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
+  dist[3]->FillOne(id,obs_PT(K1+K2)*mScale ,wgt);
   // need lab frame vectors for these
-  dist[3]->FillOne(id,obs_Y(K1)     ,wgt);
+  dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
-  dist[5]->FillOne(id,obs_DY(K1,K2) ,wgt);
+  dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
 }

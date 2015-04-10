@@ -34,7 +34,8 @@ HistArray::HistArray(int nbinsx,
   d_active(BOOST_BINARY(11 111 1)),
   d_active_t(0),
   d_label(label),
-  d_mass_dim(mass_dim)
+  d_mass_dim(mass_dim),
+  d_obs(nullptr)
 {
   if (SUMW2)
     {
@@ -108,12 +109,12 @@ HistArray DYDistributions(14,DIST_Y_L,DIST_Y_U,0,"#Delta |y| distribution");
 // mass of 2-particle system [GeV]
 double obs_M12(FV const& k1, FV const& k2)
 {
-  return sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2))*RunParameters::mScale;
+  return sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));
 }
 // transverse momentum (transverse plane is the x-y-plane) [GeV]
 double obs_PT(FV const& k)
 {
-  return sqrt(k[1]*k[1]+k[2]*k[2])*RunParameters::mScale;
+  return sqrt(k[1]*k[1]+k[2]*k[2]);
 }
 // pseudo-rapidity
 double obs_Y(FV const& k)
