@@ -1,0 +1,7 @@
+ggHX :=  + VF(CF*CA^2*AlphaS^3*Pi^(-1))*fH^2 * ( 1024*sp(P1,p2)*sp(P1,
+         p3)*sp(p2,p3) )
+
+       + VF(CF*CA^2*AlphaS^3*Pi^(-1))*fA^2 * ( 4096*sp(P1,p2)*sp(P1,p3)
+         *sp(p2,p3) );
+
+

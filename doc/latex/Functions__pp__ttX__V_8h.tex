@@ -1,0 +1,117 @@
+\hypertarget{Functions__pp__ttX__V_8h}{\section{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.h File Reference}
+\label{Functions__pp__ttX__V_8h}\index{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
+}
+
+
+Interface for the evaluation of born level amplitudes and virtual corrections.  
+
+
+{\ttfamily \#include $<$gsl/gsl\-\_\-sf\-\_\-dilog.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Scalar\-Integrals.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Flags.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\-\_\-\-Shared.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Higgs\-Model.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}{Eval\-\_\-\-B} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const ulong \&flags, unsigned E\-F\-F=1)
+\begin{DoxyCompactList}\small\item\em evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}{Eval\-\_\-\-B\-\_\-\-Q\-Q} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm)
+\begin{DoxyCompactList}\small\item\em evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt \end{DoxyCompactList}\item 
+\hypertarget{Functions__pp__ttX__V_8h_a47fa0f39aea915e17ba7cafebb9db267}{double {\bfseries Eval\-\_\-\-B\-\_\-\-Q\-C\-Dx\-Q\-C\-D} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const \hyperlink{structAmplitudePrefactors}{Amplitude\-Prefactors} \&ap, const \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} \&hp)}\label{Functions__pp__ttX__V_8h_a47fa0f39aea915e17ba7cafebb9db267}
+
+\item 
+\hypertarget{Functions__pp__ttX__V_8h_a2c13dbd74dbb1b452611275e257ee9ae}{double {\bfseries Eval\-\_\-\-B\-\_\-2\-P\-H\-Ix\-Q\-C\-D} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const \hyperlink{structAmplitudePrefactors}{Amplitude\-Prefactors} \&ap, const \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} \&hp)}\label{Functions__pp__ttX__V_8h_a2c13dbd74dbb1b452611275e257ee9ae}
+
+\item 
+\hypertarget{Functions__pp__ttX__V_8h_abc1520425580650a63be3d17f4715123}{double {\bfseries Eval\-\_\-\-B\-\_\-\-P\-H\-Ix\-P\-H\-I} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const \hyperlink{structAmplitudePrefactors}{Amplitude\-Prefactors} \&ap, const \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} \&hp)}\label{Functions__pp__ttX__V_8h_abc1520425580650a63be3d17f4715123}
+
+\item 
+\hypertarget{Functions__pp__ttX__V_8h_adf16cc85dd62461afc506e73518600e0}{double {\bfseries Eval\-\_\-\-B\-\_\-\-P\-H\-Ix\-P\-H\-I\-\_\-with\-I\-N\-T12} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const \hyperlink{structAmplitudePrefactors}{Amplitude\-Prefactors} \&ap, const \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} \&hp)}\label{Functions__pp__ttX__V_8h_adf16cc85dd62461afc506e73518600e0}
+
+\item 
+double \hyperlink{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}{Eval\-\_\-\-V} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const ulong \&flags)
+\begin{DoxyCompactList}\small\item\em evaluate the virtual corrections for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for the evaluation of born level amplitudes and virtual corrections. 
+
+\subsection{Function Documentation}
+\hypertarget{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-B@{Eval\-\_\-\-B}}
+\index{Eval\-\_\-\-B@{Eval\-\_\-\-B}!Functions_pp_ttX_V.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
+\subsubsection[{Eval\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-B (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps, }
+\item[{{\bf Higgs\-Model} \&}]{hm, }
+\item[{const ulong \&}]{flags, }
+\item[{unsigned}]{E\-F\-F = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}
+
+
+evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps} & 2-\/$>$2 phase space \\
+\hline
+{\em hm} & Higgs model parameters \\
+\hline
+{\em flags} & specify which subamplitudes get evaluated \\
+\hline
+{\em E\-F\-F} & use effective or full 1-\/loop gg-\/\-Higgs form factors \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+\hypertarget{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-B\-\_\-\-Q\-Q@{Eval\-\_\-\-B\-\_\-\-Q\-Q}}
+\index{Eval\-\_\-\-B\-\_\-\-Q\-Q@{Eval\-\_\-\-B\-\_\-\-Q\-Q}!Functions_pp_ttX_V.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
+\subsubsection[{Eval\-\_\-\-B\-\_\-\-Q\-Q}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-B\-\_\-\-Q\-Q (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps, }
+\item[{{\bf Higgs\-Model} \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}
+
+
+evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps} & 2-\/$>$2 phase space \\
+\hline
+{\em hm} & Higgs model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+\hypertarget{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-V@{Eval\-\_\-\-V}}
+\index{Eval\-\_\-\-V@{Eval\-\_\-\-V}!Functions_pp_ttX_V.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
+\subsubsection[{Eval\-\_\-\-V}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-V (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps, }
+\item[{{\bf Higgs\-Model} \&}]{hm, }
+\item[{const ulong \&}]{flags}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}
+
+
+evaluate the virtual corrections for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps} & 2-\/$>$2 phase space \\
+\hline
+{\em hm} & Higgs model parameters \\
+\hline
+{\em flags} & specify which subamplitudes get evaluated \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}

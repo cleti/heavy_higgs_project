@@ -1,0 +1,52 @@
+Process 32723 [ 32723 ]  starting log at Wed Sep  3 15:30:53 2014
+
+
+[1409751053] : Value of PREF_B_At = 0.0311729
+[1409751053] : Value of PREF_B_Bt = 0.0311729
+[1409751053] : Value of PREF_V_CF_At = 0.00139073
+[1409751053] : Value of PREF_V_CF_Bt = 0.00139073
+[1409751053] : Value of PREF_V_CA_At = 0.00312914
+[1409751053] : Value of PREF_V_CA_Bt = 0.00312914
+[1409751053] : Value of PREF_V_CFCA2_At = -0.000173841
+[1409751053] : Value of PREF_V_CFCA2_Bt = -0.000173841
+[1409751053] : Value of PREF_V_Nf_At = 0.00521523
+[1409751053] : Value of PREF_V_Nf_Bt = 0.00521523
+[1409751053] : Value of PREF_V_CT_At = 0.00104305
+[1409751053] : Value of PREF_V_CT_Bt = 0.00104305
+[1409751053] : Value of PREF_R_CF_At = 0.0137259
+[1409751053] : Value of PREF_R_CF_Bt = 0.0137259
+[1409751053] : Value of PREF_R_CA_At = 0.0308833
+[1409751053] : Value of PREF_R_CA_Bt = 0.0308833
+[1409751053] : Value of PREF_R_CFCA2_At = -0.00171574
+[1409751053] : Value of PREF_R_CFCA2_Bt = -0.00171574
+[1409751053] : src/Functions_Shared.cpp:742
+[1409751053] : setting fHd/fAd with LO effective couplings FH0/FA0
+
+[1409751053] : Value of FH0 = 0.0587737
+[1409751053] : Value of FA0 = -0.0440803
+[1409751053] : Value of fHd = (0.0286051,-0.00425451)
+[1409751053] : Value of fAd = (-0.0214538,0.00319088)
+[1409751053] : src/../amp/src/virtual/noSpin/2RE_HIGGSxQCD_B_eps0_g4.cpp:6
+[1409751053] : the result of this function does not contain spin/colour average
+
+[1409751053] : src/../amp/src/virtual/noSpin/2RE_HIGGSxQCD_B_eps0_g4.cpp:7
+[1409751053] : this is Born with LO effective phi-gg couplings fH0,fA0
+
+[1409751053] : src/Functions_V.cpp:29
+[1409751053] : the result of this function does not contain spin/colour average
+
+[1409751053] : src/Functions_V.cpp:137
+[1409751053] : the result of this function does not contain spin/colour average
+
+[1409751053] : src/Functions_R.cpp:32
+[1409751053] : the result of this function does not contain spin/colour average
+
+[1409751053] : src/Functions_UID.cpp:196
+[1409751053] : the result of this function does not contain spin/colour average
+
+[1409751053] : src/Functions_UID.cpp:209
+[1409751053] : F_EVAL_UID_ES00
+
+[1409751053] : src/Functions_UID.cpp:225
+[1409751053] : F_EVAL_UID_SE00
+

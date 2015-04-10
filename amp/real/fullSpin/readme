@@ -1,0 +1,8 @@
+
+IM_INTab : imaginary part of the interference terms of
+	   scalar and pseudoscalar Phi-tt amplitudes (2IM[...])
+	   (for a single Higgs boson!)
+INT12    : full interference terms of two Higgs bosons Phi1 and Phi2
+	   (2RE[...] !!!)
+v2 	 : these are my own amplitudes, used to check the ones I copied
+	   from WB's notes

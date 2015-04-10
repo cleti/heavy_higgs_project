@@ -1,0 +1,9 @@
+
+results/*
+ext/*
+trash/*
+bin/*
+lib/*
+
+# ignore temporary files
+*~
