@@ -67,16 +67,37 @@ void HiggsBoson::SetFormFactors(
 	  d_FH_full += mt2 * d_At * ( (S-4.0*mt2) * I3t - 2.0 );
 	  d_FA_full += mt2 * d_Bt * S * I3t;
 	}
-      // bottom contribution
-      if (d_Ab != 0.0 || d_Bb != 0.0)
+      if (mb2>0.0)
 	{
-	  c_double I3b = qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I);
-	  d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );
-	  d_FA_full += mb2 * d_Bb * S * I3b;
+	  // bottom contribution
+	  if (d_Ab != 0.0 || d_Bb != 0.0)
+	    {
+	      c_double I3b = qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I);
+	      d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );
+	      d_FA_full += mb2 * d_Bb * S * I3b;
+	    }
 	}
-
       d_FH_full /= -(4.0*S);
       d_FA_full /=  (8.0*S);
+
+#ifdef DEBUG
+      if (S<=0.0)
+	{
+	  ERROR("S<=0!");
+	}   
+      if (std::isnan(RE(d_FH_full)) || std::isinf(RE(d_FH_full)) || std::isnan(IM(d_FH_full)) || std::isinf(IM(d_FH_full)))
+	{
+	  PRINT(qli3_(&S,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I));
+	  PRINT(qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I));	  
+	  ERROR("d_FH_full is inf/nan!");
+	}
+      if (std::isnan(RE(d_FA_full)) || std::isinf(RE(d_FA_full)) || std::isnan(IM(d_FA_full)) || std::isinf(IM(d_FA_full)))
+	{
+	  PRINT(qli3_(&S,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I));
+	  PRINT(qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I));	   
+	  ERROR("d_FA_full is inf/nan!");
+	}
+#endif
     }
 }
 
@@ -85,16 +106,23 @@ void HiggsBoson::SetPropagator(double const& S)
   if (S!=d_S_Den)
     {
       d_S_Den = S;
-#ifdef DEBUG
-      if (S<0.0)
-	{
-	  std::cout << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-	  std::cout << " ERROR: S < 0!" << std::endl;
-	  std::exit(1);
-	}
-#endif
       d_DenSq = 1.0 / (pow(S-d_M2,2)+pow(d_M*d_G,2));
       d_Den   = c_double((S-d_M2)*d_DenSq,-d_M*d_G*d_DenSq);
+
+#ifdef DEBUG
+      if (S<=0.0)
+	{
+	  ERROR("S<=0!");
+	}        
+      if (std::isnan(d_DenSq) || std::isinf(d_DenSq))
+	{
+	  ERROR("d_DenSq is inf/nan!");
+	}
+      if (std::isnan(RE(d_Den)) || std::isinf(RE(d_Den)) || std::isnan(IM(d_Den)) || std::isinf(IM(d_Den)))
+	{
+	  ERROR("d_Den is inf/nan!");
+	}
+#endif        
     }
 }
 
@@ -393,6 +421,8 @@ void HiggsModel::PopBoson()
 
 void HiggsModel::Print(std::ostream& ost, double const& mScale)
 {
+  ost << std::endl << std::setfill('=') << std::setw(100) << "" << std::setfill(' ');
+  ost << std::endl << " Model configuration [" << d_Name << "]: " << std::endl;
   PRINTS(ost,d_AlphaS);
   PRINTS(ost,d_MUR*mScale);  
   PRINTS(ost,d_MUF*mScale);
@@ -400,25 +430,25 @@ void HiggsModel::Print(std::ostream& ost, double const& mScale)
   PRINTS(ost,d_mb*mScale);
   PRINTS(ost,d_VH*mScale);
   PRINTS(ost,d_Scale);
-  PRINTS(ost,d_Scale2);
   
-  ost << std::endl;
+  ost << std::endl << " Higgs bosons:" << std::endl << std::endl;
   if (d_Bosons.size()>0)
     {
       ost << std::setw(5) <<  "#" << std::setw(15) <<  "M"  << std::setw(15) <<  "Gamma" << std::setw(15) <<  "a_t" << std::setw(15) <<  "b_t" << std::setw(15) <<  "a_b" << std::setw(15) <<  "b_b" << std::endl;
-
+      ost << std::setfill('-') << std::setw(100) << "" << std::setfill(' ') << std::endl;
       int I = 1;
       for (auto phi:d_Bosons)
 	{
 	  ost << std::setw(5) << I << std::setw(15) <<  phi->M()*mScale << std::setw(15) << phi->G()*mScale << std::setw(15) << phi->At()*d_VH << std::setw(15) <<  phi->Bt()*d_VH << std::setw(15) << phi->Ab()*d_VH << std::setw(15) <<  phi->Bb()*d_VH << std::endl;
 	  ++I;
 	}
-      d_HPref.Print(ost);
+      // d_HPref.Print(ost);
     }
   else
     {
       ost << " no Higgs bosons added so far. " << std::endl;
     }
+  ost << std::setfill('=') << std::setw(100) << "" << std::setfill(' ') << std::endl;
   // d_APref.Print(ost);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////

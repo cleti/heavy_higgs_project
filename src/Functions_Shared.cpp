@@ -23,7 +23,7 @@ struct opt g_options = {
   // default values
   63,//int int_flags;
   10000000,//int n_calls;
-  1.0,//double ren_scale;
+  0.0,//double ren_scale;
   14.0,// double cme
   500.0,//double mH;
   3.245439053359254e+01,//double GammaH; // this is the value I use to compare stuff with P.G.
@@ -130,9 +130,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	  options.n_calls = atoi(optarg);
 	  break;
 	case 'R':
-	  options.ren_scale = fabs(atof(optarg));
-	  hm.SetMUR(options.ren_scale);
-	  hm.SetMUF(options.ren_scale);
+	  options.ren_scale = fabs(atof(optarg))*hm.Scale();
 	  break;
 	case 'E':
 	  options.cme = fabs(atof(optarg));
@@ -302,17 +300,12 @@ DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width, int height)
 static double GetIntegral(TH1D* hist)
 {
   double sum = 0.0;
-  double sum2= 0.0;
   int n = hist->GetNbinsX();
-  double range = hist->GetBinLowEdge(n+1)-hist->GetBinLowEdge(1);
   for (int i=1;i<=n;++i)
     {
-      sum += (hist->GetBinContent(i));//*fabs(hist->GetBinWidth(i));
-      sum2+= pow(hist->GetBinContent(i),2);
+      sum += (hist->GetBinContent(i))*(hist->GetBinWidth(i));
     }
-  // PRINT(sum2/n);
-  // std::cout << std::endl << hist->GetBinContent(n+1) << std::endl;
-  return sum/n*range;
+  return sum;
 }
 
 

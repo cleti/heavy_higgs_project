@@ -184,31 +184,31 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
       // scale MU must be given in [GeV] !!! 
       double f1 = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
       double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
-      
+
       // include spin/color average of initial gluons and PFDs, convert to units of picobarn
       double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
 
       // born matrix elements (GG)
       if (EVAL_B(flags)) res_b = Eval_B(*ps,*hm,flags,0)*jac_flux_1*cf;
 
-      // // born matrix elements (QQ)
-      // if (flags & F_EVAL_B_QCDxQCD)
-      //   {
-      //     static auto quark_pids     = { 5,  4,  3,  2,  1};	  
-      //     double qq_pdf = 0.0;
-      //     // get the quark/antiquark pdfs
-      //     for (auto i: quark_pids)
-      // 	    {
-      // 	      double f1_q  = ip->pdf->xfxQ2(+i, x[0], MUF2*mScale2) / x[0];
-      // 	      double f2_qb = ip->pdf->xfxQ2(-i, x[1], MUF2*mScale2) / x[1];
-      // 	      double f1_qb = ip->pdf->xfxQ2(-i, x[0], MUF2*mScale2) / x[0];
-      // 	      double f2_q  = ip->pdf->xfxQ2(+i, x[1], MUF2*mScale2) / x[1];
-      // 	      qq_pdf += (f1_q*f2_qb+f1_qb*f2_q);
-      // 	    }
-      //     // the QCD Born amplitudes are symmetric in scattering angle y
-      //     // therefore the PDF factors can be pulled out
-      //     res_b += Eval_B_QQ(*ps)*jac_flux_1*PREF_QQ*qq_pdf*CONV_mt2i_pbarn;
-      //   }
+      // born matrix elements (QQ)
+      if (flags & F_EVAL_B_QCDxQCD)
+        {
+          static auto quark_pids     = { 5,  4,  3,  2,  1};	  
+          double qq_pdf = 0.0;
+          // get the quark/antiquark pdfs
+          for (auto i: quark_pids)
+      	    {
+      	      double f1_q  = ip->pdf->xfxQ2(+i, x[0], MUF2*mScale2) / x[0];
+      	      double f2_qb = ip->pdf->xfxQ2(-i, x[1], MUF2*mScale2) / x[1];
+      	      double f1_qb = ip->pdf->xfxQ2(-i, x[0], MUF2*mScale2) / x[0];
+      	      double f2_q  = ip->pdf->xfxQ2(+i, x[1], MUF2*mScale2) / x[1];
+      	      qq_pdf += (f1_q*f2_qb+f1_qb*f2_q);
+      	    }
+          // the QCD Born amplitudes are symmetric in scattering angle y
+          // therefore the PDF factors can be pulled out
+          res_b += Eval_B_QQ(*ps,*hm)*jac_flux_1*PREF_QQ*qq_pdf*CONV_GeV2i_pbarn/mScale2;
+        }
 	  
       // finite part of the virtual corrections (GG)
       if (EVAL_V(flags)) res_v = Eval_V(*ps,*hm,flags)*jac_flux_1*cf;

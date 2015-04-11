@@ -13,7 +13,7 @@ PERF2-FLAGS = -m64 -Ofast -flto -march=native -funroll-loops
 DEP-PATH = .dep
 LIB-PATH = lib
 BIN-PATH = bin
-CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include $(PERF1-FLAGS)
+CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include $(PERF1-FLAGS) -fopenmp
 ### -DDUMP_DIPOLE_PS 
 
 SRC-PATH = src
@@ -77,6 +77,9 @@ $(BIN-PATH)/Test_S: $(LIB-PATH)/Test_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S)
 
 $(BIN-PATH)/EvalSI: $(LIB-PATH)/EvalSI.o 
 	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl
+
+$(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/VEGAS.o
+	$(CC) -o $@  $^ -lgsl -lgomp  
 
 ####################################################################
 

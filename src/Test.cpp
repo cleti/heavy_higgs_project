@@ -293,15 +293,15 @@ int main(int argc, char** argv)
 
 	// qq
 	USET_EVAL_R_ALL(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
-	SET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
+	USET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QQ] " << endl;
 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 
 	// qg
 	USET_EVAL_R_ALL(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
-	SET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
+	USET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<16>(g_flags_eval_r ).to_string() << " [QG] " << endl;
 	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_QG*Eval_UID_QG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;

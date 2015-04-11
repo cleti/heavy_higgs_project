@@ -49,11 +49,6 @@ HistArray::HistArray(int nbinsx,
 
 void HistArray::Normalize(const double& mScale)
 {
-  // static bool DONE = false;
-  // if (DONE)
-  //   {
-  //     std::cout << "\nNormalize(): " << d_label << ", already normalized!!!\n";
-  //   }
   // relies on equidistant binning in all histograms !!!
   double binw = d_histograms[0].GetBinWidth(1);
   double fmass= std::pow(mScale,d_mass_dim);
@@ -66,7 +61,6 @@ void HistArray::Normalize(const double& mScale)
       std::cout << "  hist " << i <<  " done..\n";
     }
   std::cout << std::endl;
-  // DONE = true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +68,7 @@ void HistArray::Normalize(const double& mScale)
 
 ////////////////////////////////
 double DIST_M_L = 340;
-double DIST_M_U = 1300;
+double DIST_M_U = 800;
 
 double DIST_P_L = 60;
 double DIST_P_U = 500;
@@ -87,7 +81,7 @@ double DIST_A_U =  1.0;
 ////////////////////////////////
 
 // prepare some histograms
-HistArray MttDistributions(48,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
+HistArray MttDistributions(23,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
 HistArray PT1Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,t} distribution");
 HistArray PT2Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,#bar{t}} distribution");
 HistArray PT12Distributions(25,0.0,500.0,1,"p_{T,t+#bar{t}} distribution");

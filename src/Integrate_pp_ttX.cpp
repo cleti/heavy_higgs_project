@@ -24,6 +24,8 @@
 #include <TH2.h>
 #include <TFile.h>
 
+#include <cmath>
+
 using namespace std;
 
 #ifdef WITH_NON_FACT_DIAGRAMS
@@ -81,7 +83,7 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////////////////
   // initialize model parameters
   // all dimensionful quantities will be normalized to top-mass
-  const double MT = 173.34;
+  const double MT = 173.5;
   HiggsModel THDM_1;
   // from now on all dimensionful parameters will be normalized to MT
   THDM_1.SetScale(MT);
@@ -92,8 +94,22 @@ int main(int argc, char** argv)
   THDM_1.SetMt(MT);
   THDM_1.SetMb(0.0);
   parse_arguments(argc,argv,g_options,THDM_1);
-  // MUR may be changed by user -> set AlphaS after parsing the arguments
-  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*MT));
+
+  // set the scale to the mean value of the Higgs masses if no user input was provided
+  double MU = g_options.ren_scale;
+  if (MU==0.0)
+    {
+      int k=0;
+      for (auto phi_i = std::begin(THDM_1.GetBosons()); phi_i!=std::end(THDM_1.GetBosons()); ++phi_i)
+	{
+	  MU += (MT*(*phi_i)->M() - MU) / (k+1.0);
+	  ++k;
+	}
+    }
+  
+  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(MU));
+  THDM_1.SetMUR(MU);
+  THDM_1.SetMUF(MU);
   THDM_1.Print(couT,MT);
   ////////////////////////////////////////////////////////////////////////////////
   
@@ -341,9 +357,9 @@ int main(int argc, char** argv)
       couT << "\n [NLO (R GG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;//F_EVAL_R_GG;
-      // USET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
-      SET_FLAG(F_EVAL_R_ISR_FSR,ip.eval_flags); // distributions ?
+      SET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
+      SET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
+      //SET_FLAG(F_EVAL_R_ISR_FSR,ip.eval_flags); // distributions ?
       // USET_FLAG(F_EVAL_R_FSR_FSR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_FSR_ISR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_FSR_INT,ip.eval_flags);
@@ -359,18 +375,18 @@ int main(int argc, char** argv)
       results[4] = vp.result;
       errors[4]  = vp.error;
     }
-  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
   // INTEGRATION BLOCK 110 00 00  [NLO (R[QQ/QG] - uint. Dip.): PHI+INT]
-  ////////////////////////////////////////////////////////////////////  
+  ///////////////////////////////////////////////////////////////////////
   if (int_flags & (I_FLAGS_R_QQ|I_FLAGS_R_QG))
     {
       couT << "\n [NLO (R QQ & QG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
       USET_EVAL_ALL(ip.eval_flags);
-      SET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
-      SET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
-      // SET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
-      // SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);     
+      USET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
+      USET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
+      USET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
+      SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);     
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,qq,qg]"));
       
       // activate NLO (R) histograms 
@@ -393,7 +409,17 @@ int main(int argc, char** argv)
   for (int i=0;i<N_res;++i)
     {
       sum += results[i];
+      if (std::isnan(results[i]) || std::isinf(results[i]))
+	{
+	  couT << endl << " results are inf/nan, exiting..." << endl;
+	  exit(1);
+	}
       err += pow(errors[i],2);
+      if (std::isnan(errors[i]) || std::isinf(errors[i]))
+	{
+	  couT << endl << " results are inf/nan, exiting..." << endl;
+	  exit(1);
+	}
     }
   err = sqrt(err);
   int prec = (int)log10(sum/err)+3;
@@ -444,13 +470,13 @@ int main(int argc, char** argv)
       if (WRITE_TO_FILE) fresults = new TFile(filename.str().c_str(),"NEW");
 
       if (ip.distributions != nullptr)
-	{
-	  for (auto e: *ip.distributions)
-	    {
-	      // normalize distributions to #iterations, #runs (warm-up does not count)
-	      e->Normalize(false);
-	    }
-	}
+      	{
+      	  for (auto e: *ip.distributions)
+      	    {
+      	      // normalize distributions to #iterations, #runs (warm-up does not count)
+      	      e->Normalize();
+      	    }
+      	}
       
       double norm[4] = {1.0,//results[0],
 			1.0,//results[0]+results[1],
@@ -462,6 +488,14 @@ int main(int argc, char** argv)
       // 4 : D
       // 5 : R
 
+      cout << endl;
+      cout << setw(20) << "Bin low edge" << setw(20) << "QCD" << setw(20) << "QCD+PHI" << endl << endl;
+      for (int i=1;i<MttDistributions[0]->GetNbinsX()+1;++i)
+	{
+	  cout << setw(20) << MttDistributions[0]->GetBinLowEdge(i) << setw(20) << MttDistributions[0]->GetBinContent(i) << setw(20) << MttDistributions[0]->GetBinContent(i)+MttDistributions[1]->GetBinContent(i) << endl;
+	}
+      cout << endl;
+      
       CanvasPtr c0 = MakeCanvas("Top/Antitop invariant mass distributions",1400,1000);
       DrawDistribution(c0,
 		       MttDistributions,
@@ -494,12 +528,13 @@ int main(int argc, char** argv)
 
       CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
       DrawDistribution(c2,
-		       PT12Distributions,
-		       &norm[0],
-		       string("p_{T,t+#bar{t}} [GeV]"),
-		       string("#frac{d#sigma}{dp_{T,t+#bar{t}}} [pb/GeV]"),
-		       WRITE_TO_FILE,
-		       PLOT_NLO);      
+      		       PT12Distributions,
+      		       &norm[0],
+      		       string("p_{T,t+#bar{t}} [GeV]"),
+      		       string("#frac{d#sigma}{dp_{T,t+#bar{t}}} [pb/GeV]"),
+      		       WRITE_TO_FILE,
+      		       PLOT_NLO);   
+      
 
       // CanvasPtr c0 = MakeCanvas("Partonic cross section",1400,1000);
       // DrawDistribution(c0,

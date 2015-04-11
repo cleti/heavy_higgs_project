@@ -11,6 +11,7 @@
 #include <complex>
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 #include "ScalarIntegrals.h"
 
@@ -282,7 +283,7 @@ class HiggsModel
   double const& Scale()     const { return d_Scale; }
   double const& Scale2()    const { return d_Scale2; }  
   int NBosons()             const { return d_Bosons.size(); }
-  
+  std::vector<HPtr> const& GetBosons() const { return d_Bosons; }
   //! Use this member to change AlphaS. It automatically resets the values of the amplitude prefactors.
   void SetAlphaS(double const& val) { d_AlphaS = val; d_AlphaS2 = std::pow(val,2); SetAmpPrefactors(); }
   void SetMUR(double const& val)    { d_MUR = val/d_Scale; d_MUR2 = std::pow(d_MUR,2); d_APref.MUR2 = d_MUR2; }
