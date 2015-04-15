@@ -25,12 +25,9 @@ struct opt g_options = {
   10000000,//int n_calls;
   0.0,//double ren_scale;
   14.0,// double cme
-  500.0,//double mH;
-  3.245439053359254e+01,//double GammaH; // this is the value I use to compare stuff with P.G.
-  1.0,//double At;
-  1.0,//double Bt;
-  0.0,//double Ab;
-  0.0,//double Bb;
+  173.34,//double mt;
+  4.75,//double mb; 
+  246.0,//double vh;
   7,//int tech_cut;
   6,//int precision; // output
   false,//bool dist;
@@ -40,21 +37,25 @@ struct opt g_options = {
   0//verb_level;
 };
 
+
+
 struct option const longopts[] = {
   {"int_flags", required_argument, NULL, 'I'},
   {"n_calls", required_argument, NULL, 'N'},
   {"ren_scale", required_argument, NULL, 'R'},
   {"cme", required_argument, NULL, 'E'},
+  {"mt", required_argument, NULL, 'M'},
+  {"mb", required_argument, NULL, 'm'},  
+  {"Vh", required_argument, NULL, 'V'},    
   {"add_higgs", required_argument, NULL, 'H'},
   {"tech_cut", required_argument, NULL, 'T'},
   {"precision", required_argument, NULL, 'P'},
+  {"verbose", required_argument, NULL, 'v'},
   {"dist", no_argument, NULL, 'D'},
   {"t_decay", no_argument, NULL, 't'},
   {"logfile", no_argument, NULL, 'L'},
   {"rootfile", no_argument, NULL, 'F'},
-  {"verbose", required_argument, NULL, 'V'},
-  {"help", no_argument, NULL, 'h'},
-  {"version", no_argument, NULL, 'v'},
+  {"info", no_argument, NULL, 'i'},
   {NULL, 0, NULL, 0}
 };
 
@@ -67,27 +68,24 @@ struct option const longopts[] = {
 void
 usage (int status)
 {
+    
   if (status != 0)
-    fprintf (stderr, ("Try `%s --help' for more information.\n"),
+    fprintf (stderr, ("Try `%s --info' for more information.\n"),
 	     program_name);
   else
     {
-      printf (("\
-Usage: %s [OPTION]... \n\
- "),
-	      program_name);
-      fputs (("\
-Calculate total and differential cross-section pp -> tt + X at NLO QCD.\n\
-\n\
-"), stdout);
-      fputs (("\
-Optional arguments: \n\
-"), stdout);
+      printf ("\n Calculate total and differential cross-section pp -> tt + X at NLO QCD.\n");  
+      printf ("\n VERSION: %s compiled %s : %s \n",program_name,__DATE__,__TIME__);
+      printf ("\n Usage: %s [OPTION]... \n",program_name);
+
+      fputs (("Optional arguments: \n"), stdout);
       fputs (("\
   --flags_int,      -I, required argument    integration flags [RDVBB], default: 11111\n\
   --n_calls,        -N, required argument    #integrand calls from VEGAS, default: 1e6\n\
-  --ren_scale,      -R, required argument    scale in units of mt,  default: 1.0\n\
+  --ren_scale,      -R, required argument    scale in units of GeV,  default: 1.0\n\
   --cme             -E, required argument    pp center of mass energy in TeV, default 14\n\
+  --mt              -M, required argument    top-quark mass in GeV, default 173.34\n\
+  --Vh              -V, required argument    combined Higgs VEV in GeV, default 246\n\
   --add_higgs       -H  required argument    add higgs boson M,G,a_t,b_t,a_b,b_b [no whitespace!]\n\
   --tech_cut,       -T, required argument    cut on collinear/soft phase space in units of 10^-1,  default: 1.0e-8\n\
   --precision,      -P, no argument          #digits in ouput of numbers, default 6\n\
@@ -95,34 +93,32 @@ Optional arguments: \n\
   --t_decay         -t, no argument          include top/antitop decays and lepton distributions\n\
   --logfile         -L, no argument          write output to file in folder results/\n\
   --rootfile        -F, no argument          store histograms in a ROOT-file in folder results/\n\
-  --verbose         -V, required argument    verbosity, default: 0\n \
-  --help,           -h, no argument\n\
-  --version,        -v, no argument\n\
+  --verbose         -v, required argument    verbosity level, default: 0\n\
+  --info,           -i, no argument\n\
 \n"), stdout);
     }
   exit (status);
-}
-
-void version(int status)
-{
-  printf ("\n VERSION: %s compiled %s : %s \n",program_name,__DATE__,__TIME__);
-  exit(status);
 }
 
 
 
 void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 {
-  int c;
+  const char* arglist = "M:I:N:R:E:m:V:H:T:P:v:DtLFi";
   std::string arg;
-  int pos0,pos1;
-  
-  while ((c = getopt_long (argc, argv, "I:N:R:E:H:T:P:DtLFV:hv", longopts, NULL)) != -1)
-    {
-      double m=0.0,g=0.0,at=1.0,bt=1.0,ab=0.0,bb=0.0;
-	
-      switch (c)
+
+  int pos0=0,pos1=0,c1=0;
+  // first scan for all options except Higgs boson parameters
+  while ((c1 = getopt_long (argc, argv, arglist, longopts, NULL)) != -1)
+    {	
+      switch (c1)
 	{
+	case 'M':
+  	  options.mt = fabs(atof(optarg));
+  	  break;
+	case 'V':
+	  options.vh = fabs(atof(optarg));
+  	  break;	  
 	case 'I':
 	  options.int_flags  = std::bitset<16>(std::string(optarg)).to_ulong();
 	  break;
@@ -130,22 +126,81 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	  options.n_calls = atoi(optarg);
 	  break;
 	case 'R':
-	  options.ren_scale = fabs(atof(optarg))*hm.Scale();
+	  options.ren_scale = fabs(atof(optarg));
 	  break;
 	case 'E':
 	  options.cme = fabs(atof(optarg));
 	  break;
+	case 'm':
+	  options.mb = fabs(atof(optarg));
+	  break;	  
+	case 'T':
+	  options.tech_cut = abs(atoi(optarg));
+	  break;
+	case 'P':
+	  options.precision = abs(atoi(optarg));
+	  break;
+	case 'D':
+	  options.dist  = !options.dist;
+	  break;
+	case 't':
+	  options.tdecay  = !options.tdecay;
+	  break;
+	case 'L':
+	  options.logfile  = !options.logfile;
+	  break;
+	case 'F':
+	  options.rootfile  = !options.rootfile;
+	  break;	  
+	case 'v':
+	  options.verb_level  = atoi(optarg);
+	  break;
+	case 'i':
+	  usage(0);	  
+	  break;
+	}
+    }
+
+  // FIRST set the scale in the HiggsModel
+  // from now on all quantities will be normalized to mt
+  hm.SetScale(options.mt);
+  // set the Higgs VEV
+  hm.SetVH(options.vh);
+  // set the top-quark mass
+  hm.SetMt(options.mt);
+  // set the bottom-quark mass
+  hm.SetMb(options.mb);
+
+
+
+  // reset the index, so that getopt_long() searches through all the options again
+  // (it points to the -M option in argv at this point if the option was provided by the user)
+  optind = 0;
+  int c2=0;
+  // the order is crucial for the extraction of command line arguments:
+  // the Higgs bosons can not be set before the scale and VEV are specified
+  while ((c2 = getopt_long (argc, argv, arglist, longopts, NULL)) != -1)
+    {
+      double m=0.0,g=0.0,at=1.0,bt=1.0,ab=0.0,bb=0.0;
+      switch (c2)
+  	{
 	case 'H':
 	  arg = optarg;
 	  pos0 = 0;
 	  pos1 = 0;
 
+	  // scan through the argument string, should have the format
+	  // 'M,G,a_t,b_t,a_b,b_b' -- NO WHITESPACE!
 	  // first number is the mass
 	  if (pos1>=0)
 	    {
+	      // scan from pos0 and find position of next ',' -> this is pos1
 	      pos1 = arg.find(",",pos0);
+	      // convert string ranging from pos0 to pos1 into a float
 	      m = atof(arg.substr(pos0,pos1-pos0).c_str());
+	      // update pos0 -> this is now the first char behind the ','
 	      pos0=pos1+1;
+	      // and so on ...
 	    }
 	  else
 	    {
@@ -194,39 +249,14 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	    }
 
 	  hm.AddBoson(m,g,at,bt,ab,bb);
-	  break; 
-	case 'T':
-	  options.tech_cut = abs(atoi(optarg));
 	  break;
-	case 'P':
-	  options.precision = abs(atoi(optarg));
-	  break;
-	case 'D':
-	  options.dist  = !options.dist;
-	  break;
-	case 't':
-	  options.tdecay  = !options.tdecay;
-	  break;
-	case 'L':
-	  options.logfile  = !options.logfile;
-	  break;
-	case 'F':
-	  options.rootfile  = !options.rootfile;
-	  break;	  
-	case 'V':
-	  options.verb_level  = atoi(optarg);
-	  break;
-	case 'h':
-	  usage(0);
-	  break;
-	case 'v':
-	  version(0);
-	  break;
-	default:
-	  usage (1);
 	}
     }
+  
 
+
+  
+  // default boson if no user input via --add_boson ... was provided
   if (!hm.NBosons())
     {
       hm.AddBoson(
@@ -237,8 +267,27 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 		  0.0,
 		  0.0);
     }
+
+
   
-  std::cout << std::setprecision(g_options.precision);
+  // set the scale to the mean value of the Higgs masses if no explicit user input was provided
+  double MU = options.ren_scale;
+  if (MU==0.0)
+    {
+      int k=0;
+      for (auto phi_i = std::begin(hm.GetBosons()); phi_i!=std::end(hm.GetBosons()); ++phi_i)
+	{
+	  MU += (hm.Scale()*(*phi_i)->M() - MU) / (k+1.0);
+	  ++k;
+	}
+      MU *= 0.5;
+    }
+
+  hm.SetMUR(MU);
+  hm.SetMUF(MU);
+  
+  
+  std::cout << std::setprecision(options.precision);
 }
 ///// ARG /////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -309,8 +358,10 @@ static double GetIntegral(TH1D* hist)
 }
 
 
-void DrawDistribution(CanvasPtr& canvas,
+void DrawDistribution(
+		      CanvasPtr& canvas,
 		      HistArray& histograms,
+		      const HiggsModel& THDM,
 		      double* norm,
 		      std::string const& titleX,
 		      std::string const& titleY,
@@ -341,7 +392,7 @@ void DrawDistribution(CanvasPtr& canvas,
       canvas.p1_1->cd();
 
       // 0 contains LO QCD
-      histograms[0]->Smooth(1);
+      //histograms[0]->Smooth(1);
       // 1 conatins LO QCD + LO PHI^2 + LO PHIxQCD
       histograms[1]->Add(histograms[0]);
       if (NLO)
@@ -351,7 +402,7 @@ void DrawDistribution(CanvasPtr& canvas,
 	  // 4 conatins NLO virt.
 	  histograms[3]->Add(histograms[4]);
 	  // 5 contains NLO real
-	  histograms[5]->Smooth(1);
+	  //histograms[5]->Smooth(1);
 	  histograms[3]->Add(histograms[5]);
 	  
 	}
@@ -390,7 +441,7 @@ void DrawDistribution(CanvasPtr& canvas,
       histograms[0]->DrawCopy("same hist ][");
       
       leg->AddEntry(histograms[0] ,"LO QCD","L");
-      if (RunParameters::TwoHDM)
+      if (THDM.NBosons()>1)
 	{
 	  leg->AddEntry(histograms[1] ,"LO QCD + #Phi_{1} + #Phi_{2} ","L");
 	}
@@ -400,7 +451,7 @@ void DrawDistribution(CanvasPtr& canvas,
 	}
       if (NLO)
 	{
-	  if (RunParameters::TwoHDM)
+	  if (THDM.NBosons()>1)
 	    {
 	      leg->AddEntry(histograms[3] ,"NLO QCD + #Phi_{1} + #Phi_{2} ","L");
 	    }
@@ -444,25 +495,31 @@ void DrawDistribution(CanvasPtr& canvas,
 }
 
 
-void DrawTwoDistributions(DoubleCanvasPtr& canvas,
+void DrawTwoDistributions(
+			  DoubleCanvasPtr& canvas,
 			  HistArray& histogramsL,
 			  HistArray& histogramsR,
+			  const HiggsModel& THDM,
 			  double* norm,
 			  std::string const& titleLX,std::string const& titleRX,
 			  std::string const& titleLY,std::string const& titleRY,
 			  bool WRITE,
 			  bool NLO)
 {
-  DrawDistribution(canvas.c1,
+  DrawDistribution(
+		   canvas.c1,
 		   histogramsL,
+		   THDM,
 		   norm,
 		   titleLX,
 		   titleLY,
 		   WRITE,
 		   NLO,
 		   1);
-  DrawDistribution(canvas.c2,
+  DrawDistribution(
+		   canvas.c2,
 		   histogramsR,
+		   THDM,
 		   norm,
 		   titleRX,
 		   titleRY,
@@ -474,7 +531,7 @@ void DrawTwoDistributions(DoubleCanvasPtr& canvas,
 void SetRatioPlot(TH1D* hist,std::string xtitle)
 {
   hist->SetTitle("");
-  hist->Smooth();
+  // hist->Smooth();
   hist->GetYaxis()->SetTitleSize(12); //in pixels
   hist->GetYaxis()->SetLabelFont(43); //font in pixels
   hist->GetYaxis()->SetLabelSize(18); //in pixels
@@ -657,393 +714,3 @@ double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4)
   /////////////////////////////////////////////////////////////////////////////////////////////
 }
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-namespace AmpPrefactors {
-
-  void ResetAmpPrefactors()
-  {
-    using namespace Constants;
-    using namespace RunParameters;
-    /* born */
-    PREF_B_PHIxPHI      = CF*CA2*AlphaS2/Pi2;
-    PREF_B_PHIxQCD      = CF*CA*AlphaS2;
-    PREF_B_QCDxQCD      = CF*CA*AlphaS2*Pi2;
-    PREF_B_QCDxQCD_CF   = CF2*CA*AlphaS2*Pi2;
-    PREF_B_QCDxQCD_CA   = CF*CA2*AlphaS2*Pi2;
-    PREF_B_QCDxQCD_CFCA = CF*CA*CFCA2*AlphaS2*Pi2;
-    /* virtual */
-    PREF_V_CF     = PREF_B_PHIxQCD*AlphaS/Pi*CF;
-    PREF_V_CA     = PREF_B_PHIxQCD*AlphaS/Pi*CA;
-    PREF_V_CFCA2  = PREF_B_PHIxQCD*AlphaS/Pi*CFCA2;
-    PREF_V_Nf     = PREF_B_PHIxQCD*AlphaS/Pi*Nf;
-    PREF_V_CT     = PREF_B_PHIxQCD*AlphaS/Pi;
-    PREF_V        = PREF_B_PHIxQCD*AlphaS;
-    PREF_V_PHI    = PREF_B_PHIxPHI*AlphaS/Pi; // CF*CA2*AlphaS^3/Pi^3
-    PREF_V_PHI_CA = PREF_B_PHIxPHI*AlphaS/Pi*CA;
-    PREF_V_PHI_CF = PREF_B_PHIxPHI*AlphaS/Pi*CF;
-    /* real */
-    PREF_R        = PREF_V_CT*Pi2;
-    PREF_R_CF     = PREF_V_CF*Pi2;
-    PREF_R_CA     = PREF_V_CA*Pi2;
-    PREF_R_CFCA2  = PREF_V_CFCA2*Pi2;
-    PREF_R_PHI    = PREF_V_PHI*Pi2; // CF*CA2*AlphaS^3/Pi
-    PREF_R_PHI_CA = PREF_V_PHI_CA*Pi2;
-    PREF_R_PHI_CF = PREF_V_PHI_CF*Pi2;
-    /* UID */
-    PREF_UID_TF =  4.0*Pi*AlphaS;
-    PREF_UID_CA = 16.0*Pi*AlphaS*CA;
-    PREF_UID_CF =  8.0*Pi*AlphaS*CF;
-  }
-  void PrintAmpPrefactors()
-  {
-    std::cout << "\n\n Amplitude-Prefactors:\n";
-    /* born */
-    PRINT(    PREF_B_PHIxPHI     );
-    PRINT(    PREF_B_PHIxQCD     );
-    PRINT(    PREF_B_QCDxQCD     );
-    PRINT(    PREF_B_QCDxQCD_CF  );
-    PRINT(    PREF_B_QCDxQCD_CA  );
-    PRINT(    PREF_B_QCDxQCD_CFCA);
-    /* virtual */
-    PRINT(    PREF_V_CF     );
-    PRINT(    PREF_V_CA     );
-    PRINT(    PREF_V_CFCA2  );
-    PRINT(    PREF_V_Nf     );
-    PRINT(    PREF_V_CT     );
-    PRINT(    PREF_V        );
-    PRINT(    PREF_V_PHI_CA );
-    PRINT(    PREF_V_PHI_CF );
-    /* real */
-    PRINT(    PREF_R       );
-    PRINT(    PREF_R_CF    );
-    PRINT(    PREF_R_CA    );
-    PRINT(    PREF_R_CFCA2 );
-    PRINT(    PREF_R_PHI_CA);
-    PRINT(    PREF_R_PHI_CF);
-    /* UID */
-    PRINT(    PREF_UID_CA);
-    PRINT(    PREF_UID_CF);
-  }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-namespace HiggsBosons {
-  void SetMPhi1(double const& M)
-  {
-    using namespace RunParameters;
-    M_1  = M/mScale;
-    M2_1 = M_1*M_1;
-  }
-  // setter function Phi1 (M,Gamma in [GeV])
-  void SetPhi1(double const& M,
-	       double const& Gamma,
-	       double const& at,
-	       double const& bt,
-	       double const& ab,
-	       double const& bb)
-  {
-    using namespace RunParameters;
-    M_1  = M/mScale;
-    M2_1 = M_1*M_1;
-    G_1  = Gamma/mScale;
-    G2_1 = G_1*G_1;
-    At_1 = at/Vh;
-    Bt_1 = bt/Vh;
-    Ab_1 = ab/Vh;
-    Bb_1 = bb/Vh;
-    FH_eff_1 = (At_1)/12.0;
-    FA_eff_1 = (bt!=0)?(-Bt_1/16.0):0.0;
-  }
-  // setter function Phi2 (M,Gamma in [GeV])
-  void SetPhi2(double const& M,
-	       double const& Gamma,
-	       double const& at,
-	       double const& bt,
-	       double const& ab,
-	       double const& bb)
-  {
-    using namespace RunParameters;
-    M_2  = M/mScale;
-    M2_2 = M_2*M_2;
-    G_2  = Gamma/mScale;
-    G2_2 = G_2*G_2;
-    At_2 = at/Vh;
-    Bt_2 = bt/Vh;
-    Ab_2 = ab/Vh;
-    Bb_2 = bb/Vh;
-    FH_eff_2 =  At_2/12.0;
-    FA_eff_2 = (bt!=0)?(-Bt_2/16.0):0.0;
-  }
-  void PrintHiggsPrefactors()
-  {
-    std::cout << "\n\n Higgsboson-specific prefactors:\n";
-    // interference terms
-    PRINT(At_fH_re);		
-    PRINT(At_fA_re);		
-    PRINT(Bt_fH_re);		
-    PRINT(Bt_fA_re);
-  
-    PRINT(At_fH_im);
-    PRINT(At_fA_im);	
-    PRINT(Bt_fH_im);		
-    PRINT(Bt_fA_im);
-    // phi^2
-    PRINT(At2_fH2_De);	
-    PRINT(At2_fA2_De);
-    PRINT(Bt2_fH2_De);	
-    PRINT(Bt2_fA2_De);
-#ifdef WITH_T_SPIN
-    PRINT(At_Bt_fH2_De);	
-    PRINT(At_Bt_fA2_De);
-#endif
-  }
-  
-  void ResetHiggsPrefactors(double const& S, unsigned EFF)
-  {
-    // static double S_t = 0.0;
-    // if (S != S_t)
-    //   {
-    // 	S_t = S;
-	c_double FH_1 = 0.0;
-	c_double FA_1 = 0.0;
-	
-	switch (EFF)
-	  {
-	  case 0: // full ggH vertex
-	    set_F_ggH(S);
-	    FH_1 = -F_ggH1_s/(4.0*S);
-	    FA_1 =  F_ggH1_p/(8.0*S);
-	    break;
-	  case 1: // effective ggH vertex
-	    FH_1 = FH_eff_1;
-	    FA_1 = FA_eff_1;
-	    break;
-	  }
-	
-	// PRINT(RunParameters::AlphaS/Constants::Pi*FH_1);
-	// PRINT(RunParameters::AlphaS/Constants::Pi*FA_1);
-	
-	double FH2_1  = std::norm(FH_1);
-	double FA2_1  = std::norm(FA_1);
-
-	// Phi1 propagator denominator
-	double   d_1 = 1.0 / (pow(S-M2_1,2)+pow(M_1*G_1,2));
-	c_double D_1 = c_double((S-M2_1)*d_1,-M_1*G_1*d_1);
-#ifdef DEBUG
-	CHECKNA(d_1);
-	CHECKNA(D_1.real());
-	CHECKNA(D_1.imag());
-#endif
-
-	// PRINT(D_1);
-	// PRINT(D_1);
-
-	// PRINT(RunParameters::AlphaS/Constants::Pi*FH_1*D_1);
-	// PRINT(RunParameters::AlphaS/Constants::Pi*FA_1*D_1);
-	
-	// PHIxQCD amplitudes: add Phi1 contribution
-	At_fH_re = At_1*(FH_1*D_1).real();
-	At_fA_re = At_1*(FA_1*D_1).real();
-	Bt_fH_re = Bt_1*(FH_1*D_1).real();
-	Bt_fA_re = Bt_1*(FA_1*D_1).real();
-
-	At_fH_im = At_1*(FH_1*D_1).imag();
-	At_fA_im = At_1*(FA_1*D_1).imag();
-	Bt_fH_im = Bt_1*(FH_1*D_1).imag();
-	Bt_fA_im = Bt_1*(FA_1*D_1).imag();
-
-	double At2_1 = At_1*At_1;
-	double Bt2_1 = Bt_1*Bt_1;
-	
-	// PHIxPHI amplitudes: add Phi1^2 contribution
-	At2_fH2_De   = At2_1*FH2_1*d_1;
-	At2_fA2_De   = At2_1*FA2_1*d_1;
-	Bt2_fH2_De   = Bt2_1*FH2_1*d_1;
-	Bt2_fA2_De   = Bt2_1*FA2_1*d_1;
-	
-#ifdef WITH_T_SPIN
-	// only needed for polarized amplitudes
-	// PHIxPHI terms: add at*bt interference from Phi1^2 contribution
-	At_Bt_fH2_De = At_1*Bt_1*FH2_1*d_1;
-	At_Bt_fA2_De = At_1*Bt_1*FA2_1*d_1;
-#endif
-	
-	// add the contribution of the second boson if required
-	if (RunParameters::TwoHDM>0)
-	  {
-	    c_double FH_2 = 0.0;
-	    c_double FA_2 = 0.0;
-	
-	    switch (EFF)
-	      {
-	      case 0: // full ggH vertex
-		FH_2 = -F_ggH2_s/(4.0*S);
-		FA_2 =  F_ggH2_p/(8.0*S);
-		break;
-	      case 1: // effective ggH vertex
-		FH_2 = FH_eff_2;
-		FA_2 = FA_eff_2;
-		break;
-	      }
-
-	    double FH2_2  = std::norm(FH_2);
-	    double FA2_2  = std::norm(FA_2);
-	    
-	    // Phi2 propagator denominator
-	    double   d_2 = 1.0 / (pow(S-M2_2,2)+pow(M_2*G_2,2));
-	    c_double D_2 = c_double((S-M2_2)*d_2,-M_2*G_2*d_2);
-#ifdef DEBUG
-	    CHECKNA(d_2);
-	    CHECKNA(D_2.real());
-	    CHECKNA(D_2.imag());
-#endif
-
-	    // PHIxQCD amplitudes: add Phi2 contribution
-	    At_fH_re += At_2*(FH_2*D_2).real();
-	    At_fA_re += At_2*(FA_2*D_2).real();
-	    Bt_fH_re += Bt_2*(FH_2*D_2).real();
-	    Bt_fA_re += Bt_2*(FA_2*D_2).real();
-
-	    At_fH_im += At_2*(FH_2*D_2).imag();
-	    At_fA_im += At_2*(FA_2*D_2).imag();
-	    Bt_fH_im += Bt_2*(FH_2*D_2).imag();
-	    Bt_fA_im += Bt_2*(FA_2*D_2).imag();
-	    
-	    double At2_2 = At_2*At_2;
-	    double Bt2_2 = Bt_2*Bt_2;
-	    
-	    // PHIxPHI amplitudes: add Phi2^2 contribution
-	    At2_fH2_De   += At2_2*FH2_2*d_2;
-	    At2_fA2_De   += At2_2*FA2_2*d_2;
-	    Bt2_fH2_De   += Bt2_2*FH2_2*d_2;
-	    Bt2_fA2_De   += Bt2_2*FA2_2*d_2;
-
-#ifdef WITH_T_SPIN
-	    // only needed for polarized amplitudes
-	    // PHIxPHI terms: add at*bt interference from Phi1^2 contribution
-	    At_Bt_fH2_De += At_2*Bt_2*FH2_2*d_2;
-	    At_Bt_fA2_De += At_2*Bt_2*FA2_2*d_2;
-#endif
-	    
-	    if (RunParameters::TwoHDM==1)
-	      {
-		// PHIxPHI terms: Phi1 * Phi2 interferences
-		c_double D1D2 = D_1*std::conj(D_2);
-		// boson factors for phi^2: Phi1-Phi2 interference terms
-		At2_fH2_De   += 2.0*At_1*At_2*(FH_1*std::conj(FH_2)*D1D2).real();
-		At2_fA2_De   += 2.0*At_1*At_2*(FA_1*std::conj(FA_2)*D1D2).real();
-		Bt2_fH2_De   += 2.0*Bt_1*Bt_2*(FH_1*std::conj(FH_2)*D1D2).real();
-		Bt2_fA2_De   += 2.0*Bt_1*Bt_2*(FA_1*std::conj(FA_2)*D1D2).real();
-#ifdef WITH_T_SPIN
-		// only needed for polarized amplitudes
-		// PHIxPHI terms: at Phi1 * bt  Phi2 interferences
-		At_Bt_fH2_De += (At_1*Bt_2+At_2*Bt_1)*(FH_1*FH_2*D1D2).real();
-		At_Bt_fA2_De += (At_1*Bt_2+At_2*Bt_1)*(FA_1*FA_2*D1D2).real();	
-		// the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
-		At_Bt_fH2_DeIM = (At_1*Bt_2-At_2*Bt_1)*(FH_1*std::conj(FH_2)*D1D2).imag();
-		At_Bt_fA2_DeIM = (At_1*Bt_2-At_2*Bt_1)*(FA_1*std::conj(FA_2)*D1D2).imag();
-#endif
-	      }	
-	  }
-      // }
-  }
-
-
- // static c_double I3_test(double S, double M2)
- //  {
- //    double tau = 4.0*M2/S;
- //    if (tau>=1.0)
- //      {
- // 	return -2.0/S*pow(std::asin(1.0/sqrt(tau)),2);
- //      }
- //    else
- //      {
- // 	double beta = sqrt(1.0-tau);
- // 	return 1.0/(2.0*S)*std::pow(c_double(std::log((1.0+beta)/(1.0-beta)),-Constants::Pi),2);
- //      }
- //  }
-  
-  // set scalar and pseudoscalar ggH form factors (LO)
-  // b-quark effects included if the couplings Ab_1,Bb_1 are set
-  void set_F_ggH(double S)
-  {
-    using namespace RunParameters;
-    static int I = 0;// finite part (integral here has no divergent part)
-    static double zero = 0.0;
-
-    c_double I3t = 0.0;
-    c_double I3b = 0.0;
-    F_ggH1_s = 0.0;
-    F_ggH1_p = 0.0;
-	
-    // top contribution
-    if (At_1 != 0.0 || Bt_1 != 0.0)
-      {
-	I3t = qli3_(&S,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
-	// PRINT(I3t);
-	// PRINT(I3_test(S,mt2));
-	F_ggH1_s += mt2 * At_1 * ( (S-4.0*mt2) * I3t - 2.0 );
-	F_ggH1_p += mt2 * Bt_1 * S * I3t;
-      }
-    // bottom contribution
-    if (Ab_1 != 0.0 || Bb_1 != 0.0)
-      {
-	I3b = qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I);
-	// PRINT(I3b);
-	// PRINT(I3_test(S,mb2));
-	F_ggH1_s += mb2 * Ab_1 * ( (S-4.0*mb2) * I3b - 2.0 );
-	F_ggH1_p += mb2 * Bb_1 * S * I3b;
-      }
-  
-    if (TwoHDM>0)
-      {
-	F_ggH2_s = 0.0;
-	F_ggH2_p = 0.0;
-	// top contribution
-	if (At_2 != 0.0 || Bt_2 != 0.0)
-	  {
-	    F_ggH2_s += mt2 * At_2 * ( (S-4.0*mt2) * I3t - 2.0 );
-	    F_ggH2_p += mt2 * Bt_2 * S * I3t;
-	  }
-	// bottom contribution
-	if (Ab_2 != 0.0 || Bb_2 != 0.0)
-	  {
-	    F_ggH2_s += mb2 * Ab_2 * ( (S-4.0*mb2) * I3b - 2.0 );
-	    F_ggH2_p += mb2 * Bb_2 * S * I3b;
-	  }
-      }
-  }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-namespace RunParameters {
-  void SetAlphaS(double const& val)
-  {
-    AlphaS  = val;
-    AlphaS2 = val*val;
-    // needs to be done whenever AlphaS changes
-    AmpPrefactors::ResetAmpPrefactors();
-  }
-  void SetMUR(double const& val)
-  {
-#ifdef DEBUG
-    if (val>10.0) WARNING("this function expects argument in units of mScale");
-#endif
-    MUR   = val;
-    MUR2  = val*val;
-    LNMU2 = log(MUR2/mt2);
-  }
-  void SetMUF(double const& val)
-  {
-#ifdef DEBUG
-    if (val>10.0) WARNING("this function expects argument in units of mScale");
-#endif
-    MUF  = val;
-    MUF2 = val*val;
-  }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////

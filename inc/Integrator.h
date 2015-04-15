@@ -1,6 +1,6 @@
 
 /*! \file
- \brief Integration classes.
+ \brief This class provides the functionality of the GSL VEGAS integration algorithm.
 */ 
 
 #ifndef INTEGRATOR_H

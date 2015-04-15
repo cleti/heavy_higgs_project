@@ -12,7 +12,6 @@
 
 #define UID_DEFINITIONS				\
   using namespace Constants;			\
-  using namespace RunParameters;		\
   FV const& p1 = ps.p1();			\
   FV const& p2 = ps.p2();			\
   FV const& k1 = ps.k1();			\

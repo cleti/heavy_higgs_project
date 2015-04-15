@@ -16,7 +16,7 @@
 #include "HiggsModel.h"
 
 
-//! evaluate the born level amplitudes for the processes gg->tt and gg->phi->tt
+//! Evaluates the squared born amplitudes for the process \f$ gg \rightarrow \phi \rightarrow t\bar{t} \f$ and the interferences with the QCD background at the given phase space point.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters
@@ -31,7 +31,7 @@ double Eval_B(
 	      unsigned EFF=1);
 
 
-//! evaluate the born level amplitudes for the process qq-bar -> phi -> tt
+//! Evaluates the squared born amplitudes for the process \f$ q\bar{q} \rightarrow \phi \rightarrow t\bar{t} \f$ and the itnerferences with the QCD background at the given phase space point.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters
@@ -60,12 +60,11 @@ double Eval_B_PHIxPHI(
 
 double Eval_B_PHIxPHI_withINT12(
 				const PS_2_2& ps,
-				const AmplitudePrefactors& ap,
-				const HiggsPrefactors& hp);
+				const HiggsModel& hm);
 //////////////////////////////////////////////////////
 
 
-//! evaluate the virtual corrections for the processes gg->tt and gg->phi->tt
+//! Evaluates the virtual corrections to the process \f$gg \rightarrow \phi \rightarrow t\bar{t} \f$  and the itnerferences with the QCD background  at the given phase space point. This includes the interference of one-loop QCD amplitudes with LO resonant amplitudes as well as that of LO QCD amplitudes with one-loop resonant amplitudes.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters

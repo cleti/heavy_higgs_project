@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -39,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -142,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="keywordflow">if</span> (CMP_LO)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <span class="comment">// full LO matrix elements</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      res_b     += <a class="code" href="Functions__pp__ttX__V_8h.html#a61ffe278906f8e76d250e9980470be16">Eval_B</a>(p1,p2)*jac_flux_1*cf;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      res_b     += <a class="code" href="Functions__pp__ttX__V_8h.html#ae2834c828566d0b5dcd0215e049399cd">Eval_B</a>(p1,p2)*jac_flux_1*cf;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="comment">// effective LO matrix elements</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      res_b_eff += Eval_B_eff(p1,p2)*jac_flux_1*cf;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
@@ -150,10 +149,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordflow">if</span> (CMP_NLO_GG)</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;          <span class="comment">//finite part of the virtual corrections</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;          res_v += <a class="code" href="Functions__pp__ttX__V_8h.html#abe4e525ed653e5c49461a7c95b4565c0">Eval_V</a>(p1,p2)*jac_flux_1*cf;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;          res_v += <a class="code" href="Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0">Eval_V</a>(p1,p2)*jac_flux_1*cf;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          <span class="comment">//finite part of the integrated dipoles (delta-terms minus +distribution endpoint terms)</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          res_d += Eval_ID(p1,p2,x[1])*jac_flux_1*cf;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          res_d += <a class="code" href="Functions__pp__ttX__ID_8h.html#a6465af4f5feaeb94803677e17b98c821">Eval_ID</a>(p1,p2,x[1])*jac_flux_1*cf;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
@@ -170,15 +169,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="comment">// include spin/color average of initial gluons and PFDs, convert to units of picobarn</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordtype">double</span> cf_x = PREF_GG*f1_x*f2_x*CONV_mt2i_pbarn;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      res_d += Eval_ID_X(p1,p2,x[1])*jac_flux_x*cf_x;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      res_d += <a class="code" href="Functions__pp__ttX__ID_8h.html#a35561efe14ba782c0cc2d666f9796a7b">Eval_ID_X</a>(p1,p2,x[1])*jac_flux_x*cf_x;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordflow">return</span> (res_b) + (res_v + res_d);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="ttc" id="Functions__pp__ttX__V_8h_html_abe4e525ed653e5c49461a7c95b4565c0"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#abe4e525ed653e5c49461a7c95b4565c0">Eval_V</a></div><div class="ttdeci">double Eval_V(const PS_2_2 &amp;ps, const HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">evaluate the virtual corrections for the processes gg-&gt;tt and gg-&gt;phi-&gt;tt </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00196">Functions_pp_ttX_V.cpp:196</a></div></div>
-<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00014">Lorentz.h:14</a></div></div>
-<div class="ttc" id="classPS__2__1_html"><div class="ttname"><a href="classPS__2__1.html">PS_2_1</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00067">PhaseSpace.h:67</a></div></div>
-<div class="ttc" id="Functions__pp__ttX__V_8h_html_a61ffe278906f8e76d250e9980470be16"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#a61ffe278906f8e76d250e9980470be16">Eval_B</a></div><div class="ttdeci">double Eval_B(const PS_2_2 &amp;ps, const HiggsModel &amp;hm, const ulong &amp;flags, unsigned EFF=1)</div><div class="ttdoc">evaluate the born level amplitudes for the processes gg-&gt;tt and gg-&gt;phi-&gt;tt </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00115">Functions_pp_ttX_V.cpp:115</a></div></div>
+<div class="ttc" id="Functions__pp__ttX__ID_8h_html_a35561efe14ba782c0cc2d666f9796a7b"><div class="ttname"><a href="Functions__pp__ttX__ID_8h.html#a35561efe14ba782c0cc2d666f9796a7b">Eval_ID_X</a></div><div class="ttdeci">double Eval_ID_X(const PS_2_2 &amp;ps_x, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the integrated dipoles that live on the boosted 2-&gt;2 phase space, i.e. the + distribution t...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__ID_8cpp_source.html#l00144">Functions_pp_ttX_ID.cpp:144</a></div></div>
+<div class="ttc" id="Functions__pp__ttX__V_8h_html_aa44bc8ccfc40b1d6e9412d530a0007b0"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0">Eval_V</a></div><div class="ttdeci">double Eval_V(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the virtual corrections to the process  and the itnerferences with the QCD background at th...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00206">Functions_pp_ttX_V.cpp:206</a></div></div>
+<div class="ttc" id="Functions__pp__ttX__V_8h_html_ae2834c828566d0b5dcd0215e049399cd"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#ae2834c828566d0b5dcd0215e049399cd">Eval_B</a></div><div class="ttdeci">double Eval_B(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags, unsigned EFF=1)</div><div class="ttdoc">Evaluates the squared born amplitudes for the process  and the interferences with the QCD background ...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00136">Functions_pp_ttX_V.cpp:136</a></div></div>
+<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00019">Lorentz.h:19</a></div></div>
+<div class="ttc" id="classPS__2__1_html"><div class="ttname"><a href="classPS__2__1.html">PS_2_1</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00099">PhaseSpace.h:99</a></div></div>
+<div class="ttc" id="Functions__pp__ttX__ID_8h_html_a6465af4f5feaeb94803677e17b98c821"><div class="ttname"><a href="Functions__pp__ttX__ID_8h.html#a6465af4f5feaeb94803677e17b98c821">Eval_ID</a></div><div class="ttdeci">double Eval_ID(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the integrated dipoles that live on the normal 2-&gt;2 phase space, i.e. delta terms and distr...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__ID_8cpp_source.html#l00049">Functions_pp_ttX_ID.cpp:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

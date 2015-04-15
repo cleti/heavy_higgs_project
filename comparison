@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./bin/Integrate_pp_ttX -I $1 -N 10000000 -E 7  -D --add_higgs 500,32.45440,1.0,1.0,0,0 -M 173.5 -m 0.0 -R 347

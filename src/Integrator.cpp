@@ -415,7 +415,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
   
   d_GSLState -> iterations = vp.iterations;
   d_GSLState -> verbose    = vp.verbose - 2;
-  
+
   if (vp.grid_fixed)
     { // grid fixed -> no warmup run
       d_GSLState->alpha = 0;
@@ -447,7 +447,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
 
     }
 
-
+  //exit(1);
   /////////////////////////////////////////////////////////////////////////////////////////
   // MAIN RUN
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -472,26 +472,9 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
 	    {
 	      e->Resume();
 	    }
-
-	  // PRINT((*dist)[0]->IsActive(0));
-	  // PRINT((*dist)[0]->IsActive(1));
-	  	       
-	  // PRINT((*dist)[1]->IsActive(0));
-	  // PRINT((*dist)[1]->IsActive(1));
-		       
-	  // PRINT((*dist)[3]->IsActive(0));
-	  // PRINT((*dist)[3]->IsActive(1));
-		       
-	  // PRINT((*dist)[4]->IsActive(0));
-	  // PRINT((*dist)[4]->IsActive(1));
-		       
-	  // PRINT((*dist)[6]->IsActive(0));
-	  // PRINT((*dist)[6]->IsActive(1)); 
-  
-	  // exit(1);	  
 	}
       //////////// GSL-INTEGRATION ROUTINE ////////////
-      INT_TIME      = clock();
+      INT_TIME      = clock(); // processor time
       gsl_monte_vegas_integrate (&d_GSLIntegrand, lower_limits, upper_limits, ndim, ncalls, d_GSLRng, d_GSLState,&vp.result, &vp.error);
       INT_TIME      = clock() - INT_TIME;
       INT_TIME_SUM += INT_TIME;

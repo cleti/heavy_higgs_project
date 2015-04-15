@@ -1,7 +1,7 @@
 
 
 #include <ctime>
-#include "../inc/VEGAS.h"
+#include "../inc/pVEGAS.h"
 #include "../inc/Makros.h"
 
 
@@ -10,6 +10,7 @@ double exact = 1.3932039296856768591842462603255;
 double
 g (double *k, size_t dim, void *params)
 {
+  //std::this_thread::sleep_for( std::chrono::milliseconds(1) ); 
   double A = 1.0 / (M_PI * M_PI * M_PI);
   return A / (1.0 - cos (k[0]) * cos (k[1]) * cos (k[2]));
 }
@@ -28,35 +29,17 @@ display_results (char *title, double result, double error)
 
 
 
-int main(int argc, char** argv)
+int main()
 {
-  using namespace MYVEGAS;
+  using namespace pVEGAS;
 
 
-  int num_threads = 4;//omp_get_num_threads();
+  int num_threads = 2;//omp_get_num_threads();
   int this_thread = omp_get_thread_num();
-  int calls = 10000000;
-  int iterations = 5;
-  
-  if (argc>1)
-    {
-      num_threads = atoi(argv[1]);
-    }
-  if (argc>2)
-    {
-      calls = atoi(argv[2]);
-    }
-  if (argc>3)
-    {
-      iterations = atoi(argv[3]);
-    }
-  
+
   PRINT(num_threads);
   PRINT(this_thread);
-  PRINT(calls);
-  PRINT(iterations);
   
-
   double res, err;
 
   double xl[3] = { 0, 0, 0 };
@@ -67,6 +50,7 @@ int main(int argc, char** argv)
 
   gsl_monte_function G = { &g, 3, 0 };
 
+  size_t calls = 10000000;
 
   gsl_rng_env_setup ();
   gsl_rng_default_seed = time(0);
@@ -80,7 +64,7 @@ int main(int argc, char** argv)
   {
     gsl_monte_vegas_state *s = gsl_monte_vegas_alloc (num_threads,3);
 
-    gsl_monte_vegas_integrate_parallel (&G, xl, xu, 3, calls/iterations/10, rngs, s,
+    gsl_monte_vegas_integrate_parallel (&G, xl, xu, 3, calls/5/10, rngs, s,
                                &res, &err);
     display_results ("vegas warm-up", res, err);
 
@@ -88,9 +72,9 @@ int main(int argc, char** argv)
 
     do
       {
-	time_t INT_TIME      = time(0);
-        gsl_monte_vegas_integrate_parallel (&G, xl, xu, 3, calls/iterations, rngs, s,
-					    &res, &err);
+	time_t INT_TIME = time(0);
+        gsl_monte_vegas_integrate_parallel (&G, xl, xu, 3, calls/5, rngs, s,
+                                   &res, &err);
         printf ("result = % .6f sigma = % .6f "
                 "chisq/dof = %.1f\n", res, err, s->chisq);
 	PRINT(difftime(time(0),INT_TIME));

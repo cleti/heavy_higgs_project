@@ -78,7 +78,7 @@ $(BIN-PATH)/Test_S: $(LIB-PATH)/Test_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S)
 $(BIN-PATH)/EvalSI: $(LIB-PATH)/EvalSI.o 
 	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl
 
-$(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/VEGAS.o
+$(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/pVEGAS.o
 	$(CC) -o $@  $^ -lgsl -lgomp  
 
 ####################################################################

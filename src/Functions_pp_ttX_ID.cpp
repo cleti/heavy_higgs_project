@@ -13,30 +13,16 @@
 
 static double P_gg_reg(double const& x)
 {
-  static double x_t   = 0.0;
-  static double res_t = 0.0;
-  if (x!=x_t)
-    {
-      x_t = x;
-      double t1 = 0.1e1 - x;
-      res_t = Constants::CA*(0.2e1 / x * t1 - 0.2e1 + 0.2e1 * t1 * x);
-    }
-  return res_t;
+  double t1 = 0.1e1 - x;
+  return Constants::CA*(0.2e1 / x * t1 - 0.2e1 + 0.2e1 * t1 * x);
 }
 
 
-// static double P_qg_reg(double const& x) // = P_qg
-// {
-//   static double x_t   = 0.0;
-//   static double res_t = 0.0;
-//   if (x!=x_t)
-//     {
-//       x_t = x;
-//       double t1 = 0.1e1 - x;
-//       res_t = Constants::CF*(1+t1*t1)/x;
-//     }
-//   return res_t;
-// }
+inline double P_qg_reg(double const& x) // = P_qg
+{
+  double t1 = 0.1e1 - x;
+  return Constants::CF*(1+t1*t1)/x;
+}
 
 
 #include "../amp/virtual/dipole/2RE_HIGGSxQCD_NLO_DIP_DELTA_I_eps0_g4.cpp"
@@ -44,6 +30,17 @@ static double P_gg_reg(double const& x)
 #include "../amp/virtual/dipole/2RE_HIGGSxQCD_NLO_DIP_CONT_eps0_g4.cpp"
 #include "../amp/virtual/dipole/2RE_HIGGSxQCD_NLO_DIP_DIST_E_eps0_g4.cpp"
 
+
+inline double Eval_DIP_CONT_QG(
+			double const& s12_1,
+			double const& B,
+			double const& x,
+			double const& MUF2,
+			double const& AS)
+{
+  using namespace Constants;
+  return -AS/(TwoPi*2.0*CF)*P_qg_reg(x)*std::log(MUF2/(s12_1*x*(1.0-x)))*B;
+}
 
 
 
@@ -156,8 +153,9 @@ double Eval_ID_X(
   double const& MUF2 = hm.MUF2();
   const double& AS   = hm.AlphaS();
   
-  if ( (flags & F_EVAL_D_CONT) && x<Cuts::IDIP_X_CUT)
+  if (flags & (F_EVAL_D_CONT | F_EVAL_D_QG) && x<Cuts::IDIP_X_CUT)
     {
+      double ret = 0.0;
       // FV const& p1   = ps_1.p1();
       // FV const& p2   = ps_1.p2();
       // FV const& k1   = ps_1.k1();
@@ -204,7 +202,7 @@ double Eval_ID_X(
       // colour connected Born terms: only contribution from interference terms PHIxQCD are non-zero
       double BC_int_x= -0.5*(t12_x-t11_x)/s12_x*B_int_x;
 
-      return Eval_DIP_CONT(s12_1,
+      ret += Eval_DIP_CONT(s12_1,
 			   t11_x,
 			   t12_x,
 			   B_phi_x+B_int_x,
@@ -213,6 +211,10 @@ double Eval_ID_X(
 			   x,
 			   MUF2,
 			   AS);
+
+      if (flags & F_EVAL_D_QG) ret += Eval_DIP_CONT_QG(s12_1,B_phi_x+B_int_x,x,MUF2,AS);
+
+      return ret;
     }
   else
     {

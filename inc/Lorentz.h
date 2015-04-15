@@ -1,4 +1,7 @@
 
+/*! \file
+  \brief This file provides the 4-vector and Lorentz transformation classes. 
+*/
 
 #ifndef LORENTZ_H
 #define LORENTZ_H
@@ -6,27 +9,36 @@
 #include <initializer_list>
 
 #include "Makros.h"
-
+#include <vector>
+#include <iostream>
 
 ////// class FV     ///////////////////////////////////////////////////////////////////////////////////////
 #define RANGE(i,J) (i>=0 && i<J)
-
+/*!
+  Lorentz 4-vector.
+*/
 class FV {
  protected:
-  /* double* v; */
-  double v[4];
+  //! the 4-vector components
+  std::vector<double> v;//double v[4];
 
  public:
-  //FV(double const& a=0.0) : v(new double[4])    { if (a!=0.0) {v[0]=a;v[1]=a;v[2]=a;v[3]=a;} }std::cout << std::endl << " std.  constr. " << std::endl;
-  FV(double const& a=0.0) : v{a,a,a,a}       {    }
-  FV(FV const& rhs) : v{rhs[0],rhs[1],rhs[2],rhs[3]} {  }
-  FV(FV&& rhs) noexcept /* : FV()  */                 { *this=std::move(rhs); }
-  FV(std::initializer_list<double> rhs) /* : FV() */  { *this=rhs; }
+  FV(double const& a=0.0)               : v(4,a)              { }
+  FV(FV const& rhs)                     : v(rhs.v)            { }
+  FV(FV&& rhs) noexcept                 : v(std::move(rhs.v)) { }
+  FV(std::initializer_list<double> rhs) : v(rhs)              { }
   ~FV() { /* delete v; */ }
 
-  // BEWARE! no range check here!!!
-  //if (!RANGE(i,4)) {ERROR("out of range");}
+
+  /* FV(double const& a=0.0)                   : v{a,a,a,a} {    } */
+  /* FV(FV const& rhs)                         : v(rhs.v)   {  }  { *this = rhs} */
+  /* FV(FV&& rhs) noexcept /\*                 : FV()  *\/  { *this=std::move(rhs); } */
+  /* FV(std::initializer_list<double> rhs) /\* : FV() *\/   { *this=rhs; } */
+  /* ~FV() { /\* delete v; *\/ } */
+
+  //! Read/write ccess to specific component. NO RANGE CHECK!
   double& operator[](int const& i)             {  return v[i]; }
+  //! Read access to specific component. NO RANGE CHECK!
   double const& operator[](int const& i) const {  return v[i]; }
   FV& operator=(std::initializer_list<double> L);
   FV& operator=(FV const& other);
@@ -35,10 +47,15 @@ class FV {
   FV& operator-=(FV const& other);
   FV& operator*=(double const& a);
   FV& operator/=(double const& a);
+
+  void swap(FV& other);
 };
 
 FV operator*(FV const& v ,double const& a);
 FV operator*(double const& a, FV const& v);
+FV&& operator*(FV&& v ,double const& a);
+FV&& operator*(double const& a, FV&& v);
+
 
 FV operator+(FV const& v1,FV const& v2);
 FV&& operator+(FV const& v1,FV&& v2) noexcept;
@@ -55,12 +72,15 @@ FV&& operator-(FV&& v1) noexcept;
 
 
 
-
-
 ////// class LT     ///////////////////////////////////////////////////////////////////////////////////////
+/*!
+  Lorentz transformation.
+*/
 class LT {
  protected:
+  //! 4 x 4 components of the matrix.
   double M[4][4];
+  //! The metric G = [+1,-1,-1,-1] is used.
   static const double G[4];
 
  public:
@@ -69,15 +89,34 @@ class LT {
 
   /* int set_col(int i, double* vals); */
   /* int set_row(int i, double* vals); */
+  //! Invert the Lorentz transformation. This does not compute the inverse of general 4 x 4 matrices!
   void invert();
+  //! Transpose matrix.
   void transpose();
+  /*!
+    Apply transformation to covariant components of the 4-vector.
+    \param v 4-vector to be transformed.
+  */
   void apply(FV& v);
+  /*!
+    Apply transformation to contravariant components of the 4-vector.
+    \param v 4-vector to be transformed.
+  */
   void apply_G(FV& v);
   int set_FF(FV const& p1, FV const& p2);
   int set_II(FV const& K , FV const& Kb);
-  // boost vectors defined in the current frame (where also the argument P is defined) to P-restframe
+  /*!
+    Set boost that relates the frame in which P is given to its restframe.
+    \param P defines the boost
+    \param INV invert boost, same as set_boost_inv()
+    \returns 1 if succesful, 0 if the mass of P is too small so that the restframe does not exist.
+  */
   int set_boost(FV const& P,bool INV=false);
-  // boost vectors from P-restframe to the current frame (where also the argument P is defined)
+  /*!
+    Set inverse boost that relates the P restframe to the frame in which P is given.
+    \param defines the boost
+    \returns 1 if succesful, 0 if the mass of P is too small so that the restframe does not exist.
+  */
   int set_boost_inv(FV const& P);
 
   int set_wigner(FV const& P1, FV const& P2);

@@ -8,7 +8,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classHiggsModel_aefe9d67a04771e06f9812734de1a606b}{{\bfseries Higgs\-Model} (double const \&vh=246.\-0/173.\-34, std\-::string const \&name=\char`\"{}noname\char`\"{})}\label{classHiggsModel_aefe9d67a04771e06f9812734de1a606b}
+\hypertarget{classHiggsModel_aa6f39f73df22008fa639fd64653cc8e2}{{\bfseries Higgs\-Model} (std\-::string const \&name=\char`\"{}noname\char`\"{})}\label{classHiggsModel_aa6f39f73df22008fa639fd64653cc8e2}
 
 \item 
 \hypertarget{classHiggsModel_a29a94aee623c9ce8d874b8b4fba17835}{std\-::string const \& {\bfseries Name} () const }\label{classHiggsModel_a29a94aee623c9ce8d874b8b4fba17835}
@@ -47,7 +47,19 @@
 \hypertarget{classHiggsModel_a9711ab1e2b584f86d75f6e53b9a35822}{double const \& {\bfseries V\-H} () const }\label{classHiggsModel_a9711ab1e2b584f86d75f6e53b9a35822}
 
 \item 
+\hypertarget{classHiggsModel_af679483d403b1d8b2f291542215fa0bd}{double const \& {\bfseries Scale} () const }\label{classHiggsModel_af679483d403b1d8b2f291542215fa0bd}
+
+\item 
+\hypertarget{classHiggsModel_a2572b90895176763db5cbbb3233ec242}{double const \& {\bfseries Scale2} () const }\label{classHiggsModel_a2572b90895176763db5cbbb3233ec242}
+
+\item 
 \hypertarget{classHiggsModel_a08c33da1ef0b46ed04dd5f1f9f84ae9a}{int {\bfseries N\-Bosons} () const }\label{classHiggsModel_a08c33da1ef0b46ed04dd5f1f9f84ae9a}
+
+\item 
+\hypertarget{classHiggsModel_a56909ae8843fbd15bc54df272e1a245d}{std\-::vector$<$ H\-Ptr $>$ const \& {\bfseries Get\-Bosons} () const }\label{classHiggsModel_a56909ae8843fbd15bc54df272e1a245d}
+
+\item 
+\hypertarget{classHiggsModel_afa9a44f6a2bd358d887acd5771253953}{H\-Ptr {\bfseries Get\-Boson} (int i)}\label{classHiggsModel_afa9a44f6a2bd358d887acd5771253953}
 
 \item 
 \hypertarget{classHiggsModel_a5a3f7171856b2106141948544fc49f13}{void \hyperlink{classHiggsModel_a5a3f7171856b2106141948544fc49f13}{Set\-Alpha\-S} (double const \&val)}\label{classHiggsModel_a5a3f7171856b2106141948544fc49f13}
@@ -68,6 +80,9 @@
 \hypertarget{classHiggsModel_a058daf0cc3b8cad4077419d19d8e4c21}{void {\bfseries Set\-V\-H} (double const \&val)}\label{classHiggsModel_a058daf0cc3b8cad4077419d19d8e4c21}
 
 \item 
+\hypertarget{classHiggsModel_aaca4ad2dcfd40c87e76fc88ab95b56dc}{void {\bfseries Set\-Scale} (double const \&val)}\label{classHiggsModel_aaca4ad2dcfd40c87e76fc88ab95b56dc}
+
+\item 
 void \hyperlink{classHiggsModel_a43f6951291eef31cc18116f7d49f839f}{Set\-Higgs\-Prefactors} (double const \&S, bool E\-F\-F)
 \begin{DoxyCompactList}\small\item\em Reset values of the Higgs prefactors. All Higgs bosons in the vector d\-\_\-\-Bosons will be taken into account. \end{DoxyCompactList}\item 
 \hypertarget{classHiggsModel_a36b052bac528028a1757554d45901513}{\hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} const \& {\bfseries Get\-Higgs\-Prefactors} () const }\label{classHiggsModel_a36b052bac528028a1757554d45901513}
@@ -80,11 +95,11 @@ void \hyperlink{classHiggsModel_a43f6951291eef31cc18116f7d49f839f}{Set\-Higgs\-P
 
 \item 
 void \hyperlink{classHiggsModel_acd87bf9a85c37da737aba62a0dc82b5b}{Add\-Boson} (double const \&M, double const \&G, double const \&a\-\_\-t=1.\-0, double const \&b\-\_\-t=1.\-0, double const \&a\-\_\-b=0.\-0, double const \&b\-\_\-b=0.\-0)
-\begin{DoxyCompactList}\small\item\em Add a Higgs boson to the vector d\-\_\-\-Bosons. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Add a Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. \end{DoxyCompactList}\item 
 void \hyperlink{classHiggsModel_ab84c9016bf5a8bd87f82f214c34cce8b}{Add\-Scalar} (double const \&M, double const \&G, double const \&a\-\_\-t=1.\-0, double const \&a\-\_\-b=0.\-0)
-\begin{DoxyCompactList}\small\item\em Add a scalar Higgs boson to the vector d\-\_\-\-Bosons. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Add a scalar Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. \end{DoxyCompactList}\item 
 void \hyperlink{classHiggsModel_a94f5b60024363838e73e0e1b8d1604ca}{Add\-Pseudoscalar} (double const \&M, double const \&G, double const \&b\-\_\-t=1.\-0, double const \&b\-\_\-b=0.\-0)
-\begin{DoxyCompactList}\small\item\em Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. \end{DoxyCompactList}\item 
 \hypertarget{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}{void \hyperlink{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}{Pop\-Boson} ()}\label{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}
 
 \begin{DoxyCompactList}\small\item\em Remove the last Higgs boson added to the vector d\-\_\-\-Bosons. \end{DoxyCompactList}\item 
@@ -96,6 +111,10 @@ void \hyperlink{classHiggsModel_aabc29ed3da5d400799c3de3edca3e228}{Print} (std\-
 This class contains all the physical, model specific parameters, i.\-e. the strong coupling Alpha\-S, renormalization and factorization scales M\-U\-R, M\-U\-F, the third generation quark masses mt and mb as well as the combined Higgs vacuum expectation value V\-H and the individual Higgs boson parameters. It also provides appropriate setter functions. It contains instances of the \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} and Amprefactors structures that are needed for the evaluation of the amplitudes. Take care to provide numerical values consistently in the same units. \begin{DoxySeeAlso}{See Also}
 Amp\-Prefactors, \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors}, \hyperlink{classHiggsBoson}{Higgs\-Boson} 
 \end{DoxySeeAlso}
+
+
+Definition at line 230 of file Higgs\-Model.\-h.
+
 
 
 \subsection{Member Function Documentation}
@@ -113,7 +132,7 @@ Amp\-Prefactors, \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors}, \hyperlin
 )}}\label{classHiggsModel_acd87bf9a85c37da737aba62a0dc82b5b}
 
 
-Add a Higgs boson to the vector d\-\_\-\-Bosons. 
+Add a Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -130,6 +149,10 @@ Add a Higgs boson to the vector d\-\_\-\-Bosons.
 {\em b\-\_\-t} & reduced pseudoscalar coupling to the bottom-\/quark \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 357 of file Higgs\-Model.\-cpp.
+
 \hypertarget{classHiggsModel_a94f5b60024363838e73e0e1b8d1604ca}{\index{Higgs\-Model@{Higgs\-Model}!Add\-Pseudoscalar@{Add\-Pseudoscalar}}
 \index{Add\-Pseudoscalar@{Add\-Pseudoscalar}!HiggsModel@{Higgs\-Model}}
 \subsubsection[{Add\-Pseudoscalar}]{\setlength{\rightskip}{0pt plus 5cm}void Higgs\-Model\-::\-Add\-Pseudoscalar (
@@ -142,7 +165,7 @@ Add a Higgs boson to the vector d\-\_\-\-Bosons.
 )}}\label{classHiggsModel_a94f5b60024363838e73e0e1b8d1604ca}
 
 
-Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons. 
+Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -155,6 +178,10 @@ Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons.
 {\em b\-\_\-t} & reduced pseudoscalar coupling to the bottom-\/quark \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 397 of file Higgs\-Model.\-cpp.
+
 \hypertarget{classHiggsModel_ab84c9016bf5a8bd87f82f214c34cce8b}{\index{Higgs\-Model@{Higgs\-Model}!Add\-Scalar@{Add\-Scalar}}
 \index{Add\-Scalar@{Add\-Scalar}!HiggsModel@{Higgs\-Model}}
 \subsubsection[{Add\-Scalar}]{\setlength{\rightskip}{0pt plus 5cm}void Higgs\-Model\-::\-Add\-Scalar (
@@ -167,7 +194,7 @@ Add a pseudoscalar Higgs boson to the vector d\-\_\-\-Bosons.
 )}}\label{classHiggsModel_ab84c9016bf5a8bd87f82f214c34cce8b}
 
 
-Add a scalar Higgs boson to the vector d\-\_\-\-Bosons. 
+Add a scalar Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful parameters M and G will be rescaled with d\-\_\-\-Scale. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -180,6 +207,10 @@ Add a scalar Higgs boson to the vector d\-\_\-\-Bosons.
 {\em a\-\_\-t} & reduced scalar coupling to the bottom-\/quark \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 378 of file Higgs\-Model.\-cpp.
+
 \hypertarget{classHiggsModel_aabc29ed3da5d400799c3de3edca3e228}{\index{Higgs\-Model@{Higgs\-Model}!Print@{Print}}
 \index{Print@{Print}!HiggsModel@{Higgs\-Model}}
 \subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Higgs\-Model\-::\-Print (
@@ -199,6 +230,10 @@ Print the model parameters.
 {\em m\-Scale} & mass scale, used to restore proper normalization of quantities with mass dimension \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 422 of file Higgs\-Model.\-cpp.
+
 \hypertarget{classHiggsModel_a43f6951291eef31cc18116f7d49f839f}{\index{Higgs\-Model@{Higgs\-Model}!Set\-Higgs\-Prefactors@{Set\-Higgs\-Prefactors}}
 \index{Set\-Higgs\-Prefactors@{Set\-Higgs\-Prefactors}!HiggsModel@{Higgs\-Model}}
 \subsubsection[{Set\-Higgs\-Prefactors}]{\setlength{\rightskip}{0pt plus 5cm}void Higgs\-Model\-::\-Set\-Higgs\-Prefactors (
@@ -218,6 +253,10 @@ Reset values of the Higgs prefactors. All Higgs bosons in the vector d\-\_\-\-Bo
 {\em E\-F\-F} & use effective Higgs-\/top coupling (large mt limit) if true. Couplings to the bottom-\/quark have no effect in this case. The full one-\/loop form factors are used otherwise. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 230 of file Higgs\-Model.\-cpp.
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

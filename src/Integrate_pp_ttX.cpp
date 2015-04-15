@@ -47,16 +47,14 @@ int& int_flags = g_options.int_flags;
 //////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
-  using RunParameters::mScale;
-  using RunParameters::mScale2;
-  using RunParameters::mt2;
   ////////////////////////////////////////////////////////////////////////////////////////////
   // init ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
   // create identifier from process id and timestamp
   stringstream run_id;
   run_id << "RUN_" << time(0) << "_" << gettid();
-
+  program_name = argv[0];
+  
   // create an outpufile
   ofstream log_file;
   if (g_options.logfile) log_file.open(string("results/integration_results_")+=run_id.str());
@@ -82,35 +80,16 @@ int main(int argc, char** argv)
 
   ////////////////////////////////////////////////////////////////////////////////
   // initialize model parameters
-  // all dimensionful quantities will be normalized to top-mass
-  const double MT = 173.5;
   HiggsModel THDM_1;
-  // from now on all dimensionful parameters will be normalized to MT
-  THDM_1.SetScale(MT);
-  // default values
-  THDM_1.SetVH(246.0);
-  THDM_1.SetMUR(MT);
-  THDM_1.SetMUF(MT);
-  THDM_1.SetMt(MT);
-  THDM_1.SetMb(0.0);
+  // some aliases
+  double const& mt2     = THDM_1.mt2();
+  double const& mScale  = THDM_1.Scale();
+  double const& mScale2 = THDM_1.Scale2();
+  // get parameters from command line arguments
   parse_arguments(argc,argv,g_options,THDM_1);
-
-  // set the scale to the mean value of the Higgs masses if no user input was provided
-  double MU = g_options.ren_scale;
-  if (MU==0.0)
-    {
-      int k=0;
-      for (auto phi_i = std::begin(THDM_1.GetBosons()); phi_i!=std::end(THDM_1.GetBosons()); ++phi_i)
-	{
-	  MU += (MT*(*phi_i)->M() - MU) / (k+1.0);
-	  ++k;
-	}
-    }
-  
-  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(MU));
-  THDM_1.SetMUR(MU);
-  THDM_1.SetMUF(MU);
-  THDM_1.Print(couT,MT);
+  // extract AlphaS from the PDFs
+  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*mScale));
+  THDM_1.Print(couT,mScale);
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -139,62 +118,6 @@ int main(int argc, char** argv)
   PRINTS(couT,vp.calls);
   ////////////////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////////////////////////////////
-  // { // set up Higgs boson parameters
-  //   using namespace HiggsBosons;
-  //   // SetPhi1(g_options.mH,
-  //   // 	  g_options.GammaH,
-  //   // 	  g_options.At,
-  //   // 	  g_options.Bt,
-  //   // 	  g_options.Ab,
-  //   // 	  g_options.Bb
-  //   // 	  );
-  //   // // Bernies Higgs [set 2]
-  //   // SetPhi1(600.0,
-  //   // 	    67.71,
-  //   // 	    -1.19,
-  //   // 	    1.18,
-  //   // 	    0.0,
-  //   // 	    0.0
-  //   // 	    );
-  //   // Bernies Higgs [set 5]
-  //   SetPhi1(500.0,
-  //   	    59.3,
-  //   	    0.0,
-  //   	    1.67,
-  //   	    0.0,
-  //   	    0.0
-  //   	    );
-  //   SetPhi2(530.0,
-  //   	    38.50,//2.245439053359254e+01,
-  //   	    1.68,//0.7,
-  //   	    0.0,//1.1,
-  //   	    0.0,
-  //   	    0.0);
-
-  //   PRINTS(couT,Vh*mScale);
-  //   PRINTS(couT,M_1*mScale);
-  //   PRINTS(couT,G_1*mScale);
-  //   PRINTS(couT,At_1*Vh);
-  //   PRINTS(couT,Bt_1*Vh);
-  //   PRINTS(couT,FH_eff_1/mScale);
-  //   PRINTS(couT,FA_eff_1/mScale);
-  // }
-  ////////////////////////////////////////////////////////////////////////////////
-  // { // set up run parameters
-  //   using namespace RunParameters;
-  //   // set scales
-  //   double MU = g_options.ren_scale; // ren./fac. scale in units of mt
-  //   SetAlphaS(ip.pdf->alphasQ(MU*mScale));
-  //   SetMUR(MU);
-  //   SetMUF(MU);
-  //   // one or two Higgs bosons?
-  //   TwoHDM = 1;
-  //   PRINTS(couT,mt*mScale);
-  //   PRINTS(couT,AlphaS);
-  //   PRINTS(couT,MUR*mScale);
-  //   PRINTS(couT,MUF*mScale);
-  // }
   ////////////////////////////////////////////////////////////////////////////////
   { // set technical cuts on soft/collinear 2->3 phase space regions
     using namespace Cuts;
@@ -335,7 +258,9 @@ int main(int argc, char** argv)
       USET_EVAL_ALL(ip.eval_flags);
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
-      SET_EVAL_D_ALL(ip.eval_flags);
+      SET_EVAL_D_ALL(ip.eval_flags); // all dipole terms relevant for gg->tt
+      SET_FLAG(F_EVAL_D_QG,ip.eval_flags);
+      // need to implement integrated QG dipoles!
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO int. dip.]"));
   
       // activate NLO (ID) histograms 
@@ -357,12 +282,12 @@ int main(int argc, char** argv)
       couT << "\n [NLO (R GG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;//F_EVAL_R_GG;
-      SET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
-      SET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
-      //SET_FLAG(F_EVAL_R_ISR_FSR,ip.eval_flags); // distributions ?
-      // USET_FLAG(F_EVAL_R_FSR_FSR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_FSR_ISR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_FSR_INT,ip.eval_flags);
+      //SET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);|these two make problems
+      //SET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
+      //SET_FLAG(F_EVAL_R_ISR_ISR,ip.eval_flags);
+      //SET_FLAG(F_EVAL_R_FSR_FSR,ip.eval_flags);
+      SET_FLAG(F_EVAL_R_ISR_FSR,ip.eval_flags);
+      SET_FLAG(F_EVAL_R_FSR_ISR,ip.eval_flags);
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,gg]"));
       
       // activate NLO (R) histograms 
@@ -472,16 +397,18 @@ int main(int argc, char** argv)
       if (ip.distributions != nullptr)
       	{
       	  for (auto e: *ip.distributions)
-      	    {
-      	      // normalize distributions to #iterations, #runs (warm-up does not count)
+      	    { 
+	      // normalize entries to bin width
+	      // so that sum( bin_cont[i]*bin_width[i] ) = sigma_tot
       	      e->Normalize();
       	    }
       	}
-      
-      double norm[4] = {1.0,//results[0],
-			1.0,//results[0]+results[1],
-			0.0,
-			1.0};//sum};
+
+      // set these variables accordingly to normalize distributions to total cross section
+      double norm[4] = {1.0,  // QCD only
+			1.0,  // QCD + PHI,
+			0.0,  // ???
+			1.0}; // NLO;
       // 0 : LO_QCD
       // 1 : LO_PHI
       // 3 : V
@@ -499,6 +426,7 @@ int main(int argc, char** argv)
       CanvasPtr c0 = MakeCanvas("Top/Antitop invariant mass distributions",1400,1000);
       DrawDistribution(c0,
 		       MttDistributions,
+		       THDM_1,
 		       &norm[0],
 		       string("M_{t#bar{t}} [GeV]"),
 		       string("#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]"),
@@ -510,6 +438,7 @@ int main(int argc, char** argv)
       DrawTwoDistributions(cd0,
       			   PT1Distributions,
       			   Y1Distributions,
+			   THDM_1,
       			   &norm[0],
       			   string("p_{T,t} [GeV]"),string("Y_{t}"),
       			   string("#frac{d#sigma}{dp_{T,t}} [pb/GeV]"),
@@ -520,6 +449,7 @@ int main(int argc, char** argv)
       CanvasPtr c1 = MakeCanvas("Rapidity difference",1000,1000);
       DrawDistribution(c1,
 		       DYDistributions,
+		       THDM_1,
 		       &norm[0],
 		       string("#Delta Y_{t#bar{t}}"),
 		       string("#frac{d#sigma}{d #Delta Y_{t#bar{t}}} [pb]"),
@@ -529,6 +459,7 @@ int main(int argc, char** argv)
       CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
       DrawDistribution(c2,
       		       PT12Distributions,
+		       THDM_1,
       		       &norm[0],
       		       string("p_{T,t+#bar{t}} [GeV]"),
       		       string("#frac{d#sigma}{dp_{T,t+#bar{t}}} [pb/GeV]"),
@@ -540,6 +471,7 @@ int main(int argc, char** argv)
       // DrawDistribution(c0,
       // 		       SPartDistributions,
       // 		       &norm[0],
+      //		       THDM_1,
       // 		       string("#sqrt{#hat{s}} [GeV]"),
       // 		       string("#hat{#sigma}(#hat{s}) [pb]"),
       // 		       WRITE_TO_FILE,
@@ -549,6 +481,7 @@ int main(int argc, char** argv)
       // DrawTwoDistributions(cd1,
       // 			   PT2Distributions,
       // 			   Y2Distributions,
+      //		           THDM_1,
       // 			   &norm[0],
       // 			   string("p_{T,#bar{t}} [GeV]"),string("Y_{#bar{t}}"),
       // 			   string("#frac{d#sigma}{dp_{T,#bar{t}}} [pb/GeV]"),

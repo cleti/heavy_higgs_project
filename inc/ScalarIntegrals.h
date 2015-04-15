@@ -1,4 +1,10 @@
 
+
+/*! \file
+  \brief This file provides wrapper functions for the scalar integrals provided by the QCDloop  library arXiv:0712.1851 [hep-ph]. A number of global variables is defined which is used for the evaluation of the one-loop amplitudes relevant for this project. 
+*/
+
+
 #ifndef SCALARINTEGRALS_H
 #define SCALARINTEGRALS_H
 
@@ -95,11 +101,30 @@ extern c_double I3_T12_MT2_0_0_MT2_MH2_MU2_2;
 extern c_double I3_0_0_S12_0_0_MH2_MU2_2;
 #endif
 
-void Set_SI(const PS_2_2& ps, double MUR2, unsigned flags);
-void Set_I1(double& MUR2);
-void Set_I2(double& MUR2);
-void Set_I3(double& MUR2);
-void Set_I4(double& MUR2);
+/*!
+  \brief Set global variables according to the given phase space point.
+  \param ps 2->2 phase space
+  \param MUR2 renormalization scale squared
+  \param flags specify which groups of integrals get evaluated
+  \sa Flags.h, PhaseSpace.h
+*/
+void Set_SI(const PS_2_2& ps, const double& MUR2, unsigned flags);
+/*!
+  \brief Evaluate the 1-point functions.
+*/
+void Set_I1(const double& MUR2);
+/*! 
+  \brief Evaluate the 2-point functions.
+*/
+void Set_I2(const double& MUR2);
+/*! 
+  \brief Evaluate the 3-point functions.
+*/
+void Set_I3(const double& MUR2);
+/*!
+  \brief Evaluate the 4-point functions.
+*/
+void Set_I4(const double& MUR2);
 void Print_SI(int eps=0);
 
 

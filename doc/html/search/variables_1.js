@@ -8,6 +8,7 @@ var searchData=
   ['d_5flabel',['d_label',['../classHistArray.html#a273ef1bf687ee03dd17d106075bb07e2',1,'HistArray']]],
   ['d_5fmass_5fdim',['d_mass_dim',['../classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71',1,'HistArray']]],
   ['d_5fname',['d_name',['../classPS__2.html#a28b70b9c3c9c5d179559af7b03cfc5bf',1,'PS_2']]],
+  ['d_5fobs',['d_obs',['../classHistArray.html#a7d8b20c78afd46e59467379cf4fe472b',1,'HistArray']]],
   ['d_5fparent',['d_parent',['../classPS__2.html#abebb860c3c4a1c5054bc223d3aac4f45',1,'PS_2']]],
   ['d_5frs',['d_rs',['../classPS__2.html#a20ee7f6afb71183f2f61c7049b2e1c9e',1,'PS_2']]],
   ['d_5fwgt',['d_wgt',['../classPS__2.html#a7840687732819d92810f9a2666621650',1,'PS_2']]],

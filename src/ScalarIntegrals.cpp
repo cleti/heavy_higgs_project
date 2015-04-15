@@ -86,23 +86,27 @@ namespace SI_INV
   double T11 = 0.0;
   double T12 = 0.0;
   double zero = 0.0;
+  double mt2 = 0.0;
   c_double MH2 = 0.0;
 }
 
-void Set_SI(const PS_2_2& ps, double MUR2, unsigned flags)
+void Set_SI(const PS_2_2& ps, const double& MUR2, unsigned flags)
 {
   using namespace SI_INV;
-  using RunParameters::mt2;
  
 #ifdef WITH_NON_FACT_DIAGRAMS
   setmudim(MUR2);
   MH2 = pow(c_double(Bosons::M_1,Bosons::G_1),2);
   PRINT(MH2);
 #endif
-  
+
+
 if (IZ_EVAL_SI_2P(flags))
   {
-
+    // we assume pp->ttbar
+    // both final state particles must have the same mass
+    // otherwise the results are useless
+    mt2 = ps.get_msq(0);
     // QCDloop functions take these invariants as arguments
     S12  = pow(ps.get_rs(),2);
     T11  = mt2 - ps.get_t11();
@@ -123,10 +127,9 @@ if (IZ_EVAL_SI_2P(flags))
 }
 
 
-void Set_I1(double& MUR2)
+void Set_I1(const double& MUR2)
 {
   using namespace SI_INV;
-  using RunParameters::mt2;
     
   int I = 0;
   I1_MT2_MU2_0 = qli1_(&mt2,&MUR2,&I);
@@ -142,10 +145,9 @@ void Set_I1(double& MUR2)
 
 }
 
-void Set_I2(double& MUR2)
+void Set_I2(const double& MUR2)
 {
   using namespace SI_INV;
-  using RunParameters::mt2;
     
   int I = 0;
   // I2_0_MT2_MT2_MU2_0   = qli2_(&zero,&mt2,&mt2,&MUR2,&I);
@@ -176,10 +178,9 @@ void Set_I2(double& MUR2)
 #endif
 }
 
- void Set_I3(double& MUR2)
+ void Set_I3(const double& MUR2)
  {
   using namespace SI_INV;
-  using RunParameters::mt2;
     
   int I = 0;
   I3_0_0_S12_0_0_0_MU2_0         = qli3_(&zero,&zero,&S12,&zero,&zero,&zero,&MUR2,&I);
@@ -221,10 +222,9 @@ void Set_I2(double& MUR2)
 #endif
 }
 
- void Set_I4(double& MUR2)
+ void Set_I4(const double& MUR2)
  {
   using namespace SI_INV;
-  using RunParameters::mt2;
     
   int I = 0;
   I4_MT2_0_0_MT2_T11_S12_0_MT2_MT2_MT2_MU2_0 = qli4_(&mt2,&zero,&zero,&mt2,&T11,&S12,&zero,&mt2,&mt2,&mt2,&MUR2,&I);

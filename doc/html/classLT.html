@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -73,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,20 +91,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">LT Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7467f60d847896710f21c17be6ee0b2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7467f60d847896710f21c17be6ee0b2c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invert</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a7467f60d847896710f21c17be6ee0b2c">invert</a> ()</td></tr>
+<tr class="memdesc:a7467f60d847896710f21c17be6ee0b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invert the Lorentz transformation. This does not compute the inverse of general 4 x 4 matrices! <br/></td></tr>
 <tr class="separator:a7467f60d847896710f21c17be6ee0b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6142dba94f0edc4eb2f8a0cc84a43ada"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6142dba94f0edc4eb2f8a0cc84a43ada"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>transpose</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a6142dba94f0edc4eb2f8a0cc84a43ada">transpose</a> ()</td></tr>
+<tr class="memdesc:a6142dba94f0edc4eb2f8a0cc84a43ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transpose matrix. <br/></td></tr>
 <tr class="separator:a6142dba94f0edc4eb2f8a0cc84a43ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3119b968c2cf6a9bbfb30615c01921d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3119b968c2cf6a9bbfb30615c01921d0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>apply</b> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
+<tr class="memitem:a3119b968c2cf6a9bbfb30615c01921d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a3119b968c2cf6a9bbfb30615c01921d0">apply</a> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
 <tr class="separator:a3119b968c2cf6a9bbfb30615c01921d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd17d410a8436a83b03f2dd2909ee59a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd17d410a8436a83b03f2dd2909ee59a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>apply_G</b> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
+<tr class="memitem:abd17d410a8436a83b03f2dd2909ee59a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#abd17d410a8436a83b03f2dd2909ee59a">apply_G</a> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
 <tr class="separator:abd17d410a8436a83b03f2dd2909ee59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdccba2ab08b071219626bafb85f8e21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdccba2ab08b071219626bafb85f8e21"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_FF</b> (<a class="el" href="classFV.html">FV</a> const &amp;p1, <a class="el" href="classFV.html">FV</a> const &amp;p2)</td></tr>
@@ -114,11 +114,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>set_FF</b> (<a class="
 <tr class="memitem:ac2718d29c891a91aa5058dc929ffecdd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2718d29c891a91aa5058dc929ffecdd"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_II</b> (<a class="el" href="classFV.html">FV</a> const &amp;K, <a class="el" href="classFV.html">FV</a> const &amp;Kb)</td></tr>
 <tr class="separator:ac2718d29c891a91aa5058dc929ffecdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f1f4b9fb6a2b084908abb6bc687cd4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f1f4b9fb6a2b084908abb6bc687cd4f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>set_boost</b> (<a class="el" href="classFV.html">FV</a> const &amp;P, bool INV=false)</td></tr>
+<tr class="memitem:a0f1f4b9fb6a2b084908abb6bc687cd4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a0f1f4b9fb6a2b084908abb6bc687cd4f">set_boost</a> (<a class="el" href="classFV.html">FV</a> const &amp;P, bool INV=false)</td></tr>
 <tr class="separator:a0f1f4b9fb6a2b084908abb6bc687cd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84cf79cd6014d4ecc645c1dcc0258b5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84cf79cd6014d4ecc645c1dcc0258b5e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>set_boost_inv</b> (<a class="el" href="classFV.html">FV</a> const &amp;P)</td></tr>
+<tr class="memitem:a84cf79cd6014d4ecc645c1dcc0258b5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a84cf79cd6014d4ecc645c1dcc0258b5e">set_boost_inv</a> (<a class="el" href="classFV.html">FV</a> const &amp;P)</td></tr>
 <tr class="separator:a84cf79cd6014d4ecc645c1dcc0258b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a8d17a0e9374ba9cef862c1f98a5d62"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a8d17a0e9374ba9cef862c1f98a5d62"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_wigner</b> (<a class="el" href="classFV.html">FV</a> const &amp;P1, <a class="el" href="classFV.html">FV</a> const &amp;P2)</td></tr>
@@ -130,18 +128,136 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:adfe83a60779798fcb358f2fb12d79cda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfe83a60779798fcb358f2fb12d79cda"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>M</b> [4][4]</td></tr>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a> [4][4]</td></tr>
+<tr class="memdesc:adfe83a60779798fcb358f2fb12d79cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">4 x 4 components of the matrix. <br/></td></tr>
 <tr class="separator:adfe83a60779798fcb358f2fb12d79cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a3ec591d3e26134d35eb127d0610c7866"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ec591d3e26134d35eb127d0610c7866"></a>
-static const double&#160;</td><td class="memItemRight" valign="bottom"><b>G</b> [4] = {1.0,-1.0,-1.0,-1.0}</td></tr>
+static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a> [4] = {1.0,-1.0,-1.0,-1.0}</td></tr>
+<tr class="memdesc:a3ec591d3e26134d35eb127d0610c7866"><td class="mdescLeft">&#160;</td><td class="mdescRight">The metric G = [+1,-1,-1,-1] is used. <br/></td></tr>
 <tr class="separator:a3ec591d3e26134d35eb127d0610c7866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Lorentz transformation. </p>
+
+<p>Definition at line <a class="el" href="Lorentz_8h_source.html#l00070">70</a> of file <a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3119b968c2cf6a9bbfb30615c01921d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LT::apply </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Apply transformation to covariant components of the 4-vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>4-vector to be transformed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00266">266</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd17d410a8436a83b03f2dd2909ee59a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LT::apply_G </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Apply transformation to contravariant components of the 4-vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>4-vector to be transformed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00278">278</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f1f4b9fb6a2b084908abb6bc687cd4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LT::set_boost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> const &amp;&#160;</td>
+          <td class="paramname"><em>P</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>INV</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set boost that relates the frame in which P is given to its restframe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">P</td><td>defines the boost </td></tr>
+    <tr><td class="paramname">INV</td><td>invert boost, same as <a class="el" href="classLT.html#a84cf79cd6014d4ecc645c1dcc0258b5e">set_boost_inv()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if succesful, 0 if the mass of P is too small so that the restframe does not exist. </dd></dl>
+
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00400">400</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84cf79cd6014d4ecc645c1dcc0258b5e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LT::set_boost_inv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> const &amp;&#160;</td>
+          <td class="paramname"><em>P</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set inverse boost that relates the P restframe to the frame in which P is given. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">defines</td><td>the boost </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if succesful, 0 if the mass of P is too small so that the restframe does not exist. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="Lorentz_8h_source.html">Lorentz.h</a></li>
-<li>src/Lorentz.cpp</li>
+<li>src/<a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

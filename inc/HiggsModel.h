@@ -1,6 +1,6 @@
 
 /*! \file
- \brief  Model specific settings
+ \brief  This class contains model specific parameters and settings as well as prefactors that are used to evaluate the various scattering amplitudes.
 */ 
 
 #ifndef HIGGSMODEL_H
@@ -107,7 +107,9 @@ public:
   ~HiggsBoson() {}
   
   double const& M()  const { return d_M; }
+  double const& M2() const { return d_M2; }
   double const& G()  const { return d_G; }
+  double const& G2() const { return d_G2; }
   double const& At() const { return d_At; }
   double const& Bt() const { return d_Bt; }  
   double const& Ab() const { return d_Ab; }
@@ -284,6 +286,8 @@ class HiggsModel
   double const& Scale2()    const { return d_Scale2; }  
   int NBosons()             const { return d_Bosons.size(); }
   std::vector<HPtr> const& GetBosons() const { return d_Bosons; }
+  HPtr GetBoson(int i) { return d_Bosons[i]; }
+  
   //! Use this member to change AlphaS. It automatically resets the values of the amplitude prefactors.
   void SetAlphaS(double const& val) { d_AlphaS = val; d_AlphaS2 = std::pow(val,2); SetAmpPrefactors(); }
   void SetMUR(double const& val)    { d_MUR = val/d_Scale; d_MUR2 = std::pow(d_MUR,2); d_APref.MUR2 = d_MUR2; }

@@ -1,0 +1,53 @@
+\hypertarget{VEGAS_8h}{\section{inc/\-V\-E\-G\-A\-S.h File Reference}
+\label{VEGAS_8h}\index{inc/\-V\-E\-G\-A\-S.\-h@{inc/\-V\-E\-G\-A\-S.\-h}}
+}
+
+
+G\-S\-L V\-E\-G\-A\-S algorithm. This is my attempt to convert it to a parallel version using the Open\-M\-P A\-P\-I. As long as the integrand function is thread-\/safe it works correctly. Not sure if it really enhances performance...  
+
+
+{\ttfamily \#include \char`\"{}V\-E\-G\-A\-S\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$cstdio$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-math.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-errno.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-rng.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-monte.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structMYVEGAS_1_1gsl__monte__vegas__state}{M\-Y\-V\-E\-G\-A\-S\-::gsl\-\_\-monte\-\_\-vegas\-\_\-state}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ {\bfseries G\-S\-L\-\_\-\-V\-E\-G\-A\-S\-\_\-\-M\-O\-D\-E\-\_\-\-I\-M\-P\-O\-R\-T\-A\-N\-C\-E} = 1, 
+{\bfseries G\-S\-L\-\_\-\-V\-E\-G\-A\-S\-\_\-\-M\-O\-D\-E\-\_\-\-I\-M\-P\-O\-R\-T\-A\-N\-C\-E\-\_\-\-O\-N\-L\-Y} = 0, 
+{\bfseries G\-S\-L\-\_\-\-V\-E\-G\-A\-S\-\_\-\-M\-O\-D\-E\-\_\-\-S\-T\-R\-A\-T\-I\-F\-I\-E\-D} = -\/1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespaceMYVEGAS_a2d7506c1847ecf48955e079fb7276e73}{int {\bfseries M\-Y\-V\-E\-G\-A\-S\-::gsl\-\_\-monte\-\_\-vegas\-\_\-integrate\-\_\-parallel} (gsl\-\_\-monte\-\_\-function $\ast$f, double xl\mbox{[}$\,$\mbox{]}, double xu\mbox{[}$\,$\mbox{]}, size\-\_\-t dim, size\-\_\-t calls, gsl\-\_\-rng $\ast$$\ast$rngs, gsl\-\_\-monte\-\_\-vegas\-\_\-state $\ast$state, double $\ast$result, double $\ast$abserr)}\label{namespaceMYVEGAS_a2d7506c1847ecf48955e079fb7276e73}
+
+\item 
+\hypertarget{namespaceMYVEGAS_ac6ce9f191cdde0658b48d70349df0141}{gsl\-\_\-monte\-\_\-vegas\-\_\-state $\ast$ {\bfseries M\-Y\-V\-E\-G\-A\-S\-::gsl\-\_\-monte\-\_\-vegas\-\_\-alloc} (size\-\_\-t num\-\_\-threads, size\-\_\-t dim)}\label{namespaceMYVEGAS_ac6ce9f191cdde0658b48d70349df0141}
+
+\item 
+\hypertarget{namespaceMYVEGAS_ac1ec8218d577d581f2338ba5bed7d424}{int {\bfseries M\-Y\-V\-E\-G\-A\-S\-::gsl\-\_\-monte\-\_\-vegas\-\_\-init} (gsl\-\_\-monte\-\_\-vegas\-\_\-state $\ast$state)}\label{namespaceMYVEGAS_ac1ec8218d577d581f2338ba5bed7d424}
+
+\item 
+\hypertarget{namespaceMYVEGAS_ae879a319a81cc2444e7bcaa96344481f}{void {\bfseries M\-Y\-V\-E\-G\-A\-S\-::gsl\-\_\-monte\-\_\-vegas\-\_\-free} (gsl\-\_\-monte\-\_\-vegas\-\_\-state $\ast$s)}\label{namespaceMYVEGAS_ae879a319a81cc2444e7bcaa96344481f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\-S\-L V\-E\-G\-A\-S algorithm. This is my attempt to convert it to a parallel version using the Open\-M\-P A\-P\-I. As long as the integrand function is thread-\/safe it works correctly. Not sure if it really enhances performance... 
+
+Definition in file \hyperlink{VEGAS_8h_source}{V\-E\-G\-A\-S.\-h}.
+

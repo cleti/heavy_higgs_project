@@ -1,6 +1,6 @@
 
 /*! \file
-  \brief Histogram class for the computation of differential distributions
+  \brief Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here.
 */ 
 
 
@@ -78,6 +78,7 @@ class HistArray {
   
   //! deactivate all histograms, used for VEGAS warmup run
   void Pause() { if (d_active != 0) std::swap(d_active_t,d_active); }
+  bool IsPaused() { return !d_active; } 
   
   //! reset flags to previous state
   void Resume() { if (d_active == 0) std::swap(d_active_t,d_active); }
@@ -169,15 +170,17 @@ extern HistArray SPartDistributions;
 
 
 
-//! compute invariant mass of two 4-vectors k1 and k2
+//! Computes invariant mass of two 4-vectors k1 and k2
 double obs_M12(FV const& k1, FV const& k2);
-//! compute transverse momentum of a 4-vector k1
-double obs_PT(FV const& k);
-//! compute rapidity from a 4-vector k1
+//! Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = \sqrt{k1_{1}^2+k1_{2}^2}
+  double obs_PT(FV const& k);
+//! Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|
+double obs_PT12(FV const& k1, FV const& k2);
+//! Computes rapidity from a 4-vector k1
 double obs_Y(FV const& k);
-//! compute rapidity difference from two 4-vectors k1 and k2
+//! Computes rapidity difference from two 4-vectors k1 and k2
 double obs_DY(FV const& k1, FV const& k2);
-//! compute momentum direction opening angle form two 4-vectors k1 and k2
+//! Computes momentum direction opening angle form two 4-vectors k1 and k2
 double obs_PHI(FV const& k1, FV const& k2);
 
 

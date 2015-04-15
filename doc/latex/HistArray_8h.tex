@@ -3,7 +3,7 @@
 }
 
 
-Histogram class for the computation of differential distributions.  
+Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here.  
 
 
 {\ttfamily \#include $<$iostream$>$}\\*
@@ -42,6 +42,9 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{HistArray_8h_aae5272d576d57c323eb9cf514970d043}{typedef double($\ast$ {\bfseries O\-B\-S} )(\hyperlink{classFV}{F\-V} const \&)}\label{HistArray_8h_aae5272d576d57c323eb9cf514970d043}
+
+\item 
 \hypertarget{HistArray_8h_af48fd49facd170f2071036b91e2ad0cf}{typedef std\-::vector$<$ \hyperlink{classHistArray}{Hist\-Array} $\ast$ $>$ {\bfseries H\-Avec}}\label{HistArray_8h_af48fd49facd170f2071036b91e2ad0cf}
 
 \end{DoxyCompactItemize}
@@ -53,19 +56,22 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \item 
 \hypertarget{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{double \hyperlink{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{obs\-\_\-\-M12} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}
 
-\begin{DoxyCompactList}\small\item\em compute invariant mass of two 4-\/vectors k1 and k2 \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes invariant mass of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}{double \hyperlink{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}{obs\-\_\-\-P\-T} (\hyperlink{classFV}{F\-V} const \&k)}\label{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}
 
-\begin{DoxyCompactList}\small\item\em compute transverse momentum of a 4-\/vector k1 \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes transverse momentum of a 4-\/vector k1 (transverse = x-\/y-\/plane), i.\-e. k\-\_\-\{T,1\} = \{k1\-\_\-\{1\}$^\wedge$2+k1\-\_\-\{2\}$^\wedge$2\}. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_aae571978ff072d099b4baf69921afd60}{double \hyperlink{HistArray_8h_aae571978ff072d099b4baf69921afd60}{obs\-\_\-\-P\-T12} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_aae571978ff072d099b4baf69921afd60}
+
+\begin{DoxyCompactList}\small\item\em Computes transverse momentum of two particle system k1,k2, k\-\_\-\{T,12\} = $\vert$k\-\_\-\{T,1\}+k\-\_\-\{T,2\}$\vert$. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_ae677072636551874da62f32601db682e}{double \hyperlink{HistArray_8h_ae677072636551874da62f32601db682e}{obs\-\_\-\-Y} (\hyperlink{classFV}{F\-V} const \&k)}\label{HistArray_8h_ae677072636551874da62f32601db682e}
 
-\begin{DoxyCompactList}\small\item\em compute rapidity from a 4-\/vector k1 \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes rapidity from a 4-\/vector k1. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_a325229be26684d1beaff261e9e878617}{double \hyperlink{HistArray_8h_a325229be26684d1beaff261e9e878617}{obs\-\_\-\-D\-Y} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_a325229be26684d1beaff261e9e878617}
 
-\begin{DoxyCompactList}\small\item\em compute rapidity difference from two 4-\/vectors k1 and k2 \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes rapidity difference from two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{double \hyperlink{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{obs\-\_\-\-P\-H\-I} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}
 
-\begin{DoxyCompactList}\small\item\em compute momentum direction opening angle form two 4-\/vectors k1 and k2 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes momentum direction opening angle form two 4-\/vectors k1 and k2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -105,6 +111,9 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \hypertarget{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}{P\-T2\-Distributions}}\label{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}
 
 \begin{DoxyCompactList}\small\item\em antitop transverse momentum distributions \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}{P\-T12\-Distributions}}\label{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}
+
+\begin{DoxyCompactList}\small\item\em top+antitop transverse momentum distributions \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}{Y1\-Distributions}}\label{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}
 
 \begin{DoxyCompactList}\small\item\em top rapidity distributions \end{DoxyCompactList}\item 
@@ -129,4 +138,7 @@ class \hyperlink{classHistArray}{Hist\-Array}
 
 
 \subsection{Detailed Description}
-Histogram class for the computation of differential distributions. 
+Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here. 
+
+Definition in file \hyperlink{HistArray_8h_source}{Hist\-Array.\-h}.
+

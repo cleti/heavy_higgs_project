@@ -1,6 +1,6 @@
 
 /*! \file
-  \brief Phase space classes
+  \brief Phase space classes for 2->1, 2->2 and 2->3 scattering processes.
 */ 
 
 
@@ -91,6 +91,17 @@ class PS_2 {
 				 int id,
 				 double const& wgt,
 				 double const& mScale=1.0) const = 0;
+
+  virtual FV const& k1() const  { return nullvec; }
+  virtual FV const& k2() const  { return nullvec; }
+  virtual FV const& k3() const  { return nullvec; }
+#ifdef WITH_T_SPIN  
+  virtual FV const& S1() const  { return nullvec; }
+  virtual FV const& S2() const  { return nullvec; }
+  virtual FV const& S3() const  { return nullvec; }
+#endif
+  
+  static const FV nullvec;
 };
 ////// class PS_2_1 ///////////////////////////////////////////////////////////////////////////////////////
 /*!
@@ -99,7 +110,9 @@ class PS_2 {
 class PS_2_1: public PS_2 {
  protected:
   FV k;
+#ifdef WITH_T_SPIN   
   FV S;
+#endif  
   double d_msq;
   PS_2* d_child;
   double d_x; // used in integrated dipoles: scaling factor for s
@@ -117,6 +130,7 @@ class PS_2_1: public PS_2 {
   double const& get_msq(int i)  const { return d_msq; }
   void set_msq(double const& msq) { d_msq = msq; }
   FV& k1()  { return k; }
+  
   FV const& k1() const  { return k; }
 
   int set();
@@ -139,18 +153,28 @@ class PS_2_2: public PS_2 {
 
   //! outgoing particle 4-momenta
   FV k[2];
+#ifdef WITH_T_SPIN    
   //! outgoing particle spin 4-vectors
   FV S[2];
   FV S_r[2];
+#endif
+  //! final state particle masses squared
   double d_msq[2];
+  //! beta = P/E
   double d_beta[2];
   PS_2*  d_child[2];
 
+  //! azimuthal scattering angle in the parton z.m.f.  (z-axis is the reference axis)
   double d_y;
+  //! polar scattering angle in the parton z.m.f. (z-axis is the reference axis)
   double d_phi;
+  //! t11 = 2 p1.k1
   double d_t11;
+  //! t12 = 2 p1.k2
   double d_t12;
-  double d_x; // used in integrated dipoles: scaling factor for s
+  //! initial state boost factor, used for integrated dipoles
+  double d_x;
+  //! beta*y
   double d_beta_y;
 
     
@@ -161,7 +185,6 @@ class PS_2_2: public PS_2 {
   ~PS_2_2();
 
   
-  // return the class members
   FV const& get_k(int i)  const { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} return k[i]; }
   PS_2* get_child(int i)  const { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} return d_child[i]; }
   double const& get_msq(int i)  const { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} return d_msq[i]; }
@@ -170,36 +193,50 @@ class PS_2_2: public PS_2 {
   double const& get_beta() const { return d_beta[0]; }
   double const& get_y()     const { return d_y;    }
   double const& get_phi()   const { return d_phi;  }
-  double const& get_t11()   const { return d_t11;  }  // this is 2*p1.k1, not the invariant (p1-k1)^2 !
-  double const& get_t12()   const { return d_t12;  }  // this is 2*p1.k2, not the invariant (p1-k2)^2 !
-  double const& get_x()     const { return d_x;    }  // needed to evaluate integrated dipoles (
+  double const& get_t11()   const { return d_t11;  }  
+  double const& get_t12()   const { return d_t12;  }  
+  double const& get_x()     const { return d_x;    }  
   double const& get_beta_y()const { return d_beta_y;    }  
-  void   set_x(double const& x) { d_x = x;  } // needed to evaluate integrated dipoles (initial boost parameter)
+  void   set_x(double const& x) { d_x = x;  }
+
+  //! compute the phase space density for the current setting
   double cmp_wgt();
   
   // pointer to outgoing 4-momenta and spin
   FV& k1()  { return k[0]; }
   FV& k2()  { return k[1]; }
+#ifdef WITH_T_SPIN    
   FV& s1()  { return S[0]; }
   FV& s2()  { return S[1]; }
   FV& s1_r()  { return S_r[0]; }
   FV& s2_r()  { return S_r[1]; }
-
+#endif
+  
   FV const& k1() const  { return k[0]; }
   FV const& k2() const  { return k[1]; }
+#ifdef WITH_T_SPIN   
   FV const& s1() const  { return S[0]; }
   FV const& s2() const  { return S[1]; }
   FV const& s1_r() const  { return S_r[0]; }
   FV const& s2_r() const  { return S_r[1]; }
+#endif
   
-  // scale initial state vector by a factor of d_x
+  //! boost initial state partons by a factor of d_x
   int boost_initial_state();
+  //! boost initial state partons by a factor of x
   int boost_initial_state(double const& x);
   int boost_final_state();
-  
+
+  /*!
+    New phase space setting: set 4-vectors according to c.m.e rs = sqrt(s_part) and scattering angles y, phi given in the parton z.m.f.
+    \param rs \f$ \sqrt{s_{\rm part.}} \f$
+    \param y azimuthal scattering angle in parton z.m.f. (z-axis is the reference axis)
+    \param phi polar scattering angle in parton z.m.f. (z-axis is the reference axis)
+  */
   int  set(double const& rs, 
 	   double const& y, 
 	   double const& phi=0.0);
+  //! New phase space setting: compute c.m.e rs = sqrt(s_part) and scattering angles y, phi and all derived quantities from current set of 4-vectors. 
   void set();
   ////////////////////////////////////////
 
@@ -221,11 +258,15 @@ class PS_2_3: public PS_2 {
  private:
   //! outgoing particle 4-momenta
   FV k[3];
+#ifdef WITH_T_SPIN    
   //! outgoing particle spin 4-vectors
   FV S[3];
   FV S_r[3];
+#endif
   
+  //! final state particle masses squared
   double d_msq[3];
+  //! beta = P/E
   double d_beta[3];
   PS_2*  d_child[3];
 
@@ -257,25 +298,35 @@ class PS_2_3: public PS_2 {
   FV& k3()  { return k[2]; }
   // in the matrix elemets k3 is also called p3
   FV& p3()  { return k[2]; }
+#ifdef WITH_T_SPIN    
   FV& s1()  { return S[0]; }
   FV& s2()  { return S[1]; }
   FV& s1_r()  { return S_r[0]; }
   FV& s2_r()  { return S_r[1]; }
+#endif
   
   FV const& k1() const  { return k[0]; }
   FV const& k2() const  { return k[1]; }
   FV const& k3() const  { return k[2]; }
   FV const& p3() const  { return k[2]; }
+#ifdef WITH_T_SPIN    
   FV const& s1() const  { return S[0]; }
   FV const& s2() const  { return S[1]; }
   FV const& s1_r() const  { return S_r[0]; }
   FV const& s2_r() const  { return S_r[1]; }
+#endif
   
   int boost_to_parent();
-  // 2->3 phase space is split into p1 p2 -> Q k3  and  Q -> k1 k2
-  // y_cm is the angle of k3 in the p1 + p2 c.m.f., the mass of the intermediate state M12 = sqrt(Q^2)
-  // the angles y_12 and phi_12 define the direction of k1' and k2' defined in the Q-restframe
-  // default masses: k1^2 = 1, k2^2 = 1, k3^2 = 0 corresponding to tt+g production
+
+  /*!
+    Compute new phase space setting: The 2->3 phase space is split into p1 p2 -> Q k3  and  Q -> k1 k2. y_cm is the angle of k3 in the p1 + p2 c.m.f., the mass of the intermediate state Q is M12 = sqrt((k1+k2)^2), the angles y_12 and phi_12 define the direction of k1' and k2' defined in the Q-restframe.
+    \param rs \f$ \sqrt{s_{\rm part.}} \f$
+    \param y_cm azimuthal scattering angle of k3 in p1+p2 z.m.f. (z-axis is the reference axis)
+    \param phi_cm polar scattering angle of k3 in p1+p2 z.m.f. (z-axis is the reference axis)
+    \param M12 invariant mass of the system k1+k2
+    \param y_12  azimuthal scattering angle of k2 in k1+k2 z.m.f. (z-axis is the reference axis)
+    \param phi_12  polar scattering angle of k2 in k1+k2 z.m.f. (z-axis is the reference axis)
+  */
   int  set(double const& rs,
 	   double const& y_cm,
 	   double const& phi_cm,

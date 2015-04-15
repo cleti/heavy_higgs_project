@@ -23,13 +23,10 @@ FV& FV::operator=(std::initializer_list<double> L)
 }
 FV& FV::operator=(FV const& other)
 {
-  // std::cout << std::endl << " FV: assignment (copy)" << std::endl;
+  //std::cout << std::endl << " FV: assignment (copy)" << std::endl;
   if (this!=&other)
     {
-      for (int i=0;i<4;++i)
-	{
-	  v[i]=other[i];
-	}
+      v = other.v;
     }
   return *this;
 }
@@ -38,17 +35,8 @@ FV& FV::operator=(FV&& other) noexcept
   //std::cout << std::endl << " FV: assignment (move)" << std::endl;
   if (this!=&other)
     {
-      // // swap pointers
-      // std::swap(v,other.v);
-      // swap array values
-      for (int i=0;i<4;++i)
-	{
-	  v[i]=other[i];
-	}
-      // for (int i=0;i<4;++i)
-      // 	{
-      // 	  std::swap(v[i],other[i]);
-      // 	}
+      v = other.v;
+      // v.swap(other.v);
     }
   return *this;
 }
@@ -89,79 +77,95 @@ FV& FV::operator/=(double const& a)
     }
   return *this;
 }
+void FV::swap(FV& other)
+{
+  v.swap(other.v);
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 FV operator*(FV const& v, double const& a)
 {
-  // std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
   FV V = v;
   V*=a;
   return V;
 }
 FV operator*(double const& a, FV const& v)
 {
-  // std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
   FV V = v;
   V*=a;
   return V;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////
-FV operator+(FV const& v1,FV const& v2)
+FV&& operator*(double const& a, FV&& v)
 {
-  // std::cout << std::endl << " FV: binary operator + (copy). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  return std::move(v*=a);
+}
+FV&& operator*(FV&& v, double const& a)
+{
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  return std::move(v*=a);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+FV operator+(FV const& v1, FV const& v2)
+{
+  //std::cout << std::endl << " FV: binary operator + (copy). " << std::endl;
   FV V = v1;
   V+=v2;
   return V;
 }
 FV&& operator+(FV const& v1, FV&& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator + (move 1). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator + (move 1). " << std::endl;
   return std::move(v2+=v1);
 }
 FV&& operator+(FV&& v1,FV const& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator + (move 2). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator + (move 2). " << std::endl;
   return std::move(v1+=v2);
 }
 FV&& operator+(FV&& v1,FV&& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator + (move 3). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator + (move 3). " << std::endl;
   return std::move(v1+=v2);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
 FV operator-(FV const& v1,FV const& v2)
 {
-  // std::cout << std::endl << " FV: binary operator - (copy). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator - (copy). " << std::endl;
   FV V = v1;
   V-=v2;
   return V;
 }
 FV&& operator-(FV const& v1, FV&& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator - (move 1). " << std::endl;
-  return std::move(v2-=v1);
+  //std::cout << std::endl << " FV: binary operator - (move 1). " << std::endl;
+  return std::move(operator-(std::move(v2-=v1)));
 }
 FV&& operator-(FV&& v1,FV const& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator - (move 2). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator - (move 2). " << std::endl;
   return std::move(v1-=v2);
 }
 FV&& operator-(FV&& v1,FV&& v2) noexcept
 {
-  // std::cout << std::endl << " FV: binary operator - (move 3). " << std::endl;
+  //std::cout << std::endl << " FV: binary operator - (move 3). " << std::endl;
   return std::move(v1-=v2);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
 FV operator-(FV const& v1)
 {
-  // std::cout << std::endl << " FV: unary operator - (copy). " << std::endl;
+  //std::cout << std::endl << " FV: unary operator - (copy). " << std::endl;
   FV V = v1;
   V*=(-1);
   return V;
 }
 FV&& operator-(FV&& v1) noexcept
 {
-  // std::cout << std::endl << " FV: unary operator - (move). " << std::endl;
+  //std::cout << std::endl << " FV: unary operator - (move). " << std::endl;
   return std::move(v1*=(-1));
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

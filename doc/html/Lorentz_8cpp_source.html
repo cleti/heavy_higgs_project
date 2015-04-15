@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -39,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;      <span class="keywordtype">int</span> i = 0;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> x: L)</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      v[i++] = x;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i++] = x;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keywordflow">else</span></div>
@@ -118,7 +117,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      v[i]=other[i];</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]=other[i];</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -133,7 +132,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      <span class="comment">// swap array values</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      v[i]=other[i];</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]=other[i];</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="comment">// for (int i=0;i&lt;4;++i)</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="comment">//    {</span></div>
@@ -147,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      v[i]+=other.v[i];</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]+=other.<a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i];</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
@@ -155,7 +154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      v[i]-=other.v[i];</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]-=other.<a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i];</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
@@ -163,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      v[i]*=a;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]*=a;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
@@ -175,7 +174,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      v[i]/=a;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <a class="code" href="classFV.html#a909196132ec1cd190f8c01546ea5bced">v</a>[i]/=a;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
@@ -254,30 +253,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> LT::G[4] = {1.0,-1.0,-1.0,-1.0};</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">LT::G</a>[4] = {1.0,-1.0,-1.0,-1.0};</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;LT::LT()</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;{}</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;LT::~LT()</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;{}</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keywordtype">void</span> LT::transpose()</div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classLT.html#a6142dba94f0edc4eb2f8a0cc84a43ada">  181</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classLT.html#a6142dba94f0edc4eb2f8a0cc84a43ada">LT::transpose</a>()</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;{</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    {</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=i;j&lt;4;++j)</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      std::swap(M[i][j],M[j][i]);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      std::swap(<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j],<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[j][i]);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keywordtype">void</span> LT::invert()</div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classLT.html#a7467f60d847896710f21c17be6ee0b2c">  192</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classLT.html#a7467f60d847896710f21c17be6ee0b2c">LT::invert</a>()</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;{</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;4;++i)</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      M[0][i] *= (-1);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      M[i][0] *= (-1);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][i] *= (-1);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][0] *= (-1);</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
@@ -309,10 +308,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    {</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    {</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      M[i][j] = A*(p1[i]*p2[j]-p1[j]*p2[i]) + B*(p1_p2*(p1[i]*p2[j]+p1[j]*p2[i])-p1_p1*p2[i]*p2[j]-p2_p2*p1[i]*p1[j]);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      <span class="keywordflow">if</span> (i==j) M[i][j] += G[i];</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] = A*(p1[i]*p2[j]-p1[j]*p2[i]) + B*(p1_p2*(p1[i]*p2[j]+p1[j]*p2[i])-p1_p1*p2[i]*p2[j]-p2_p2*p1[i]*p1[j]);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      <span class="keywordflow">if</span> (i==j) <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] += <a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[i];</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#ifdef DEBUG_LT</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor"></span>      std::cout &lt;&lt; std::setw(8) &lt;&lt; M[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor"></span>      std::cout &lt;&lt; std::setw(8) &lt;&lt; <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#ifdef DEBUG_LT</span></div>
@@ -333,7 +332,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      <span class="keywordtype">double</span> test = 0.0;</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k=0;k&lt;4;++k)</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;          test += M[i][k]*M[j][k]*G[k];</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;          test += <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][k]*<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[j][k]*<a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[k];</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        }</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      std::cout &lt;&lt; std::setw(8) &lt;&lt; test &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
@@ -346,7 +345,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="keywordtype">void</span> LT::apply(<a class="code" href="classFV.html">FV</a>&amp; v)</div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="classLT.html#a3119b968c2cf6a9bbfb30615c01921d0">  266</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classLT.html#a3119b968c2cf6a9bbfb30615c01921d0">LT::apply</a>(<a class="code" href="classFV.html">FV</a>&amp; v)</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;{</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keywordtype">double</span> temp[4] = {v[0],v[1],v[2],v[3]};</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
@@ -354,11 +353,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      v[i] = 0.0;</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    {</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      v[i] += M[i][j]*temp[j];</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      v[i] += <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j]*temp[j];</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="keywordtype">void</span> LT::apply_G(<a class="code" href="classFV.html">FV</a>&amp; v)</div>
+<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="classLT.html#abd17d410a8436a83b03f2dd2909ee59a">  278</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classLT.html#abd17d410a8436a83b03f2dd2909ee59a">LT::apply_G</a>(<a class="code" href="classFV.html">FV</a>&amp; v)</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;{</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  <span class="keywordtype">double</span> temp[4] = {v[0],v[1],v[2],v[3]};</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
@@ -366,7 +365,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      v[i] = 0.0;</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    {</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      v[i] += M[i][j]*temp[j]*G[j];</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      v[i] += <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j]*temp[j]*<a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[j];</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    }</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;}</div>
@@ -403,16 +402,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;  <span class="keywordtype">double</span> g2_1p = 1.0+g2;</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;  <span class="keywordtype">double</span> g1g2 = g1*g2;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  M[0][0] = 1.0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][0] = 1.0;</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;4;++i)</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    {</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      M[i][0] = 0.0;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      M[0][i] = 0.0;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][0] = 0.0;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][i] = 0.0;</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=1;j&lt;4;++j)</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    {</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      M[i][j] = g1g2/(g)*( beta1[i]*beta1[j]*g1/g2*(g2_1m)/(g1_1p) + beta2[i]*beta2[j]*g2/g1*(g1_1m)/(g2_1p) - beta1[i]*beta2[j] + beta2[i]*beta1[j]*(1.0+2.0*g1g2/(g1_1p*g2_1p)*b1b2) );</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      <span class="keywordflow">if</span> (i==j) M[i][j]+=1.0;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] = g1g2/(g)*( beta1[i]*beta1[j]*g1/g2*(g2_1m)/(g1_1p) + beta2[i]*beta2[j]*g2/g1*(g1_1m)/(g2_1p) - beta1[i]*beta2[j] + beta2[i]*beta1[j]*(1.0+2.0*g1g2/(g1_1p*g2_1p)*b1b2) );</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      <span class="keywordflow">if</span> (i==j) <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j]+=1.0;</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    }</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
@@ -438,10 +437,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    {</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    {</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;      M[i][j] = -A*(K[i]+Kb[i])*(K[j]+Kb[j])+B*Kb[i]*K[j];</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;      <span class="keywordflow">if</span> (i==j) M[i][j] += G[i];</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] = -A*(K[i]+Kb[i])*(K[j]+Kb[j])+B*Kb[i]*K[j];</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;      <span class="keywordflow">if</span> (i==j) <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] += <a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[i];</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">#ifdef DEBUG_LT</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor"></span>      std::cout &lt;&lt; std::setw(8) &lt;&lt; M[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor"></span>      std::cout &lt;&lt; std::setw(8) &lt;&lt; <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#ifdef DEBUG_LT</span></div>
@@ -462,7 +461,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;      <span class="keywordtype">double</span> test = 0.0;</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k=0;k&lt;4;++k)</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        {</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;          test += M[i][k]*M[j][k]*G[k];</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;          test += <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][k]*<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[j][k]*<a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[k];</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        }</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;      std::cout &lt;&lt; std::setw(8) &lt;&lt; test &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
@@ -480,7 +479,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment">// boost to the restframe of the given 4-vector</span></div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">// setting INV=true inverts the boost, i.e. vectors given in the restframe of P</span></div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">// will be transformed to the current frame</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="keywordtype">int</span> LT::set_boost(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P,<span class="keywordtype">bool</span> INV)</div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="classLT.html#a0f1f4b9fb6a2b084908abb6bc687cd4f">  400</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classLT.html#a0f1f4b9fb6a2b084908abb6bc687cd4f">LT::set_boost</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P,<span class="keywordtype">bool</span> INV)</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;{</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  <span class="keywordtype">double</span> m = sqrt(MSQ(P));</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keywordtype">double</span> gamma = P[0]/m;</div>
@@ -501,15 +500,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;  M[0][0] = gamma;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;  <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][0] = gamma;</div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;4;++i)</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    {</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;      M[0][i] = -beta[i]*gamma;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][i] = -beta[i]*gamma;</div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <span class="keywordflow">if</span> (INV)</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    {</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;      M[0][i] *= (-1);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][i] *= (-1);</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    }</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;      M[i][0] = M[0][i];</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;      <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][0] = <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[0][i];</div>
 <div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=i;j&lt;4;++j)</div>
 <div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    {</div>
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      <span class="comment">// if (i==0)</span></div>
@@ -519,9 +518,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      <span class="comment">//   }</span></div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      <span class="comment">// else</span></div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      <span class="comment">//   {</span></div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      <span class="keywordflow">if</span> (beta2&gt;1e-15) M[i][j] = (gamma-1.0)*beta[i]*beta[j]/beta2;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;      <span class="keywordflow">else</span> M[i][j] = 0.0;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;          <span class="keywordflow">if</span> ( std::isnan(M[i][j])  )</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      <span class="keywordflow">if</span> (beta2&gt;1e-15) <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] = (gamma-1.0)*beta[i]*beta[j]/beta2;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;      <span class="keywordflow">else</span> <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] = 0.0;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;          <span class="keywordflow">if</span> ( std::isnan(<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j])  )</div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        {</div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;          WARNING(<span class="stringliteral">&quot;matrix component is NaN!&quot;</span>);</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;          std::cout &lt;&lt; std::setprecision(16);</div>
@@ -532,11 +531,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        }</div>
 <div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        <span class="keywordflow">if</span> (i==j)</div>
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;          {</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            M[i][j] += 1.0;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] += 1.0;</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;          }</div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;          {</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            M[j][i] = M[i][j];</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[j][i] = <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j];</div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;          }</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        </div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        <span class="comment">// }</span></div>
@@ -556,7 +555,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;      <span class="keywordtype">double</span> test = 0.0;</div>
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k=0;k&lt;4;++k)</div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        {</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;          test += M[i][k]*M[j][k]*G[k];</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;          test += <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][k]*<a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[j][k]*<a class="code" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a>[k];</div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        }</div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;</div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;      std::cout &lt;&lt; std::setw(8) &lt;&lt; test &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
@@ -576,14 +575,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    {</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    {</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      std::cout &lt;&lt; std::setw(20) &lt;&lt; M[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      std::cout &lt;&lt; std::setw(20) &lt;&lt; <a class="code" href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">M</a>[i][j] &lt;&lt; <span class="stringliteral">&quot; | &quot;</span>;</div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    }</div>
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;      std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    }</div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;  std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;}</div>
 <div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;</div>
-<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00014">Lorentz.h:14</a></div></div>
+<div class="ttc" id="classLT_html_a3119b968c2cf6a9bbfb30615c01921d0"><div class="ttname"><a href="classLT.html#a3119b968c2cf6a9bbfb30615c01921d0">LT::apply</a></div><div class="ttdeci">void apply(FV &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8cpp_source.html#l00266">Lorentz.cpp:266</a></div></div>
+<div class="ttc" id="classLT_html_a0f1f4b9fb6a2b084908abb6bc687cd4f"><div class="ttname"><a href="classLT.html#a0f1f4b9fb6a2b084908abb6bc687cd4f">LT::set_boost</a></div><div class="ttdeci">int set_boost(FV const &amp;P, bool INV=false)</div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8cpp_source.html#l00400">Lorentz.cpp:400</a></div></div>
+<div class="ttc" id="classLT_html_a3ec591d3e26134d35eb127d0610c7866"><div class="ttname"><a href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">LT::G</a></div><div class="ttdeci">static const double G[4]</div><div class="ttdoc">The metric G = [+1,-1,-1,-1] is used. </div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00075">Lorentz.h:75</a></div></div>
+<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00019">Lorentz.h:19</a></div></div>
+<div class="ttc" id="classLT_html_abd17d410a8436a83b03f2dd2909ee59a"><div class="ttname"><a href="classLT.html#abd17d410a8436a83b03f2dd2909ee59a">LT::apply_G</a></div><div class="ttdeci">void apply_G(FV &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8cpp_source.html#l00278">Lorentz.cpp:278</a></div></div>
+<div class="ttc" id="classFV_html_a909196132ec1cd190f8c01546ea5bced"><div class="ttname"><a href="classFV.html#a909196132ec1cd190f8c01546ea5bced">FV::v</a></div><div class="ttdeci">double v[4]</div><div class="ttdoc">the 4-vector components </div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00022">Lorentz.h:22</a></div></div>
+<div class="ttc" id="classLT_html_a7467f60d847896710f21c17be6ee0b2c"><div class="ttname"><a href="classLT.html#a7467f60d847896710f21c17be6ee0b2c">LT::invert</a></div><div class="ttdeci">void invert()</div><div class="ttdoc">Invert the Lorentz transformation. This does not compute the inverse of general 4 x 4 matrices! ...</div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8cpp_source.html#l00192">Lorentz.cpp:192</a></div></div>
+<div class="ttc" id="classLT_html_a6142dba94f0edc4eb2f8a0cc84a43ada"><div class="ttname"><a href="classLT.html#a6142dba94f0edc4eb2f8a0cc84a43ada">LT::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transpose matrix. </div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8cpp_source.html#l00181">Lorentz.cpp:181</a></div></div>
+<div class="ttc" id="classLT_html_adfe83a60779798fcb358f2fb12d79cda"><div class="ttname"><a href="classLT.html#adfe83a60779798fcb358f2fb12d79cda">LT::M</a></div><div class="ttdeci">double M[4][4]</div><div class="ttdoc">4 x 4 components of the matrix. </div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00073">Lorentz.h:73</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

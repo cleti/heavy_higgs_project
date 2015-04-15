@@ -270,8 +270,8 @@ double Eval_UID_GG(
 	//==============================================================================       
 	P1 = x(p3,p1,p2)*p1;
 	P2 = p2;
-	FV const& Q  = p1 + p2 - p3;
-	FV const& Qt = P1 + p2;
+	FV Q  = p1 + p2 - p3;
+	FV Qt = P1 + p2;
 	lt.set_II(Q,Qt);
 	// Lorentz transformation of final state vectors
 	K1 = k1;
@@ -312,7 +312,7 @@ double Eval_UID_GG(
 	  }
 	if (flags & F_EVAL_R_PHIxPHI_ISR)
 	  {
-	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
+	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
 	    dip += PF_VggIIc*Eval_UID_PHIxPHI_ES00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    if (TwoHDM>0)
@@ -372,8 +372,8 @@ double Eval_UID_GG(
 	//==============================================================================       
 	P1 = p1;
 	P2 = x(p3,p2,p1)*p2;
-	FV const& Q  = p1 + p2 - p3;
-	FV const& Qt = P2 + p1;
+	FV Q  = p1 + p2 - p3;
+	FV Qt = P2 + p1;
 	lt.set_II(Q,Qt);
 	// Lorentz transformation of final state vectors
 	K1 = k1;
@@ -410,7 +410,7 @@ double Eval_UID_GG(
 	if (flags & F_EVAL_R_PHIxPHI_ISR)
 	  {
 	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
+	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
 	    dip += PF_VggIIc*Eval_UID_PHIxPHI_SE00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    if (TwoHDM>0)
@@ -464,17 +464,18 @@ double Eval_UID_GG(
 	//==============================================================================
 	// dipole phase space mapping
 	//==============================================================================
-	FV const& Q   = k1+k2+p3;
-	FV const& kij = k1+p3;
+	FV Q   = k1+k2+p3;
+	FV kij = k1+p3;
+	
 	double mQ2= MSQ(Q);
 	P1 = p1;
 	P2 = p2;
 	// spectator
 	// note that this formula is specific for the case that emitter and spectator
 	// masses are equal: P_ij^2 = P_k^2 = m_t^2 !!!
-	K1 = sqrt(lambda(mQ2,mt2,mt2)/lambda(mQ2,MSQ(kij),mt2))*(k2-sp(Q,k2)/mQ2*Q)+0.5*Q;
+	K1 = sqrt(lambda(mQ2,mt2,mt2)/lambda(mQ2,MSQ(kij),mt2))*(k2-(sp(Q,k2)/mQ2)*Q)+0.5*Q;
 	// emitter
-	K2 = Q-K1;
+	K2 = Q-K1;	
 	// strange: according to Catani/Seymour Eq. (5.9) the mapping should be the other way round (k1<->k2)
 	ps_red.set();
 #ifdef WITH_T_SPIN
@@ -491,7 +492,7 @@ double Eval_UID_GG(
 	if (flags & F_EVAL_R_PHIxPHI_FSR)
 	  {
 	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
+	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
 	  }
 	
 #ifdef DUMP_DIPOLE_PS
@@ -524,8 +525,8 @@ double Eval_UID_GG(
 	//==============================================================================
 	// dipole phase space mapping
 	//==============================================================================
-	FV const& Q   = k1+k2+p3;
-	FV const& kij = k2+p3;
+	FV Q   = k1+k2+p3;
+	FV kij = k2+p3;
 	double mQ2= MSQ(Q);
 	P1 = p1;
 	P2 = p2;
@@ -550,7 +551,7 @@ double Eval_UID_GG(
 	if (flags & F_EVAL_R_PHIxPHI_FSR)
 	  {
 	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
+	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
 	  }
 
 #ifdef DUMP_DIPOLE_PS
@@ -987,8 +988,8 @@ double Eval_UID_QG(
   // the initialization is only done once! problems?
   static PS_2_2 ps_red(ps.get_msq(0),ps.get_msq(1),"p1 p2 -> k1 k2 (red.) [static in Eval_UID_QG]");
   static LT lt;
-  // ps_red.P1() = ps.P1();
-  // ps_red.P2() = ps.P2();
+  ps_red.P1() = ps.P1();// copy also proton momenta -> needed for lab-frame boost
+  ps_red.P2() = ps.P2();// copy also proton momenta -> needed for lab-frame boost
   FV& P1 = ps_red.p1();
   FV& P2 = ps_red.p2();
   FV& K1 = ps_red.k1();
@@ -1013,8 +1014,8 @@ double Eval_UID_QG(
 	//==============================================================================       
 	P1 = x(p3,p1,p2)*p1;
 	P2 = p2;
-	FV const& Q  = p1 + p2 - p3;
-	FV const& Qt = P1 + p2;
+	FV Q  = p1 + p2 - p3;
+	FV Qt = P1 + p2;
 	lt.set_II(Q,Qt);
 	// Lorentz transformation of final state vectors
 	K1 = k1;
@@ -1057,7 +1058,7 @@ double Eval_UID_QG(
 	  }
 	if (flags & F_EVAL_R_PHIxPHI_QG)
 	  {
-	    dip += PF_VqqII*Eval_B_PHIxPHI_withINT12(ps_red,ap,hp);
+	    dip += PF_VqqII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
 	    dip += PF_VqqIIc*Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,ap,hp);
 #ifdef WITH_T_SPIN
 	    // if (TwoHDM>0)

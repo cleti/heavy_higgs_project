@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['inrange',['InRange',['../classIntegral.html#a7b7f60c30e769eedb0d7ecbf5f393fa0',1,'Integral']]],
-  ['integral',['Integral',['../classIntegral.html',1,'']]],
-  ['integrand_5fpar',['integrand_par',['../classintegrand__par.html',1,'']]],
-  ['integrate',['Integrate',['../classIntegrator.html#a999142aeac7e98ab084eaad2c257a233',1,'Integrator']]],
-  ['integrator',['Integrator',['../classIntegrator.html',1,'']]],
-  ['integrator_2eh',['Integrator.h',['../Integrator_8h.html',1,'']]],
-  ['intlimits',['IntLimits',['../namespaceIntLimits.html',1,'']]],
-  ['isactive',['IsActive',['../classHistArray.html#ab324fc243624240fe661ab18529f70c3',1,'HistArray']]]
+  ['higgs_5fmodel',['higgs_model',['../classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c',1,'integrand_par']]],
+  ['higgsboson',['HiggsBoson',['../classHiggsBoson.html',1,'']]],
+  ['higgsmodel',['HiggsModel',['../classHiggsModel.html',1,'']]],
+  ['higgsmodel_2eh',['HiggsModel.h',['../HiggsModel_8h.html',1,'']]],
+  ['higgsprefactors',['HiggsPrefactors',['../structHiggsPrefactors.html',1,'']]],
+  ['histarray',['HistArray',['../classHistArray.html',1,'']]],
+  ['histarray_2eh',['HistArray.h',['../HistArray_8h.html',1,'']]],
+  ['heavy_20higgs_20project_20documentation',['Heavy Higgs project documentation',['../index.html',1,'']]]
 ];

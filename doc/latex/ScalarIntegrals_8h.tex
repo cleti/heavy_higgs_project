@@ -1,0 +1,191 @@
+\hypertarget{ScalarIntegrals_8h}{\section{inc/\-Scalar\-Integrals.h File Reference}
+\label{ScalarIntegrals_8h}\index{inc/\-Scalar\-Integrals.\-h@{inc/\-Scalar\-Integrals.\-h}}
+}
+
+
+This file provides wrapper functions for the scalar integrals provided by the Q\-C\-Dloop library ar\-Xiv\-:0712.\-1851 \mbox{[}hep-\/ph\mbox{]}. A number of global variables is defined which is used for the evaluation of the one-\/loop amplitudes relevant for this project.  
+
+
+{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Flags.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Phase\-Space.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ScalarIntegrals_8h_a013438bf5b7a9eae6ceffb41205ee905}{c\-\_\-double {\bfseries qli1\-\_\-} (const double $\ast$, const double $\ast$, const int $\ast$)}\label{ScalarIntegrals_8h_a013438bf5b7a9eae6ceffb41205ee905}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_aab37018a37e3eefd3867c0fad5f4379e}{c\-\_\-double {\bfseries qli2\-\_\-} (const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const int $\ast$)}\label{ScalarIntegrals_8h_aab37018a37e3eefd3867c0fad5f4379e}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_ab392a873652ea1737f03c76d1180a154}{c\-\_\-double {\bfseries qli3\-\_\-} (const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const int $\ast$)}\label{ScalarIntegrals_8h_ab392a873652ea1737f03c76d1180a154}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a2fee5f9480b1a77aa65ba2d281989679}{c\-\_\-double {\bfseries qli4\-\_\-} (const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const double $\ast$, const int $\ast$)}\label{ScalarIntegrals_8h_a2fee5f9480b1a77aa65ba2d281989679}
+
+\item 
+void \hyperlink{ScalarIntegrals_8h_a6bd6d7c9bbb1bde1985a5d5d6b174e67}{Set\-\_\-\-S\-I} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, double M\-U\-R2, unsigned flags)
+\begin{DoxyCompactList}\small\item\em Set global variables according to the given phase space point. \end{DoxyCompactList}\item 
+\hypertarget{ScalarIntegrals_8h_a7e036471d5e476975a5b43e63951c886}{void \hyperlink{ScalarIntegrals_8h_a7e036471d5e476975a5b43e63951c886}{Set\-\_\-\-I1} (double \&M\-U\-R2)}\label{ScalarIntegrals_8h_a7e036471d5e476975a5b43e63951c886}
+
+\begin{DoxyCompactList}\small\item\em Evaluate the 1-\/point functions. \end{DoxyCompactList}\item 
+\hypertarget{ScalarIntegrals_8h_abfc7f3ab3a9a3b533a95c12ccaf94979}{void \hyperlink{ScalarIntegrals_8h_abfc7f3ab3a9a3b533a95c12ccaf94979}{Set\-\_\-\-I2} (double \&M\-U\-R2)}\label{ScalarIntegrals_8h_abfc7f3ab3a9a3b533a95c12ccaf94979}
+
+\begin{DoxyCompactList}\small\item\em Evaluate the 2-\/point functions. \end{DoxyCompactList}\item 
+\hypertarget{ScalarIntegrals_8h_a1dfa75224c462f1e1f0809fc3dfe1c5e}{void \hyperlink{ScalarIntegrals_8h_a1dfa75224c462f1e1f0809fc3dfe1c5e}{Set\-\_\-\-I3} (double \&M\-U\-R2)}\label{ScalarIntegrals_8h_a1dfa75224c462f1e1f0809fc3dfe1c5e}
+
+\begin{DoxyCompactList}\small\item\em Evaluate the 3-\/point functions. \end{DoxyCompactList}\item 
+\hypertarget{ScalarIntegrals_8h_a7a121373e723e0db2ec8356969ebcaec}{void \hyperlink{ScalarIntegrals_8h_a7a121373e723e0db2ec8356969ebcaec}{Set\-\_\-\-I4} (double \&M\-U\-R2)}\label{ScalarIntegrals_8h_a7a121373e723e0db2ec8356969ebcaec}
+
+\begin{DoxyCompactList}\small\item\em Evaluate the 4-\/point functions. \end{DoxyCompactList}\item 
+\hypertarget{ScalarIntegrals_8h_a298b01ced6e199e48c38e475038815bb}{void {\bfseries Print\-\_\-\-S\-I} (int eps=0)}\label{ScalarIntegrals_8h_a298b01ced6e199e48c38e475038815bb}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ScalarIntegrals_8h_a7d41cdffea17b5c8c14e6633922c4edd}{c\-\_\-double {\bfseries I1\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a7d41cdffea17b5c8c14e6633922c4edd}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a3746201e795ce1e14badddd4680f89ea}{c\-\_\-double {\bfseries I2\-\_\-\-M\-T2\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a3746201e795ce1e14badddd4680f89ea}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_adacc3f4d970e77ff9b2b76838a3d7328}{c\-\_\-double {\bfseries I2\-\_\-\-S12\-\_\-0\-\_\-0\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_adacc3f4d970e77ff9b2b76838a3d7328}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a48971d812496dc56cbdd7375f8444455}{c\-\_\-double {\bfseries I2\-\_\-\-S12\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a48971d812496dc56cbdd7375f8444455}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_adb6be1947ae4a41524ab7738e65f0802}{c\-\_\-double {\bfseries I2\-\_\-\-T11\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_adb6be1947ae4a41524ab7738e65f0802}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a0acd382b90e1f47315eea67451c56455}{c\-\_\-double {\bfseries I2\-\_\-\-T12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a0acd382b90e1f47315eea67451c56455}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a1d9779590044b509e6ca4de31de205a1}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-0\-\_\-\-S12\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a1d9779590044b509e6ca4de31de205a1}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a3160ab028d2c832aab965cfd36bf3124}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-\-T11\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a3160ab028d2c832aab965cfd36bf3124}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_af73995c273c9f41223849f5c825204c7}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-\-T12\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_af73995c273c9f41223849f5c825204c7}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_ae3c7ef9a53f1e8affe18030d18fe8fe6}{c\-\_\-double {\bfseries I3\-\_\-\-M\-T2\-\_\-0\-\_\-\-T11\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_ae3c7ef9a53f1e8affe18030d18fe8fe6}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a977ac13ebd669fff9576660937af98cc}{c\-\_\-double {\bfseries I3\-\_\-\-M\-T2\-\_\-0\-\_\-\-T12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a977ac13ebd669fff9576660937af98cc}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a0427f74b2edaec698d4f5accf2a43c29}{c\-\_\-double {\bfseries I3\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-M\-T2\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a0427f74b2edaec698d4f5accf2a43c29}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_acc4799360d575ed3683726f503890ada}{c\-\_\-double {\bfseries I3\-\_\-\-S12\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_acc4799360d575ed3683726f503890ada}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a61f5df4ed780c7ee8b22204af6fea7ec}{c\-\_\-double {\bfseries I3\-\_\-\-S12\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a61f5df4ed780c7ee8b22204af6fea7ec}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_affe1bdc459f9bed9a5691a9ad117fa39}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-T11\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_affe1bdc459f9bed9a5691a9ad117fa39}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_ae75a872f8c8e29d190e2edbfe84226ea}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-T12\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_ae75a872f8c8e29d190e2edbfe84226ea}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_abec7b8676cc98f55a38e22604e8c9070}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-\-T11\-\_\-0\-\_\-\-T12\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_abec7b8676cc98f55a38e22604e8c9070}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_ad67b08df7bd50025ce9a4d3be053cd48}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-\-T12\-\_\-0\-\_\-\-T11\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_ad67b08df7bd50025ce9a4d3be053cd48}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_aab734684ac15b17141b6cb7a92229dec}{c\-\_\-double {\bfseries I4\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-T11\-\_\-\-S12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_aab734684ac15b17141b6cb7a92229dec}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a3d82965dd13b0371977d59024457f489}{c\-\_\-double {\bfseries I4\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-T12\-\_\-\-S12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-0}}\label{ScalarIntegrals_8h_a3d82965dd13b0371977d59024457f489}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_abfd6c19e3232ccfcfec7e449a5dee392}{c\-\_\-double {\bfseries I1\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_abfd6c19e3232ccfcfec7e449a5dee392}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_aad8a70db4146760d1ca12d2a42c4b01f}{c\-\_\-double {\bfseries I2\-\_\-\-M\-T2\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_aad8a70db4146760d1ca12d2a42c4b01f}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a71c96b37c388acdafde518d671c8859b}{c\-\_\-double {\bfseries I2\-\_\-\-S12\-\_\-0\-\_\-0\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a71c96b37c388acdafde518d671c8859b}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a3e36c8fe18979ea16eae68457bd4391d}{c\-\_\-double {\bfseries I2\-\_\-\-T11\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a3e36c8fe18979ea16eae68457bd4391d}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a87a4cf536315f475fd6f85a89e410efe}{c\-\_\-double {\bfseries I2\-\_\-\-T12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a87a4cf536315f475fd6f85a89e410efe}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a497f533482e0b60fb7f59c8141d4e014}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-0\-\_\-\-S12\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a497f533482e0b60fb7f59c8141d4e014}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a3d24dedf0c1f57e3fe1aca4f6ca2f2d2}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-\-T11\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a3d24dedf0c1f57e3fe1aca4f6ca2f2d2}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a14ddbbc62f007b3a541cb59c67bf8a67}{c\-\_\-double {\bfseries I3\-\_\-0\-\_\-\-T12\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a14ddbbc62f007b3a541cb59c67bf8a67}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a880610e2ec26281ee8a6001a59266487}{c\-\_\-double {\bfseries I3\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-M\-T2\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a880610e2ec26281ee8a6001a59266487}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a0a49d73d39091e2daa0b37e07b2969c2}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-T11\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a0a49d73d39091e2daa0b37e07b2969c2}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_afeea36175146c7e27d0e61ecd9409bff}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-S12\-\_\-\-T12\-\_\-0\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_afeea36175146c7e27d0e61ecd9409bff}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a4924adf09839765976a2cdb3742c3676}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-\-T11\-\_\-0\-\_\-\-T12\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a4924adf09839765976a2cdb3742c3676}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a78759687b16de5e100ea127b6ac07504}{c\-\_\-double {\bfseries I4\-\_\-0\-\_\-\-T12\-\_\-0\-\_\-\-T11\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a78759687b16de5e100ea127b6ac07504}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_a85517d3061f6a103a6c5b4fc2fbe3dbe}{c\-\_\-double {\bfseries I4\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-T11\-\_\-\-S12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_a85517d3061f6a103a6c5b4fc2fbe3dbe}
+
+\item 
+\hypertarget{ScalarIntegrals_8h_aa0782483705570d50efbc1caa0d4c1ba}{c\-\_\-double {\bfseries I4\-\_\-\-M\-T2\-\_\-0\-\_\-0\-\_\-\-M\-T2\-\_\-\-T12\-\_\-\-S12\-\_\-0\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-T2\-\_\-\-M\-U2\-\_\-1}}\label{ScalarIntegrals_8h_aa0782483705570d50efbc1caa0d4c1ba}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file provides wrapper functions for the scalar integrals provided by the Q\-C\-Dloop library ar\-Xiv\-:0712.\-1851 \mbox{[}hep-\/ph\mbox{]}. A number of global variables is defined which is used for the evaluation of the one-\/loop amplitudes relevant for this project. 
+
+Definition in file \hyperlink{ScalarIntegrals_8h_source}{Scalar\-Integrals.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{ScalarIntegrals_8h_a6bd6d7c9bbb1bde1985a5d5d6b174e67}{\index{Scalar\-Integrals.\-h@{Scalar\-Integrals.\-h}!Set\-\_\-\-S\-I@{Set\-\_\-\-S\-I}}
+\index{Set\-\_\-\-S\-I@{Set\-\_\-\-S\-I}!ScalarIntegrals.h@{Scalar\-Integrals.\-h}}
+\subsubsection[{Set\-\_\-\-S\-I}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-\_\-\-S\-I (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps, }
+\item[{double}]{M\-U\-R2, }
+\item[{unsigned}]{flags}
+\end{DoxyParamCaption}
+)}}\label{ScalarIntegrals_8h_a6bd6d7c9bbb1bde1985a5d5d6b174e67}
+
+
+Set global variables according to the given phase space point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps} & 2-\/$>$2 phase space \\
+\hline
+{\em M\-U\-R2} & renormalization scale squared \\
+\hline
+{\em flags} & specify which groups of integrals get evaluated \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 92 of file Scalar\-Integrals.\-cpp.
+

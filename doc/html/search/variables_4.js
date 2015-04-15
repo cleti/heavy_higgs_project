@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['k',['K',['../classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3',1,'integrand_par']]]
+  ['higgs_5fmodel',['higgs_model',['../classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c',1,'integrand_par']]]
 ];

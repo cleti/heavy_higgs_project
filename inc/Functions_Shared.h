@@ -52,12 +52,9 @@ struct opt {
   int n_calls;
   double ren_scale;
   double cme;
-  double mH;
-  double GammaH;
-  double At;
-  double Bt;
-  double Ab;
-  double Bb;
+  double mt;
+  double mb;  
+  double vh;   
   int tech_cut;
   int precision;
   bool dist;
@@ -110,17 +107,21 @@ CanvasPtr MakeCanvas(const char* title,
 		     double bottom_marg_scale=1.0);
 
 DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width=2000, int height=1000);
-void DrawDistribution(CanvasPtr& canvas,
+void DrawDistribution(
+		      CanvasPtr& canvas,
 		      HistArray& histograms,
+		      const HiggsModel& THDM,
 		      double* norm,
 		      std::string const& titleX,
 		      std::string const& titleY,
 		      bool WRITE=true,
 		      bool NLO=true,
 		      int CD=0);
-void DrawTwoDistributions(DoubleCanvasPtr& canvas,
+void DrawTwoDistributions(
+			  DoubleCanvasPtr& canvas,
 			  HistArray& histogramsL,
 			  HistArray& histogramsR,
+			  const HiggsModel& THDM,
 			  double* norm,
 			  std::string const& titleLX,std::string const& titleRX,
 			  std::string const& titleLY,std::string const& titleRY,
@@ -131,32 +132,7 @@ void SetRatioPlot(TH1D* hist,std::string xtitle = "");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-void set_At(double const& val);
-
-void set_Bt(double const& val);
-
-void set_Ab(double const& val);
-
-void set_Bb(double const& val);
-
-void set_AlphaS(double const& val);
-
-void set_Higgs(double const& m, double const& g);
-
-void set_MUR(double const& val, double const scale = 1.0);
-
-void set_MUR2(double const& val, double const scale = 1.0);
-
-void set_MUF(double const& val, double const scale = 1.0);
-
-void set_MUF2(double const& val, double const scale = 1.0);
-
 void match_AlphaS_f5_to_f6(double const& mu2,const int VERB=1);
-
-void reset_prefactors(const int VERB=1);
 
 void set_spins_in_tt_zmf(FV const& k1,FV const& k2, FV& s1, FV& s2,FV const& s1_r,FV const& s2_r);
 
@@ -204,54 +180,6 @@ inline double Den(FV const& p1, double const& m)
 c_double LN(double const& b, int C=+1);
 
 double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4);
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-namespace AmpPrefactors {
-  void ResetAmpPrefactors();
-  void PrintAmpPrefactors();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-namespace HiggsBosons {
-  void SetMPhi1(double const& M);
-      
-  void SetPhi1(double const& M,
-	       double const& G,
-	       double const& at,
-	       double const& bt,
-	       double const& ab,
-	       double const& bb);
-  
-  void SetPhi2(double const& M,
-	       double const& G,
-	       double const& at,
-	       double const& bt,
-	       double const& ab,
-	       double const& bb);
-
-  void PrintHiggsPrefactors();
-  void ResetHiggsPrefactors(double const& S, unsigned EFF=1);
-  // set the value of the scalar part of the ggH vertex function,
-  // provide mass^2/couplings pairs of fermions in the loop
-  void set_F_ggH(double S);
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-namespace RunParameters {
-  void SetAlphaS(double const& val);
-  void SetMUR(double const& val);
-  void SetMUF(double const& val);
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 

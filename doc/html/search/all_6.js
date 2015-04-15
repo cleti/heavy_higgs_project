@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['higgs_5fmodel',['higgs_model',['../classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c',1,'integrand_par']]],
-  ['higgsboson',['HiggsBoson',['../classHiggsBoson.html',1,'']]],
-  ['higgsmodel',['HiggsModel',['../classHiggsModel.html',1,'']]],
-  ['higgsmodel_2eh',['HiggsModel.h',['../HiggsModel_8h.html',1,'']]],
-  ['higgsprefactors',['HiggsPrefactors',['../structHiggsPrefactors.html',1,'']]],
-  ['histarray',['HistArray',['../classHistArray.html',1,'']]],
-  ['histarray_2eh',['HistArray.h',['../HistArray_8h.html',1,'']]]
+  ['g',['G',['../classLT.html#a3ec591d3e26134d35eb127d0610c7866',1,'LT']]],
+  ['get_5fwgt',['get_wgt',['../classPS__2.html#a049e0480c37ac84a8319f19bcfb335ab',1,'PS_2']]],
+  ['getdim',['GetDim',['../classIntegral.html#a6ed296293c2b08c0236481e865f853b7',1,'Integral']]],
+  ['getfa',['GetFA',['../classHiggsBoson.html#a8af3de930fb155b566956ab7c0457e29',1,'HiggsBoson']]],
+  ['getfh',['GetFH',['../classHiggsBoson.html#af9055e140206943efe94b55ea76c1632',1,'HiggsBoson']]],
+  ['getlabel',['GetLabel',['../classHistArray.html#ac37b244345f0e56b68e597ee18558d8a',1,'HistArray']]],
+  ['gsl_5fmonte_5fvegas_5fstate',['gsl_monte_vegas_state',['../structMYVEGAS_1_1gsl__monte__vegas__state.html',1,'MYVEGAS']]]
 ];

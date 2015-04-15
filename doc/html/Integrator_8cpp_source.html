@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -39,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -231,60 +230,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    </div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;integrand_par::~integrand_par()</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;{</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordflow">if</span> (cleanup)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classintegrand__par.html#a1655b43b8c9e09a8bfbab014375aca49">cleanup</a>)</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    {</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="comment">// ip holds only a copy of the GSLState pointer</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      <span class="comment">// it is deleted by the Integrator or should be handled by the user if external</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      <span class="keywordflow">if</span> (ps != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a> != <span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;          <span class="keyword">delete</span> ps;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;          <span class="keyword">delete</span> <a class="code" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a>;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;      <span class="keywordflow">if</span> (pdf != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a> != <span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;          <span class="keyword">delete</span> pdf;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;          <span class="keyword">delete</span> <a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a>;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      <span class="keywordflow">if</span> (distributions != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classintegrand__par.html#a64a87fc85afba50f419677de01b2c44c">distributions</a> != <span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;          <span class="keyword">delete</span> distributions;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;          <span class="keyword">delete</span> <a class="code" href="classintegrand__par.html#a64a87fc85afba50f419677de01b2c44c">distributions</a>;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#define COORD(s,i,j) ((s)-&gt;xi[(i)*(s)-&gt;dim + (j)])</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor"></span><span class="keywordtype">double</span> integrand_par::cmp_v_weight() {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordflow">if</span> (v_state == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d">  169</a></span>&#160;<span class="preprocessor"></span><span class="keywordtype">double</span> <a class="code" href="classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d">integrand_par::cmp_v_weight</a>() {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a> == <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no integrand specified!&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordflow">return</span> 0.0;</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  }</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="comment">// re-calculate VEGAS weight if we have a new event</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="comment">// jac = tot. integration volume / (no. of evaluations per grid-bin)</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordtype">double</span> jac = v_state-&gt;jac; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordtype">double</span> jac = <a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>-&gt;jac; </div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="comment">// bin of VEGAS grid where the last function call lies</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">int</span>*   bin = v_state-&gt;bin; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">int</span>*   bin = <a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>-&gt;bin; </div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="comment">// VEGAS weight = volume of grid-bin</span></div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordtype">double</span>   vol = 1.0;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">unsigned</span> dim = v_state-&gt;dim;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">unsigned</span> dim = <a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>-&gt;dim;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; dim; ++j)</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    {</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      <span class="keywordtype">double</span> bin_width;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      <span class="keywordtype">unsigned</span> k = bin[j];</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      <span class="keywordflow">if</span> (k == 0)</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      bin_width = COORD(v_state, 1, j);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      bin_width = COORD(<a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>, 1, j);</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    {</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      bin_width = COORD(v_state, k + 1, j) - COORD(v_state, k, j);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      bin_width = COORD(<a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>, k + 1, j) - COORD(<a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a>, k, j);</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      vol *= bin_width;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  <span class="keywordflow">return</span> jac*vol;</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">// integration intervals</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keyword">namespace </span>IntLimits</div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="namespaceIntLimits.html">  204</a></span>&#160;<span class="keyword">namespace </span>IntLimits</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;{</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
@@ -330,288 +329,326 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keywordtype">int</span> Integrator::Init(<a class="code" href="classIntegral.html">Integral</a>&amp; integral, <a class="code" href="classintegrand__par.html">integrand_par</a>&amp; ip, <a class="code" href="classvegas__par.html">vegas_par</a>&amp; vp)</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;{</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  <span class="keywordtype">int</span> verb    = vp.verbose;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="keywordtype">size_t</span> dim  = integral.GetDim();</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="keywordtype">size_t</span> dim  = integral.<a class="code" href="classIntegral.html#a6ed296293c2b08c0236481e865f853b7">GetDim</a>();</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keywordflow">if</span> (!ip.eval_flags)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keywordflow">if</span> (!ip.<a class="code" href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">eval_flags</a>)</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    {</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no eval_flags set&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ====================================================================== &quot;</span>;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ======================= INTEGRATION INIT ============================= &quot;</span>;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;  <span class="keywordflow">if</span> (verb&gt;-1)</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      d_Ost &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; EVAL_FLAGS = &quot;</span> &lt;&lt; std::bitset&lt;32&gt;(ip.eval_flags).to_string() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="comment">// check IntegralRange</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  <span class="keywordflow">if</span> (dim&lt;=0)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: integral not set up properly, dim = &quot;</span> &lt;&lt; dim &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  <span class="keywordflow">if</span> (!ip.<a class="code" href="classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c">higgs_model</a>)</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no model parameters found&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    {</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ====================================================================== &quot;</span>;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ======================= INTEGRATION INIT ============================= &quot;</span>;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;  <span class="keywordflow">if</span> (verb&gt;-1)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      d_Ost &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; EVAL_FLAGS = &quot;</span> &lt;&lt; std::bitset&lt;32&gt;(ip.<a class="code" href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">eval_flags</a>).to_string() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      integral.PrintLimits();</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  <span class="comment">// check if the integrand fnc is specified</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  <span class="keywordflow">if</span> (integral.GetIntegrand() == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no integrand function found, nullptr received!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  <span class="comment">// check IntegralRange</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;  <span class="keywordflow">if</span> (dim&lt;=0)</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: integral not set up properly, dim = &quot;</span> &lt;&lt; dim &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    {</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      integral.PrintLimits();</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    }</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  <span class="comment">// set up GSL Rng</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <span class="keywordflow">if</span> (d_GSLRng==<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    {</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      gsl_rng_env_setup();</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      gsl_rng_default_seed = time(0);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      d_GSLRng = gsl_rng_alloc(gsl_rng_taus);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    }</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  rng type   : &quot;</span> &lt;&lt; gsl_rng_name(d_GSLRng);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  rng seed   : &quot;</span> &lt;&lt; gsl_rng_default_seed &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    </div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;  <span class="comment">// set up GSL state / initialize external state</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <span class="keywordflow">if</span> (d_externalGSLState)</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    {</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      <span class="keywordflow">if</span> (d_GSLState==<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: external state is NULL!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      gsl_monte_vegas_init (d_GSLState);</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      <span class="comment">// check if the external state has the correct size</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      <span class="keywordflow">if</span> (dim != d_GSLState-&gt;dim)</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <span class="comment">// check if the integrand fnc is specified</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  <span class="keywordflow">if</span> (integral.GetIntegrand() == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no integrand function found, nullptr received!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  <span class="comment">// set up GSL Rng</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;  <span class="keywordflow">if</span> (d_GSLRng==<span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      gsl_rng_env_setup();</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      gsl_rng_default_seed = time(0);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      d_GSLRng = gsl_rng_alloc(gsl_rng_taus);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  <span class="keywordflow">if</span> (verb&gt;0)</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  rng type   : &quot;</span> &lt;&lt; gsl_rng_name(d_GSLRng);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  rng seed   : &quot;</span> &lt;&lt; gsl_rng_default_seed &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;  <span class="comment">// set up GSL state / initialize external state</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;  <span class="keywordflow">if</span> (d_externalGSLState)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    {</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      <span class="keywordflow">if</span> (d_GSLState==<span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    {</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: External GSL state dimension does not match integral dimension!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; dim(integral) = &quot;</span> &lt;&lt; dim &lt;&lt; <span class="stringliteral">&quot;   dim(state) = &quot;</span> &lt;&lt; d_GSLState-&gt;dim &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    }</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (using external v_state &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      <span class="comment">// always allocate new state if it is not from ext</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      <span class="keywordflow">if</span> (d_GSLState!=<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    {</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (deallocating v_state &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      gsl_monte_vegas_free(d_GSLState);</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;      d_GSLState = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    }</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;      d_GSLState = gsl_monte_vegas_alloc(dim);</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (new v_state allocated &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="comment">// copy pointer to integrand_par struct, so that it is available in the integrand!</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  ip.v_state = d_GSLState;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <span class="comment">// set up the GSL Integrand struct</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;  d_GSLIntegrand = {integral.GetIntegrand(), dim, (<span class="keywordtype">void</span>*)&amp;ip};</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="keywordflow">if</span> (ip.ps == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    {</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no ps found, nullptr received!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keywordflow">if</span> (ip.collect_dist &amp;&amp; ip.distributions == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    {</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: you need to provide a HistArray to compute distributions!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    }</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="comment">// now everything is fine</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;Integrator::Integrator(std::ostream&amp; ost):</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  d_Ost(ost),</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;  d_GSLIntegrand{<span class="keyword">nullptr</span>,0,<span class="keyword">nullptr</span>},</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  d_GSLRng(<span class="keyword">nullptr</span>),</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  d_GSLState(<span class="keyword">nullptr</span>),</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  d_externalGSLState(<span class="keyword">false</span>)</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;{</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;}</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;Integrator::~Integrator()</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;{</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  Reset();</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;}</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="keywordtype">void</span> Integrator::Integrate(<a class="code" href="classIntegral.html">Integral</a>&amp; integral, <a class="code" href="classintegrand__par.html">integrand_par</a>&amp; ip, <a class="code" href="classvegas__par.html">vegas_par</a>&amp; vp)</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;{</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keywordflow">if</span> (!Init(integral,ip,vp))</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    {</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; aborting integration ... &quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    }</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  <span class="keywordtype">int</span> ncalls = vp.calls/vp.iterations;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordflow">switch</span> (ip.ps-&gt;whattype())</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    {</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="keywordflow">case</span> 21:</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;      ncalls /= 10;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;1 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordflow">case</span> 22:</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;2 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;      <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordflow">case</span> 23:</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;      ncalls *= 10;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;3 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;      <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  unrecognized PS , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    }</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keywordtype">int</span>     ndim         = integral.GetDim();</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  <span class="keywordtype">double</span>* lower_limits = integral.Lo();</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  <span class="keywordtype">double</span>* upper_limits = integral.Up();</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;  std::vector&lt;HistArray*&gt;* dist   = ip.distributions;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  d_GSLState -&gt; iterations = vp.iterations;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;  d_GSLState -&gt; verbose    = vp.verbose - 2;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;  </div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  <span class="keywordflow">if</span> (vp.grid_fixed)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    { <span class="comment">// grid fixed -&gt; no warmup run</span></div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      d_GSLState-&gt;alpha = 0;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    }</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    {</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;      <span class="comment">// WARMUP</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment"></span>      <span class="keywordtype">double</span> res = 0.0;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;      <span class="keywordtype">double</span> err = 0.0;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;      <span class="comment">// do not collect distributions in warmup run !</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;      <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: external state is NULL!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      gsl_monte_vegas_init (d_GSLState);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      <span class="comment">// check if the external state has the correct size</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      <span class="keywordflow">if</span> (dim != d_GSLState-&gt;dim)</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    {</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: External GSL state dimension does not match integral dimension!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; dim(integral) = &quot;</span> &lt;&lt; dim &lt;&lt; <span class="stringliteral">&quot;   dim(state) = &quot;</span> &lt;&lt; d_GSLState-&gt;dim &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    }</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (using external v_state &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;      <span class="comment">// always allocate new state if it is not from ext</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;      <span class="keywordflow">if</span> (d_GSLState!=<span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    {</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (deallocating v_state &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;      gsl_monte_vegas_free(d_GSLState);</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;      d_GSLState = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;      d_GSLState = gsl_monte_vegas_alloc(dim);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;      <span class="keywordflow">if</span> (verb&gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (new v_state allocated &quot;</span> &lt;&lt; d_GSLState &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    }</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  <span class="comment">// copy pointer to integrand_par struct, so that it is available in the integrand!</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  ip.<a class="code" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a> = d_GSLState;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  <span class="comment">// set up the GSL Integrand struct</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  d_GSLIntegrand = {integral.GetIntegrand(), dim, (<span class="keywordtype">void</span>*)&amp;ip};</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <span class="keywordflow">if</span> (ip.<a class="code" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a> == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: no ps found, nullptr received!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    }</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  <span class="keywordflow">if</span> (ip.<a class="code" href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">collect_dist</a> &amp;&amp; ip.<a class="code" href="classintegrand__par.html#a64a87fc85afba50f419677de01b2c44c">distributions</a> == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    {</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ERROR: you need to provide a HistArray to compute distributions!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    }</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="comment">// now everything is fine</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;}</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;Integrator::Integrator(std::ostream&amp; ost):</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  d_Ost(ost),</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  d_GSLIntegrand{<span class="keyword">nullptr</span>,0,<span class="keyword">nullptr</span>},</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  d_GSLRng(<span class="keyword">nullptr</span>),</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;  d_GSLState(<span class="keyword">nullptr</span>),</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  d_externalGSLState(<span class="keyword">false</span>)</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;{</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;Integrator::~Integrator()</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;{</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;  Reset();</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;}</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="classIntegrator.html#a999142aeac7e98ab084eaad2c257a233">  383</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classIntegrator.html#a999142aeac7e98ab084eaad2c257a233">Integrator::Integrate</a>(<a class="code" href="classIntegral.html">Integral</a>&amp; integral, <a class="code" href="classintegrand__par.html">integrand_par</a>&amp; ip, <a class="code" href="classvegas__par.html">vegas_par</a>&amp; vp)</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;{</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="keywordflow">if</span> (!Init(integral,ip,vp))</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    {</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; In &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __LINE__ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; aborting integration ... &quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    }</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;  <span class="keywordtype">int</span> ncalls = vp.calls/vp.iterations;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <span class="keywordflow">switch</span> (ip.<a class="code" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a>-&gt;whattype())</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">case</span> 21:</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;      ncalls /= 10;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;1 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordflow">case</span> 22:</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;2 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordflow">case</span> 23:</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;      ncalls *= 10;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  PS 2-&gt;3 , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;      <span class="keywordflow">if</span> (vp.verbose&gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  unrecognized PS , #call/iter. = &quot;</span> &lt;&lt; ncalls &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  <span class="keywordtype">int</span>     ndim         = integral.<a class="code" href="classIntegral.html#a6ed296293c2b08c0236481e865f853b7">GetDim</a>();</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;  <span class="keywordtype">double</span>* lower_limits = integral.<a class="code" href="classIntegral.html#a3cb1093faf75a75b2024d865dc1e1d4a">Lo</a>();</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;  <span class="keywordtype">double</span>* upper_limits = integral.<a class="code" href="classIntegral.html#a44b55ae610a5910d706acd88d13896da">Up</a>();</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  std::vector&lt;HistArray*&gt;* dist   = ip.<a class="code" href="classintegrand__par.html#a64a87fc85afba50f419677de01b2c44c">distributions</a>;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  </div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;  d_GSLState -&gt; iterations = vp.iterations;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;  d_GSLState -&gt; verbose    = vp.verbose - 2;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;  </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;  <span class="keywordflow">if</span> (vp.grid_fixed)</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    { <span class="comment">// grid fixed -&gt; no warmup run</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;      d_GSLState-&gt;alpha = 0;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    }</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;  <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;        {</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;          e-&gt;Pause();</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        }</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    }</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      </div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      d_GSLState-&gt;stage = 0; <span class="comment">// reset grid, discard previous results</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      gsl_monte_vegas_integrate (&amp;d_GSLIntegrand, lower_limits, upper_limits, ndim, std::max(100000,ncalls), d_GSLRng, d_GSLState, &amp;res, &amp;err);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    {</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(res/err)+1;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; ===== Warmup-run ===== &quot;</span> &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  res = &quot;</span> &lt;&lt; std::setprecision(prec) &lt;&lt; res &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  err = &quot;</span> &lt;&lt; std::setprecision(1) &lt;&lt; (err) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;      <span class="comment">// WARMUP</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment"></span>      <span class="keywordtype">double</span> res = 0.0;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;      <span class="keywordtype">double</span> err = 0.0;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      <span class="comment">// do not collect distributions in warmup run !</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    {</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        {</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;          e-&gt;Pause();</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        }</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    }</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    }</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;  <span class="comment">// MAIN RUN</span></div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment"></span>  d_GSLState-&gt;stage = 1; <span class="comment">// re-use grid from previous run, only discard results</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  d_GSLState-&gt;chisq = 0;</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;  <span class="comment">// d_GSLState-&gt;alpha = 1.5;</span></div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;  vp.result = 0;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;  vp.error  = 0;</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  <span class="keywordflow">if</span> (vp.verbose &gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; =====  Main-run  ===== &quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  <span class="keywordtype">int</span> run_count = 0;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> INT_TIME     = 0;</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> INT_TIME_SUM = 0;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  <span class="comment">// do max runs when collecting differential distributions...</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  <span class="keywordflow">while</span> ( (run_count&lt;vp.max_runs) &amp;&amp; (fabs(d_GSLState-&gt;chisq-1.0) &gt; vp.chisq_limit) )</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    {</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;      <span class="comment">// activate histograms if available</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;      <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    {</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        {</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;          e-&gt;Resume();</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    }</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      INT_TIME      = clock();</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;      gsl_monte_vegas_integrate (&amp;d_GSLIntegrand, lower_limits, upper_limits, ndim, ncalls, d_GSLRng, d_GSLState,&amp;vp.result, &amp;vp.error);</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;      INT_TIME      = clock() - INT_TIME;</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      INT_TIME_SUM += INT_TIME;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    {</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(vp.result/vp.error)+2;</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (run &quot;</span> &lt;&lt; run_count &lt;&lt; <span class="stringliteral">&quot;) &quot;</span>;</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; i = &quot;</span> &lt;&lt; std::setw(10) &lt;&lt; std::setprecision(prec) &lt;&lt; vp.result;</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; s = &quot;</span> &lt;&lt; std::setw(10) &lt;&lt; std::setprecision(1) &lt;&lt; (vp.error);</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; (chisq/dof =  &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; d_GSLState-&gt;chisq  &lt;&lt; <span class="stringliteral">&quot;) &quot;</span>;</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; (time &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(1) &lt;&lt; (float)INT_TIME/CLOCKS_PER_SEC &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    }</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;      run_count++;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    }</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;  <span class="keywordflow">if</span> (run_count == vp.max_runs)</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    {</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (max run limit reached, check results) \n&quot;</span>;</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    }</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  <span class="comment">// save run count for normalization of distributions</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;  vp.num_runs = run_count;</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;  vp.chisq    = d_GSLState-&gt;chisq;</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;  <span class="comment">// normalize histograms to number of runs and iterations per run</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;  <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    {</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    {</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;      <span class="comment">// normalize distributions to #iterations, #runs (warm-up does not count)</span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;      e-&gt;Scale(vp.iterations*vp.num_runs);</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    }</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    }</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;  <span class="keywordflow">if</span> (vp.verbose&gt;-1)</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    {</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(vp.result/vp.error)+3;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;      <span class="comment">// print final result</span></div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ------------------------------------------------------------------&quot;</span>;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n | INTEGRAL = &quot;</span> &lt;&lt; std::setw(11) &lt;&lt; std::setprecision(prec) &lt;&lt; vp.result &lt;&lt; <span class="stringliteral">&quot;  SIGMA = &quot;</span> &lt;&lt; std::setw(11) &lt;&lt; std::setprecision(2) &lt;&lt; vp.error &lt;&lt; <span class="stringliteral">&quot; (chisq/dof = &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; d_GSLState-&gt;chisq &lt;&lt; <span class="stringliteral">&quot;) |&quot;</span>; </div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n |  (total integration time &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt;  (float)INT_TIME_SUM/CLOCKS_PER_SEC &lt;&lt; <span class="stringliteral">&quot; , mean &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; (float)INT_TIME_SUM/CLOCKS_PER_SEC/run_count &lt;&lt; <span class="stringliteral">&quot;)                     |&quot;</span>;</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ------------------------------------------------------------------\n\n&quot;</span>;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    }</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    {</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ======================================================================\n\n&quot;</span>;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    }</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;  <span class="comment">// copy run parameters</span></div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;  integral.LastRun = vp;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;}</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;  </div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="comment">// set everything back to default values</span></div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="keywordtype">void</span> Integrator::Reset()</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;{</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;  d_GSLIntegrand = {<span class="keyword">nullptr</span>,0,<span class="keyword">nullptr</span>};</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;  <span class="keywordflow">if</span> (d_GSLRng != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;    {</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;      <span class="comment">//d_Ost &lt;&lt; &quot;\n  (deleting GSL rng &quot; &lt;&lt; d_GSLRng &lt;&lt; &quot;) \n&quot;;</span></div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;      gsl_rng_free(d_GSLRng);</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;      d_GSLRng = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    }</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;  <span class="keywordflow">if</span> (!d_externalGSLState &amp;&amp; d_GSLState != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    {</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;      <span class="comment">//d_Ost &lt;&lt; &quot;\n  (deleting GSL state &quot; &lt;&lt; d_GSLState &lt;&lt; &quot;) \n&quot;;</span></div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;      gsl_monte_vegas_free(d_GSLState);</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;      d_GSLState = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    }</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;}</div>
-<div class="ttc" id="classintegrand__par_html"><div class="ttname"><a href="classintegrand__par.html">integrand_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00129">Integrator.h:129</a></div></div>
-<div class="ttc" id="classvegas__par_html"><div class="ttname"><a href="classvegas__par.html">vegas_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00030">Integrator.h:30</a></div></div>
-<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00054">Integrator.h:54</a></div></div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      </div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      d_GSLState-&gt;stage = 0; <span class="comment">// reset grid, discard previous results</span></div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;      gsl_monte_vegas_integrate (&amp;d_GSLIntegrand, lower_limits, upper_limits, ndim, std::max(100000,ncalls), d_GSLRng, d_GSLState, &amp;res, &amp;err);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    {</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(res/err)+1;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;      d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; ===== Warmup-run ===== &quot;</span> &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  res = &quot;</span> &lt;&lt; std::setprecision(prec) &lt;&lt; res &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;  err = &quot;</span> &lt;&lt; std::setprecision(1) &lt;&lt; (err) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    }</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    }</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  <span class="comment">// MAIN RUN</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment"></span>  d_GSLState-&gt;stage = 1; <span class="comment">// re-use grid from previous run, only discard results</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  d_GSLState-&gt;chisq = 0;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <span class="comment">// d_GSLState-&gt;alpha = 1.5;</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  vp.result = 0;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  vp.error  = 0;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  <span class="keywordflow">if</span> (vp.verbose &gt;0) d_Ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; =====  Main-run  ===== &quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;  <span class="keywordtype">int</span> run_count = 0;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> INT_TIME     = 0;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> INT_TIME_SUM = 0;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  <span class="comment">// do max runs when collecting differential distributions...</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;  <span class="keywordflow">while</span> ( (run_count&lt;vp.max_runs) &amp;&amp; (fabs(d_GSLState-&gt;chisq-1.0) &gt; vp.chisq_limit) )</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    {</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;      <span class="comment">// activate histograms if available</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    {</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;        {</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;          e-&gt;Resume();</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        }</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;      <span class="comment">// PRINT((*dist)[0]-&gt;IsActive(0));</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      <span class="comment">// PRINT((*dist)[0]-&gt;IsActive(1));</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;               </div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;      <span class="comment">// PRINT((*dist)[1]-&gt;IsActive(0));</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;      <span class="comment">// PRINT((*dist)[1]-&gt;IsActive(1));</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;               </div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;      <span class="comment">// PRINT((*dist)[3]-&gt;IsActive(0));</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;      <span class="comment">// PRINT((*dist)[3]-&gt;IsActive(1));</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;               </div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;      <span class="comment">// PRINT((*dist)[4]-&gt;IsActive(0));</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;      <span class="comment">// PRINT((*dist)[4]-&gt;IsActive(1));</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;               </div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;      <span class="comment">// PRINT((*dist)[6]-&gt;IsActive(0));</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;      <span class="comment">// PRINT((*dist)[6]-&gt;IsActive(1)); </span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;      <span class="comment">// exit(1);     </span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    }</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;      INT_TIME      = clock();</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;      gsl_monte_vegas_integrate (&amp;d_GSLIntegrand, lower_limits, upper_limits, ndim, ncalls, d_GSLRng, d_GSLState,&amp;vp.result, &amp;vp.error);</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      INT_TIME      = clock() - INT_TIME;</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;      INT_TIME_SUM += INT_TIME;</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    {</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(vp.result/vp.error)+2;</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (run &quot;</span> &lt;&lt; run_count &lt;&lt; <span class="stringliteral">&quot;) &quot;</span>;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; i = &quot;</span> &lt;&lt; std::setw(10) &lt;&lt; std::setprecision(prec) &lt;&lt; vp.result;</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; s = &quot;</span> &lt;&lt; std::setw(10) &lt;&lt; std::setprecision(1) &lt;&lt; (vp.error);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; (chisq/dof =  &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; d_GSLState-&gt;chisq  &lt;&lt; <span class="stringliteral">&quot;) &quot;</span>;</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; (time &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(1) &lt;&lt; (float)INT_TIME/CLOCKS_PER_SEC &lt;&lt; <span class="stringliteral">&quot;) \n&quot;</span>;</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    }</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;      run_count++;</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    }</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;  <span class="keywordflow">if</span> (run_count == vp.max_runs)</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    {</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;      <span class="keywordflow">if</span> (vp.verbose &gt;0) d_Ost &lt;&lt; <span class="stringliteral">&quot;\n  (max run limit reached, check results) \n&quot;</span>;</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    }</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;  <span class="comment">// save run count for normalization of distributions</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;  vp.num_runs = run_count;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;  vp.chisq    = d_GSLState-&gt;chisq;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;  <span class="comment">// normalize histograms to number of runs and iterations per run</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;  <span class="keywordflow">if</span> (dist != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    {</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> e: *dist)</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    {</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <span class="comment">// normalize distributions to #iterations, #runs (warm-up does not count)</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      e-&gt;Scale(vp.iterations*vp.num_runs);</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    }</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;    }</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;  <span class="keywordflow">if</span> (vp.verbose&gt;-1)</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;    {</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(vp.result/vp.error)+3;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;      <span class="comment">// print final result</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ------------------------------------------------------------------&quot;</span>;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n | INTEGRAL = &quot;</span> &lt;&lt; std::setw(11) &lt;&lt; std::setprecision(prec) &lt;&lt; vp.result &lt;&lt; <span class="stringliteral">&quot;  SIGMA = &quot;</span> &lt;&lt; std::setw(11) &lt;&lt; std::setprecision(2) &lt;&lt; vp.error &lt;&lt; <span class="stringliteral">&quot; (chisq/dof = &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; d_GSLState-&gt;chisq &lt;&lt; <span class="stringliteral">&quot;) |&quot;</span>; </div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n |  (total integration time &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt;  (float)INT_TIME_SUM/CLOCKS_PER_SEC &lt;&lt; <span class="stringliteral">&quot; , mean &quot;</span> &lt;&lt; std::setw(4) &lt;&lt; std::setprecision(2) &lt;&lt; (float)INT_TIME_SUM/CLOCKS_PER_SEC/run_count &lt;&lt; <span class="stringliteral">&quot;)                     |&quot;</span>;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot;\n ------------------------------------------------------------------\n\n&quot;</span>;</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    }</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;  <span class="keywordflow">if</span> (vp.verbose &gt;0)</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    {</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;      d_Ost &lt;&lt; <span class="stringliteral">&quot; ======================================================================\n\n&quot;</span>;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    }</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;  <span class="comment">// copy run parameters</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;  integral.LastRun = vp;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;}</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;  </div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="comment">// set everything back to default values</span></div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="keywordtype">void</span> Integrator::Reset()</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;{</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;  d_GSLIntegrand = {<span class="keyword">nullptr</span>,0,<span class="keyword">nullptr</span>};</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;  <span class="keywordflow">if</span> (d_GSLRng != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    {</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;      <span class="comment">//d_Ost &lt;&lt; &quot;\n  (deleting GSL rng &quot; &lt;&lt; d_GSLRng &lt;&lt; &quot;) \n&quot;;</span></div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;      gsl_rng_free(d_GSLRng);</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;      d_GSLRng = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;    }</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;  <span class="keywordflow">if</span> (!d_externalGSLState &amp;&amp; d_GSLState != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;    {</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;      <span class="comment">//d_Ost &lt;&lt; &quot;\n  (deleting GSL state &quot; &lt;&lt; d_GSLState &lt;&lt; &quot;) \n&quot;;</span></div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;      gsl_monte_vegas_free(d_GSLState);</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;      d_GSLState = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;    }</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;}</div>
+<div class="ttc" id="classintegrand__par_html_a1655b43b8c9e09a8bfbab014375aca49"><div class="ttname"><a href="classintegrand__par.html#a1655b43b8c9e09a8bfbab014375aca49">integrand_par::cleanup</a></div><div class="ttdeci">bool cleanup</div><div class="ttdoc">delete ps and pdf on destruction </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00181">Integrator.h:181</a></div></div>
+<div class="ttc" id="classintegrand__par_html_aac7bdde6abcb8d81db5af3a24ce51f7d"><div class="ttname"><a href="classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d">integrand_par::cmp_v_weight</a></div><div class="ttdeci">double cmp_v_weight()</div><div class="ttdoc">compute the weight of the VEGAS algorithm at the current point </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8cpp_source.html#l00169">Integrator.cpp:169</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a9c52a4045c079f7314cbc8a876f98238"><div class="ttname"><a href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">integrand_par::ps</a></div><div class="ttdeci">PS_2 * ps</div><div class="ttdoc">pointer to phase space </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00163">Integrator.h:163</a></div></div>
+<div class="ttc" id="classIntegrator_html_a999142aeac7e98ab084eaad2c257a233"><div class="ttname"><a href="classIntegrator.html#a999142aeac7e98ab084eaad2c257a233">Integrator::Integrate</a></div><div class="ttdeci">void Integrate(Integral &amp;integral, integrand_par &amp;ip, vegas_par &amp;vp)</div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8cpp_source.html#l00383">Integrator.cpp:383</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a082dc10e0e72baedade3f46cfffa4c15"><div class="ttname"><a href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">integrand_par::pdf</a></div><div class="ttdeci">LHAPDF::PDF * pdf</div><div class="ttdoc">pointer to the parton distribution function </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00165">Integrator.h:165</a></div></div>
+<div class="ttc" id="classintegrand__par_html_adb701c9d21e3b412032dca85ebcde090"><div class="ttname"><a href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">integrand_par::eval_flags</a></div><div class="ttdeci">ulong eval_flags</div><div class="ttdoc">evaluation flags </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00177">Integrator.h:177</a></div></div>
+<div class="ttc" id="classIntegral_html_a3cb1093faf75a75b2024d865dc1e1d4a"><div class="ttname"><a href="classIntegral.html#a3cb1093faf75a75b2024d865dc1e1d4a">Integral::Lo</a></div><div class="ttdeci">double Lo(size_t i)</div><div class="ttdoc">get lower integration limit in direction i </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00098">Integrator.h:98</a></div></div>
+<div class="ttc" id="classintegrand__par_html"><div class="ttname"><a href="classintegrand__par.html">integrand_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00155">Integrator.h:155</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a64a87fc85afba50f419677de01b2c44c"><div class="ttname"><a href="classintegrand__par.html#a64a87fc85afba50f419677de01b2c44c">integrand_par::distributions</a></div><div class="ttdeci">std::vector&lt; HistArray * &gt; * distributions</div><div class="ttdoc">pointer to histograms with distributions </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00169">Integrator.h:169</a></div></div>
+<div class="ttc" id="classvegas__par_html"><div class="ttname"><a href="classvegas__par.html">vegas_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00035">Integrator.h:35</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a9becf94ac239a82b946f53e36c75c83c"><div class="ttname"><a href="classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c">integrand_par::higgs_model</a></div><div class="ttdeci">HiggsModel * higgs_model</div><div class="ttdoc">pointer to object with model parameters </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00159">Integrator.h:159</a></div></div>
+<div class="ttc" id="classIntegral_html_a6ed296293c2b08c0236481e865f853b7"><div class="ttname"><a href="classIntegral.html#a6ed296293c2b08c0236481e865f853b7">Integral::GetDim</a></div><div class="ttdeci">unsigned GetDim()</div><div class="ttdoc">get integral dimension </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00106">Integrator.h:106</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a3b5e2c8a2f3c33f0ebc594fd8f42210e"><div class="ttname"><a href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">integrand_par::v_state</a></div><div class="ttdeci">gsl_monte_vegas_state * v_state</div><div class="ttdoc">pointer to the GSL VEGAS state </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00167">Integrator.h:167</a></div></div>
+<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00064">Integrator.h:64</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a2227f484c28e54b55769b2fe6911a782"><div class="ttname"><a href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">integrand_par::collect_dist</a></div><div class="ttdeci">bool collect_dist</div><div class="ttdoc">switch to enable distribution collection </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00171">Integrator.h:171</a></div></div>
+<div class="ttc" id="classIntegral_html_a44b55ae610a5910d706acd88d13896da"><div class="ttname"><a href="classIntegral.html#a44b55ae610a5910d706acd88d13896da">Integral::Up</a></div><div class="ttdeci">double Up(size_t i)</div><div class="ttdoc">get upper integration limit in direction i </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00100">Integrator.h:100</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

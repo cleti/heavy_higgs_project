@@ -89,7 +89,6 @@ double Integrand_2_2(double* x, size_t dim, void* arg)
 double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  //using namespace RunParameters;
 
   if (unlikely(dim!=3))
     {
@@ -187,7 +186,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 
       // include spin/color average of initial gluons and PFDs, convert to units of picobarn
       double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
-
+      
       // born matrix elements (GG)
       if (EVAL_B(flags)) res_b = Eval_B(*ps,*hm,flags,0)*jac_flux_1*cf;
 
@@ -205,9 +204,9 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
       	      double f2_q  = ip->pdf->xfxQ2(+i, x[1], MUF2*mScale2) / x[1];
       	      qq_pdf += (f1_q*f2_qb+f1_qb*f2_q);
       	    }
-          // the QCD Born amplitudes are symmetric in scattering angle y
-          // therefore the PDF factors can be pulled out
-          res_b += Eval_B_QQ(*ps,*hm)*jac_flux_1*PREF_QQ*qq_pdf*CONV_GeV2i_pbarn/mScale2;
+          // the QCD Born amplitudes are symmetric under y <> -y
+          // --> PDFs can be pulled out
+          res_b += Eval_B_QQ(*ps,*hm)*jac_flux_1*PREF_QQ*(qq_pdf)*CONV_GeV2i_pbarn/mScale2; 
         }
 	  
       // finite part of the virtual corrections (GG)
@@ -233,7 +232,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 	    { // PHI + INT LO: fill in the first histogram
 	      ps->FillDistributions(*dist,H_LO_PHI,res_b*vwgt,mScale);
 	    }
-	  ps->FillDistributions(*dist,H_NLO_V,res_v*vwgt,mScale);
+	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_V,res_v*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       return  (res_b+res_v);
@@ -279,7 +278,7 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
   double f1 = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
   double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
   // include spin/color average of initial gluons and PFDs, convert to units of picobarn
-  double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
+  double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2*BR_TT_LL;
 
   if (ps->set(sqrt(s_part),x[2],0.0))
     {
@@ -355,8 +354,8 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 	  ps_x.P2() = (ps->P2());
 
 	  double vwgt  = ip->cmp_v_weight();
-	  ps->FillDistributions(*dist,H_NLO_ID,(res_d+res_dx)*vwgt,mScale);
-	  //ps_x.FillDistributions(*dist,H_NLO_ID,res_dx*vwgt,mScale);
+	  ps->FillDistributions(*dist,H_NLO_ID,(res_d)*vwgt,mScale);
+	  ps_x.FillDistributions(*dist,H_NLO_ID,res_dx*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////   
     }
@@ -426,7 +425,7 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
       double f1 = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
       double f2 = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
       
-      double cf_gg = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
+      double cf_gg = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2*BR_TT_LL;
       double res_r_gg = Eval_R_GG(*ps,*hm,flags)*cf_gg*jac_flux;
       
       // for the unint. dipoles we need here already the VEGAS weight

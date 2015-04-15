@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cmp_5fv_5fweight',['cmp_v_weight',['../classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d',1,'integrand_par']]]
+  ['boost_5finitial_5fstate',['boost_initial_state',['../classPS__2__2.html#a62103a2d987ed8b04918d584e1c7c562',1,'PS_2_2::boost_initial_state()'],['../classPS__2__2.html#abdf4c563c0c67169a478fb7719581a35',1,'PS_2_2::boost_initial_state(double const &amp;x)']]]
 ];

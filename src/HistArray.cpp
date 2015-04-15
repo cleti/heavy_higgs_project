@@ -49,15 +49,18 @@ HistArray::HistArray(int nbinsx,
 
 void HistArray::Normalize(const double& mScale)
 {
-  // relies on equidistant binning in all histograms !!!
-  double binw = d_histograms[0].GetBinWidth(1);
+  double binc = 0.0; // temp
   double fmass= std::pow(mScale,d_mass_dim);
   std::cout << "\n Normalizing: " << d_label;
-  std::cout << "\n   binw: " << binw;
   std::cout << "\n   mass: " << d_mass_dim << " -> " << fmass << std::endl;  
   for (unsigned i=0;i<NHIST;i++)
     {
-      d_histograms[i].Scale(fmass/(binw));
+      for (int j=1; j<=d_histograms[i].GetNbinsX(); ++j)
+	{
+	  // ROOT counts bins from 1 to NBinsX, 0 and NBinsX+1 are underflow and overflow
+	  binc = d_histograms[i].GetBinContent(j);
+	  d_histograms[i].SetBinContent(j,binc*fmass/(d_histograms[i].GetBinWidth(j)));
+	}
       std::cout << "  hist " << i <<  " done..\n";
     }
   std::cout << std::endl;
@@ -67,7 +70,7 @@ void HistArray::Normalize(const double& mScale)
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////
-double DIST_M_L = 340;
+double DIST_M_L = 360;
 double DIST_M_U = 800;
 
 double DIST_P_L = 60;
@@ -81,7 +84,7 @@ double DIST_A_U =  1.0;
 ////////////////////////////////
 
 // prepare some histograms
-HistArray MttDistributions(23,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
+HistArray MttDistributions(22,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
 HistArray PT1Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,t} distribution");
 HistArray PT2Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,#bar{t}} distribution");
 HistArray PT12Distributions(25,0.0,500.0,1,"p_{T,t+#bar{t}} distribution");
@@ -105,10 +108,18 @@ double obs_M12(FV const& k1, FV const& k2)
 {
   return sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));
 }
-// transverse momentum (transverse plane is the x-y-plane) [GeV]
+// transverse momentum (transverse plane is the x-y-plane) 
 double obs_PT(FV const& k)
 {
   return sqrt(k[1]*k[1]+k[2]*k[2]);
+}
+
+// transverse momentum of two particle system |k_{T,1}+k_{T,2}| 
+double obs_PT12(FV const& k1, FV const& k2)
+{
+  return sqrt(k1[1]*k1[1]+k1[2]*k1[2]+ // k1 contribution
+	      k2[1]*k2[1]+k2[2]*k2[2]- // k2 contribution
+	      2.0*(k1[1]*k2[1]+k1[2]*k2[2])); // mixed terms
 }
 // pseudo-rapidity
 double obs_Y(FV const& k)

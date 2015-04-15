@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -73,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -128,7 +126,7 @@ LHAPDF::PDF *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="memdesc:a082dc10e0e72baedade3f46cfffa4c15"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the parton distribution function <br/></td></tr>
 <tr class="separator:a082dc10e0e72baedade3f46cfffa4c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b5e2c8a2f3c33f0ebc594fd8f42210e"></a>
-<a class="el" href="structgsl__monte__vegas__state.html">gsl_monte_vegas_state</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a></td></tr>
+gsl_monte_vegas_state *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a></td></tr>
 <tr class="memdesc:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the GSL VEGAS state <br/></td></tr>
 <tr class="separator:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64a87fc85afba50f419677de01b2c44c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64a87fc85afba50f419677de01b2c44c"></a>
@@ -162,9 +160,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm. In particular the model parameters contained in the <a class="el" href="classHiggsModel.html">HiggsModel</a> instance are needed by the functions that evaluate the matrix elements. </p>
+
+<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00155">155</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="Integrator_8h_source.html">Integrator.h</a></li>
-<li>src/Integrator.cpp</li>
+<li>src/<a class="el" href="Integrator_8cpp_source.html">Integrator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

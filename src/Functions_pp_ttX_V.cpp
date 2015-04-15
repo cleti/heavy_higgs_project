@@ -151,7 +151,7 @@ double Eval_B(
   double B_t = 0.0;
   if (flags & F_EVAL_B_PHIxPHI) 
     {
-      B_t += Eval_B_PHIxPHI_withINT12(ps,ap,hp);
+      B_t += Eval_B_PHIxPHI_withINT12(ps,hm);
 #ifdef DEBUG
       CHECKNAN(B_t);
 #endif
@@ -175,13 +175,12 @@ double Eval_B(
 
 double Eval_B_PHIxPHI_withINT12(
 				const PS_2_2& ps,
-				const AmplitudePrefactors& ap,
-				const HiggsPrefactors& hp)
+				const HiggsModel& hm)
 {
-  
+  PREFACTORS(hm); // defines ap and hp 
   double ret = Eval_B_PHIxPHI(ps,ap,hp);
 #ifdef WITH_T_SPIN    
-  if (RunParameters::TwoHDM)
+  if (hm.NBosons()>1)
     {
       ret -= Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
     }
@@ -194,10 +193,7 @@ double Eval_B_QQ(
 		 const PS_2_2& ps,
 		 HiggsModel& hm)
 {
-  PREFACTORS(hm) // defines ap and hp
-    
-  // these have to be adjusted whenever S changes!!!
-  HiggsBosons::ResetHiggsPrefactors(ps.get_s());
+  PREFACTORS(hm); // defines ap and hp
   return Eval_B_QCDxQCD_QQ(ps,ap,hp);
 }
 
@@ -211,7 +207,6 @@ double Eval_V(
   PREFACTORS(hm); // defines ap and hp 
       
   // these have to be adjusted whenever S changes!!!
-  // HiggsBosons::ResetHiggsPrefactors(ps.get_s());
   hm.SetHiggsPrefactors(ps.get_s(),1);
   // set scalar integrals (update invariants sometime before this call by Set_Invariants())
   Set_SI(ps,hm.MUR2(),flags);
@@ -256,7 +251,7 @@ double Eval_V(
     {
       res += Eval_V_PHIxPHI(ps,ap,hp);
 #ifdef WITH_T_SPIN
-      if (RunParameters::TwoHDM>0)
+      if (hm.NBosons()>1)
 	{
 	  res += Eval_V_PHIxPHI_IM_INTab(ps,ap,hp);
 	}
@@ -265,24 +260,6 @@ double Eval_V(
       CHECKNAN(res);
 #endif
     }
-    // #ifndef WITH_T_SPIN
-    //   if (flags & F_EVAL_V_NF)
-    //     {
-    //       // the non-fact. box is not yet implemented
-    //       // res += Eval_V_NF_1(ps);
-    // #ifdef DEBUG
-    //     CHECKNAN(res);
-    // #endif
-    //       res += Eval_V_NF_2(ps);
-    // #ifdef DEBUG
-    //     CHECKNAN(res);
-    // #endif
-    //       res += Eval_V_NF_3(ps);
-    // #ifdef DEBUG
-    //     CHECKNAN(res);
-    // #endif
-    //     }
-    // #endif
     return res;
 }
 

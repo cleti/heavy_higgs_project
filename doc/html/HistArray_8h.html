@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -71,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -97,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Histogram class for the computation of differential distributions.  
+<p>Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
@@ -105,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;TH1.h&gt;</code><br/>
 <code>#include &lt;boost/utility.hpp&gt;</code><br/>
 <code>#include &quot;Global.h&quot;</code><br/>
-<code>#include &quot;Lorentz.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>&quot;</code><br/>
 </div>
 <p><a href="HistArray_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -137,6 +135,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:aae5272d576d57c323eb9cf514970d043"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae5272d576d57c323eb9cf514970d043"></a>
+typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><b>OBS</b> )(<a class="el" href="classFV.html">FV</a> const &amp;)</td></tr>
+<tr class="separator:aae5272d576d57c323eb9cf514970d043"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af48fd49facd170f2071036b91e2ad0cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af48fd49facd170f2071036b91e2ad0cf"></a>
 typedef std::vector&lt; <a class="el" href="classHistArray.html">HistArray</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>HAvec</b></td></tr>
 <tr class="separator:af48fd49facd170f2071036b91e2ad0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,23 +149,27 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>cat</b> (std:
 <tr class="separator:a989683c28475ff77e0c9ba11f1ce2ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc539fa8f2e658d5013f8df7a272c33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacc539fa8f2e658d5013f8df7a272c33"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:aacc539fa8f2e658d5013f8df7a272c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute invariant mass of two 4-vectors k1 and k2 <br/></td></tr>
+<tr class="memdesc:aacc539fa8f2e658d5013f8df7a272c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes invariant mass of two 4-vectors k1 and k2. <br/></td></tr>
 <tr class="separator:aacc539fa8f2e658d5013f8df7a272c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5785c86f2a238c7d1cf72e71f6df4d57"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a> (<a class="el" href="classFV.html">FV</a> const &amp;k)</td></tr>
-<tr class="memdesc:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute transverse momentum of a 4-vector k1 <br/></td></tr>
+<tr class="memdesc:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = {k1_{1}^2+k1_{2}^2}. <br/></td></tr>
 <tr class="separator:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae571978ff072d099b4baf69921afd60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae571978ff072d099b4baf69921afd60"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
+<tr class="memdesc:aae571978ff072d099b4baf69921afd60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|. <br/></td></tr>
+<tr class="separator:aae571978ff072d099b4baf69921afd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae677072636551874da62f32601db682e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae677072636551874da62f32601db682e"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a> (<a class="el" href="classFV.html">FV</a> const &amp;k)</td></tr>
-<tr class="memdesc:ae677072636551874da62f32601db682e"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute rapidity from a 4-vector k1 <br/></td></tr>
+<tr class="memdesc:ae677072636551874da62f32601db682e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes rapidity from a 4-vector k1. <br/></td></tr>
 <tr class="separator:ae677072636551874da62f32601db682e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a325229be26684d1beaff261e9e878617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a325229be26684d1beaff261e9e878617"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:a325229be26684d1beaff261e9e878617"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute rapidity difference from two 4-vectors k1 and k2 <br/></td></tr>
+<tr class="memdesc:a325229be26684d1beaff261e9e878617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes rapidity difference from two 4-vectors k1 and k2. <br/></td></tr>
 <tr class="separator:a325229be26684d1beaff261e9e878617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4b7a6c82521f1c4cbf2df34b5e9c1d6"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute momentum direction opening angle form two 4-vectors k1 and k2 <br/></td></tr>
+<tr class="memdesc:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes momentum direction opening angle form two 4-vectors k1 and k2. <br/></td></tr>
 <tr class="separator:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -208,6 +213,10 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>DIST_A_U</b></td></
 <a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9">PT2Distributions</a></td></tr>
 <tr class="memdesc:a35d362b5338e1ae6cc62b7529cd33fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">antitop transverse momentum distributions <br/></td></tr>
 <tr class="separator:a35d362b5338e1ae6cc62b7529cd33fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56123d8a0f81ebfa69695b82993dce20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56123d8a0f81ebfa69695b82993dce20"></a>
+<a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20">PT12Distributions</a></td></tr>
+<tr class="memdesc:a56123d8a0f81ebfa69695b82993dce20"><td class="mdescLeft">&#160;</td><td class="mdescRight">top+antitop transverse momentum distributions <br/></td></tr>
+<tr class="separator:a56123d8a0f81ebfa69695b82993dce20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bdc37a33dfa4dc40aa4c222e47c2fa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bdc37a33dfa4dc40aa4c222e47c2fa1"></a>
 <a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a6bdc37a33dfa4dc40aa4c222e47c2fa1">Y1Distributions</a></td></tr>
 <tr class="memdesc:a6bdc37a33dfa4dc40aa4c222e47c2fa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">top rapidity distributions <br/></td></tr>
@@ -238,7 +247,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>DIST_A_U</b></td></
 <tr class="separator:ab8efd63c40c53cd07c86b729c92119d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Histogram class for the computation of differential distributions. </p>
+<div class="textblock"><p>Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here. </p>
+
+<p>Definition in file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

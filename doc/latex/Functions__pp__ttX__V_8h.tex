@@ -17,9 +17,9 @@ Interface for the evaluation of born level amplitudes and virtual corrections.
 \begin{DoxyCompactItemize}
 \item 
 double \hyperlink{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}{Eval\-\_\-\-B} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const ulong \&flags, unsigned E\-F\-F=1)
-\begin{DoxyCompactList}\small\item\em evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluates the squared born amplitudes for the process $ gg \rightarrow \phi \rightarrow t\bar{t} $ and the interferences with the Q\-C\-D background at the given phase space point. \end{DoxyCompactList}\item 
 double \hyperlink{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}{Eval\-\_\-\-B\-\_\-\-Q\-Q} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm)
-\begin{DoxyCompactList}\small\item\em evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluates the squared born amplitudes for the process $ q\bar{q} \rightarrow \phi \rightarrow t\bar{t} $ and the itnerferences with the Q\-C\-D background at the given phase space point. \end{DoxyCompactList}\item 
 \hypertarget{Functions__pp__ttX__V_8h_a47fa0f39aea915e17ba7cafebb9db267}{double {\bfseries Eval\-\_\-\-B\-\_\-\-Q\-C\-Dx\-Q\-C\-D} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const \hyperlink{structAmplitudePrefactors}{Amplitude\-Prefactors} \&ap, const \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors} \&hp)}\label{Functions__pp__ttX__V_8h_a47fa0f39aea915e17ba7cafebb9db267}
 
 \item 
@@ -33,11 +33,15 @@ double \hyperlink{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}{Ev
 
 \item 
 double \hyperlink{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}{Eval\-\_\-\-V} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const ulong \&flags)
-\begin{DoxyCompactList}\small\item\em evaluate the virtual corrections for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Evaluates the virtual corrections to the process $gg \rightarrow \phi \rightarrow t\bar{t} $ and the itnerferences with the Q\-C\-D background at the given phase space point. This includes the interference of one-\/loop Q\-C\-D amplitudes with L\-O resonant amplitudes as well as that of L\-O Q\-C\-D amplitudes with one-\/loop resonant amplitudes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Interface for the evaluation of born level amplitudes and virtual corrections. 
+
+Definition in file \hyperlink{Functions__pp__ttX__V_8h_source}{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}.
+
+
 
 \subsection{Function Documentation}
 \hypertarget{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-B@{Eval\-\_\-\-B}}
@@ -52,7 +56,7 @@ Interface for the evaluation of born level amplitudes and virtual corrections.
 )}}\label{Functions__pp__ttX__V_8h_ae2834c828566d0b5dcd0215e049399cd}
 
 
-evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt 
+Evaluates the squared born amplitudes for the process $ gg \rightarrow \phi \rightarrow t\bar{t} $ and the interferences with the Q\-C\-D background at the given phase space point. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -68,6 +72,10 @@ evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-
 \begin{DoxySeeAlso}{See Also}
 \hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
 \end{DoxySeeAlso}
+
+
+Definition at line 136 of file Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-cpp.
+
 \hypertarget{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-B\-\_\-\-Q\-Q@{Eval\-\_\-\-B\-\_\-\-Q\-Q}}
 \index{Eval\-\_\-\-B\-\_\-\-Q\-Q@{Eval\-\_\-\-B\-\_\-\-Q\-Q}!Functions_pp_ttX_V.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
 \subsubsection[{Eval\-\_\-\-B\-\_\-\-Q\-Q}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-B\-\_\-\-Q\-Q (
@@ -78,7 +86,7 @@ evaluate the born level amplitudes for the processes gg-\/$>$tt and gg-\/$>$phi-
 )}}\label{Functions__pp__ttX__V_8h_abbd9d191a2451f81de8457275e19b5d9}
 
 
-evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt 
+Evaluates the squared born amplitudes for the process $ q\bar{q} \rightarrow \phi \rightarrow t\bar{t} $ and the itnerferences with the Q\-C\-D background at the given phase space point. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -90,6 +98,10 @@ evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt
 \begin{DoxySeeAlso}{See Also}
 \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
 \end{DoxySeeAlso}
+
+
+Definition at line 193 of file Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-cpp.
+
 \hypertarget{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}!Eval\-\_\-\-V@{Eval\-\_\-\-V}}
 \index{Eval\-\_\-\-V@{Eval\-\_\-\-V}!Functions_pp_ttX_V.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h}}
 \subsubsection[{Eval\-\_\-\-V}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-V (
@@ -101,7 +113,7 @@ evaluate the born level amplitudes for the process qq-\/bar -\/$>$ phi -\/$>$ tt
 )}}\label{Functions__pp__ttX__V_8h_aa44bc8ccfc40b1d6e9412d530a0007b0}
 
 
-evaluate the virtual corrections for the processes gg-\/$>$tt and gg-\/$>$phi-\/$>$tt 
+Evaluates the virtual corrections to the process $gg \rightarrow \phi \rightarrow t\bar{t} $ and the itnerferences with the Q\-C\-D background at the given phase space point. This includes the interference of one-\/loop Q\-C\-D amplitudes with L\-O resonant amplitudes as well as that of L\-O Q\-C\-D amplitudes with one-\/loop resonant amplitudes. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -115,3 +127,7 @@ evaluate the virtual corrections for the processes gg-\/$>$tt and gg-\/$>$phi-\/
 \begin{DoxySeeAlso}{See Also}
 \hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
 \end{DoxySeeAlso}
+
+
+Definition at line 206 of file Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-cpp.
+

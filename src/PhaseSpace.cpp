@@ -6,7 +6,8 @@
 
 
 
-////// class PS_2   ///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2   ///////////////////////////////////////////////////////////////////////////
 // set incoming particle momenta
 void PS_2::set_initial_state(double const& rs)
 {
@@ -26,8 +27,8 @@ void PS_2::set_initial_state(double const& rs)
 }
 void PS_2::swap()
 {
-  std::swap(p[0],p[1]);
-  std::swap(P[0],P[1]);
+  p[0].swap(p[1]);
+  P[0].swap(P[1]);
 }
 void PS_2::print() const
 {
@@ -46,12 +47,17 @@ void PS_2::print() const
 PS_2::~PS_2()
 {
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-////// class PS_2_1 ///////////////////////////////////////////////////////////////////////////////////////
+
+const FV PS_2::nullvec(0);
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2_1 ///////////////////////////////////////////////////////////////////////////
 PS_2_1::PS_2_1(const std::string& nm) : 
   PS_2(nm),
   k(0.0),
+#ifdef WITH_T_SPIN  
   S(0.0),
+#endif
   d_msq(1.0),
   d_child(nullptr),
   d_x   (0.0)
@@ -59,7 +65,9 @@ PS_2_1::PS_2_1(const std::string& nm) :
 PS_2_1::PS_2_1(double const& msq, const std::string& nm) : 
   PS_2(nm),
   k(0.0),
+#ifdef WITH_T_SPIN   
   S(0.0),
+#endif
   d_msq(msq),
   d_child(nullptr),
   d_x   (0.0)
@@ -86,7 +94,9 @@ void PS_2_1::print() const
   std::cout << std::endl << "[FS] -- m1^2 = " << d_msq;
   std::cout << std::endl << "--------------------------------------------------------";
   PRINT_4VEC(k);
+#ifdef WITH_T_SPIN   
   PRINT_4VEC(S);
+#endif
 }
 
 void PS_2_1::FillDistributions(
@@ -97,12 +107,16 @@ void PS_2_1::FillDistributions(
 {
   std::cout << "\n FillDistributions: no distributions in case PS 2->1 !!! \n"; exit(1);
 }
-////// class PS_2_2 ///////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2_2 ///////////////////////////////////////////////////////////////////////////
 PS_2_2::PS_2_2(const std::string& nm) : 
   PS_2(nm),
   k{0.0,0.0},
+#ifdef WITH_T_SPIN  	       
   S{0.0,0.0},
   S_r{0.0,0.0},
+#endif	       
   d_msq{1.0,1.0},
   d_beta{0.0,0.0},
   d_child{nullptr,nullptr},
@@ -112,12 +126,16 @@ PS_2_2::PS_2_2(const std::string& nm) :
   d_t12 (0.0),
   d_x   (0.0),
   d_beta_y(0.0)
-{}
+{
+  //  std::cout << std::endl << " PS_2_2 constructor A " << std::endl; 
+}
 PS_2_2::PS_2_2(double const& m1sq, double const& m2sq,const std::string& nm) : 
   PS_2(nm),
   k{0.0,0.0},
+#ifdef WITH_T_SPIN  							
   S{0.0,0.0},
   S_r{0.0,0.0},
+#endif							
   d_msq{m1sq,m2sq},
   d_beta{0.0,0.0},
   d_child{nullptr,nullptr},
@@ -127,7 +145,9 @@ PS_2_2::PS_2_2(double const& m1sq, double const& m2sq,const std::string& nm) :
   d_t12 (0.0),
   d_x   (0.0),
   d_beta_y(0.0)
-{}
+{
+  //  std::cout << std::endl << " PS_2_2 constructor B " << std::endl; 
+}
 PS_2_2::~PS_2_2()
 {
   // remove possible references to this instance
@@ -244,7 +264,6 @@ int PS_2_2::set(double const& rs,
   k[1][2] = -P*sy*sphi;
   k[1][3] = -P*y;
 
-
   // copy new values to class member variables
   d_rs   = rs;
   d_beta[0]= P/E1;
@@ -301,8 +320,10 @@ void PS_2_2::print() const
   std::cout << std::endl << "--------------------------------------------------------";
   PRINT_4VEC(k[0]);
   PRINT_4VEC(k[1]);
+#ifdef WITH_T_SPIN
   PRINT_4VEC(S[0]);
   PRINT_4VEC(S[1]);
+#endif
 }
 void PS_2_2::FillDistributions(
 			       std::vector<HistArray*> & dist,
@@ -321,50 +342,24 @@ void PS_2_2::FillDistributions(
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
 
-  // if (id==H_NLO_R)
-  //   {
-  //     PRINT_4VEC(P[0]);
-  //     PRINT_4VEC(P[1]);
-  //     PRINT_4VEC(K1);
-  //     PRINT_4VEC(K2);
-  //     exit(1);
-  //   }
-
-  // PRINT(dist[0]->IsActive(0));
-  // PRINT(dist[0]->IsActive(1));
-
-  // PRINT(dist[1]->IsActive(0));
-  // PRINT(dist[1]->IsActive(1));
-
-  // PRINT(dist[3]->IsActive(0));
-  // PRINT(dist[3]->IsActive(1));
-
-  // PRINT(dist[4]->IsActive(0));
-  // PRINT(dist[4]->IsActive(1));
-
-  // PRINT(dist[6]->IsActive(0));
-  // PRINT(dist[6]->IsActive(1));
-  
-  // exit(1);
-  // tt distributions
-
-  
   dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
   dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  dist[3]->FillOne(id,obs_PT(K1+K2)*mScale ,wgt);
+  // dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
   // need lab frame vectors for these
   dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
   dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////
 PS_2_3::PS_2_3(const std::string& nm) : 
   PS_2(nm),
   k{0.0,0.0,0.0},
+#ifdef WITH_T_SPIN  									    
   S{0.0,0.0,0.0},
   S_r{0.0,0.0,0.0},
+#endif									    
   d_msq{1.0,1.0,0.0},
   d_beta{0.0,0.0,0.0}, 
   d_child{nullptr,nullptr,nullptr},
@@ -376,8 +371,10 @@ PS_2_3::PS_2_3(const std::string& nm) :
 PS_2_3::PS_2_3(double const& m1sq, double const& m2sq, double const& m3sq, const std::string& nm) : 
   PS_2(nm),
   k{0.0,0.0,0.0},
+#ifdef WITH_T_SPIN  									    
   S{0.0,0.0,0.0},
   S_r{0.0,0.0,0.0},
+#endif									    
   d_msq{m1sq,m2sq,m3sq},
   d_beta{0.0,0.0,0.0}, 
   d_child{nullptr,nullptr,nullptr},
@@ -413,9 +410,11 @@ int PS_2_3::boost_to_parent()
   boost.apply(k[0]);
   boost.apply(k[1]);
   boost.apply(k[2]);
+#ifdef WITH_T_SPIN  
   boost.apply(S[0]);
   boost.apply(S[1]);
   boost.apply(S[2]);
+#endif 
   return 1;
 }
 
@@ -491,9 +490,11 @@ void PS_2_3::print() const
   PRINT_4VEC(k[0]);
   PRINT_4VEC(k[1]);
   PRINT_4VEC(k[2]);
+#ifdef WITH_T_SPIN    
   PRINT_4VEC(S[0]);
   PRINT_4VEC(S[1]);
   PRINT_4VEC(S[2]);
+#endif
 }
 
 void PS_2_3::FillDistributions(
@@ -516,7 +517,7 @@ void PS_2_3::FillDistributions(
   dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
   dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  dist[3]->FillOne(id,obs_PT(K1+K2)*mScale ,wgt);
+  dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
   // need lab frame vectors for these
   dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);

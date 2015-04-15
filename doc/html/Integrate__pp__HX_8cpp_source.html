@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -39,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -127,232 +126,244 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span>&amp; int_flags = g_options.int_flags;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">using</span> RunParameters::mScale;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">using</span> RunParameters::mScale2;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="comment">//using RunParameters::mt2;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">using</span> RunParameters::mb;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">using</span> RunParameters::mb2;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="comment">// init ////////////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"></span>  <span class="comment">// parse arguments and initialize input parameters</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  parse_arguments(argc,argv,g_options);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="comment">// create identifier from process id and timestamp</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  stringstream run_id;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  run_id &lt;&lt; <span class="stringliteral">&quot;RUN_&quot;</span> &lt;&lt; time(0) &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt; gettid();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="comment">// create an outpufile</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  ofstream log_file;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">if</span> (g_options.logfile) log_file.open(<span class="keywordtype">string</span>(<span class="stringliteral">&quot;results/integration_results_&quot;</span>)+=run_id.str());</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="comment">// the teestream has problems when the file is not opened, so just dump to /dev/null</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keywordflow">else</span> log_file.open(<span class="stringliteral">&quot;/dev/null&quot;</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="comment">// create teestream object to tee output to std::couT and file</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <a class="code" href="classteestream.html">teestream</a> couT(std::cout,log_file);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  PRINTS(couT,run_id.str());</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="comment">// init external libraries</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  qlinit_();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#ifdef WITH_NON_FACT_DIAGRAMS</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span>  ltini();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="comment">// input parameters /////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="comment">// this structure is handed down to the integrand function</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="comment">// contains hadronic c.m.e., pointer to distributions, pointer to PDFs</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <a class="code" href="classintegrand__par.html">integrand_par</a> ip;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  ip.s_hadr        = pow((<span class="keywordtype">double</span>)g_options.cme*1000.0,2)/mScale2;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  ip.collect_dist  = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  ip.pdf           = LHAPDF::mkPDF(<span class="stringliteral">&quot;CT10nlo&quot;</span>, 0);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="comment">// no distributions needed for pp-&gt;HX</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  PRINTS(couT,sqrt(ip.s_hadr)*mScale);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// parameters for VEGAS integration routine</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <a class="code" href="classvegas__par.html">vegas_par</a> vp;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  vp.calls      = g_options.n_calls;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  vp.verbose    = g_options.verb_level;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  PRINTS(couT,vp.calls);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  { <span class="comment">// set up Higgs boson parameters</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">using namespace </span>HiggsBosons;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    SetPhi1(g_options.mH,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        0.0,<span class="comment">//g_options.GammaH,</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        1.0,<span class="comment">//g_options.At,//1.785137274,</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        0.0,<span class="comment">//g_options.Bt,</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        1.0,<span class="comment">//g_options.Ab,//-.1677099516,</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        0.0 <span class="comment">//g_options.Bb</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        );</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    PRINTS(couT,Vh*mScale);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// PRINTS(couT,M_1*mScale);</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    PRINTS(couT,G_1*mScale);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    PRINTS(couT,At_1*Vh);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    PRINTS(couT,Bt_1*Vh);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    PRINTS(couT,Ab_1*Vh);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    PRINTS(couT,Bb_1*Vh);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    PRINTS(couT,FH_eff_1/mScale);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    PRINTS(couT,FA_eff_1/mScale);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  { <span class="comment">// set up run parameters</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">using namespace </span>RunParameters;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// set scales -&gt; will be done in the loop below</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">// one or two Higgs bosons?</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    TwoHDM = 0;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    PRINTS(couT,mt*mScale);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    PRINTS(couT,AlphaS);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    PRINTS(couT,MUR*mScale);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    PRINTS(couT,MUF*mScale);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  { <span class="comment">// set technical cuts on soft/collinear 2-&gt;3 phase space regions</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">using namespace </span>Cuts;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    COLL_CUT = 1.0-pow(10.0,-g_options.tech_cut);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    SOFT_CUT = pow(10.0,-g_options.tech_cut);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    PRINTS(couT,SOFT_CUT);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    PRINTS(couT,COLL_CUT);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <a class="code" href="classIntegrator.html">Integrator</a> INT(cout);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// Liebe Gudrun, liebe Anna,</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// ich hoffe ihr hattet schöne Ostertage. Meine Brüder und ich waren jetzt auch seit längerer Zeit mal wieder alle zusammen in Römerberg und haben da ein schönes Wochenende verbracht.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// Meine Tage in Aachen sind jetzt tatsächlich gezählt, ich bin nur noch im April vertraglich an die Uni dort gebunden und werden dann Anfang Mai meinen Umzug nach Weinheim komplettieren. Ich hoffe, dass ich auch bis dahin meine Dissertation fertig habe und abgeben kann und dann nur noch einmal zur Verteidigung nach Aachen muss. In Weinheim habe ich ja bereits eine Wohnung zusammen mit meiner Freundin, die dort in der Nähe ihr Referendariat macht, und ich werde dann auch in der Gegend auch Jobsuche gehen. Da ich von der Uni und der Grundlagenforschung nun genug habe werde ich auch mein Glück in der Privatwirtschaft versuchen.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">using</span> RunParameters::mScale;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keyword">using</span> RunParameters::mScale2;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">//using RunParameters::mt2;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">using</span> RunParameters::mb;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">using</span> RunParameters::mb2;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// init ////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span>  <span class="comment">// parse arguments and initialize input parameters</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  parse_arguments(argc,argv,g_options);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="comment">// create identifier from process id and timestamp</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  stringstream run_id;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  run_id &lt;&lt; <span class="stringliteral">&quot;RUN_&quot;</span> &lt;&lt; time(0) &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt; gettid();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="comment">// create an outpufile</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  ofstream log_file;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">if</span> (g_options.logfile) log_file.open(<span class="keywordtype">string</span>(<span class="stringliteral">&quot;results/integration_results_&quot;</span>)+=run_id.str());</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="comment">// the teestream has problems when the file is not opened, so just dump to /dev/null</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordflow">else</span> log_file.open(<span class="stringliteral">&quot;/dev/null&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="comment">// create teestream object to tee output to std::couT and file</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <a class="code" href="classteestream.html">teestream</a> couT(std::cout,log_file);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  PRINTS(couT,run_id.str());</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="comment">// init external libraries</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  qlinit_();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#ifdef WITH_NON_FACT_DIAGRAMS</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span>  ltini();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="comment">// input parameters /////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="comment">// this structure is handed down to the integrand function</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="comment">// contains hadronic c.m.e., pointer to distributions, pointer to PDFs</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <a class="code" href="classintegrand__par.html">integrand_par</a> ip;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  ip.<a class="code" href="classintegrand__par.html#a02a52a8cc95edeadf423f181936617d0">s_hadr</a>        = pow((<span class="keywordtype">double</span>)g_options.cme*1000.0,2)/mScale2;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  ip.<a class="code" href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">collect_dist</a>  = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  ip.<a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a>           = LHAPDF::mkPDF(<span class="stringliteral">&quot;CT10nlo&quot;</span>, 0);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// no distributions needed for pp-&gt;HX</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  PRINTS(couT,sqrt(ip.<a class="code" href="classintegrand__par.html#a02a52a8cc95edeadf423f181936617d0">s_hadr</a>)*mScale);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="comment">// parameters for VEGAS integration routine</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <a class="code" href="classvegas__par.html">vegas_par</a> vp;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  vp.calls      = g_options.n_calls;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  vp.verbose    = g_options.verb_level;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  PRINTS(couT,vp.calls);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  { <span class="comment">// set up Higgs boson parameters</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">using namespace </span>HiggsBosons;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    SetPhi1(g_options.mH,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        0.0,<span class="comment">//g_options.GammaH,</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        1.0,<span class="comment">//g_options.At,//1.785137274,</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        0.0,<span class="comment">//g_options.Bt,</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        1.0,<span class="comment">//g_options.Ab,//-.1677099516,</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        0.0 <span class="comment">//g_options.Bb</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        );</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    PRINTS(couT,Vh*mScale);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">// PRINTS(couT,M_1*mScale);</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    PRINTS(couT,G_1*mScale);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    PRINTS(couT,At_1*Vh);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    PRINTS(couT,Bt_1*Vh);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    PRINTS(couT,Ab_1*Vh);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    PRINTS(couT,Bb_1*Vh);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    PRINTS(couT,FH_eff_1/mScale);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    PRINTS(couT,FA_eff_1/mScale);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  { <span class="comment">// set up run parameters</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keyword">using namespace </span>RunParameters;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">// set scales -&gt; will be done in the loop below</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">// one or two Higgs bosons?</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    TwoHDM = 0;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    PRINTS(couT,mt*mScale);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    PRINTS(couT,AlphaS);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    PRINTS(couT,MUR*mScale);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    PRINTS(couT,MUF*mScale);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  { <span class="comment">// set technical cuts on soft/collinear 2-&gt;3 phase space regions</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">using namespace </span>Cuts;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    COLL_CUT = 1.0-pow(10.0,-g_options.tech_cut);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    SOFT_CUT = pow(10.0,-g_options.tech_cut);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    PRINTS(couT,SOFT_CUT);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    PRINTS(couT,COLL_CUT);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  }</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  <a class="code" href="classIntegral.html">Integral</a> Int_2_1(2,IntLimits::Int_lo_2_1_pdf_x,IntLimits::Int_up_2_1_pdf_x);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  Int_2_1.SetIntegrand(&amp;Integrand_2_1_pdf);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="comment">// integral over integrated dipoles </span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <a class="code" href="classIntegral.html">Integral</a> Int_2_2(3,IntLimits::Int_lo_2_2_pdf,IntLimits::Int_up_2_2_pdf);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  Int_2_2.SetIntegrand(&amp;Integrand_2_2_pdf);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="comment">// mass values to evaluate in main loop</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  vector&lt;double&gt; M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <a class="code" href="classIntegrator.html">Integrator</a> INT(cout);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  <a class="code" href="classIntegral.html">Integral</a> Int_2_1(2,IntLimits::Int_lo_2_1_pdf_x,IntLimits::Int_up_2_1_pdf_x);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  Int_2_1.SetIntegrand(&amp;Integrand_2_1_pdf);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="comment">// integral over integrated dipoles </span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <a class="code" href="classIntegral.html">Integral</a> Int_2_2(3,IntLimits::Int_lo_2_2_pdf,IntLimits::Int_up_2_2_pdf);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  Int_2_2.SetIntegrand(&amp;Integrand_2_2_pdf);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <span class="comment">// write mass values to log-file in C-array format</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;=====================================================&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;double vals_mH[] = {&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> m = M_values.cbegin(); m != M_values.cend(); ++m)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      log_file &lt;&lt; *m;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      <span class="keywordflow">if</span> (m != --M_values.cend()) log_file &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      log_file &lt;&lt; endl;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;};\n\n&quot;</span>;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 000 1)) log_file &lt;&lt; <span class="stringliteral">&quot; [LO] &quot;</span>;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 111 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [NLO] &quot;</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 001 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [gg,V] &quot;</span>;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 010 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [gg,R] &quot;</span>;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 100 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [qq] &quot;</span>;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 000 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [qg] &quot;</span>;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;\n MU = &quot;</span> &lt;&lt; 0.5*g_options.ren_scale &lt;&lt; <span class="stringliteral">&quot;* mH&quot;</span>;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span>;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;#define XSEC(I)  vals_Xsection(I*2+0)\n&quot;</span>; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;#define XERR(I)  vals_Xsection(I*2+1)\n\n&quot;</span>;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="comment">// write cross-section values and errors to log-file in C-array format</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;//// result [pb] , error [pb] ////&quot;</span>;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;double vals_Xsection[] = {&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="comment">// second loop. now calculate the cross-section to each mass value</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> m = M_values.cbegin(); m != M_values.cend(); ++m)</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      <span class="keyword">using namespace </span>HiggsBosons;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; MH = *m; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;      HiggsBosons::SetMPhi1(MH); <span class="comment">// have to reset mass in every iteration</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span>      <span class="keywordtype">double</span> MU = 0.5*MH/mScale*g_options.ren_scale;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      RunParameters::SetAlphaS(ip.pdf-&gt;alphasQ(MU*mScale));</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      RunParameters::SetMUR(MU);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      RunParameters::SetMUF(MU); <span class="comment">// have to reset scales in every iteration</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"></span>      <span class="comment">// set b-quark MS-bar mass at scale mu [GeV] (O(AlphaS^1)</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      <span class="comment">// running mass with 5 active flavours, for 6 flavours change exponent to 4.0/7.0)</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      <span class="comment">// reference value mb(mb) = 4.213 GeV</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      mb     = 4.213/mScale*pow(ip.pdf-&gt;alphasQ(MU*mScale)/ip.pdf-&gt;alphasQ(4.213),12.0/23.0);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      mb2    = pow(mb,2);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      <span class="keywordtype">double</span> sigma_tot = 0.0;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      <span class="keywordtype">double</span> err_tot   = 0.0;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="comment">// the Higgs mass squared in units of mScale !!!</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;      <span class="keywordtype">double</span> MH2 = pow(MH/mScale,2);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;      <span class="comment">// set the scaling factor to rescale NLO contributions obtained with eff. ggH vertex</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;      HiggsBosons::set_F_ggH(MH2);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;      <span class="keywordflow">if</span> (g_options.dist)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;      ip.K = (std::norm(F_ggH1_s)+std::norm(F_ggH1_p))/(16.0*MH2*MH2*(pow(FH_eff_1,2)+4.0*pow(FA_eff_1,2)));</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      <span class="keywordflow">else</span> ip.K = 1.0;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;      <span class="comment">// INTEGRATION BLOCK 00011  [LO and NLO V (GG)]</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment"></span>      <span class="keywordflow">if</span> ((ip.eval_flags = (int_flags &amp; BOOST_BINARY(0 001 1))))</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      ip.SetPS(<span class="keyword">new</span> <a class="code" href="classPS__2__1.html">PS_2_1</a>(MH2,<span class="stringliteral">&quot;pp-&gt;H&quot;</span>));</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;      <span class="comment">// PS_2_1 needs to be set once only when MH2 changes</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      ((<a class="code" href="classPS__2__1.html">PS_2_1</a>*)ip.ps)-&gt;set();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;      <span class="comment">// adjust # calls</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      vp.calls  = g_options.n_calls/10;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      INT.Integrate(Int_2_1,ip,vp);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      sigma_tot += vp.result;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      err_tot   += vp.error;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      <span class="comment">// INTEGRATION BLOCK 11100  [NLO R (GG,QQ,QG)]</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span>      <span class="keywordflow">if</span> ((ip.eval_flags = (int_flags &amp; BOOST_BINARY(1 110 0))))</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <span class="comment">// k1 -&gt; Higgsboson, k2 -&gt; massless gluon</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      ip.SetPS(<span class="keyword">new</span> <a class="code" href="classPS__2__2.html">PS_2_2</a>(MH2,0.0,<span class="stringliteral">&quot;pp-&gt;Hx&quot;</span>));</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      <span class="comment">// adjust # calls</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      vp.calls  = g_options.n_calls/10;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      INT.Integrate(Int_2_2,ip,vp);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      sigma_tot += vp.result;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      err_tot   += vp.error;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }      </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="comment">// mass values to evaluate in main loop</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  vector&lt;double&gt; M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="comment">// write mass values to log-file in C-array format</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;=====================================================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;double vals_mH[] = {&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> m = M_values.cbegin(); m != M_values.cend(); ++m)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      log_file &lt;&lt; *m;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      <span class="keywordflow">if</span> (m != --M_values.cend()) log_file &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      log_file &lt;&lt; endl;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;};\n\n&quot;</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 000 1)) log_file &lt;&lt; <span class="stringliteral">&quot; [LO] &quot;</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 111 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [NLO] &quot;</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 001 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [gg,V] &quot;</span>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 010 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [gg,R] &quot;</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 100 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [qq] &quot;</span>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 000 0)) log_file &lt;&lt; <span class="stringliteral">&quot; [qg] &quot;</span>;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;\n MU = &quot;</span> &lt;&lt; 0.5*g_options.ren_scale &lt;&lt; <span class="stringliteral">&quot;* mH&quot;</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;#define XSEC(I)  vals_Xsection(I*2+0)\n&quot;</span>; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;#define XERR(I)  vals_Xsection(I*2+1)\n\n&quot;</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="comment">// write cross-section values and errors to log-file in C-array format</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;//// result [pb] , error [pb] ////&quot;</span>;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  log_file &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;double vals_Xsection[] = {&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="comment">// second loop. now calculate the cross-section to each mass value</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> m = M_values.cbegin(); m != M_values.cend(); ++m)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      <span class="keyword">using namespace </span>HiggsBosons;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;      </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; MH = *m; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      HiggsBosons::SetMPhi1(MH); <span class="comment">// have to reset mass in every iteration</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"></span>      <span class="keywordtype">double</span> MU = 0.5*MH/mScale*g_options.ren_scale;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      RunParameters::SetAlphaS(ip.<a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a>-&gt;alphasQ(MU*mScale));</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      RunParameters::SetMUR(MU);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      RunParameters::SetMUF(MU); <span class="comment">// have to reset scales in every iteration</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"></span>      <span class="comment">// set b-quark MS-bar mass at scale mu [GeV] (O(AlphaS^1)</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      <span class="comment">// running mass with 5 active flavours, for 6 flavours change exponent to 4.0/7.0)</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      <span class="comment">// reference value mb(mb) = 4.213 GeV</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      mb     = 4.213/mScale*pow(ip.<a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a>-&gt;alphasQ(MU*mScale)/ip.<a class="code" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a>-&gt;alphasQ(4.213),12.0/23.0);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      mb2    = pow(mb,2);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;      <span class="keywordtype">double</span> sigma_tot = 0.0;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;      <span class="keywordtype">double</span> err_tot   = 0.0;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;      <span class="comment">// the Higgs mass squared in units of mScale !!!</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;      <span class="keywordtype">double</span> MH2 = pow(MH/mScale,2);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;      <span class="comment">// set the scaling factor to rescale NLO contributions obtained with eff. ggH vertex</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      HiggsBosons::set_F_ggH(MH2);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;      <span class="keywordflow">if</span> (g_options.dist)</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      ip.<a class="code" href="classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3">K</a> = (std::norm(F_ggH1_s)+std::norm(F_ggH1_p))/(16.0*MH2*MH2*(pow(FH_eff_1,2)+4.0*pow(FA_eff_1,2)));</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;      <span class="keywordflow">else</span> ip.<a class="code" href="classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3">K</a> = 1.0;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;      <span class="comment">// INTEGRATION BLOCK 00011  [LO and NLO V (GG)]</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment"></span>      <span class="keywordflow">if</span> ((ip.<a class="code" href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">eval_flags</a> = (int_flags &amp; BOOST_BINARY(0 001 1))))</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      ip.<a class="code" href="classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4">SetPS</a>(<span class="keyword">new</span> <a class="code" href="classPS__2__1.html">PS_2_1</a>(MH2,<span class="stringliteral">&quot;pp-&gt;H&quot;</span>));</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      <span class="comment">// PS_2_1 needs to be set once only when MH2 changes</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      ((<a class="code" href="classPS__2__1.html">PS_2_1</a>*)ip.<a class="code" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a>)-&gt;set();</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      <span class="comment">// adjust # calls</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;      vp.calls  = g_options.n_calls/10;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;      INT.Integrate(Int_2_1,ip,vp);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      sigma_tot += vp.result;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      err_tot   += vp.error;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="comment">// INTEGRATION BLOCK 11100  [NLO R (GG,QQ,QG)]</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment"></span>      <span class="keywordflow">if</span> ((ip.<a class="code" href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">eval_flags</a> = (int_flags &amp; BOOST_BINARY(1 110 0))))</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="comment">// k1 -&gt; Higgsboson, k2 -&gt; massless gluon</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      ip.<a class="code" href="classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4">SetPS</a>(<span class="keyword">new</span> <a class="code" href="classPS__2__2.html">PS_2_2</a>(MH2,0.0,<span class="stringliteral">&quot;pp-&gt;Hx&quot;</span>));</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      <span class="comment">// adjust # calls</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;      vp.calls  = g_options.n_calls/10;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(sigma_tot/err_tot)+2;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      cout &lt;&lt; endl;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot;=== total cross section ============================&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; sigma = &quot;</span> &lt;&lt; std::setprecision(prec) &lt;&lt; sigma_tot &lt;&lt; <span class="stringliteral">&quot; +- &quot;</span> &lt;&lt; std::setprecision(2) &lt;&lt; sqrt(err_tot) &lt;&lt; <span class="stringliteral">&quot; pb &quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 000 1)) cout &lt;&lt; <span class="stringliteral">&quot; [LO] &quot;</span>;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 111 0)) cout &lt;&lt; <span class="stringliteral">&quot; [NLO] &quot;</span>;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 001 0)) cout &lt;&lt; <span class="stringliteral">&quot; [gg,V] &quot;</span>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 010 0)) cout &lt;&lt; <span class="stringliteral">&quot; [gg,R] &quot;</span>;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 100 0)) cout &lt;&lt; <span class="stringliteral">&quot; [qq] &quot;</span>;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 000 0)) cout &lt;&lt; <span class="stringliteral">&quot; [qg] &quot;</span>;       </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      cout &lt;&lt; std::setprecision(prec)  &lt;&lt; endl;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mH [GeV] = &quot;</span> &lt;&lt; sqrt(M2_1)*mScale  &lt;&lt; endl;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mu [GeV] = &quot;</span> &lt;&lt; MU*mScale &lt;&lt; endl;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mb [GeV] = &quot;</span> &lt;&lt; mb*mScale &lt;&lt; endl;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; AlphaS   = &quot;</span> &lt;&lt; RunParameters::AlphaS &lt;&lt; endl;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; F_s      = &quot;</span> &lt;&lt; HiggsBosons::F_ggH1_s &lt;&lt; endl;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; F_p      = &quot;</span> &lt;&lt; HiggsBosons::F_ggH1_p &lt;&lt; endl;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; fH, fA   = &quot;</span> &lt;&lt; HiggsBosons::FH_eff_1 &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; HiggsBosons::FA_eff_1 &lt;&lt; endl;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; K        = &quot;</span> &lt;&lt; ip.K &lt;&lt; endl;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot;====================================================&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      log_file &lt;&lt; sigma_tot &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; sqrt(err_tot);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      <span class="keywordflow">if</span> (m != --M_values.cend()) log_file &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      log_file &lt;&lt; endl;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;};&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      INT.Integrate(Int_2_2,ip,vp);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      sigma_tot += vp.result;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      err_tot   += vp.error;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }      </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="keywordtype">int</span> prec = (int)log10(sigma_tot/err_tot)+2;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      cout &lt;&lt; endl;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot;=== total cross section ============================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; sigma = &quot;</span> &lt;&lt; std::setprecision(prec) &lt;&lt; sigma_tot &lt;&lt; <span class="stringliteral">&quot; +- &quot;</span> &lt;&lt; std::setprecision(2) &lt;&lt; sqrt(err_tot) &lt;&lt; <span class="stringliteral">&quot; pb &quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 000 1)) cout &lt;&lt; <span class="stringliteral">&quot; [LO] &quot;</span>;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 111 0)) cout &lt;&lt; <span class="stringliteral">&quot; [NLO] &quot;</span>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 001 0)) cout &lt;&lt; <span class="stringliteral">&quot; [gg,V] &quot;</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 010 0)) cout &lt;&lt; <span class="stringliteral">&quot; [gg,R] &quot;</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(0 100 0)) cout &lt;&lt; <span class="stringliteral">&quot; [qq] &quot;</span>;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      <span class="keywordflow">if</span> (int_flags &amp; BOOST_BINARY(1 000 0)) cout &lt;&lt; <span class="stringliteral">&quot; [qg] &quot;</span>;       </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      cout &lt;&lt; std::setprecision(prec)  &lt;&lt; endl;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mH [GeV] = &quot;</span> &lt;&lt; sqrt(M2_1)*mScale  &lt;&lt; endl;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mu [GeV] = &quot;</span> &lt;&lt; MU*mScale &lt;&lt; endl;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; mb [GeV] = &quot;</span> &lt;&lt; mb*mScale &lt;&lt; endl;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; AlphaS   = &quot;</span> &lt;&lt; RunParameters::AlphaS &lt;&lt; endl;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; F_s      = &quot;</span> &lt;&lt; HiggsBosons::F_ggH1_s &lt;&lt; endl;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; F_p      = &quot;</span> &lt;&lt; HiggsBosons::F_ggH1_p &lt;&lt; endl;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; fH, fA   = &quot;</span> &lt;&lt; HiggsBosons::FH_eff_1 &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; HiggsBosons::FA_eff_1 &lt;&lt; endl;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot; K        = &quot;</span> &lt;&lt; ip.<a class="code" href="classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3">K</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      cout &lt;&lt; <span class="stringliteral">&quot;====================================================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      log_file &lt;&lt; sigma_tot &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; sqrt(err_tot);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      <span class="keywordflow">if</span> (m != --M_values.cend()) log_file &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      log_file &lt;&lt; endl;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;  log_file &lt;&lt; <span class="stringliteral">&quot;};&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="ttc" id="classIntegrator_html"><div class="ttname"><a href="classIntegrator.html">Integrator</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00155">Integrator.h:155</a></div></div>
-<div class="ttc" id="classintegrand__par_html"><div class="ttname"><a href="classintegrand__par.html">integrand_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00129">Integrator.h:129</a></div></div>
-<div class="ttc" id="classPS__2__1_html"><div class="ttname"><a href="classPS__2__1.html">PS_2_1</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00067">PhaseSpace.h:67</a></div></div>
-<div class="ttc" id="classvegas__par_html"><div class="ttname"><a href="classvegas__par.html">vegas_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00030">Integrator.h:30</a></div></div>
-<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00098">PhaseSpace.h:98</a></div></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="ttc" id="classintegrand__par_html_a02a52a8cc95edeadf423f181936617d0"><div class="ttname"><a href="classintegrand__par.html#a02a52a8cc95edeadf423f181936617d0">integrand_par::s_hadr</a></div><div class="ttdeci">double s_hadr</div><div class="ttdoc">hadronic c.m.e. </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00161">Integrator.h:161</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a9c52a4045c079f7314cbc8a876f98238"><div class="ttname"><a href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">integrand_par::ps</a></div><div class="ttdeci">PS_2 * ps</div><div class="ttdoc">pointer to phase space </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00163">Integrator.h:163</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a082dc10e0e72baedade3f46cfffa4c15"><div class="ttname"><a href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">integrand_par::pdf</a></div><div class="ttdeci">LHAPDF::PDF * pdf</div><div class="ttdoc">pointer to the parton distribution function </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00165">Integrator.h:165</a></div></div>
+<div class="ttc" id="classIntegrator_html"><div class="ttname"><a href="classIntegrator.html">Integrator</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00195">Integrator.h:195</a></div></div>
+<div class="ttc" id="classintegrand__par_html_adb701c9d21e3b412032dca85ebcde090"><div class="ttname"><a href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">integrand_par::eval_flags</a></div><div class="ttdeci">ulong eval_flags</div><div class="ttdoc">evaluation flags </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00177">Integrator.h:177</a></div></div>
+<div class="ttc" id="classintegrand__par_html"><div class="ttname"><a href="classintegrand__par.html">integrand_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00155">Integrator.h:155</a></div></div>
+<div class="ttc" id="classPS__2__1_html"><div class="ttname"><a href="classPS__2__1.html">PS_2_1</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00099">PhaseSpace.h:99</a></div></div>
+<div class="ttc" id="classvegas__par_html"><div class="ttname"><a href="classvegas__par.html">vegas_par</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00035">Integrator.h:35</a></div></div>
+<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00137">PhaseSpace.h:137</a></div></div>
+<div class="ttc" id="classintegrand__par_html_afae7075055e10bd188d53fe2e1edd1e3"><div class="ttname"><a href="classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3">integrand_par::K</a></div><div class="ttdeci">double K</div><div class="ttdoc">rescaling factor |full ggH|^2 / |eff. ggH|^2 </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00179">Integrator.h:179</a></div></div>
 <div class="ttc" id="classteestream_html"><div class="ttname"><a href="classteestream.html">teestream</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00244">Global.h:244</a></div></div>
-<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00054">Integrator.h:54</a></div></div>
+<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00064">Integrator.h:64</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a2227f484c28e54b55769b2fe6911a782"><div class="ttname"><a href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">integrand_par::collect_dist</a></div><div class="ttdeci">bool collect_dist</div><div class="ttdoc">switch to enable distribution collection </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00171">Integrator.h:171</a></div></div>
+<div class="ttc" id="classintegrand__par_html_a18a461b09009de0b9f8c6139994c52c4"><div class="ttname"><a href="classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4">integrand_par::SetPS</a></div><div class="ttdeci">void SetPS(PS_2 *psn)</div><div class="ttdoc">set ps pointer, the former PS instance will be deleted! </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00188">Integrator.h:188</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

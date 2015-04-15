@@ -98,8 +98,7 @@ Inheritance diagram for P\-S\-\_\-2\-\_\-3\-:\begin{figure}[H]
 \hypertarget{classPS__2__3_ad6c103ccf419ec6f416c54866d305fd0}{int {\bfseries boost\-\_\-to\-\_\-parent} ()}\label{classPS__2__3_ad6c103ccf419ec6f416c54866d305fd0}
 
 \item 
-\hypertarget{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}{int {\bfseries set} (double const \&rs, double const \&y\-\_\-cm, double const \&phi\-\_\-cm, double const \&M12, double const \&y\-\_\-12, double const \&phi\-\_\-12)}\label{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}
-
+int \hyperlink{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}{set} (double const \&rs, double const \&y\-\_\-cm, double const \&phi\-\_\-cm, double const \&M12, double const \&y\-\_\-12, double const \&phi\-\_\-12)
 \item 
 \hypertarget{classPS__2__3_a2da075a0d45b58fd9b4b50f6185a7368}{int {\bfseries set\-\_\-child} (int i, \hyperlink{classPS__2}{P\-S\-\_\-2} $\ast$child)}\label{classPS__2__3_a2da075a0d45b58fd9b4b50f6185a7368}
 
@@ -110,7 +109,7 @@ Inheritance diagram for P\-S\-\_\-2\-\_\-3\-:\begin{figure}[H]
 \hypertarget{classPS__2__3_a98b7559fbc72002c2dd6dadb1db9be0b}{void {\bfseries print} () const }\label{classPS__2__3_a98b7559fbc72002c2dd6dadb1db9be0b}
 
 \item 
-\hypertarget{classPS__2__3_a13e50836a67fad996eb544614f569a60}{void {\bfseries Fill\-Distributions} (std\-::vector$<$ \hyperlink{classHistArray}{Hist\-Array} $\ast$ $>$ \&dist, int id, double const \&wgt) const }\label{classPS__2__3_a13e50836a67fad996eb544614f569a60}
+\hypertarget{classPS__2__3_a26a7c2e7cc989094314149b770ba5d38}{void {\bfseries Fill\-Distributions} (std\-::vector$<$ \hyperlink{classHistArray}{Hist\-Array} $\ast$ $>$ \&dist, int id, double const \&wgt, double const \&m\-Scale=1.\-0) const }\label{classPS__2__3_a26a7c2e7cc989094314149b770ba5d38}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
@@ -118,6 +117,44 @@ Inheritance diagram for P\-S\-\_\-2\-\_\-3\-:\begin{figure}[H]
 
 \subsection{Detailed Description}
 Phase space for 2-\/$>$3 scattering. 
+
+Definition at line 237 of file Phase\-Space.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}{\index{P\-S\-\_\-2\-\_\-3@{P\-S\-\_\-2\-\_\-3}!set@{set}}
+\index{set@{set}!PS_2_3@{P\-S\-\_\-2\-\_\-3}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}int P\-S\-\_\-2\-\_\-3\-::set (
+\begin{DoxyParamCaption}
+\item[{double const \&}]{rs, }
+\item[{double const \&}]{y\-\_\-cm, }
+\item[{double const \&}]{phi\-\_\-cm, }
+\item[{double const \&}]{M12, }
+\item[{double const \&}]{y\-\_\-12, }
+\item[{double const \&}]{phi\-\_\-12}
+\end{DoxyParamCaption}
+)}}\label{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}
+Compute new phase space setting\-: The 2-\/$>$3 phase space is split into p1 p2 -\/$>$ Q k3 and Q -\/$>$ k1 k2. y\-\_\-cm is the angle of k3 in the p1 + p2 c.\-m.\-f., the mass of the intermediate state Q is M12 = sqrt((k1+k2)$^\wedge$2), the angles y\-\_\-12 and phi\-\_\-12 define the direction of k1' and k2' defined in the Q-\/restframe. 
+\begin{DoxyParams}{Parameters}
+{\em rs} & $ \sqrt{s_{\rm part.}} $ \\
+\hline
+{\em y\-\_\-cm} & azimuthal scattering angle of k3 in p1+p2 z.\-m.\-f. (z-\/axis is the reference axis) \\
+\hline
+{\em phi\-\_\-cm} & polar scattering angle of k3 in p1+p2 z.\-m.\-f. (z-\/axis is the reference axis) \\
+\hline
+{\em M12} & invariant mass of the system k1+k2 \\
+\hline
+{\em y\-\_\-12} & azimuthal scattering angle of k2 in k1+k2 z.\-m.\-f. (z-\/axis is the reference axis) \\
+\hline
+{\em phi\-\_\-12} & polar scattering angle of k2 in k1+k2 z.\-m.\-f. (z-\/axis is the reference axis) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 422 of file Phase\-Space.\-cpp.
+
+
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

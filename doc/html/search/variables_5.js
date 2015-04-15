@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mttdistributions',['MttDistributions',['../HistArray_8h.html#ac844fac25a02cec13eb11a2e78d560a8',1,'HistArray.h']]]
+  ['k',['K',['../classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3',1,'integrand_par']]]
 ];

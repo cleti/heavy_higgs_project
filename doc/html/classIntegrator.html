@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Effects of heavy Higgs bosons
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Compute the effects of heavy neutral Higgs bosons in tt production at the LHC to NLO QCD in the large top-mass approximation.</div>
   </td>
  </tr>
  </tbody>
@@ -73,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,7 +98,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Integrator</b> (std::ostream &amp;ost=std::cout)</td></tr>
 <tr class="separator:a410d73f69871a01a49401a6705325a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e70784278ed8a0e07bb59a153a4098"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4e70784278ed8a0e07bb59a153a4098"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetState</b> (<a class="el" href="structgsl__monte__vegas__state.html">gsl_monte_vegas_state</a> *extGSLState)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetState</b> (gsl_monte_vegas_state *extGSLState)</td></tr>
 <tr class="separator:aa4e70784278ed8a0e07bb59a153a4098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7abd0680a883e614c1e6344c8fda5360"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7abd0680a883e614c1e6344c8fda5360"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DropState</b> ()</td></tr>
@@ -113,6 +111,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrapper class for the GSL VEGAS algorithm. Does the integration, checking integration parameters, output. </p>
+
+<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00195">195</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a999142aeac7e98ab084eaad2c257a233"></a>
 <div class="memitem">
@@ -145,11 +145,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr
 </div><div class="memdoc">
 <p>invoces the GSL VEGAS algorithm with parameters set in vp, parameters in ip are handed down to the integrand </p>
 
+<p>Definition at line <a class="el" href="Integrator_8cpp_source.html#l00383">383</a> of file <a class="el" href="Integrator_8cpp_source.html">Integrator.cpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="Integrator_8h_source.html">Integrator.h</a></li>
-<li>src/Integrator.cpp</li>
+<li>src/<a class="el" href="Integrator_8cpp_source.html">Integrator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

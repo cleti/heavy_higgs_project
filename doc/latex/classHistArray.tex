@@ -59,7 +59,10 @@ void \hyperlink{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{Normalize} (co
 \begin{DoxyCompactList}\small\item\em description of the dsitribution \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{int \hyperlink{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{d\-\_\-mass\-\_\-dim}}\label{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}
 
-\begin{DoxyCompactList}\small\item\em mass dimension of the observable, needed for proper normalization, for example \mbox{[}M\-\_\-tt\mbox{]}=1, \mbox{[}Y\-\_\-t\mbox{]}=0 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em mass dimension of the observable, needed for proper normalization, for example \mbox{[}M\-\_\-tt\mbox{]}=1, \mbox{[}Y\-\_\-t\mbox{]}=0 \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a7d8b20c78afd46e59467379cf4fe472b}{O\-B\-S \hyperlink{classHistArray_a7d8b20c78afd46e59467379cf4fe472b}{d\-\_\-obs}}\label{classHistArray_a7d8b20c78afd46e59467379cf4fe472b}
+
+\begin{DoxyCompactList}\small\item\em the observable that will be plotted \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -72,6 +75,10 @@ void \hyperlink{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{Normalize} (co
 This class stores an array of R\-O\-O\-T T\-H1\-D's. In the default setup there are 6 histograms, one for each contribution\-: L\-O Q\-C\-D, L\-O P\-H\-Ix\-P\-H\-I, L\-O P\-H\-Ix\-Q\-C\-D, virtual corrections, integrated dipoles and real corrections. Use one \hyperlink{classHistArray}{Hist\-Array} for each observable. There are some helper functions for plotting in \hyperlink{Functions__Shared_8h_source}{Functions\-\_\-\-Shared.\-h}. The P\-S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See Also}
 \hyperlink{Functions__Shared_8h_source}{Functions\-\_\-\-Shared.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h} 
 \end{DoxySeeAlso}
+
+
+Definition at line 40 of file Hist\-Array.\-h.
+
 
 
 \subsection{Member Function Documentation}
@@ -91,6 +98,10 @@ draw all histograms into the currently selected canvas
 {\em opt} & R\-O\-O\-T drawing options \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 111 of file Hist\-Array.\-h.
+
 \hypertarget{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{\index{Hist\-Array@{Hist\-Array}!Fill\-All@{Fill\-All}}
 \index{Fill\-All@{Fill\-All}!HistArray@{Hist\-Array}}
 \subsubsection[{Fill\-All}]{\setlength{\rightskip}{0pt plus 5cm}void Hist\-Array\-::\-Fill\-All (
@@ -110,6 +121,10 @@ fill weight into all active histograms
 {\em wgt} & weight to be added to the respective bin \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 96 of file Hist\-Array.\-h.
+
 \hypertarget{classHistArray_a38e7f00ba4f87c20ca1c3e0a5efc2ad9}{\index{Hist\-Array@{Hist\-Array}!Fill\-One@{Fill\-One}}
 \index{Fill\-One@{Fill\-One}!HistArray@{Hist\-Array}}
 \subsubsection[{Fill\-One}]{\setlength{\rightskip}{0pt plus 5cm}void Hist\-Array\-::\-Fill\-One (
@@ -132,6 +147,10 @@ fill weight into a single histogram if activated
 {\em wgt} & weight to be added to the respective bin \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 105 of file Hist\-Array.\-h.
+
 \hypertarget{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{\index{Hist\-Array@{Hist\-Array}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!HistArray@{Hist\-Array}}
 \subsubsection[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}void Hist\-Array\-::\-Normalize (
@@ -148,6 +167,10 @@ normalize all histograms such that sum(b\-\_\-i) = sigma, where b\-\_\-i are the
 {\em m\-Scale} & if dimensionful observables have been normalized to mass scale m\-Scale this can be used to restore the original mass scale (provided d\-\_\-mass\-\_\-dim was set up correctly) \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 50 of file Hist\-Array.\-cpp.
+
 \hypertarget{classHistArray_abfd450684a3cfda8cb0231b450e1c3ec}{\index{Hist\-Array@{Hist\-Array}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!HistArray@{Hist\-Array}}
 \subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}T\-H1\-D$\ast$ Hist\-Array\-::operator\mbox{[}$\,$\mbox{]} (
@@ -164,6 +187,10 @@ access a specific histogram in the array
 {\em i} & histogram index, N\-O R\-A\-N\-G\-E C\-H\-E\-C\-K! \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 71 of file Hist\-Array.\-h.
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
