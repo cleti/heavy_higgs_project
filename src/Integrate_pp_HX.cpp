@@ -46,31 +46,26 @@ int& int_flags = g_options.int_flags;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
-  using RunParameters::mScale;
-  using RunParameters::mScale2;
-  //using RunParameters::mt2;
-  using RunParameters::mb;
-  using RunParameters::mb2;
   ////////////////////////////////////////////////////////////////////////////////////////////
   // init ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
-  // parse arguments and initialize input parameters
-  parse_arguments(argc,argv,g_options);
-  ////////////////////////////////////////////////////////////////////////////////
-  
   // create identifier from process id and timestamp
   stringstream run_id;
   run_id << "RUN_" << time(0) << "_" << gettid();
-
+  program_name = argv[0];
+  
   // create an outpufile
   ofstream log_file;
-  if (g_options.logfile) log_file.open(string("results/integration_results_")+=run_id.str());
-  // the teestream has problems when the file is not opened, so just dump to /dev/null
+  if (g_options.logfile) log_file.open(string("results/integration_pp_HX_results_")+=run_id.str());
+  // the teestream has problems when no file is openened, so just dump to /dev/null
   else log_file.open("/dev/null");
-  
-  // create teestream object to tee output to std::couT and file
+ 
+  // create teestream object to tee output to std::cout and the selected file
   teestream couT(std::cout,log_file);
   PRINTS(couT,run_id.str());
+
+  // create the PDFs
+  LHAPDF::PDF* pdf_ct10nlo = LHAPDF::mkPDF("CT10nlo", 0);
   
   // init external libraries
   qlinit_();
@@ -78,19 +73,46 @@ int main(int argc, char** argv)
   ltini();
 #endif
 
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  // input parameters /////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  // input parameters ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////////////////
+  // initialize model parameters
+  HiggsModel THDM_1("2HDM scenario 1");
+  // some aliases
+  double const& mt      = THDM_1.mt();
+  double const& mt2     = THDM_1.mt2();
+  double const& mScale  = THDM_1.Scale();
+  double const& mScale2 = THDM_1.Scale2();
+  // get parameters from command line arguments
+  parse_arguments(argc,argv,g_options,THDM_1);
+  if (THDM_1.NBosons() != 1)
+    {
+      cout << endl << " This program runs with a single Higgs boson! " << endl;
+      exit(1);
+    }
+  HPtr Phi1 = THDM_1.GetBoson(0);
+  PRINT(mt*mScale);
+  ////////////////////////////////////////////////////////////////////////////////
+  
+  ////////////////////////////////////////////////////////////////////////////////
   // this structure is handed down to the integrand function
-  // contains hadronic c.m.e., pointer to distributions, pointer to PDFs
+  // contains hadronic c.m.e., pointer to distributions, pointer to PDFs, etc.
   integrand_par ip;
+  ip.higgs_model   = &THDM_1;
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
-  ip.collect_dist  = false;
-  ip.pdf           = LHAPDF::mkPDF("CT10nlo", 0);
-  // no distributions needed for pp->HX
-  PRINTS(couT,sqrt(ip.s_hadr)*mScale);
+  ip.collect_dist  = g_options.dist;
+  ip.pdf           = pdf_ct10nlo; 
+  ip.distributions = new HAvec{&MttDistributions,
+			       &PT1Distributions,
+			       &PT2Distributions,
+			       &PT12Distributions,
+			       &Y1Distributions,
+			       &Y2Distributions,
+			       &DYDistributions};
+  double CME = sqrt(ip.s_hadr)*mScale;
+  PRINTS(couT,CME);
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -102,38 +124,6 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////////////////
-  { // set up Higgs boson parameters
-    using namespace HiggsBosons;
-    SetPhi1(g_options.mH,
-	    0.0,//g_options.GammaH,
-	    1.0,//g_options.At,//1.785137274,
-	    0.0,//g_options.Bt,
-	    1.0,//g_options.Ab,//-.1677099516,
-	    0.0 //g_options.Bb
-	    );
-
-    PRINTS(couT,Vh*mScale);
-    // PRINTS(couT,M_1*mScale);
-    PRINTS(couT,G_1*mScale);
-    PRINTS(couT,At_1*Vh);
-    PRINTS(couT,Bt_1*Vh);
-    PRINTS(couT,Ab_1*Vh);
-    PRINTS(couT,Bb_1*Vh);
-    PRINTS(couT,FH_eff_1/mScale);
-    PRINTS(couT,FA_eff_1/mScale);
-  }
-  ////////////////////////////////////////////////////////////////////////////////
-  { // set up run parameters
-    using namespace RunParameters;
-    // set scales -> will be done in the loop below
-    // one or two Higgs bosons?
-    TwoHDM = 0;
-    PRINTS(couT,mt*mScale);
-    PRINTS(couT,AlphaS);
-    PRINTS(couT,MUR*mScale);
-    PRINTS(couT,MUF*mScale);
-  }
-  ////////////////////////////////////////////////////////////////////////////////
   { // set technical cuts on soft/collinear 2->3 phase space regions
     using namespace Cuts;
     COLL_CUT = 1.0-pow(10.0,-g_options.tech_cut);
@@ -143,35 +133,42 @@ int main(int argc, char** argv)
   }
   ////////////////////////////////////////////////////////////////////////////////
   
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   Integrator INT(cout);
-  
+
   Integral Int_2_1(2,IntLimits::Int_lo_2_1_pdf_x,IntLimits::Int_up_2_1_pdf_x);
   Int_2_1.SetIntegrand(&Integrand_2_1_pdf);
-  
-  // integral over integrated dipoles 
+
   Integral Int_2_2(3,IntLimits::Int_lo_2_2_pdf,IntLimits::Int_up_2_2_pdf);
   Int_2_2.SetIntegrand(&Integrand_2_2_pdf);
-
-
   
   
   // mass values to evaluate in main loop
-  vector<double> M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};
-
+  // vector<double> M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};
+  vector<double> M_values = {125, 150, 200, 250, 300};
+  //  vector<double> M_values = {200, 300, 400, 500, 600};
+  // output
+  /////////////////////////////////////////////////////////////////////////////////////////
   // write mass values to log-file in C-array format
   log_file << endl << "=====================================================" << endl;
   log_file << endl << "double vals_mH[] = {" << endl;
+  cout << endl << " Higgs Masses: " << endl << " [";  
   for (auto m = M_values.cbegin(); m != M_values.cend(); ++m)
     {
       log_file << *m;
-      if (m != --M_values.cend()) log_file << ",";
+      cout << *m;
+      if (m != --M_values.cend())
+	{
+	  log_file << ",";
+	  cout << ",";
+	}
       log_file << endl;
     }
   log_file << "};\n\n";
-
+  cout << "]\n\n";
+  
   if (int_flags & BOOST_BINARY(0 000 1)) log_file << " [LO] ";
   if (int_flags & BOOST_BINARY(1 111 0)) log_file << " [NLO] ";
   if (int_flags & BOOST_BINARY(0 001 0)) log_file << " [gg,V] ";
@@ -187,25 +184,32 @@ int main(int argc, char** argv)
   // write cross-section values and errors to log-file in C-array format
   log_file << endl << "//// result [pb] , error [pb] ////";
   log_file << endl << "double vals_Xsection[] = {" << endl;
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+
+  
   // second loop. now calculate the cross-section to each mass value
   for (auto m = M_values.cbegin(); m != M_values.cend(); ++m)
     {
-      using namespace HiggsBosons;
-      
+      // alias Higgs mass
       double const& MH = *m; 
-      /////////////////////////////////////////////////////////////////////
-      HiggsBosons::SetMPhi1(MH); // have to reset mass in every iteration
-      /////////////////////////////////////////////////////////////////////
-      double MU = 0.5*MH/mScale*g_options.ren_scale;
-      RunParameters::SetAlphaS(ip.pdf->alphasQ(MU*mScale));
-      RunParameters::SetMUR(MU);
-      RunParameters::SetMUF(MU); // have to reset scales in every iteration
+      // reset Higgs mass ...
+      Phi1->SetM(MH/mScale);
+      // ... as well as alphas and scales (default mu = mH/2, use )
+      double MU = 0.5*MH;
+      if (g_options.ren_scale!=0.0)
+	{
+	  MU *= g_options.ren_scale;
+	}
+      THDM_1.SetAlphaS(ip.pdf->alphasQ(MU));
+      THDM_1.SetMUR(MU);
+      THDM_1.SetMUF(MU);
       /////////////////////////////////////////////////////////////////////
       // set b-quark MS-bar mass at scale mu [GeV] (O(AlphaS^1)
       // running mass with 5 active flavours, for 6 flavours change exponent to 4.0/7.0)
       // reference value mb(mb) = 4.213 GeV
-      mb     = 4.213/mScale*pow(ip.pdf->alphasQ(MU*mScale)/ip.pdf->alphasQ(4.213),12.0/23.0);
-      mb2    = pow(mb,2);
+      double mb     = 4.213/mScale*pow(ip.pdf->alphasQ(MU)/ip.pdf->alphasQ(4.213),12.0/23.0);
+      double mb2    = pow(mb,2);
       /////////////////////////////////////////////////////////////////////
       double sigma_tot = 0.0;
       double err_tot   = 0.0;
@@ -214,10 +218,16 @@ int main(int argc, char** argv)
       double MH2 = pow(MH/mScale,2);
 
       // set the scaling factor to rescale NLO contributions obtained with eff. ggH vertex
-      HiggsBosons::set_F_ggH(MH2);
+      Phi1->SetFormFactors(MH2,mt2,mb2);
+      c_double F_ggH1_s = (-4.0*MH2)*(Phi1->GetFH(0));
+      c_double F_ggH1_p = ( 8.0*MH2)*(Phi1->GetFA(0));
+      c_double const& FH_eff_1 = Phi1->GetFH(1);
+      c_double const& FA_eff_1 = Phi1->GetFA(1);
+
+      // rescaling factor for radiative corrections
       if (g_options.dist)
 	{
-	  ip.K = (std::norm(F_ggH1_s)+std::norm(F_ggH1_p))/(16.0*MH2*MH2*(pow(FH_eff_1,2)+4.0*pow(FA_eff_1,2)));
+	  ip.K = (std::norm(F_ggH1_s)+std::norm(F_ggH1_p))/(16.0*MH2*MH2*(std::norm(FH_eff_1)+4.0*std::norm(FA_eff_1)));
 	}
       else ip.K = 1.0;
       ////////////////////////////////////////////////////////////
@@ -229,7 +239,7 @@ int main(int argc, char** argv)
 	  // PS_2_1 needs to be set once only when MH2 changes
 	  ((PS_2_1*)ip.ps)->set();
 	  // adjust # calls
-	  vp.calls  = g_options.n_calls/10;
+	  vp.calls  = g_options.n_calls/100;
 	  
 	  INT.Integrate(Int_2_1,ip,vp);
 	  sigma_tot += vp.result;
@@ -244,7 +254,7 @@ int main(int argc, char** argv)
 	  // k1 -> Higgsboson, k2 -> massless gluon
 	  ip.SetPS(new PS_2_2(MH2,0.0,"pp->Hx"));
 	  // adjust # calls
-	  vp.calls  = g_options.n_calls/10;
+	  vp.calls  = g_options.n_calls/100;
 
 	  INT.Integrate(Int_2_2,ip,vp);
 	  sigma_tot += vp.result;
@@ -262,13 +272,13 @@ int main(int argc, char** argv)
       if (int_flags & BOOST_BINARY(0 100 0)) cout << " [qq] ";
       if (int_flags & BOOST_BINARY(1 000 0)) cout << " [qg] ";       
       cout << std::setprecision(prec)  << endl;
-      cout << " mH [GeV] = " << sqrt(M2_1)*mScale  << endl;
-      cout << " mu [GeV] = " << MU*mScale << endl;
+      cout << " mH [GeV] = " << MH  << endl;
+      cout << " mu [GeV] = " << MU << endl;
       cout << " mb [GeV] = " << mb*mScale << endl;
-      cout << " AlphaS   = " << RunParameters::AlphaS << endl;
-      cout << " F_s      = " << HiggsBosons::F_ggH1_s << endl;
-      cout << " F_p      = " << HiggsBosons::F_ggH1_p << endl;
-      cout << " fH, fA   = " << HiggsBosons::FH_eff_1 << ", " << HiggsBosons::FA_eff_1 << endl;
+      cout << " AlphaS   = " << THDM_1.AlphaS() << endl;
+      cout << " F_s      = " << F_ggH1_s << endl;
+      cout << " F_p      = " << F_ggH1_p << endl;
+      cout << " fH, fA   = " << FH_eff_1 << ", " << FA_eff_1 << endl;
       cout << " K        = " << ip.K << endl;
       cout << "====================================================" << endl;
 

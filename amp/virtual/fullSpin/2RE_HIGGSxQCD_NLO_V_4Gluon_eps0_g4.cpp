@@ -4,7 +4,9 @@
 double Eval_V_4G (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
+  AMP_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_V(ap);
 
 
   double t10;

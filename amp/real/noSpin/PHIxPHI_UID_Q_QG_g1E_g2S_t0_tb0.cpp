@@ -1,25 +1,116 @@
 
 #include "UID_HEADER.h"
 
-double Eval_UID_PHIxPHI_Q_QG_ES00 (UID_ARGS)
+double Eval_UID_PHIxPHI_Q_QG_ES00 (
+				   UID_Q_QG_ARGS)
 {
 
   UID_DEFINITIONS;
   HP_REFS_PHIxPHI(hp);
   AP_REFS_R(ap);
+  
 
-
-  double t12;
+  double t10;
+  double t100;
+  double t101;
+  double t102;
+  double t11;
+  double t14;
+  double t15;
+  double t17;
+  double t18;
+  double t19;
+  double t20;
+  double t22;
+  double t24;
+  double t25;
+  double t26;
+  double t28;
+  double t29;
   double t3;
+  double t31;
+  double t33;
+  double t34;
+  double t36;
+  double t38;
+  double t4;
+  double t40;
+  double t42;
+  double t46;
+  double t48;
+  double t49;
   double t5;
+  double t52;
+  double t55;
+  double t58;
   double t6;
-  double t8;
+  double t60;
+  double t62;
+  double t65;
+  double t67;
+  double t69;
+  double t7;
+  double t72;
+  double t75;
+  double t78;
+  double t80;
+  double t82;
+  double t84;
+  double t85;
+  double t86;
+  double t88;
   double t9;
-  t3 = sp(p2, p3);
-  t5 = sp(K1, p3);
-  t6 = sp(K2, p3);
-  t8 = sp(K1, p2);
-  t9 = sp(K2, p2);
-  t12 = sp(K1, K2);
-  return (0.256e3 * t3 * PREF_R_PHI_CA / CA * (t5 - t3 + t6) * (t9 + t8) * (0.4e1 * t12 * At2_fA2_De + t12 * At2_fH2_De + 0.4e1 * t12 * Bt2_fA2_De + t12 * Bt2_fH2_De - 0.4e1 * At2_fA2_De - At2_fH2_De + 0.4e1 * Bt2_fA2_De + Bt2_fH2_De));
+  double t94;
+  t3 = sp(Q, Q);
+  t4 = sp(K1, K2);
+  t5 = t3 * t4;
+  t6 = sp(P2, K1);
+  t7 = t6 * t6;
+  t9 = t5 * t7 * Vnd;
+  t10 = sp(P2, K2);
+  t11 = t6 * t10;
+  t14 = 0.2e1 * t5 * t11 * Vnd;
+  t15 = t10 * t10;
+  t17 = t5 * t15 * Vnd;
+  t18 = t4 * t6;
+  t19 = sp(K1, Q);
+  t20 = sp(P2, Q);
+  t22 = t19 * t20 * Vnd;
+  t24 = 0.2e1 * t18 * t22;
+  t25 = t20 * t20;
+  t26 = t25 * Vnd;
+  t28 = 0.2e1 * t18 * t26;
+  t29 = sp(K2, Q);
+  t31 = t20 * t29 * Vnd;
+  t33 = 0.2e1 * t18 * t31;
+  t34 = t4 * t10;
+  t36 = 0.2e1 * t34 * t22;
+  t38 = 0.2e1 * t34 * t26;
+  t40 = 0.2e1 * t34 * t31;
+  t42 = t3 * t7 * Vnd;
+  t46 = 0.2e1 * t3 * t6 * t10 * Vnd;
+  t48 = t3 * t15 * Vnd;
+  t49 = t9 + t14 + t17 - t24 + t28 - t33 - t36 + t38 - t40 - t42 - t46 - t48;
+  t52 = 0.2e1 * t4 * t7 * Vdiag;
+  t55 = 0.4e1 * t18 * t10 * Vdiag;
+  t58 = 0.2e1 * t4 * t15 * Vdiag;
+  t60 = t20 * Vnd;
+  t62 = 0.2e1 * t6 * t19 * t60;
+  t65 = 0.2e1 * t6 * t25 * Vnd;
+  t67 = t29 * Vnd;
+  t69 = 0.2e1 * t6 * t20 * t67;
+  t72 = 0.2e1 * t10 * t19 * t60;
+  t75 = 0.2e1 * t10 * t25 * Vnd;
+  t78 = 0.2e1 * t10 * t20 * t67;
+  t80 = 0.2e1 * t7 * Vdiag;
+  t82 = 0.4e1 * t11 * Vdiag;
+  t84 = 0.2e1 * t15 * Vdiag;
+  t85 = -t52 - t55 - t58 + t62 - t65 + t69 + t72 - t75 + t78 + t80 + t82 + t84;
+  t86 = t49 + t85;
+  t88 = CA * CA;
+  t94 = VF(CF * t88 * CA * AlphaS2 / Pi2);
+  t100 = t9 + t14 + t17 - t24 + t28 - t33 - t36 + t38 - t40 + t42 + t46 + t48;
+  t101 = -t52 - t55 - t58 - t62 + t65 - t69 - t72 + t75 - t78 - t80 - t82 - t84;
+  t102 = t100 + t101;
+  return(0.128e3 * t102 * t94 * Bt2_fA2_De + 0.32e2 * t102 * t94 * Bt2_fH2_De + 0.128e3 * t86 * t94 * At2_fA2_De + 0.32e2 * t86 * t94 * At2_fH2_De);
 }

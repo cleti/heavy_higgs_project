@@ -10,6 +10,9 @@
 #include "Functions_pp_ttX_ID.h"
 #include "Functions_pp_ttX_R.h"
 #include "Functions_pp_ttX_UID.h"
+#ifdef WITH_T_SPIN
+#include "Functions_tDecay.h"
+#endif
 
 
 double Integrand_poly2(double* x, size_t dim, void* arg);

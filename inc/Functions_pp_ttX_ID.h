@@ -24,7 +24,7 @@
   \param flags specify which subamplitudes get evaluated
   \sa Flags.h, PhaseSpace.h, HiggsModel.h
 */
-double Eval_ID(
+double Eval_ID_GG(
 	       const PS_2_2& ps,
 	       HiggsModel& hm,
 	       const ulong& flags);
@@ -36,10 +36,15 @@ double Eval_ID(
   \param flags specify which subamplitudes get evaluated
   \sa Flags.h, PhaseSpace.h, HiggsModel.h
 */
-double Eval_ID_X(
+double Eval_ID_X_GG(
 		 const PS_2_2& ps_x,
 		 HiggsModel& hm,
 		 const ulong& flags);
 
+
+double Eval_ID_X_QG(
+		    const PS_2_2& ps_x,
+		    HiggsModel& hm,
+		    const ulong& flags);
 
 #endif

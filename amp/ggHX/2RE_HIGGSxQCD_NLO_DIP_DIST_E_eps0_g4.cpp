@@ -8,9 +8,10 @@ double Eval_DIP_DIST_E (
   double const& B_int_1,
   double const& Bt_1,
   double const& x,
-  double const& mu_F2)
+  double const& mu_F2,
+  double const& AlphaS)
 {
-  AMP_DEFINITIONS
+  AMP_DEFINITIONS;
     
   // double t1 = 0.1e1 - x;
   // double t2 = 0.1e1 / t1;

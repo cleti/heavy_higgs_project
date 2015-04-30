@@ -9,11 +9,7 @@ FV& FV::operator=(std::initializer_list<double> L)
 {
   if (L.size() == 4)
     {
-      int i = 0;
-      for (auto x: L)
-	{
-	  v[i++] = x;
-	}
+      v = L;
     }
   else
     {
@@ -197,8 +193,11 @@ void LT::invert()
 {
   for (int i=1;i<4;++i)
     {
-      M[0][i] *= (-1);
-      M[i][0] *= (-1);
+      if (M[0][i] != 0.0)
+	{
+	  M[0][i] *= (-1);
+	  M[i][0] *= (-1);
+	}
     }
 }
 
@@ -359,7 +358,7 @@ int LT::set_II(FV const& K, FV const& Kb)
     {
       for (int j=0;j<4;++j)
 	{
-	  M[i][j] = -A*(K[i]+Kb[i])*(K[j]+Kb[j])+B*Kb[i]*K[j];
+	  M[i][j] = -A*(K[i]+Kb[i])*(K[j]+Kb[j])+B*Kb[i]*K[j];	  
 	  if (i==j) M[i][j] += G[i];
 #ifdef DEBUG_LT
 	  std::cout << std::setw(8) << M[i][j] << " | ";
@@ -426,7 +425,7 @@ int LT::set_boost(FV const& P,bool INV)
   for (int i=1;i<4;++i)
     {
       M[0][i] = -beta[i]*gamma;
-            if (INV)
+      if (INV)
 	{
 	  M[0][i] *= (-1);
 	}
@@ -486,6 +485,48 @@ int LT::set_boost(FV const& P,bool INV)
     }
   std::cout << std::endl;
 #endif
+  return 1;
+}
+
+// transforms 4-vectors from the z.m.f. of x*p1, p2
+// to the z.m.f. of p1,p2 (provieded p1,p2 in z-direction)
+// if INV=true: tranformation from p1, x*p2 z.m.f. to p1,p2 z.m.f.
+int LT::set_boost_z(double const& x,bool INV)
+{
+  // x = sqrt((1+beta)/(1-beta))
+  // -> beta = (1-x^2)/(1+x^2)
+  if (x<=0.0 || x>=1.0)
+    {
+      WARNING("x out of range! provide 0<x<1!");
+      return 0;
+    }
+ 
+  double beta = (x-1.0)/(1.0+x);
+  double gamma= (1.0+x)/(2.0*sqrt(x));
+
+  M[0][0] = gamma;
+  M[0][1] = 0.0;
+  M[0][2] = 0.0;
+  M[0][3] = beta*gamma;
+  if (INV) M[0][3] *= (-1);
+
+  M[1][1] = 1.0;
+  M[1][2] = 0.0;
+  M[1][3] = 0.0;  
+
+  M[2][2] = 1.0;
+  M[2][3] = 0.0;  
+
+  M[3][3] = gamma;
+
+  
+  for (int i=0;i<4;++i)
+    {
+      for (int j=i+1;j<4;++j)
+	{
+	  M[j][i] = M[i][j];
+	}
+    }
   return 1;
 }
 

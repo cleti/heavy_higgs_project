@@ -270,10 +270,10 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       d_HPref.Bt2_fA2_De += Bt2i*FA2i*di;
 	  
 #ifdef WITH_T_SPIN
-      // only needed for polarized amplitudes:
-      // PHIxPHI terms: add at*bt interference from Phi1^2 contribution
-      d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;
-      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;
+      // // only needed for polarized amplitudes:
+      // // PHIxPHI terms: add at*bt interference from Phi1^2 contribution
+      // d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;
+      // d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   
 #endif
 
       // second loop to get the phi^2 contributions
@@ -289,7 +289,7 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 	  double const& Btj = (*phi_j)->Bt();
       
 	  c_double DiDj = Di*std::conj(Dj);
-	  
+	 
 	  // prefactors in PHIxPHI amplitudes
 	  // here we also have to sum all the phi_i * phi_j interferences    
 	  d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHi*std::conj(FHj)*DiDj).real();
@@ -297,13 +297,13 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 	  d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHi*std::conj(FHj)*DiDj).real();
 	  d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAi*std::conj(FAj)*DiDj).real();
 #ifdef WITH_T_SPIN
-	  // only needed for polarized amplitudes:
-	  // PHIxPHI terms: at Phi1 * bt  Phi2 interferences
-	  d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*FHj*DiDj).real();
-	  d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*FAj*DiDj).real();	
-	  // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
-	  d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
-	  d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
+	  // // only needed for polarized amplitudes:
+	  // // PHIxPHI terms: at Phi1 * bt  Phi2 interferences
+	  // d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();
+	  // d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();	
+	  // // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
+	  // d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
+	  // d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
 #endif
 	}
     }
@@ -419,7 +419,7 @@ void HiggsModel::PopBoson()
 
 
 
-void HiggsModel::Print(std::ostream& ost, double const& mScale)
+void HiggsModel::Print(std::ostream& ost, double const& mScale) const
 {
   ost << std::endl << std::setfill('=') << std::setw(100) << "" << std::setfill(' ');
   ost << std::endl << " Model configuration [" << d_Name << "]: " << std::endl;

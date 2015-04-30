@@ -25,17 +25,25 @@ inline double lambda (double const& x, double const& y, double const& z)
 }
 
 
+class PS_Named {
+ protected:
+  //! name of the PS instance, useful to locate errors
+  std::string d_name;
+ public:
+  PS_Named(std::string const& nm) : d_name(nm) {}
+  PS_Named const& operator=(PS_Named const& rhs) { return *this; }
+  void set_name(std::string const& name) { d_name = name; }
+};
+
 ////// class PS_2   ///////////////////////////////////////////////////////////////////////////////////////
 /*!
   Abstract base class for 2->X phase space classes, holds among others the 4-vectors of the incoming partons.
   \sa Lorentz.h, HistArray.h
 */
-class PS_2 {
+class PS_2: PS_Named {
  protected:
   //! square root of the current partonic c.m.e.
   double d_rs;
-  //! name of the PS instance, useful to locate errors
-  std::string d_name;
   //! incoming parton 4-momenta
   FV p[2];
   //! incoming proton 4-momenta, used to define the boost that connects parton z.m.f. and lab frame
@@ -50,7 +58,7 @@ class PS_2 {
   void set_initial_state(double const& s);
 
  public:
-  explicit PS_2(const std::string& nm = "") : d_rs(0.0), d_name(nm), p{0.0,0.0}, P{0.0,0.0}, d_wgt(0.0), d_decay(false), d_parent(nullptr) {}
+  explicit PS_2(const std::string& nm = "") : PS_Named(nm), d_rs(0.0), p{0.0,0.0}, P{0.0,0.0}, d_wgt(0.0), d_decay(false), d_parent(nullptr) {}
   virtual ~PS_2();
   
   //! read/write access to first incoming parton 4-momentum
@@ -72,14 +80,13 @@ class PS_2 {
   double const& get_rs()    const { return d_rs; }
   double get_s()            const { return d_rs*d_rs; }
   void set_rs(double const& rs) { d_rs=rs;}
-  void set_name(std::string const& name) { d_name = name; }
   //! not used
   bool toggle_decay() { return d_decay = !d_decay; }
   //! get current phase space weight
   double const& get_wgt() { return d_wgt; }
   int set_parent(PS_2* parent) { if (parent != nullptr) { d_parent = parent; return 1; } return 0; }
   //! swap incoming parton and proton momenta
-  void swap();
+  void swap_initial_state();
   virtual double const& get_msq(int i) const = 0;
   virtual PS_2* get_child(int i) const = 0;
   virtual int set_child(int i, PS_2* child) = 0;
@@ -96,9 +103,12 @@ class PS_2 {
   virtual FV const& k2() const  { return nullvec; }
   virtual FV const& k3() const  { return nullvec; }
 #ifdef WITH_T_SPIN  
-  virtual FV const& S1() const  { return nullvec; }
-  virtual FV const& S2() const  { return nullvec; }
-  virtual FV const& S3() const  { return nullvec; }
+  virtual FV const& s1() const  { return nullvec; }
+  virtual FV const& s2() const  { return nullvec; }
+  virtual FV const& s3() const  { return nullvec; }
+  virtual FV const& s1_r() const  { return nullvec; }
+  virtual FV const& s2_r() const  { return nullvec; }
+  virtual FV const& s3_r() const  { return nullvec; }  
 #endif
   
   static const FV nullvec;
@@ -237,7 +247,7 @@ class PS_2_2: public PS_2 {
 	   double const& y, 
 	   double const& phi=0.0);
   //! New phase space setting: compute c.m.e rs = sqrt(s_part) and scattering angles y, phi and all derived quantities from current set of 4-vectors. 
-  void set();
+  int set();
   ////////////////////////////////////////
 
   int set_child(int i, PS_2* child) { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} if (child->set_parent(this)) { d_child[i] = child; return 1;} return 0; }
@@ -301,8 +311,10 @@ class PS_2_3: public PS_2 {
 #ifdef WITH_T_SPIN    
   FV& s1()  { return S[0]; }
   FV& s2()  { return S[1]; }
+  FV& s3()  { return S[2]; }
   FV& s1_r()  { return S_r[0]; }
   FV& s2_r()  { return S_r[1]; }
+  FV& s3_r()  { return S_r[2]; }
 #endif
   
   FV const& k1() const  { return k[0]; }
@@ -312,8 +324,10 @@ class PS_2_3: public PS_2 {
 #ifdef WITH_T_SPIN    
   FV const& s1() const  { return S[0]; }
   FV const& s2() const  { return S[1]; }
+  FV const& s3() const  { return S[2]; }
   FV const& s1_r() const  { return S_r[0]; }
   FV const& s2_r() const  { return S_r[1]; }
+  FV const& s3_r() const  { return S_r[2]; }
 #endif
   
   int boost_to_parent();

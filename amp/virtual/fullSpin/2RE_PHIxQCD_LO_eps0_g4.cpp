@@ -4,9 +4,10 @@
 double Eval_B_2PHIxQCD (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
-
-
+  AMP_DEFINITIONS;
+  AP_REFS_B(ap);
+  HP_REFS_PHIxQCD(hp);
+  
   double t11;
   double t12;
   double t13;

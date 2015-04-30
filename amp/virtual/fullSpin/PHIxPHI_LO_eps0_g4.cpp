@@ -4,8 +4,9 @@
 double Eval_B_PHIxPHI (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
-
+  AMP_DEFINITIONS;
+  AP_REFS_B(ap);
+  HP_REFS_PHIxPHI(hp);
   
   double t1;
   double t11;

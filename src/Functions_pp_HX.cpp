@@ -4,52 +4,72 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define AMP_PP_HX_HEADER			\
-  using namespace Constants;			\
-  using namespace AmpPrefactors;		\
-  using namespace RunParameters;		\
-  using namespace HiggsBosons;			\
-  double const FH02 = FH_eff_1*FH_eff_1;        \
-  double const FA02 = FA_eff_1*FA_eff_1;	\
+#define AMP_PP_HX_LO_HEADER						\
+  using namespace Constants;						\
+  double const FH02 = std::norm(hm.GetBoson(0)->GetFH(EFF));		\
+  double const FA02 = std::norm(hm.GetBoson(0)->GetFA(EFF));		\
+  double const& PREF_B_PHIxPHI = hm.GetAmpPrefactors().PREF_B_PHIxPHI;	\
+
+
+
+#define AMP_PP_HX_NLO_HEADER						\
+  using namespace Constants;						\
+  double const FH02 = std::norm(hm.GetBoson(0)->GetFH(1));		\
+  double const FA02 = std::norm(hm.GetBoson(0)->GetFA(1));		\
+  double const& MH2 = hm.GetBoson(0)->M2();				\
+  double const& AlphaS = hm.AlphaS();					\
+  double const& MUF2   = hm.MUF2();					\
+  double const& MUR2   = hm.MUR2();					\
+  double const& PREF_B_PHIxPHI = hm.GetAmpPrefactors().PREF_B_PHIxPHI;	\
+  double const& PREF_V_PHI     = hm.GetAmpPrefactors().PREF_V_PHIxPHI;	\
+  double const& PREF_R_PHI     = hm.GetAmpPrefactors().PREF_R_PHIxPHI;	\
+  double const& PREF_UID_CA    = hm.GetAmpPrefactors().PREF_UID_CA;	\
+
 
 
 double Eval_B(
-	      FV const& p1,
-	      FV const& p2
+	      const FV& p1,
+	      const FV& p2,
+	      const HiggsModel& hm,
+	      bool EFF
 	      )
 {
-  AMP_PP_HX_HEADER
-
-  double t5 = PREF_B_PHIxPHI/CA;
-  return (t5 * (std::norm(F_ggH1_s) + std::norm(F_ggH1_p)));
-}
-
-
-
-double Eval_B_eff(
-		  FV const& p1,
-		  FV const& p2
-		  )
-{
-  AMP_PP_HX_HEADER
-
+  AMP_PP_HX_LO_HEADER;
+  
   double s = 2.0*sp(p1,p2);
   double t10 = s * s;
   double t6 = 16.0 * PREF_B_PHIxPHI/CA;
+  
   return (t6 * (0.4e1 * FA02 + FH02) * t10);
 }
+
+
+
+// double Eval_B_eff(
+// 		  const FV& p1,
+// 		  const FV& p2,
+// 		  const HiggsModel& hm	  
+// 		  )
+// {
+//   AMP_PP_HX_HEADER
+
+//   double s = 2.0*sp(p1,p2);
+//   double t10 = s * s;
+//   double t6 = 16.0 * PREF_B_PHIxPHI/CA;
+//   return (t6 * (0.4e1 * FA02 + FH02) * t10);
+// }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 double Eval_V(
-	      FV const& p1,
-	      FV const& p2
+	      const FV& p1,
+	      const FV& p2,
+	      const HiggsModel& hm
 	      )
 {
-  AMP_PP_HX_HEADER
-
+  AMP_PP_HX_NLO_HEADER;
 
   double s = 2.0*sp(p1,p2);  
   double t1 = s * s;
@@ -85,15 +105,16 @@ static double P_gg_reg(double const& x)
 
 // evaluate the finite part of the integrated dipoles: x-independent part of I,P,K operators
 double Eval_ID(
-	       FV const& p1,
-	       FV const& p2,
-	       double const& x
+	       const FV& p1,
+	       const FV& p2,
+	       const HiggsModel& hm,
+	       const double& x
 	       )
 {
-  using namespace RunParameters;
+  AMP_PP_HX_NLO_HEADER;
+  
   double res = 0.0;
-
-  double B_phi = Eval_B_eff(p1,p2);
+  double B_phi = Eval_B(p1,p2,hm,1);
   double const& s12_1  = 2.0*sp(p1,p2);
   res += Eval_DIP_DELTA_I (s12_1, // invairant in initial-initial dipoles
   			   0.0,   // invariant in final-final dipoles
@@ -102,14 +123,16 @@ double Eval_ID(
   			   0.0,   // invariant t12 (final-initial)
   			   B_phi, // uncorrelated Born 
   			   0.0,   // color correlated Born
-  			   MUR2); // ren./fact. scales
+  			   MUR2,  // ren./fact. scales
+			   AlphaS); 
   res += Eval_DIP_DELTA_PK(s12_1, // invariant s12 (initial-initial) 
   			   0.0,   // invariant t12 (initial-final)	 
   			   0.0,   // invariant t12 (initial-final)   
   			   B_phi, // uncorrelated Born	       
   			   0.0,   // uncorrelated Born in IF dipoles 
   			   0.0,   // colour correlated Born          
-  			   MUF2,MUR2);// ren./fact. scales
+  			   MUF2,MUR2,// ren./fact. scales
+			   AlphaS);
 
   // distribution end-point part
   if (x<Cuts::IDIP_X_CUT) 
@@ -121,7 +144,8 @@ double Eval_ID(
       			     0.0,   // uncorrelated Born in IF dipoles 
       			     0.0,   // colour correlated Born          
       			     x,     // boost factor		       
-      			     MUF2); // ren./fact. scales       
+      			     MUF2,  // ren./fact. scales    
+			     AlphaS);   
       
     }
 #ifdef DEBUG
@@ -134,18 +158,20 @@ double Eval_ID(
 
 // evaluate the finite part of the integrated dipoles: continuous, x-dependent contribution of P and K operators
 double Eval_ID_X(
-		 FV const& p1,
-		 FV const& p2,
-		 double const& x
+		 const FV& p1,
+		 const FV& p2,
+		 const HiggsModel& hm,
+		 const double& x	 
 		 )
 {
-  using namespace RunParameters;
+  AMP_PP_HX_NLO_HEADER;
+  
   double res = 0.0;
   // this contributes only if the rescaled c.m.e. is still above threshold (boost_initial_state() checks this)
   if ( x<Cuts::IDIP_X_CUT )
     {
       double rx = sqrt(x);
-      double B_phi_x = Eval_B_eff(rx*p1,rx*p2);
+      double B_phi_x = Eval_B(rx*p1,rx*p2,hm,1);
       double s12_1   = 2.0*sp(p1,p2);
       res += Eval_DIP_CONT(s12_1, // invariant s12 (initial-initial) 
 			   0.0,	    // invariant t12 (initial-final)   
@@ -154,7 +180,8 @@ double Eval_ID_X(
 			   0.0,	    // uncorrelated Born in IF dipoles 
 			   0.0,	    // colour correlated Born          
 			   x,	    // boost factor		       
-			   MUF2);   // ren./fact. scales               
+			   MUF2,    // ren./fact. scales    
+			   AlphaS);           
     }
 #ifdef DEBUG
   CHECKNA(res);
@@ -169,13 +196,14 @@ double Eval_ID_X(
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 double Eval_R_gg (
-	       FV const& p1,
-	       FV const& p2,
-	       FV const& p3
-	       )
+		  FV const& p1,
+		  FV const& p2,
+		  FV const& p3,
+		  const HiggsModel& hm
+		  )
 {
-  AMP_PP_HX_HEADER
-
+  AMP_PP_HX_NLO_HEADER;
+  
   double t4 = sp(p1, p2);
   double t5 = sp(p1, p3);
   double t6 = sp(p2, p3);
@@ -224,15 +252,16 @@ static double VggIIc (const FV& p_a, const FV& p_i, const FV& p_b)
 
 
 double Eval_UID_II_C_ES (
-			FV const& p1,
-			FV const& p2,
-			FV const& p3,
-			FV const& P1,
-			FV const& P2
-			)
+			 FV const& p1,
+			 FV const& p2,
+			 FV const& p3,
+			 FV const& P1,
+			 FV const& P2,
+			 const HiggsModel& hm
+			 )
 {
-  AMP_PP_HX_HEADER
-
+  AMP_PP_HX_NLO_HEADER;
+  
   double t1 = sp(P1,p2);
   double t2 = sp(P1,p3);
   double t3 = sp(p2,p3);
@@ -246,9 +275,11 @@ double Eval_UID_II_C_ES (
 double Eval_UID (
 		 FV const& p1,
 		 FV const& p2,
-		 FV const& p3
+		 FV const& p3,
+		 const HiggsModel& hm
 		 )
 {
+  AMP_PP_HX_NLO_HEADER;
   double res = 0.0;
   static FV P1;
   static FV P2;
@@ -257,15 +288,15 @@ double Eval_UID (
   {
     P1 = x(p3,p1,p2)*p1;
     P2 = p2;
-    res += AmpPrefactors::PREF_UID_CA*VggII(p1,p3,p2)*Eval_B_eff(P1,P2);
-    res += Eval_UID_II_C_ES(p1,p2,p3,P1,p2)*VggIIc(p1,p3,p2);
+    res += PREF_UID_CA*VggII(p1,p3,p2)*Eval_B(P1,P2,hm,1);
+    res += Eval_UID_II_C_ES(p1,p2,p3,P1,p2,hm)*VggIIc(p1,p3,p2);
   }
   // p2: emitter, p1: spectator
   {
     P1 = p1;
     P2 = x(p3,p2,p1)*p2;
-    res += AmpPrefactors::PREF_UID_CA*VggII(p2,p3,p1)*Eval_B_eff(P1,P2);
-    res += Eval_UID_II_C_ES(p2,p1,p3,P2,p1)*VggIIc(p2,p3,p1);
+    res += PREF_UID_CA*VggII(p2,p3,p1)*Eval_B(P1,P2,hm,1);
+    res += Eval_UID_II_C_ES(p2,p1,p3,P2,p1,hm)*VggIIc(p2,p3,p1);
   }
 #ifdef DEBUG
   CHECKNA(res);
@@ -276,54 +307,35 @@ double Eval_UID (
 
 
 
-// probably wrong
-double Eval_R_qq(
-		 FV const& p1,
-		 FV const& p2,
-		 FV const& p3
-		 )
-{
-  AMP_PP_HX_HEADER
-    
-  double t16;
-  double t5;
-  double t6;
-  double t7;
-  double t8;
-  double t9;
-  t5 = PREF_V_CT;
-  t6 = sp(p3, p2);
-  t7 = t6 * t6;
-  t8 = sp(p1, p3);
-  t9 = t8 * t8;
-  t16 = sp(p1, p2);
-  return (0.128e3 * t5 * (t7 + t9) * (0.4e1 * FA02 + FH02) / t16);
-}
 
-
-
+// from Dawson, Nucl. Phys. B 359 (1991) 283-300
+// phase space, spin/color average and flux factors already included
+// def:  z = mH2/s 
 double Eval_sigma_R_qq_fin(
-		     double const& z
-		     )
+			   const double& z,
+			   const HiggsModel& hm
+			   )
 {
-  AMP_PP_HX_HEADER
+  AMP_PP_HX_NLO_HEADER;
    
   double t1 = pow(1-z,3);
   double t18 = (0.4e1 * FA02 + FH02);
-  return (AlphaS2*AlphaS/Pi2*144.0/486.0 * t18  * t1);
+  return (std::pow(AlphaS,3)/Pi2*144.0/486.0 * t18  * t1);
 }
 
-// phase space, spin/color average and flux factors already included!!!
-// note:  z = mH2/s 
+// from Dawson, Nucl. Phys. B 359 (1991) 283-300
+// phase space, spin/color average and flux factors already included
+// def:  z = mH2/s 
 double Eval_sigma_R_qg_fin(
-		     double const& z
-		     )
+			   const double& z,
+			   const HiggsModel& hm
+			   )
 {
-  AMP_PP_HX_HEADER
+  AMP_PP_HX_NLO_HEADER;
   
   double P_qg = CF*(1.0+std::pow(1.0-z,2))/z;
   double t18 = (0.4e1 * FA02 + FH02);
-  return (AlphaS2*AlphaS/(Pi2*4.0)) * t18 * ((z-1.0)*(7.0-3.0*z)/3.0 + 0.5*z*P_qg*(1.0+std::log(M2_1/MUF2*std::pow(1.0-z,2)/z)) );
+  return (pow(AlphaS,3)/(Pi2*4.0)) * t18 * ((z-1.0)*(7.0-3.0*z)/3.0 + 0.5*z*P_qg*(1.0+std::log(MH2/MUF2*std::pow(1.0-z,2)/z)) );
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

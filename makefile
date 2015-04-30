@@ -3,7 +3,7 @@ ROOTFLAGS   = $(shell root-config --cflags)
 ROOTLIBS    = $(shell root-config --libs)
 QCDLOOPLIBS = ext/ql/libqcdloop.a ext/ff/libff.a  -lgfortran
 LOOPTOOLS   = ext/LoopTools-2.12/build/libooptools.a
-
+BOOSTLIBS   = /usr/lib64/libboost_program_options.so
 
 DEBUG-FLAGS = -g -O0 -DDEBUG -pedantic
 PERF1-FLAGS = -m64 -O1 -march=native
@@ -25,11 +25,11 @@ CPP = /usr/lib/cpp
 ###################### local libraries #############################
 ####################################################################
 
-_LIBS_COMMON   =  Lorentz.o PhaseSpace.o HistArray.o Integrator.o Functions_Shared.o ScalarIntegrals.o HiggsModel.o
-_LIBS_PP_HX    =  $(_LIBS_COMMON) Global_.o Integrands_pp_HX.o Functions_pp_HX.o
+_LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Integrator.o Functions_Shared.o
+_LIBS_PP_HX    =  $(_LIBS_COMMON) PhaseSpace_.o ScalarIntegrals_.o Integrands_pp_HX.o Functions_pp_HX.o
 
-_LIBS_PP_TTX   = $(_LIBS_COMMON) Global_.o  Integrands_pp_ttX_.o Functions_pp_ttX_V_.o   Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
-_LIBS_PP_TTX_S = $(_LIBS_COMMON) Global_S.o Integrands_pp_ttX_S.o Functions_pp_ttX_V_S.o  Functions_pp_ttX_ID_S.o Functions_pp_ttX_R_S.o Functions_pp_ttX_UID_S.o 
+_LIBS_PP_TTX   = $(_LIBS_COMMON) HiggsModel_.o  PhaseSpace_.o  ScalarIntegrals_.o  Integrands_pp_ttX_.o  Functions_pp_ttX_V_.o  Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
+_LIBS_PP_TTX_S = $(_LIBS_COMMON) HiggsModel_S.o PhaseSpace_S.o ScalarIntegrals_S.o Integrands_pp_ttX_S.o Functions_pp_ttX_V_S.o Functions_pp_ttX_ID_S.o Functions_pp_ttX_R_S.o Functions_pp_ttX_UID_S.o Functions_tDecay.o
 ####################################################################
 ###################### object files ################################
 ####################################################################
@@ -63,17 +63,14 @@ $(BIN-PATH)/Integrate_pp_ttX: $(LIB-PATH)/Integrate_pp_ttX.o $(LIBS_COMMON) $(LI
 $(BIN-PATH)/Integrate_pp_ttX_S: $(LIB-PATH)/Integrate_pp_ttX_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
 	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
 
-$(BIN-PATH)/Integrate_pp_ttX_withTdecay: $(LIB-PATH)/Integrate_pp_ttX_withTdecay.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
-
 $(BIN-PATH)/Integrate_pp_HX: $(LIB-PATH)/Integrate_pp_HX.o $(LIBS_PP_HX)
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF  $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
 
 $(BIN-PATH)/Test: $(LIB-PATH)/Test.o $(LIBS_COMMON) $(LIBS_PP_TTX) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS) $(BOOSTLIBS)
 
 $(BIN-PATH)/Test_S: $(LIB-PATH)/Test_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS) $(BOOSTLIBS)
 
 $(BIN-PATH)/EvalSI: $(LIB-PATH)/EvalSI.o 
 	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl

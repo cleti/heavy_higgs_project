@@ -1,6 +1,6 @@
 #include "AMP_HEADER.h"
 
-double Eval_DIP_CONT (
+double Eval_DIP_GG_CONT (
  const double& s12_x,
  const double& t11_x,
  const double& t12_x,

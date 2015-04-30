@@ -114,6 +114,8 @@ public:
   double const& Bt() const { return d_Bt; }  
   double const& Ab() const { return d_Ab; }
   double const& Bb() const { return d_Bb; }
+
+  void SetM(double const& val) { d_M = val; d_M2 = std::pow(val,2); }
   
   c_double const& GetFH0() const { return d_FH_eff; }
   c_double const& GetFA0() const { return d_FA_eff; }
@@ -174,6 +176,9 @@ struct HiggsPrefactors {
   double At_Bt_fH2_DeIM = 0.0;
   double At_Bt_fA2_DeIM = 0.0;
 
+  double FH2_LO = 0.0;
+  double FA2_LO = 0.0;
+  
   void Reset();
   void Print(std::ostream& ost);
 };
@@ -286,7 +291,15 @@ class HiggsModel
   double const& Scale2()    const { return d_Scale2; }  
   int NBosons()             const { return d_Bosons.size(); }
   std::vector<HPtr> const& GetBosons() const { return d_Bosons; }
-  HPtr GetBoson(int i) { return d_Bosons[i]; }
+  
+#ifdef DEBUG
+  HPtr       GetBoson(int i);
+  HPtr const GetBoson(int i) const;
+#else
+  HPtr       GetBoson(int i)  { return d_Bosons[i]; }
+  HPtr const GetBoson(int i) const { return d_Bosons[i]; }
+#endif
+
   
   //! Use this member to change AlphaS. It automatically resets the values of the amplitude prefactors.
   void SetAlphaS(double const& val) { d_AlphaS = val; d_AlphaS2 = std::pow(val,2); SetAmpPrefactors(); }
@@ -360,7 +373,7 @@ class HiggsModel
     \param ost output stream
     \param mScale mass scale, used to restore proper normalization of quantities with mass dimension
   */   
-  void Print(std::ostream& ost, double const& mScale);
+  void Print(std::ostream& ost, double const& mScale) const;
 };
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////

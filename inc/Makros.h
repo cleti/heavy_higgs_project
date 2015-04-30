@@ -28,6 +28,8 @@
 
 #define SLEEP(S)         std::this_thread::sleep_for( std::chrono::seconds(S) ); 
 
+#define EXIT(S) std::cout << std::endl << " exit called from " << __FUNCTION__ << " line " <<   __LINE__ << std::endl; exit(S);
+
 #define ERRORN(NAME,MSG) std::cout << std::endl << " ! ERROR in " << NAME << ", " << __FUNCTION__  << ", line " <<  __LINE__ << ": " <<  MSG << "! " << std::endl; std::exit(1);
 #define PRINT(VAR)       std::cout << std::endl << " Value of " << std::setw(20) <<  #VAR << " = " << std::setw(20)   << VAR << std::endl;
 #define PRINTS(OST,VAR)       OST << std::endl << " Value of " << std::setw(20) <<  #VAR << " = " << std::setw(20)   << VAR << std::endl;

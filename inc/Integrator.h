@@ -138,6 +138,10 @@ namespace IntLimits
   extern double Int_up_2_3_pdf[6];
 
   // 2->2 -> 3 + 3 with PDF
+  extern double Int_lo_2_6_pdf[13];
+  extern double Int_up_2_6_pdf[13];
+  
+  // 2->2 -> 3 + 3 with PDF
   // including convolution for integrated dipoles
   extern double Int_lo_2_6_pdf_x[14];
   extern double Int_up_2_6_pdf_x[14];

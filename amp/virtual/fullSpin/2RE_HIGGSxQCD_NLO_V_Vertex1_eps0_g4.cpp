@@ -4,8 +4,10 @@
 double Eval_V_V1 (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
-
+  AMP_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_B(ap);
+  AP_REFS_V(ap);
 
   double t1;
   double t100;
@@ -339,7 +341,7 @@ AMP_DEFINITIONS
   double t99;
   double t995;
   double t996;
-  t1 = Z1Qg(1);
+  t1 = Z1Qg(1.0,ap.AlphaS,ap.MUR2);
   t2 = beta_y - 0.1e1;
   t3 = 0.1e1 / t2;
   t4 = t1 * t3;

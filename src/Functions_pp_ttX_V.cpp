@@ -69,7 +69,7 @@ inline double Z2M (
 // LO amplitudes
 // PHI^2
 #include "../amp/virtual/fullSpin/PHIxPHI_LO_eps0_g4.cpp"
-#include "../amp/virtual/fullSpin/PHIxPHI_LO_INT12_eps0_g4.cpp"
+//#include "../amp/virtual/fullSpin/PHIxPHI_LO_INT12_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/PHIxPHI_LO_IM_INTab_eps0_g4.cpp"
 // QCD^2
 #include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4_gg.cpp"
@@ -179,7 +179,9 @@ double Eval_B_PHIxPHI_withINT12(
 {
   PREFACTORS(hm); // defines ap and hp 
   double ret = Eval_B_PHIxPHI(ps,ap,hp);
-#ifdef WITH_T_SPIN    
+#ifdef WITH_T_SPIN
+  // the additional interference terms are only relevant in the polarized amplitudes
+  // when models with more than 1 heavy Higgs boson are considered
   if (hm.NBosons()>1)
     {
       ret -= Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
@@ -253,7 +255,7 @@ double Eval_V(
 #ifdef WITH_T_SPIN
       if (hm.NBosons()>1)
 	{
-	  res += Eval_V_PHIxPHI_IM_INTab(ps,ap,hp);
+	  res -= Eval_V_PHIxPHI_IM_INTab(ps,ap,hp);
 	}
 #endif
 #ifdef DEBUG

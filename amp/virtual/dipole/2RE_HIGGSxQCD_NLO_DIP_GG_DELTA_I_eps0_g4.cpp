@@ -1,6 +1,6 @@
 #include "AMP_HEADER.h"
 
-double Eval_DIP_DELTA_I (
+double Eval_DIP_GG_DELTA_I (
  const double& s12_1,
  const double& S12_1,
  const double& beta_1,

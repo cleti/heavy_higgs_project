@@ -16,6 +16,7 @@
 #include "Global.h"
 #include "Lorentz.h"
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*!
 \typedef observable function type
@@ -23,7 +24,6 @@
 typedef double (*OBS)(FV const&);
 
 
-const char* cat(std::string str, int number);
 
 #define H_LO_QCD  0
 #define H_LO_PHI  1
@@ -119,6 +119,8 @@ class HistArray {
     \param mScale if dimensionful observables have been normalized to mass scale mScale this can be used to restore the original mass scale (provided d_mass_dim was set up correctly)
   */
   void Normalize(const double& mScale=1.0);
+
+  void Print();
 };
 
 
@@ -158,14 +160,13 @@ extern HistArray Y1Distributions;
 extern HistArray Y2Distributions;
 //! top-antitop rapidity difference distributions
 extern HistArray DYDistributions;
-//! lepton transverse momentum distributions
-extern HistArray PTL1Distributions;
-//! antilepton transverse momentum distributions
-extern HistArray PTL2Distributions;
-//! lepton-antilepton opening angle distributions
-extern HistArray PHILLDistributions;
-//! partonic c.m.e. distributions
-extern HistArray SPartDistributions;
+
+// angular distributions (spin dependent)
+extern HistArray PHIT12Distributions;
+extern HistArray PHI12Distributions;
+extern HistArray OCPDistributions;
+extern HistArray LP1Distributions;
+extern HistArray LP2Distributions;
 
 
 
@@ -176,13 +177,16 @@ double obs_M12(FV const& k1, FV const& k2);
   double obs_PT(FV const& k);
 //! Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|
 double obs_PT12(FV const& k1, FV const& k2);
-//! Computes rapidity from a 4-vector k1
+//! Computes rapidity of a 4-vector k1
 double obs_Y(FV const& k);
-//! Computes rapidity difference from two 4-vectors k1 and k2
+//! Computes rapidity difference of two 4-vectors k1 and k2
 double obs_DY(FV const& k1, FV const& k2);
-//! Computes momentum direction opening angle form two 4-vectors k1 and k2
+//! Computes spatial opening angle of two 4-vectors k1 and k2
 double obs_PHI(FV const& k1, FV const& k2);
-
+//! Computes opening angle of the spatial projections on the x-y plane
+double obs_PHIT(FV const& k1, FV const& k2);
+//! Computes the spatial triple product of three 4-vectors k1,k2,k3
+double obs_TriProd(FV const& k1, FV const& k2, FV const& k3);
 
 
 #endif

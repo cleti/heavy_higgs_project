@@ -111,7 +111,7 @@ if (IZ_EVAL_SI_2P(flags))
     S12  = pow(ps.get_rs(),2);
     T11  = mt2 - ps.get_t11();
     T12  = mt2 - ps.get_t12();
-
+    
     Set_I1(MUR2);
     Set_I2(MUR2);
     

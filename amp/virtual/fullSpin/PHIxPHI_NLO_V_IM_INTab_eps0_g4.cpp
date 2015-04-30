@@ -1,16 +1,15 @@
 
 #include "AMP_HEADER.h"
 
-#include <math.h>
-
 double Eval_V_PHIxPHI_IM_INTab (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
+  AMP_DEFINITIONS;
+  AP_REFS_V(ap);
   
   // need the imaginary parts of these prefactors here !!!
-  double const& At_Bt_fH2_De = At_Bt_fH2_DeIM;
-  double const& At_Bt_fA2_De = At_Bt_fA2_DeIM;
+  double const& At_Bt_fH2_De = hp.At_Bt_fH2_DeIM;
+  double const& At_Bt_fA2_De = hp.At_Bt_fA2_DeIM;
 
 
   double t1;
@@ -65,7 +64,7 @@ AMP_DEFINITIONS
   t31 = EPS_(k1, k2, s1, s2);
   t32 = CA * t29 * t31;
   t35 = s * At_Bt_fA2_De * PREF_V_PHI_CF;
-  t48 = log(MUR2 / s);
+  t48 = (RE(I2_S12_0_0_MU2_0)-2.0); // = log(RunParameters::MUR2 / s);
   t49 = t48 * t48;
   t50 = CA * t49;
   t53 = RE(I1_MT2_MU2_0);

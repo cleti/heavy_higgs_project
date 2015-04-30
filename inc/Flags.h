@@ -47,11 +47,13 @@
 #define F_EVAL_V_PHIxPHI     BOOST_BINARY_LU(000 000 100 000 000 000 000 0)
 #define F_EVAL_V_NF          BOOST_BINARY_LU(000 001 000 000 000 000 000 0)
 					     
-#define F_EVAL_D_ALL         BOOST_BINARY_LU(111 000 000 000 000 000 000 0)
-#define F_EVAL_D_DELTA       BOOST_BINARY_LU(001 000 000 000 000 000 000 0)
-#define F_EVAL_D_END         BOOST_BINARY_LU(010 000 000 000 000 000 000 0)
-#define F_EVAL_D_CONT        BOOST_BINARY_LU(100 000 000 000 000 000 000 0)
-#define F_EVAL_D_QG          BOOST_BINARY_LU(000 100 000 000 000 000 000 0)
+#define F_EVAL_D_ALL         BOOST_BINARY_LU(111 100 000 000 000 000 000 0)
+#define F_EVAL_D_QG_CONT     BOOST_BINARY_LU(000 100 000 000 000 000 000 0)
+#define F_EVAL_D_GG_ALL      BOOST_BINARY_LU(111 000 000 000 000 000 000 0)
+#define F_EVAL_D_GG_DELTA    BOOST_BINARY_LU(001 000 000 000 000 000 000 0)
+#define F_EVAL_D_GG_END      BOOST_BINARY_LU(010 000 000 000 000 000 000 0)
+#define F_EVAL_D_GG_CONT     BOOST_BINARY_LU(100 000 000 000 000 000 000 0)
+
 
 
 
@@ -78,11 +80,7 @@
 #define SET_EVAL_V_PHI1xQCD0(F) F |= F_EVAL_V_PHI1xQCD0
 #define SET_EVAL_V_PHIxPHI(F)   F |= F_EVAL_V_PHIxPHI
 #define SET_EVAL_V_NF(F)        F |= F_EVAL_V_NF
-  
-#define SET_EVAL_D_ALL(F)    F |= F_EVAL_D_ALL
-#define SET_EVAL_D_DELTA(F)  F |= F_EVAL_D_DELTA
-#define SET_EVAL_D_END(F)    F |= F_EVAL_D_END   
-#define SET_EVAL_D_CONT(F)   F |= F_EVAL_D_CONT   
+
 
 
 
@@ -108,18 +106,13 @@
 #define USET_EVAL_V_PHI1xQCD0(F) F &= ~F_EVAL_V_PHI1xQCD0
 #define USET_EVAL_V_PHIxPHI(F)   F &= ~F_EVAL_V_PHIxPHI
 #define USET_EVAL_V_NF(F)        F &= ~F_EVAL_V_NF
-
-#define USET_EVAL_D_ALL(F)    F &= ~F_EVAL_D_ALL
-#define USET_EVAL_D_DELTA(F)  F &= ~F_EVAL_D_DELTA
-#define USET_EVAL_D_END(F)    F &= ~F_EVAL_D_END 
-#define USET_EVAL_D_CONT(F)   F &= ~F_EVAL_D_CONT   
+ 
 
 // test if any born or virtual flags are set
 #define EVAL_B(F)     (F & (F_EVAL_B_ALL))
 #define EVAL_B_PHI(F) (F & (F_EVAL_B_PHIxPHI | F_EVAL_B_PHIxQCD))
 #define EVAL_V(F)     (F & (F_EVAL_V_ALL))
-// test if any int. dipole flags are set
-#define EVAL_ID(F)    (F & F_EVAL_D_ALL)
+
 
 #define IZ_EVAL_SI_2P(F)  (F & F_EVAL_V_SE) || IZ_EVAL_SI_3P(F)
 #define IZ_EVAL_SI_3P(F)  (F & (F_EVAL_V_4G | F_EVAL_V_V1 | F_EVAL_V_V2 | F_EVAL_V_PHI1xQCD0 | F_EVAL_V_PHIxPHI)) || IZ_EVAL_SI_4P(F)
@@ -204,8 +197,11 @@
 #define EVAL_R_QQ_QG(F) (EVAL_R_QG(F) | EVAL_R_QQ(F))
 #define EVAL_UID_GG_II(F)  (F & (F_EVAL_R_ISR_ISR | F_EVAL_R_PHIxPHI_ISR))
 #define EVAL_UID_GG_FF(F)  (F & (F_EVAL_R_FSR_FSR | F_EVAL_R_PHIxPHI_FSR))
+#define EVAL_UID_GG_FI(F)  (F & F_EVAL_R_FSR_ISR)
+#define EVAL_UID_GG_IF(F)  (F & F_EVAL_R_ISR_FSR)
+#define EVAL_SGA_GG(F)     (F & F_EVAL_R_FSR_ISR)
 #define EVAL_UID_QG_II(F)  EVAL_R_QG(F)
-
+#define EVAL_UID_QG_IF(F)  EVAL_R_QG(F)
   
 #define IZ_EVAL_UID_INT(F)   F & (F_EVAL_R_ISR_FSR | F_EVAL_R_FSR_ISR )
 //////////////////////////////////////////////////////////////////

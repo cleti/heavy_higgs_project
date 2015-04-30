@@ -118,7 +118,9 @@ class LT {
     \returns 1 if succesful, 0 if the mass of P is too small so that the restframe does not exist.
   */
   int set_boost_inv(FV const& P);
-
+  
+  int set_boost_z(double const& x,bool INV=false);
+  
   int set_wigner(FV const& P1, FV const& P2);
   void print();
 };

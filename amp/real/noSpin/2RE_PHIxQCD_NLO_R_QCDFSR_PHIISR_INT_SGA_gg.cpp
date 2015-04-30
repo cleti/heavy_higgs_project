@@ -4,14 +4,14 @@
 double Eval_R_FSR_ISR_SGA (AMP_ARGS, FV const& p3b)
 {
 
-AMP_DEFINITIONS;
+  AMP_DEFINITIONS;
   HP_REFS_PHIxQCD(hp);
   AP_REFS_R(ap);
 
  
- double t1;
- double t10;
- double t103;
+  double t1;
+  double t10;
+  double t103;
   double t105;
   double t108;
   double t109;

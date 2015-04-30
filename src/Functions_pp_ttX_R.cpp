@@ -7,35 +7,35 @@
   const AmplitudePrefactors& ap = HM.GetAmpPrefactors();	\
   const HiggsPrefactors&     hp = HM.GetHiggsPrefactors();	\
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#ifdef WITH_T_SPIN
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// PHI^2 amplitudes
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_qq.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_qg.cpp"
-// // test: my own PHI^2 amplitudes 
-// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_v2_gg.cpp"
-// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_v2_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_INT12_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_INT12_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_IM_INTab_gg.cpp"
-#include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_IM_INTab_gg.cpp"
-// interference terms 2Re[QCDxPHI]
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIISR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIFSR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIFSR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIINT_gg.cpp"
-// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIISR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIFSR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIINT_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIISR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIFSR_gg.cpp"
-// #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIINT_gg.cpp"
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#else
-///////////////////////////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// #ifdef WITH_T_SPIN
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// // PHI^2 amplitudes
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_qq.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_qg.cpp"
+// // // test: my own PHI^2 amplitudes 
+// // #include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_v2_gg.cpp"
+// // #include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_v2_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_INT12_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_INT12_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_ISR_IM_INTab_gg.cpp"
+// #include "../amp/real/fullSpin/PHIxPHI_NLO_R_FSR_IM_INTab_gg.cpp"
+// // interference terms 2Re[QCDxPHI]
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIISR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIFSR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIFSR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDISR_PHIINT_gg.cpp"
+// // // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIISR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIFSR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIINT_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIISR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIFSR_gg.cpp"
+// // #include "../amp/real/fullSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIINT_gg.cpp"
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// #else
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PHI^2 amplitudes
 // [gg->PHIg->ttg]
 #include "../amp/real/noSpin/PHIxPHI_NLO_R_ISR_gg.cpp"
@@ -60,9 +60,9 @@
 #include "../amp/real/noSpin/2RE_PHIxQCD_NLO_R_QCDINT_PHIINT_QG.cpp"
 // [qq->ttg]
 #include "../amp/real/noSpin/2RE_PHIxQCD_NLO_R_QCDFSR_PHIINT_QQ.cpp"
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#endif
-///////////////////////////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
+// #endif
+// ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -79,6 +79,7 @@ double Eval_R_GG(
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-FSR contributions with p1+p2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
+  // in all PHI initial/int. radiation contributions the propagator carries (p1+p2)^2
   double s12 = ps.get_s();
   hm.SetHiggsPrefactors(s12,1);
   // interference terms QCDxPHI
@@ -110,13 +111,13 @@ double Eval_R_GG(
     {
       res += Eval_R_PHIxPHI_FSR(ps,ap,hp);
 
-#ifdef WITH_T_SPIN
-      // these additional interference terms are only needed when spins are involved
-      if (RunParameters::TwoHDM==1)
-	{ 
-	  res -= Eval_R_PHIxPHI_FSR_IM_INTab(ps,ap,hp);
-	}
-#endif
+// #ifdef WITH_T_SPIN
+//       // these additional interference terms are only needed when spins are involved
+//       if (hm.NBosons()>1)
+// 	{ 
+// 	  res -= Eval_R_PHIxPHI_FSR_IM_INTab(ps,ap,hp);
+// 	}
+// #endif
 
 #ifdef DEBUG
       CHECKNAN(res);
@@ -125,6 +126,7 @@ double Eval_R_GG(
   //////////////////////////////////////////////////////////////////////////
   // call before all PHI-ISR / INT contributions with k1+k2 in Phi-denominator
   //////////////////////////////////////////////////////////////////////////
+  // in all PHI initial/int. radiation contributions the propagator carries (k1+k2)^2
   double S12 = 2.0*(hm.mt2() + sp(ps.k1(),ps.k2()));
   hm.SetHiggsPrefactors(S12,1);
   // interference terms QCDxPHI
@@ -178,13 +180,13 @@ double Eval_R_GG(
     {
       res += Eval_R_PHIxPHI_ISR(ps,ap,hp);
 
-#ifdef WITH_T_SPIN
-      // these additional interference terms are only needed when spins are involved
-      if (RunParameters::TwoHDM==1)
-	{
-	  res -= Eval_R_PHIxPHI_ISR_IM_INTab(ps,ap,hp);
-	}
-#endif
+// #ifdef WITH_T_SPIN
+//       // these additional interference terms are only needed when spins are involved
+//       if (hm.NBosons()>1)
+// 	{
+// 	  res -= Eval_R_PHIxPHI_ISR_IM_INTab(ps,ap,hp);
+// 	}
+// #endif
 
 #ifdef DEBUG
       CHECKNAN(res);
@@ -221,13 +223,13 @@ double Eval_R_QQ(
     {
       res += Eval_R_PHIxPHI_QQ(ps,ap,hp);
       
-#ifdef WITH_T_SPIN
-      // these additional interference terms are only needed when spins are involved
-      if (RunParameters::TwoHDM==1)
-	{
-	  // res -= Eval_R_PHIxPHI_QQ_IM_INTab(ps);
-	}
-#endif
+// #ifdef WITH_T_SPIN
+//       // these additional interference terms are only needed when spins are involved
+//       if (hm.NBosons()>1)
+// 	{
+// 	  // res -= Eval_R_PHIxPHI_QQ_IM_INTab(ps);
+// 	}
+// #endif
       
 #ifdef DEBUG
       CHECKNAN(res);
@@ -266,13 +268,13 @@ double Eval_R_QG(
     {
       res += Eval_R_PHIxPHI_QG(ps,ap,hp);
       
-#ifdef WITH_T_SPIN
-      // these additional interference terms are only needed when spins are involved
-      if (RunParameters::TwoHDM==1)
-	{
-	  // res -= Eval_R_PHIxPHI_QG_IM_INTab(ps);
-	}
-#endif
+// #ifdef WITH_T_SPIN
+//       // these additional interference terms are only needed when spins are involved
+//       if (hm.NBosons()>1)
+// 	{
+// 	  // res -= Eval_R_PHIxPHI_QG_IM_INTab(ps);
+// 	}
+// #endif
       
 #ifdef DEBUG
       CHECKNAN(res);

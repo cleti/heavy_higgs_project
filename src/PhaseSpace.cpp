@@ -25,7 +25,7 @@ void PS_2::set_initial_state(double const& rs)
       p[1][0] =  E;
       p[1][3] = -E;
 }
-void PS_2::swap()
+void PS_2::swap_initial_state()
 {
   p[0].swap(p[1]);
   P[0].swap(P[1]);
@@ -280,13 +280,29 @@ int PS_2_2::set(double const& rs,
   return 1;
 }
 
-void PS_2_2::set()
+int PS_2_2::set()
 {
   // this function assumes that the vectors p1,p2,k1,k2 have been set up correctly
   // no checks at all !!!
   double s  = (2.0*sp(p[0],p[1]));
+  if (s<=0.0)
+    {
+      WARNING("s is <=0!");
+      SLEEP(3);
+      return 0;
+    }
   d_rs      = sqrt(s);
 
+  double m1sq = sp(k[0],k[0]);
+  double m2sq = sp(k[1],k[1]);
+  if (s<=4.0*std::max(m1sq,m2sq))
+    {
+      WARNING("s is below threshold give by the final state masses!");
+      SLEEP(3);
+      return 0;
+    }
+  d_msq[0] = m1sq;
+  d_msq[1] = m2sq;
   // use invariant description to define beta
   // correpsonds to P/E in the c.m.f. of k1 and k2 !!!
   d_beta[0]= sqrt(1.0-4.0*d_msq[0]/s);
@@ -299,6 +315,7 @@ void PS_2_2::set()
   // not needed at the moment ///
   d_phi    = 0.0;
   ///////////////////////////////
+  return 1;
 }
 
 
@@ -328,9 +345,35 @@ void PS_2_2::print() const
 void PS_2_2::FillDistributions(
 			       std::vector<HistArray*> & dist,
 			       int id,
-			       double const & wgt,
+			       double const& wgt,
 			       double const& mScale) const
 {
+#ifdef WITH_T_SPIN
+  ///////////////////////////////////////////////////////
+  // spin-dependent observables /////////////////////////
+  ///////////////////////////////////////////////////////  
+  // need the t/tbar momenta in the tt z.m.f ...
+  // ( = parton z.m.f. in this case)
+  FV const& K1 = k[0];
+  FV const& K2 = k[1];
+  // ... and the lepton momenta in t/tbar restframes
+  FV const& L1 = S_r[0];
+  FV const& L2 = S_r[1];
+  // ... and the lepton momenta in parton z.m.f.
+  FV const& l1 = S[0];
+  FV const& l2 = S[1]; 
+  // ensure that S_r[0,1] are set up correctly!
+
+  
+  //dist[7 ]->FillOne(id,obs_M12(K1,K2)*mScale,wgt*obs_PHIT(l1,l2));
+  dist[8 ]->FillOne(id,obs_M12(K1,K2)*mScale,3.0*wgt*obs_PHI(L1,L2));
+  //dist[9 ]->FillOne(id,obs_M12(K1,K2)*mScale,wgt*obs_TriProd(L1,L2,K1));
+  dist[10]->FillOne(id,obs_M12(K1,K2)*mScale,9.0*wgt*obs_PHI(L1,K1)*obs_PHI(L2,K2));
+  ///////////////////////////////////////////////////////
+#else
+  ///////////////////////////////////////////////////////
+  // spin-independent observables ///////////////////////
+  ///////////////////////////////////////////////////////  
   // need the lab frame 4-vectors K1,K2 of top/antitop
   static LT boost_to_lab_frame;
   // boost to the rest frame of the protons :
@@ -341,7 +384,7 @@ void PS_2_2::FillDistributions(
   FV K2 = k[1];
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
-
+  
   dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
   dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
@@ -350,6 +393,8 @@ void PS_2_2::FillDistributions(
   dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
   dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
+  ///////////////////////////////////////////////////////
+#endif
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////
@@ -508,14 +553,36 @@ void PS_2_3::FillDistributions(
   // boost to the rest frame of the protons :
   // P1+P2 = 1/x1*p1 + 1/x2*p2 = lab frame
   boost_to_lab_frame.set_boost(P[0]+P[1],0);
+  // FV P1 = p[0];
+  // FV P2 = p[1];  
   FV K1 = k[0];
   FV K2 = k[1];
+  // FV K3 = k[2];
+  FV Q1 = P[0];
+  FV Q2 = P[1];
+  // boost_to_lab_frame.apply(P1);
+  // boost_to_lab_frame.apply(P2);
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
+  // boost_to_lab_frame.apply(K3);
+  boost_to_lab_frame.apply(Q1);
+  boost_to_lab_frame.apply(Q2);
+
+  // if (K1[0]>20 || K2[0]>20)
+  //   {
+  // PRINT_4VEC(Q1);
+  // PRINT_4VEC(Q2);
+  // PRINT_4VEC(P1);
+  // PRINT_4VEC(P2);
+  // PRINT_4VEC(K1);
+  // PRINT_4VEC(K2);
+  // PRINT_4VEC(K3);
+  // exit(1);
+  //   }
   
   // tt distributions
-  dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
-  dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
+  dist[0]->FillOne(id,obs_M12(k[0],k[1])*mScale,wgt);
+  dist[1]->FillOne(id,obs_PT(k[0])*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
   dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
   // need lab frame vectors for these

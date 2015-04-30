@@ -4,7 +4,9 @@
 double Eval_V_B2 (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
+  AMP_DEFINITIONS;
+  HP_REFS_PHIxQCD(hp);
+  AP_REFS_V(ap);
 
   c_double& cg  = I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_0;
   c_double& cg1 = I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_1;

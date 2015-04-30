@@ -1,3 +1,21 @@
 #!/bin/bash
 
-./bin/Integrate_pp_ttX -I $1 -N 10000000 -E 7  -D --add_higgs 500,32.45440,1.0,1.0,0,0 -M 173.5 -m 0.0 -R 347
+CALLS="1000000"
+FLAGS="1111111"
+
+if [ $# -eq 2 ]
+then
+FLAGS=$1
+CALLS=$2
+fi
+
+if [ $# -eq 1 ]
+then
+FLAGS=$1
+fi
+
+### settings for the comparison with P. G.
+### one Higgs mH = 500, GH = 32.45440, at = bt = 1
+### Mt = 173.5, MU = 2*Mt
+### C.M.E. = 7 TeV
+./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 7  --add_higgs 500,32.45440,1.0,1.0,0,0 -M 173.5 -m 0.0 -R 347 -v 1 -D

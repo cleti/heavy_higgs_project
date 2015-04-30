@@ -14,8 +14,8 @@
 
 
 
-///// ARG /////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 /* The invocation name of this program.  */
 char *program_name;
 
@@ -31,7 +31,7 @@ struct opt g_options = {
   7,//int tech_cut;
   6,//int precision; // output
   false,//bool dist;
-  false,//bool tedcay;
+  false,//bool tdecay;
   false,//logfile
   false,//rootfile
   0//verb_level;
@@ -113,6 +113,8 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
     {	
       switch (c1)
 	{
+	case 'H':
+	  break;
 	case 'M':
   	  options.mt = fabs(atof(optarg));
   	  break;
@@ -158,6 +160,8 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	case 'i':
 	  usage(0);	  
 	  break;
+	default:
+	  usage(1);
 	}
     }
 
@@ -289,8 +293,8 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
   
   std::cout << std::setprecision(options.precision);
 }
-///// ARG /////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -298,10 +302,14 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+static std::string cat(std::string str, int number)
+{
+  std::ostringstream strstr;
+  strstr << str << number;
+  return strstr.str();
+}
 
 
 
@@ -317,19 +325,29 @@ CanvasPtr MakeCanvas(const char* title,
   // alllocate new canvas if neccessary
   if ( c == nullptr )
     {
-      c = new TCanvas(cat("Canvas_",c_counter++),title,0,0,width,height);
+
+      c = new TCanvas(cat("Canvas_",c_counter++).c_str(),title,0,0,width,height);
       c->Divide(1,1);
     }
   double can_size_ratio = (double)height/(double)width;
 
+  
   // upper pad
-  TPad* p1_1 = new TPad(cat("upper_pad_",p_counter),cat("upper_pad_",p_counter),0,0.2,1,1);
+  TPad* p1_1 = new TPad(
+			cat("upper_pad_",p_counter).c_str(),
+			cat("upper_pad_",p_counter).c_str(),
+			0,0.2,1,1);
+  ++p_counter;
   p1_1->SetTopMargin(0.05);
   p1_1->SetBottomMargin(0.0075);
   p1_1->SetLeftMargin(0.1*can_size_ratio*left_marg_scale);
   p1_1->SetRightMargin(0.05);
   // lower pad
-  TPad* p1_2 = new TPad(cat("lower_pad_",p_counter),cat("lower_pad_",p_counter),0,0,1,0.2);
+  TPad* p1_2 = new TPad(
+			cat("lower_pad_",p_counter).c_str(),
+			cat("lower_pad_",p_counter).c_str(),
+			0,0,1,0.2);
+  ++p_counter;
   p1_2->SetTopMargin(0.0025);
   p1_2->SetBottomMargin(0.3*bottom_marg_scale);
   p1_2->SetLeftMargin(0.1*can_size_ratio*left_marg_scale);
@@ -339,7 +357,7 @@ CanvasPtr MakeCanvas(const char* title,
 DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width, int height)
 {
   static int c_counter = 0;
-  TCanvas* c = new TCanvas(cat("DoubleCanvas_",c_counter++),title,0,0,width,height);
+  TCanvas* c = new TCanvas(cat("DoubleCanvas_",c_counter++).c_str(),title,0,0,width,height);
   c->Divide(2,1);
   return {MakeCanvas(title,width/2,height,c),MakeCanvas(title,width/2,height,c)};
 }
@@ -392,7 +410,7 @@ void DrawDistribution(
       canvas.p1_1->cd();
 
       // 0 contains LO QCD
-      //histograms[0]->Smooth(1);
+      histograms[0]->Smooth(1);
       // 1 conatins LO QCD + LO PHI^2 + LO PHIxQCD
       histograms[1]->Add(histograms[0]);
       if (NLO)
@@ -402,7 +420,7 @@ void DrawDistribution(
 	  // 4 conatins NLO virt.
 	  histograms[3]->Add(histograms[4]);
 	  // 5 contains NLO real
-	  //histograms[5]->Smooth(1);
+	  histograms[5]->Smooth(1);
 	  histograms[3]->Add(histograms[5]);
 	  
 	}
@@ -551,8 +569,6 @@ void SetRatioPlot(TH1D* hist,std::string xtitle)
   hist->GetXaxis()->SetTitleSize(25);
   hist->GetXaxis()->SetTitleOffset(4.5);
 }
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -627,10 +643,13 @@ c_double const& DenS(double const& s, double const& m, double const& g)
 // the restframes are connected to the k1,k2-z.m.f. by rotationfree boosts in the respective directions
 // the spin 4-vectors then obey k_i.s_i = 0 and s_i.s_i = -1
 void set_spins_in_tt_zmf(
+			 // top/antitop 4-momenta in the tt z.m.f.
 			 FV const& k1,
 			 FV const& k2,
+			 // spin vectors in the tt z.m.f.
 			 FV& s1,
 			 FV& s2,
+			 // spin vectors in t and tbar restframe, resp.
 			 FV const& s1_r,
 			 FV const& s2_r
 			 )

@@ -28,6 +28,5 @@ double Eval_B_QCDxQCD_GG (AMP_ARGS)
   t16 = pow(beta_y - 0.1e1, 0.2e1);
   t19 = pow(beta_y + 0.1e1, 0.2e1);
   t21 = 0.1e1 / t16 / t19;
-  // -----|-- sum over top spins
-  return 4.0*(0.32e2 * t12 / Constants::CA * t21 * PREF_B_QCDxQCD - 0.16e2 * (t9 + 0.1e1) * t12 * t21 * PREF_B_QCDxQCD_CA);
+  return (0.32e2 * t12 / Constants::CA * t21 * PREF_B_QCDxQCD - 0.16e2 * (t9 + 0.1e1) * t12 * t21 * PREF_B_QCDxQCD_CA);
 }
