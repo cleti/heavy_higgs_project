@@ -1,6 +1,8 @@
 
 
-
+/*! \file
+  \brief Interface for the evaluation of the real corrections to the process pp -> ttbar +X.
+*/ 
 
 #ifndef FUNCTIONS_SHARED_H
 #define FUNCTIONS_SHARED_H
@@ -59,6 +61,7 @@ struct opt {
   int precision;
   bool dist;
   bool tdecay;
+  bool useK;
   bool logfile;
   bool rootfile;
   int verb_level;

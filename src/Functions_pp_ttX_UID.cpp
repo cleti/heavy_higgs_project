@@ -259,7 +259,7 @@ double Eval_UID_GG(
   PREFACTORS(hm); // defines ap and hp
   double const& mt2    = hm.mt2();
   double const& mScale = hm.Scale();
-  
+
   double res = 0.0;
 
   bool DIST = (dist != nullptr);

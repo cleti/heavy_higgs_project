@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cleanup',['cleanup',['../classintegrand__par.html#a1655b43b8c9e09a8bfbab014375aca49',1,'integrand_par']]],
-  ['collect_5fdist',['collect_dist',['../classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782',1,'integrand_par']]]
+  ['br_5ftt_5fll',['BR_TT_LL',['../namespaceConstants.html#a08dd306759548b9ee421fca4602579e2',1,'Constants']]]
 ];

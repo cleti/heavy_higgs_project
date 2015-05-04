@@ -73,8 +73,8 @@ double Eval_V(
 
   double s = 2.0*sp(p1,p2);  
   double t1 = s * s;
-  // double t4 = log(MUR2 / s);
-  double t5 = 0.0;//t4 * t4; // cancels exactly against term in I-op.
+  double t4 = log(MUR2 / s);
+  double t5 = t4 * t4; // cancels exactly against term in I-op.
   double t6 = CA * t5;
   double t10 = CA * Pi2;
   return 0.8e1 * t1 * (0.16e2 * CA * FA02 + 0.4e1 * t10 * FA02 - 0.4e1 * t6 * FA02 + t10 * FH02 - t6 * FH02 + 0.11e2 * FH02) / CA * PREF_V_PHI;
@@ -98,10 +98,148 @@ static double P_gg_reg(double const& x)
 
 
 
-#include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_I_eps0_g4.cpp"
-#include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_PK_eps0_g4.cpp"
-#include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_CONT_eps0_g4.cpp"
-#include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DIST_E_eps0_g4.cpp"
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// #include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_I_eps0_g4.cpp"
+// #include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_PK_eps0_g4.cpp"
+// #include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_CONT_eps0_g4.cpp"
+// #include "../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DIST_E_eps0_g4.cpp"
+
+double Eval_DIP_DELTA (
+		       double const& s_1,
+		       double const& B_1,
+		       double const& mu_F2,
+		       double const& mu_R2,
+		       double const& AlphaS)
+{
+  using namespace Constants;
+  double t2;
+  double t4;
+  double t5;
+  double t9;
+  t2 = 0.1e1 / s_1;
+  t4 = log(mu_R2 * t2);
+  t5 = t4 * t4;
+  t9 = log(mu_F2 * t2);
+  return(B_1 * ((-0.5e1 / 0.3e1 * Pi2 + 0.67e2 / 0.9e1 + t5) * CA + (0.4e1 * t4 + 0.4e1 - 0.4e1 * t9) * beta0 - 0.10e2 / 0.9e1 * Nf) / TwoPi * AlphaS);
+}
+double Eval_DIP_DELTA_WITH_Kbar (
+		       double const& s_1,
+		       double const& B_1,
+		       double const& mu_F2,
+		       double const& mu_R2,
+		       double const& AlphaS)
+{
+  using namespace Constants;
+  double t2;
+  double t4;
+  double t5;
+  double t9;
+  t2 = 0.1e1 / s_1;
+  t4 = log(mu_R2 * t2);
+  t5 = t4 * t4;
+  t9 = log(mu_F2 * t2);
+  return(B_1 * ((Pi2 / 0.3e1 + t5) * CA + (-0.4e1 * t9 + 0.4e1 * t4) * beta0) / TwoPi * AlphaS);
+
+}
+
+
+double Eval_DIP_DIST_E (
+			double const& s_1,
+			double const& B_1,
+			double const& x,
+			double const& mu_F2,
+			double const& AlphaS)
+{
+  using namespace Constants;
+  double t2;
+  double t3;
+  double t6;
+  double t9;
+  t2 = -0.1e1 + x;
+  t3 = 0.1e1 / t2;
+  t6 = log(mu_F2 / s_1);
+  t9 = log(-t2);
+  return(0.4e1 * B_1 * CA * (t3 * t6 - t3 * t9) * AlphaS / TwoPi);
+}
+double Eval_DIP_DIST_E_WITH_Kbar (
+			double const& s_1,
+			double const& B_1,
+			double const& x,
+			double const& mu_F2,
+			double const& AlphaS)
+{
+  using namespace Constants;
+  double t13;
+  double t2;
+  double t3;
+  double t6;
+  double t8;
+  double t9;
+  t2 = -0.1e1 + x;
+  t3 = 0.1e1 / t2;
+  t6 = log(mu_F2 / s_1);
+  t8 = -t2;
+  t9 = log(t8);
+  t13 = log(t8 / x);
+  return(0.4e1 * B_1 * CA * (-t13 * t3 + t3 * t6 - t3 * t9) * AlphaS / TwoPi);
+
+}
+
+double Eval_DIP_CONT (
+		      double const& s_1,
+		      double const& B_x,
+		      double const& x,
+		      double const& mu_F2,
+		      double const& AlphaS)
+{
+  using namespace Constants;
+  double t10;
+  double t13;
+  double t5;
+  double t6;
+  double t7;
+  t5 = log(mu_F2 / x / s_1);
+  t6 = 0.1e1 - x;
+  t7 = log(t6);
+  t10 = P_gg_reg(x);
+  t13 = -0.1e1 / t6;
+  return(B_x * ((-0.2e1 * t5 + 0.2e1 * t7) * t10 + 0.4e1 * CA * (t13 * t5 - t13 * t7)) * AlphaS / TwoPi);
+
+}
+double Eval_DIP_CONT_WITH_Kbar (
+		      double const& s_1,
+		      double const& B_x,
+		      double const& x,
+		      double const& mu_F2,
+		      double const& AlphaS)
+{
+  using namespace Constants;
+  double t1;
+  double t12;
+  double t15;
+  double t5;
+  double t6;
+  double t7;
+  double t9;
+  t1 = 0.1e1 / x;
+  t5 = log(mu_F2 * t1 / s_1);
+  t6 = 0.1e1 - x;
+  t7 = log(t6);
+  t9 = log(t6 * t1);
+  t12 = P_gg_reg(x);
+  t15 = -0.1e1 / t6;
+  return(B_x * ((-0.2e1 * t5 + 0.2e1 * t7 + 0.2e1 * t9) * t12 + 0.4e1 * CA * (t15 * t5 - t15 * t7 - t15 * t9)) * AlphaS / TwoPi);
+
+}
+
 
 // evaluate the finite part of the integrated dipoles: x-independent part of I,P,K operators
 double Eval_ID(
@@ -116,43 +254,29 @@ double Eval_ID(
   double res = 0.0;
   double B_phi = Eval_B(p1,p2,hm,1);
   double const& s12_1  = 2.0*sp(p1,p2);
-  res += Eval_DIP_DELTA_I (s12_1, // invairant in initial-initial dipoles
-  			   0.0,   // invariant in final-final dipoles
-  			   0.0,   // beta factor for massive final-final dipoles
-  			   0.0,   // invariant t11 (final-initial)
-  			   0.0,   // invariant t12 (final-initial)
-  			   B_phi, // uncorrelated Born 
-  			   0.0,   // color correlated Born
-  			   MUR2,  // ren./fact. scales
-			   AlphaS); 
-  res += Eval_DIP_DELTA_PK(s12_1, // invariant s12 (initial-initial) 
-  			   0.0,   // invariant t12 (initial-final)	 
-  			   0.0,   // invariant t12 (initial-final)   
-  			   B_phi, // uncorrelated Born	       
-  			   0.0,   // uncorrelated Born in IF dipoles 
-  			   0.0,   // colour correlated Born          
-  			   MUF2,MUR2,// ren./fact. scales
-			   AlphaS);
-
+  res += Eval_DIP_DELTA_WITH_Kbar(s12_1, // invairant in initial-initial dipoles
+			 B_phi, // uncorrelated Born
+			 MUR2,  // ren./fact. scales
+			 MUF2,  // ren./fact. scales
+			 AlphaS);
+  
   // distribution end-point part
   if (x<Cuts::IDIP_X_CUT) 
     {
-      res -= Eval_DIP_DIST_E(s12_1, // invariant s12 (initial-initial) 
-      			     0.0,   // invariant t12 (initial-final)   	 
-      			     0.0,   // invariant t12 (initial-final)   
-      			     B_phi, // uncorrelated Born	       
-      			     0.0,   // uncorrelated Born in IF dipoles 
-      			     0.0,   // colour correlated Born          
+      res -= Eval_DIP_DIST_E_WITH_Kbar(s12_1, // invariant s12 (initial-initial) 
+      			     B_phi, // uncorrelated Born	             
       			     x,     // boost factor		       
       			     MUF2,  // ren./fact. scales    
-			     AlphaS);   
-      
+  			     AlphaS);   
     }
 #ifdef DEBUG
   CHECKNA(res);
 #endif
   return res;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -173,15 +297,11 @@ double Eval_ID_X(
       double rx = sqrt(x);
       double B_phi_x = Eval_B(rx*p1,rx*p2,hm,1);
       double s12_1   = 2.0*sp(p1,p2);
-      res += Eval_DIP_CONT(s12_1, // invariant s12 (initial-initial) 
-			   0.0,	    // invariant t12 (initial-final)   
-			   0.0,	    // invariant t12 (initial-final)   
-			   B_phi_x, // uncorrelated Born	       
-			   0.0,	    // uncorrelated Born in IF dipoles 
-			   0.0,	    // colour correlated Born          
-			   x,	    // boost factor		       
-			   MUF2,    // ren./fact. scales    
-			   AlphaS);           
+      res += Eval_DIP_CONT_WITH_Kbar(s12_1, // invariant s12 (initial-initial) 
+  			   B_phi_x, // uncorrelated Born	               
+  			   x,	    // boost factor		       
+  			   MUF2,    // ren./fact. scales    
+  			   AlphaS);           
     }
 #ifdef DEBUG
   CHECKNA(res);

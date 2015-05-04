@@ -1,6 +1,6 @@
 
 /*! \file
-  \brief Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here.
+  \brief Histogram class for the computation of differential distributions and definition of various observables.
 */ 
 
 
@@ -45,8 +45,12 @@ class HistArray {
   unsigned d_active;
   //! tmp. flags, used in Pause()/Resume()
   unsigned d_active_t;
-  //! description of the dsitribution
-  std::string d_label;
+  //! distribution name
+  std::string d_name;
+  //! latex label x-axis
+  std::string d_label_x;
+  //! latex label y-axis
+  std::string d_label_y;
   //! mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
   int d_mass_dim;
   //! the observable that will be plotted
@@ -60,7 +64,7 @@ class HistArray {
 	    double xlow,
 	    double xup,
 	    int mass_dim,
-	    std::string const& label="",
+	    std::string const& name="",
 	    bool SUMW2 = false);
   ~HistArray() {}
 
@@ -84,10 +88,10 @@ class HistArray {
   void Resume() { if (d_active == 0) std::swap(d_active_t,d_active); }
   
   //! set the description of the distribution
-  void SetLabel(std::string const& label) { d_label = label; }
+  void SetName(std::string const& name) { d_name = name; }
   
   //! get the description of the distribution, const char* for ROOT classes/functions
-  const char* GetLabel() { return d_label.c_str(); }
+  const char* GetName() { return d_name.c_str(); }
   
   //! fill weight into all active histograms
   /*!
@@ -120,7 +124,7 @@ class HistArray {
   */
   void Normalize(const double& mScale=1.0);
 
-  void Print();
+  void Print(std::ostream& ost);
 };
 
 
@@ -163,10 +167,9 @@ extern HistArray DYDistributions;
 
 // angular distributions (spin dependent)
 extern HistArray PHIT12Distributions;
-extern HistArray PHI12Distributions;
+extern HistArray DopenDistributions;
 extern HistArray OCPDistributions;
-extern HistArray LP1Distributions;
-extern HistArray LP2Distributions;
+extern HistArray ChelDistributions;
 
 
 

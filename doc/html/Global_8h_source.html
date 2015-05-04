@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,254 +88,128 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Global.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#ifndef GLOBAL_H</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GLOBAL_H</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;complex&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;streambuf&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Makros.h&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> std::complex&lt;double&gt; c_double;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ulong;</div>
+<a href="Global_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef GLOBAL_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GLOBAL_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;complex&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;streambuf&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;Makros.h&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>Constants {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="comment">/* misc. constants */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> gE;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi2;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi3;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> gE2;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TwoPi;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> FourPi;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TwoPi2;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="comment">/* conversion factors */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CONV_MeV_fm;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CONV_GeV2i_mbarn;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CONV_GeV2i_pbarn;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="comment">/* first two coefficients of the expansion of (4 pi)^eps/Gamma(1-eps) */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> C_eps1;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> C_eps2;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="comment">/* colour factors */</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CA;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TF;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CF;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CFCA2;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Nf;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CA2;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TF2;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CF2;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> beta0;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="comment">/* initial gg colour and spin average */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> PREF_GG;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> PREF_QQ;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> PREF_QG;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">/* top mass */</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> MT;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">namespace </span>AmpPrefactors {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="comment">/* born */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_PHIxPHI;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_PHIxQCD;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_QCDxQCD;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_QCDxQCD_CF;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_QCDxQCD_CA;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_B_QCDxQCD_CFCA;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="comment">/* virtual */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_CF;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_CA;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_CFCA2;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_Nf;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_CT;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_PHI;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_PHI_CA;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_V_PHI_CF;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="comment">/* real */</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_CF;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_CA;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_CFCA2;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_PHI;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_PHI_CA;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_R_PHI_CF;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="comment">/* UID */</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_UID_TF;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_UID_CA;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> PREF_UID_CF;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">namespace </span>HiggsBosons {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// combined VEV</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Vh;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="comment">// PHI1</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="comment">// mass &amp; width</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> M_1;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> G_1;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> M2_1;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> G2_1;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="comment">// fermion couplings</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_1;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_1;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Ab_1;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bb_1;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="comment">// effective gg-Phi couplings</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> FH_eff_1;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> FA_eff_1;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="comment">// full 1-loop form factors</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <span class="keyword">extern</span> c_double F_ggH1_s;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keyword">extern</span> c_double F_ggH1_p;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <span class="comment">// PHI1</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="comment">// mass &amp; width</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> M_2;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> G_2;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> M2_2;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> G2_2;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="comment">// fermion couplings</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_2;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_2;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Ab_2;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bb_2;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="comment">// effective gg-Phi couplings</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> FH_eff_2;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> FA_eff_2;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="comment">// full 1-loop form factors</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keyword">extern</span> c_double F_ggH2_s;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keyword">extern</span> c_double F_ggH2_p;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="comment">// interference terms</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_fH_re;       </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_fA_re;       </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_fH_re;       </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_fA_re;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_fH_im;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_fA_im;   </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_fH_im;       </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt_fA_im;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="comment">// phi^2</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At2_fH2_De; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At2_fA2_De; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt2_fH2_De; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Bt2_fA2_De;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor"></span>  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_Bt_fH2_De;   </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_Bt_fA2_De;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_Bt_fH2_DeIM; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> At_Bt_fA2_DeIM;     </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">namespace </span>RunParameters {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="comment">// flags</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> g_flags_eval_v;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> g_flags_eval_id;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> g_flags_eval_r;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <span class="comment">/* mass scale for normalization */</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mScale;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mScale2;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="comment">// top and gauge masses</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mt;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mb;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mW;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mZ;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mt2;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mb2;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mW2;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> mZ2;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <span class="comment">// widths</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> GammaT;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> GammaW;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> GammaT2;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> GammaW2;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="comment">// couplings</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Alpha0;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Gw2;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> Gw4;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> AlphaS;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> AlphaS2;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> CW2;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> SW2;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="comment">// scales</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> MUR;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> MUR2;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> MUF;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> MUF2;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="comment">// deprecated</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> LNMU2;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  <span class="comment">// conversion factor depends on mass scale for normalization</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> CONV_mt2i_pbarn;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <span class="comment">// use both scalar bosons</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">unsigned</span> TwoHDM;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;}</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="keyword">namespace </span>Cuts {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> COLL_CUT;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> SOFT_CUT;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> IDIP_X_CUT;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">// teebuf and teestream</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classteebuf.html">  206</a></span>&#160;<span class="keyword">class </span><a class="code" href="classteebuf.html">teebuf</a>: <span class="keyword">public</span> std::streambuf</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;{</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  <span class="comment">// Construct a streambuf which tees output to both input</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  <span class="comment">// streambufs.</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; <a class="code" href="classteebuf.html">teebuf</a>(std::streambuf * sb1, std::streambuf * sb2) :</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  sb1(sb1),</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  sb2(sb2)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; { }</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;  <span class="comment">// This tee buffer has no buffer. So every character &quot;overflows&quot;</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  <span class="comment">// and can be put directly into the teed buffers.</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">int</span> overflow(<span class="keywordtype">int</span> c)</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">if</span> (c == EOF)</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">return</span> !EOF;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      }</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r1 = sb1-&gt;sputc(c);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r2 = sb2-&gt;sputc(c);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">return</span> (r1 == EOF || r2 == EOF) ? EOF : c;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="comment">// Sync both teed buffers.</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">int</span> sync()</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r1 = sb1-&gt;pubsync();</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r2 = sb2-&gt;pubsync();</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">return</span> (r1 == 0 &amp;&amp; r2 == 0) ? 0 : -1;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  }   </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  std::streambuf * sb1;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  std::streambuf * sb2;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;};</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="classteestream.html">  244</a></span>&#160;<span class="keyword">class </span><a class="code" href="classteestream.html">teestream</a> : <span class="keyword">public</span> std::ostream</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;{</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;  <span class="comment">// Construct an ostream which tees output to the supplied</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;  <span class="comment">// ostreams.</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; <a class="code" href="classteestream.html">teestream</a>(std::ostream &amp; o1, std::ostream &amp; o2) :</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  std::ostream(&amp;tbuf),</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  tbuf(o1.rdbuf(), o2.rdbuf())</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; { }      </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <a class="code" href="classteebuf.html">teebuf</a> tbuf;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;};</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classteestream_html"><div class="ttname"><a href="classteestream.html">teestream</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00244">Global.h:244</a></div></div>
-<div class="ttc" id="classteebuf_html"><div class="ttname"><a href="classteebuf.html">teebuf</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00206">Global.h:206</a></div></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">   23</a></span>&#160;<span class="keyword">typedef</span> std::complex&lt;double&gt; <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">   29</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">namespace </span>Constants {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a8a027fd9c5c87bae9d3571a115f6d8cf">gE</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi2;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Pi3;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> gE2;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TwoPi;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> FourPi;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TwoPi2;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a87e93458211f4439996b0180c224dc9b">CONV_MeV_fm</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a34a29f9238234188581f6a80cbe9f93d">CONV_GeV2i_mbarn</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#afebddfeaa678e68660119f3535b159b0">CONV_GeV2i_pbarn</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#ad6cbf9275cfd499e91ea8a36413e8710">C_eps1</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a7b274ecbfd01a275f44238a5bc1bd12e">C_eps2</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="comment">/* colour factors */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CA;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TF;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CF;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CFCA2;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> Nf;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CA2;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> TF2;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> CF2;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> beta0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a86300d39a41e924fc25d986be2e42de1">PREF_GG</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a1f51674d250f71ebde34af46ff997504">PREF_QQ</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a51ed5e005486d4e9af1c3a84eb3be1ba">PREF_QG</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#ab9f84b1266addc2e5cba752c68f56a51">MT</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceConstants.html#a08dd306759548b9ee421fca4602579e2">BR_TT_LL</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">namespace </span>Cuts {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> <a class="code" href="namespaceCuts.html#aac32d5f86a762f4aeb4f5f07a9accdba">COLL_CUT</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> <a class="code" href="namespaceCuts.html#ab5b6f8f12059d55ffb68f56fecc10d65">SOFT_CUT</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keyword">extern</span> <span class="keywordtype">double</span> <a class="code" href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">IDIP_X_CUT</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classteebuf.html">   92</a></span>&#160;<span class="keyword">class </span><a class="code" href="classteebuf.html">teebuf</a>: <span class="keyword">public</span> std::streambuf</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classteebuf.html#a874f4618a07d33370216658636c23558">   96</a></span>&#160; <a class="code" href="classteebuf.html#a874f4618a07d33370216658636c23558">teebuf</a>(std::streambuf * sb1, std::streambuf * sb2) :</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  sb1(sb1),</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  sb2(sb2)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; { }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="comment">// This tee buffer has no buffer. So every character &quot;overflows&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="comment">// and can be put directly into the teed buffers.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">int</span> overflow(<span class="keywordtype">int</span> c)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (c == EOF)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">return</span> !EOF;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r1 = sb1-&gt;sputc(c);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r2 = sb2-&gt;sputc(c);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> (r1 == EOF || r2 == EOF) ? EOF : c;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;      }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">int</span> sync()</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r1 = sb1-&gt;pubsync();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">int</span> <span class="keyword">const</span> r2 = sb2-&gt;pubsync();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> (r1 == 0 &amp;&amp; r2 == 0) ? 0 : -1;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  }   </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  std::streambuf * sb1;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  std::streambuf * sb2;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classteestream.html">  131</a></span>&#160;<span class="keyword">class </span><a class="code" href="classteestream.html">teestream</a> : <span class="keyword">public</span> std::ostream</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classteestream.html#aa7289fc026f510120ce669da5ad6b92e">  135</a></span>&#160; <a class="code" href="classteestream.html#aa7289fc026f510120ce669da5ad6b92e">teestream</a>(std::ostream &amp; o1, std::ostream &amp; o2) :</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  std::ostream(&amp;tbuf),</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    tbuf(o1.rdbuf(), o2.rdbuf())</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      { }      </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <a class="code" href="classteebuf.html">teebuf</a> tbuf;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;};</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespaceCuts_html_aac32d5f86a762f4aeb4f5f07a9accdba"><div class="ttname"><a href="namespaceCuts.html#aac32d5f86a762f4aeb4f5f07a9accdba">Cuts::COLL_CUT</a></div><div class="ttdeci">double COLL_CUT</div><div class="ttdoc">Technical cut for collinear phase space regions. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00051">Global.cpp:51</a></div></div>
+<div class="ttc" id="namespaceConstants_html_afebddfeaa678e68660119f3535b159b0"><div class="ttname"><a href="namespaceConstants.html#afebddfeaa678e68660119f3535b159b0">Constants::CONV_GeV2i_pbarn</a></div><div class="ttdeci">const double CONV_GeV2i_pbarn</div><div class="ttdoc">Convert GeV^-2 to picobarn. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00027">Global.cpp:27</a></div></div>
+<div class="ttc" id="Global_8h_html_a1398ea0e48e059bf4db2f4bcd7eb31fa"><div class="ttname"><a href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00029">Global.h:29</a></div></div>
+<div class="ttc" id="namespaceCuts_html_a4a86c8447ab5c08303431898f6faae38"><div class="ttname"><a href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a></div><div class="ttdeci">double IDIP_X_CUT</div><div class="ttdoc">Technical cut for boost parameter in the continuum part of the integrated dipoles. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00053">Global.cpp:53</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a34a29f9238234188581f6a80cbe9f93d"><div class="ttname"><a href="namespaceConstants.html#a34a29f9238234188581f6a80cbe9f93d">Constants::CONV_GeV2i_mbarn</a></div><div class="ttdeci">const double CONV_GeV2i_mbarn</div><div class="ttdoc">Convert GeV^-2 to millibarn. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00026">Global.cpp:26</a></div></div>
+<div class="ttc" id="classteestream_html_aa7289fc026f510120ce669da5ad6b92e"><div class="ttname"><a href="classteestream.html#aa7289fc026f510120ce669da5ad6b92e">teestream::teestream</a></div><div class="ttdeci">teestream(std::ostream &amp;o1, std::ostream &amp;o2)</div><div class="ttdoc">Construct an ostream which tees output to the two supplied ostreams. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00135">Global.h:135</a></div></div>
+<div class="ttc" id="namespaceConstants_html_ad6cbf9275cfd499e91ea8a36413e8710"><div class="ttname"><a href="namespaceConstants.html#ad6cbf9275cfd499e91ea8a36413e8710">Constants::C_eps1</a></div><div class="ttdeci">const double C_eps1</div><div class="ttdoc">First coefficient of the expansion of (4 pi)^eps/Gamma(1-eps). Not used anymore. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00029">Global.cpp:29</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a08dd306759548b9ee421fca4602579e2"><div class="ttname"><a href="namespaceConstants.html#a08dd306759548b9ee421fca4602579e2">Constants::BR_TT_LL</a></div><div class="ttdeci">const double BR_TT_LL</div><div class="ttdoc">Branching ratio ttbar-&gt;l+l- + .... </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00046">Global.cpp:46</a></div></div>
+<div class="ttc" id="namespaceConstants_html_ab9f84b1266addc2e5cba752c68f56a51"><div class="ttname"><a href="namespaceConstants.html#ab9f84b1266addc2e5cba752c68f56a51">Constants::MT</a></div><div class="ttdeci">const double MT</div><div class="ttdoc">Top mass. </div></div>
+<div class="ttc" id="namespaceCuts_html_ab5b6f8f12059d55ffb68f56fecc10d65"><div class="ttname"><a href="namespaceCuts.html#ab5b6f8f12059d55ffb68f56fecc10d65">Cuts::SOFT_CUT</a></div><div class="ttdeci">double SOFT_CUT</div><div class="ttdoc">Technical cut for soft phase space regions. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00052">Global.cpp:52</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a87e93458211f4439996b0180c224dc9b"><div class="ttname"><a href="namespaceConstants.html#a87e93458211f4439996b0180c224dc9b">Constants::CONV_MeV_fm</a></div><div class="ttdeci">const double CONV_MeV_fm</div><div class="ttdoc">Convert MeV to femtobarn. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00025">Global.cpp:25</a></div></div>
+<div class="ttc" id="Global_8h_html_af390c6bd8192faf6a1e2d875a1d10ca0"><div class="ttname"><a href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a></div><div class="ttdeci">std::complex&lt; double &gt; c_double</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00023">Global.h:23</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a7b274ecbfd01a275f44238a5bc1bd12e"><div class="ttname"><a href="namespaceConstants.html#a7b274ecbfd01a275f44238a5bc1bd12e">Constants::C_eps2</a></div><div class="ttdeci">const double C_eps2</div><div class="ttdoc">Second coefficient of the expansion of (4 pi)^eps/Gamma(1-eps). Not used anymore. ...</div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00030">Global.cpp:30</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a8a027fd9c5c87bae9d3571a115f6d8cf"><div class="ttname"><a href="namespaceConstants.html#a8a027fd9c5c87bae9d3571a115f6d8cf">Constants::gE</a></div><div class="ttdeci">const double gE</div><div class="ttdoc">Euler gamma. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00017">Global.cpp:17</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a1f51674d250f71ebde34af46ff997504"><div class="ttname"><a href="namespaceConstants.html#a1f51674d250f71ebde34af46ff997504">Constants::PREF_QQ</a></div><div class="ttdeci">const double PREF_QQ</div><div class="ttdoc">Initial qqbar colour and spin averaging factor. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00043">Global.cpp:43</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a86300d39a41e924fc25d986be2e42de1"><div class="ttname"><a href="namespaceConstants.html#a86300d39a41e924fc25d986be2e42de1">Constants::PREF_GG</a></div><div class="ttdeci">const double PREF_GG</div><div class="ttdoc">Initial gg colour and spin averaging factor. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00042">Global.cpp:42</a></div></div>
+<div class="ttc" id="classteebuf_html_a874f4618a07d33370216658636c23558"><div class="ttname"><a href="classteebuf.html#a874f4618a07d33370216658636c23558">teebuf::teebuf</a></div><div class="ttdeci">teebuf(std::streambuf *sb1, std::streambuf *sb2)</div><div class="ttdoc">Construct a streambuf which tees output to both input streambufs. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00096">Global.h:96</a></div></div>
+<div class="ttc" id="classteestream_html"><div class="ttname"><a href="classteestream.html">teestream</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00131">Global.h:131</a></div></div>
+<div class="ttc" id="classteebuf_html"><div class="ttname"><a href="classteebuf.html">teebuf</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00092">Global.h:92</a></div></div>
+<div class="ttc" id="namespaceConstants_html_a51ed5e005486d4e9af1c3a84eb3be1ba"><div class="ttname"><a href="namespaceConstants.html#a51ed5e005486d4e9af1c3a84eb3be1ba">Constants::PREF_QG</a></div><div class="ttdeci">const double PREF_QG</div><div class="ttdoc">Initial qg colour and spin averaging factor. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00044">Global.cpp:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

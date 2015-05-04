@@ -59,7 +59,7 @@ double Eval_t_blnu(
     }
   
   FV const& kl = ps.k1();// lepton
-  FV const& kn = ps.k2();// neutrino
+  //FV const& kn = ps.k2();// neutrino
   FV const& kb = ps.k3();// b-quark
 
   
@@ -74,12 +74,12 @@ double Eval_t_blnu(
   // S[2] = 0.0;
   // S[3] = 0.0;
 
-  FV Q = kl + kb + kn;
-  PRINT_4VEC(Q);
-  PRINT_4VEC(kb);
-  PRINT_4VEC(kl);
-  PRINT_4VEC(kn);
-  exit(1);
+  // FV Q = kl + kb + kn;
+  // PRINT_4VEC(Q);
+  // PRINT_4VEC(kb);
+  // PRINT_4VEC(kl);
+  // PRINT_4VEC(kn);
+  // exit(1);
 	  
   return gw4/(pow(1.0-2.0*kb[0]-mW2,2)+GaW2*mW2)*(kl[0]*(1.0-2.0*kl[0]))/GaT;
 }

@@ -6,17 +6,19 @@ var searchData=
   ['pause',['Pause',['../classHistArray.html#a27f9acb7029ec4c90b4476e5bc26037d',1,'HistArray']]],
   ['pdf',['pdf',['../classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15',1,'integrand_par']]],
   ['phasespace_2eh',['PhaseSpace.h',['../PhaseSpace_8h.html',1,'']]],
-  ['philldistributions',['PHILLDistributions',['../HistArray_8h.html#a0452851b3845cd1a071d494a8a8a0aaf',1,'HistArray.h']]],
   ['popboson',['PopBoson',['../classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f',1,'HiggsModel']]],
-  ['print',['Print',['../classHiggsModel.html#aabc29ed3da5d400799c3de3edca3e228',1,'HiggsModel']]],
+  ['pref_5fgg',['PREF_GG',['../namespaceConstants.html#a86300d39a41e924fc25d986be2e42de1',1,'Constants']]],
+  ['pref_5fqg',['PREF_QG',['../namespaceConstants.html#a51ed5e005486d4e9af1c3a84eb3be1ba',1,'Constants']]],
+  ['pref_5fqq',['PREF_QQ',['../namespaceConstants.html#a1f51674d250f71ebde34af46ff997504',1,'Constants']]],
+  ['print',['Print',['../classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655',1,'HiggsModel']]],
   ['ps',['ps',['../classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238',1,'integrand_par']]],
   ['ps_5f2',['PS_2',['../classPS__2.html',1,'']]],
   ['ps_5f2_5f1',['PS_2_1',['../classPS__2__1.html',1,'']]],
   ['ps_5f2_5f2',['PS_2_2',['../classPS__2__2.html',1,'']]],
   ['ps_5f2_5f3',['PS_2_3',['../classPS__2__3.html',1,'']]],
+  ['ps_5fnamed',['PS_Named',['../classPS__Named.html',1,'']]],
   ['pt12distributions',['PT12Distributions',['../HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20',1,'HistArray.h']]],
   ['pt1distributions',['PT1Distributions',['../HistArray_8h.html#a5f85d9273951686605f1ad6e60cdd80e',1,'HistArray.h']]],
   ['pt2distributions',['PT2Distributions',['../HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9',1,'HistArray.h']]],
-  ['ptl1distributions',['PTL1Distributions',['../HistArray_8h.html#acf008c146c48e3bf053dd7a7307ec8ae',1,'HistArray.h']]],
-  ['ptl2distributions',['PTL2Distributions',['../HistArray_8h.html#af805257a3bd17374c15f584a2bede66c',1,'HistArray.h']]]
+  ['pvegas_2eh',['pVEGAS.h',['../pVEGAS_8h.html',1,'']]]
 ];

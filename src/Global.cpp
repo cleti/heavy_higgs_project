@@ -39,9 +39,9 @@ namespace Constants {
   const double CF2	 = pow(CF,2);
   const double beta0     = (11./12.)*CA-Nf/6.0;
   /* initial gg colour and spin average */
-  const double PREF_GG = 1.0/(4.0*pow(2.0*CF*CA,2));
-  const double PREF_QQ = 1.0/(4.0*CA2);
-  const double PREF_QG = 1.0/(4.0*2.0*CF*CA2);
+  const double PREF_GG = 4.0/(4.0*pow(2.0*CF*CA,2));
+  const double PREF_QQ = 4.0/(4.0*CA2);
+  const double PREF_QG = 4.0/(4.0*2.0*CF*CA2);
 
   const double BR_TT_LL = 24./81.;
 }

@@ -374,8 +374,8 @@ int main(int argc, char** argv)
   // input parameters ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
   double MT = 173.5;
-  const double S = 5.0;
-  int GGH_EFF = 1;
+  const double S = 25.0;
+  int GGH_EFF = 0;
   
   HiggsModel THDM;
   // from now on all dimensionfull quantities are normalized to the top mass
@@ -393,11 +393,11 @@ int main(int argc, char** argv)
 		32.4543905335925,//not relevant here
 		1,1,
 		0,0);
-  // THDM.AddBoson(
-  // 		600.0,
-  // 		67.71,//not relevant here
-  // 		-1.19,1.18,
-  // 		0,0);  
+  THDM.AddBoson(
+  		600.0,
+  		67.71,//not relevant here
+  		-1.19,1.18,
+  		0,0);  
   
   // // scenario 1
   // THDM.AddBoson(
@@ -423,8 +423,8 @@ int main(int argc, char** argv)
     // set flags to specify which matrix elements will be evaluated
     g_flags_eval_v = 0;
     // Born
-    USET_EVAL_B_PHIxPHI(g_flags_eval_v);
-    SET_EVAL_B_PHIxQCD(g_flags_eval_v);
+    SET_EVAL_B_PHIxPHI(g_flags_eval_v);
+    USET_EVAL_B_PHIxQCD(g_flags_eval_v);
     USET_EVAL_B_QCDxQCD(g_flags_eval_v);
     // virtual corrections
     SET_EVAL_V_PHIxPHI(g_flags_eval_v);
@@ -444,7 +444,7 @@ int main(int argc, char** argv)
     cout << endl << " EVAL_D_FLAGS = " << bitset<32>(g_flags_eval_id).to_string() << endl;
 
     
-    double res_b=0,res_v=0,res_d=0,res_dx=0;
+    double res_b=0,res_v=0,res_d=0,res_dx=0,res_dx_gg=0,res_dx_qg=0;
     double y_values[] = {-0.9};//-0.9,-0.6,-0.3,0.0,0.3,0.6,0.9};
     double x_values[] = {0.85};//,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9};
 
@@ -454,7 +454,9 @@ int main(int argc, char** argv)
 	  {
 	    if (ps_gg_tt.set(sqrt(S),y) )
 	      {
-
+	        // set also boosted phase space for integrated dipoles (cont. part)
+		ps_gg_tt_x.set(sqrt(x*S),y);
+		
 		FV const& p1 = ps_gg_tt.p1();
 		FV const& p2 = ps_gg_tt.p2();
 		FV const& k1 = ps_gg_tt.k1();
@@ -465,68 +467,40 @@ int main(int argc, char** argv)
 		// ALWAYS use spin vectors with the properties
 		// s_i.s_i = -1 and s_i.k_i = 0 !!!
 		// otherwise tests will fail, since these eqs. are used in the MEs
-		LT boost;
 		FV& s1 = ps_gg_tt.s1();
 		FV& s2 = ps_gg_tt.s2();
 		//////////////////////////////////////
 		// spin vectors in t/tbar restframe
-		s1 = {0,0,0,0};//{0.0,0.0,sqrt(0.5),+sqrt(0.5)};
-		s2 = {0,0,0,0};//{0.0,sqrt(0.5),0.0,-sqrt(0.5)};
-		//////////////////////////////////////
-
-		// boost from t restframe to parton z.m.f.
-		boost.set_boost(k1,1);
-		boost.apply(s1);
-		// boost from tbar restframe to parton z.m.f.
-		boost.set_boost(k2,1);
-		boost.apply(s2);
-		// check out boosted spin vectors
+		s1 = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
+		s2 = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
+		// boost from k1 restframe to tt z.m.f.
+		static LT boost_k1_RF;
+		boost_k1_RF.set_boost(k1,1);
+		// boost from k2 restframe to tt z.m.f.
+		static LT boost_k2_RF;
+		boost_k2_RF.set_boost(k2,1);
+		boost_k1_RF.apply(s1);
+		boost_k2_RF.apply(s2);
+		PRINT(sp(k1,s1));
+		PRINT(sp(k2,s2));
 		PRINT_4VEC(s1);
 		PRINT_4VEC(s2);
-		PRINT(sp(s1,k1));
-		PRINT(sp(s2,k2));
+		//////////////////////////////////////
 #endif
 
-		PRINT_4VEC(p1);
-		PRINT_4VEC(p2);
-		PRINT_4VEC(k1);
-		PRINT_4VEC(k2);
-		
-		ps_gg_tt.set_x(x);
-		ps_gg_tt_x = ps_gg_tt;
-		ps_gg_tt_x.set(sqrt(x*S),y);
 
-		FV P1 = ps_gg_tt_x.p1();
-		FV P2 = ps_gg_tt_x.p2();
-		FV K1 = ps_gg_tt_x.k1();
-		FV K2 = ps_gg_tt_x.k2();
-		PRINT_4VEC(P1);
-		PRINT_4VEC(P2);
-		PRINT_4VEC(K1);
-		PRINT_4VEC(K2);
-		LT dip_boost;
-		dip_boost.set_boost_z(x,1);
-		dip_boost.apply(P1);
-		dip_boost.apply(P2);		
-		dip_boost.apply(K1);
-		dip_boost.apply(K2);
-		PRINT_4VEC(P1);
-		PRINT_4VEC(P2);
-		PRINT_4VEC(K1);
-		PRINT_4VEC(K2);
-		PRINT(2.0*sp(p2,K1));
-		PRINT(2.0*sp(p2,K2));
 
 		
 		cout << endl;
 		// cout << endl << " Setting '" << ps_gg_tt.d_name << "' to ";
 		cout << endl << "sqrt(s) = " << ps_gg_tt.get_rs() << "*mScale , y = " << y << ", x = " << x;
 		cout << endl << "---------------------------------------------------";
-		cout << endl << " Born                   = " << (res_b = PREF_GG*Eval_B   (ps_gg_tt,THDM,g_flags_eval_v,GGH_EFF)) << "  " << endl;
-		cout << endl << " Born (QQ)              = " << (        PREF_QQ*Eval_B_QQ(ps_gg_tt,THDM)) << "  " << endl;		
+		cout << endl << " Born                   = " << 0.25*(res_b = PREF_GG*Eval_B   (ps_gg_tt,THDM,g_flags_eval_v,GGH_EFF)) << "  " << endl;
+		cout << endl << " Born (QQ)              = " << 0.25*(        PREF_QQ*Eval_B_QQ(ps_gg_tt,THDM)) << "  " << endl;		
 		cout << endl << " Virt.                  = " << (res_v = PREF_GG*Eval_V   (ps_gg_tt,THDM,g_flags_eval_v)) << "  " << endl;
-		cout << endl << " DIP                    = " << (res_d = PREF_GG*Eval_ID_GG  (ps_gg_tt,THDM,g_flags_eval_id)) << "  " << endl;		
-		cout << endl << " DIP_X                  = " << (res_dx= PREF_GG*Eval_ID_X_GG(ps_gg_tt_x,THDM,g_flags_eval_id)+PREF_GG*Eval_ID_X_QG(ps_gg_tt_x,THDM,g_flags_eval_id)) << "  " << endl;
+		cout << endl << " DIP                    = " << (res_d = PREF_GG*Eval_ID_GG  (ps_gg_tt,x,THDM,g_flags_eval_id)) << "  " << endl;
+		Eval_ID_X(ps_gg_tt_x,x,THDM,g_flags_eval_id,res_dx_gg,res_dx_qg);
+		cout << endl << " DIP_X                  = " << (res_dx= PREF_GG*(res_dx_gg+res_dx_qg)) << "  " << endl;
 		cout << endl << " DIP Sum                = " << res_d+res_dx;
 		cout << endl << "---------------------------------------------------";
 		cout << endl << " NLO                    = " << (res_d+res_dx+res_v+res_b) << "  " << endl;

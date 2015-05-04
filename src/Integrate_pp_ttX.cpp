@@ -56,6 +56,12 @@ int main(int argc, char** argv)
   stringstream run_id;
   run_id << "RUN_" << time(0) << "_" << gettid();
   program_name = argv[0];
+
+  // create object for model parameters
+  HiggsModel THDM_1("generic 2HDM");
+
+  // get parameters from command line arguments
+  parse_arguments(argc,argv,g_options,THDM_1);
   
   // create an outpufile
   ofstream log_file;
@@ -75,20 +81,17 @@ int main(int argc, char** argv)
 #ifdef WITH_NON_FACT_DIAGRAMS
   ltini();
 #endif
-
+  
   ////////////////////////////////////////////////////////////////////////////////////////////
   // input parameters ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////////////////
   // initialize model parameters
-  HiggsModel THDM_1("2HDM scenario 1");
   // some aliases
   double const& mt2     = THDM_1.mt2();
   double const& mScale  = THDM_1.Scale();
   double const& mScale2 = THDM_1.Scale2();
-  // get parameters from command line arguments
-  parse_arguments(argc,argv,g_options,THDM_1);
   // extract AlphaS from the PDFs
   THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*mScale));
   THDM_1.Print(couT,mScale);
@@ -102,17 +105,22 @@ int main(int argc, char** argv)
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
   ip.collect_dist  = g_options.dist;
   ip.pdf           = pdf_ct10nlo;
-  ip.distributions = new HAvec{&MttDistributions,   // [0]
-			       &PT1Distributions,   // [1]
-			       &PT2Distributions,   // [2]
-			       &PT12Distributions,  // [3]
-			       &Y1Distributions,    // [4]
-			       &Y2Distributions,    // [5]
-			       &DYDistributions,    // [6]
-			       &PHIT12Distributions,// [7]
-			       &PHI12Distributions, // [8]
-			       &OCPDistributions,   // [9]
-			       &LP1Distributions};  // [10]
+  ip.distributions = new HAvec{
+    &MttDistributions,   // [0]
+    &PT1Distributions,   // [1]
+    &PT2Distributions,   // [2]
+    &PT12Distributions,  // [3]
+    &Y1Distributions,    // [4]
+    &Y2Distributions,    // [5]
+    &DYDistributions     // [6]
+#ifdef WITH_T_SPIN
+    ,
+    &PHIT12Distributions,// [7]
+    &DopenDistributions, // [8]
+    &OCPDistributions,   // [9]
+    &ChelDistributions   // [10]
+#endif
+  };
   double CME = sqrt(ip.s_hadr)*mScale;
   PRINTS(couT,CME);
   ////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +128,8 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////////////////
   // parameters for VEGAS integration routine
   vegas_par vp;
-  vp.calls      = g_options.n_calls;
+  // will be adjusted seperately in each integration block
+  // vp.calls      = g_options.n_calls;
   vp.verbose    = g_options.verb_level;
   PRINTS(couT,vp.calls);
   ////////////////////////////////////////////////////////////////////////////////
@@ -175,11 +184,11 @@ int main(int argc, char** argv)
   Integral Int_2_2_ID(4,IntLimits::Int_lo_2_2_pdf_x,IntLimits::Int_up_2_2_pdf_x);
   Int_2_2_ID.SetIntegrand(&Integrand_2_2_pdf_ID);
   
-  // integral over real - uint. dipoels
+  // integral over real - uint. dipoles
   Integral Int_2_3(6,IntLimits::Int_lo_2_3_pdf,IntLimits::Int_up_2_3_pdf);
   Int_2_3.SetIntegrand(&Integrand_2_3_pdf);
 
-  // integral over real - uint. dipoels
+  // integral over real - uint. dipoles
   Integral Int_2_3_qg_qq(6,IntLimits::Int_lo_2_3_pdf,IntLimits::Int_up_2_3_pdf);
   Int_2_3_qg_qq.SetIntegrand(&Integrand_2_3_qg_qq_pdf);
   ////////////////////////////////////////
@@ -202,6 +211,7 @@ int main(int argc, char** argv)
       ip.eval_flags = 0;
       SET_EVAL_B_QCDxQCD(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [LO QCDxQCD]"));
+      vp.calls      = g_options.n_calls;
 #ifdef WITH_T_SPIN
       ip.ps->set_child(0,new PS_2_3(0,0,0,"t->bl+nu"));
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
@@ -226,9 +236,10 @@ int main(int argc, char** argv)
       couT << "\n [LO (PHI+INT)]\n";      
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;
-      SET_EVAL_B_PHIxQCD(ip.eval_flags);
+      USET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [LO PHIxQCD,PHIxPHI]"));
+      vp.calls      = g_options.n_calls/10;
 #ifdef WITH_T_SPIN
       ip.ps->set_child(0,new PS_2_3(0,0,0,"t->bl+nu"));
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
@@ -255,6 +266,7 @@ int main(int argc, char** argv)
       ip.eval_flags = 0;
       SET_EVAL_V_ALL(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO virt.]"));
+      vp.calls      = g_options.n_calls/10;
 #ifdef WITH_T_SPIN
       ip.ps->set_child(0,new PS_2_3(0,0,0,"t->bl+nu"));
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
@@ -282,10 +294,11 @@ int main(int argc, char** argv)
       ip.eval_flags = 0;
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
-      SET_FLAG(F_EVAL_D_GG_DELTA,ip.eval_flags);
-      USET_FLAG(F_EVAL_D_QG_CONT,ip.eval_flags);
+      SET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
+      SET_FLAG(F_EVAL_D_QG_CONT,ip.eval_flags);
       // need to implement integrated QG dipoles!
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO int. dip.]"));
+      vp.calls      = g_options.n_calls;
   
       // activate NLO (ID) histograms 
       for (auto e: *ip.distributions)
@@ -294,8 +307,8 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_2_ID,ip,vp);
-      results[3] = vp.result/4;
-      errors[3]  = vp.error/4;
+      results[3] = vp.result;
+      errors[3]  = vp.error;
     }
 
   ////////////////////////////////////////////////////////////////////
@@ -307,12 +320,13 @@ int main(int argc, char** argv)
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = F_EVAL_R_GG;
       // SET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_ISR_ISR,ip.eval_flags);
+      // SET_FLAG(F_EVAL_R_ISR_ISR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_FSR_FSR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_FSR_ISR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_FSR_INT,ip.eval_flags);
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,gg]"));
+      vp.calls      = g_options.n_calls;
       
       // activate NLO (R) histograms 
       for (auto e: *ip.distributions)
@@ -337,6 +351,7 @@ int main(int argc, char** argv)
       SET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
       SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);     
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,qq,qg]"));
+      vp.calls      = g_options.n_calls;
       
       // activate NLO (R) histograms 
       for (auto e: *ip.distributions)
@@ -355,9 +370,9 @@ int main(int argc, char** argv)
   
   double sum = 0.0;
   double err = 0.0;
-  double F = 4.0; // summation over top spins
+  double F = 1.0; // summation over top spins
 #ifdef WITH_T_SPIN
-  F *= 81.0;
+  F *= 4.0; // dileptonic final state tt-> e+e-/mu+mu- + jets -> multiplicity 4
 #endif
   for (int i=0;i<N_res;++i)
     {
@@ -410,7 +425,7 @@ int main(int argc, char** argv)
       // create a ROOT file to store the results
       stringstream filename;
       // create identifier from process id and timestamp
-      filename << "results/distributions_" << gettid() << "_" << time(0);
+      filename << "results/distributions_" << run_id.str();
       if (int_flags & I_FLAGS_B_QCD ) filename << "_BQCD";
       if (int_flags & I_FLAGS_B_PHI ) filename << "_BPHI";
       if (int_flags & I_FLAGS_V ) filename << "_V";
@@ -442,10 +457,12 @@ int main(int argc, char** argv)
 
 
 
-
 #ifdef WITH_T_SPIN
-      PHI12Distributions.Print();
-      
+      PHIT12Distributions.Print(couT);
+      DopenDistributions.Print(couT);
+      OCPDistributions.Print(couT);
+      ChelDistributions.Print(couT);
+	
       // set these variables accordingly to normalize distributions to total cross section
       double norm[4] = {results[0],  // QCD only
 			results[0]+results[1],  // QCD + PHI,
@@ -456,17 +473,17 @@ int main(int argc, char** argv)
       		       PHIT12Distributions,
       		       THDM_1,
       		       &norm[0],
-      		       string("cos(#phi_{T})"),
-      		       string("#frac{d#sigma}{d cos(#phi_{T})} [pb]"),
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("D_{T,open}^{lab} [pb/GeV]"),
       		       WRITE_TO_FILE,
       		       PLOT_NLO);      
       CanvasPtr c2 = MakeCanvas("Lepton/Antilepton opening angle",1000,1000);
       DrawDistribution(c2,
-      		       PHI12Distributions,
+      		       DopenDistributions,
       		       THDM_1,
       		       &norm[0],
-      		       string("cos(#phi_{#pm})"),
-      		       string("#frac{d#sigma}{d cos(#phi_{#pm})} [pb]"),
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("D_{open} [pb/GeV]"),
       		       WRITE_TO_FILE,
       		       PLOT_NLO);
       CanvasPtr c3 = MakeCanvas("CP-odd triple correlation",1000,1000);
@@ -474,22 +491,26 @@ int main(int argc, char** argv)
       		       OCPDistributions,
       		       THDM_1,
       		       &norm[0],
-      		       string("O_{CP}"),
-      		       string("#frac{d#sigma}{d O_{CP}} [pb]"),
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("O_{CP} [pb/GeV]"),
       		       WRITE_TO_FILE,
       		       PLOT_NLO);      
       CanvasPtr c4 = MakeCanvas("Top longitudinal polarization",1000,1000);
       DrawDistribution(c4,
-      		       LP1Distributions,
+      		       ChelDistributions,
       		       THDM_1,
       		       &norm[0],
-      		       string("cos(#theta_{+})"),
-      		       string("#frac{d#sigma}{d cos(#theta_{+})} [pb]"),
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("C_{hel} [pb/GeV]"),
       		       WRITE_TO_FILE,
       		       PLOT_NLO);
       
 #else
-      MttDistributions.Print();
+      MttDistributions.Print(couT);
+      PT1Distributions.Print(couT);
+      Y1Distributions.Print(couT);
+      DYDistributions.Print(couT);
+      PT12Distributions.Print(couT);
       
       // set these variables accordingly to normalize distributions to total cross section
       double norm[4] = {1.0,  // QCD only
@@ -528,15 +549,15 @@ int main(int argc, char** argv)
 		       WRITE_TO_FILE,
 		       PLOT_NLO);
 
-      // CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
-      // DrawDistribution(c2,
-      // 		       PT12Distributions,
-      // 		       THDM_1,
-      // 		       &norm[0],
-      // 		       string("p_{T,t+#bar{t}} [GeV]"),
-      // 		       string("#frac{d#sigma}{dp_{T,t+#bar{t}}} [pb/GeV]"),
-      // 		       WRITE_TO_FILE,
-      // 		       PLOT_NLO);   
+      CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
+      DrawDistribution(c2,
+      		       PT12Distributions,
+      		       THDM_1,
+      		       &norm[0],
+      		       string("|p_{T,t}+p_{T,#bar{t}}| [GeV]"),
+      		       string("#frac{d#sigma}{d|p_{T,t}+p_{T,#bar{t}}|} [pb/GeV]"),
+      		       WRITE_TO_FILE,
+      		       PLOT_NLO);   
  #endif
 
       if (fresults) fresults->Close();

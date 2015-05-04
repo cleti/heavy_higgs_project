@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;gsl/gsl_monte.h&gt;</code><br/>
 <code>#include &lt;gsl/gsl_monte_vegas.h&gt;</code><br/>
 <code>#include &lt;gsl/gsl_rng.h&gt;</code><br/>
-<code>#include &quot;Global.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Global_8h_source.html">Global.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="HistArray_8h_source.html">HistArray.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="PhaseSpace_8h_source.html">PhaseSpace.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="HiggsModel_8h_source.html">HiggsModel.h</a>&quot;</code><br/>
@@ -131,15 +131,30 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a718b4eb2652c286f4d42dc18a8e71a1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a718b4eb2652c286f4d42dc18a8e71a1a"></a>
 typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>ulong</b></td></tr>
 <tr class="separator:a718b4eb2652c286f4d42dc18a8e71a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abffd0d4dc225de933d6fc427143b8045"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffd0d4dc225de933d6fc427143b8045"></a>
-typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><b>GSLIFnc</b> )(double *, size_t, void *)</td></tr>
-<tr class="separator:abffd0d4dc225de933d6fc427143b8045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a37a44de4bd56d47abffb5be0efb308"><td class="memItemLeft" align="right" valign="top">typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Integrator_8h.html#a5a37a44de4bd56d47abffb5be0efb308">GSLIFnc</a> )(double *, size_t, void *)</td></tr>
+<tr class="separator:a5a37a44de4bd56d47abffb5be0efb308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides the functionality of the GSL VEGAS integration algorithm. </p>
 
 <p>Definition in file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a5a37a44de4bd56d47abffb5be0efb308"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GSLIFnc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Integrand function type required by the GSL VEGAS algorithm </p>
+
+<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00060">60</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

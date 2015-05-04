@@ -57,14 +57,7 @@ double Integrand_2_1_pdf(double* x, size_t dim, void* arg)
       double f1 = ip->pdf->xfxQ2(21, x0, MUF2*mScale2) / x0;
       double f2 = ip->pdf->xfxQ2(21, x1, MUF2*mScale2) / x1;
       // include spin/color average of initial gluons and PFDs, convert to units of picobarn
-      double cf = PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
-
-
-      // PRINT(x0);
-      // PRINT(f1);
-      // PRINT(x1);
-      // PRINT(f2);
-      // exit(1);
+      double cf = 0.25*PREF_GG*f1*f2*CONV_GeV2i_pbarn/mScale2;
       
       // Born (full ggH vertex and effective ggH vertex)
       if (flags & BOOST_BINARY(0 000 1))
@@ -96,11 +89,10 @@ double Integrand_2_1_pdf(double* x, size_t dim, void* arg)
 	  double f2_x = ip->pdf->xfxQ2(21, x1_x, MUF2*mScale2) / x1_x;
 
 	  // include spin/color average of initial gluons and PFDs, convert to units of picobarn
-	  double cf_x = PREF_GG*f1_x*f2_x*CONV_GeV2i_pbarn/mScale2;
+	  double cf_x = 0.25*PREF_GG*f1_x*f2_x*CONV_GeV2i_pbarn/mScale2;
 	  res_d += Eval_ID_X(p1,p2,*hm,x[1])*jac_flux_x*cf_x;
 	}
     }
-
   return (res_b + (ip->K)*(res_v + res_d));
 }
 
@@ -152,7 +144,7 @@ double Integrand_2_2_pdf(double* x, size_t dim, void* arg)
       // real corrections gg - unitegrated dipoles
       if (flags & BOOST_BINARY(0 010 0))
 	{
-	  res_r += PREF_GG*f1_g*f2_g*jac_flux*(Eval_R_gg(p1,p2,p3,*hm)-Eval_UID(p1,p2,p3,*hm));
+	  res_r += 0.25*PREF_GG*f1_g*f2_g*jac_flux*(Eval_R_gg(p1,p2,p3,*hm)-Eval_UID(p1,p2,p3,*hm));
 #ifdef DEBUG
 	  CHECKNA(res_r);
 #endif

@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,331 +92,463 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;../inc/Functions_pp_HX.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define AMP_PP_HX_HEADER            \</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">  using namespace Constants;            \</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">  using namespace AmpPrefactors;        \</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">  using namespace RunParameters;        \</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">  using namespace HiggsBosons;          \</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">  double const FH02 = FH_eff_1*FH_eff_1;        \</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">  double const FA02 = FA_eff_1*FA_eff_1;    \</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__ttX__V_8h.html#ae2834c828566d0b5dcd0215e049399cd">Eval_B</a>(</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;          )</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordtype">double</span> t5 = PREF_B_PHIxPHI/CA;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keywordflow">return</span> (t5 * (std::norm(F_ggH1_s) + std::norm(F_ggH1_p)));</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">double</span> Eval_B_eff(</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;          )</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordtype">double</span> t10 = s * s;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordtype">double</span> t6 = 16.0 * PREF_B_PHIxPHI/CA;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">return</span> (t6 * (0.4e1 * FA02 + FH02) * t10);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define AMP_PP_HX_LO_HEADER                     \</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">  using namespace Constants;                        \</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">  double const FH02 = std::norm(hm.GetBoson(0)-&gt;GetFH(EFF));        \</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">  double const FA02 = std::norm(hm.GetBoson(0)-&gt;GetFA(EFF));        \</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">  double const&amp; PREF_B_PHIxPHI = hm.GetAmpPrefactors().PREF_B_PHIxPHI;  \</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define AMP_PP_HX_NLO_HEADER                        \</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">  using namespace Constants;                        \</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">  double const FH02 = std::norm(hm.GetBoson(0)-&gt;GetFH(1));      \</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">  double const FA02 = std::norm(hm.GetBoson(0)-&gt;GetFA(1));      \</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">  double const&amp; MH2 = hm.GetBoson(0)-&gt;M2();             \</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">  double const&amp; AlphaS = hm.AlphaS();                   \</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">  double const&amp; MUF2   = hm.MUF2();                 \</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">  double const&amp; MUR2   = hm.MUR2();                 \</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">  double const&amp; PREF_B_PHIxPHI = hm.GetAmpPrefactors().PREF_B_PHIxPHI;  \</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">  double const&amp; PREF_V_PHI     = hm.GetAmpPrefactors().PREF_V_PHIxPHI;  \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">  double const&amp; PREF_R_PHI     = hm.GetAmpPrefactors().PREF_R_PHIxPHI;  \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">  double const&amp; PREF_UID_CA    = hm.GetAmpPrefactors().PREF_UID_CA; \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">   30</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;          <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p1,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;          <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p2,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;          <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;          <span class="keywordtype">bool</span> EFF</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;          )</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  AMP_PP_HX_LO_HEADER;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordtype">double</span> t10 = s * s;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">double</span> t6 = 16.0 * PREF_B_PHIxPHI/CA;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordflow">return</span> (t6 * (0.4e1 * FA02 + FH02) * t10);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0">Eval_V</a>(</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;          )</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);  </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordtype">double</span> t1 = s * s;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="comment">// double t4 = log(MUR2 / s);</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordtype">double</span> t5 = 0.0;<span class="comment">//t4 * t4; // cancels exactly against term in I-op.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordtype">double</span> t6 = CA * t5;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordtype">double</span> t10 = CA * Pi2;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordflow">return</span> 0.8e1 * t1 * (0.16e2 * CA * FA02 + 0.4e1 * t10 * FA02 - 0.4e1 * t6 * FA02 + t10 * FH02 - t6 * FH02 + 0.11e2 * FH02) / CA * PREF_V_PHI;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// double Eval_B_eff(</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//        const FV&amp; p1,</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//        const FV&amp; p2,</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//        const HiggsModel&amp; hm    </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//        )</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//   AMP_PP_HX_HEADER</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//   double s = 2.0*sp(p1,p2);</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//   double t10 = s * s;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//   double t6 = 16.0 * PREF_B_PHIxPHI/CA;</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//   return (t6 * (0.4e1 * FA02 + FH02) * t10);</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// }</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> P_gg_reg(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">double</span> x_t   = 0.0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">double</span> res_t = 0.0;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordflow">if</span> (x!=x_t)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      x_t = x;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordtype">double</span> t1 = 0.1e1 - x;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      res_t = Constants::CA*(0.2e1 / x * t1 - 0.2e1 + 0.2e1 * t1 * x);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">return</span> res_t;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_I_eps0_g4.cpp&quot;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_PK_eps0_g4.cpp&quot;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_CONT_eps0_g4.cpp&quot;</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DIST_E_eps0_g4.cpp&quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">// evaluate the finite part of the integrated dipoles: x-independent part of I,P,K operators</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__ttX__ID_8h.html#a6465af4f5feaeb94803677e17b98c821">Eval_ID</a>(</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;           <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;           <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;           <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;           )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">using namespace </span>RunParameters;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordtype">double</span> B_phi = Eval_B_eff(p1,p2);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s12_1  = 2.0*sp(p1,p2);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  res += Eval_DIP_DELTA_I (s12_1, <span class="comment">// invairant in initial-initial dipoles</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;               0.0,   <span class="comment">// invariant in final-final dipoles</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;               0.0,   <span class="comment">// beta factor for massive final-final dipoles</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;               0.0,   <span class="comment">// invariant t11 (final-initial)</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;               0.0,   <span class="comment">// invariant t12 (final-initial)</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;               B_phi, <span class="comment">// uncorrelated Born </span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;               0.0,   <span class="comment">// color correlated Born</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;               MUR2); <span class="comment">// ren./fact. scales</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  res += Eval_DIP_DELTA_PK(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;               0.0,   <span class="comment">// invariant t12 (initial-final)   </span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;               0.0,   <span class="comment">// invariant t12 (initial-final)   </span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;               B_phi, <span class="comment">// uncorrelated Born         </span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;               0.0,   <span class="comment">// uncorrelated Born in IF dipoles </span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;               0.0,   <span class="comment">// colour correlated Born          </span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;               MUF2,MUR2);<span class="comment">// ren./fact. scales</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="comment">// distribution end-point part</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <span class="keywordflow">if</span> (x&lt;Cuts::IDIP_X_CUT) </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      res -= Eval_DIP_DIST_E(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                     0.0,   <span class="comment">// invariant t12 (initial-final)     </span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                     0.0,   <span class="comment">// invariant t12 (initial-final)   </span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                     B_phi, <span class="comment">// uncorrelated Born           </span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                     0.0,   <span class="comment">// uncorrelated Born in IF dipoles </span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                     0.0,   <span class="comment">// colour correlated Born          </span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                     x,     <span class="comment">// boost factor            </span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                     MUF2); <span class="comment">// ren./fact. scales       </span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">// evaluate the finite part of the integrated dipoles: continuous, x-dependent contribution of P and K operators</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__ttX__ID_8h.html#a35561efe14ba782c0cc2d666f9796a7b">Eval_ID_X</a>(</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;         <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;         )</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keyword">using namespace </span>RunParameters;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="comment">// this contributes only if the rescaled c.m.e. is still above threshold (boost_initial_state() checks this)</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="keywordflow">if</span> ( x&lt;Cuts::IDIP_X_CUT )</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      <span class="keywordtype">double</span> rx = sqrt(x);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="keywordtype">double</span> B_phi_x = Eval_B_eff(rx*p1,rx*p2);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="keywordtype">double</span> s12_1   = 2.0*sp(p1,p2);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      res += Eval_DIP_CONT(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;               0.0,     <span class="comment">// invariant t12 (initial-final)   </span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;               0.0,     <span class="comment">// invariant t12 (initial-final)   </span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;               B_phi_x, <span class="comment">// uncorrelated Born           </span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;               0.0,     <span class="comment">// uncorrelated Born in IF dipoles </span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;               0.0,     <span class="comment">// colour correlated Born          </span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;               x,       <span class="comment">// boost factor            </span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;               MUF2);   <span class="comment">// ren./fact. scales               </span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="keywordtype">double</span> Eval_R_gg (</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;           <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;           <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;           <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;           )</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="keywordtype">double</span> t4 = sp(p1, p2);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">double</span> t5 = sp(p1, p3);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <span class="keywordtype">double</span> t6 = sp(p2, p3);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="keywordtype">double</span> t9 = 0.16e2 * pow(t4 - t5 - t6, 0.4e1);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordtype">double</span> t10 = t4 * t4;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">double</span> t11 = t10 * t10;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordtype">double</span> t13 = t5 * t5;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordtype">double</span> t14 = t13 * t13;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keywordtype">double</span> t16 = t6 * t6;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="keywordtype">double</span> t17 = t16 * t16;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordflow">return</span> 0.16e2 * PREF_R_PHI * (4.0 * FA02 + FH02) * (t9 + 0.16e2 * t11 + 0.16e2 * t14 + 0.16e2 * t17) / (t4 * t5 * t6);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83">   66</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83">Eval_V</a>(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;          <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p1,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;          <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p2,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;          <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;          )</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);  </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordtype">double</span> t1 = s * s;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">double</span> t4 = log(MUR2 / s);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordtype">double</span> t5 = t4 * t4; <span class="comment">// cancels exactly against term in I-op.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keywordtype">double</span> t6 = CA * t5;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordtype">double</span> t10 = CA * Pi2;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keywordflow">return</span> 0.8e1 * t1 * (0.16e2 * CA * FA02 + 0.4e1 * t10 * FA02 - 0.4e1 * t6 * FA02 + t10 * FH02 - t6 * FH02 + 0.11e2 * FH02) / CA * PREF_V_PHI;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> P_gg_reg(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">double</span> x_t   = 0.0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">double</span> res_t = 0.0;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">if</span> (x!=x_t)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      x_t = x;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordtype">double</span> t1 = 0.1e1 - x;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      res_t = Constants::CA*(0.2e1 / x * t1 - 0.2e1 + 0.2e1 * t1 * x);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordflow">return</span> res_t;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// #include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_I_eps0_g4.cpp&quot;</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">// #include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DELTA_PK_eps0_g4.cpp&quot;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">// #include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_CONT_eps0_g4.cpp&quot;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">// #include &quot;../amp/ggHX/2RE_HIGGSxQCD_NLO_DIP_DIST_E_eps0_g4.cpp&quot;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keywordtype">double</span> Eval_DIP_DELTA (</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_1,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_R2,</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="keywordtype">double</span> t2;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <span class="keywordtype">double</span> t4;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keywordtype">double</span> t5;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keywordtype">double</span> t9;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  t2 = 0.1e1 / s_1;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  t4 = log(mu_R2 * t2);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  t5 = t4 * t4;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  t9 = log(mu_F2 * t2);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keywordflow">return</span>(B_1 * ((-0.5e1 / 0.3e1 * Pi2 + 0.67e2 / 0.9e1 + t5) * CA + (0.4e1 * t4 + 0.4e1 - 0.4e1 * t9) * beta0 - 0.10e2 / 0.9e1 * Nf) / TwoPi * AlphaS);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keywordtype">double</span> Eval_DIP_DELTA_WITH_Kbar (</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_1,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_R2,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;{</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keywordtype">double</span> t2;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keywordtype">double</span> t4;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="keywordtype">double</span> t5;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="keywordtype">double</span> t9;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  t2 = 0.1e1 / s_1;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  t4 = log(mu_R2 * t2);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  t5 = t4 * t4;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  t9 = log(mu_F2 * t2);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordflow">return</span>(B_1 * ((Pi2 / 0.3e1 + t5) * CA + (-0.4e1 * t9 + 0.4e1 * t4) * beta0) / TwoPi * AlphaS);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">double</span> Eval_DIP_DIST_E (</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_1,</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;{</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keywordtype">double</span> t2;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  <span class="keywordtype">double</span> t3;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keywordtype">double</span> t6;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="keywordtype">double</span> t9;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  t2 = -0.1e1 + x;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  t3 = 0.1e1 / t2;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  t6 = log(mu_F2 / s_1);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  t9 = log(-t2);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordflow">return</span>(0.4e1 * B_1 * CA * (t3 * t6 - t3 * t9) * AlphaS / TwoPi);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="keywordtype">double</span> Eval_DIP_DIST_E_WITH_Kbar (</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_1,</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x,</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;{</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">double</span> t13;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <span class="keywordtype">double</span> t2;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="keywordtype">double</span> t3;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordtype">double</span> t6;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">double</span> t8;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordtype">double</span> t9;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  t2 = -0.1e1 + x;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  t3 = 0.1e1 / t2;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  t6 = log(mu_F2 / s_1);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  t8 = -t2;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  t9 = log(t8);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  t13 = log(t8 / x);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <span class="keywordflow">return</span>(0.4e1 * B_1 * CA * (-t13 * t3 + t3 * t6 - t3 * t9) * AlphaS / TwoPi);</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> x (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;{</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_b);</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  <span class="keywordtype">double</span> t2 = sp(p_i, p_a);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_i, p_b);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  <span class="keywordflow">return</span> ((t1 - t2 - t3) / t1);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggII (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;{</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_i);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <span class="keywordtype">double</span> t3 = x(p_i, p_a, p_b);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  <span class="keywordtype">double</span> t6 = 0.1e1 - t3;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  <span class="keywordflow">return</span> (0.1e1 / t1 / t3 * (t3 / t6 + t3 * t6) / 0.2e1);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;}</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggIIc (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;{</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  <span class="keywordtype">double</span> t1 = x(p_i, p_a, p_b);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_a, p_b);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  <span class="keywordtype">double</span> t5 = pow(sp(p_a, p_i),2);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  <span class="keywordtype">double</span> t8 = t1 * t1;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  <span class="keywordtype">double</span> t13 = sp(p_i, p_b);</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  <span class="keywordflow">return</span> ((0.1e1 - t1) * t3 / t5 / t8 / t13 / 0.2e1);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="keywordtype">double</span> Eval_UID_II_C_ES (</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3,</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P1,</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P2</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            )</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;{</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <span class="keywordtype">double</span> t1 = sp(P1,p2);</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  <span class="keywordtype">double</span> t2 = sp(P1,p3);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p2,p3);</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keywordflow">return</span> 1024.0 * PREF_R_PHI * (FH02 + 4.0 * FA02) * t1 * t2 * t3;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keywordtype">double</span> Eval_DIP_CONT (</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_x,</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x,</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <span class="keywordtype">double</span> t10;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keywordtype">double</span> t13;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keywordtype">double</span> t5;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <span class="keywordtype">double</span> t6;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <span class="keywordtype">double</span> t7;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  t5 = log(mu_F2 / x / s_1);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  t6 = 0.1e1 - x;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;  t7 = log(t6);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  t10 = P_gg_reg(x);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  t13 = -0.1e1 / t6;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;  <span class="keywordflow">return</span>(B_x * ((-0.2e1 * t5 + 0.2e1 * t7) * t10 + 0.4e1 * CA * (t13 * t5 - t13 * t7)) * AlphaS / TwoPi);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordtype">double</span> Eval_DIP_CONT_WITH_Kbar (</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s_1,</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; B_x,</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; x,</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mu_F2,</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; AlphaS)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;{</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;  <span class="keyword">using namespace </span>Constants;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keywordtype">double</span> t1;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  <span class="keywordtype">double</span> t12;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="keywordtype">double</span> t15;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="keywordtype">double</span> t5;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  <span class="keywordtype">double</span> t6;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  <span class="keywordtype">double</span> t7;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <span class="keywordtype">double</span> t9;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  t1 = 0.1e1 / x;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  t5 = log(mu_F2 * t1 / s_1);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  t6 = 0.1e1 - x;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  t7 = log(t6);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  t9 = log(t6 * t1);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  t12 = P_gg_reg(x);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  t15 = -0.1e1 / t6;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keywordflow">return</span>(B_x * ((-0.2e1 * t5 + 0.2e1 * t7 + 0.2e1 * t9) * t12 + 0.4e1 * CA * (t15 * t5 - t15 * t7 - t15 * t9)) * AlphaS / TwoPi);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;}</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="keywordtype">double</span> Eval_UID (</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;         )</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">// evaluate the finite part of the integrated dipoles: x-independent part of I,P,K operators</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#a5fadd48881560a5d00a3be585b187aca">  245</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#a5fadd48881560a5d00a3be585b187aca">Eval_ID</a>(</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;           <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p1,</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;           <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p2,</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;           <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;           )</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;{</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="keyword">static</span> <a class="code" href="classFV.html">FV</a> P1;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keyword">static</span> <a class="code" href="classFV.html">FV</a> P2;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <span class="comment">// p1: emitter, p2: spectator</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    P1 = x(p3,p1,p2)*p1;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    P2 = p2;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    res += AmpPrefactors::PREF_UID_CA*VggII(p1,p3,p2)*Eval_B_eff(P1,P2);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    res += Eval_UID_II_C_ES(p1,p2,p3,P1,p2)*VggIIc(p1,p3,p2);</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  }</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="comment">// p2: emitter, p1: spectator</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    P1 = p1;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    P2 = x(p3,p2,p1)*p2;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    res += AmpPrefactors::PREF_UID_CA*VggII(p2,p3,p1)*Eval_B_eff(P1,P2);</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    res += Eval_UID_II_C_ES(p2,p1,p3,P2,p1)*VggIIc(p2,p3,p1);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#endif  </span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">// probably wrong</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keywordtype">double</span> Eval_R_qq(</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;         )</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;{</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    </div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordtype">double</span> t16;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;  <span class="keywordtype">double</span> t5;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keywordtype">double</span> t6;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;  <span class="keywordtype">double</span> t7;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="keywordtype">double</span> t8;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <span class="keywordtype">double</span> t9;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  t5 = PREF_V_CT;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  t6 = sp(p3, p2);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  t7 = t6 * t6;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  t8 = sp(p1, p3);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;  t9 = t8 * t8;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  t16 = sp(p1, p2);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  <span class="keywordflow">return</span> (0.128e3 * t5 * (t7 + t9) * (0.4e1 * FA02 + FH02) / t16);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;}</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="keywordtype">double</span> Eval_sigma_R_qq_fin(</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; z</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;             )</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;{</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;   </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  <span class="keywordtype">double</span> t1 = pow(1-z,3);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <span class="keywordtype">double</span> t18 = (0.4e1 * FA02 + FH02);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;  <span class="keywordflow">return</span> (AlphaS2*AlphaS/Pi2*144.0/486.0 * t18  * t1);</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;}</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">// phase space, spin/color average and flux factors already included!!!</span></div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">// note:  z = mH2/s </span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="keywordtype">double</span> Eval_sigma_R_qg_fin(</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; z</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;             )</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;{</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  AMP_PP_HX_HEADER</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  <span class="keywordtype">double</span> P_qg = CF*(1.0+std::pow(1.0-z,2))/z;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  <span class="keywordtype">double</span> t18 = (0.4e1 * FA02 + FH02);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="keywordflow">return</span> (AlphaS2*AlphaS/(Pi2*4.0)) * t18 * ((z-1.0)*(7.0-3.0*z)/3.0 + 0.5*z*P_qg*(1.0+std::log(M2_1/MUF2*std::pow(1.0-z,2)/z)) );</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;}</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
-<div class="ttc" id="Functions__pp__ttX__ID_8h_html_a35561efe14ba782c0cc2d666f9796a7b"><div class="ttname"><a href="Functions__pp__ttX__ID_8h.html#a35561efe14ba782c0cc2d666f9796a7b">Eval_ID_X</a></div><div class="ttdeci">double Eval_ID_X(const PS_2_2 &amp;ps_x, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the integrated dipoles that live on the boosted 2-&gt;2 phase space, i.e. the + distribution t...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__ID_8cpp_source.html#l00144">Functions_pp_ttX_ID.cpp:144</a></div></div>
-<div class="ttc" id="Functions__pp__ttX__V_8h_html_aa44bc8ccfc40b1d6e9412d530a0007b0"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0">Eval_V</a></div><div class="ttdeci">double Eval_V(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the virtual corrections to the process  and the itnerferences with the QCD background at th...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00206">Functions_pp_ttX_V.cpp:206</a></div></div>
-<div class="ttc" id="Functions__pp__ttX__V_8h_html_ae2834c828566d0b5dcd0215e049399cd"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#ae2834c828566d0b5dcd0215e049399cd">Eval_B</a></div><div class="ttdeci">double Eval_B(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags, unsigned EFF=1)</div><div class="ttdoc">Evaluates the squared born amplitudes for the process  and the interferences with the QCD background ...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00136">Functions_pp_ttX_V.cpp:136</a></div></div>
-<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00019">Lorentz.h:19</a></div></div>
-<div class="ttc" id="Functions__pp__ttX__ID_8h_html_a6465af4f5feaeb94803677e17b98c821"><div class="ttname"><a href="Functions__pp__ttX__ID_8h.html#a6465af4f5feaeb94803677e17b98c821">Eval_ID</a></div><div class="ttdeci">double Eval_ID(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags)</div><div class="ttdoc">Evaluates the integrated dipoles that live on the normal 2-&gt;2 phase space, i.e. delta terms and distr...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__ID_8cpp_source.html#l00049">Functions_pp_ttX_ID.cpp:49</a></div></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  <span class="keywordtype">double</span> B_phi = <a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(p1,p2,hm,1);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s12_1  = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  res += Eval_DIP_DELTA_WITH_Kbar(s12_1, <span class="comment">// invairant in initial-initial dipoles</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;             B_phi, <span class="comment">// uncorrelated Born</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;             MUR2,  <span class="comment">// ren./fact. scales</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;             MUF2,  <span class="comment">// ren./fact. scales</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;             AlphaS);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="comment">// distribution end-point part</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  <span class="keywordflow">if</span> (x&lt;<a class="code" href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a>) </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      res -= Eval_DIP_DIST_E_WITH_Kbar(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                     B_phi, <span class="comment">// uncorrelated Born                 </span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                     x,     <span class="comment">// boost factor            </span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                     MUF2,  <span class="comment">// ren./fact. scales    </span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                 AlphaS);   </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;}</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">// evaluate the finite part of the integrated dipoles: continuous, x-dependent contribution of P and K operators</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#a116a2fe3256408eeac1e698ccd4f21f1">  284</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#a116a2fe3256408eeac1e698ccd4f21f1">Eval_ID_X</a>(</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;         <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p1,</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;         <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p2,</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;         <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;         <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x     </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;         )</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;{</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  <span class="comment">// this contributes only if the rescaled c.m.e. is still above threshold (boost_initial_state() checks this)</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <span class="keywordflow">if</span> ( x&lt;<a class="code" href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a> )</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      <span class="keywordtype">double</span> rx = sqrt(x);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      <span class="keywordtype">double</span> B_phi_x = <a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(rx*p1,rx*p2,hm,1);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="keywordtype">double</span> s12_1   = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      res += Eval_DIP_CONT_WITH_Kbar(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;               B_phi_x, <span class="comment">// uncorrelated Born                   </span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;               x,       <span class="comment">// boost factor            </span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;               MUF2,    <span class="comment">// ren./fact. scales    </span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;               AlphaS);           </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;}</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#ac73465f80cd1b0cc36d144f026f4446d">  318</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#ac73465f80cd1b0cc36d144f026f4446d">Eval_R_gg</a> (</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;          <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3,</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;          <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;          )</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;{</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  </div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordtype">double</span> t4 = sp(p1, p2);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keywordtype">double</span> t5 = sp(p1, p3);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  <span class="keywordtype">double</span> t6 = sp(p2, p3);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <span class="keywordtype">double</span> t9 = 0.16e2 * pow(t4 - t5 - t6, 0.4e1);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keywordtype">double</span> t10 = t4 * t4;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  <span class="keywordtype">double</span> t11 = t10 * t10;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  <span class="keywordtype">double</span> t13 = t5 * t5;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;  <span class="keywordtype">double</span> t14 = t13 * t13;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  <span class="keywordtype">double</span> t16 = t6 * t6;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keywordtype">double</span> t17 = t16 * t16;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  <span class="keywordflow">return</span> 0.16e2 * PREF_R_PHI * (4.0 * FA02 + FH02) * (t9 + 0.16e2 * t11 + 0.16e2 * t14 + 0.16e2 * t17) / (t4 * t5 * t6);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;}</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> x (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;{</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_b);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  <span class="keywordtype">double</span> t2 = sp(p_i, p_a);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_i, p_b);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  <span class="keywordflow">return</span> ((t1 - t2 - t3) / t1);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggII (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;{</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_i);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="keywordtype">double</span> t3 = x(p_i, p_a, p_b);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="keywordtype">double</span> t6 = 0.1e1 - t3;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="keywordflow">return</span> (0.1e1 / t1 / t3 * (t3 / t6 + t3 * t6) / 0.2e1);</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggIIc (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;{</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;  <span class="keywordtype">double</span> t1 = x(p_i, p_a, p_b);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_a, p_b);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="keywordtype">double</span> t5 = pow(sp(p_a, p_i),2);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  <span class="keywordtype">double</span> t8 = t1 * t1;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;  <span class="keywordtype">double</span> t13 = sp(p_i, p_b);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;  <span class="keywordflow">return</span> ((0.1e1 - t1) * t3 / t5 / t8 / t13 / 0.2e1);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;}</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="keywordtype">double</span> Eval_UID_II_C_ES (</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3,</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P1,</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; P2,</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;             <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;             )</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;{</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="keywordtype">double</span> t1 = sp(P1,p2);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordtype">double</span> t2 = sp(P1,p3);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p2,p3);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;  <span class="keywordflow">return</span> 1024.0 * PREF_R_PHI * (FH02 + 4.0 * FA02) * t1 * t2 * t3;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;}</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#afb9582b1e9f2302ebd9002448518225b">  395</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#afb9582b1e9f2302ebd9002448518225b">Eval_UID</a> (</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p1,</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p2,</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;         <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; p3,</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;         <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;         )</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;{</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  <span class="keyword">static</span> <a class="code" href="classFV.html">FV</a> P1;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  <span class="keyword">static</span> <a class="code" href="classFV.html">FV</a> P2;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  <span class="comment">// p1: emitter, p2: spectator</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  {</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    P1 = x(p3,p1,p2)*p1;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    P2 = p2;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    res += PREF_UID_CA*VggII(p1,p3,p2)*<a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(P1,P2,hm,1);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    res += Eval_UID_II_C_ES(p1,p2,p3,P1,p2,hm)*VggIIc(p1,p3,p2);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;  }</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  <span class="comment">// p2: emitter, p1: spectator</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  {</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    P1 = p1;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    P2 = x(p3,p2,p1)*p2;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    res += PREF_UID_CA*VggII(p2,p3,p1)*<a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(P1,P2,hm,1);</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    res += Eval_UID_II_C_ES(p2,p1,p3,P2,p1,hm)*VggIIc(p2,p3,p1);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;  }</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="preprocessor"></span>  CHECKNA(res);</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="preprocessor">#endif  </span></div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;}</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="comment">// from Dawson, Nucl. Phys. B 359 (1991) 283-300</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="comment">// phase space, spin/color average and flux factors already included</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="comment">// def:  z = mH2/s </span></div>
+<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#a58f97431922a60a05a5974a4ecff63bb">  434</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#a58f97431922a60a05a5974a4ecff63bb">Eval_sigma_R_qq_fin</a>(</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; z,</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;               <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;               )</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;{</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;   </div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;  <span class="keywordtype">double</span> t1 = pow(1-z,3);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;  <span class="keywordtype">double</span> t18 = (0.4e1 * FA02 + FH02);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  <span class="keywordflow">return</span> (std::pow(AlphaS,3)/Pi2*144.0/486.0 * t18  * t1);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;}</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment">// from Dawson, Nucl. Phys. B 359 (1991) 283-300</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="comment">// phase space, spin/color average and flux factors already included</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="comment">// def:  z = mH2/s </span></div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="Functions__pp__HX_8h.html#ad52922c79569a67d14b5f6510d95a958">  449</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="Functions__pp__HX_8h.html#ad52922c79569a67d14b5f6510d95a958">Eval_sigma_R_qg_fin</a>(</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; z,</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;               <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;               )</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;{</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  </div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <span class="keywordtype">double</span> P_qg = CF*(1.0+std::pow(1.0-z,2))/z;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  <span class="keywordtype">double</span> t18 = (0.4e1 * FA02 + FH02);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  <span class="keywordflow">return</span> (pow(AlphaS,3)/(Pi2*4.0)) * t18 * ((z-1.0)*(7.0-3.0*z)/3.0 + 0.5*z*P_qg*(1.0+std::log(MH2/MUF2*std::pow(1.0-z,2)/z)) );</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;}</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;</div>
+<div class="ttc" id="Functions__pp__HX_8h_html_afb9582b1e9f2302ebd9002448518225b"><div class="ttname"><a href="Functions__pp__HX_8h.html#afb9582b1e9f2302ebd9002448518225b">Eval_UID</a></div><div class="ttdeci">double Eval_UID(FV const &amp;p1, FV const &amp;p2, FV const &amp;p3, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the unintegrated dipoles for the process gg -&gt; H + g, c.f. arXiv:hep-ph/0201036. Uses the effective Higgs-gluon coupling. NO spin/colour averaging factor included. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00395">Functions_pp_HX.cpp:395</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_ac73465f80cd1b0cc36d144f026f4446d"><div class="ttname"><a href="Functions__pp__HX_8h.html#ac73465f80cd1b0cc36d144f026f4446d">Eval_R_gg</a></div><div class="ttdeci">double Eval_R_gg(FV const &amp;p1, FV const &amp;p2, FV const &amp;p3, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the squared tree level matrix element for the process gg -&gt; H + g. Uses the effective Higgs-...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00318">Functions_pp_HX.cpp:318</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_a116a2fe3256408eeac1e698ccd4f21f1"><div class="ttname"><a href="Functions__pp__HX_8h.html#a116a2fe3256408eeac1e698ccd4f21f1">Eval_ID_X</a></div><div class="ttdeci">double Eval_ID_X(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, double const &amp;x)</div><div class="ttdoc">Evaluate the integrated dipoles for gg -&gt; H. This is the continuum part evaluated at the boosted phas...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00284">Functions_pp_HX.cpp:284</a></div></div>
+<div class="ttc" id="namespaceCuts_html_a4a86c8447ab5c08303431898f6faae38"><div class="ttname"><a href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a></div><div class="ttdeci">double IDIP_X_CUT</div><div class="ttdoc">Technical cut for boost parameter in the continuum part of the integrated dipoles. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00053">Global.cpp:53</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_a2cecc77291b8bfcc2ab264b924cb3162"><div class="ttname"><a href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a></div><div class="ttdeci">double Eval_B(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, bool EFF)</div><div class="ttdoc">Evaluate the squared Born matrix element for gg -&gt; H. NO spin/colour averaging factor included...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00030">Functions_pp_HX.cpp:30</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_a58f97431922a60a05a5974a4ecff63bb"><div class="ttname"><a href="Functions__pp__HX_8h.html#a58f97431922a60a05a5974a4ecff63bb">Eval_sigma_R_qq_fin</a></div><div class="ttdeci">double Eval_sigma_R_qq_fin(double const &amp;z, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the squared tree level matrix element for the process qqbar -&gt; H + g (from Dawson...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00434">Functions_pp_HX.cpp:434</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_ae6510939d84dababa1c36762080e9e83"><div class="ttname"><a href="Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83">Eval_V</a></div><div class="ttdeci">double Eval_V(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the virtual corrections for gg -&gt; H: one-loop graphs with effective Higgs-gluon coupling...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00066">Functions_pp_HX.cpp:66</a></div></div>
+<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00235">HiggsModel.h:235</a></div></div>
+<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00020">Lorentz.h:20</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_a5fadd48881560a5d00a3be585b187aca"><div class="ttname"><a href="Functions__pp__HX_8h.html#a5fadd48881560a5d00a3be585b187aca">Eval_ID</a></div><div class="ttdeci">double Eval_ID(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, double const &amp;x)</div><div class="ttdoc">Evaluate the integrated dipoles for gg -&gt; H. These are the terms proportional to delta(1-x), c.f. arXiv:hep-ph/0201036. Uses the effective Higgs-gluon coupling. NO spin/colour averaging factor included. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00245">Functions_pp_HX.cpp:245</a></div></div>
+<div class="ttc" id="Functions__pp__HX_8h_html_ad52922c79569a67d14b5f6510d95a958"><div class="ttname"><a href="Functions__pp__HX_8h.html#ad52922c79569a67d14b5f6510d95a958">Eval_sigma_R_qg_fin</a></div><div class="ttdeci">double Eval_sigma_R_qg_fin(double const &amp;z, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the squared tree level matrix element for the process qg -&gt; H + q (from Dawson, Nucl. Phys. B 359 (1991) 283-300). Uses the effective Higgs-gluon coupling. Spin/colour averaging factor IS included. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00449">Functions_pp_HX.cpp:449</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

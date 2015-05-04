@@ -53,6 +53,17 @@ int main(int argc, char** argv)
   stringstream run_id;
   run_id << "RUN_" << time(0) << "_" << gettid();
   program_name = argv[0];
+
+  // create object for model parameters
+  HiggsModel THDM_1("generic 2HDM");
+  
+  // get parameters from command line arguments
+  parse_arguments(argc,argv,g_options,THDM_1);
+  if (THDM_1.NBosons() != 1)
+    {
+      cout << endl << " This program runs with a single Higgs boson! " << endl;
+      exit(1);
+    }
   
   // create an outpufile
   ofstream log_file;
@@ -79,21 +90,13 @@ int main(int argc, char** argv)
 
   ////////////////////////////////////////////////////////////////////////////////
   // initialize model parameters
-  HiggsModel THDM_1("2HDM scenario 1");
   // some aliases
   double const& mt      = THDM_1.mt();
   double const& mt2     = THDM_1.mt2();
   double const& mScale  = THDM_1.Scale();
   double const& mScale2 = THDM_1.Scale2();
-  // get parameters from command line arguments
-  parse_arguments(argc,argv,g_options,THDM_1);
-  if (THDM_1.NBosons() != 1)
-    {
-      cout << endl << " This program runs with a single Higgs boson! " << endl;
-      exit(1);
-    }
   HPtr Phi1 = THDM_1.GetBoson(0);
-  PRINT(mt*mScale);
+  THDM_1.Print(couT,mScale);
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -104,13 +107,6 @@ int main(int argc, char** argv)
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
   ip.collect_dist  = g_options.dist;
   ip.pdf           = pdf_ct10nlo; 
-  ip.distributions = new HAvec{&MttDistributions,
-			       &PT1Distributions,
-			       &PT2Distributions,
-			       &PT12Distributions,
-			       &Y1Distributions,
-			       &Y2Distributions,
-			       &DYDistributions};
   double CME = sqrt(ip.s_hadr)*mScale;
   PRINTS(couT,CME);
   ////////////////////////////////////////////////////////////////////////////////
@@ -146,9 +142,9 @@ int main(int argc, char** argv)
   
   
   // mass values to evaluate in main loop
-  // vector<double> M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};
-  vector<double> M_values = {125, 150, 200, 250, 300};
-  //  vector<double> M_values = {200, 300, 400, 500, 600};
+  vector<double> M_values = {100, 125, 150, 200, 250, 300, 320, 340, 360, 380, 400, 450, 500, 550, 600, 700, 800, 900, 1000};
+  //vector<double> M_values = {125, 150, 200, 250, 300};
+  //vector<double> M_values = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
   // output
   /////////////////////////////////////////////////////////////////////////////////////////
   // write mass values to log-file in C-array format
@@ -225,7 +221,7 @@ int main(int argc, char** argv)
       c_double const& FA_eff_1 = Phi1->GetFA(1);
 
       // rescaling factor for radiative corrections
-      if (g_options.dist)
+      if (g_options.useK)
 	{
 	  ip.K = (std::norm(F_ggH1_s)+std::norm(F_ggH1_p))/(16.0*MH2*MH2*(std::norm(FH_eff_1)+4.0*std::norm(FA_eff_1)));
 	}

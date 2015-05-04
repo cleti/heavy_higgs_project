@@ -32,9 +32,10 @@ struct opt g_options = {
   6,//int precision; // output
   false,//bool dist;
   false,//bool tdecay;
-  false,//logfile
-  false,//rootfile
-  0//verb_level;
+  false,//bool useK;
+  false,//bool logfile;
+  false,//bool rootfile;
+  0//intverb_level;
 };
 
 
@@ -53,6 +54,7 @@ struct option const longopts[] = {
   {"verbose", required_argument, NULL, 'v'},
   {"dist", no_argument, NULL, 'D'},
   {"t_decay", no_argument, NULL, 't'},
+  {"use_Kfactor", no_argument, NULL, 'K'},
   {"logfile", no_argument, NULL, 'L'},
   {"rootfile", no_argument, NULL, 'F'},
   {"info", no_argument, NULL, 'i'},
@@ -91,6 +93,7 @@ usage (int status)
   --precision,      -P, no argument          #digits in ouput of numbers, default 6\n\
   --plot,           -D, no argument          plot distributions, default: 0\n\
   --t_decay         -t, no argument          include top/antitop decays and lepton distributions\n\
+  --use_Kfactor     -K, no argument          rescale effective Higgs-gluon vertex in NLO corrections\n\
   --logfile         -L, no argument          write output to file in folder results/\n\
   --rootfile        -F, no argument          store histograms in a ROOT-file in folder results/\n\
   --verbose         -v, required argument    verbosity level, default: 0\n\
@@ -104,7 +107,7 @@ usage (int status)
 
 void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 {
-  const char* arglist = "M:I:N:R:E:m:V:H:T:P:v:DtLFi";
+  const char* arglist = "M:I:N:R:E:m:V:H:T:P:v:DtLFKi";
   std::string arg;
 
   int pos0=0,pos1=0,c1=0;
@@ -148,6 +151,9 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	case 't':
 	  options.tdecay  = !options.tdecay;
 	  break;
+	case 'K':
+	  options.useK  = !options.useK;
+	  break;	  
 	case 'L':
 	  options.logfile  = !options.logfile;
 	  break;
@@ -174,7 +180,8 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
   hm.SetMt(options.mt);
   // set the bottom-quark mass
   hm.SetMb(options.mb);
-
+  // use the scaling factor for NLO corrections 
+  hm.SetUseK(options.useK);
 
 
   // reset the index, so that getopt_long() searches through all the options again
@@ -456,6 +463,14 @@ void DrawDistribution(
 
       histograms[0]->SetLineWidth(1);
       histograms[0]->SetLineColor(1);
+
+      if (WRITE)
+	{
+	  histograms[0]->Write();
+	  histograms[1]->Write();
+	  if (NLO) histograms[3]->Write();
+	}
+      
       histograms[0]->DrawCopy("same hist ][");
       
       leg->AddEntry(histograms[0] ,"LO QCD","L");
@@ -732,4 +747,5 @@ double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4)
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 }
+
 

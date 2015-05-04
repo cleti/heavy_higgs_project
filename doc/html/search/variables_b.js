@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['v',['v',['../classFV.html#a909196132ec1cd190f8c01546ea5bced',1,'FV']]],
-  ['v_5fstate',['v_state',['../classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e',1,'integrand_par']]]
+  ['s_5fhadr',['s_hadr',['../classintegrand__par.html#a02a52a8cc95edeadf423f181936617d0',1,'integrand_par']]],
+  ['soft_5fcut',['SOFT_CUT',['../namespaceCuts.html#ab5b6f8f12059d55ffb68f56fecc10d65',1,'Cuts']]]
 ];

@@ -3,7 +3,7 @@
 }
 
 
-Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here.  
+Histogram class for the computation of differential distributions and definition of various observables.  
 
 
 {\ttfamily \#include $<$iostream$>$}\\*
@@ -51,9 +51,6 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{HistArray_8h_a989683c28475ff77e0c9ba11f1ce2ac6}{const char $\ast$ {\bfseries cat} (std\-::string str, int number)}\label{HistArray_8h_a989683c28475ff77e0c9ba11f1ce2ac6}
-
-\item 
 \hypertarget{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{double \hyperlink{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{obs\-\_\-\-M12} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}
 
 \begin{DoxyCompactList}\small\item\em Computes invariant mass of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
@@ -65,13 +62,19 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \begin{DoxyCompactList}\small\item\em Computes transverse momentum of two particle system k1,k2, k\-\_\-\{T,12\} = $\vert$k\-\_\-\{T,1\}+k\-\_\-\{T,2\}$\vert$. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_ae677072636551874da62f32601db682e}{double \hyperlink{HistArray_8h_ae677072636551874da62f32601db682e}{obs\-\_\-\-Y} (\hyperlink{classFV}{F\-V} const \&k)}\label{HistArray_8h_ae677072636551874da62f32601db682e}
 
-\begin{DoxyCompactList}\small\item\em Computes rapidity from a 4-\/vector k1. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes rapidity of a 4-\/vector k1. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_a325229be26684d1beaff261e9e878617}{double \hyperlink{HistArray_8h_a325229be26684d1beaff261e9e878617}{obs\-\_\-\-D\-Y} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_a325229be26684d1beaff261e9e878617}
 
-\begin{DoxyCompactList}\small\item\em Computes rapidity difference from two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes rapidity difference of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{double \hyperlink{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{obs\-\_\-\-P\-H\-I} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}
 
-\begin{DoxyCompactList}\small\item\em Computes momentum direction opening angle form two 4-\/vectors k1 and k2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes spatial opening angle of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}{double \hyperlink{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}{obs\-\_\-\-P\-H\-I\-T} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}
+
+\begin{DoxyCompactList}\small\item\em Computes opening angle of the spatial projections on the x-\/y plane. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}{double \hyperlink{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}{obs\-\_\-\-Tri\-Prod} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2, \hyperlink{classFV}{F\-V} const \&k3)}\label{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}
+
+\begin{DoxyCompactList}\small\item\em Computes the spatial triple product of three 4-\/vectors k1,k2,k3. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -123,22 +126,22 @@ class \hyperlink{classHistArray}{Hist\-Array}
 \hypertarget{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}{D\-Y\-Distributions}}\label{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}
 
 \begin{DoxyCompactList}\small\item\em top-\/antitop rapidity difference distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_acf008c146c48e3bf053dd7a7307ec8ae}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_acf008c146c48e3bf053dd7a7307ec8ae}{P\-T\-L1\-Distributions}}\label{HistArray_8h_acf008c146c48e3bf053dd7a7307ec8ae}
+\hypertarget{HistArray_8h_a397d83574b144072a74e159ed93fae42}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries P\-H\-I\-T12\-Distributions}}\label{HistArray_8h_a397d83574b144072a74e159ed93fae42}
 
-\begin{DoxyCompactList}\small\item\em lepton transverse momentum distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_af805257a3bd17374c15f584a2bede66c}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_af805257a3bd17374c15f584a2bede66c}{P\-T\-L2\-Distributions}}\label{HistArray_8h_af805257a3bd17374c15f584a2bede66c}
+\item 
+\hypertarget{HistArray_8h_a7c1ca0b67f942ad2764cc7a8d6377043}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries Dopen\-Distributions}}\label{HistArray_8h_a7c1ca0b67f942ad2764cc7a8d6377043}
 
-\begin{DoxyCompactList}\small\item\em antilepton transverse momentum distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a0452851b3845cd1a071d494a8a8a0aaf}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a0452851b3845cd1a071d494a8a8a0aaf}{P\-H\-I\-L\-L\-Distributions}}\label{HistArray_8h_a0452851b3845cd1a071d494a8a8a0aaf}
+\item 
+\hypertarget{HistArray_8h_aaa7930db34086ff9c5aaac3ec3f372e1}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries O\-C\-P\-Distributions}}\label{HistArray_8h_aaa7930db34086ff9c5aaac3ec3f372e1}
 
-\begin{DoxyCompactList}\small\item\em lepton-\/antilepton opening angle distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_ab8efd63c40c53cd07c86b729c92119d1}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_ab8efd63c40c53cd07c86b729c92119d1}{S\-Part\-Distributions}}\label{HistArray_8h_ab8efd63c40c53cd07c86b729c92119d1}
+\item 
+\hypertarget{HistArray_8h_ac260483ebf7ccdd90b34e6d3642f85a1}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries Chel\-Distributions}}\label{HistArray_8h_ac260483ebf7ccdd90b34e6d3642f85a1}
 
-\begin{DoxyCompactList}\small\item\em partonic c.\-m.\-e. distributions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Histogram class for the computation of differential distributions. Also various observables for the computation of observables are defined here. 
+Histogram class for the computation of differential distributions and definition of various observables. 
 
 Definition in file \hyperlink{HistArray_8h_source}{Hist\-Array.\-h}.
 

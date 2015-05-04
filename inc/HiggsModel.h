@@ -139,7 +139,7 @@ public:
     /*!
     \param S momentum squared in the Higgs propagators
   */
-  void SetPropagator(double const& S);
+  void SetPropagator(double const& S, bool rescale = false);
   double   const& GetPropagatorSq() const { return d_DenSq; }
   c_double const& GetPropagator()   const { return d_Den; }
 
@@ -263,6 +263,9 @@ class HiggsModel
   //! mass scale for normalization of dimensionful quantities
   double d_Scale;
   double d_Scale2;
+  //! flag to singal rescaling of effective Higgs-gluon vertex in NLO corrections
+  bool   d_useK;
+
   
   //! contains the pointers to the Higgs bosons
   std::vector<HPtr> d_Bosons;
@@ -293,10 +296,18 @@ class HiggsModel
   std::vector<HPtr> const& GetBosons() const { return d_Bosons; }
   
 #ifdef DEBUG
-  HPtr       GetBoson(int i);
-  HPtr const GetBoson(int i) const;
+  HPtr       GetBoson(int i)
+  {
+    if (i<0 || i>=NBosons()) {ERROR("out of range!");}
+    return d_Bosons[i];
+  };
+  HPtr const GetBoson(int i) const
+  {
+    if (i<0 || i>=NBosons()) {ERROR("out of range!");}
+    return d_Bosons[i];
+  };
 #else
-  HPtr       GetBoson(int i)  { return d_Bosons[i]; }
+  HPtr       GetBoson(int i)       { return d_Bosons[i]; }
   HPtr const GetBoson(int i) const { return d_Bosons[i]; }
 #endif
 
@@ -309,6 +320,8 @@ class HiggsModel
   void SetMb(double const& val)     { d_mb  = val/d_Scale; d_mb2  = std::pow(d_mb,2); }
   void SetVH(double const& val)     { d_VH  = val/d_Scale; }
   void SetScale(double const& val)  { d_Scale  = val; d_Scale2 = val*val; }
+  void SetUseK(bool k)              { d_useK = k; } 
+  bool UseK() { return d_useK; }
   
   //! Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into account.
   /*!

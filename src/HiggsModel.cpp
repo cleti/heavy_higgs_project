@@ -101,7 +101,7 @@ void HiggsBoson::SetFormFactors(
     }
 }
 
-void HiggsBoson::SetPropagator(double const& S)
+void HiggsBoson::SetPropagator(double const& S, bool rescale)
 {
   if (S!=d_S_Den)
     {
@@ -122,7 +122,16 @@ void HiggsBoson::SetPropagator(double const& S)
 	{
 	  ERROR("d_Den is inf/nan!");
 	}
-#endif        
+#endif
+      // rescale effective Higgs-gluon vertex by ratio full vertex/eff. vertex
+      // here it is assumed that each scalar propagator is connected to one ggH vertex
+      // assumes that d_FH_full and d_FA_full have been set up correctly
+      if (rescale)
+	{
+	  double K = (std::norm(d_FH_full)+std::norm(d_FA_full)/4.0)/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff))/std::pow(4.0*S,4);
+	  d_DenSq *= K;
+	  d_Den   *= std::sqrt(K);
+	}
     }
 }
 
@@ -217,7 +226,8 @@ HiggsModel::HiggsModel(std::string const & name):
   d_mb2(0),
   d_VH(1),
   d_Scale(1),
-  d_Scale2(1)
+  d_Scale2(1),
+  d_useK(false)
 {
 
 }
@@ -236,7 +246,7 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
   auto last  = std::end(d_Bosons);
   for (auto phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)
     {
-      if (!EFF) (*phi_i)->SetFormFactors(S,d_mt2,d_mb2);
+      if (!EFF || d_useK) (*phi_i)->SetFormFactors(S,d_mt2,d_mb2);
       (*phi_i)->SetPropagator(S);
       c_double const& FHi = (*phi_i)->GetFH(EFF);
       c_double const& FAi = (*phi_i)->GetFA(EFF);
@@ -270,16 +280,16 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       d_HPref.Bt2_fA2_De += Bt2i*FA2i*di;
 	  
 #ifdef WITH_T_SPIN
-      // // only needed for polarized amplitudes:
-      // // PHIxPHI terms: add at*bt interference from Phi1^2 contribution
-      // d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;
-      // d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   
+      // only needed for polarized amplitudes:
+      // PHIxPHI terms: add at*bt interference from Phi1^2 contribution
+      d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;
+      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   
 #endif
 
       // second loop to get the phi^2 contributions
       for (auto phi_j = phi_i+1; phi_j!=last; ++phi_j)
 	{
-	  if (!EFF) (*phi_j)->SetFormFactors(S,d_mt2,d_mb2);
+	  if (!EFF || d_useK) (*phi_j)->SetFormFactors(S,d_mt2,d_mb2);
 	  (*phi_j)->SetPropagator(S);
 
 	  c_double const& FHj = (*phi_j)->GetFH(EFF);
@@ -297,13 +307,13 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 	  d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHi*std::conj(FHj)*DiDj).real();
 	  d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAi*std::conj(FAj)*DiDj).real();
 #ifdef WITH_T_SPIN
-	  // // only needed for polarized amplitudes:
-	  // // PHIxPHI terms: at Phi1 * bt  Phi2 interferences
-	  // d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();
-	  // d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();	
-	  // // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
-	  // d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
-	  // d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
+	  // only needed for polarized amplitudes:
+	  // PHIxPHI terms: at Phi1 * bt  Phi2 interferences
+	  d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();
+	  d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();	
+	  // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
+	  d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
+	  d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
 #endif
 	}
     }

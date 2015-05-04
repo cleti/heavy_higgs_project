@@ -1,6 +1,6 @@
 
 /*! \file
-  \brief Interface for the evaluation of born level amplitudes and virtual corrections
+  \brief Interface for the evaluation of born level amplitudes and virtual corrections to the process pp -> ttbar + X.
 */ 
 
 #ifndef FUNCTIONS_V_H
@@ -16,12 +16,12 @@
 #include "HiggsModel.h"
 
 
-//! Evaluates the squared born amplitudes for the process \f$ gg \rightarrow \phi \rightarrow t\bar{t} \f$ and the interferences with the QCD background at the given phase space point.
+//! Evaluates the squared born amplitudes for the process \f$ gg \rightarrow \phi \rightarrow t\bar{t} \f$ and the interference with the QCD background at the given phase space point. NO spin/colour averaging factor included.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters
   \param flags specify which subamplitudes get evaluated
-  \param EFF use effective or full 1-loop gg-Higgs form factors
+  \param EFF Switch between effective Higgs-gluon coupling and full one-loop form factor.
   \sa Flags.h, PhaseSpace.h, HiggsModel.h
 */
 double Eval_B(
@@ -31,7 +31,7 @@ double Eval_B(
 	      unsigned EFF=1);
 
 
-//! Evaluates the squared born amplitudes for the process \f$ q\bar{q} \rightarrow \phi \rightarrow t\bar{t} \f$ and the itnerferences with the QCD background at the given phase space point.
+//! Evaluates the squared born amplitudes for the process \f$ q\bar{q}  \rightarrow t\bar{t} \f$. NO spin/colour averaging factor included.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters
@@ -64,7 +64,7 @@ double Eval_B_PHIxPHI_withINT12(
 //////////////////////////////////////////////////////
 
 
-//! Evaluates the virtual corrections to the process \f$gg \rightarrow \phi \rightarrow t\bar{t} \f$  and the itnerferences with the QCD background  at the given phase space point. This includes the interference of one-loop QCD amplitudes with LO resonant amplitudes as well as that of LO QCD amplitudes with one-loop resonant amplitudes.
+//! Evaluates the virtual corrections to the process \f$gg \rightarrow \phi \rightarrow t\bar{t} \f$  and the itnerference with the QCD background  at the given phase space point. This includes the interference of one-loop QCD amplitudes with LO resonant amplitudes as well as that of LO QCD amplitudes with one-loop resonant amplitudes. Uses the effective Higgs-gluon vertex. NO spin/colour averaging factor included.
 /*!
   \param ps 2->2 phase space
   \param hm Higgs model parameters

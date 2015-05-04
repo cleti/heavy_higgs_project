@@ -1,4 +1,8 @@
 
+/*! \file
+  \brief Leading order top/antitop decay matrix element.
+*/ 
+
 #ifndef FUNCTIONS_TDECAY
 #define FUNCTIONS_TDECAY
 

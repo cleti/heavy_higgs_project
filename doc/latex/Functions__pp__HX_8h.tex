@@ -1,0 +1,308 @@
+\hypertarget{Functions__pp__HX_8h}{\section{inc/\-Functions\-\_\-pp\-\_\-\-H\-X.h File Reference}
+\label{Functions__pp__HX_8h}\index{inc/\-Functions\-\_\-pp\-\_\-\-H\-X.\-h@{inc/\-Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+}
+
+
+Interface for the evaluation of matrix elements for the process pp -\/$>$ H+\-X.  
+
+
+{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\-\_\-\-Shared.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Scalar\-Integrals.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Higgs\-Model.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{Functions__pp__HX_8h_a2cecc77291b8bfcc2ab264b924cb3162}{Eval\-\_\-\-B} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm, bool E\-F\-F)
+\begin{DoxyCompactList}\small\item\em Evaluate the squared Born matrix element for gg -\/$>$ H. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_ae6510939d84dababa1c36762080e9e83}{Eval\-\_\-\-V} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the virtual corrections for gg -\/$>$ H\-: one-\/loop graphs with effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_a5fadd48881560a5d00a3be585b187aca}{Eval\-\_\-\-I\-D} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm, double const \&x)
+\begin{DoxyCompactList}\small\item\em Evaluate the integrated dipoles for gg -\/$>$ H. These are the terms proportional to delta(1-\/x), c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_a116a2fe3256408eeac1e698ccd4f21f1}{Eval\-\_\-\-I\-D\-\_\-\-X} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm, double const \&x)
+\begin{DoxyCompactList}\small\item\em Evaluate the integrated dipoles for gg -\/$>$ H. This is the continuum part evaluated at the boosted phase space point, c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_ac73465f80cd1b0cc36d144f026f4446d}{Eval\-\_\-\-R\-\_\-gg} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classFV}{F\-V} const \&p3, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the squared tree level matrix element for the process gg -\/$>$ H + g. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_afb9582b1e9f2302ebd9002448518225b}{Eval\-\_\-\-U\-I\-D} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classFV}{F\-V} const \&p3, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the unintegrated dipoles for the process gg -\/$>$ H + g, c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_a4ffc243d645702e50601ccfdb202365a}{Eval\-\_\-\-R\-\_\-qq} (\hyperlink{classFV}{F\-V} const \&p1, \hyperlink{classFV}{F\-V} const \&p2, \hyperlink{classFV}{F\-V} const \&p3, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the squared tree level matrix element for the process gg -\/$>$ H + g. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_ad52922c79569a67d14b5f6510d95a958}{Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin} (double const \&z, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the squared tree level matrix element for the process qg -\/$>$ H + q (from Dawson, Nucl. Phys. B 359 (1991) 283-\/300). Uses the effective Higgs-\/gluon coupling. Spin/colour averaging factor I\-S included. \end{DoxyCompactList}\item 
+double \hyperlink{Functions__pp__HX_8h_a58f97431922a60a05a5974a4ecff63bb}{Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin} (double const \&z, \hyperlink{classHiggsModel}{Higgs\-Model} const \&hm)
+\begin{DoxyCompactList}\small\item\em Evaluate the squared tree level matrix element for the process qqbar -\/$>$ H + g (from Dawson, Nucl. Phys. B 359 (1991) 283-\/300). Uses the effective Higgs-\/gluon coupling. Spin/colour averaging factor I\-S included. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for the evaluation of matrix elements for the process pp -\/$>$ H+\-X. 
+
+Definition in file \hyperlink{Functions__pp__HX_8h_source}{Functions\-\_\-pp\-\_\-\-H\-X.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{Functions__pp__HX_8h_a2cecc77291b8bfcc2ab264b924cb3162}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-B@{Eval\-\_\-\-B}}
+\index{Eval\-\_\-\-B@{Eval\-\_\-\-B}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-B (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf Higgs\-Model} const \&}]{hm, }
+\item[{bool}]{E\-F\-F}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_a2cecc77291b8bfcc2ab264b924cb3162}
+
+
+Evaluate the squared Born matrix element for gg -\/$>$ H. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+{\em E\-F\-F} & Switch between effective Higgs-\/gluon coupling and full one-\/loop form factor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 30 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_a5fadd48881560a5d00a3be585b187aca}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-I\-D@{Eval\-\_\-\-I\-D}}
+\index{Eval\-\_\-\-I\-D@{Eval\-\_\-\-I\-D}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-I\-D (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf Higgs\-Model} const \&}]{hm, }
+\item[{double const \&}]{x}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_a5fadd48881560a5d00a3be585b187aca}
+
+
+Evaluate the integrated dipoles for gg -\/$>$ H. These are the terms proportional to delta(1-\/x), c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 245 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_a116a2fe3256408eeac1e698ccd4f21f1}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-I\-D\-\_\-\-X@{Eval\-\_\-\-I\-D\-\_\-\-X}}
+\index{Eval\-\_\-\-I\-D\-\_\-\-X@{Eval\-\_\-\-I\-D\-\_\-\-X}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-I\-D\-\_\-\-X}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-I\-D\-\_\-\-X (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf Higgs\-Model} const \&}]{hm, }
+\item[{double const \&}]{x}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_a116a2fe3256408eeac1e698ccd4f21f1}
+
+
+Evaluate the integrated dipoles for gg -\/$>$ H. This is the continuum part evaluated at the boosted phase space point, c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 284 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_ac73465f80cd1b0cc36d144f026f4446d}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-R\-\_\-gg@{Eval\-\_\-\-R\-\_\-gg}}
+\index{Eval\-\_\-\-R\-\_\-gg@{Eval\-\_\-\-R\-\_\-gg}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-R\-\_\-gg}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-R\-\_\-gg (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf F\-V} const \&}]{p3, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_ac73465f80cd1b0cc36d144f026f4446d}
+
+
+Evaluate the squared tree level matrix element for the process gg -\/$>$ H + g. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em p3} & outgoing gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 318 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_a4ffc243d645702e50601ccfdb202365a}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-R\-\_\-qq@{Eval\-\_\-\-R\-\_\-qq}}
+\index{Eval\-\_\-\-R\-\_\-qq@{Eval\-\_\-\-R\-\_\-qq}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-R\-\_\-qq}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-R\-\_\-qq (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf F\-V} const \&}]{p3, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_a4ffc243d645702e50601ccfdb202365a}
+
+
+Evaluate the squared tree level matrix element for the process gg -\/$>$ H + g. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em p3} & outgoing gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+\hypertarget{Functions__pp__HX_8h_ad52922c79569a67d14b5f6510d95a958}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin@{Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin}}
+\index{Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin@{Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-sigma\-\_\-\-R\-\_\-qg\-\_\-fin (
+\begin{DoxyParamCaption}
+\item[{double const \&}]{z, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_ad52922c79569a67d14b5f6510d95a958}
+
+
+Evaluate the squared tree level matrix element for the process qg -\/$>$ H + q (from Dawson, Nucl. Phys. B 359 (1991) 283-\/300). Uses the effective Higgs-\/gluon coupling. Spin/colour averaging factor I\-S included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & = m\-H2/s , m\-H\-: Higgs mass, s\-: partonic c.\-m.\-e. \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 449 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_a58f97431922a60a05a5974a4ecff63bb}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin@{Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin}}
+\index{Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin@{Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-sigma\-\_\-\-R\-\_\-qq\-\_\-fin (
+\begin{DoxyParamCaption}
+\item[{double const \&}]{z, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_a58f97431922a60a05a5974a4ecff63bb}
+
+
+Evaluate the squared tree level matrix element for the process qqbar -\/$>$ H + g (from Dawson, Nucl. Phys. B 359 (1991) 283-\/300). Uses the effective Higgs-\/gluon coupling. Spin/colour averaging factor I\-S included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & = m\-H2/s , m\-H\-: Higgs mass, s\-: partonic c.\-m.\-e. \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 434 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_afb9582b1e9f2302ebd9002448518225b}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-U\-I\-D@{Eval\-\_\-\-U\-I\-D}}
+\index{Eval\-\_\-\-U\-I\-D@{Eval\-\_\-\-U\-I\-D}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-U\-I\-D (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf F\-V} const \&}]{p3, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_afb9582b1e9f2302ebd9002448518225b}
+
+
+Evaluate the unintegrated dipoles for the process gg -\/$>$ H + g, c.\-f. ar\-Xiv\-:hep-\/ph/0201036. Uses the effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em p3} & outgoing gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 395 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+
+\hypertarget{Functions__pp__HX_8h_ae6510939d84dababa1c36762080e9e83}{\index{Functions\-\_\-pp\-\_\-\-H\-X.\-h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}!Eval\-\_\-\-V@{Eval\-\_\-\-V}}
+\index{Eval\-\_\-\-V@{Eval\-\_\-\-V}!Functions_pp_HX.h@{Functions\-\_\-pp\-\_\-\-H\-X.\-h}}
+\subsubsection[{Eval\-\_\-\-V}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-V (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-V} const \&}]{p1, }
+\item[{{\bf F\-V} const \&}]{p2, }
+\item[{{\bf Higgs\-Model} const \&}]{hm}
+\end{DoxyParamCaption}
+)}}\label{Functions__pp__HX_8h_ae6510939d84dababa1c36762080e9e83}
+
+
+Evaluate the virtual corrections for gg -\/$>$ H\-: one-\/loop graphs with effective Higgs-\/gluon coupling. N\-O spin/colour averaging factor included. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & incoming gluon 4-\/momentum \\
+\hline
+{\em p2} & incoming gluon 4-\/momentum \\
+\hline
+{\em hm} & Model parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 66 of file Functions\-\_\-pp\-\_\-\-H\-X.\-cpp.
+

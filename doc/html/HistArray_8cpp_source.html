@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,34 +94,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* cat(std::string str, <span class="keywordtype">int</span> number)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  std::ostringstream strstr;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  strstr &lt;&lt; str &lt;&lt; number;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keywordflow">return</span> strstr.str().c_str();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// histogram array counter to generate unique labels for each ROOT histogram</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> <a class="code" href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">HistArray::d_ID</a> = 0;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;HistArray::HistArray(<span class="keywordtype">int</span> nbinsx,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;             <span class="keywordtype">double</span> xlow,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;             <span class="keywordtype">double</span> xup,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;             <span class="keywordtype">int</span> mass_dim,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;             std::string <span class="keyword">const</span>&amp; label,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;             <span class="keywordtype">bool</span> SUMW2):</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  d_histograms({TH1D(cat(<span class="stringliteral">&quot;LO_QCD_&quot;</span>,d_ID),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;LO_INT_&quot;</span>,d_ID),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;LO_PHI_&quot;</span>,d_ID),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_V_&quot;</span>,d_ID) ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_D_&quot;</span>,d_ID) ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_R_&quot;</span>,d_ID) ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup)}),</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  d_active(BOOST_BINARY(11 111 1)),</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  d_active_t(0),</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  d_label(label),</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">static</span> std::string cat(std::string str, <span class="keywordtype">int</span> number)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  std::ostringstream strstr;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  strstr &lt;&lt; str &lt;&lt; number;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keywordflow">return</span> strstr.str();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// histogram array counter to generate unique labels for each ROOT histogram</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> <a class="code" href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">HistArray::d_ID</a> = 0;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;HistArray::HistArray(<span class="keywordtype">int</span> nbinsx,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;             <span class="keywordtype">double</span> xlow,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;             <span class="keywordtype">double</span> xup,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;             <span class="keywordtype">int</span> mass_dim,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;             std::string <span class="keyword">const</span>&amp; name,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;             <span class="keywordtype">bool</span> SUMW2):</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  d_histograms({TH1D(cat(<span class="stringliteral">&quot;LO_QCD_&quot;</span>,d_ID).c_str(),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;LO_INT_&quot;</span>,d_ID).c_str(),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;LO_PHI_&quot;</span>,d_ID).c_str(),<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_V_&quot;</span>,d_ID).c_str() ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_D_&quot;</span>,d_ID).c_str() ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup),</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    TH1D(cat(<span class="stringliteral">&quot;NLO_R_&quot;</span>,d_ID).c_str() ,<span class="stringliteral">&quot;&quot;</span>,nbinsx,xlow,xup)}),</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  d_active(BOOST_BINARY(11 111 1)),</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  d_active_t(0),</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  d_name(name),</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  d_label_x(),</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  d_label_y(),</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  d_mass_dim(mass_dim),</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  d_obs(<span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
@@ -137,111 +137,167 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classHistArray.html#a1a5eb9be28921e67bf3612e5b82954df">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHistArray.html#a1a5eb9be28921e67bf3612e5b82954df">HistArray::Normalize</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; mScale)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">// relies on equidistant binning in all histograms !!!</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">double</span> binw = <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[0].GetBinWidth(1);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">double</span> fmass= std::pow(mScale,<a class="code" href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">d_mass_dim</a>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;\n Normalizing: &quot;</span> &lt;&lt; <a class="code" href="classHistArray.html#a273ef1bf687ee03dd17d106075bb07e2">d_label</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;\n   binw: &quot;</span> &lt;&lt; binw;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;\n   mass: &quot;</span> &lt;&lt; <a class="code" href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">d_mass_dim</a> &lt;&lt; <span class="stringliteral">&quot; -&gt; &quot;</span> &lt;&lt; fmass &lt;&lt; std::endl;  </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i=0;i&lt;NHIST;i++)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordtype">double</span> binc = 0.0; <span class="comment">// temp</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">double</span> fmass= std::pow(mScale,<a class="code" href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">d_mass_dim</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;\n Normalizing: &quot;</span> &lt;&lt; <a class="code" href="classHistArray.html#a725babbcaabff43acabfbcd8a50eaf76">d_name</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;\n   mass: &quot;</span> &lt;&lt; <a class="code" href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">d_mass_dim</a> &lt;&lt; <span class="stringliteral">&quot; -&gt; &quot;</span> &lt;&lt; fmass &lt;&lt; std::endl;  </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i=0;i&lt;NHIST;i++)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=1; j&lt;=<a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[i].GetNbinsX(); ++j)</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[i].Scale(fmass/(binw));</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      std::cout &lt;&lt; <span class="stringliteral">&quot;  hist &quot;</span> &lt;&lt; i &lt;&lt;  <span class="stringliteral">&quot; done..\n&quot;</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="comment">// ROOT counts bins from 1 to NBinsX, 0 and NBinsX+1 are underflow and overflow</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      binc = <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[i].GetBinContent(j);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[i].SetBinContent(j,binc*fmass/(<a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[i].GetBinWidth(j)));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      std::cout &lt;&lt; <span class="stringliteral">&quot;  hist &quot;</span> &lt;&lt; i &lt;&lt;  <span class="stringliteral">&quot; done..\n&quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">double</span> DIST_M_L = 360;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">double</span> DIST_M_U = 800;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">double</span> DIST_P_L = 60;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">double</span> DIST_P_U = 500;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">double</span> DIST_Y_L =-3.0;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">double</span> DIST_Y_U = 3.0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">double</span> DIST_A_L = -1.0;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">double</span> DIST_A_U =  1.0;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">// prepare some histograms</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#ac844fac25a02cec13eb11a2e78d560a8">MttDistributions</a>(22,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;M_{t#bar{t}} distribution&quot;</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a5f85d9273951686605f1ad6e60cdd80e">PT1Distributions</a>(22,DIST_P_L,DIST_P_U,1,<span class="stringliteral">&quot;p_{T,t} distribution&quot;</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9">PT2Distributions</a>(22,DIST_P_L,DIST_P_U,1,<span class="stringliteral">&quot;p_{T,#bar{t}} distribution&quot;</span>);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20">PT12Distributions</a>(25,0.0,500.0,1,<span class="stringliteral">&quot;p_{T,t+#bar{t}} distribution&quot;</span>);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a6bdc37a33dfa4dc40aa4c222e47c2fa1">Y1Distributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#eta_{t} distribution&quot;</span>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a467f60fe7bf0154750dc68b8cc4ceb6a">Y2Distributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#eta_{#bar{t}} distribution&quot;</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#aa2b6c6d455c470b6dca0820864fe9984">DYDistributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#Delta |y| distribution&quot;</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">// HistArray PTL1Distributions(40,DIST_P_L,DIST_P_U,1,&quot;Lepton p_{T} distribution&quot;);</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">// HistArray PTL2Distributions(40,DIST_P_L,DIST_P_U,1,&quot;Anti-Lepton p_{T} distribution&quot;);</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// HistArray PHILLDistributions(20,DIST_A_L,DIST_A_U,0,&quot;Lepton-Anti-lepton opening angle&quot;);</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// HistArray SPartDistributions(40,DIST_M_L,DIST_M_U,1,&quot;Partonic cross section&quot;);</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">void</span> HistArray::Print(std::ostream&amp; ost)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  ost &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  ost &lt;&lt; <a class="code" href="classHistArray.html#a725babbcaabff43acabfbcd8a50eaf76">d_name</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  ost &lt;&lt; std::setw(20) &lt;&lt; <span class="stringliteral">&quot;Bin low edge&quot;</span> &lt;&lt; std::setw(22) &lt;&lt; <span class="stringliteral">&quot;QCD [LO]&quot;</span> &lt;&lt; std::setw(22) &lt;&lt; <span class="stringliteral">&quot;QCD+PHI [LO]&quot;</span> &lt;&lt; std::setw(22) &lt;&lt; <span class="stringliteral">&quot;QCD+PHI [NLO]&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordtype">double</span> QCD = 0.0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">double</span> QCDPHI = 0.0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordtype">double</span> NLO = 0.0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;=<a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[0].GetNbinsX()+1;++i)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      QCD = <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[0].GetBinContent(i);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      QCDPHI = QCD + <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[1].GetBinContent(i);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      NLO = QCDPHI + <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[3].GetBinContent(i) + <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[4].GetBinContent(i) + <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[5].GetBinContent(i);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      ost &lt;&lt; std::setw(20) &lt;&lt; std::setprecision(5)  &lt;&lt; <a class="code" href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">d_histograms</a>[0].GetBinLowEdge(i) &lt;&lt; <span class="stringliteral">&quot;  &quot;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      ost &lt;&lt; std::setw(20) &lt;&lt; std::setprecision(10) &lt;&lt; QCD    &lt;&lt; <span class="stringliteral">&quot;  &quot;</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      ost &lt;&lt; std::setw(20) &lt;&lt; std::setprecision(10) &lt;&lt; QCDPHI &lt;&lt; <span class="stringliteral">&quot;  &quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      ost &lt;&lt; std::setw(20) &lt;&lt; std::setprecision(10) &lt;&lt; NLO    &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      ost &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">double</span> DIST_M_L = 340;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">double</span> DIST_M_U = 1000;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// define observables for differential distributions here ///////////////////////////////////</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"></span><span class="comment">// mass of 2-particle system [GeV]</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">  104</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordflow">return</span> sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">// transverse momentum (transverse plane is the x-y-plane) </span></div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">  109</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keywordflow">return</span> sqrt(k[1]*k[1]+k[2]*k[2]);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">// transverse momentum of two particle system |k_{T,1}+k_{T,2}| </span></div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">  115</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keywordflow">return</span> sqrt(k1[1]*k1[1]+k1[2]*k1[2]+ <span class="comment">// k1 contribution</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;          k2[1]*k2[1]+k2[2]*k2[2]- <span class="comment">// k2 contribution</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;          2.0*(k1[1]*k2[1]+k1[2]*k2[2])); <span class="comment">// mixed terms</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">// pseudo-rapidity</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="HistArray_8h.html#ae677072636551874da62f32601db682e">  122</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k)</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <span class="comment">// the rapidity is not invariant under boosts in z-direction !</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="comment">// note that e.g. the reduced dipole phase spaces are boosted along z</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="comment">// with respect to the parton c.m.f.</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="comment">// double K  = LEN(k);</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="comment">// return 0.5*log(((K+k[3])/(K-k[3])));</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">return</span> 0.5*log(((k[0]+k[3])/(k[0]-k[3])));</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">// difference of abs. values of transverse rapidities</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">  132</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;{</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keywordflow">return</span> fabs(<a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(k1))-fabs(<a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(k2));</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">// 3-dim opening angle of the two vectors</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">  137</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">double</span> DIST_P_L = 60;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">double</span> DIST_P_U = 500;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">double</span> DIST_Y_L = -3.0;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">double</span> DIST_Y_U =  3.0;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">double</span> DIST_A_L = -1.0;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">double</span> DIST_A_U =  1.0;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">// prepare some histograms</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">// spin independent observables</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#ac844fac25a02cec13eb11a2e78d560a8">MttDistributions</a>(33,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;M_{t#bar{t}} distribution&quot;</span>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a5f85d9273951686605f1ad6e60cdd80e">PT1Distributions</a>(22,DIST_P_L,DIST_P_U,1,<span class="stringliteral">&quot;p_{T,t} distribution&quot;</span>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9">PT2Distributions</a>(22,DIST_P_L,DIST_P_U,1,<span class="stringliteral">&quot;p_{T,#bar{t}} distribution&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20">PT12Distributions</a>(15,0.0,750.0,1,<span class="stringliteral">&quot;p_{T,t+#bar{t}} distribution&quot;</span>);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a6bdc37a33dfa4dc40aa4c222e47c2fa1">Y1Distributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#eta_{t} distribution&quot;</span>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#a467f60fe7bf0154750dc68b8cc4ceb6a">Y2Distributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#eta_{#bar{t}} distribution&quot;</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> <a class="code" href="HistArray_8h.html#aa2b6c6d455c470b6dca0820864fe9984">DYDistributions</a>(14,DIST_Y_L,DIST_Y_U,0,<span class="stringliteral">&quot;#Delta |y| distribution&quot;</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">// angular distributions (spin dependent)</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">// HistArray PHIT12Distributions(12,-1.0,1.0,0,&quot;Lepton-Anti-lepton transversal opening angle [lab frame]&quot;,true);</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// HistArray PHI12Distributions(12,-1.0,1.0,0,&quot;Lepton-Anti-lepton opening angle&quot;,true);</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">// HistArray OCPDistributions(12,-1.0,1.0,1,&quot;CP-odd triple correlation&quot;,true);</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">// HistArray LP1Distributions(12,-1.0,1.0,1,&quot;Top longitudinal polarization&quot;,true);</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">// HistArray LP2Distributions(12,-1.0,1.0,1,&quot;Antitop longitudinal polarization&quot;,true);</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">// HistArray OHELDistributions(12,-1.0,1.0,1,&quot;Helicity angle correlation&quot;,true);</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> PHIT12Distributions(33,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;Lepton-Anti-lepton transversal opening angle [lab frame]&quot;</span>,<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> DopenDistributions(33,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;Lepton-Anti-lepton opening angle&quot;</span>,<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> OCPDistributions(33,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;CP-odd triple correlation&quot;</span>,<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<a class="code" href="classHistArray.html">HistArray</a> ChelDistributions(33,DIST_M_L,DIST_M_U,1,<span class="stringliteral">&quot;Top/Antitop longitudinal polarization&quot;</span>,<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">// define observables for differential distributions here ///////////////////////////////////</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span><span class="comment">// mass of 2-particle system [GeV]</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">  137</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keywordtype">double</span> K1 = LEN(k1);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keywordtype">double</span> K2 = LEN(k2);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keywordflow">return</span> (k1[1]*k2[1]+k1[2]*k2[2]+k1[3]*k2[3])/(K1*K2);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keywordflow">return</span> sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">// transverse momentum (transverse plane is the x-y-plane) </span></div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">  142</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="keywordflow">return</span> sqrt(k[1]*k[1]+k[2]*k[2]);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">// transverse momentum of two particle system |k_{T,1}+k_{T,2}| </span></div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">  148</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <span class="keywordflow">return</span> sqrt(pow(k1[1]-k2[1],2)+pow(k1[2]-k2[2],2)); </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// pseudo-rapidity</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="HistArray_8h.html#ae677072636551874da62f32601db682e">  153</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordflow">return</span> 0.5*log(((k[0]+k[3])/(k[0]-k[3])));</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">// difference of abs. values of transverse rapidities</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">  158</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;{</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keywordflow">return</span> fabs(<a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(k1))-fabs(<a class="code" href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a>(k2));</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">// 3-dim opening angle of the two vectors</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">  163</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;{</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="keywordtype">double</span> K1 = LEN(k1);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keywordtype">double</span> K2 = LEN(k2);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="comment">// PRINT(K1);</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <span class="comment">// PRINT_4VEC(1.0/K1*k1);</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="comment">// PRINT(K2);</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="comment">// PRINT_4VEC(1.0/K2*k2);</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <span class="keywordflow">return</span> (k1[1]*k2[1]+k1[2]*k2[2]+k1[3]*k2[3])/(K1*K2);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">// 2-dim transversal opening angle of the two vectors</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="HistArray_8h.html#acb2a62cf7d0833ad02d41f9fd7af75b4">  174</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#acb2a62cf7d0833ad02d41f9fd7af75b4">obs_PHIT</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2)</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="keywordtype">double</span> K1 = sqrt(k1[1]*k1[1]+k1[2]*k1[2]);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordtype">double</span> K2 = sqrt(k2[1]*k2[1]+k2[2]*k2[2]);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  <span class="keywordflow">return</span> (k1[1]*k2[1]+k1[2]*k2[2])/(K1*K2);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">// spatial triple product of three 4-vectors k1,k2,k3</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="HistArray_8h.html#a760d56e65d1ded8929fc2986a641ce75">  181</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="HistArray_8h.html#a760d56e65d1ded8929fc2986a641ce75">obs_TriProd</a>(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k3)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;{</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="comment">// = (k1 x k2) dot k3 / |k1 x k2| / |k3|</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">double</span> t3 = k1[0] * k2[1] - k1[1] * k2[0];</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordtype">double</span> t7 = -k1[0] * k2[2] + k1[2] * k2[0];</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordtype">double</span> t11 = k1[1] * k2[2] - k1[2] * k2[1];</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keywordtype">double</span> t14 = t3 * t3;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="keywordtype">double</span> t15 = t7 * t7;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordtype">double</span> t16 = t11 * t11;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="keywordtype">double</span> t18 = std::pow(k3[0], 2);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  <span class="keywordtype">double</span> t19 = std::pow(k3[1], 2);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <span class="keywordtype">double</span> t20 = std::pow(k3[2], 2);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <span class="keywordtype">double</span> t23 = std::sqrt((t14 + t15 + t16) * (t18 + t19 + t20));</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">return</span> (t11 * k3[0] + t3 * k3[2] + t7 * k3[1]) / t23;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;}</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
 <div class="ttc" id="classHistArray_html_a1a5eb9be28921e67bf3612e5b82954df"><div class="ttname"><a href="classHistArray.html#a1a5eb9be28921e67bf3612e5b82954df">HistArray::Normalize</a></div><div class="ttdeci">void Normalize(const double &amp;mScale=1.0)</div><div class="ttdoc">normalize all histograms such that sum(b_i) = sigma, where b_i are the bins contents and sigma is the...</div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00050">HistArray.cpp:50</a></div></div>
 <div class="ttc" id="HistArray_8h_html_aa2b6c6d455c470b6dca0820864fe9984"><div class="ttname"><a href="HistArray_8h.html#aa2b6c6d455c470b6dca0820864fe9984">DYDistributions</a></div><div class="ttdeci">HistArray DYDistributions</div><div class="ttdoc">top-antitop rapidity difference distributions </div></div>
 <div class="ttc" id="HistArray_8h_html_a56123d8a0f81ebfa69695b82993dce20"><div class="ttname"><a href="HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20">PT12Distributions</a></div><div class="ttdeci">HistArray PT12Distributions</div><div class="ttdoc">top+antitop transverse momentum distributions </div></div>
-<div class="ttc" id="HistArray_8h_html_aacc539fa8f2e658d5013f8df7a272c33"><div class="ttname"><a href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a></div><div class="ttdeci">double obs_M12(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes invariant mass of two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00104">HistArray.cpp:104</a></div></div>
+<div class="ttc" id="classHistArray_html_a725babbcaabff43acabfbcd8a50eaf76"><div class="ttname"><a href="classHistArray.html#a725babbcaabff43acabfbcd8a50eaf76">HistArray::d_name</a></div><div class="ttdeci">std::string d_name</div><div class="ttdoc">distribution name </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00049">HistArray.h:49</a></div></div>
+<div class="ttc" id="HistArray_8h_html_aacc539fa8f2e658d5013f8df7a272c33"><div class="ttname"><a href="HistArray_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a></div><div class="ttdeci">double obs_M12(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes invariant mass of two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00137">HistArray.cpp:137</a></div></div>
 <div class="ttc" id="HistArray_8h_html_a467f60fe7bf0154750dc68b8cc4ceb6a"><div class="ttname"><a href="HistArray_8h.html#a467f60fe7bf0154750dc68b8cc4ceb6a">Y2Distributions</a></div><div class="ttdeci">HistArray Y2Distributions</div><div class="ttdoc">antitop rapidity distributions </div></div>
 <div class="ttc" id="HistArray_8h_html_a5f85d9273951686605f1ad6e60cdd80e"><div class="ttname"><a href="HistArray_8h.html#a5f85d9273951686605f1ad6e60cdd80e">PT1Distributions</a></div><div class="ttdeci">HistArray PT1Distributions</div><div class="ttdoc">top transverse momentum distributions </div></div>
 <div class="ttc" id="HistArray_8h_html_a6bdc37a33dfa4dc40aa4c222e47c2fa1"><div class="ttname"><a href="HistArray_8h.html#a6bdc37a33dfa4dc40aa4c222e47c2fa1">Y1Distributions</a></div><div class="ttdeci">HistArray Y1Distributions</div><div class="ttdoc">top rapidity distributions </div></div>
-<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00019">Lorentz.h:19</a></div></div>
-<div class="ttc" id="HistArray_8h_html_af4b7a6c82521f1c4cbf2df34b5e9c1d6"><div class="ttname"><a href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a></div><div class="ttdeci">double obs_PHI(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes momentum direction opening angle form two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00137">HistArray.cpp:137</a></div></div>
-<div class="ttc" id="classHistArray_html_ac682fdf0aeedf8f0b9fb8c4c4b1fee71"><div class="ttname"><a href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">HistArray::d_mass_dim</a></div><div class="ttdeci">int d_mass_dim</div><div class="ttdoc">mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0 </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00051">HistArray.h:51</a></div></div>
-<div class="ttc" id="HistArray_8h_html_a325229be26684d1beaff261e9e878617"><div class="ttname"><a href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a></div><div class="ttdeci">double obs_DY(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes rapidity difference from two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00132">HistArray.cpp:132</a></div></div>
+<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00020">Lorentz.h:20</a></div></div>
+<div class="ttc" id="HistArray_8h_html_af4b7a6c82521f1c4cbf2df34b5e9c1d6"><div class="ttname"><a href="HistArray_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a></div><div class="ttdeci">double obs_PHI(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes spatial opening angle of two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00163">HistArray.cpp:163</a></div></div>
+<div class="ttc" id="classHistArray_html_ac682fdf0aeedf8f0b9fb8c4c4b1fee71"><div class="ttname"><a href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">HistArray::d_mass_dim</a></div><div class="ttdeci">int d_mass_dim</div><div class="ttdoc">mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0 </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00055">HistArray.h:55</a></div></div>
+<div class="ttc" id="HistArray_8h_html_a325229be26684d1beaff261e9e878617"><div class="ttname"><a href="HistArray_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a></div><div class="ttdeci">double obs_DY(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes rapidity difference of two 4-vectors k1 and k2. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00158">HistArray.cpp:158</a></div></div>
 <div class="ttc" id="HistArray_8h_html_ac844fac25a02cec13eb11a2e78d560a8"><div class="ttname"><a href="HistArray_8h.html#ac844fac25a02cec13eb11a2e78d560a8">MttDistributions</a></div><div class="ttdeci">HistArray MttDistributions</div><div class="ttdoc">top-antitop invariant mass distributions </div></div>
+<div class="ttc" id="HistArray_8h_html_acb2a62cf7d0833ad02d41f9fd7af75b4"><div class="ttname"><a href="HistArray_8h.html#acb2a62cf7d0833ad02d41f9fd7af75b4">obs_PHIT</a></div><div class="ttdeci">double obs_PHIT(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes opening angle of the spatial projections on the x-y plane. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00174">HistArray.cpp:174</a></div></div>
 <div class="ttc" id="HistArray_8h_html_a35d362b5338e1ae6cc62b7529cd33fe9"><div class="ttname"><a href="HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9">PT2Distributions</a></div><div class="ttdeci">HistArray PT2Distributions</div><div class="ttdoc">antitop transverse momentum distributions </div></div>
-<div class="ttc" id="classHistArray_html_a273ef1bf687ee03dd17d106075bb07e2"><div class="ttname"><a href="classHistArray.html#a273ef1bf687ee03dd17d106075bb07e2">HistArray::d_label</a></div><div class="ttdeci">std::string d_label</div><div class="ttdoc">description of the dsitribution </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00049">HistArray.h:49</a></div></div>
-<div class="ttc" id="HistArray_8h_html_aae571978ff072d099b4baf69921afd60"><div class="ttname"><a href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a></div><div class="ttdeci">double obs_PT12(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00115">HistArray.cpp:115</a></div></div>
-<div class="ttc" id="HistArray_8h_html_ae677072636551874da62f32601db682e"><div class="ttname"><a href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a></div><div class="ttdeci">double obs_Y(FV const &amp;k)</div><div class="ttdoc">Computes rapidity from a 4-vector k1. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00122">HistArray.cpp:122</a></div></div>
+<div class="ttc" id="HistArray_8h_html_aae571978ff072d099b4baf69921afd60"><div class="ttname"><a href="HistArray_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a></div><div class="ttdeci">double obs_PT12(FV const &amp;k1, FV const &amp;k2)</div><div class="ttdoc">Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00148">HistArray.cpp:148</a></div></div>
+<div class="ttc" id="HistArray_8h_html_ae677072636551874da62f32601db682e"><div class="ttname"><a href="HistArray_8h.html#ae677072636551874da62f32601db682e">obs_Y</a></div><div class="ttdeci">double obs_Y(FV const &amp;k)</div><div class="ttdoc">Computes rapidity of a 4-vector k1. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00153">HistArray.cpp:153</a></div></div>
 <div class="ttc" id="classHistArray_html"><div class="ttname"><a href="classHistArray.html">HistArray</a></div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00040">HistArray.h:40</a></div></div>
-<div class="ttc" id="classHistArray_html_a01616b3115c8b243e2bd924788d47589"><div class="ttname"><a href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">HistArray::d_ID</a></div><div class="ttdeci">static int d_ID</div><div class="ttdoc">running histogram id </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00056">HistArray.h:56</a></div></div>
+<div class="ttc" id="HistArray_8h_html_a760d56e65d1ded8929fc2986a641ce75"><div class="ttname"><a href="HistArray_8h.html#a760d56e65d1ded8929fc2986a641ce75">obs_TriProd</a></div><div class="ttdeci">double obs_TriProd(FV const &amp;k1, FV const &amp;k2, FV const &amp;k3)</div><div class="ttdoc">Computes the spatial triple product of three 4-vectors k1,k2,k3. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00181">HistArray.cpp:181</a></div></div>
+<div class="ttc" id="classHistArray_html_a01616b3115c8b243e2bd924788d47589"><div class="ttname"><a href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">HistArray::d_ID</a></div><div class="ttdeci">static int d_ID</div><div class="ttdoc">running histogram id </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00060">HistArray.h:60</a></div></div>
 <div class="ttc" id="classHistArray_html_a53fda50a10b8ba766d44b789313c64c4"><div class="ttname"><a href="classHistArray.html#a53fda50a10b8ba766d44b789313c64c4">HistArray::d_histograms</a></div><div class="ttdeci">TH1D d_histograms[NHIST]</div><div class="ttdoc">the histograms </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00043">HistArray.h:43</a></div></div>
-<div class="ttc" id="HistArray_8h_html_a5785c86f2a238c7d1cf72e71f6df4d57"><div class="ttname"><a href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a></div><div class="ttdeci">double obs_PT(FV const &amp;k)</div><div class="ttdoc">Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = {k1_{1}^2+k1_{2}^2}. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00109">HistArray.cpp:109</a></div></div>
+<div class="ttc" id="HistArray_8h_html_a5785c86f2a238c7d1cf72e71f6df4d57"><div class="ttname"><a href="HistArray_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a></div><div class="ttdeci">double obs_PT(FV const &amp;k)</div><div class="ttdoc">Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = {k1_{1}^2+k1_{2}^2}. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8cpp_source.html#l00142">HistArray.cpp:142</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

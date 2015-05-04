@@ -1,0 +1,124 @@
+\hypertarget{Functions__Shared_8h}{\section{inc/\-Functions\-\_\-\-Shared.h File Reference}
+\label{Functions__Shared_8h}\index{inc/\-Functions\-\_\-\-Shared.\-h@{inc/\-Functions\-\_\-\-Shared.\-h}}
+}
+
+
+Interface for the evaluation of the real corrections to the process pp -\/$>$ ttbar +\-X.  
+
+
+{\ttfamily \#include $<$bitset$>$}\\*
+{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Lorentz.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Phase\-Space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Hist\-Array.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Integrator.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Scalar\-Integrals.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Higgs\-Model.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/syscall.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-math.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-monte.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-monte\-\_\-vegas.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-rng.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-sf\-\_\-dilog.\-h$>$}\\*
+{\ttfamily \#include $<$T\-R\-O\-O\-T.\-h$>$}\\*
+{\ttfamily \#include $<$T\-Application.\-h$>$}\\*
+{\ttfamily \#include $<$T\-Canvas.\-h$>$}\\*
+{\ttfamily \#include $<$T\-System.\-h$>$}\\*
+{\ttfamily \#include $<$T\-Style.\-h$>$}\\*
+{\ttfamily \#include $<$T\-H2.\-h$>$}\\*
+{\ttfamily \#include $<$T\-File.\-h$>$}\\*
+{\ttfamily \#include $<$T\-Legend.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}L\-H\-A\-P\-D\-F/\-L\-H\-A\-P\-D\-F.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$getopt.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structopt}{opt}
+\item 
+struct \hyperlink{structCanvasPtr}{Canvas\-Ptr}
+\item 
+struct \hyperlink{structDoubleCanvasPtr}{Double\-Canvas\-Ptr}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}{void {\bfseries parse\-\_\-arguments} (int argc, char $\ast$$\ast$argv, struct \hyperlink{structopt}{opt} \&options, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm)}\label{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}
+
+\item 
+\hypertarget{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}{void {\bfseries usage} (int status)}\label{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}
+
+\item 
+\hypertarget{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}{void {\bfseries version} (int status)}\label{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}
+
+\item 
+\hypertarget{Functions__Shared_8h_a1996b7bae62e6e74511bbcc656e9329a}{pid\-\_\-t {\bfseries gettid} (void)}\label{Functions__Shared_8h_a1996b7bae62e6e74511bbcc656e9329a}
+
+\item 
+\hypertarget{Functions__Shared_8h_a848eb73c671b034178762242b47a99ea}{\hyperlink{structCanvasPtr}{Canvas\-Ptr} {\bfseries Make\-Canvas} (const char $\ast$title, int width=1000, int height=1000, T\-Canvas $\ast$c=nullptr, double left\-\_\-marg\-\_\-scale=1.\-0, double bottom\-\_\-marg\-\_\-scale=1.\-0)}\label{Functions__Shared_8h_a848eb73c671b034178762242b47a99ea}
+
+\item 
+\hypertarget{Functions__Shared_8h_a8fa694b8111df1ee3fea1e311847d39f}{\hyperlink{structDoubleCanvasPtr}{Double\-Canvas\-Ptr} {\bfseries Make\-Double\-Canvas} (const char $\ast$title, int width=2000, int height=1000)}\label{Functions__Shared_8h_a8fa694b8111df1ee3fea1e311847d39f}
+
+\item 
+\hypertarget{Functions__Shared_8h_aa1f4bd3cf724c4085c1dc52ffdf5e14f}{void {\bfseries Draw\-Distribution} (\hyperlink{structCanvasPtr}{Canvas\-Ptr} \&canvas, \hyperlink{classHistArray}{Hist\-Array} \&histograms, const \hyperlink{classHiggsModel}{Higgs\-Model} \&T\-H\-D\-M, double $\ast$norm, std\-::string const \&title\-X, std\-::string const \&title\-Y, bool W\-R\-I\-T\-E=true, bool N\-L\-O=true, int C\-D=0)}\label{Functions__Shared_8h_aa1f4bd3cf724c4085c1dc52ffdf5e14f}
+
+\item 
+\hypertarget{Functions__Shared_8h_a727987f9d3940406f288a9ead0bfcb5a}{void {\bfseries Draw\-Two\-Distributions} (\hyperlink{structDoubleCanvasPtr}{Double\-Canvas\-Ptr} \&canvas, \hyperlink{classHistArray}{Hist\-Array} \&histograms\-L, \hyperlink{classHistArray}{Hist\-Array} \&histograms\-R, const \hyperlink{classHiggsModel}{Higgs\-Model} \&T\-H\-D\-M, double $\ast$norm, std\-::string const \&title\-L\-X, std\-::string const \&title\-R\-X, std\-::string const \&title\-L\-Y, std\-::string const \&title\-R\-Y, bool W\-R\-I\-T\-E=true, bool N\-L\-O=true)}\label{Functions__Shared_8h_a727987f9d3940406f288a9ead0bfcb5a}
+
+\item 
+\hypertarget{Functions__Shared_8h_a0f5660f756b65b9351cc1c2977fe1ff9}{void {\bfseries Set\-Ratio\-Plot} (T\-H1\-D $\ast$hist, std\-::string xtitle=\char`\"{}\char`\"{})}\label{Functions__Shared_8h_a0f5660f756b65b9351cc1c2977fe1ff9}
+
+\item 
+\hypertarget{Functions__Shared_8h_a15036b1c9654e1e24a395e792d1a63fe}{void {\bfseries match\-\_\-\-Alpha\-S\-\_\-f5\-\_\-to\-\_\-f6} (double const \&mu2, const int V\-E\-R\-B=1)}\label{Functions__Shared_8h_a15036b1c9654e1e24a395e792d1a63fe}
+
+\item 
+\hypertarget{Functions__Shared_8h_ae4c1e3abeac9e64a38bd4a8db77724c9}{void {\bfseries set\-\_\-spins\-\_\-in\-\_\-tt\-\_\-zmf} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2, \hyperlink{classFV}{F\-V} \&s1, \hyperlink{classFV}{F\-V} \&s2, \hyperlink{classFV}{F\-V} const \&s1\-\_\-r, \hyperlink{classFV}{F\-V} const \&s2\-\_\-r)}\label{Functions__Shared_8h_ae4c1e3abeac9e64a38bd4a8db77724c9}
+
+\item 
+\hypertarget{Functions__Shared_8h_a1ce0d8db4115dd1b22b45118af8797d6}{double const \& {\bfseries Den\-S2} (double const \&s, double const \&m, double const \&g)}\label{Functions__Shared_8h_a1ce0d8db4115dd1b22b45118af8797d6}
+
+\item 
+\hypertarget{Functions__Shared_8h_a6661e11ecb33cf758820cfb12b44a0cd}{double const \& {\bfseries Den\-S2} (\hyperlink{classFV}{F\-V} \&p1, double const \&m, double const \&g)}\label{Functions__Shared_8h_a6661e11ecb33cf758820cfb12b44a0cd}
+
+\item 
+\hypertarget{Functions__Shared_8h_a75f3088f394fd52950d5241ec593cd62}{double const \& {\bfseries Den\-S2} (\hyperlink{classFV}{F\-V} \&\&p1, double const \&m, double const \&g)}\label{Functions__Shared_8h_a75f3088f394fd52950d5241ec593cd62}
+
+\item 
+\hypertarget{Functions__Shared_8h_a15ea87c07e6ebf4556e26bb639e4852a}{\hyperlink{Global_8h_af390c6bd8192faf6a1e2d875a1d10ca0}{c\-\_\-double} const \& {\bfseries Den\-S} (double const \&s, double const \&m, double const \&g)}\label{Functions__Shared_8h_a15ea87c07e6ebf4556e26bb639e4852a}
+
+\item 
+\hypertarget{Functions__Shared_8h_a14119e6c22a3f7f5ad895be15bba42ca}{\hyperlink{Global_8h_af390c6bd8192faf6a1e2d875a1d10ca0}{c\-\_\-double} const \& {\bfseries Den\-S} (\hyperlink{classFV}{F\-V} \&p1, double const \&m, double const \&g)}\label{Functions__Shared_8h_a14119e6c22a3f7f5ad895be15bba42ca}
+
+\item 
+\hypertarget{Functions__Shared_8h_afbbf3e1adfd0d854a9ed8a5669e31d6d}{\hyperlink{Global_8h_af390c6bd8192faf6a1e2d875a1d10ca0}{c\-\_\-double} const \& {\bfseries Den\-S} (\hyperlink{classFV}{F\-V} \&\&p1, double const \&m, double const \&g)}\label{Functions__Shared_8h_afbbf3e1adfd0d854a9ed8a5669e31d6d}
+
+\item 
+\hypertarget{Functions__Shared_8h_afe15b174baab4b17d9382e3c8a05c55e}{double {\bfseries Den} (\hyperlink{classFV}{F\-V} const \&p1, double const \&m)}\label{Functions__Shared_8h_afe15b174baab4b17d9382e3c8a05c55e}
+
+\item 
+\hypertarget{Functions__Shared_8h_a34555b5b5019f756906382dcda42929a}{\hyperlink{Global_8h_af390c6bd8192faf6a1e2d875a1d10ca0}{c\-\_\-double} {\bfseries L\-N} (double const \&b, int C=+1)}\label{Functions__Shared_8h_a34555b5b5019f756906382dcda42929a}
+
+\item 
+\hypertarget{Functions__Shared_8h_a9f523b84f64ec5e5dbe389f385efc79c}{double {\bfseries E\-P\-S\-\_\-} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2, \hyperlink{classFV}{F\-V} const \&k3, \hyperlink{classFV}{F\-V} const \&k4)}\label{Functions__Shared_8h_a9f523b84f64ec5e5dbe389f385efc79c}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Functions__Shared_8h_a289c5900d90626d909f0a85d5a0ed61d}{char $\ast$ {\bfseries program\-\_\-name}}\label{Functions__Shared_8h_a289c5900d90626d909f0a85d5a0ed61d}
+
+\item 
+\hypertarget{Functions__Shared_8h_ab449a9b5605affbcf883b24fce6af41a}{struct option const {\bfseries longopts} \mbox{[}$\,$\mbox{]}}\label{Functions__Shared_8h_ab449a9b5605affbcf883b24fce6af41a}
+
+\item 
+\hypertarget{Functions__Shared_8h_a8f94cc1f8461c2b8c31b3eebb5f5a250}{struct \hyperlink{structopt}{opt} {\bfseries g\-\_\-options}}\label{Functions__Shared_8h_a8f94cc1f8461c2b8c31b3eebb5f5a250}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for the evaluation of the real corrections to the process pp -\/$>$ ttbar +\-X. 
+
+Definition in file \hyperlink{Functions__Shared_8h_source}{Functions\-\_\-\-Shared.\-h}.
+

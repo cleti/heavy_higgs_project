@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -151,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="comment">// top contribution</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordflow">if</span> (d_At != 0.0 || d_Bt != 0.0)</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      c_double I3t = qli3_(&amp;S,&amp;zero,&amp;zero,&amp;mt2,&amp;mt2,&amp;mt2,&amp;MUR2,&amp;I);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3t = qli3_(&amp;S,&amp;zero,&amp;zero,&amp;mt2,&amp;mt2,&amp;mt2,&amp;MUR2,&amp;I);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      d_FH_full += mt2 * d_At * ( (S-4.0*mt2) * I3t - 2.0 );</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      d_FA_full += mt2 * d_Bt * S * I3t;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
@@ -160,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      <span class="comment">// bottom contribution</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      <span class="keywordflow">if</span> (d_Ab != 0.0 || d_Bb != 0.0)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;          c_double I3b = qli3_(&amp;S,&amp;zero,&amp;zero,&amp;mb2,&amp;mb2,&amp;mb2,&amp;MUR2,&amp;I);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;          <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3b = qli3_(&amp;S,&amp;zero,&amp;zero,&amp;mb2,&amp;mb2,&amp;mb2,&amp;MUR2,&amp;I);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;          d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          d_FA_full += mb2 * d_Bb * S * I3b;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
@@ -195,7 +195,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      d_S_Den = S;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      d_DenSq = 1.0 / (pow(S-d_M2,2)+pow(d_M*d_G,2));</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      d_Den   = c_double((S-d_M2)*d_DenSq,-d_M*d_G*d_DenSq);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      d_Den   = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>((S-d_M2)*d_DenSq,-d_M*d_G*d_DenSq);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor"></span>      <span class="keywordflow">if</span> (S&lt;=0.0)</div>
@@ -320,9 +320,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <span class="keywordflow">if</span> (!EFF) (*phi_i)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      (*phi_i)-&gt;SetPropagator(S);</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      c_double <span class="keyword">const</span>&amp; FHi = (*phi_i)-&gt;GetFH(EFF);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      c_double <span class="keyword">const</span>&amp; FAi = (*phi_i)-&gt;GetFA(EFF);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      c_double <span class="keyword">const</span>&amp; Di  = (*phi_i)-&gt;GetPropagator();</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHi = (*phi_i)-&gt;GetFH(EFF);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAi = (*phi_i)-&gt;GetFA(EFF);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Di  = (*phi_i)-&gt;GetPropagator();</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="keywordtype">double</span> FH2i  = std::norm(FHi);</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      <span class="keywordtype">double</span> FA2i  = std::norm(FAi);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; di  = (*phi_i)-&gt;GetPropagatorSq();</div>
@@ -355,7 +355,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor"></span>      <span class="comment">// only needed for polarized amplitudes:</span></div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      <span class="comment">// PHIxPHI terms: add at*bt interference from Phi1^2 contribution</span></div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   </div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      <span class="comment">// second loop to get the phi^2 contributions</span></div>
@@ -364,14 +364,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      <span class="keywordflow">if</span> (!EFF) (*phi_j)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      (*phi_j)-&gt;SetPropagator(S);</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;      c_double <span class="keyword">const</span>&amp; FHj = (*phi_j)-&gt;GetFH(EFF);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      c_double <span class="keyword">const</span>&amp; FAj = (*phi_j)-&gt;GetFA(EFF);</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;      c_double <span class="keyword">const</span>&amp; Dj  = (*phi_j)-&gt;GetPropagator();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHj = (*phi_j)-&gt;GetFH(EFF);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAj = (*phi_j)-&gt;GetFA(EFF);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Dj  = (*phi_j)-&gt;GetPropagator();</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Atj = (*phi_j)-&gt;At();</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Btj = (*phi_j)-&gt;Bt();</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      c_double DiDj = Di*std::conj(Dj);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> DiDj = Di*std::conj(Dj);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;     </div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      <span class="comment">// prefactors in PHIxPHI amplitudes</span></div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      <span class="comment">// here we also have to sum all the phi_i * phi_j interferences    </span></div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;      d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHi*std::conj(FHj)*DiDj).real();</div>
@@ -381,8 +381,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="preprocessor"></span>      <span class="comment">// only needed for polarized amplitudes:</span></div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="comment">// PHIxPHI terms: at Phi1 * bt  Phi2 interferences</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*FHj*DiDj).real();</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*FAj*DiDj).real();  </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();   </div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="comment">// the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts</span></div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();</div>
@@ -501,8 +501,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;</div>
-<div class="line"><a name="l00422"></a><span class="lineno"><a class="line" href="classHiggsModel.html#aabc29ed3da5d400799c3de3edca3e228">  422</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#aabc29ed3da5d400799c3de3edca3e228">HiggsModel::Print</a>(std::ostream&amp; ost, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mScale)</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;{</div>
+<div class="line"><a name="l00422"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">  422</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a>(std::ostream&amp; ost, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mScale)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; std::setfill(<span class="charliteral">&#39;=&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>);</div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; Model configuration [&quot;</span> &lt;&lt; d_Name &lt;&lt; <span class="stringliteral">&quot;]: &quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;  PRINTS(ost,d_AlphaS);</div>
@@ -538,9 +538,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classHiggsModel_html_a7aea18c2e6622159e8f6cc29be537c0f"><div class="ttname"><a href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">HiggsModel::PopBoson</a></div><div class="ttdeci">void PopBoson()</div><div class="ttdoc">Remove the last Higgs boson added to the vector d_Bosons. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00415">HiggsModel.cpp:415</a></div></div>
 <div class="ttc" id="classHiggsBoson_html_a4edd830907f5f06ac24deed99e64da0c"><div class="ttname"><a href="classHiggsBoson.html#a4edd830907f5f06ac24deed99e64da0c">HiggsBoson::SetFormFactors</a></div><div class="ttdeci">void SetFormFactors(double const &amp;S, double const &amp;mt2, double const &amp;mb2)</div><div class="ttdoc">Compute 1-loop form factors for given c.m.e., top- and bottom mass and store values in member variabl...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00047">HiggsModel.cpp:47</a></div></div>
 <div class="ttc" id="classHiggsModel_html_a43f6951291eef31cc18116f7d49f839f"><div class="ttname"><a href="classHiggsModel.html#a43f6951291eef31cc18116f7d49f839f">HiggsModel::SetHiggsPrefactors</a></div><div class="ttdeci">void SetHiggsPrefactors(double const &amp;S, bool EFF)</div><div class="ttdoc">Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into acco...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00230">HiggsModel.cpp:230</a></div></div>
+<div class="ttc" id="Global_8h_html_af390c6bd8192faf6a1e2d875a1d10ca0"><div class="ttname"><a href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a></div><div class="ttdeci">std::complex&lt; double &gt; c_double</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00023">Global.h:23</a></div></div>
+<div class="ttc" id="classHiggsModel_html_a71e8fcd730feb01afd4c39f3cd184655"><div class="ttname"><a href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a></div><div class="ttdeci">void Print(std::ostream &amp;ost, double const &amp;mScale) const </div><div class="ttdoc">Print the model parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00422">HiggsModel.cpp:422</a></div></div>
 <div class="ttc" id="classHiggsModel_html_a514e3dd7854409c622b8e200fe2ee84c"><div class="ttname"><a href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">HiggsModel::SetAmpPrefactors</a></div><div class="ttdeci">void SetAmpPrefactors()</div><div class="ttdoc">Reset values of the amplitude prefactors. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00313">HiggsModel.cpp:313</a></div></div>
 <div class="ttc" id="classHiggsModel_html_acd87bf9a85c37da737aba62a0dc82b5b"><div class="ttname"><a href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a></div><div class="ttdeci">void AddBoson(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;b_t=1.0, double const &amp;a_b=0.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00357">HiggsModel.cpp:357</a></div></div>
-<div class="ttc" id="classHiggsModel_html_aabc29ed3da5d400799c3de3edca3e228"><div class="ttname"><a href="classHiggsModel.html#aabc29ed3da5d400799c3de3edca3e228">HiggsModel::Print</a></div><div class="ttdeci">void Print(std::ostream &amp;ost, double const &amp;mScale)</div><div class="ttdoc">Print the model parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00422">HiggsModel.cpp:422</a></div></div>
 <div class="ttc" id="classHiggsModel_html_ab84c9016bf5a8bd87f82f214c34cce8b"><div class="ttname"><a href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">HiggsModel::AddScalar</a></div><div class="ttdeci">void AddScalar(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;a_b=0.0)</div><div class="ttdoc">Add a scalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00378">HiggsModel.cpp:378</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

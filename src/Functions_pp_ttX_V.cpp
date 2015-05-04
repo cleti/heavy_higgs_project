@@ -72,7 +72,7 @@ inline double Z2M (
 //#include "../amp/virtual/fullSpin/PHIxPHI_LO_INT12_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/PHIxPHI_LO_IM_INTab_eps0_g4.cpp"
 // QCD^2
-#include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4_gg.cpp"
+#include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4_qq.cpp"
 // PHI x QCD
 #include "../amp/virtual/fullSpin/2RE_PHIxQCD_LO_eps0_g4.cpp"
@@ -132,7 +132,10 @@ inline double Z2M (
 #endif
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
+// BORN
+// squared QCD gg->tt amplitude +
+// squared gg->PHI->tt amplitude +
+// 2RE[QCDxPHI] interference terms
 double Eval_B(
 	      const PS_2_2& ps,
 	      HiggsModel& hm,
@@ -146,8 +149,16 @@ double Eval_B(
     {
       hm.SetHiggsPrefactors(ps.get_s(),EFF);
       //HiggsBosons::ResetHiggsPrefactors(ps.get_s(),EFF);
+      // PRINT(hp.At2_fH2_De);
+      // PRINT(hp.Bt2_fH2_De);
+      // PRINT(hp.At2_fA2_De);
+      // PRINT(hp.Bt2_fA2_De);
+      // PRINT(hp.At_Bt_fH2_De);
+      // PRINT(hp.At_Bt_fA2_De);
+      // exit(1);
     }
-  
+
+       
   double B_t = 0.0;
   if (flags & F_EVAL_B_PHIxPHI) 
     {
@@ -190,7 +201,7 @@ double Eval_B_PHIxPHI_withINT12(
   return ret;
 }
 
-
+// squared QCD qq->tt amplitude
 double Eval_B_QQ(
 		 const PS_2_2& ps,
 		 HiggsModel& hm)
@@ -200,7 +211,7 @@ double Eval_B_QQ(
 }
 
 
-// the finite part of the virtual corrections
+// VIRTUAL CORRECTIONS (finite part)
 double Eval_V(
 	      const PS_2_2& ps,
 	      HiggsModel& hm,
@@ -217,31 +228,39 @@ double Eval_V(
   // add contributions of individual diagrams according to flags in flags
   if (flags & F_EVAL_V_PHI0xQCD1)
     {
+      // 2RE[PHI0 x QCD1] interference terms classified by QCD1 diagram type
+      // self-energy diagram including ren. counter term
       res += Eval_V_SE (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
+      // 4g vertex diagram
       res += Eval_V_4G (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
-      res += 2.0*Eval_V_V1 (ps,ap,hp); // V1 and V2 amplitudes are the same
+      // qg veretx correction (upper and lower vertex) including ren. counter term
+      res += 2.0*Eval_V_V1 (ps,ap,hp); 
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
+      // box 1
       res += Eval_V_B1 (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
+      // box 2
       res += Eval_V_B2 (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
+      // box 3
       res += Eval_V_B3 (ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
 #endif
     }
+  // 2RE[PHI1 x QCD0] interference terms
   if (flags & F_EVAL_V_PHI1xQCD0)
     {
       res += Eval_V_2RE_PHI1xQCD0(ps,ap,hp);
@@ -249,6 +268,7 @@ double Eval_V(
       CHECKNAN(res);
 #endif
     }
+  // 2RE[PHI1xPHI0] interference terms
   if (flags & F_EVAL_V_PHIxPHI)
     {
       res += Eval_V_PHIxPHI(ps,ap,hp);

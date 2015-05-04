@@ -18,4 +18,4 @@ fi
 ### one Higgs mH = 500, GH = 32.45440, at = bt = 1
 ### Mt = 173.5, MU = 2*Mt
 ### C.M.E. = 7 TeV
-./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 7  --add_higgs 500,32.45440,1.0,1.0,0,0 -M 173.5 -m 0.0 -R 347 -v 1 -D
+./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 7  --add_higgs 500,32.45440,1.0,1.0,0,0 -M 173.5 -m 0.0 -R 347 -v 1

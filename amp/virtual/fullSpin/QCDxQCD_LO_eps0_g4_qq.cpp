@@ -7,6 +7,7 @@ double Eval_B_QCDxQCD_QQ (AMP_ARGS)
   AMP_DEFINITIONS;
   AP_REFS_B(ap);
 
+  
   double t1;
   double t11;
   double t14;

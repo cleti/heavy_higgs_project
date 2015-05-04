@@ -200,7 +200,7 @@ class PS_2_2: public PS_2 {
   double const& get_msq(int i)  const { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} return d_msq[i]; }
   void set_msq(double const& m1sq,  double const& m2sq) { d_msq[0] = m1sq; d_msq[1] = m2sq; }
   double const& get_beta(int i) const { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} return d_beta[i]; }
-  double const& get_beta() const { return d_beta[0]; }
+  double const& get_beta()  const { return d_beta[0]; }
   double const& get_y()     const { return d_y;    }
   double const& get_phi()   const { return d_phi;  }
   double const& get_t11()   const { return d_t11;  }  

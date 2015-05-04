@@ -1,4 +1,8 @@
 
+/*! \file
+  \brief Interface for the evaluation of the unintegrated Catani/Seymour dipoles for the processes gg-> ttbar + g and qg -> ttbar + q, c.f. arXiv:hep-ph/0201036.
+*/ 
+
 #ifndef FUNCTIONS_UID_H
 #define FUNCTIONS_UID_H
 

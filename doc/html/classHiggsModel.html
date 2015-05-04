@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -148,6 +148,9 @@ std::vector&lt; HPtr &gt; const &amp;&#160;</td><td class="memItemRight" valign=
 <tr class="memitem:afa9a44f6a2bd358d887acd5771253953"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa9a44f6a2bd358d887acd5771253953"></a>
 HPtr&#160;</td><td class="memItemRight" valign="bottom"><b>GetBoson</b> (int i)</td></tr>
 <tr class="separator:afa9a44f6a2bd358d887acd5771253953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae082694ec944cffd807f4f0a20bf931b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae082694ec944cffd807f4f0a20bf931b"></a>
+HPtr const&#160;</td><td class="memItemRight" valign="bottom"><b>GetBoson</b> (int i) const </td></tr>
+<tr class="separator:ae082694ec944cffd807f4f0a20bf931b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a3f7171856b2106141948544fc49f13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a3f7171856b2106141948544fc49f13"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHiggsModel.html#a5a3f7171856b2106141948544fc49f13">SetAlphaS</a> (double const &amp;val)</td></tr>
 <tr class="memdesc:a5a3f7171856b2106141948544fc49f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this member to change AlphaS. It automatically resets the values of the amplitude prefactors. <br/></td></tr>
@@ -196,15 +199,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">PopBoson</a> ()</td></tr>
 <tr class="memdesc:a7aea18c2e6622159e8f6cc29be537c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the last Higgs boson added to the vector d_Bosons. <br/></td></tr>
 <tr class="separator:a7aea18c2e6622159e8f6cc29be537c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabc29ed3da5d400799c3de3edca3e228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHiggsModel.html#aabc29ed3da5d400799c3de3edca3e228">Print</a> (std::ostream &amp;ost, double const &amp;mScale)</td></tr>
-<tr class="memdesc:aabc29ed3da5d400799c3de3edca3e228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the model parameters.  <a href="#aabc29ed3da5d400799c3de3edca3e228">More...</a><br/></td></tr>
-<tr class="separator:aabc29ed3da5d400799c3de3edca3e228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e8fcd730feb01afd4c39f3cd184655"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">Print</a> (std::ostream &amp;ost, double const &amp;mScale) const </td></tr>
+<tr class="memdesc:a71e8fcd730feb01afd4c39f3cd184655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the model parameters.  <a href="#a71e8fcd730feb01afd4c39f3cd184655">More...</a><br/></td></tr>
+<tr class="separator:a71e8fcd730feb01afd4c39f3cd184655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class contains all the physical, model specific parameters, i.e. the strong coupling AlphaS, renormalization and factorization scales MUR, MUF, the third generation quark masses mt and mb as well as the combined Higgs vacuum expectation value VH and the individual Higgs boson parameters. It also provides appropriate setter functions. It contains instances of the <a class="el" href="structHiggsPrefactors.html">HiggsPrefactors</a> and Amprefactors structures that are needed for the evaluation of the amplitudes. Take care to provide numerical values consistently in the same units. </p>
 <dl class="section see"><dt>See Also</dt><dd>AmpPrefactors, <a class="el" href="structHiggsPrefactors.html">HiggsPrefactors</a>, <a class="el" href="classHiggsBoson.html">HiggsBoson</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="HiggsModel_8h_source.html#l00230">230</a> of file <a class="el" href="HiggsModel_8h_source.html">HiggsModel.h</a>.</p>
+<p>Definition at line <a class="el" href="HiggsModel_8h_source.html#l00235">235</a> of file <a class="el" href="HiggsModel_8h_source.html">HiggsModel.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="acd87bf9a85c37da737aba62a0dc82b5b"></a>
 <div class="memitem">
@@ -373,7 +376,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="aabc29ed3da5d400799c3de3edca3e228"></a>
+<a class="anchor" id="a71e8fcd730feb01afd4c39f3cd184655"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -392,7 +395,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

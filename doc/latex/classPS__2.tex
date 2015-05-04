@@ -8,7 +8,7 @@
 Inheritance diagram for P\-S\-\_\-2\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classPS__2}
+\includegraphics[height=3.000000cm]{classPS__2}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -50,9 +50,6 @@ Inheritance diagram for P\-S\-\_\-2\-:\begin{figure}[H]
 \hypertarget{classPS__2_a3b361fd3b41b8b92ab98e44dee130af8}{void {\bfseries set\-\_\-rs} (double const \&rs)}\label{classPS__2_a3b361fd3b41b8b92ab98e44dee130af8}
 
 \item 
-\hypertarget{classPS__2_a3dc6c6f095089139e641d1d4194dc09b}{void {\bfseries set\-\_\-name} (std\-::string const \&name)}\label{classPS__2_a3dc6c6f095089139e641d1d4194dc09b}
-
-\item 
 \hypertarget{classPS__2_a5063384c1c8b5e500f33970c01712f59}{bool \hyperlink{classPS__2_a5063384c1c8b5e500f33970c01712f59}{toggle\-\_\-decay} ()}\label{classPS__2_a5063384c1c8b5e500f33970c01712f59}
 
 \begin{DoxyCompactList}\small\item\em not used \end{DoxyCompactList}\item 
@@ -62,7 +59,7 @@ Inheritance diagram for P\-S\-\_\-2\-:\begin{figure}[H]
 \hypertarget{classPS__2_a743942dc8d537cfed9d229aad62aa96a}{int {\bfseries set\-\_\-parent} (\hyperlink{classPS__2}{P\-S\-\_\-2} $\ast$parent)}\label{classPS__2_a743942dc8d537cfed9d229aad62aa96a}
 
 \item 
-\hypertarget{classPS__2_a429976f39133474f682af423e50560e4}{void \hyperlink{classPS__2_a429976f39133474f682af423e50560e4}{swap} ()}\label{classPS__2_a429976f39133474f682af423e50560e4}
+\hypertarget{classPS__2_afefab6481fa7a0dde6ddc5a1f8d1642f}{void \hyperlink{classPS__2_afefab6481fa7a0dde6ddc5a1f8d1642f}{swap\-\_\-initial\-\_\-state} ()}\label{classPS__2_afefab6481fa7a0dde6ddc5a1f8d1642f}
 
 \begin{DoxyCompactList}\small\item\em swap incoming parton and proton momenta \end{DoxyCompactList}\item 
 \hypertarget{classPS__2_a5865322be9736bf043cc8bd1d5127a52}{virtual double const \& {\bfseries get\-\_\-msq} (int i) const =0}\label{classPS__2_a5865322be9736bf043cc8bd1d5127a52}
@@ -85,6 +82,21 @@ Inheritance diagram for P\-S\-\_\-2\-:\begin{figure}[H]
 \item 
 \hypertarget{classPS__2_a66a9dc1e77a262f05f8b917003259c31}{virtual void {\bfseries Fill\-Distributions} (std\-::vector$<$ \hyperlink{classHistArray}{Hist\-Array} $\ast$ $>$ \&dist, int id, double const \&wgt, double const \&m\-Scale=1.\-0) const =0}\label{classPS__2_a66a9dc1e77a262f05f8b917003259c31}
 
+\item 
+\hypertarget{classPS__2_a1a073b4fd3fafa46dceabcf77f4b3c44}{virtual \hyperlink{classFV}{F\-V} const \& {\bfseries k1} () const }\label{classPS__2_a1a073b4fd3fafa46dceabcf77f4b3c44}
+
+\item 
+\hypertarget{classPS__2_a9caf1d80ebd0718a226e05bf42cfa4c9}{virtual \hyperlink{classFV}{F\-V} const \& {\bfseries k2} () const }\label{classPS__2_a9caf1d80ebd0718a226e05bf42cfa4c9}
+
+\item 
+\hypertarget{classPS__2_aaa94aa598e69a134fab3bc2fc6c3185b}{virtual \hyperlink{classFV}{F\-V} const \& {\bfseries k3} () const }\label{classPS__2_aaa94aa598e69a134fab3bc2fc6c3185b}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPS__2_af361ee1bfe02e206f8845db7f1da57c6}{static const \hyperlink{classFV}{F\-V} {\bfseries nullvec}}\label{classPS__2_af361ee1bfe02e206f8845db7f1da57c6}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -98,9 +110,6 @@ Inheritance diagram for P\-S\-\_\-2\-:\begin{figure}[H]
 \hypertarget{classPS__2_a20ee7f6afb71183f2f61c7049b2e1c9e}{double \hyperlink{classPS__2_a20ee7f6afb71183f2f61c7049b2e1c9e}{d\-\_\-rs}}\label{classPS__2_a20ee7f6afb71183f2f61c7049b2e1c9e}
 
 \begin{DoxyCompactList}\small\item\em square root of the current partonic c.\-m.\-e. \end{DoxyCompactList}\item 
-\hypertarget{classPS__2_a28b70b9c3c9c5d179559af7b03cfc5bf}{std\-::string \hyperlink{classPS__2_a28b70b9c3c9c5d179559af7b03cfc5bf}{d\-\_\-name}}\label{classPS__2_a28b70b9c3c9c5d179559af7b03cfc5bf}
-
-\begin{DoxyCompactList}\small\item\em name of the P\-S instance, useful to locate errors \end{DoxyCompactList}\item 
 \hypertarget{classPS__2_ac717630d614c3bce592b1d0ba1d969c7}{\hyperlink{classFV}{F\-V} \hyperlink{classPS__2_ac717630d614c3bce592b1d0ba1d969c7}{p} \mbox{[}2\mbox{]}}\label{classPS__2_ac717630d614c3bce592b1d0ba1d969c7}
 
 \begin{DoxyCompactList}\small\item\em incoming parton 4-\/momenta \end{DoxyCompactList}\item 
@@ -124,7 +133,7 @@ Abstract base class for 2-\/$>$X phase space classes, holds among others the 4-\
 \end{DoxySeeAlso}
 
 
-Definition at line 33 of file Phase\-Space.\-h.
+Definition at line 43 of file Phase\-Space.\-h.
 
 
 

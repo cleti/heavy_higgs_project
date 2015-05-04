@@ -8,7 +8,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classHistArray_a89bdf2f7fd395b479b92a4aad5973ef5}{{\bfseries Hist\-Array} (int nbinsx, double xlow, double xup, int mass\-\_\-dim, std\-::string const \&label=\char`\"{}\char`\"{}, bool S\-U\-M\-W2=false)}\label{classHistArray_a89bdf2f7fd395b479b92a4aad5973ef5}
+\hypertarget{classHistArray_a15c4da658a89769a5a973a9eac939d57}{{\bfseries Hist\-Array} (int nbinsx, double xlow, double xup, int mass\-\_\-dim, std\-::string const \&name=\char`\"{}\char`\"{}, bool S\-U\-M\-W2=false)}\label{classHistArray_a15c4da658a89769a5a973a9eac939d57}
 
 \item 
 T\-H1\-D $\ast$ \hyperlink{classHistArray_abfd450684a3cfda8cb0231b450e1c3ec}{operator\mbox{[}$\,$\mbox{]}} (unsigned i)
@@ -22,13 +22,16 @@ T\-H1\-D $\ast$ \hyperlink{classHistArray_abfd450684a3cfda8cb0231b450e1c3ec}{ope
 \hypertarget{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{void \hyperlink{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{Pause} ()}\label{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}
 
 \begin{DoxyCompactList}\small\item\em deactivate all histograms, used for V\-E\-G\-A\-S warmup run \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a29c4b8cbb3613f5220e32be5559c55d7}{bool {\bfseries Is\-Paused} ()}\label{classHistArray_a29c4b8cbb3613f5220e32be5559c55d7}
+
+\item 
 \hypertarget{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}{void \hyperlink{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}{Resume} ()}\label{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}
 
 \begin{DoxyCompactList}\small\item\em reset flags to previous state \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_a7fc002706ae4e6628d44a36e75c30463}{void \hyperlink{classHistArray_a7fc002706ae4e6628d44a36e75c30463}{Set\-Label} (std\-::string const \&label)}\label{classHistArray_a7fc002706ae4e6628d44a36e75c30463}
+\hypertarget{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}{void \hyperlink{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}{Set\-Name} (std\-::string const \&name)}\label{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}
 
 \begin{DoxyCompactList}\small\item\em set the description of the distribution \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_ac37b244345f0e56b68e597ee18558d8a}{const char $\ast$ \hyperlink{classHistArray_ac37b244345f0e56b68e597ee18558d8a}{Get\-Label} ()}\label{classHistArray_ac37b244345f0e56b68e597ee18558d8a}
+\hypertarget{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}{const char $\ast$ \hyperlink{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}{Get\-Name} ()}\label{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}
 
 \begin{DoxyCompactList}\small\item\em get the description of the distribution, const char$\ast$ for R\-O\-O\-T classes/functions \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{Fill\-All} (double const \&x, double const \&wgt)
@@ -41,7 +44,10 @@ void \hyperlink{classHistArray_a4ebaa67b67958c1ee70ebdb056b5a389}{Draw} (const c
 
 \begin{DoxyCompactList}\small\item\em rescale all active histograms by a factor of 1/c \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{Normalize} (const double \&m\-Scale=1.\-0)
-\begin{DoxyCompactList}\small\item\em normalize all histograms such that sum(b\-\_\-i) = sigma, where b\-\_\-i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!! \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em normalize all histograms such that sum(b\-\_\-i) = sigma, where b\-\_\-i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!! \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{void {\bfseries Print} (std\-::ostream \&ost)}\label{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}
+
+\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -54,9 +60,15 @@ void \hyperlink{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{Normalize} (co
 \hypertarget{classHistArray_ac477be77aa121bf1cbeea842debb2579}{unsigned \hyperlink{classHistArray_ac477be77aa121bf1cbeea842debb2579}{d\-\_\-active\-\_\-t}}\label{classHistArray_ac477be77aa121bf1cbeea842debb2579}
 
 \begin{DoxyCompactList}\small\item\em tmp. flags, used in \hyperlink{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{Pause()}/\-Resume() \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_a273ef1bf687ee03dd17d106075bb07e2}{std\-::string \hyperlink{classHistArray_a273ef1bf687ee03dd17d106075bb07e2}{d\-\_\-label}}\label{classHistArray_a273ef1bf687ee03dd17d106075bb07e2}
+\hypertarget{classHistArray_a725babbcaabff43acabfbcd8a50eaf76}{std\-::string \hyperlink{classHistArray_a725babbcaabff43acabfbcd8a50eaf76}{d\-\_\-name}}\label{classHistArray_a725babbcaabff43acabfbcd8a50eaf76}
 
-\begin{DoxyCompactList}\small\item\em description of the dsitribution \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em distribution name \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_abda4dd3f06a82c34fff098de0dbcd75a}{std\-::string \hyperlink{classHistArray_abda4dd3f06a82c34fff098de0dbcd75a}{d\-\_\-label\-\_\-x}}\label{classHistArray_abda4dd3f06a82c34fff098de0dbcd75a}
+
+\begin{DoxyCompactList}\small\item\em latex label x-\/axis \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a884c9ad37bb3bc65bed3c33928c12f7d}{std\-::string \hyperlink{classHistArray_a884c9ad37bb3bc65bed3c33928c12f7d}{d\-\_\-label\-\_\-y}}\label{classHistArray_a884c9ad37bb3bc65bed3c33928c12f7d}
+
+\begin{DoxyCompactList}\small\item\em latex label y-\/axis \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{int \hyperlink{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{d\-\_\-mass\-\_\-dim}}\label{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}
 
 \begin{DoxyCompactList}\small\item\em mass dimension of the observable, needed for proper normalization, for example \mbox{[}M\-\_\-tt\mbox{]}=1, \mbox{[}Y\-\_\-t\mbox{]}=0 \end{DoxyCompactList}\item 
@@ -72,8 +84,8 @@ void \hyperlink{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{Normalize} (co
 
 
 \subsection{Detailed Description}
-This class stores an array of R\-O\-O\-T T\-H1\-D's. In the default setup there are 6 histograms, one for each contribution\-: L\-O Q\-C\-D, L\-O P\-H\-Ix\-P\-H\-I, L\-O P\-H\-Ix\-Q\-C\-D, virtual corrections, integrated dipoles and real corrections. Use one \hyperlink{classHistArray}{Hist\-Array} for each observable. There are some helper functions for plotting in \hyperlink{Functions__Shared_8h_source}{Functions\-\_\-\-Shared.\-h}. The P\-S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See Also}
-\hyperlink{Functions__Shared_8h_source}{Functions\-\_\-\-Shared.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h} 
+This class stores an array of R\-O\-O\-T T\-H1\-D's. In the default setup there are 6 histograms, one for each contribution\-: L\-O Q\-C\-D, L\-O P\-H\-Ix\-P\-H\-I, L\-O P\-H\-Ix\-Q\-C\-D, virtual corrections, integrated dipoles and real corrections. Use one \hyperlink{classHistArray}{Hist\-Array} for each observable. There are some helper functions for plotting in \hyperlink{Functions__Shared_8h}{Functions\-\_\-\-Shared.\-h}. The P\-S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See Also}
+\hyperlink{Functions__Shared_8h}{Functions\-\_\-\-Shared.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h} 
 \end{DoxySeeAlso}
 
 
@@ -100,7 +112,7 @@ draw all histograms into the currently selected canvas
 \end{DoxyParams}
 
 
-Definition at line 111 of file Hist\-Array.\-h.
+Definition at line 116 of file Hist\-Array.\-h.
 
 \hypertarget{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{\index{Hist\-Array@{Hist\-Array}!Fill\-All@{Fill\-All}}
 \index{Fill\-All@{Fill\-All}!HistArray@{Hist\-Array}}
@@ -123,7 +135,7 @@ fill weight into all active histograms
 \end{DoxyParams}
 
 
-Definition at line 96 of file Hist\-Array.\-h.
+Definition at line 101 of file Hist\-Array.\-h.
 
 \hypertarget{classHistArray_a38e7f00ba4f87c20ca1c3e0a5efc2ad9}{\index{Hist\-Array@{Hist\-Array}!Fill\-One@{Fill\-One}}
 \index{Fill\-One@{Fill\-One}!HistArray@{Hist\-Array}}
@@ -149,7 +161,7 @@ fill weight into a single histogram if activated
 \end{DoxyParams}
 
 
-Definition at line 105 of file Hist\-Array.\-h.
+Definition at line 110 of file Hist\-Array.\-h.
 
 \hypertarget{classHistArray_a1a5eb9be28921e67bf3612e5b82954df}{\index{Hist\-Array@{Hist\-Array}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!HistArray@{Hist\-Array}}
@@ -189,7 +201,7 @@ access a specific histogram in the array
 \end{DoxyParams}
 
 
-Definition at line 71 of file Hist\-Array.\-h.
+Definition at line 75 of file Hist\-Array.\-h.
 
 
 

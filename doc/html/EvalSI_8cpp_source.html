@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -141,15 +141,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;ql_i1(mt^2) = &quot;</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    i = -2;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    res = qli1_(&amp;m0,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    c_double I1_2 = res;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I1_2 = res;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;        eps^-2 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    i = -1;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    res = qli1_(&amp;m0,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    c_double I1_1 = res;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I1_1 = res;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^-1 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    i = 0;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    res = qli1_(&amp;m0,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    c_double I1_0 = res;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I1_0 = res;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^0  * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
@@ -164,15 +164,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;ql_i3(m^2,s,m^2,0,m^2,m^2) = &quot;</span>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    i = -2;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    c_double I3a_2 = res;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3a_2 = res;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;        eps^-2 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    i = -1;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    c_double I3a_1 = res;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3a_1 = res;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^-1 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    i = 0;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    c_double I3a_0 = res;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3a_0 = res;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^0  * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    x1  = 0.0;</div>
@@ -185,15 +185,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;ql_i3(0,s,0,0,0,0) = &quot;</span>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    i = -2;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    c_double I3b_2 = res;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3b_2 = res;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;        eps^-2 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    i = -1;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    c_double I3b_1 = res;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3b_1 = res;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^-1 * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span>;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    i = 0;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m1,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    c_double I3b_0 = res;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> I3b_0 = res;</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^0  * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
@@ -201,11 +201,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">double</span> beta2 = (1.0-4.0/s);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">double</span> beta  = sqrt(beta2);</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;      c_double S0 = -0.5*(1.0+beta2)*s*I3a_0 - (1.0-beta2)*s*I3a_1 - I1_0;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      c_double P0 = -0.5*(1.0+beta2)*s*I3a_0 - I1_0;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> S0 = -0.5*(1.0+beta2)*s*I3a_0 - (1.0-beta2)*s*I3a_1 - I1_0;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> P0 = -0.5*(1.0+beta2)*s*I3a_0 - I1_0;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      c_double H0 = 2.0*s*I3b_0 - 11.0/3.0;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      c_double A0 = H0 - 4.0 + 11.0/3.0;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> H0 = 2.0*s*I3b_0 - 11.0/3.0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> A0 = H0 - 4.0 + 11.0/3.0;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      <span class="keywordtype">double</span> ItS  = 2.0*CF*S0.imag()-CA*H0.imag();</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      <span class="keywordtype">double</span> ItP  = 2.0*CF*P0.imag()-CA*H0.imag();</div>
@@ -235,15 +235,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      <span class="keywordtype">double</span> c1 =  0.5*(1.0+beta2)/beta;</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      <span class="keywordtype">double</span> c2 =      (1.0-beta2)/beta;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      c_double S0 = c_double( c1*( 2.0/3.0*Pi2 - 0.5*pow(log(x),2) + 2.0*(log(x1)*log(x)+dilog(x)) ) - c2*log(x) - 1.0 ,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> S0 = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>( c1*( 2.0/3.0*Pi2 - 0.5*pow(log(x),2) + 2.0*(log(x1)*log(x)+dilog(x)) ) - c2*log(x) - 1.0 ,</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                  -Pi*c1*( log(x) - 2.0*log(x1) + c2/c1 )  );</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      c_double P0 = c_double( S0.real() + c2*log(x) , S0.imag() + Pi*c2 );</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> P0 = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>( S0.real() + c2*log(x) , S0.imag() + Pi*c2 );</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      <span class="keywordtype">double</span> RH = pow(log(s/mu2),2) - Pi2 - 11.0/3.0;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      <span class="keywordtype">double</span> RA = RH - 4.0 + 11.0/3.0;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      <span class="keywordtype">double</span> IG = -TwoPi*log(s/mu2);</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;      </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      c_double EPS0 = c_double(-2.0*CF*(c1*log(x)+1.0)*log(mu2) , -2.0*CF*Pi*c1*log(mu2) );</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> EPS0 = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>(-2.0*CF*(c1*log(x)+1.0)*log(mu2) , -2.0*CF*Pi*c1*log(mu2) );</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;      <span class="keywordtype">double</span> ItS  = 2.0*CF*S0.imag()-CA*IG+EPS0.imag();</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      <span class="keywordtype">double</span> ItP  = 2.0*CF*P0.imag()-CA*IG+EPS0.imag();</div>
@@ -302,14 +302,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    res = qli3_(&amp;x1,&amp;x2,&amp;x3,&amp;m2,&amp;m2,&amp;m2,&amp;mu2,&amp;i);</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;      + eps^0  * [&quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.real() &lt;&lt; <span class="stringliteral">&quot; + i &quot;</span> &lt;&lt; std::setprecision(P) &lt;&lt; std::setw(W) &lt;&lt; res.imag() &lt;&lt; <span class="stringliteral">&quot; ]&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    c_double test = c_double(0.0,0.0);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> test = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>(0.0,0.0);</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">if</span> (4.0*m2&gt;mH2)</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    test = c_double(-2.0/x1*pow(std::asin(1.0/sqrt(4.0*m2/x1)),2),0.0);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    test = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>(-2.0/x1*pow(std::asin(1.0/sqrt(4.0*m2/x1)),2),0.0);</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;      }</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    c_double beta = sqrt(1.0-4.0*m2/mH2);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> beta = sqrt(1.0-4.0*m2/mH2);</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    test = 1.0/(2.0*x1)*pow(std::log((beta+1.0)/(beta-1.0)),2);</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;      }</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    std:: cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; check = &quot;</span> &lt;&lt; test &lt;&lt; std::endl;</div>
@@ -463,6 +463,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;  std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  exit(1);</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;}</div>
+<div class="ttc" id="Global_8h_html_af390c6bd8192faf6a1e2d875a1d10ca0"><div class="ttname"><a href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a></div><div class="ttdeci">std::complex&lt; double &gt; c_double</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00023">Global.h:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

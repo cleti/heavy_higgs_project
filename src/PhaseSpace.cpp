@@ -97,6 +97,9 @@ void PS_2_1::print() const
 #ifdef WITH_T_SPIN   
   PRINT_4VEC(S);
 #endif
+  FV Q = p[0]+p[1]-k[0];
+  std::cout << std::endl << "Energy-momentum conservation:";
+  PRINT_4VEC(Q);
 }
 
 void PS_2_1::FillDistributions(
@@ -297,7 +300,7 @@ int PS_2_2::set()
   double m2sq = sp(k[1],k[1]);
   if (s<=4.0*std::max(m1sq,m2sq))
     {
-      WARNING("s is below threshold give by the final state masses!");
+      WARNING("s is below threshold given by the final state masses!");
       SLEEP(3);
       return 0;
     }
@@ -341,6 +344,9 @@ void PS_2_2::print() const
   PRINT_4VEC(S[0]);
   PRINT_4VEC(S[1]);
 #endif
+  FV Q = p[0]+p[1]-k[0]-k[1];
+  std::cout << std::endl << "Energy-momentum conservation:";
+  PRINT_4VEC(Q);
 }
 void PS_2_2::FillDistributions(
 			       std::vector<HistArray*> & dist,
@@ -364,35 +370,38 @@ void PS_2_2::FillDistributions(
   FV const& l2 = S[1]; 
   // ensure that S_r[0,1] are set up correctly!
 
-  
-  //dist[7 ]->FillOne(id,obs_M12(K1,K2)*mScale,wgt*obs_PHIT(l1,l2));
-  dist[8 ]->FillOne(id,obs_M12(K1,K2)*mScale,3.0*wgt*obs_PHI(L1,L2));
-  //dist[9 ]->FillOne(id,obs_M12(K1,K2)*mScale,wgt*obs_TriProd(L1,L2,K1));
-  dist[10]->FillOne(id,obs_M12(K1,K2)*mScale,9.0*wgt*obs_PHI(L1,K1)*obs_PHI(L2,K2));
+  //PRINT("PHIT12");
+  dist[7 ]->FillOne(id,obs_M12(K1,K2)*mScale,-3.0*wgt*obs_PHIT(l1,l2));
+  //PRINT("D_open");
+  dist[8 ]->FillOne(id,obs_M12(K1,K2)*mScale,-3.0*wgt*obs_PHI(L1,L2));
+  //PRINT("O_CP");
+  dist[9 ]->FillOne(id,obs_M12(K1,K2)*mScale,     wgt*obs_TriProd(L1,L2,K1));
+  //PRINT("C_hel");
+  dist[10]->FillOne(id,obs_M12(K1,K2)*mScale,-9.0*wgt*obs_PHI(L1,K1)*obs_PHI(L2,K2));
+  //exit(1);
   ///////////////////////////////////////////////////////
 #else
   ///////////////////////////////////////////////////////
   // spin-independent observables ///////////////////////
   ///////////////////////////////////////////////////////  
-  // need the lab frame 4-vectors K1,K2 of top/antitop
+  // for observables like rapidity we need the lab frame 4-vectors K1,K2 of top/antitop
   static LT boost_to_lab_frame;
-  // boost to the rest frame of the protons :
-  // P1+P2 = 1/x1*p1 + 1/x2*p2 = lab frame
-
   boost_to_lab_frame.set_boost(P[0]+P[1],0);
+  // make copies of the top/antitop 4-vectors before the boost,
+  // the vectors of this ps might be used somewhere else!!!
   FV K1 = k[0];
   FV K2 = k[1];
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
   
-  dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
-  dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
+  dist[0]->FillOne(id,obs_M12(K1,K2) *mScale,wgt);
+  dist[1]->FillOne(id,obs_PT(K1)     *mScale,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  // dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
-  // need lab frame vectors for these
-  dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
+  dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale,wgt);
+  // these are sensitive to boosts algon z-direction (=beam direction)
+  dist[4]->FillOne(id,obs_Y(K1)    ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
-  dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
+  dist[6]->FillOne(id,obs_DY(K1,K2),wgt);
   ///////////////////////////////////////////////////////
 #endif
 }
@@ -540,6 +549,9 @@ void PS_2_3::print() const
   PRINT_4VEC(S[1]);
   PRINT_4VEC(S[2]);
 #endif
+  FV Q = p[0]+p[1]-k[0]-k[1]-k[2];
+  std::cout << std::endl << "Energy-momentum conservation:";
+  PRINT_4VEC(Q);
 }
 
 void PS_2_3::FillDistributions(
@@ -548,45 +560,35 @@ void PS_2_3::FillDistributions(
 			       double const & wgt,
 			       double const& mScale) const
 {
-  // need the lab frame 4-vectors K1,K2 of top/antitop
+#ifdef WITH_T_SPIN
+  ///////////////////////////////////////////////////////
+  // spin-dependent observables /////////////////////////
+  ///////////////////////////////////////////////////////  
+  // to be implemented ...
+  ERROR("the code for distributions on PS_2_3 for polarized amplitudes is still missing!");
+  ///////////////////////////////////////////////////////
+#else
+  ///////////////////////////////////////////////////////
+  // spin-independent observables ///////////////////////
+  ///////////////////////////////////////////////////////  
+  // for observables like rapidity we need the lab frame 4-vectors K1,K2 of top/antitop
   static LT boost_to_lab_frame;
-  // boost to the rest frame of the protons :
-  // P1+P2 = 1/x1*p1 + 1/x2*p2 = lab frame
   boost_to_lab_frame.set_boost(P[0]+P[1],0);
-  // FV P1 = p[0];
-  // FV P2 = p[1];  
+  // make copies of the top/antitop 4-vectors before the boost,
+  // the vectors of this ps might be used somewhere else!!!
   FV K1 = k[0];
   FV K2 = k[1];
-  // FV K3 = k[2];
-  FV Q1 = P[0];
-  FV Q2 = P[1];
-  // boost_to_lab_frame.apply(P1);
-  // boost_to_lab_frame.apply(P2);
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
-  // boost_to_lab_frame.apply(K3);
-  boost_to_lab_frame.apply(Q1);
-  boost_to_lab_frame.apply(Q2);
-
-  // if (K1[0]>20 || K2[0]>20)
-  //   {
-  // PRINT_4VEC(Q1);
-  // PRINT_4VEC(Q2);
-  // PRINT_4VEC(P1);
-  // PRINT_4VEC(P2);
-  // PRINT_4VEC(K1);
-  // PRINT_4VEC(K2);
-  // PRINT_4VEC(K3);
-  // exit(1);
-  //   }
   
-  // tt distributions
-  dist[0]->FillOne(id,obs_M12(k[0],k[1])*mScale,wgt);
-  dist[1]->FillOne(id,obs_PT(k[0])*mScale    ,wgt);
+  dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
+  dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
   dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
   // need lab frame vectors for these
   dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
   dist[6]->FillOne(id,obs_DY(K1,K2) ,wgt);
+  ///////////////////////////////////////////////////////
+#endif
 }

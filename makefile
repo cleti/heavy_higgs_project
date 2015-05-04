@@ -10,10 +10,10 @@ PERF1-FLAGS = -m64 -O1 -march=native
 PERF2-FLAGS = -m64 -Ofast -flto -march=native -funroll-loops
 
 
-DEP-PATH = .dep
+#DEP-PATH = .dep
 LIB-PATH = lib
 BIN-PATH = bin
-CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include $(PERF1-FLAGS) -fopenmp
+CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include $(DEBUG-FLAGS) -fopenmp
 ### -DDUMP_DIPOLE_PS 
 
 SRC-PATH = src
@@ -26,7 +26,7 @@ CPP = /usr/lib/cpp
 ####################################################################
 
 _LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Integrator.o Functions_Shared.o
-_LIBS_PP_HX    =  $(_LIBS_COMMON) PhaseSpace_.o ScalarIntegrals_.o Integrands_pp_HX.o Functions_pp_HX.o
+_LIBS_PP_HX    =  $(_LIBS_COMMON) HiggsModel_.o PhaseSpace_.o ScalarIntegrals_.o Integrands_pp_HX.o Functions_pp_HX.o
 
 _LIBS_PP_TTX   = $(_LIBS_COMMON) HiggsModel_.o  PhaseSpace_.o  ScalarIntegrals_.o  Integrands_pp_ttX_.o  Functions_pp_ttX_V_.o  Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
 _LIBS_PP_TTX_S = $(_LIBS_COMMON) HiggsModel_S.o PhaseSpace_S.o ScalarIntegrals_S.o Integrands_pp_ttX_S.o Functions_pp_ttX_V_S.o Functions_pp_ttX_ID_S.o Functions_pp_ttX_R_S.o Functions_pp_ttX_UID_S.o Functions_tDecay.o

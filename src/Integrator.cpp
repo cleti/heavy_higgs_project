@@ -399,6 +399,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
 
   int ncalls = vp.calls/vp.iterations;
 
+  // adjust ncalls according to phase space integration complexity
   switch (ip.ps->whattype())
     {
     case 21:

@@ -1,4 +1,7 @@
 
+/*! \file
+  \brief Constants and technical cuts.
+*/ 
 
 #ifndef GLOBAL_H
 #define GLOBAL_H
@@ -13,14 +16,26 @@
 
 #include "Makros.h"
 
+/*!
+  \typedef c_double
+  Complex number, double precision.
+*/
 typedef std::complex<double> c_double;
+
+/*!
+  \typedef ulong
+  Unsigned long integer.
+*/
 typedef unsigned long ulong;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
+/*!
+  Constants.
+*/
 namespace Constants {
-  /* misc. constants */
   extern const double Pi;
+  //! Euler gamma.
   extern const double gE;
   extern const double Pi2;
   extern const double Pi3;
@@ -28,12 +43,15 @@ namespace Constants {
   extern const double TwoPi;
   extern const double FourPi;
   extern const double TwoPi2;
-  /* conversion factors */
+  //! Convert MeV to femtobarn.
   extern const double CONV_MeV_fm;
+  //! Convert GeV^-2 to millibarn.
   extern const double CONV_GeV2i_mbarn;
+  //! Convert GeV^-2 to picobarn.
   extern const double CONV_GeV2i_pbarn;
-  /* first two coefficients of the expansion of (4 pi)^eps/Gamma(1-eps) */
+  //! First coefficient of the expansion of (4 pi)^eps/Gamma(1-eps). Not used anymore.
   extern const double C_eps1;
+  //! Second coefficient of the expansion of (4 pi)^eps/Gamma(1-eps). Not used anymore.
   extern const double C_eps2;
   /* colour factors */
   extern const double CA;
@@ -45,30 +63,36 @@ namespace Constants {
   extern const double TF2;
   extern const double CF2;
   extern const double beta0;
-  /* initial gg colour and spin average */
+  //! Initial gg colour and spin averaging factor.
   extern const double PREF_GG;
+  //! Initial qqbar colour and spin averaging factor.
   extern const double PREF_QQ;
+  //! Initial qg colour and spin averaging factor.
   extern const double PREF_QG;
-  /* top mass */
+  //! Top mass.
   extern const double MT;
-
+  //! Branching ratio ttbar->l+l- + ....
   extern const double BR_TT_LL;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
+/*!
+  Cuts.
+*/
 namespace Cuts {
+  //! Technical cut for collinear phase space regions.
   extern double COLL_CUT;
+  //! Technical cut for soft phase space regions.
   extern double SOFT_CUT;
+  //! Technical cut for boost parameter in the continuum part of the integrated dipoles.
   extern double IDIP_X_CUT;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// teebuf and teestream
 class teebuf: public std::streambuf
 {
  public:
-  // Construct a streambuf which tees output to both input
-  // streambufs.
+  //! Construct a streambuf which tees output to both input streambufs.
  teebuf(std::streambuf * sb1, std::streambuf * sb2) :
   sb1(sb1),
   sb2(sb2)
@@ -90,7 +114,7 @@ class teebuf: public std::streambuf
       }
   }
     
-  // Sync both teed buffers.
+  //! Sync both teed buffers.
   virtual int sync()
   {
     int const r1 = sb1->pubsync();
@@ -101,16 +125,17 @@ class teebuf: public std::streambuf
   std::streambuf * sb1;
   std::streambuf * sb2;
 };
-
+/*!
+  This class can be used to tee output to two different streambuf objects. I use it to ouput to cout and a logfile simultaneously.
+*/
 class teestream : public std::ostream
 {
  public:
-  // Construct an ostream which tees output to the supplied
-  // ostreams.
+  //! Construct an ostream which tees output to the two supplied ostreams.
  teestream(std::ostream & o1, std::ostream & o2) :
   std::ostream(&tbuf),
-  tbuf(o1.rdbuf(), o2.rdbuf())
- { }      
+    tbuf(o1.rdbuf(), o2.rdbuf())
+      { }      
  private:
   teebuf tbuf;
 };

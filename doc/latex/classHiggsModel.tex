@@ -62,6 +62,9 @@
 \hypertarget{classHiggsModel_afa9a44f6a2bd358d887acd5771253953}{H\-Ptr {\bfseries Get\-Boson} (int i)}\label{classHiggsModel_afa9a44f6a2bd358d887acd5771253953}
 
 \item 
+\hypertarget{classHiggsModel_ae082694ec944cffd807f4f0a20bf931b}{H\-Ptr const {\bfseries Get\-Boson} (int i) const }\label{classHiggsModel_ae082694ec944cffd807f4f0a20bf931b}
+
+\item 
 \hypertarget{classHiggsModel_a5a3f7171856b2106141948544fc49f13}{void \hyperlink{classHiggsModel_a5a3f7171856b2106141948544fc49f13}{Set\-Alpha\-S} (double const \&val)}\label{classHiggsModel_a5a3f7171856b2106141948544fc49f13}
 
 \begin{DoxyCompactList}\small\item\em Use this member to change Alpha\-S. It automatically resets the values of the amplitude prefactors. \end{DoxyCompactList}\item 
@@ -103,7 +106,7 @@ void \hyperlink{classHiggsModel_a94f5b60024363838e73e0e1b8d1604ca}{Add\-Pseudosc
 \hypertarget{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}{void \hyperlink{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}{Pop\-Boson} ()}\label{classHiggsModel_a7aea18c2e6622159e8f6cc29be537c0f}
 
 \begin{DoxyCompactList}\small\item\em Remove the last Higgs boson added to the vector d\-\_\-\-Bosons. \end{DoxyCompactList}\item 
-void \hyperlink{classHiggsModel_aabc29ed3da5d400799c3de3edca3e228}{Print} (std\-::ostream \&ost, double const \&m\-Scale)
+void \hyperlink{classHiggsModel_a71e8fcd730feb01afd4c39f3cd184655}{Print} (std\-::ostream \&ost, double const \&m\-Scale) const 
 \begin{DoxyCompactList}\small\item\em Print the model parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -113,7 +116,7 @@ Amp\-Prefactors, \hyperlink{structHiggsPrefactors}{Higgs\-Prefactors}, \hyperlin
 \end{DoxySeeAlso}
 
 
-Definition at line 230 of file Higgs\-Model.\-h.
+Definition at line 235 of file Higgs\-Model.\-h.
 
 
 
@@ -211,14 +214,14 @@ Add a scalar Higgs boson to the vector d\-\_\-\-Bosons. The dimensionful paramet
 
 Definition at line 378 of file Higgs\-Model.\-cpp.
 
-\hypertarget{classHiggsModel_aabc29ed3da5d400799c3de3edca3e228}{\index{Higgs\-Model@{Higgs\-Model}!Print@{Print}}
+\hypertarget{classHiggsModel_a71e8fcd730feb01afd4c39f3cd184655}{\index{Higgs\-Model@{Higgs\-Model}!Print@{Print}}
 \index{Print@{Print}!HiggsModel@{Higgs\-Model}}
 \subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Higgs\-Model\-::\-Print (
 \begin{DoxyParamCaption}
 \item[{std\-::ostream \&}]{ost, }
 \item[{double const \&}]{m\-Scale}
 \end{DoxyParamCaption}
-)}}\label{classHiggsModel_aabc29ed3da5d400799c3de3edca3e228}
+) const}}\label{classHiggsModel_a71e8fcd730feb01afd4c39f3cd184655}
 
 
 Print the model parameters. 
