@@ -49,10 +49,13 @@
 extern char *program_name;
 extern struct option const longopts[];
 
+
+
 struct opt {
   int int_flags;
   int n_calls;
   double ren_scale;
+  double ren_scale_mult;  
   double cme;
   double mt;
   double mb;  
@@ -63,7 +66,11 @@ struct opt {
   bool tdecay;
   bool useK;
   bool logfile;
+  std::string logfile_path;
   bool rootfile;
+  std::string rootfile_path;
+  bool qcdfile;
+  std::string qcdfile_path;  
   int verb_level;
 };
 
@@ -72,6 +79,8 @@ extern struct opt g_options;
 void parse_arguments(int argc, char** argv, struct opt& options, HiggsModel& hm);
 void usage (int status);
 void version (int status);
+
+int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filename);
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 

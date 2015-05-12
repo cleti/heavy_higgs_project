@@ -26,8 +26,6 @@
 #include <cmath>
 
 
-// add factor 4 for summation over spins in unpolarized MEs
-
 using namespace std;
 
 #ifdef WITH_NON_FACT_DIAGRAMS
@@ -62,16 +60,29 @@ int main(int argc, char** argv)
 
   // get parameters from command line arguments
   parse_arguments(argc,argv,g_options,THDM_1);
+
+
   
   // create an outpufile
   ofstream log_file;
-  if (g_options.logfile) log_file.open(string("results/integration_pp_ttX_results_")+=run_id.str());
+  if (g_options.logfile)
+    {
+      log_file.open(g_options.logfile_path+string("integration_pp_ttX_results_")+run_id.str());
+      if (!log_file.is_open())
+	{
+	  cout << endl <<  "Could not open logfile. Path correct? ";
+	  PRINT(g_options.logfile_path);
+	  exit(1);
+	}
+    }
   // the teestream has problems when no file is openened, so just dump to /dev/null
   else log_file.open("/dev/null");
- 
+
+  
   // create teestream object to tee output to std::cout and the selected file
   teestream couT(std::cout,log_file);
   PRINTS(couT,run_id.str());
+  PRINTS(couT,g_options.useK);
 
   // create the PDFs
   LHAPDF::PDF* pdf_ct10nlo = LHAPDF::mkPDF("CT10nlo", 0);
@@ -108,7 +119,7 @@ int main(int argc, char** argv)
   ip.distributions = new HAvec{
     &MttDistributions,   // [0]
     &PT1Distributions,   // [1]
-    &PT2Distributions,   // [2]
+    //    &PT2Distributions,   // [2]
     &PT12Distributions,  // [3]
     &Y1Distributions,    // [4]
     &Y2Distributions,    // [5]
@@ -129,7 +140,7 @@ int main(int argc, char** argv)
   // parameters for VEGAS integration routine
   vegas_par vp;
   // will be adjusted seperately in each integration block
-  // vp.calls      = g_options.n_calls;
+  vp.calls      = g_options.n_calls;
   vp.verbose    = g_options.verb_level;
   PRINTS(couT,vp.calls);
   ////////////////////////////////////////////////////////////////////////////////
@@ -142,6 +153,21 @@ int main(int argc, char** argv)
     PRINTS(couT,SOFT_CUT);
     PRINTS(couT,1-COLL_CUT);
   }
+  ////////////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////////////
+  // try to open file with QCD NLO data
+  if (g_options.qcdfile)
+    {
+      stringstream filename;
+      filename << "NLO_QCD_" << std::round(CME/1000) << "TeV_mu" << std::round(THDM_1.MUR()*mScale) << ".dat";
+      PRINT(filename.str());
+      g_options.qcdfile = read_qcd_data(ip.distributions,g_options.qcdfile_path,filename.str());
+      if (!g_options.qcdfile)
+	{
+	  couT << std::endl << " Error reading QCD data file. " << std::endl;
+	}
+    }
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +230,7 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////
   // INTEGRATION BLOCK 000 00 01  [LO: QCD]
   ////////////////////////////////////////////////////////////////////
-  if (int_flags & I_FLAGS_B_QCD)
+if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
     {
       couT << "\n [LO (QCD)]\n";       
       // set flags to specify which matrix elements will be evaluated
@@ -224,6 +250,12 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_2_BV,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[0] = vp.result;
       errors[0]  = vp.error;
     }
@@ -236,7 +268,7 @@ int main(int argc, char** argv)
       couT << "\n [LO (PHI+INT)]\n";      
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;
-      USET_EVAL_B_PHIxQCD(ip.eval_flags);
+      SET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [LO PHIxQCD,PHIxPHI]"));
       vp.calls      = g_options.n_calls/10;
@@ -252,6 +284,12 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_2_BV,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[1] = vp.result;
       errors[1]  = vp.error;
     }
@@ -280,6 +318,12 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_2_BV,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[2] = vp.result;
       errors[2]  = vp.error;
     }
@@ -293,12 +337,12 @@ int main(int argc, char** argv)
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
-      SET_EVAL_B_PHIxPHI(ip.eval_flags);
-      SET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
+      USET_EVAL_B_PHIxPHI(ip.eval_flags);
+      USET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
       SET_FLAG(F_EVAL_D_QG_CONT,ip.eval_flags);
       // need to implement integrated QG dipoles!
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO int. dip.]"));
-      vp.calls      = g_options.n_calls;
+      vp.calls      = g_options.n_calls*10;
   
       // activate NLO (ID) histograms 
       for (auto e: *ip.distributions)
@@ -307,6 +351,12 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_2_ID,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[3] = vp.result;
       errors[3]  = vp.error;
     }
@@ -319,12 +369,6 @@ int main(int argc, char** argv)
       couT << "\n [NLO (R GG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = F_EVAL_R_GG;
-      // SET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
-      // SET_FLAG(F_EVAL_R_ISR_ISR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_FSR_FSR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_FSR_ISR,ip.eval_flags);
-      // USET_FLAG(F_EVAL_R_FSR_INT,ip.eval_flags);
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,gg]"));
       vp.calls      = g_options.n_calls;
       
@@ -335,6 +379,12 @@ int main(int argc, char** argv)
       	}
       
       INT.Integrate(Int_2_3,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[4] = vp.result;
       errors[4]  = vp.error;
     }
@@ -343,13 +393,22 @@ int main(int argc, char** argv)
   ///////////////////////////////////////////////////////////////////////
   if (int_flags & (I_FLAGS_R_QQ|I_FLAGS_R_QG))
     {
-      couT << "\n [NLO (R QQ & QG)]\n"; 
+      couT << "\n [NLO (R"; 
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;
-      SET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
-      SET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
-      SET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
-      SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);     
+      if (int_flags & I_FLAGS_R_QG)
+	{
+	  //SET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
+	  SET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
+	  couT << " QG"; 
+	}
+      if (int_flags & I_FLAGS_R_QQ)
+	{
+	  //SET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
+	  SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);
+	  couT << " QQ"; 
+	}
+      couT << ")]\n"; 
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,qq,qg]"));
       vp.calls      = g_options.n_calls;
       
@@ -360,6 +419,12 @@ int main(int argc, char** argv)
       	}
 
       INT.Integrate(Int_2_3_qg_qq,ip,vp);
+
+      // normalize entries to bin width
+      for (auto e: *ip.distributions)
+	{ 
+	  e->Normalize();
+	}
       results[5] = vp.result;
       errors[5]  = vp.error;
     } 
@@ -413,7 +478,35 @@ int main(int argc, char** argv)
   if (g_options.dist)
     {
       bool PLOT_NLO = int_flags & (I_FLAGS_V|I_FLAGS_D|I_FLAGS_R_GG|I_FLAGS_R_QQ|I_FLAGS_R_QG);
-      bool WRITE_TO_FILE = g_options.rootfile;
+      
+      // create a ROOT file to store the results
+      stringstream rootfile_name;
+      // create identifier from process id and timestamp
+      rootfile_name << "distributions_" << run_id.str();
+      if (int_flags & I_FLAGS_B_QCD ) rootfile_name << "_BQCD";
+      if (int_flags & I_FLAGS_B_PHI ) rootfile_name << "_BPHI";
+      if (int_flags & I_FLAGS_V ) rootfile_name << "_V";
+      if (int_flags & I_FLAGS_D ) rootfile_name << "_D";
+      if (int_flags & I_FLAGS_R_GG ) rootfile_name << "_RGG";
+      if (int_flags & I_FLAGS_R_QQ ) rootfile_name << "_RQQ";
+      if (int_flags & I_FLAGS_R_QG ) rootfile_name << "_RQG";        
+      rootfile_name << ".root";
+      TFile* file = nullptr;
+      if (g_options.rootfile)
+	{
+	  file = TFile::Open((g_options.rootfile_path+rootfile_name.str()).c_str(),"NEW");
+	  // ask user for new path if opening failed, so that nothing gets lost
+	  while (!file)
+	    {
+	      cout << endl << " Could not open ROOT file. Enter new path: " << endl; 
+	      cout << " >> "; cin >> g_options.rootfile_path;
+	      // attach trailing '/' if not present
+	      if (g_options.rootfile_path.back() != '/') g_options.rootfile_path += '/';
+	      file = TFile::Open((g_options.rootfile_path+rootfile_name.str()).c_str(),"NEW");
+	    }
+	}
+
+      
       TApplication TheApp("MyApp",&argc, argv);
       gROOT->Reset();
       gROOT->SetStyle("Plain");
@@ -421,40 +514,6 @@ int main(int argc, char** argv)
       gStyle->SetOptFit(0);
       gStyle->SetTitleBorderSize(0);
       gStyle->SetTitleAlign(0);
-      
-      // create a ROOT file to store the results
-      stringstream filename;
-      // create identifier from process id and timestamp
-      filename << "results/distributions_" << run_id.str();
-      if (int_flags & I_FLAGS_B_QCD ) filename << "_BQCD";
-      if (int_flags & I_FLAGS_B_PHI ) filename << "_BPHI";
-      if (int_flags & I_FLAGS_V ) filename << "_V";
-      if (int_flags & I_FLAGS_D ) filename << "_D";
-      if (int_flags & I_FLAGS_R_GG ) filename << "_RGG";
-      if (int_flags & I_FLAGS_R_QQ ) filename << "_RQQ";
-      if (int_flags & I_FLAGS_R_QG ) filename << "_RQG";        
-      filename << ".root";
-      TFile* fresults = nullptr;
-      if (WRITE_TO_FILE) fresults = new TFile(filename.str().c_str(),"NEW");
-
-      if (ip.distributions != nullptr)
-      	{
-      	  for (auto e: *ip.distributions)
-      	    { 
-	      // normalize entries to bin width
-	      // so that sum( bin_cont[i]*bin_width[i] ) = sigma_tot
-      	      e->Normalize();
-      	    }
-      	}
-
-
-      // 0 : LO_QCD
-      // 1 : LO_PHI
-      // 3 : V
-      // 4 : D
-      // 5 : R
-
-
 
 
 #ifdef WITH_T_SPIN
@@ -464,10 +523,12 @@ int main(int argc, char** argv)
       ChelDistributions.Print(couT);
 	
       // set these variables accordingly to normalize distributions to total cross section
-      double norm[4] = {results[0],  // QCD only
-			results[0]+results[1],  // QCD + PHI,
-			0.0,  // ???
-			1.0}; // NLO;
+      double norm[4] = {
+	1.0,  // QCD LO
+	1.0,  // QCD NLO
+	1.0,  // QCD + PHI LO,
+	1.0,  // QCD + PHI NLO
+      };
       CanvasPtr c1 = MakeCanvas("Lepton/Antilepton transversal opening angle [lab frame]",1000,1000);
       DrawDistribution(c1,
       		       PHIT12Distributions,
@@ -475,7 +536,7 @@ int main(int argc, char** argv)
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("D_{T,open}^{lab} [pb/GeV]"),
-      		       WRITE_TO_FILE,
+      		       g_options.rootfile,
       		       PLOT_NLO);      
       CanvasPtr c2 = MakeCanvas("Lepton/Antilepton opening angle",1000,1000);
       DrawDistribution(c2,
@@ -484,7 +545,7 @@ int main(int argc, char** argv)
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("D_{open} [pb/GeV]"),
-      		       WRITE_TO_FILE,
+      		       g_options.rootfile,
       		       PLOT_NLO);
       CanvasPtr c3 = MakeCanvas("CP-odd triple correlation",1000,1000);
       DrawDistribution(c3,
@@ -493,7 +554,7 @@ int main(int argc, char** argv)
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("O_{CP} [pb/GeV]"),
-      		       WRITE_TO_FILE,
+      		       g_options.rootfile,
       		       PLOT_NLO);      
       CanvasPtr c4 = MakeCanvas("Top longitudinal polarization",1000,1000);
       DrawDistribution(c4,
@@ -502,15 +563,18 @@ int main(int argc, char** argv)
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("C_{hel} [pb/GeV]"),
-      		       WRITE_TO_FILE,
+      		       g_options.rootfile,
       		       PLOT_NLO);
       
 #else
       MttDistributions.Print(couT);
       PT1Distributions.Print(couT);
-      Y1Distributions.Print(couT);
-      DYDistributions.Print(couT);
+      PT2Distributions.Print(couT);
       PT12Distributions.Print(couT);
+      Y1Distributions.Print(couT);
+      Y2Distributions.Print(couT);     
+      DYDistributions.Print(couT);
+
       
       // set these variables accordingly to normalize distributions to total cross section
       double norm[4] = {1.0,  // QCD only
@@ -524,7 +588,7 @@ int main(int argc, char** argv)
 		       &norm[0],
 		       string("M_{t#bar{t}} [GeV]"),
 		       string("#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]"),
-		       WRITE_TO_FILE,
+		       g_options.rootfile,
 		       PLOT_NLO);
 
       DoubleCanvasPtr cd0 = MakeDoubleCanvas("Top transverse momentum/rapidity distribution");
@@ -533,10 +597,10 @@ int main(int argc, char** argv)
       			   Y1Distributions,
       			   THDM_1,
       			   &norm[0],
-      			   string("p_{T,t} [GeV]"),string("Y_{t}"),
+      			   string("p_{T,t} [GeV]"),string("y_{t}"),
       			   string("#frac{d#sigma}{dp_{T,t}} [pb/GeV]"),
-      			   string("#frac{d#sigma}{dY_{t}} [pb]"),
-      			   WRITE_TO_FILE, 
+      			   string("#frac{d#sigma}{dy_{t}} [pb]"),
+      			   g_options.rootfile, 
       			   PLOT_NLO);
 
       CanvasPtr c1 = MakeCanvas("Rapidity difference",1000,1000);
@@ -544,9 +608,9 @@ int main(int argc, char** argv)
 		       DYDistributions,
 		       THDM_1,
 		       &norm[0],
-		       string("#Delta Y_{t#bar{t}}"),
-		       string("#frac{d#sigma}{d #Delta Y_{t#bar{t}}} [pb]"),
-		       WRITE_TO_FILE,
+		       string("#Delta y_{t#bar{t}}"),
+		       string("#frac{d#sigma}{d #Delta y_{t#bar{t}}} [pb]"),
+		       g_options.rootfile,
 		       PLOT_NLO);
 
       CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
@@ -556,11 +620,15 @@ int main(int argc, char** argv)
       		       &norm[0],
       		       string("|p_{T,t}+p_{T,#bar{t}}| [GeV]"),
       		       string("#frac{d#sigma}{d|p_{T,t}+p_{T,#bar{t}}|} [pb/GeV]"),
-      		       WRITE_TO_FILE,
+      		       g_options.rootfile,
       		       PLOT_NLO);   
  #endif
 
-      if (fresults) fresults->Close();
+      if (file)
+	{
+	  file->Close();
+	  delete file;
+	}
       TheApp.Run();
     }
   ////////////////////////////////////////////////////////////////////////////////

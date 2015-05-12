@@ -186,8 +186,6 @@ double Integrand_2_2_pdf(double* x, size_t dim, void* arg)
 #endif
 	    }
 	}
-      // this will only be rescaled if the LO matrix elements were evaluated before !
-      // otherwise K = 1
       return  (ip->K)*(res_r-res_d)*CONV_GeV2i_pbarn/mScale2;
     }
   else

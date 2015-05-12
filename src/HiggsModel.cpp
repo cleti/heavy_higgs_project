@@ -126,12 +126,16 @@ void HiggsBoson::SetPropagator(double const& S, bool rescale)
       // rescale effective Higgs-gluon vertex by ratio full vertex/eff. vertex
       // here it is assumed that each scalar propagator is connected to one ggH vertex
       // assumes that d_FH_full and d_FA_full have been set up correctly
-      if (rescale)
-	{
-	  double K = (std::norm(d_FH_full)+std::norm(d_FA_full)/4.0)/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff))/std::pow(4.0*S,4);
-	  d_DenSq *= K;
-	  d_Den   *= std::sqrt(K);
-	}
+      // if (rescale)
+      // 	{
+      // 	  c_double K1 = ((d_FH_full)+4.0*(d_FA_full))/((d_FH_eff)+4.0*(d_FA_eff));
+      // 	  double   K2 = (std::norm(d_FH_full)+4.0*std::norm(d_FA_full))/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff));
+      // 	  d_Den   *= K1;
+      // 	  d_DenSq *= K2;
+      // 	  // PRINT(K);
+      // 	  // PRINT(S);
+      // 	  // exit(1);
+      // 	}
     }
 }
 
@@ -239,15 +243,13 @@ HiggsModel::~HiggsModel()
 
 void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 {
-  // reset
   d_HPref.Reset();
-
   // iterate over d_Bosons and add the individual contributions
   auto last  = std::end(d_Bosons);
   for (auto phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)
     {
       if (!EFF || d_useK) (*phi_i)->SetFormFactors(S,d_mt2,d_mb2);
-      (*phi_i)->SetPropagator(S);
+      (*phi_i)->SetPropagator(S,d_useK);
       c_double const& FHi = (*phi_i)->GetFH(EFF);
       c_double const& FAi = (*phi_i)->GetFA(EFF);
       c_double const& Di  = (*phi_i)->GetPropagator();
@@ -259,7 +261,6 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       double At2i = std::pow(Ati,2);
       double Bt2i = std::pow(Bti,2);
 
-      
       // prefactors in PHIxQCD amplitudes
       // these are just the sum of individual phi contributions
       d_HPref.At_fH_re += Ati*(FHi*Di).real();
@@ -290,7 +291,7 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       for (auto phi_j = phi_i+1; phi_j!=last; ++phi_j)
 	{
 	  if (!EFF || d_useK) (*phi_j)->SetFormFactors(S,d_mt2,d_mb2);
-	  (*phi_j)->SetPropagator(S);
+	  (*phi_j)->SetPropagator(S,d_useK);
 
 	  c_double const& FHj = (*phi_j)->GetFH(EFF);
 	  c_double const& FAj = (*phi_j)->GetFA(EFF);

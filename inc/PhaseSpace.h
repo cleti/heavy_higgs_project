@@ -78,7 +78,7 @@ class PS_2: PS_Named {
   //! read only access to second proton 4-momentum
   FV const& P2() const { return P[1]; }
   double const& get_rs()    const { return d_rs; }
-  double get_s()            const { return d_rs*d_rs; }
+  double get_s()            const { return std::pow(d_rs,2); }
   void set_rs(double const& rs) { d_rs=rs;}
   //! not used
   bool toggle_decay() { return d_decay = !d_decay; }
@@ -95,7 +95,7 @@ class PS_2: PS_Named {
   virtual void print() const;
   virtual void FillDistributions(
 				 std::vector<HistArray*>& dist,
-				 int id,
+				 H_TYPE id,
 				 double const& wgt,
 				 double const& mScale=1.0) const = 0;
 
@@ -150,7 +150,7 @@ class PS_2_1: public PS_2 {
   void print() const;
   void FillDistributions(
 			 std::vector<HistArray*>& dist,
-			 int id,
+			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
@@ -247,7 +247,7 @@ class PS_2_2: public PS_2 {
 	   double const& y, 
 	   double const& phi=0.0);
   //! New phase space setting: compute c.m.e rs = sqrt(s_part) and scattering angles y, phi and all derived quantities from current set of 4-vectors. 
-  int set();
+  int set(double const& x = 0.0);
   ////////////////////////////////////////
 
   int set_child(int i, PS_2* child) { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} if (child->set_parent(this)) { d_child[i] = child; return 1;} return 0; }
@@ -255,7 +255,7 @@ class PS_2_2: public PS_2 {
   void print() const;
   void FillDistributions(
 			 std::vector<HistArray*>& dist,
-			 int id,
+			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
@@ -355,7 +355,7 @@ class PS_2_3: public PS_2 {
   void print() const;
   void FillDistributions(
 			 std::vector<HistArray*>& dist,
-			 int id,
+			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };

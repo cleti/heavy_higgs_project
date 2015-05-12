@@ -104,7 +104,7 @@ void PS_2_1::print() const
 
 void PS_2_1::FillDistributions(
 			       std::vector<HistArray*> & dist,
-			       int id,
+			       H_TYPE id,
 			       double const & wgt,
 			       double const& mScale) const
 {
@@ -283,7 +283,7 @@ int PS_2_2::set(double const& rs,
   return 1;
 }
 
-int PS_2_2::set()
+int PS_2_2::set(double const& x)
 {
   // this function assumes that the vectors p1,p2,k1,k2 have been set up correctly
   // no checks at all !!!
@@ -295,7 +295,7 @@ int PS_2_2::set()
       return 0;
     }
   d_rs      = sqrt(s);
-
+  d_x       = x;
   double m1sq = sp(k[0],k[0]);
   double m2sq = sp(k[1],k[1]);
   if (s<=4.0*std::max(m1sq,m2sq))
@@ -350,7 +350,7 @@ void PS_2_2::print() const
 }
 void PS_2_2::FillDistributions(
 			       std::vector<HistArray*> & dist,
-			       int id,
+			       H_TYPE id,
 			       double const& wgt,
 			       double const& mScale) const
 {
@@ -397,7 +397,19 @@ void PS_2_2::FillDistributions(
   dist[0]->FillOne(id,obs_M12(K1,K2) *mScale,wgt);
   dist[1]->FillOne(id,obs_PT(K1)     *mScale,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale,wgt);
+
+  // transverse mom. of ttbar system is zero except for the unintegrated dipoles!
+  // if (d_x<Cuts::COLL_CUT)
+  //   {
+  double PT12 = obs_PT12(K1,K2)*mScale;
+  dist[3]->FillOne(id,PT12,wgt);
+  if (PT12>1)
+    {
+      PRINT(PT12);
+      this->print();
+      EXIT(1);
+    }
+    // }
   // these are sensitive to boosts algon z-direction (=beam direction)
   dist[4]->FillOne(id,obs_Y(K1)    ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);
@@ -556,7 +568,7 @@ void PS_2_3::print() const
 
 void PS_2_3::FillDistributions(
 			       std::vector<HistArray*> & dist,
-			       int id,
+			       H_TYPE id,
 			       double const & wgt,
 			       double const& mScale) const
 {
@@ -580,11 +592,22 @@ void PS_2_3::FillDistributions(
   FV K2 = k[1];
   boost_to_lab_frame.apply(K1);
   boost_to_lab_frame.apply(K2);
+
+  // if (obs_PT12(K1,K2)*mScale < 1.0)
+  //   {
+  //     PRINT(obs_PT12(K1,K2)*mScale);
+  //     PRINT(k[2][0]*mScale); // gluon energy
+  //     PRINT((p[0][0]*k[2][0]-sp(p[0],k[2]))/(p[0][0]*k[2][0]));  // gluon scattering angle
+  //   }
   
   dist[0]->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
   dist[1]->FillOne(id,obs_PT(K1)*mScale    ,wgt);
   // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  dist[3]->FillOne(id,obs_PT12(K1,K2)*mScale ,wgt);
+  double PT12 = obs_PT12(K1,K2)*mScale;
+  //if (PT12>Cuts::SOFT_CUT)
+    {
+      dist[3]->FillOne(id,PT12,wgt);
+    }
   // need lab frame vectors for these
   dist[4]->FillOne(id,obs_Y(K1)     ,wgt);
   // dist[4]->FillOne(id,obs_Y(K2)     ,wgt);

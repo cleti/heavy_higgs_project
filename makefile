@@ -1,4 +1,6 @@
 
+
+
 ROOTFLAGS   = $(shell root-config --cflags)
 ROOTLIBS    = $(shell root-config --libs)
 QCDLOOPLIBS = ext/ql/libqcdloop.a ext/ff/libff.a  -lgfortran
@@ -13,12 +15,21 @@ PERF2-FLAGS = -m64 -Ofast -flto -march=native -funroll-loops
 #DEP-PATH = .dep
 LIB-PATH = lib
 BIN-PATH = bin
-CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include $(DEBUG-FLAGS) -fopenmp
-### -DDUMP_DIPOLE_PS 
+CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include -fopenmp
+
+DEBUG ?= 1
+ifeq ($(DEBUG), 1)
+    CC-FLAGS += $(DEBUG-FLAGS)
+else 
+    CC-FLAGS += $(PERF2-FLAGS)
+endif
+
 
 SRC-PATH = src
 CC = g++
 CPP = /usr/lib/cpp
+
+
 
 
 ####################################################################
@@ -53,6 +64,7 @@ $(LIB-PATH)/%.o: $(SRC-PATH)/%.cpp
 ###################### executables #################################
 ####################################################################
 
+.PHONY: exec
 exec:    $(BIN-PATH)/Test  $(BIN-PATH)/Integrate_pp_ttX $(BIN-PATH)/Integrate_pp_ttX_S  $(BIN-PATH)/Integrate_pp_ttX_withTdecay  $(BIN-PATH)/Integrate_pp_HX  $(BIN-PATH)/EvalSI
 
 
@@ -67,10 +79,10 @@ $(BIN-PATH)/Integrate_pp_HX: $(LIB-PATH)/Integrate_pp_HX.o $(LIBS_PP_HX)
 	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
 
 $(BIN-PATH)/Test: $(LIB-PATH)/Test.o $(LIBS_COMMON) $(LIBS_PP_TTX) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS) $(BOOSTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
 
 $(BIN-PATH)/Test_S: $(LIB-PATH)/Test_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS) $(BOOSTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl -lLHAPDF $(ROOTLIBS)
 
 $(BIN-PATH)/EvalSI: $(LIB-PATH)/EvalSI.o 
 	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(LOOPTOOLS) -lgsl
@@ -81,11 +93,11 @@ $(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/pVEGAS.o
 ####################################################################
 
 ### targets without reference to a file
-.PHONY: clean all exec doc
-
+.PHONY: doc
 doc:
 	doxygen Doxyfile
 
+.PHONY: clean
 clean:
 	-rm -f $(BIN-PATH)/*
 	-rm -f $(LIB-PATH)/*.o

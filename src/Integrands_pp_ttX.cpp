@@ -305,7 +305,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 // 	      (*dist)[9]->FillOne(H_LO_PHI,obs_M12(k1,k2)*mScale,res_b*vwgt);
 // #endif
 	    }
-	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_V,res_v*vwgt,mScale);//res_v*
+	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_PHI_V,res_v*vwgt,mScale);//res_v*
 	}
       ////////////////////////////////////////////////////////////////////////////
       return (res_b+res_v);
@@ -381,7 +381,7 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 	  ps->P2() = 1.0/x[1] * (ps->p2());
 
 	  double vwgt  = ip->cmp_v_weight();
-	  ps->FillDistributions(*dist,H_NLO_ID,(res_d)*vwgt,mScale);
+	  ps->FillDistributions(*dist,H_NLO_PHI_ID,(res_d)*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////   
 
@@ -432,6 +432,7 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 		  double vwgt  = ip->cmp_v_weight();
 		  ps_x1.P1() = (ps->P1());
 		  ps_x1.P2() = (ps->P2());
+		  ps_x1.set_x(x[3]);
 		  ps_x2 = ps_x1;
 	      
 		  dip_boost.set_boost_z(x[3],0);
@@ -442,8 +443,8 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 		  dip_boost.apply(ps_x2.k1());
 		  dip_boost.apply(ps_x2.k2());
 	      
-		  ps_x1.FillDistributions(*dist,H_NLO_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
-		  ps_x2.FillDistributions(*dist,H_NLO_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
+		  ps_x1.FillDistributions(*dist,H_NLO_PHI_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
+		  ps_x2.FillDistributions(*dist,H_NLO_PHI_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
 		}
 	      ////////////////////////////////////////////////////////////////////////////  
 	      
@@ -525,7 +526,7 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 	  ps->P1() = 1.0/x[0] * (ps->p1());
 	  ps->P2() = 1.0/x[1] * (ps->p2());
 	  vwgt  = ip->cmp_v_weight();
-	  ps->FillDistributions(*dist,H_NLO_R,res_r_gg*vwgt,mScale);
+	  ps->FillDistributions(*dist,H_NLO_PHI_R,res_r_gg*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       
@@ -566,14 +567,14 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
   double s_hadr = ip->s_hadr;
   // partonic c.m.e.
   double s_part = s_hadr*x[0]*x[1];
-
+  
   // make a technical cut on the angle between p1/p2 and p3 
   if ( ps->set( sqrt(s_part),x[2],0.0,x[3],x[4],x[5]))
     {
       // technical cuts on soft/collinear phase space
       if (fabs(x[2])  > Cuts::COLL_CUT) return 0.0;
       if (ps->p3()[0] < Cuts::SOFT_CUT) return 0.0;
-
+      
       // flux factor 1/(2*s_part), factor 2 pi from trivial integration over phi
       double jac_flux = TwoPi*ps->get_wgt()/(2.0*s_part);
       // need VEGAS weight explicitly for the uint. dipoles later
@@ -601,7 +602,7 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
       
       double res_r_qq = Eval_R_QQ(*ps,*hm,flags)*cf_qq*jac_flux*qq_pdf;
       double res_r_qg = Eval_R_QG(*ps,*hm,flags)*cf_qg*jac_flux*qg_pdf;
-     
+
       // DISTRIBUTIONS ///////////////////////////////////////////////////////////
       if (ip->collect_dist)
 	{
@@ -614,12 +615,11 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
 	  ps->P2() = 1.0/x[1] * (ps->p2());
 	  vwgt  = ip->cmp_v_weight();
 	  // fill qq and qg weights
-	  ps->FillDistributions(*dist,H_NLO_R,(res_r_qq+res_r_qg)*vwgt,mScale);
+	  ps->FillDistributions(*dist,H_NLO_PHI_R,(res_r_qq+res_r_qg)*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       double res_d_qg = Eval_UID_QG (*ps,*hm,flags,-vwgt*cf_gg*jac_flux*qg_pdf,dist)*cf_gg*jac_flux*qg_pdf;
-
-      
+  
       ////////////////////////////////////////////////////////////////////////////
       //// crossed phase space ///////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
@@ -628,14 +628,25 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
       // DISTRIBUTIONS ///////////////////////////////////////////////////////////
       if (ip->collect_dist)
 	{
-	  ps->FillDistributions(*dist,H_NLO_R,res_r_gq*vwgt,mScale);
+	  ps->FillDistributions(*dist,H_NLO_PHI_R,res_r_gq*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       double res_d_gq = Eval_UID_QG (*ps,*hm,flags,-vwgt*cf_gg*jac_flux*gq_pdf,dist)*cf_gg*jac_flux*gq_pdf;
       ps->swap_initial_state();    
       ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
-      
+
+      // if (obs_PT12(ps->k1(),ps->k2())*mScale < 0.1)
+      // 	{
+      // 	  std::cout << "\n=================================================================";
+      // 	  PRINT(obs_PT12(ps->k1(),ps->k2())*mScale);
+      // 	  PRINT(res_r_qq);
+      // 	  PRINT(res_r_qg);
+      // 	  PRINT(res_d_qg);
+      // 	  PRINT(res_r_gq);
+      // 	  PRINT(res_d_gq);
+      // 	  std::cout << "=================================================================\n";
+      // 	}
       return res_r_qq + (res_r_qg-res_d_qg) + (res_r_gq-res_d_gq);
     }
   else

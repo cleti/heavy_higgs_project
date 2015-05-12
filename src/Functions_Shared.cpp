@@ -24,6 +24,7 @@ struct opt g_options = {
   63,//int int_flags;
   10000000,//int n_calls;
   0.0,//double ren_scale;
+  1.0,//double ren_scale_mult;  
   14.0,// double cme
   173.34,//double mt;
   4.75,//double mb; 
@@ -34,8 +35,12 @@ struct opt g_options = {
   false,//bool tdecay;
   false,//bool useK;
   false,//bool logfile;
+  "results/",//string logfile_path
   false,//bool rootfile;
-  0//intverb_level;
+  "results/",//string rootfile_path
+  false,//bool qcdfile;
+  "qcd/",//string qcdfile_path  
+  0//int verb_level;
 };
 
 
@@ -44,6 +49,7 @@ struct option const longopts[] = {
   {"int_flags", required_argument, NULL, 'I'},
   {"n_calls", required_argument, NULL, 'N'},
   {"ren_scale", required_argument, NULL, 'R'},
+  {"ren_mult", required_argument, NULL, 'r'},  
   {"cme", required_argument, NULL, 'E'},
   {"mt", required_argument, NULL, 'M'},
   {"mb", required_argument, NULL, 'm'},  
@@ -55,8 +61,9 @@ struct option const longopts[] = {
   {"dist", no_argument, NULL, 'D'},
   {"t_decay", no_argument, NULL, 't'},
   {"use_Kfactor", no_argument, NULL, 'K'},
-  {"logfile", no_argument, NULL, 'L'},
-  {"rootfile", no_argument, NULL, 'F'},
+  {"logfile", optional_argument, NULL, 'L'},
+  {"rootfile", optional_argument, NULL, 'F'},
+  {"QCD", optional_argument, NULL, 'Q'},  
   {"info", no_argument, NULL, 'i'},
   {NULL, 0, NULL, 0}
 };
@@ -107,7 +114,7 @@ usage (int status)
 
 void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 {
-  const char* arglist = "M:I:N:R:E:m:V:H:T:P:v:DtLFKi";
+  const char* arglist = "M:I:N:R:r:E:m:V:H:T:P:v:DtLFQKi";
   std::string arg;
 
   int pos0=0,pos1=0,c1=0;
@@ -117,6 +124,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
       switch (c1)
 	{
 	case 'H':
+	  // Do nothing here. The Higgs bosons are set up in the second loop.
 	  break;
 	case 'M':
   	  options.mt = fabs(atof(optarg));
@@ -133,6 +141,9 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	case 'R':
 	  options.ren_scale = fabs(atof(optarg));
 	  break;
+	case 'r':
+	  options.ren_scale_mult = fabs(atof(optarg));
+	  break;	  
 	case 'E':
 	  options.cme = fabs(atof(optarg));
 	  break;
@@ -155,10 +166,34 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	  options.useK  = !options.useK;
 	  break;	  
 	case 'L':
-	  options.logfile  = !options.logfile;
+	  options.logfile  = true;
+	  // ! optional arguments must be given with '--long_opt=arg'
+	  if (optarg)
+	    {
+	      g_options.logfile_path = optarg;
+	      // attach trailing '/' if not present
+	      if (g_options.logfile_path.back() != '/') g_options.logfile_path += '/';
+	    }
 	  break;
 	case 'F':
-	  options.rootfile  = !options.rootfile;
+	  options.rootfile  = true;
+	  // ! optional arguments must be given with '--long_opt=arg'
+	  if (optarg)
+	    {
+	      g_options.rootfile_path = optarg;
+	      // attach trailing '/' if not present
+	      if (g_options.rootfile_path.back() != '/') g_options.rootfile_path += '/';
+	    }
+	  break;
+	case 'Q':
+	  options.qcdfile  = true;
+	  // ! optional arguments must be given with '--long_opt=arg'
+	  if (optarg)
+	    {
+	      g_options.qcdfile_path = optarg;
+	      // attach trailing '/' if not present
+	      if (g_options.qcdfile_path.back() != '/') g_options.qcdfile_path += '/';
+	    }
 	  break;	  
 	case 'v':
 	  options.verb_level  = atoi(optarg);
@@ -283,6 +318,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
   
   // set the scale to the mean value of the Higgs masses if no explicit user input was provided
   double MU = options.ren_scale;
+  // if no scale is given explicitly, compute the mean value of Higgs masses time 1/2
   if (MU==0.0)
     {
       int k=0;
@@ -293,15 +329,125 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	}
       MU *= 0.5;
     }
-
+  // use the multiplicator to change the obtained scale (handy for scale variation)
+  MU *= g_options.ren_scale_mult;
+  
   hm.SetMUR(MU);
   hm.SetMUF(MU);
+
   
-  
-  std::cout << std::setprecision(options.precision);
+  std::cout << std::setprecision(g_options.precision);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
+// filename NLO_QCD_??TeV_mu???.txt
+int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filename)
+{
+  // try to open the file
+  if (!dist)
+    {
+      std::cout << std::endl << " Got a 0-pointer.." << std::endl;
+      return 0;
+    }
+  ifstream file;
+  file.open(path+filename);
+  while (!file.is_open())
+    {
+      std::cout << std::endl << " Could not open file '" << path+filename;
+      std::cout << "' with QCD data. Enter new path: " << std::endl; 
+      std::cout << " >> "; std::cin >> g_options.qcdfile_path;
+      // attach trailing '/' if not present
+      if (g_options.qcdfile_path.back() != '/') g_options.qcdfile_path += '/';
+      file.open(path+filename);
+    }
+  std::cout << std::endl << " Reading NLO QCD from file \'" << path+filename << "\' ..." << std::endl;
+  
+  std::string sbuff;
+  // iterate over all observables
+  for (unsigned i=0;i<dist->size();++i)
+    {
+      // pick QCD histogram
+      TH1D *hist = (*(*dist)[i])[H_LO_QCD];
+      // fill QCD histogram
+      double bin;
+      double val;
+     
+      int bincount = 0;
+      int binmax   = hist->GetNbinsX();
+      PRINT(hist);
+      PRINT(binmax);
+      while(1)
+	{
+	  if (bincount>binmax+1)
+	    {
+	      std::cout << std::endl << " Error! ";
+	      std::cout << " Histogram dimension does not match input data!. " << std::endl;
+	      return 0;
+	    }
+	  if (file.good())
+	    {
+	      std::getline(file,sbuff);
+	      // remove leading whitespace
+	      while (sbuff.front() == ' ' || sbuff.front() == '\t')
+		{
+		  sbuff.erase(std::begin(sbuff));
+		}
+	      // inspect line
+	      if (sbuff.size()>0) 
+		{
+		  if (sbuff.front() == '#')
+		    { // comment signals next distribution: cout nbins and reset, print comment
+		      if (bincount>0)
+			{
+			  std::cout << " nbins = " << bincount << std::endl;
+			  std::cout << sbuff << std::endl;
+			  bincount = 0;
+			  break;
+			}
+		      std::cout << sbuff << std::endl;
+		    }
+		  else
+		    { // not a comment: extract numbers, start counting bins
+		      ++bincount;
+		      std::stringstream iss(sbuff);
+		      iss >> bin;
+		      iss >> val;
+		      std::cout << bincount << " " << bin << " " << val << std::endl;
+		      if (fabs(bin-hist->GetBinLowEdge(bincount))>1e-4)
+			{
+			  std::cout << std::endl << " Error! ";
+			  std::cout << " hist: " << hist->GetBinLowEdge(bincount) << std::endl;
+			  std::cout << " Input data does not match historgam binning!. " << std::endl;
+	      return 0;
+			}
+		      hist->SetBinContent(bincount,val);
+		    }
+		}
+	    }
+	  else
+	    {
+	      std::cout << std::endl << " Error! ";
+	      if (file.eof())
+		{
+		  std::cout << " End-of-File reached on input operation. " << std::endl;
+		  return 1;
+		}
+	      if (file.fail())
+		{
+		  std::cout << " Logical error on i/o operation. " << std::endl;
+		  return 0;
+		}
+	      if (file.bad())
+		{
+		  std::cout << " Read/writing error on i/o operation. " << std::endl;
+		  return 0;
+		};
+	    }
+	}
+    }
+  return 1;
+}
 
 
 
@@ -370,17 +516,6 @@ DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width, int height)
 }
 
 
-// sum weights in the histogram
-static double GetIntegral(TH1D* hist)
-{
-  double sum = 0.0;
-  int n = hist->GetNbinsX();
-  for (int i=1;i<=n;++i)
-    {
-      sum += (hist->GetBinContent(i))*(hist->GetBinWidth(i));
-    }
-  return sum;
-}
 
 
 void DrawDistribution(
@@ -416,19 +551,19 @@ void DrawDistribution(
       canvas.p1_1->Draw();
       canvas.p1_1->cd();
 
-      // 0 contains LO QCD
-      histograms[0]->Smooth(1);
-      // 1 conatins LO QCD + LO PHI^2 + LO PHIxQCD
-      histograms[1]->Add(histograms[0]);
+      // add LO QCD contribution to deltaNLO QCD
+      histograms[H_NLO_QCD]->Add(histograms[H_LO_QCD]);
       if (NLO)
 	{
-	  // 3 conatins complete NLO
-	  histograms[3]->Add(histograms[1]);
-	  // 4 conatins NLO virt.
-	  histograms[3]->Add(histograms[4]);
-	  // 5 contains NLO real
-	  histograms[5]->Smooth(1);
-	  histograms[3]->Add(histograms[5]);
+	  // add NLO QCD to LO PHI histogram
+	  histograms[H_LO_PHI]->Add(histograms[H_NLO_QCD]);
+	  // add NLO PHI virt.
+	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_V]);
+	  // add NLO PHI int. dip.
+	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_ID]);
+	  // add NLO PHI real
+	  histograms[H_NLO_PHI_R]->Smooth(1);
+	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_R]);
 	  
 	}
 
@@ -476,7 +611,7 @@ void DrawDistribution(
       leg->AddEntry(histograms[0] ,"LO QCD","L");
       if (THDM.NBosons()>1)
 	{
-	  leg->AddEntry(histograms[1] ,"LO QCD + #Phi_{1} + #Phi_{2} ","L");
+	  leg->AddEntry(histograms[1] ,"LO QCD + #Phi_{2} + #Phi_{3} ","L");
 	}
       else
 	{
@@ -486,7 +621,7 @@ void DrawDistribution(
 	{
 	  if (THDM.NBosons()>1)
 	    {
-	      leg->AddEntry(histograms[3] ,"NLO QCD + #Phi_{1} + #Phi_{2} ","L");
+	      leg->AddEntry(histograms[3] ,"NLO QCD + #Phi_{2} + #Phi_{3} ","L");
 	    }
 	  else
 	    {
@@ -496,11 +631,6 @@ void DrawDistribution(
       leg->Draw("same");
 
       //////////////////////////////////////////////////////
-      std::cout << std::endl;
-      std::cout << histograms[0]->GetName() << std::endl;
-      std::cout << " I[LO]   = " << GetIntegral(histograms[0]) << std::endl;
-      std::cout << " I[LO*]  = " << GetIntegral(histograms[1]) << std::endl;
-      std::cout << " I[NLO]  = " << GetIntegral(histograms[3]) << std::endl;
       //////////////////////////////////////////////////////
       canvas.c->cd(CD); //lower pad contains ratio NLO/LO
       canvas.p1_2->Draw();

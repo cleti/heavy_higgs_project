@@ -228,11 +228,11 @@ int plot_NLO_corrections_B()
 		     );
 
   leg1->AddEntry(graph_LO    ,"LO","L");
-  leg1->AddEntry(graph_NLO   ,"NLO (method B)","L");
+  leg1->AddEntry(graph_NLO   ,"NLO (eff), rescaled #delta_{NLO}","L");
   leg1->AddEntry(graph_NLO_gg,"K #times #delta_{NLO} (gg) ","L");
   leg1->AddEntry(graph_NLO_qg,"K #times #delta_{NLO} (qg)  #times 10 ","L");
   leg1->AddEntry(graph_NLO_qq,"K #times #delta_{NLO} (q#bar{q})  #times 100","L");
-  leg1->AddEntry(graph_NLO,"","");
+  //leg1->AddEntry(graph_NLO,"","");
 
   //graph_LO_scale->Draw("A3");
   // graph_NLO_scale->Draw("A3");

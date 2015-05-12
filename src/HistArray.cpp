@@ -24,11 +24,11 @@ HistArray::HistArray(int nbinsx,
 		     std::string const& name,
 		     bool SUMW2):
   d_histograms({TH1D(cat("LO_QCD_",d_ID).c_str(),"",nbinsx,xlow,xup),
-	TH1D(cat("LO_INT_",d_ID).c_str(),"",nbinsx,xlow,xup),
+	TH1D(cat("NLO_QCD_",d_ID).c_str(),"",nbinsx,xlow,xup),
 	TH1D(cat("LO_PHI_",d_ID).c_str(),"",nbinsx,xlow,xup),
-	TH1D(cat("NLO_V_",d_ID).c_str() ,"",nbinsx,xlow,xup),
-	TH1D(cat("NLO_D_",d_ID).c_str() ,"",nbinsx,xlow,xup),
-	TH1D(cat("NLO_R_",d_ID).c_str() ,"",nbinsx,xlow,xup)}),
+	TH1D(cat("NLO_PHI_V_",d_ID).c_str() ,"",nbinsx,xlow,xup),
+	TH1D(cat("NLO_PHI_D_",d_ID).c_str() ,"",nbinsx,xlow,xup),
+	TH1D(cat("NLO_PHI_R_",d_ID).c_str() ,"",nbinsx,xlow,xup)}),
   d_active(BOOST_BINARY(11 111 1)),
   d_active_t(0),
   d_name(name),
@@ -47,45 +47,90 @@ HistArray::HistArray(int nbinsx,
   d_ID++;
 }
 
-void HistArray::Normalize(const double& mScale)
+void HistArray::Normalize(const double& mScale, int verb)
 {
   double binc = 0.0; // temp
   double fmass= std::pow(mScale,d_mass_dim);
-  std::cout << "\n Normalizing: " << d_name;
-  std::cout << "\n   mass: " << d_mass_dim << " -> " << fmass << std::endl;  
+  if (verb>1)
+    {
+      std::cout << "\n Normalizing: " << d_name;
+      std::cout << "\n   mass: " << d_mass_dim << " -> " << fmass << std::endl;
+    }
   for (unsigned i=0;i<NHIST;i++)
     {
-      for (int j=1; j<=d_histograms[i].GetNbinsX(); ++j)
+      // normalize only activated histograms
+      if (IsActive(i))
 	{
-	  // ROOT counts bins from 1 to NBinsX, 0 and NBinsX+1 are underflow and overflow
-	  binc = d_histograms[i].GetBinContent(j);
-	  d_histograms[i].SetBinContent(j,binc*fmass/(d_histograms[i].GetBinWidth(j)));
+	  for (int j=1; j<=d_histograms[i].GetNbinsX(); ++j)
+	    {
+
+	      // ROOT counts bins from 1 to NBinsX, 0 and NBinsX+1 are underflow and overflow
+	      binc = d_histograms[i].GetBinContent(j);
+	      d_histograms[i].SetBinContent(j,binc*fmass/(d_histograms[i].GetBinWidth(j)));
+	    }
+	  if (verb>1) std::cout << "  hist " << i <<  " done..\n";
 	}
-      std::cout << "  hist " << i <<  " done..\n";
+      else
+	{
+	  if (verb>1) std::cout << "  hist " << i <<  " deactivated!\n";
+	}
     }
-  std::cout << std::endl;
+  if (verb>1) std::cout << std::endl;
 }
+
+
 
 void HistArray::Print(std::ostream& ost)
 {
   ost << std::endl;
-  ost << d_name << std::endl;
-  ost << std::setw(20) << "Bin low edge" << std::setw(22) << "QCD [LO]" << std::setw(22) << "QCD+PHI [LO]" << std::setw(22) << "QCD+PHI [NLO]" << std::endl << std::endl;
+  ost << "#  "  << d_name << std::endl;
+  ost << "#  " << std::setw(17) << "Bin low edge" << std::setw(22) << "QCD [LO]" << std::setw(22) << "QCD+PHI [LO]" << std::setw(22) << "QCD+PHI [NLO]" << std::endl << std::endl;
 
+  // integrals
+  double I_QCD = 0.0;
+  double I_QCD_PHI_LO = 0.0;
+  double I_QCD_PHI_NLO = 0.0;
+
+  // current bin content
   double QCD = 0.0;
-  double QCDPHI = 0.0;
-  double NLO = 0.0;
-      for (int i=1;i<=d_histograms[0].GetNbinsX()+1;++i)
+  double QCD_PHI_LO = 0.0;
+  double QCD_PHI_NLO = 0.0;
+
+  // underflow bin
+  QCD         = d_histograms[0].GetBinContent(0);
+  QCD_PHI_LO  = QCD + d_histograms[1].GetBinContent(0);
+  QCD_PHI_NLO = QCD_PHI_LO
+    + d_histograms[3].GetBinContent(0)
+    + d_histograms[4].GetBinContent(0)
+    + d_histograms[5].GetBinContent(0);
+  ost << std::setw(20) << std::setprecision(5)  << "" << "  ";
+  ost << std::setw(20) << std::setprecision(10) << QCD    << "  ";
+  ost << std::setw(20) << std::setprecision(10) << QCD_PHI_LO << "  ";
+  ost << std::setw(20) << std::setprecision(10) << QCD_PHI_NLO << std::endl;
+  for (int i=1;i<=d_histograms[0].GetNbinsX()+1;++i)
+    {
+      // get current bin values
+      QCD         = d_histograms[0].GetBinContent(i);
+      QCD_PHI_LO  = QCD + d_histograms[1].GetBinContent(i);
+      QCD_PHI_NLO = QCD_PHI_LO
+	+ d_histograms[3].GetBinContent(i)
+	+ d_histograms[4].GetBinContent(i)
+	+ d_histograms[5].GetBinContent(i);
+      // update integral values (ignore overflow bin)
+      if (i<=d_histograms[0].GetNbinsX())
 	{
-	  QCD = d_histograms[0].GetBinContent(i);
-	  QCDPHI = QCD + d_histograms[1].GetBinContent(i);
-	  NLO = QCDPHI + d_histograms[3].GetBinContent(i) + d_histograms[4].GetBinContent(i) + d_histograms[5].GetBinContent(i);
-	  ost << std::setw(20) << std::setprecision(5)  << d_histograms[0].GetBinLowEdge(i) << "  ";
-	  ost << std::setw(20) << std::setprecision(10) << QCD    << "  ";
-	  ost << std::setw(20) << std::setprecision(10) << QCDPHI << "  ";
-	  ost << std::setw(20) << std::setprecision(10) << NLO    << std::endl;
+	  I_QCD         += QCD*d_histograms[0].GetBinWidth(i);
+	  I_QCD_PHI_LO  += QCD_PHI_LO*d_histograms[1].GetBinWidth(i);
+	  I_QCD_PHI_NLO += QCD_PHI_NLO*d_histograms[3].GetBinWidth(i);
 	}
-      ost << std::endl;
+      // print bin values
+      ost << std::setw(20) << std::setprecision(5)  << d_histograms[0].GetBinLowEdge(i) << "  ";
+      ost << std::setw(20) << std::setprecision(10) << QCD    << "  ";
+      ost << std::setw(20) << std::setprecision(10) << QCD_PHI_LO << "  ";
+      ost << std::setw(20) << std::setprecision(10) << QCD_PHI_NLO    << std::endl;
+    }
+  ost << std::endl;
+  ost << "#  " << std::setw(17) << "Integral: " << std::setw(22) << I_QCD << std::setw(22) << I_QCD_PHI_LO << std::setw(22) << I_QCD_PHI_NLO << std::endl << std::endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +155,7 @@ double DIST_A_U =  1.0;
 HistArray MttDistributions(33,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
 HistArray PT1Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,t} distribution");
 HistArray PT2Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,#bar{t}} distribution");
-HistArray PT12Distributions(15,0.0,750.0,1,"p_{T,t+#bar{t}} distribution");
+HistArray PT12Distributions(10,0.0,500.0,1,"p_{T,t+#bar{t}} distribution");
 HistArray Y1Distributions(14,DIST_Y_L,DIST_Y_U,0,"#eta_{t} distribution");
 HistArray Y2Distributions(14,DIST_Y_L,DIST_Y_U,0,"#eta_{#bar{t}} distribution");
 HistArray DYDistributions(14,DIST_Y_L,DIST_Y_U,0,"#Delta |y| distribution");
@@ -147,7 +192,7 @@ double obs_PT(FV const& k)
 // transverse momentum of two particle system |k_{T,1}+k_{T,2}| 
 double obs_PT12(FV const& k1, FV const& k2)
 {
-  return sqrt(pow(k1[1]-k2[1],2)+pow(k1[2]-k2[2],2)); 
+  return sqrt(pow(k1[1]+k2[1],2)+pow(k1[2]+k2[2],2)); 
 }
 // pseudo-rapidity
 double obs_Y(FV const& k)

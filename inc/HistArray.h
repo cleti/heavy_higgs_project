@@ -24,12 +24,21 @@
 typedef double (*OBS)(FV const&);
 
 
-
-#define H_LO_QCD  0
-#define H_LO_PHI  1
-#define H_NLO_V   3
-#define H_NLO_ID  4
-#define H_NLO_R   5
+enum H_TYPE
+  {
+    H_LO_QCD    =  0,
+    H_NLO_QCD   =  1,
+    H_LO_PHI    =  2,
+    H_NLO_PHI_V =  3,
+    H_NLO_PHI_ID=  4,
+    H_NLO_PHI_R =  5
+  };
+/* #define H_LO_QCD      0 */
+/* #define H_NLO_QCD     1 */
+/* #define H_LO_PHI      2 */
+/* #define H_NLO_PHI_V   3 */
+/* #define H_NLO_PHI_ID  4 */
+/* #define H_NLO_PHI_R   5 */
 
 // stores a histogram for Born(QCD), Born(INT+PHI), (empty), virtual, int. dipoles and real corrections
 #define NHIST 6
@@ -107,7 +116,7 @@ class HistArray {
     \param wgt weight to be added to the respective bin
   */
   
-  void FillOne(unsigned i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
+  void FillOne(H_TYPE i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
   //! draw all histograms into the currently selected canvas
   /*!
     \param opt ROOT drawing options
@@ -122,7 +131,7 @@ class HistArray {
   /*!
     \param mScale if dimensionful observables have been normalized to mass scale mScale this can be used to restore the original mass scale (provided d_mass_dim was set up correctly)
   */
-  void Normalize(const double& mScale=1.0);
+  void Normalize(const double& mScale=1.0, int verb = 0);
 
   void Print(std::ostream& ost);
 };

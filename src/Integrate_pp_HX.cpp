@@ -36,12 +36,6 @@ extern "C" {
 
 int& int_flags = g_options.int_flags;
 
-// Liebe Gudrun, liebe Anna,
-// ich hoffe ihr hattet schöne Ostertage. Meine Brüder und ich waren jetzt auch seit längerer Zeit mal wieder alle zusammen in Römerberg und haben da ein schönes Wochenende verbracht.
-// Meine Tage in Aachen sind jetzt tatsächlich gezählt, ich bin nur noch im April vertraglich an die Uni dort gebunden und werden dann Anfang Mai meinen Umzug nach Weinheim komplettieren. Ich hoffe, dass ich auch bis dahin meine Dissertation fertig habe und abgeben kann und dann nur noch einmal zur Verteidigung nach Aachen muss. In Weinheim habe ich ja bereits eine Wohnung zusammen mit meiner Freundin, die dort in der Nähe ihr Referendariat macht, und ich werde dann auch in der Gegend auch Jobsuche gehen. Da ich von der Uni und der Grundlagenforschung nun genug habe werde ich auch mein Glück in der Privatwirtschaft versuchen.
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -76,7 +70,10 @@ int main(int argc, char** argv)
   PRINTS(couT,run_id.str());
 
   // create the PDFs
-  LHAPDF::PDF* pdf_ct10nlo = LHAPDF::mkPDF("CT10nlo", 0);
+  LHAPDF::PDF* pdf = 0;
+  if (int_flags == 1)    pdf = LHAPDF::mkPDF("CT10", 0);
+  else if (int_flags>1)  pdf = LHAPDF::mkPDF("CT10nlo", 0);
+  else {ERROR("can not chose PDF for this setting")};
   
   // init external libraries
   qlinit_();
@@ -106,7 +103,7 @@ int main(int argc, char** argv)
   ip.higgs_model   = &THDM_1;
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
   ip.collect_dist  = g_options.dist;
-  ip.pdf           = pdf_ct10nlo; 
+  ip.pdf           = pdf; 
   double CME = sqrt(ip.s_hadr)*mScale;
   PRINTS(couT,CME);
   ////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +111,7 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////////////////
   // parameters for VEGAS integration routine
   vegas_par vp;
-  vp.calls      = g_options.n_calls;
+  // vp.calls      = g_options.n_calls;
   vp.verbose    = g_options.verb_level;
   PRINTS(couT,vp.calls);
   ////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +201,11 @@ int main(int argc, char** argv)
       // set b-quark MS-bar mass at scale mu [GeV] (O(AlphaS^1)
       // running mass with 5 active flavours, for 6 flavours change exponent to 4.0/7.0)
       // reference value mb(mb) = 4.213 GeV
+      // double Max    = std::max(0.5*MH,mt*mScale);
+      // 5 flavour running
       double mb     = 4.213/mScale*pow(ip.pdf->alphasQ(MU)/ip.pdf->alphasQ(4.213),12.0/23.0);
+      // // 6 flavour running
+      // if (Max>mt) mb = 4.213/mScale*pow(ip.pdf->alphasQ(MAX)/ip.pdf->alphasQ(4.213),4.0/7.0);
       double mb2    = pow(mb,2);
       /////////////////////////////////////////////////////////////////////
       double sigma_tot = 0.0;
@@ -235,7 +236,7 @@ int main(int argc, char** argv)
 	  // PS_2_1 needs to be set once only when MH2 changes
 	  ((PS_2_1*)ip.ps)->set();
 	  // adjust # calls
-	  vp.calls  = g_options.n_calls/100;
+	  vp.calls  = g_options.n_calls/10;
 	  
 	  INT.Integrate(Int_2_1,ip,vp);
 	  sigma_tot += vp.result;
@@ -250,7 +251,7 @@ int main(int argc, char** argv)
 	  // k1 -> Higgsboson, k2 -> massless gluon
 	  ip.SetPS(new PS_2_2(MH2,0.0,"pp->Hx"));
 	  // adjust # calls
-	  vp.calls  = g_options.n_calls/100;
+	  vp.calls  = g_options.n_calls/10;
 
 	  INT.Integrate(Int_2_2,ip,vp);
 	  sigma_tot += vp.result;
