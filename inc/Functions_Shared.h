@@ -57,6 +57,7 @@ struct opt {
   double ren_scale;
   double ren_scale_mult;  
   double cme;
+  double as;
   double mt;
   double mb;  
   double vh;   
@@ -80,7 +81,7 @@ void parse_arguments(int argc, char** argv, struct opt& options, HiggsModel& hm)
 void usage (int status);
 void version (int status);
 
-int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filename);
+int read_qcd_data(DistVec* dist, std::string const& path, std::string const& filename);
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 

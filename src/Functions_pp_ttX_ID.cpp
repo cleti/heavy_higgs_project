@@ -85,22 +85,22 @@ double Eval_ID_GG(
       if (flags & F_EVAL_D_GG_DELTA) 
 	{
 	  res += Eval_DIP_GG_DELTA_I (s12_1,
-				      S12_1,
-				      beta_1,
-				      t11_1,
-				      t12_1,
-				      B_phi+B_int,
-				      BC_int,
-				      MUR2,
-				      AlphaS);
+	  			      S12_1,
+	  			      beta_1,
+	  			      t11_1,
+	  			      t12_1,
+	  			      B_phi+B_int,
+	  			      BC_int,
+	  			      MUR2,
+	  			      AlphaS);
 	  res += Eval_DIP_GG_DELTA_PK(s12_1,
-				      t11_1,
-				      t12_1,
-				      B_phi+B_int,
-				      2.0*B_phi+B_int,
-				      BC_int,
-				      MUF2,MUR2,
-				      AlphaS);
+	  			      t11_1,
+	  			      t12_1,
+	  			      B_phi+B_int,
+	  			      2.0*B_phi+B_int,
+	  			      BC_int,
+	  			      MUF2,MUR2,
+	  			      AlphaS);
 	}
       // distribution end-point part (check tech. cut also here)
       if (flags & F_EVAL_D_GG_END && x<Cuts::IDIP_X_CUT) 

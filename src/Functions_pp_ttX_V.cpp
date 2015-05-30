@@ -195,7 +195,10 @@ double Eval_B_PHIxPHI_withINT12(
   // when models with more than 1 heavy Higgs boson are considered
   if (hm.NBosons()>1)
     {
-      ret -= Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
+      // PRINT(Eval_B_PHIxPHI(ps,ap,hp));
+      // PRINT(Eval_B_PHIxPHI_IM_INTab(ps,ap,hp));
+      // EXIT(1);
+      ret += 2.0*Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
     }
 #endif  
   return ret;

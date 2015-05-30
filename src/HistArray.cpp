@@ -16,16 +16,23 @@ static std::string cat(std::string str, int number)
 ////////////////////////////////////////////////////////////////////////////
 // histogram array counter to generate unique labels for each ROOT histogram
 int HistArray::d_ID = 0;
+// layout settings for the generated TH1D's
+double HistArray::LabelSizeY   = 0.028;
+double HistArray::TitleOffsetY = 1.2;
+
 
 HistArray::HistArray(int nbinsx,
 		     double xlow,
 		     double xup,
 		     int mass_dim,
 		     std::string const& name,
+		     std::string const& lab_x,
+		     std::string const& lab_y,
 		     bool SUMW2):
-  d_histograms({TH1D(cat("LO_QCD_",d_ID).c_str(),"",nbinsx,xlow,xup),
+  d_histograms({
+        TH1D(cat("LO_QCD_", d_ID).c_str(),"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_QCD_",d_ID).c_str(),"",nbinsx,xlow,xup),
-	TH1D(cat("LO_PHI_",d_ID).c_str(),"",nbinsx,xlow,xup),
+	TH1D(cat("LO_PHI_", d_ID).c_str(),"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_PHI_V_",d_ID).c_str() ,"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_PHI_D_",d_ID).c_str() ,"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_PHI_R_",d_ID).c_str() ,"",nbinsx,xlow,xup)}),
@@ -34,15 +41,18 @@ HistArray::HistArray(int nbinsx,
   d_name(name),
   d_label_x(),
   d_label_y(),
-  d_mass_dim(mass_dim),
-  d_obs(nullptr)
+  d_mass_dim(mass_dim)
+
 {
-  if (SUMW2)
+  for (int i=0;i<NHIST;++i)
     {
-      for (int i=0;i<NHIST;++i)
-	{
-	  d_histograms[i].Sumw2();
-	}
+      d_histograms[i].GetYaxis()->SetLabelSize(HistArray::LabelSizeY);
+      d_histograms[i].GetYaxis()->SetTitleOffset(HistArray::TitleOffsetY);
+      d_histograms[i].GetXaxis()->SetTitle(lab_x.c_str());
+      d_histograms[i].GetYaxis()->SetTitle(lab_y.c_str());
+      d_histograms[i].SetLineWidth(1);
+      d_histograms[i].SetLineColor(1);
+      if (SUMW2)  d_histograms[i].Sumw2();
     }
   d_ID++;
 }
@@ -82,63 +92,91 @@ void HistArray::Normalize(const double& mScale, int verb)
 
 void HistArray::Print(std::ostream& ost)
 {
+  static const int colWidth1 = 16;
+  static const int colWidth2 = 20;
+  
   ost << std::endl;
   ost << "#  "  << d_name << std::endl;
-  ost << "#  " << std::setw(17) << "Bin low edge" << std::setw(22) << "QCD [LO]" << std::setw(22) << "QCD+PHI [LO]" << std::setw(22) << "QCD+PHI [NLO]" << std::endl << std::endl;
+  ost << "#  " << std::setw(colWidth1) << "Bin low edge";
+  ost << std::setw(colWidth2) << "QCD [LO]";
+  ost << std::setw(colWidth2) << "QCD+PHI [LO]";
+  ost << std::setw(colWidth2) << "QCD [NLO]";
+  ost << std::setw(colWidth2) << "QCD+PHI [NLO]" << std::endl << std::endl;
 
   // integrals
-  double I_QCD = 0.0;
+  double I_QCD_LO = 0.0;
   double I_QCD_PHI_LO = 0.0;
+  double I_QCD_NLO = 0.0;
   double I_QCD_PHI_NLO = 0.0;
 
   // current bin content
-  double QCD = 0.0;
+  double QCD_LO = 0.0;
   double QCD_PHI_LO = 0.0;
+  double QCD_NLO = 0.0;
   double QCD_PHI_NLO = 0.0;
 
-  // underflow bin
-  QCD         = d_histograms[0].GetBinContent(0);
-  QCD_PHI_LO  = QCD + d_histograms[1].GetBinContent(0);
-  QCD_PHI_NLO = QCD_PHI_LO
-    + d_histograms[3].GetBinContent(0)
-    + d_histograms[4].GetBinContent(0)
-    + d_histograms[5].GetBinContent(0);
-  ost << std::setw(20) << std::setprecision(5)  << "" << "  ";
-  ost << std::setw(20) << std::setprecision(10) << QCD    << "  ";
-  ost << std::setw(20) << std::setprecision(10) << QCD_PHI_LO << "  ";
-  ost << std::setw(20) << std::setprecision(10) << QCD_PHI_NLO << std::endl;
-  for (int i=1;i<=d_histograms[0].GetNbinsX()+1;++i)
+
+  for (int i=0;i<=d_histograms[0].GetNbinsX()+1;++i)
     {
       // get current bin values
-      QCD         = d_histograms[0].GetBinContent(i);
-      QCD_PHI_LO  = QCD + d_histograms[1].GetBinContent(i);
-      QCD_PHI_NLO = QCD_PHI_LO
-	+ d_histograms[3].GetBinContent(i)
-	+ d_histograms[4].GetBinContent(i)
-	+ d_histograms[5].GetBinContent(i);
+      QCD_LO      = d_histograms[H_LO_QCD].GetBinContent(i);
+      QCD_PHI_LO = QCD_LO
+	+ d_histograms[H_LO_PHI].GetBinContent(i);   
+      QCD_NLO     = QCD_LO + d_histograms[H_NLO_QCD].GetBinContent(i);
+      QCD_PHI_NLO = QCD_NLO
+	+ d_histograms[H_NLO_PHI_V].GetBinContent(i)
+	+ d_histograms[H_NLO_PHI_ID].GetBinContent(i)
+	+ d_histograms[H_NLO_PHI_R].GetBinContent(i);
       // update integral values (ignore overflow bin)
       if (i<=d_histograms[0].GetNbinsX())
 	{
-	  I_QCD         += QCD*d_histograms[0].GetBinWidth(i);
-	  I_QCD_PHI_LO  += QCD_PHI_LO*d_histograms[1].GetBinWidth(i);
-	  I_QCD_PHI_NLO += QCD_PHI_NLO*d_histograms[3].GetBinWidth(i);
+	  double binw = d_histograms[H_LO_QCD].GetBinWidth(i);
+	  I_QCD_LO      += QCD_LO*binw;
+	  I_QCD_PHI_LO  += QCD_PHI_LO*binw;
+	  I_QCD_NLO     += QCD_NLO*binw;
+	  I_QCD_PHI_NLO += QCD_PHI_NLO*binw;
 	}
       // print bin values
-      ost << std::setw(20) << std::setprecision(5)  << d_histograms[0].GetBinLowEdge(i) << "  ";
-      ost << std::setw(20) << std::setprecision(10) << QCD    << "  ";
-      ost << std::setw(20) << std::setprecision(10) << QCD_PHI_LO << "  ";
-      ost << std::setw(20) << std::setprecision(10) << QCD_PHI_NLO    << std::endl;
+      if (i>0)
+	{
+	  ost << std::setw(colWidth2) << std::setprecision(5)  << d_histograms[0].GetBinLowEdge(i);
+	}
+      else
+	{
+	  ost << std::setw(colWidth2) << std::setprecision(5)  << "";
+	}
+      ost << std::setw(colWidth2) << std::setprecision(10) << QCD_LO;
+      ost << std::setw(colWidth2) << std::setprecision(10) << QCD_PHI_LO;
+      ost << std::setw(colWidth2) << std::setprecision(10) << QCD_NLO;
+      ost << std::setw(colWidth2) << std::setprecision(10) << QCD_PHI_NLO << std::endl;
     }
+  
   ost << std::endl;
-  ost << "#  " << std::setw(17) << "Integral: " << std::setw(22) << I_QCD << std::setw(22) << I_QCD_PHI_LO << std::setw(22) << I_QCD_PHI_NLO << std::endl << std::endl;
+  ost << "#  " << std::setw(colWidth1) << "Integral: ";
+  ost << std::setw(colWidth2) << I_QCD_LO;
+  ost << std::setw(colWidth2) << I_QCD_PHI_LO;
+  ost << std::setw(colWidth2) << I_QCD_NLO;
+  ost << std::setw(colWidth2) << I_QCD_PHI_NLO << std::endl << std::endl;
 }
 
+
+void HistArray::Status(std::ostream& ost)
+{
+  ost << std::endl;
+  ost << d_name << std::endl;
+  for (int i=0;i<NHIST;++i)
+    {
+      ost << "#" << std::setw(2) << i << ": " << (IsActive(i)?'1':'0') << std::endl;
+    }
+  ost << std::endl;
+}
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////
-double DIST_M_L = 340;
-double DIST_M_U = 1000;
+double DIST_M_L  = 340;
+double DIST_M_U  = 1000;
+double DIST_M_U2 = 900;
 
 double DIST_P_L = 60;
 double DIST_P_U = 500;
@@ -150,92 +188,64 @@ double DIST_A_L = -1.0;
 double DIST_A_U =  1.0;
 ////////////////////////////////
 
-// prepare some histograms
-// spin independent observables
-HistArray MttDistributions(33,DIST_M_L,DIST_M_U,1,"M_{t#bar{t}} distribution");
-HistArray PT1Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,t} distribution");
-HistArray PT2Distributions(22,DIST_P_L,DIST_P_U,1,"p_{T,#bar{t}} distribution");
-HistArray PT12Distributions(10,0.0,500.0,1,"p_{T,t+#bar{t}} distribution");
-HistArray Y1Distributions(14,DIST_Y_L,DIST_Y_U,0,"#eta_{t} distribution");
-HistArray Y2Distributions(14,DIST_Y_L,DIST_Y_U,0,"#eta_{#bar{t}} distribution");
-HistArray DYDistributions(14,DIST_Y_L,DIST_Y_U,0,"#Delta |y| distribution");
+// some predefined histograms
+// spin-INdependent observables
+HistArray Mtt_Histograms(33,DIST_M_L,DIST_M_U,1,
+			 "Top/Antitop invariant mass distribution",
+			 "M_{t#bar{t}} [GeV]",
+			 "#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]");
 
-// angular distributions (spin dependent)
-// HistArray PHIT12Distributions(12,-1.0,1.0,0,"Lepton-Anti-lepton transversal opening angle [lab frame]",true);
-// HistArray PHI12Distributions(12,-1.0,1.0,0,"Lepton-Anti-lepton opening angle",true);
-// HistArray OCPDistributions(12,-1.0,1.0,1,"CP-odd triple correlation",true);
-// HistArray LP1Distributions(12,-1.0,1.0,1,"Top longitudinal polarization",true);
-// HistArray LP2Distributions(12,-1.0,1.0,1,"Antitop longitudinal polarization",true);
-// HistArray OHELDistributions(12,-1.0,1.0,1,"Helicity angle correlation",true);
-HistArray PHIT12Distributions(33,DIST_M_L,DIST_M_U,1,"Lepton-Anti-lepton transversal opening angle [lab frame]",true);
-HistArray DopenDistributions(33,DIST_M_L,DIST_M_U,1,"Lepton-Anti-lepton opening angle",true);
-HistArray OCPDistributions(33,DIST_M_L,DIST_M_U,1,"CP-odd triple correlation",true);
-HistArray ChelDistributions(33,DIST_M_L,DIST_M_U,1,"Top/Antitop longitudinal polarization",true);
+HistArray PT1_Histograms(22,DIST_P_L,DIST_P_U,1,
+			 "Top transverse momentum distribution",
+			 "p_{T,t} [GeV]",
+			 "#frac{d#sigma}{dp_{T,t}} [pb/GeV]");
+HistArray PT2_Histograms(22,DIST_P_L,DIST_P_U,1,
+			 "Antitop transverse momentum distribution",
+			 "p_{T,#bar{t}} [GeV]",
+			 "#frac{d#sigma}{dp_{T,#bar{t}}} [pb/GeV]");
+HistArray PT12_Histograms(10,0.0,500.0,1,
+			  "Top+Antitop transverse momentum distribution",
+			  "|p_{T,t}+p_{T,#bar{t}}| [GeV]",
+			  "#frac{d#sigma}{d|p_{T,t}+p_{T,#bar{t}}|} [pb/GeV]");
+HistArray Y1_Histograms(12,DIST_Y_L,DIST_Y_U,0,
+			"Top rapidity distribution",
+			"y_{t}",
+			"#frac{d#sigma}{dy_{t}} [pb]");
+HistArray Y2_Histograms(12,DIST_Y_L,DIST_Y_U,0,
+			"Antitop rapidity distribution",
+			"y_{#bar{t}}",
+			"#frac{d#sigma}{dy_{#bar{t}}} [pb]");
+HistArray DY_Histograms(12,DIST_Y_L,DIST_Y_U,0,
+			"Distribution of top/antitop rapidity difference",
+			"#Delta y_{t#bar{t}}",
+			"#frac{d#sigma}{d #Delta y_{t#bar{t}}} [pb]");
+
+// spin-dependent observables
+HistArray PHIT12_Histograms(33,DIST_M_L,DIST_M_U2,1,
+			    "Lepton-Anti-lepton transversal opening angle [lab frame]",
+			    "M_{t#bar{t}} [GeV]",
+			    "D_{T,open}^{lab} [pb/GeV]",
+			    true);
+HistArray Dopen_Histograms(33,DIST_M_L,DIST_M_U2,1,
+			   "Lepton-Anti-lepton opening angle",
+			   "M_{t#bar{t}} [GeV]",
+			   "D_{open} [pb/GeV]",
+			   true);
+HistArray OCP1_Histograms(33,DIST_M_L,DIST_M_U2,1,
+			  "CP-odd triple correlation",
+			  "M_{t#bar{t}} [GeV]",
+			  "O_{CP1} [pb/GeV]",
+			  true);
+HistArray B1_Histograms(33,DIST_M_L,DIST_M_U2,1,
+			"Longitudinal polarization",
+			"M_{t#bar{t}} [GeV]",
+			"B_{1} [pb/GeV]",
+			true);
+HistArray Chel_Histograms(33,DIST_M_L,DIST_M_U2,1,
+			  "Helicity angle distribution",
+			  "M_{t#bar{t}} [GeV]",
+			  "C_{hel} [pb/GeV]",
+			  true);
 
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// define observables for differential distributions here ///////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// mass of 2-particle system [GeV]
-double obs_M12(FV const& k1, FV const& k2)
-{
-  return sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));
-}
-// transverse momentum (transverse plane is the x-y-plane) 
-double obs_PT(FV const& k)
-{
-  return sqrt(k[1]*k[1]+k[2]*k[2]);
-}
-
-// transverse momentum of two particle system |k_{T,1}+k_{T,2}| 
-double obs_PT12(FV const& k1, FV const& k2)
-{
-  return sqrt(pow(k1[1]+k2[1],2)+pow(k1[2]+k2[2],2)); 
-}
-// pseudo-rapidity
-double obs_Y(FV const& k)
-{
-  return 0.5*log(((k[0]+k[3])/(k[0]-k[3])));
-}
-// difference of abs. values of transverse rapidities
-double obs_DY(FV const& k1, FV const& k2)
-{
-  return fabs(obs_Y(k1))-fabs(obs_Y(k2));
-}
-// 3-dim opening angle of the two vectors
-double obs_PHI(FV const& k1, FV const& k2)
-{
-  double K1 = LEN(k1);
-  double K2 = LEN(k2);
-  // PRINT(K1);
-  // PRINT_4VEC(1.0/K1*k1);
-  // PRINT(K2);
-  // PRINT_4VEC(1.0/K2*k2);
-  return (k1[1]*k2[1]+k1[2]*k2[2]+k1[3]*k2[3])/(K1*K2);
-}
-// 2-dim transversal opening angle of the two vectors
-double obs_PHIT(FV const& k1, FV const& k2)
-{
-  double K1 = sqrt(k1[1]*k1[1]+k1[2]*k1[2]);
-  double K2 = sqrt(k2[1]*k2[1]+k2[2]*k2[2]);
-  return (k1[1]*k2[1]+k1[2]*k2[2])/(K1*K2);
-}
-// spatial triple product of three 4-vectors k1,k2,k3
-double obs_TriProd(FV const& k1, FV const& k2, FV const& k3)
-{
-  // = (k1 x k2) dot k3 / |k1 x k2| / |k3|
-  double t3 = k1[0] * k2[1] - k1[1] * k2[0];
-  double t7 = -k1[0] * k2[2] + k1[2] * k2[0];
-  double t11 = k1[1] * k2[2] - k1[2] * k2[1];
-  double t14 = t3 * t3;
-  double t15 = t7 * t7;
-  double t16 = t11 * t11;
-  double t18 = std::pow(k3[0], 2);
-  double t19 = std::pow(k3[1], 2);
-  double t20 = std::pow(k3[2], 2);
-  double t23 = std::sqrt((t14 + t15 + t16) * (t18 + t19 + t20));
-  return (t11 * k3[0] + t3 * k3[2] + t7 * k3[1]) / t23;
-}
 

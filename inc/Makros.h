@@ -33,6 +33,8 @@
 #define ERRORN(NAME,MSG) std::cout << std::endl << " ! ERROR in " << NAME << ", " << __FUNCTION__  << ", line " <<  __LINE__ << ": " <<  MSG << "! " << std::endl; std::exit(1);
 #define PRINT(VAR)       std::cout << std::endl << " Value of " << std::setw(20) <<  #VAR << " = " << std::setw(20)   << VAR << std::endl;
 #define PRINTS(OST,VAR)       OST << std::endl << " Value of " << std::setw(20) <<  #VAR << " = " << std::setw(20)   << VAR << std::endl;
+#define PRINT_PTR(VAR)  std::cout << std::endl << " Address of " << std::setw(20) <<  #VAR << " = " << std::setw(20)   << (void*)VAR << std::endl;
+
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
@@ -52,6 +54,7 @@
 
 // Lorentz product of two 4 vectors K1,K2
 #define sp(K1,K2) (K1[0]*K2[0]-(K1[1]*K2[1]+K1[2]*K2[2]+K1[3]*K2[3]))
+#define sp3(K1,K2) (K1[1]*K2[1]+K1[2]*K2[2]+K1[3]*K2[3])
 // return mass squared of a 4-vector
 #define MSQ(K) sp(K,K)
 #define LEN(K) sqrt(K[1]*K[1]+K[2]*K[2]+K[3]*K[3])

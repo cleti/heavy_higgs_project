@@ -393,7 +393,7 @@ int main(int argc, char** argv)
   // input parameters ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
   double MT = 173.5;
-  const double S = 5.0;
+  const double S = 25.0;
   int GGH_EFF = 0;
   
   HiggsModel THDM;
@@ -412,11 +412,11 @@ int main(int argc, char** argv)
 		32.4543905335925,//not relevant here
 		1,1,
 		0,0);
-  // THDM.AddBoson(
-  // 		600.0,
-  // 		67.71,//not relevant here
-  // 		-1.19,1.18,
-  // 		0,0);  
+  THDM.AddBoson(
+  		600.0,
+  		67.71,//not relevant here
+  		-1.19,1.18,
+  		0,0);  
   
   // // scenario 1
   // THDM.AddBoson(
@@ -453,7 +453,8 @@ int main(int argc, char** argv)
 
     
     // integrated dipoles
-    SET_EVAL_B_PHIxQCD(g_flags_eval_id);
+    g_flags_eval_id = 0;
+    USET_EVAL_B_PHIxQCD(g_flags_eval_id);
     SET_EVAL_B_PHIxPHI(g_flags_eval_id);
     // integrated dipoles 
     USET_FLAG(F_EVAL_D_GG_ALL,g_flags_eval_id);
@@ -597,24 +598,25 @@ int main(int argc, char** argv)
 	// interference terms
 	g_flags_eval_r = 0;
 	SET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << endl;
-	cout << endl << " 2*RE[M_QCD * M_phi ]     = " << (res_r_int = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-	cout << endl << " dip 2*RE[M_QCD * M_phi ] = " << (res_d_int = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " 2*RE[M_QCD * M_phi ]     = " << 0.25*(res_r_int = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip 2*RE[M_QCD * M_phi ] = " << 0.25*(res_d_int = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
 	// phi^2 terms [FSR]
-	SET_EVAL_R_ALL(g_flags_eval_r);
-	SET_EVAL_R_FSR_FSR(g_flags_eval_r);
+	SET_FLAG(F_EVAL_R_GG,g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [FSR] " << endl;
-	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << 0.25*(res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
 	sum_r += res_r_phi;
 	sum_d += res_d_phi;
 	// phi^2 terms [ISR]
 	USET_EVAL_R_ALL(g_flags_eval_r);
 	SET_EVAL_R_ISR_ISR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [ISR] " << endl;
-	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
-	cout << endl << " dip [M_phi]^2        = " << (res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " dip [M_phi]^2        = " << 0.25*(res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
 	sum_r += res_r_phi;
 	sum_d += res_d_phi;
 
@@ -623,7 +625,7 @@ int main(int argc, char** argv)
 	USET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
 	SET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [QQ] " << endl;
-	cout << endl << " [M_phi]^2            = " << (res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
+	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 
 	// qg
 	USET_EVAL_R_ALL(g_flags_eval_r);

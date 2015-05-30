@@ -254,7 +254,7 @@ double Eval_UID_GG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& norm_factor, // normalization factor for distribution weights
-		   std::vector<HistArray*>* dist )
+		   DistVec* dist )
 {
   PREFACTORS(hm); // defines ap and hp
   double const& mt2    = hm.mt2();
@@ -891,7 +891,7 @@ double Eval_UID_QG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& norm_factor, // normalization factor for distribution weights
-		   std::vector<HistArray*>* dist )
+		   DistVec* dist )
 {
   PREFACTORS(hm); // defines ap and hp
   using namespace Constants;
@@ -980,17 +980,7 @@ double Eval_UID_QG(
       // 	{
       // 	  dip += Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,hm,PI,Vgg_diag,Vgg_nond);
       // 	}      
-	
-#ifdef DUMP_DIPOLE_PS
-      std::cout << std::endl << "-----------------------------------------------------------------";
-      std::cout << std::endl << " initial-initial 2->2 impulskonfig. (ES00): ";
-      std::cout << std::endl << "-----------------------------------------------------------------";
-      PRINT_4VEC(mScale*P1);
-      PRINT_4VEC(mScale*P2);
-      PRINT_4VEC(mScale*K1);
-      PRINT_4VEC(mScale*K2);
-      std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
+
 	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
 	if (DIST)
 	  {
@@ -1029,18 +1019,6 @@ double Eval_UID_QG(
 	  {
 	    dip += Eval_UID_Q_QG_E0S0(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
 	  }
-
-
-	#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (E0S0): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
 	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
 	if (DIST)
 	  {
@@ -1073,18 +1051,6 @@ double Eval_UID_QG(
 	  {
 	    dip += Eval_UID_Q_QG_E00S(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
 	  }
-
-	
-	#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (E00S): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-	#endif
 	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
 	if (DIST)
 	  {
@@ -1103,25 +1069,6 @@ double Eval_UID_QG(
 
 
 
-
-
-
-
-
-
-// double Eval_UID_II(
-// 		   const PS_2_3& ps,
-// 		   HiggsModel& hm,
-// 		   const ulong& flags,
-// 		   const double& dist_factor, // normalization factor for distribution weights
-// 		   std::vector<HistArray*>* dist )
-// {
-//   PREFACTORS(hm); // defines ap and hp
-//   using namespace Constants;
-//   double const& mScale = hm.Scale(); 
-//   double res = 0.0;
-//   return res;
-// }
 
 
 

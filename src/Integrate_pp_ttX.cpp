@@ -104,7 +104,14 @@ int main(int argc, char** argv)
   double const& mScale  = THDM_1.Scale();
   double const& mScale2 = THDM_1.Scale2();
   // extract AlphaS from the PDFs
-  THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*mScale));
+  if (g_options.as > 0.0)
+    {
+      THDM_1.SetAlphaS(g_options.as);
+    }
+  else
+    {
+      THDM_1.SetAlphaS(pdf_ct10nlo->alphasQ(THDM_1.MUR()*mScale));
+    }
   THDM_1.Print(couT,mScale);
   ////////////////////////////////////////////////////////////////////////////////
   
@@ -116,20 +123,20 @@ int main(int argc, char** argv)
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
   ip.collect_dist  = g_options.dist;
   ip.pdf           = pdf_ct10nlo;
-  ip.distributions = new HAvec{
-    &MttDistributions,   // [0]
-    &PT1Distributions,   // [1]
-    //    &PT2Distributions,   // [2]
-    &PT12Distributions,  // [3]
-    &Y1Distributions,    // [4]
-    &Y2Distributions,    // [5]
-    &DYDistributions     // [6]
+  ip.distributions = new DistVec{
+    std::make_shared<Distribution>(&Mtt_Histograms,&OBS_M12),
 #ifdef WITH_T_SPIN
-    ,
-    &PHIT12Distributions,// [7]
-    &DopenDistributions, // [8]
-    &OCPDistributions,   // [9]
-    &ChelDistributions   // [10]
+    std::make_shared<MeanDistribution>(&Dopen_Histograms,&OBS_M12,&OBS_D12),
+    std::make_shared<MeanDistribution>(&OCP1_Histograms,&OBS_M12,&OBS_CP1),
+    std::make_shared<MeanDistribution>(&B1_Histograms,&OBS_M12,&OBS_B1),
+    std::make_shared<MeanDistribution>(&Chel_Histograms,&OBS_M12,&OBS_HEL12)
+#else
+    std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
+    // std::make_shared<Distribution>(&PT2_Histograms,&OBS_PT2),
+    std::make_shared<Distribution>(&PT12_Histograms,&OBS_PT12),
+    std::make_shared<Distribution>(&Y1_Histograms,&OBS_Y1),
+    std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2)
+    // std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12)
 #endif
   };
   double CME = sqrt(ip.s_hadr)*mScale;
@@ -184,8 +191,8 @@ int main(int argc, char** argv)
   #else
     couT << endl << " Computing the process pp -> ttbar " << endl << endl;
 #endif
-
-
+    if (g_options.dist) couT << endl << " Distributions will be computed. " << endl << endl;
+    if (THDM_1.UseK()) couT << endl << " Using eff. ggH coupling in Born amplitudes. " << endl << endl;
 
   Integrator INT(couT);
   
@@ -246,15 +253,15 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       // activate LO (QCD) histograms 
       for (auto e: *ip.distributions)
       	{
-      	  e->SetActive(BOOST_BINARY(00 000 1));
+      	  e->GetHistograms()->SetActive(H_LO_QCD);
       	}
 
       INT.Integrate(Int_2_2_BV,ip,vp);
 
-      // normalize entries to bin width
+      // normalize entries of activated histogram to bin width
       for (auto e: *ip.distributions)
 	{ 
-	  e->Normalize();
+	  e->GetHistograms()->Normalize();
 	}
       results[0] = vp.result;
       errors[0]  = vp.error;
@@ -278,18 +285,12 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 #endif
       
       // activate LO (PHI) histograms 
-      for (auto e: *ip.distributions)
-      	{
-      	  e->SetActive(BOOST_BINARY(00 001 0));
-      	}
+      for (auto e: *ip.distributions) e->GetHistograms()->SetActive(H_LO_PHI);
 
       INT.Integrate(Int_2_2_BV,ip,vp);
 
-      // normalize entries to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->Normalize();
-	}
+      // normalize entries of activated histogram to bin width
+      for (auto e: *ip.distributions) e->GetHistograms()->Normalize();
       results[1] = vp.result;
       errors[1]  = vp.error;
     }
@@ -312,18 +313,12 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 
       
       // activate NLO (V) histograms 
-      for (auto e: *ip.distributions)
-      	{
-      	  e->SetActive(BOOST_BINARY(00 100 0));
-      	}
+      for (auto e: *ip.distributions) e->GetHistograms()->SetActive(H_NLO_PHI_V);
 
       INT.Integrate(Int_2_2_BV,ip,vp);
 
-      // normalize entries to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->Normalize();
-	}
+      // normalize entries of activated histogram to bin width
+      for (auto e: *ip.distributions)  e->GetHistograms()->Normalize();
       results[2] = vp.result;
       errors[2]  = vp.error;
     }
@@ -337,26 +332,20 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = 0;
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
-      USET_EVAL_B_PHIxPHI(ip.eval_flags);
-      USET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
+      SET_EVAL_B_PHIxPHI(ip.eval_flags);
+      SET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
       SET_FLAG(F_EVAL_D_QG_CONT,ip.eval_flags);
       // need to implement integrated QG dipoles!
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO int. dip.]"));
       vp.calls      = g_options.n_calls*10;
   
       // activate NLO (ID) histograms 
-      for (auto e: *ip.distributions)
-      	{
-      	  e->SetActive(BOOST_BINARY(01 000 0));
-      	}
+      for (auto e: *ip.distributions) e->GetHistograms()->SetActive(H_NLO_PHI_ID);
 
       INT.Integrate(Int_2_2_ID,ip,vp);
 
-      // normalize entries to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->Normalize();
-	}
+      // normalize entries of activated histogram to bin width
+      for (auto e: *ip.distributions) e->GetHistograms()->Normalize();
       results[3] = vp.result;
       errors[3]  = vp.error;
     }
@@ -369,22 +358,18 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       couT << "\n [NLO (R GG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
       ip.eval_flags = F_EVAL_R_GG;
+      // USET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
+      // USET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,gg]"));
       vp.calls      = g_options.n_calls;
       
       // activate NLO (R) histograms 
-      for (auto e: *ip.distributions)
-      	{
-      	  e->SetActive(BOOST_BINARY(10 000 0));
-      	}
+      for (auto e: *ip.distributions) e->GetHistograms()->SetActive(H_NLO_PHI_R);
       
       INT.Integrate(Int_2_3,ip,vp);
 
-      // normalize entries to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->Normalize();
-	}
+      // normalize entries of activated histogram to bin width
+      for (auto e: *ip.distributions) e->GetHistograms()->Normalize();
       results[4] = vp.result;
       errors[4]  = vp.error;
     }
@@ -398,33 +383,28 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       ip.eval_flags = 0;
       if (int_flags & I_FLAGS_R_QG)
 	{
-	  //SET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
+	  SET_EVAL_R_PHIxPHI_QG(ip.eval_flags);
 	  SET_EVAL_R_PHIxQCD_QG(ip.eval_flags);
 	  couT << " QG"; 
 	}
       if (int_flags & I_FLAGS_R_QQ)
 	{
-	  //SET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
+	  SET_EVAL_R_PHIxPHI_QQ(ip.eval_flags);
 	  SET_EVAL_R_PHIxQCD_QQ(ip.eval_flags);
 	  couT << " QQ"; 
 	}
       couT << ")]\n"; 
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,qq,qg]"));
       vp.calls      = g_options.n_calls;
-      
+
+
       // activate NLO (R) histograms 
-      for (auto e: *ip.distributions)
-      	{
-      	  e->SetActive(BOOST_BINARY(10 000 0));
-      	}
+      for (auto e: *ip.distributions) e->GetHistograms()->SetActive(H_NLO_PHI_R);
 
       INT.Integrate(Int_2_3_qg_qq,ip,vp);
 
-      // normalize entries to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->Normalize();
-	}
+      // normalize entries of activated histogram to bin width
+      for (auto e: *ip.distributions) e->GetHistograms()->Normalize();
       results[5] = vp.result;
       errors[5]  = vp.error;
     } 
@@ -435,26 +415,26 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
   
   double sum = 0.0;
   double err = 0.0;
-  double F = 1.0; // summation over top spins
-#ifdef WITH_T_SPIN
-  F *= 4.0; // dileptonic final state tt-> e+e-/mu+mu- + jets -> multiplicity 4
-#endif
   for (int i=0;i<N_res;++i)
     {
-      sum += F*results[i];
+      sum += results[i];
       if (std::isnan(results[i]) || std::isinf(results[i]))
 	{
 	  couT << endl << " results are inf/nan, exiting..." << endl;
 	  exit(1);
 	}
-      err += F*pow(errors[i],2);
+      err += pow(errors[i],2);
       if (std::isnan(errors[i]) || std::isinf(errors[i]))
 	{
 	  couT << endl << " results are inf/nan, exiting..." << endl;
 	  exit(1);
 	}
     }
-  err = sqrt(err);
+#ifndef WITH_T_SPIN
+  // // this is only for the comparison with P.G.
+  // err = sqrt(err)/4;
+  // sum /= 4;
+#endif
   int prec = (int)log10(sum/err)+3;
   
   couT << endl;
@@ -514,51 +494,65 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       gStyle->SetOptFit(0);
       gStyle->SetTitleBorderSize(0);
       gStyle->SetTitleAlign(0);
-
-
-#ifdef WITH_T_SPIN
-      PHIT12Distributions.Print(couT);
-      DopenDistributions.Print(couT);
-      OCPDistributions.Print(couT);
-      ChelDistributions.Print(couT);
-	
-      // set these variables accordingly to normalize distributions to total cross section
+      
+     // set these variables accordingly to normalize distributions to total cross section
       double norm[4] = {
 	1.0,  // QCD LO
 	1.0,  // QCD NLO
 	1.0,  // QCD + PHI LO,
 	1.0,  // QCD + PHI NLO
       };
-      CanvasPtr c1 = MakeCanvas("Lepton/Antilepton transversal opening angle [lab frame]",1000,1000);
+
+      Mtt_Histograms.Print(couT);
+      
+      CanvasPtr c0 = MakeCanvas("Top/Antitop invariant mass distributions",1000,1000);
+      DrawDistribution(c0,
+		       Mtt_Histograms,
+		       THDM_1,
+		       &norm[0],
+		       string("M_{t#bar{t}} [GeV]"),
+		       string("#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]"),
+		       g_options.rootfile,
+		       PLOT_NLO);
+
+      
+#ifdef WITH_T_SPIN
+      Dopen_Histograms.Print(couT);
+      OCP1_Histograms.Print(couT);
+      B1_Histograms.Print(couT);
+      Chel_Histograms.Print(couT);
+	
+ 
+      CanvasPtr c1 = MakeCanvas("Lepton/Antilepton opening angle",1000,1000);
       DrawDistribution(c1,
-      		       PHIT12Distributions,
-      		       THDM_1,
-      		       &norm[0],
-      		       string("M_{t#bar{t}} [GeV]"),
-      		       string("D_{T,open}^{lab} [pb/GeV]"),
-      		       g_options.rootfile,
-      		       PLOT_NLO);      
-      CanvasPtr c2 = MakeCanvas("Lepton/Antilepton opening angle",1000,1000);
-      DrawDistribution(c2,
-      		       DopenDistributions,
+      		       Dopen_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("D_{open} [pb/GeV]"),
       		       g_options.rootfile,
       		       PLOT_NLO);
-      CanvasPtr c3 = MakeCanvas("CP-odd triple correlation",1000,1000);
-      DrawDistribution(c3,
-      		       OCPDistributions,
+      CanvasPtr c2 = MakeCanvas("CP-odd triple correlation",1000,1000);
+      DrawDistribution(c2,
+      		       OCP1_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("O_{CP} [pb/GeV]"),
       		       g_options.rootfile,
-      		       PLOT_NLO);      
-      CanvasPtr c4 = MakeCanvas("Top longitudinal polarization",1000,1000);
+      		       PLOT_NLO);
+      CanvasPtr c3 = MakeCanvas("Longitudinal polarization",1000,1000);
+      DrawDistribution(c3,
+      		       B1_Histograms,
+      		       THDM_1,
+      		       &norm[0],
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("B_{1} [pb/GeV]"),
+      		       g_options.rootfile,
+      		       PLOT_NLO);    
+      CanvasPtr c4 = MakeCanvas("Helicity angle distribution",1000,1000);
       DrawDistribution(c4,
-      		       ChelDistributions,
+      		       Chel_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
@@ -567,61 +561,68 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       		       PLOT_NLO);
       
 #else
-      MttDistributions.Print(couT);
-      PT1Distributions.Print(couT);
-      PT2Distributions.Print(couT);
-      PT12Distributions.Print(couT);
-      Y1Distributions.Print(couT);
-      Y2Distributions.Print(couT);     
-      DYDistributions.Print(couT);
+      PT1_Histograms.Print(couT);
+      PT2_Histograms.Print(couT);
+      PT12_Histograms.Print(couT);
+      Y1_Histograms.Print(couT);
+      Y2_Histograms.Print(couT);     
+      DY_Histograms.Print(couT);
 
-      
-      // set these variables accordingly to normalize distributions to total cross section
-      double norm[4] = {1.0,  // QCD only
-			1.0,  // QCD + PHI,
-			0.0,  // ???
-			1.0}; // NLO;
-      CanvasPtr c0 = MakeCanvas("Top/Antitop invariant mass distributions",1400,1000);
-      DrawDistribution(c0,
-		       MttDistributions,
-		       THDM_1,
-		       &norm[0],
-		       string("M_{t#bar{t}} [GeV]"),
-		       string("#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]"),
-		       g_options.rootfile,
-		       PLOT_NLO);
 
-      DoubleCanvasPtr cd0 = MakeDoubleCanvas("Top transverse momentum/rapidity distribution");
-      DrawTwoDistributions(cd0,
-      			   PT1Distributions,
-      			   Y1Distributions,
-      			   THDM_1,
-      			   &norm[0],
-      			   string("p_{T,t} [GeV]"),string("y_{t}"),
-      			   string("#frac{d#sigma}{dp_{T,t}} [pb/GeV]"),
-      			   string("#frac{d#sigma}{dy_{t}} [pb]"),
-      			   g_options.rootfile, 
-      			   PLOT_NLO);
-
-      CanvasPtr c1 = MakeCanvas("Rapidity difference",1000,1000);
+      CanvasPtr c1 = MakeCanvas("Top transverse momentum distributions",1000,1000);
       DrawDistribution(c1,
-		       DYDistributions,
-		       THDM_1,
-		       &norm[0],
-		       string("#Delta y_{t#bar{t}}"),
-		       string("#frac{d#sigma}{d #Delta y_{t#bar{t}}} [pb]"),
-		       g_options.rootfile,
-		       PLOT_NLO);
-
+      		       PT1_Histograms,
+      		       THDM_1,
+      		       &norm[0],
+      		       string("p_{T,t} [GeV]"),
+      		       string("#frac{d#sigma}{d p_{T,t}} [pb/GeV]"),
+      		       g_options.rootfile,
+      		       PLOT_NLO); 
+      
       CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
       DrawDistribution(c2,
-      		       PT12Distributions,
+      		       PT12_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("|p_{T,t}+p_{T,#bar{t}}| [GeV]"),
       		       string("#frac{d#sigma}{d|p_{T,t}+p_{T,#bar{t}}|} [pb/GeV]"),
       		       g_options.rootfile,
       		       PLOT_NLO);   
+
+      CanvasPtr c3 = MakeCanvas("Top rapidity dsitribution",1000,1000);
+      DrawDistribution(c3,
+		       Y1_Histograms,
+		       THDM_1,
+		       &norm[0],
+		       string("y_{t}"),
+		       string("#frac{d#sigma}{d y_{t}} [pb]"),
+		       g_options.rootfile,
+		       PLOT_NLO);
+
+      CanvasPtr c4 = MakeCanvas("Antitop rapidity distribution",1000,1000);
+      DrawDistribution(c4,
+		       Y2_Histograms,
+		       THDM_1,
+		       &norm[0],
+		       string("y_{#bar{t}}"),
+		       string("#frac{d#sigma}{d y_{#bar{t}}} [pb]"),
+		       g_options.rootfile,
+		       PLOT_NLO);
+
+      // DoubleCanvasPtr cd0 = MakeDoubleCanvas("Top transverse momentum/rapidity distribution");
+      // DrawTwoDistributions(cd0,
+      // 			   PT1_Histograms,
+      // 			   Y1_Histograms,
+      // 			   THDM_1,
+      // 			   &norm[0],
+      // 			   string("p_{T,t} [GeV]"),string("y_{t}"),
+      // 			   string("#frac{d#sigma}{dp_{T,t}} [pb/GeV]"),
+      // 			   string("#frac{d#sigma}{dy_{t}} [pb]"),
+      // 			   g_options.rootfile, 
+      // 			   PLOT_NLO);
+
+
+      
  #endif
 
       if (file)

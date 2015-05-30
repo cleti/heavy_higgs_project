@@ -24,14 +24,14 @@ double Eval_UID_GG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& dist_norm = 0.0,
-		   std::vector<HistArray*>* dist = nullptr);
+		   DistVec* dist = nullptr);
 
 double Eval_UID_QG(
 		   const PS_2_3& ps,
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& dist_norm = 0.0,
-		   std::vector<HistArray*>* dist = nullptr);
+		   DistVec* dist = nullptr);
 
 
 

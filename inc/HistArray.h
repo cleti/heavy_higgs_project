@@ -1,6 +1,6 @@
 
 /*! \file
-  \brief Histogram class for the computation of differential distributions and definition of various observables.
+  \brief Histogram class for the computation of differential distributions.
 */ 
 
 
@@ -18,11 +18,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*!
-\typedef observable function type
- */
-typedef double (*OBS)(FV const&);
-
 
 enum H_TYPE
   {
@@ -33,12 +28,9 @@ enum H_TYPE
     H_NLO_PHI_ID=  4,
     H_NLO_PHI_R =  5
   };
-/* #define H_LO_QCD      0 */
-/* #define H_NLO_QCD     1 */
-/* #define H_LO_PHI      2 */
-/* #define H_NLO_PHI_V   3 */
-/* #define H_NLO_PHI_ID  4 */
-/* #define H_NLO_PHI_R   5 */
+
+#define F_H_ALL BOOST_BINARY(11 111 1)
+
 
 // stores a histogram for Born(QCD), Born(INT+PHI), (empty), virtual, int. dipoles and real corrections
 #define NHIST 6
@@ -62,8 +54,6 @@ class HistArray {
   std::string d_label_y;
   //! mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
   int d_mass_dim;
-  //! the observable that will be plotted
-  OBS d_obs;
 
   //! running histogram id
   static int d_ID;
@@ -74,6 +64,8 @@ class HistArray {
 	    double xup,
 	    int mass_dim,
 	    std::string const& name="",
+	    std::string const& lab_x="",
+	    std::string const& lab_y="",
 	    bool SUMW2 = false);
   ~HistArray() {}
 
@@ -86,8 +78,17 @@ class HistArray {
   //! check if a specific histogram is active
   bool IsActive(unsigned i) { return d_active & (1<<i);}
   
-  //! set the flags, use for example SetActive(BOOST_BINARY(000 000 1)) to activate only the first
-  void SetActive(unsigned i) { d_active = i; }
+  //! activate specific histogram
+  void SetActive(unsigned i) { d_active = (1<<i); }
+
+  //! activate all histograms
+  void ActivateAll() { d_active = F_H_ALL; }
+
+  //! deactivate all histograms
+  void DeactivateAll() { d_active = 0; }
+  
+  //! change state of specific histogram without touching the others
+  void ToggleActive(unsigned i) { d_active ^= (1<<i); }
   
   //! deactivate all histograms, used for VEGAS warmup run
   void Pause() { if (d_active != 0) std::swap(d_active_t,d_active); }
@@ -101,6 +102,9 @@ class HistArray {
   
   //! get the description of the distribution, const char* for ROOT classes/functions
   const char* GetName() { return d_name.c_str(); }
+
+  //! get mass dimension of the associated observable
+  int GetMassDim() { return d_mass_dim; }
   
   //! fill weight into all active histograms
   /*!
@@ -115,13 +119,12 @@ class HistArray {
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
-  
   void FillOne(H_TYPE i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
+  
   //! draw all histograms into the currently selected canvas
   /*!
     \param opt ROOT drawing options
   */
-  
   void Draw(const char* opt="") { for (unsigned i=0;i<NHIST;i++) {d_histograms[i].Draw(opt);} }
 
   //! rescale all active histograms by a factor of 1/c
@@ -133,15 +136,18 @@ class HistArray {
   */
   void Normalize(const double& mScale=1.0, int verb = 0);
 
+  
   void Print(std::ostream& ost);
+  void Status(std::ostream& ost);
+
+  // layout settings for the generated TH1D's
+  static double LabelSizeY;
+  static double TitleOffsetY;
+  
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*!
-\typedef alias for a vector of HistArray pointers
- */
-typedef std::vector<HistArray*> HAvec;
 
 ////////////////////////////////
 extern int DIST_N_bins;
@@ -160,45 +166,72 @@ extern double DIST_A_U;
 ////////////////////////////////
 
 //! top-antitop invariant mass distributions
-extern HistArray MttDistributions;
+extern HistArray Mtt_Histograms;
 //! top transverse momentum distributions
-extern HistArray PT1Distributions;
+extern HistArray PT1_Histograms;
 //! antitop transverse momentum distributions
-extern HistArray PT2Distributions;
+extern HistArray PT2_Histograms;
 //! top+antitop transverse momentum distributions
-extern HistArray PT12Distributions;
+extern HistArray PT12_Histograms;
 //! top rapidity distributions
-extern HistArray Y1Distributions;
+extern HistArray Y1_Histograms;
 //! antitop rapidity distributions
-extern HistArray Y2Distributions;
+extern HistArray Y2_Histograms;
 //! top-antitop rapidity difference distributions
-extern HistArray DYDistributions;
+extern HistArray DY_Histograms;
 
 // angular distributions (spin dependent)
-extern HistArray PHIT12Distributions;
-extern HistArray DopenDistributions;
-extern HistArray OCPDistributions;
-extern HistArray ChelDistributions;
+extern HistArray PHIT12_Histograms;
+extern HistArray Dopen_Histograms;
+extern HistArray OCP1_Histograms;
+extern HistArray B1_Histograms;
+extern HistArray Chel_Histograms;
 
 
 
 
-//! Computes invariant mass of two 4-vectors k1 and k2
-double obs_M12(FV const& k1, FV const& k2);
-//! Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = \sqrt{k1_{1}^2+k1_{2}^2}
-  double obs_PT(FV const& k);
-//! Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|
-double obs_PT12(FV const& k1, FV const& k2);
-//! Computes rapidity of a 4-vector k1
-double obs_Y(FV const& k);
-//! Computes rapidity difference of two 4-vectors k1 and k2
-double obs_DY(FV const& k1, FV const& k2);
-//! Computes spatial opening angle of two 4-vectors k1 and k2
-double obs_PHI(FV const& k1, FV const& k2);
-//! Computes opening angle of the spatial projections on the x-y plane
-double obs_PHIT(FV const& k1, FV const& k2);
-//! Computes the spatial triple product of three 4-vectors k1,k2,k3
-double obs_TriProd(FV const& k1, FV const& k2, FV const& k3);
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+class PS_2;
+typedef double (*OBSFnc)(const PS_2*);
+
+class Distribution {
+ private:
+  HistArray* d_hist;
+  OBSFnc     d_fnc;
+    
+ public:
+ Distribution(HistArray* hist, OBSFnc fnc):
+    d_hist(hist),
+    d_fnc(fnc)
+  {}
+
+  virtual ~Distribution() {}
+
+  HistArray*     GetHistograms()            { return d_hist; }
+  double         operator()(const PS_2* ps) { return d_fnc(ps);  }
+  virtual double Avg(const PS_2* ps)        { return 1.0;    }
+};
+
+
+class MeanDistribution: public Distribution {
+ private:
+  OBSFnc     d_fnc_mean;
+    
+ public:
+ MeanDistribution(HistArray* hist, OBSFnc fnc, OBSFnc fnc_mean):
+    Distribution(hist,fnc),
+    d_fnc_mean(fnc_mean)
+  {}
+
+  ~MeanDistribution() {}
+
+  double Avg(const PS_2* ps)        { return d_fnc_mean(ps); }
+};
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
 
 
 #endif

@@ -171,7 +171,7 @@ class integrand_par
   //! pointer to the GSL VEGAS state
   gsl_monte_vegas_state*   v_state;
   //! pointer to histograms with distributions
-  std::vector<HistArray*>* distributions;
+  DistVec*                 distributions;
   //! switch to enable distribution collection
   bool                     collect_dist;
   //! include the decays of top/antitop

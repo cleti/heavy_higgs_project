@@ -15,4 +15,4 @@ FLAGS=$1
 fi
 
 
-./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 8 -D --add_higgs 500,33.42,0.8631,0.9881,-0.6420,0.4842 --add_higgs 800,89.51,-1.1572,0.9881,0.3480,0.4842 -F -L -v 1
+./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 8 -D --add_higgs 500,30.00,0.8631,0.9881,-0.6420,0.4842 --add_higgs 800,146.61,-1.1572,0.9881,0.3480,0.4842  -v 1 -L -F -Q

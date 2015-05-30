@@ -15,7 +15,13 @@
 
 
 
+
 #define EPS_BETA2 1e-10
+
+
+
+
+
 
 
 
@@ -35,7 +41,7 @@ class PS_Named {
   void set_name(std::string const& name) { d_name = name; }
 };
 
-////// class PS_2   ///////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2 [abstract base class] ///////////////////////////////////////////////////////////
 /*!
   Abstract base class for 2->X phase space classes, holds among others the 4-vectors of the incoming partons.
   \sa Lorentz.h, HistArray.h
@@ -93,15 +99,13 @@ class PS_2: PS_Named {
   virtual FV const& get_k(int i) const = 0;
   virtual int whattype() const = 0;
   virtual void print() const;
-  virtual void FillDistributions(
-				 std::vector<HistArray*>& dist,
-				 H_TYPE id,
-				 double const& wgt,
-				 double const& mScale=1.0) const = 0;
 
   virtual FV const& k1() const  { return nullvec; }
   virtual FV const& k2() const  { return nullvec; }
   virtual FV const& k3() const  { return nullvec; }
+  /* virtual FV const& k1_lab() const  { return nullvec; } */
+  /* virtual FV const& k2_lab() const  { return nullvec; } */
+  /* virtual FV const& k3_lab() const  { return nullvec; } */
 #ifdef WITH_T_SPIN  
   virtual FV const& s1() const  { return nullvec; }
   virtual FV const& s2() const  { return nullvec; }
@@ -113,7 +117,27 @@ class PS_2: PS_Named {
   
   static const FV nullvec;
 };
-////// class PS_2_1 ///////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*!
+\typedef observable function type
+ */
+typedef double (*OBSFnc)(const PS_2*);
+
+/*!
+\typedef A distribution is specified by the histogram that stores the data and the observable that is historgammed.
+ */
+//typedef std::pair<HistArray*,OBSFnc> Distribution; 
+
+/*!
+\typedef A vector with pointers to distributions.
+ */
+typedef std::vector< std::shared_ptr<Distribution> > DistVec; 
+
+
+
+////// class PS_2_1 ////////////////////////////////////////////////////////////////////////////////
 /*!
   Phase space for 2->1 scattering.
 */
@@ -149,12 +173,12 @@ class PS_2_1: public PS_2 {
   int whattype() const { return 21; }
   void print() const;
   void FillDistributions(
-			 std::vector<HistArray*>& dist,
+			 DistVec& dist,
 			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
-////// class PS_2_2 ///////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2_2 ////////////////////////////////////////////////////////////////////////////////
 /*!
   Phase space for 2->2 scattering.
 */
@@ -163,7 +187,9 @@ class PS_2_2: public PS_2 {
 
   //! outgoing particle 4-momenta
   FV k[2];
-#ifdef WITH_T_SPIN    
+  /* //! outgoing particle 4-momenta in lab-frame */
+  /* volatile FV k_lab[2];   */
+#ifdef WITH_T_SPIN
   //! outgoing particle spin 4-vectors
   FV S[2];
   FV S_r[2];
@@ -224,6 +250,8 @@ class PS_2_2: public PS_2 {
   
   FV const& k1() const  { return k[0]; }
   FV const& k2() const  { return k[1]; }
+  /* FV const& k1_lab() const  { return k_lab[0]; } */
+  /* FV const& k2_lab() const  { return k_lab[1]; } */
 #ifdef WITH_T_SPIN   
   FV const& s1() const  { return S[0]; }
   FV const& s2() const  { return S[1]; }
@@ -254,13 +282,13 @@ class PS_2_2: public PS_2 {
   int whattype() const { return 22; }
   void print() const;
   void FillDistributions(
-			 std::vector<HistArray*>& dist,
+			 DistVec& dist,
 			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////// class PS_2_3 ////////////////////////////////////////////////////////////////////////////////
 /*!
   Phase space for 2->3 scattering.
 */
@@ -268,6 +296,8 @@ class PS_2_3: public PS_2 {
  private:
   //! outgoing particle 4-momenta
   FV k[3];
+  /* //! outgoing particle 4-momenta in lab-frame */
+  /* volatile FV k_lab[3]; */
 #ifdef WITH_T_SPIN    
   //! outgoing particle spin 4-vectors
   FV S[3];
@@ -321,6 +351,9 @@ class PS_2_3: public PS_2 {
   FV const& k2() const  { return k[1]; }
   FV const& k3() const  { return k[2]; }
   FV const& p3() const  { return k[2]; }
+  /* FV const& k1_lab() const  { return k_lab[0]; } */
+  /* FV const& k2_lab() const  { return k_lab[1]; } */
+  /* FV const& k3_lab() const  { return k_lab[2]; }   */
 #ifdef WITH_T_SPIN    
   FV const& s1() const  { return S[0]; }
   FV const& s2() const  { return S[1]; }
@@ -354,16 +387,63 @@ class PS_2_3: public PS_2 {
   int whattype() const { return 23; }
   void print() const;
   void FillDistributions(
-			 std::vector<HistArray*>& dist,
+			 DistVec& dist,
 			 H_TYPE id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// definition of observables used for this project, feel free to add more ///////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+//! Computes invariant mass of two 4-vectors k1 and k2
+double obs_M12(FV const& k1, FV const& k2);
+double OBS_M12(const PS_2* ps);
 
 
 
+//! Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = \sqrt{k1_1}^2+k1_{2}^2}
+double obs_PT(FV const& k);
+double OBS_PT1(const PS_2* ps);
+double OBS_PT2(const PS_2* ps);
 
+
+//! Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|
+double obs_PT12(FV const& k1, FV const& k2);
+double OBS_PT12(const PS_2* ps);
+
+
+//! Computes rapidity of a 4-vector k1
+double obs_Y(FV const& k);
+double OBS_Y1(const PS_2* ps);
+double OBS_Y2(const PS_2* ps);
+
+
+//! Computes rapidity difference of two 4-vectors k1 and k2
+double obs_DY(FV const& k1, FV const& k2);
+double OBS_DY12(const PS_2* ps);
+
+
+
+//! Computes spatial opening angle of two 4-vectors k1 and k2
+double obs_PHI(FV const& k1, FV const& k2);
+
+//! Computes opening angle of the spatial projections on the x-y plane
+double obs_PHIT(FV const& k1, FV const& k2);
+
+//! Computes the spatial triple product of three 4-vectors k1,k2,k3
+double obs_TriProd(FV const& k1, FV const& k2, FV const& k3);
+
+
+#ifdef WITH_T_SPIN  
+double OBS_D12(const PS_2* ps);
+double OBS_CP1(const PS_2* ps);
+double OBS_CP2(const PS_2* ps);
+double OBS_HEL12(const PS_2* ps);
+double OBS_B1(const PS_2* ps);
+double OBS_B2(const PS_2* ps);
+#endif
 
 
 

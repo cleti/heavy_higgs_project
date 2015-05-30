@@ -26,6 +26,7 @@ struct opt g_options = {
   0.0,//double ren_scale;
   1.0,//double ren_scale_mult;  
   14.0,// double cme
+  0.0,// double as
   173.34,//double mt;
   4.75,//double mb; 
   246.0,//double vh;
@@ -51,6 +52,7 @@ struct option const longopts[] = {
   {"ren_scale", required_argument, NULL, 'R'},
   {"ren_mult", required_argument, NULL, 'r'},  
   {"cme", required_argument, NULL, 'E'},
+  {"alphas", required_argument, NULL, 'A'},
   {"mt", required_argument, NULL, 'M'},
   {"mb", required_argument, NULL, 'm'},  
   {"Vh", required_argument, NULL, 'V'},    
@@ -114,7 +116,7 @@ usage (int status)
 
 void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 {
-  const char* arglist = "M:I:N:R:r:E:m:V:H:T:P:v:DtLFQKi";
+  const char* arglist = "M:I:N:R:r:E:A:m:V:H:T:P:v:DtLFQKi";
   std::string arg;
 
   int pos0=0,pos1=0,c1=0;
@@ -146,6 +148,9 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	  break;	  
 	case 'E':
 	  options.cme = fabs(atof(optarg));
+	  break;
+	case 'A':
+	  options.as = fabs(atof(optarg));
 	  break;
 	case 'm':
 	  options.mb = fabs(atof(optarg));
@@ -342,10 +347,10 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // filename NLO_QCD_??TeV_mu???.txt
-int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filename)
+int read_qcd_data(DistVec* dist_vec, std::string const& path, std::string const& filename)
 {
   // try to open the file
-  if (!dist)
+  if (!dist_vec)
     {
       std::cout << std::endl << " Got a 0-pointer.." << std::endl;
       return 0;
@@ -364,25 +369,27 @@ int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filen
   std::cout << std::endl << " Reading NLO QCD from file \'" << path+filename << "\' ..." << std::endl;
   
   std::string sbuff;
-  // iterate over all observables
-  for (unsigned i=0;i<dist->size();++i)
+  // iterate over the distributions in 'DistVec* dist_vec' and try to match
+  // the histograms to the data in the file 
+  for (unsigned i=0;i<dist_vec->size();++i)
     {
-      // pick QCD histogram
-      TH1D *hist = (*(*dist)[i])[H_LO_QCD];
+      // alias for the current histgram in 'DistVec* dist_vec'
+      TH1D *hist_lo  = (*(*dist_vec)[i]->GetHistograms())[H_LO_QCD];
+      TH1D *hist_nlo = (*(*dist_vec)[i]->GetHistograms())[H_NLO_QCD];
       // fill QCD histogram
       double bin;
-      double val;
+      double val_lo;
+      double val_nlo;
      
       int bincount = 0;
-      int binmax   = hist->GetNbinsX();
-      PRINT(hist);
+      int binmax   = hist_lo->GetNbinsX();
       PRINT(binmax);
       while(1)
 	{
 	  if (bincount>binmax+1)
 	    {
 	      std::cout << std::endl << " Error! ";
-	      std::cout << " Histogram dimension does not match input data!. " << std::endl;
+	      std::cout << " Histogram dimension does not match input data! " << std::endl;
 	      return 0;
 	    }
 	  if (file.good())
@@ -411,36 +418,53 @@ int read_qcd_data(HAvec* dist, std::string const& path, std::string const& filen
 		    { // not a comment: extract numbers, start counting bins
 		      ++bincount;
 		      std::stringstream iss(sbuff);
+		      ///////////////////////////////
+		      // lower bin boundary
 		      iss >> bin;
-		      iss >> val;
-		      std::cout << bincount << " " << bin << " " << val << std::endl;
-		      if (fabs(bin-hist->GetBinLowEdge(bincount))>1e-4)
+		      // LO QCD bin value
+		      iss >> val_lo;
+		      // NLO QCD bin value
+		      iss >> val_nlo;
+		      ///////////////////////////////
+		      std::cout << bincount << " " << '\t';
+		      std::cout << bin << " " << '\t';
+		      std::cout << val_lo << " " << '\t';
+		      std::cout << val_nlo << " " << std::endl;
+		      if ( fabs( bin - (hist_lo->GetBinLowEdge(bincount)) ) > 1e-4 )
 			{
 			  std::cout << std::endl << " Error! ";
-			  std::cout << " hist: " << hist->GetBinLowEdge(bincount) << std::endl;
+			  std::cout << " hist: " << hist_lo->GetBinLowEdge(bincount) << std::endl;
 			  std::cout << " Input data does not match historgam binning!. " << std::endl;
-	      return 0;
+			  // discard data for this histogram
+			  hist_lo->Reset();
+			  hist_nlo->Reset();
+			  break;
 			}
-		      hist->SetBinContent(bincount,val);
+		      // Zongguos data is NOT normalized to binw!
+		      // do that here:
+		      double binw = hist_lo->GetBinWidth(bincount);
+		      hist_lo ->SetBinContent(bincount,val_lo/binw);
+		      hist_nlo->SetBinContent(bincount,val_nlo/binw);
 		    }
 		}
 	    }
 	  else
 	    {
-	      std::cout << std::endl << " Error! ";
 	      if (file.eof())
 		{
-		  std::cout << " End-of-File reached on input operation. " << std::endl;
+		  std::cout << "\n End-of-File reached on input operation. " << std::endl;
 		  return 1;
 		}
 	      if (file.fail())
 		{
-		  std::cout << " Logical error on i/o operation. " << std::endl;
+		  std::cout << std::endl << " Error! ";
+		  std::cout << "\n Logical error on i/o operation. " << std::endl;
 		  return 0;
 		}
 	      if (file.bad())
 		{
-		  std::cout << " Read/writing error on i/o operation. " << std::endl;
+		  std::cout << std::endl << " Error! ";
+		  std::cout << "\n Read/writing error on i/o operation. " << std::endl;
 		  return 0;
 		};
 	    }
@@ -551,82 +575,82 @@ void DrawDistribution(
       canvas.p1_1->Draw();
       canvas.p1_1->cd();
 
+      // use NLO V historgam to add up all the PHI contributions
+      H_TYPE H_NLO_PHI = H_NLO_PHI_V;
+      
       // add LO QCD contribution to deltaNLO QCD
       histograms[H_NLO_QCD]->Add(histograms[H_LO_QCD]);
+      
       if (NLO)
 	{
-	  // add NLO QCD to LO PHI histogram
-	  histograms[H_LO_PHI]->Add(histograms[H_NLO_QCD]);
-	  // add NLO PHI virt.
-	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_V]);
+	  // add LO PHI
+	  histograms[H_NLO_PHI]->Add(histograms[H_LO_PHI]);
 	  // add NLO PHI int. dip.
-	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_ID]);
+	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_PHI_ID]);
 	  // add NLO PHI real
 	  histograms[H_NLO_PHI_R]->Smooth(1);
-	  histograms[H_LO_PHI]->Add(histograms[H_NLO_PHI_R]);
-	  
-	}
-
-      // normalize
-      histograms[0]->Scale(1.0/norm[0]);// LO QCD cross section
-      histograms[1]->Scale(1.0/norm[1]);// LO QCD+PHI cross section
-
-      if (NLO)
-	{
-	  histograms[3]->Scale(1.0/norm[3]);// NLO QCD+PHI cross section
-
-	  histograms[3]->SetLineWidth(2);
-	  histograms[3]->SetLineColor(2);
-	  histograms[3]->GetYaxis()->SetLabelSize(LabelSizeY);
-	  histograms[3]->GetYaxis()->SetTitleOffset(TitleOffsetY);
-	  histograms[3]->GetYaxis()->SetTitle(titleY.c_str());
-	  histograms[3]->DrawCopy("hist ][");
-
-	  histograms[1]->SetLineWidth(1);
-	  histograms[1]->SetLineColor(2);
-	  histograms[1]->DrawCopy("same hist ][");
+	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_PHI_R]);
+	  // add NLO QCD to LO PHI histogram
+	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_QCD]);
 	}
       else
 	{
-	  histograms[1]->SetLineWidth(2);
-	  histograms[1]->SetLineColor(2);
-	  histograms[1]->GetYaxis()->SetLabelSize(LabelSizeY);
-	  histograms[1]->GetYaxis()->SetTitleOffset(TitleOffsetY);
-	  histograms[1]->GetYaxis()->SetTitle(titleY.c_str());
-	  histograms[1]->DrawCopy("hist ][");
+	  // add LO QCD to LO PHI
+	  histograms[H_LO_PHI]->Add(histograms[H_NLO_QCD]);
 	}
 
-      histograms[0]->SetLineWidth(1);
-      histograms[0]->SetLineColor(1);
+      // normalize LO histograms with the factors given in array norm[]
+      if (norm)
+	{
+	  histograms[H_LO_QCD]->Scale(1.0/norm[0]);// LO QCD cross section
+	  histograms[H_LO_PHI]->Scale(1.0/norm[2]);// NLO QCD + LO PHI cross section
+	}
+      
+      if (NLO)
+	{
+	  // normalize NLO  histograms with the factors given in array norm[]
+	  if (norm)
+	    {
+	      histograms[H_NLO_QCD]->Scale(1.0/norm[1]);// NLO QCD cross section
+	      histograms[H_NLO_PHI]->Scale(1.0/norm[3]);// NLO QCD + NLO PHI cross section
+	    }
+	  // draw NLO PHI
+	  histograms[H_NLO_PHI]->SetLineWidth(2);
+	  histograms[H_NLO_PHI]->SetLineColor(2);
+	  histograms[H_NLO_PHI]->DrawCopy("hist ][");
+	}
+      else
+	{
+	  // draw LO PHI
+	  histograms[H_LO_PHI]->SetLineWidth(2);
+	  histograms[H_LO_PHI]->SetLineColor(2);
+	  histograms[H_LO_PHI]->DrawCopy("hist ][");
+	}
 
+      // draw LO QCD
+      histograms[H_LO_QCD]->SetLineStyle(2);
+      histograms[H_LO_QCD]->DrawCopy("same hist ][");
+      // draw NLO QCD
+      histograms[H_NLO_QCD]->DrawCopy("same hist ][");
+      
       if (WRITE)
 	{
-	  histograms[0]->Write();
-	  histograms[1]->Write();
-	  if (NLO) histograms[3]->Write();
+	  histograms[H_NLO_QCD]->Write();
+	  histograms[H_LO_PHI]->Write();
+	  if (NLO) histograms[H_NLO_PHI]->Write();
 	}
       
-      histograms[0]->DrawCopy("same hist ][");
-      
-      leg->AddEntry(histograms[0] ,"LO QCD","L");
+      leg->AddEntry(histograms[H_LO_QCD] ,"LO QCD","L");
+      leg->AddEntry(histograms[H_NLO_QCD] ,"NLOW QCD","L");
       if (THDM.NBosons()>1)
 	{
-	  leg->AddEntry(histograms[1] ,"LO QCD + #Phi_{2} + #Phi_{3} ","L");
+	  if (NLO) leg->AddEntry(histograms[H_NLO_PHI] ,"NLOW QCD + NLO #Phi_{2}, #Phi_{3} ","L");
+	  else     leg->AddEntry(histograms[H_LO_PHI] ,"NLOW QCD + LO #Phi_{2}, #Phi_{3} ","L");
 	}
       else
 	{
-	  leg->AddEntry(histograms[1] ,"LO QCD + #Phi ","L");
-	}
-      if (NLO)
-	{
-	  if (THDM.NBosons()>1)
-	    {
-	      leg->AddEntry(histograms[3] ,"NLO QCD + #Phi_{2} + #Phi_{3} ","L");
-	    }
-	  else
-	    {
-	      leg->AddEntry(histograms[3] ,"NLO QCD + #Phi ","L");
-	    }
+	  if (NLO) leg->AddEntry(histograms[H_NLO_PHI] ,"NLOW QCD + NLO #Phi ","L");
+	  else     leg->AddEntry(histograms[H_LO_PHI] ,"NLOW QCD + LO #Phi ","L");
 	}
       leg->Draw("same");
 
@@ -636,22 +660,28 @@ void DrawDistribution(
       canvas.p1_2->Draw();
       canvas.p1_2->cd();
 
-      histograms[3]->Divide(histograms[0]);
-      histograms[1]->Divide(histograms[0]);
-      histograms[0]->Divide(histograms[0]);
-
+      // for the ratio plot ...
       if (NLO)
 	{
-	  SetRatioPlot(histograms[3],titleX.c_str());
-	  histograms[3]->DrawCopy("hist ][");
-	  histograms[1]->DrawCopy("same hist ][");
+	  // normalize everything to NLO QCD histograms
+	  histograms[H_NLO_PHI]->Divide(histograms[H_NLO_QCD]);
+	  histograms[H_NLO_QCD]->Divide(histograms[H_NLO_QCD]);
+	  
+	  SetRatioPlot(histograms[H_NLO_PHI],titleX.c_str());
+	  histograms[H_NLO_PHI]->DrawCopy("hist ][");
+	  histograms[H_NLO_QCD]->DrawCopy("same hist ][");
 	}
       else
 	{
-	  SetRatioPlot(histograms[1],titleX.c_str());
-	  histograms[1]->DrawCopy("hist ][");
+	  // normalize everything to LO QCD histograms
+	  histograms[H_LO_PHI]->Divide(histograms[H_NLO_QCD]);
+	  histograms[H_NLO_QCD]->Divide(histograms[H_NLO_QCD]);
+      
+	  SetRatioPlot(histograms[H_LO_PHI],titleX.c_str());
+	  histograms[H_LO_PHI]->DrawCopy("hist ][");
+	  histograms[H_NLO_QCD]->DrawCopy("same hist ][");
 	}
-      histograms[0]->DrawCopy("same hist ][");
+      
       //////////////////////////////////////////////////////
       //////////////////////////////////////////////////////
       if (WRITE) canvas.c->Write();

@@ -42,7 +42,8 @@ static int Eval_tt_decay(
       ///////////////// decay of anti-top quark ///////////////////////////////////////
       tt_decay *= (ps_t2->get_wgt() * Eval_t_blnu(*ps_t2,S2_r,hm));
       // PRINT_4VEC(S2_r);
-      S2_r *= (-1);// antitop spin vector receives relative sign
+      S1_r *=  kappa_p;// antitop spin vector receives relative sign
+      S2_r *=  kappa_m;// antitop spin vector receives relative sign
       // // PRINT_4VEC(S2_r);
       // // exit(1);
       /////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +78,8 @@ static int Eval_tt_decay(
   
   boost_k1_RF.apply(S1);
   boost_k2_RF.apply(S2);
-  // S2 *= -1;
+
+  
   // PRINT(sp(k1,S1));
   // PRINT(sp(k2,S2));
   // PRINT_4VEC(S1);
@@ -99,7 +101,7 @@ static int Eval_tt_decay(
   // unpolarized amplitudes: mulitply tt -> l + jets branching fraction, approx. 24/81
   /////////////////////////////////////////////////////////////////////////////////////
   // factor 4 accounts for summation over tt spin configurations
-  //tt_decay *= 24./81.*4.0;
+  //tt_decay *= 24./81.;
 #endif
   return 1;
 }
@@ -113,10 +115,10 @@ static int Eval_tt_decay(
 double Integrand_poly2(double* x, size_t dim, void* arg)
 {
   integrand_par* ip    = static_cast<integrand_par*> (arg);
-  std::vector<HistArray*>* dist = (ip->distributions);
+  DistVec* dist = (ip->distributions);
   double vwgt  = ip->cmp_v_weight();
   double res = 1.0+x[0]+x[1]*x[1];
-  (*dist)[0]->FillOne(H_LO_QCD,x[1],res*vwgt);
+  (*dist)[0]->GetHistograms()->FillOne(H_LO_QCD,x[1],res*vwgt);
   return res;
 }
 
@@ -171,11 +173,11 @@ double Integrand_2_2(double* x, size_t dim, void* arg)
 	  double vwgt  = ip->cmp_v_weight();
 	  if (flags & F_EVAL_B_QCDxQCD)
 	    { // only the s_part distribution
-	      (*dist)[0]->FillOne(H_LO_QCD,obs_M12(p1,p2)*mScale,res_b*vwgt);
+	      (*dist)[0]->GetHistograms()->FillOne(H_LO_QCD,obs_M12(p1,p2)*mScale,res_b*vwgt);
 	    }
 	  else
 	    { // only the s_part distribution 
-	      (*dist)[0]->FillOne(H_LO_PHI,obs_M12(p1,p2)*mScale,res_b*vwgt);
+	      (*dist)[0]->GetHistograms()->FillOne(H_LO_PHI,obs_M12(p1,p2)*mScale,res_b*vwgt);
 	    }
 	}
       ////////////////////////////////////////////////////////////////////////////
@@ -246,7 +248,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 
       // flux factor 1/(2*s_part), factor 2 pi from trivial integration over phi
       double jac_flux = TwoPi*ps->get_wgt()/(2.0*s_part);
-      
+
       // born matrix elements (GG)
       if (EVAL_B(flags)) res_b = Eval_B(*ps,*hm,flags,EFF)*jac_flux*cf_gg*f1_g*f2_g*tt_decay;
 
@@ -281,30 +283,12 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 	  //    in FillDistributions()
 	  ps->P1() = 1.0/x[0] * (ps->p1());
 	  ps->P2() = 1.0/x[1] * (ps->p2());
-	  	      
+	  
 	  double vwgt  = ip->cmp_v_weight();
-	  if (flags & F_EVAL_B_QCDxQCD)
-	    { // only QCD LO: fill in the 0-th hostogram
-	      ps->FillDistributions(*dist,H_LO_QCD,res_b*vwgt,mScale);
-// #ifdef WITH_T_SPIN
-// 	      FV const& k1 = ps->k1();
-// 	      FV const& k2 = ps->k2();
-// 	      (*dist)[9]->FillOne(H_LO_QCD,obs_M12(k1,k2)*mScale,res_b*vwgt);
-// #endif
-	    }
-	  else
-	    { // PHI + INT LO: fill in the first histogram
-	      ps->FillDistributions(*dist,H_LO_PHI,res_b*vwgt,mScale);
-// #ifdef WITH_T_SPIN
-// 	      FV const& k1 = ps->k1();
-// 	      FV const& k2 = ps->k2();
-// 	      c_double const& D1 = hm->GetBoson(0)->GetPropagator();
-// 	      c_double const& D2 = hm->GetBoson(1)->GetPropagator();
-// 	      c_double D1D2 = D1*std::conj(D2);
-// 	      (*dist)[7]->FillOne(H_LO_PHI,obs_M12(k1,k2)*mScale,res_b*vwgt*D1D2.real());
-// 	      (*dist)[9]->FillOne(H_LO_PHI,obs_M12(k1,k2)*mScale,res_b*vwgt);
-// #endif
-	    }
+	  ps->FillDistributions(*dist,
+				(flags & F_EVAL_B_QCDxQCD)?H_LO_QCD:H_LO_PHI,
+				res_b*vwgt,
+				mScale);
 	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_PHI_V,res_v*vwgt,mScale);//res_v*
 	}
       ////////////////////////////////////////////////////////////////////////////
@@ -518,7 +502,7 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 
       // for the unint. dipoles we need here already the VEGAS weight
       double vwgt = 0.0;
-      std::vector<HistArray*>* dist = nullptr;
+      DistVec* dist = nullptr;
       // DISTRIBUTIONS ///////////////////////////////////////////////////////////
       if (ip->collect_dist)
 	{
@@ -579,7 +563,7 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
       double jac_flux = TwoPi*ps->get_wgt()/(2.0*s_part);
       // need VEGAS weight explicitly for the uint. dipoles later
       double vwgt = 0.0;
-      std::vector<HistArray*>* dist = nullptr;
+      DistVec* dist = nullptr;
       /////////////////////////// PDF //////////////////////////////////
       double qq_pdf = 0.0;
       double qg_pdf = 0.0;

@@ -420,7 +420,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
   int     ndim         = integral.GetDim();
   double* lower_limits = integral.Lo();
   double* upper_limits = integral.Up();
-  std::vector<HistArray*>* dist   = ip.distributions;
+  DistVec* dist   = ip.distributions;
   
   d_GSLState -> iterations = vp.iterations;
   d_GSLState -> verbose    = vp.verbose - 2;
@@ -441,7 +441,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
 	{
 	  for (auto e: *dist)
 	    {
-	      e->Pause();
+	      e->GetHistograms()->Pause();
 	    }
 	}
       
@@ -474,14 +474,15 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
   // do max runs when collecting differential distributions...
   while ( (run_count<vp.max_runs) && (fabs(d_GSLState->chisq-1.0) > vp.chisq_limit) )
     {
-      // activate histograms if available
+      // activate histograms if the chisq is not too bad
       if (dist != nullptr)
 	{
 	  for (auto e: *dist)
 	    {
-	      e->Resume();
+	      e->GetHistograms()->Resume();
 	    }
 	}
+
       //////////// GSL-INTEGRATION ROUTINE ////////////
       INT_TIME      = clock(); // processor time
       gsl_monte_vegas_integrate (&d_GSLIntegrand, lower_limits, upper_limits, ndim, ncalls, d_GSLRng, d_GSLState,&vp.result, &vp.error);
@@ -515,7 +516,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
       for (auto e: *dist)
 	{
 	  // normalize distributions to #iterations, #runs (warm-up does not count)
-	  e->Scale(vp.iterations*vp.num_runs);
+	  e->GetHistograms()->Scale(vp.iterations*vp.num_runs);
 	}
     }
 
