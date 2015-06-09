@@ -15,6 +15,7 @@
 #include "Makros.h"
 #include "Functions_Shared.h"
 #include "Functions_pp_ttX_V.h"
+#include "PhaseSpace.h"
 
 
 //! Evaluates the integrated dipoles that live on the normal 2->2 phase space, i.e. delta terms and distribution end-point terms.

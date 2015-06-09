@@ -86,11 +86,17 @@ namespace SI_INV
   double T11 = 0.0;
   double T12 = 0.0;
   double zero = 0.0;
-  double mt2 = 0.0;
+  double   MT2 = 0.0;
   c_double MH2 = 0.0;
 }
 
-void Set_SI(const PS_2_2& ps, const double& MUR2, unsigned flags)
+void Set_SI(
+	    const double& mt2,
+	    const double& rs,
+	    const double& t11,
+	    const double& t12,
+	    const double& MUR2,
+	    unsigned flags)
 {
   using namespace SI_INV;
  
@@ -106,11 +112,11 @@ if (IZ_EVAL_SI_2P(flags))
     // we assume pp->ttbar
     // both final state particles must have the same mass
     // otherwise the results are useless
-    mt2 = ps.get_msq(0);
+    MT2 = mt2;
     // QCDloop functions take these invariants as arguments
-    S12  = pow(ps.get_rs(),2);
-    T11  = mt2 - ps.get_t11();
-    T12  = mt2 - ps.get_t12();
+    S12  = std::pow(rs,2);
+    T11  = mt2 - t11;
+    T12  = mt2 - t12;
     
     Set_I1(MUR2);
     Set_I2(MUR2);
@@ -132,9 +138,9 @@ void Set_I1(const double& MUR2)
   using namespace SI_INV;
     
   int I = 0;
-  I1_MT2_MU2_0 = qli1_(&mt2,&MUR2,&I);
+  I1_MT2_MU2_0 = qli1_(&MT2,&MUR2,&I);
   I = -1;
-  I1_MT2_MU2_1 = qli1_(&mt2,&MUR2,&I);
+  I1_MT2_MU2_1 = qli1_(&MT2,&MUR2,&I);
 
 #ifdef WITH_NON_FACT_DIAGRAMS
   setlambda(0);
@@ -148,32 +154,32 @@ void Set_I1(const double& MUR2)
 void Set_I2(const double& MUR2)
 {
   using namespace SI_INV;
-    
+  
   int I = 0;
-  // I2_0_MT2_MT2_MU2_0   = qli2_(&zero,&mt2,&mt2,&MUR2,&I);
-  I2_MT2_0_MT2_MU2_0   = qli2_(&mt2,&zero,&mt2,&MUR2,&I);
+  // I2_0_MT2_MT2_MU2_0   = qli2_(&zero,&MT2,&MT2,&MUR2,&I);
+  I2_MT2_0_MT2_MU2_0   = qli2_(&MT2,&zero,&MT2,&MUR2,&I);
   I2_S12_0_0_MU2_0     = qli2_(&S12,&zero,&zero,&MUR2,&I);
-  I2_S12_MT2_MT2_MU2_0 = qli2_(&S12,&mt2,&mt2,&MUR2,&I);
-  I2_T11_0_MT2_MU2_0   = qli2_(&T11,&zero,&mt2,&MUR2,&I);
-  I2_T12_0_MT2_MU2_0   = qli2_(&T12,&zero,&mt2,&MUR2,&I);
+  I2_S12_MT2_MT2_MU2_0 = qli2_(&S12,&MT2,&MT2,&MUR2,&I);
+  I2_T11_0_MT2_MU2_0   = qli2_(&T11,&zero,&MT2,&MUR2,&I);
+  I2_T12_0_MT2_MU2_0   = qli2_(&T12,&zero,&MT2,&MUR2,&I);
  
   I = -1;
-  // I2_0_MT2_MT2_MU2_1   = qli2_(&zero,&mt2,&mt2,&MUR2,&I);
-  I2_MT2_0_MT2_MU2_1   = qli2_(&mt2,&zero,&mt2,&MUR2,&I);
+  // I2_0_MT2_MT2_MU2_1   = qli2_(&zero,&MT2,&MT2,&MUR2,&I);
+  I2_MT2_0_MT2_MU2_1   = qli2_(&MT2,&zero,&MT2,&MUR2,&I);
   I2_S12_0_0_MU2_1     = qli2_(&S12,&zero,&zero,&MUR2,&I);
-  // I2_S12_MT2_MT2_MU2_1 = qli2_(&S12,&mt2,&mt2,&MUR2,&I);
-  I2_T11_0_MT2_MU2_1   = qli2_(&T11,&zero,&mt2,&MUR2,&I);
-  I2_T12_0_MT2_MU2_1   = qli2_(&T12,&zero,&mt2,&MUR2,&I);
+  // I2_S12_MT2_MT2_MU2_1 = qli2_(&S12,&MT2,&MT2,&MUR2,&I);
+  I2_T11_0_MT2_MU2_1   = qli2_(&T11,&zero,&MT2,&MUR2,&I);
+  I2_T12_0_MT2_MU2_1   = qli2_(&T12,&zero,&MT2,&MUR2,&I);
 
 
 #ifdef WITH_NON_FACT_DIAGRAMS
   setlambda(0);
   I2_S12_0_MH2_MU2_0   = B0C(S12,zero,MH2);
-  I2_MT2_MT2_MH2_MU2_0 = B0C(mt2,mt2,MH2);
+  I2_MT2_MT2_MH2_MU2_0 = B0C(MT2,MT2,MH2);
   I2_0_0_MH2_MU2_0     = B0C(zero,zero,MH2);
   setlambda(-1);
   I2_S12_0_MH2_MU2_1   = B0C(S12,zero,MH2);
-  I2_MT2_MT2_MH2_MU2_1 = B0C(mt2,mt2,MH2);
+  I2_MT2_MT2_MH2_MU2_1 = B0C(MT2,MT2,MH2);
   I2_0_0_MH2_MU2_1     = B0C(zero,zero,MH2);
 #endif
 }
@@ -184,40 +190,40 @@ void Set_I2(const double& MUR2)
     
   int I = 0;
   I3_0_0_S12_0_0_0_MU2_0         = qli3_(&zero,&zero,&S12,&zero,&zero,&zero,&MUR2,&I);
-  I3_0_T11_MT2_0_0_MT2_MU2_0     = qli3_(&zero,&T11,&mt2,&zero,&zero,&mt2,&MUR2,&I);
-  I3_0_T12_MT2_0_0_MT2_MU2_0     = qli3_(&zero,&T12,&mt2,&zero,&zero,&mt2,&MUR2,&I);
-  I3_MT2_0_T11_0_MT2_MT2_MU2_0   = qli3_(&mt2,&zero,&T11,&zero,&mt2,&mt2,&MUR2,&I);
-  I3_MT2_0_T12_0_MT2_MT2_MU2_0   = qli3_(&mt2,&zero,&T12,&zero,&mt2,&mt2,&MUR2,&I);
-  I3_MT2_S12_MT2_0_MT2_MT2_MU2_0 = qli3_(&mt2,&S12,&mt2,&zero,&mt2,&mt2,&MUR2,&I);
-  I3_S12_0_0_MT2_MT2_MT2_MU2_0   = qli3_(&S12,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
-  I3_S12_MT2_MT2_0_0_MT2_MU2_0   = qli3_(&S12,&mt2,&mt2,&zero,&zero,&mt2,&MUR2,&I);
+  I3_0_T11_MT2_0_0_MT2_MU2_0     = qli3_(&zero,&T11,&MT2,&zero,&zero,&MT2,&MUR2,&I);
+  I3_0_T12_MT2_0_0_MT2_MU2_0     = qli3_(&zero,&T12,&MT2,&zero,&zero,&MT2,&MUR2,&I);
+  I3_MT2_0_T11_0_MT2_MT2_MU2_0   = qli3_(&MT2,&zero,&T11,&zero,&MT2,&MT2,&MUR2,&I);
+  I3_MT2_0_T12_0_MT2_MT2_MU2_0   = qli3_(&MT2,&zero,&T12,&zero,&MT2,&MT2,&MUR2,&I);
+  I3_MT2_S12_MT2_0_MT2_MT2_MU2_0 = qli3_(&MT2,&S12,&MT2,&zero,&MT2,&MT2,&MUR2,&I);
+  I3_S12_0_0_MT2_MT2_MT2_MU2_0   = qli3_(&S12,&zero,&zero,&MT2,&MT2,&MT2,&MUR2,&I);
+  I3_S12_MT2_MT2_0_0_MT2_MU2_0   = qli3_(&S12,&MT2,&MT2,&zero,&zero,&MT2,&MUR2,&I);
 
   I = -1;
   I3_0_0_S12_0_0_0_MU2_1         = qli3_(&zero,&zero,&S12,&zero,&zero,&zero,&MUR2,&I);
-  I3_0_T11_MT2_0_0_MT2_MU2_1     = qli3_(&zero,&T11,&mt2,&zero,&zero,&mt2,&MUR2,&I);
-  I3_0_T12_MT2_0_0_MT2_MU2_1     = qli3_(&zero,&T12,&mt2,&zero,&zero,&mt2,&MUR2,&I);
-  // I3_MT2_0_T11_0_MT2_MT2_MU2_1   = qli3_(&mt2,&zero,&T11,&zero,&mt2,&mt2,&MUR2,&I);//
-  // I3_MT2_0_T12_0_MT2_MT2_MU2_1   = qli3_(&mt2,&zero,&T12,&zero,&mt2,&mt2,&MUR2,&I);//
-  I3_MT2_S12_MT2_0_MT2_MT2_MU2_1 = qli3_(&mt2,&S12,&mt2,&zero,&mt2,&mt2,&MUR2,&I);
-  // I3_S12_0_0_MT2_MT2_MT2_MU2_1   = qli3_(&S12,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I);//
-  // I3_S12_MT2_MT2_0_0_MT2_MU2_1   = qli3_(&S12,&mt2,&mt2,&zero,&zero,&mt2,&MUR2,&I);//
+  I3_0_T11_MT2_0_0_MT2_MU2_1     = qli3_(&zero,&T11,&MT2,&zero,&zero,&MT2,&MUR2,&I);
+  I3_0_T12_MT2_0_0_MT2_MU2_1     = qli3_(&zero,&T12,&MT2,&zero,&zero,&MT2,&MUR2,&I);
+  // I3_MT2_0_T11_0_MT2_MT2_MU2_1   = qli3_(&MT2,&zero,&T11,&zero,&MT2,&MT2,&MUR2,&I);//
+  // I3_MT2_0_T12_0_MT2_MT2_MU2_1   = qli3_(&MT2,&zero,&T12,&zero,&MT2,&MT2,&MUR2,&I);//
+  I3_MT2_S12_MT2_0_MT2_MT2_MU2_1 = qli3_(&MT2,&S12,&MT2,&zero,&MT2,&MT2,&MUR2,&I);
+  // I3_S12_0_0_MT2_MT2_MT2_MU2_1   = qli3_(&S12,&zero,&zero,&MT2,&MT2,&MT2,&MUR2,&I);//
+  // I3_S12_MT2_MT2_0_0_MT2_MU2_1   = qli3_(&S12,&MT2,&MT2,&zero,&zero,&MT2,&MUR2,&I);//
 
   
 #ifdef WITH_NON_FACT_DIAGRAMS
   setlambda(0);
-  I3_MT2_MT2_S12_0_MT2_MH2_MU2_0 = C0C(mt2,mt2,S12,zero,mt2,MH2);
-  I3_T11_MT2_0_0_MT2_MH2_MU2_0   = C0C(T11,mt2,zero,zero,mt2,MH2);
-  I3_T12_MT2_0_0_MT2_MH2_MU2_0   = C0C(T12,mt2,zero,zero,mt2,MH2);
+  I3_MT2_MT2_S12_0_MT2_MH2_MU2_0 = C0C(MT2,MT2,S12,zero,MT2,MH2);
+  I3_T11_MT2_0_0_MT2_MH2_MU2_0   = C0C(T11,MT2,zero,zero,MT2,MH2);
+  I3_T12_MT2_0_0_MT2_MH2_MU2_0   = C0C(T12,MT2,zero,zero,MT2,MH2);
   I3_0_0_S12_0_0_MH2_MU2_0       = C0C(zero,zero,S12,zero,zero,MH2);  
   setlambda(-1);
-  I3_MT2_MT2_S12_0_MT2_MH2_MU2_1 = C0C(mt2,mt2,S12,zero,mt2,MH2);
-  I3_T11_MT2_0_0_MT2_MH2_MU2_1   = C0C(T11,mt2,zero,zero,mt2,MH2);
-  I3_T12_MT2_0_0_MT2_MH2_MU2_1   = C0C(T12,mt2,zero,zero,mt2,MH2);
+  I3_MT2_MT2_S12_0_MT2_MH2_MU2_1 = C0C(MT2,MT2,S12,zero,MT2,MH2);
+  I3_T11_MT2_0_0_MT2_MH2_MU2_1   = C0C(T11,MT2,zero,zero,MT2,MH2);
+  I3_T12_MT2_0_0_MT2_MH2_MU2_1   = C0C(T12,MT2,zero,zero,MT2,MH2);
   I3_0_0_S12_0_0_MH2_MU2_1       = C0C(zero,zero,S12,zero,zero,MH2);
   setlambda(-2);
-  I3_MT2_MT2_S12_0_MT2_MH2_MU2_2 = C0C(mt2,mt2,S12,zero,mt2,MH2);
-  I3_T11_MT2_0_0_MT2_MH2_MU2_2   = C0C(T11,mt2,zero,zero,mt2,MH2);
-  I3_T12_MT2_0_0_MT2_MH2_MU2_2   = C0C(T12,mt2,zero,zero,mt2,MH2);
+  I3_MT2_MT2_S12_0_MT2_MH2_MU2_2 = C0C(MT2,MT2,S12,zero,MT2,MH2);
+  I3_T11_MT2_0_0_MT2_MH2_MU2_2   = C0C(T11,MT2,zero,zero,MT2,MH2);
+  I3_T12_MT2_0_0_MT2_MH2_MU2_2   = C0C(T12,MT2,zero,zero,MT2,MH2);
   I3_0_0_S12_0_0_MH2_MU2_2       = C0C(zero,zero,S12,zero,zero,MH2);
 #endif
 }
@@ -227,26 +233,26 @@ void Set_I2(const double& MUR2)
   using namespace SI_INV;
     
   int I = 0;
-  I4_MT2_0_0_MT2_T11_S12_0_MT2_MT2_MT2_MU2_0 = qli4_(&mt2,&zero,&zero,&mt2,&T11,&S12,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
-  I4_MT2_0_0_MT2_T12_S12_0_MT2_MT2_MT2_MU2_0 = qli4_(&mt2,&zero,&zero,&mt2,&T12,&S12,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
+  I4_MT2_0_0_MT2_T11_S12_0_MT2_MT2_MT2_MU2_0 = qli4_(&MT2,&zero,&zero,&MT2,&T11,&S12,&zero,&MT2,&MT2,&MT2,&MUR2,&I);
+  I4_MT2_0_0_MT2_T12_S12_0_MT2_MT2_MT2_MU2_0 = qli4_(&MT2,&zero,&zero,&MT2,&T12,&S12,&zero,&MT2,&MT2,&MT2,&MUR2,&I);
 
-  I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_0     = qli4_(&zero,&zero,&mt2,&mt2,&S12,&T11,&zero,&zero,&zero,&mt2,&MUR2,&I);
-  I4_0_0_MT2_MT2_S12_T12_0_0_0_MT2_MU2_0     = qli4_(&zero,&zero,&mt2,&mt2,&S12,&T12,&zero,&zero,&zero,&mt2,&MUR2,&I);
+  I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_0     = qli4_(&zero,&zero,&MT2,&MT2,&S12,&T11,&zero,&zero,&zero,&MT2,&MUR2,&I);
+  I4_0_0_MT2_MT2_S12_T12_0_0_0_MT2_MU2_0     = qli4_(&zero,&zero,&MT2,&MT2,&S12,&T12,&zero,&zero,&zero,&MT2,&MUR2,&I);
 
   // these two are equal
-  I4_0_T11_0_T12_MT2_MT2_0_0_MT2_MT2_MU2_0   = qli4_(&zero,&mt2,&zero,&mt2,&T11,&T12,&zero,&zero,&mt2,&mt2,&MUR2,&I);
-  I4_0_T12_0_T11_MT2_MT2_0_0_MT2_MT2_MU2_0   = qli4_(&zero,&mt2,&zero,&mt2,&T12,&T11,&zero,&zero,&mt2,&mt2,&MUR2,&I);
+  I4_0_T11_0_T12_MT2_MT2_0_0_MT2_MT2_MU2_0   = qli4_(&zero,&MT2,&zero,&MT2,&T11,&T12,&zero,&zero,&MT2,&MT2,&MUR2,&I);
+  I4_0_T12_0_T11_MT2_MT2_0_0_MT2_MT2_MU2_0   = qli4_(&zero,&MT2,&zero,&MT2,&T12,&T11,&zero,&zero,&MT2,&MT2,&MUR2,&I);
 
 
   I = -1;
-  I4_MT2_0_0_MT2_T11_S12_0_MT2_MT2_MT2_MU2_1 = qli4_(&mt2,&zero,&zero,&mt2,&T11,&S12,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
-  I4_MT2_0_0_MT2_T12_S12_0_MT2_MT2_MT2_MU2_1 = qli4_(&mt2,&zero,&zero,&mt2,&T12,&S12,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
+  I4_MT2_0_0_MT2_T11_S12_0_MT2_MT2_MT2_MU2_1 = qli4_(&MT2,&zero,&zero,&MT2,&T11,&S12,&zero,&MT2,&MT2,&MT2,&MUR2,&I);
+  I4_MT2_0_0_MT2_T12_S12_0_MT2_MT2_MT2_MU2_1 = qli4_(&MT2,&zero,&zero,&MT2,&T12,&S12,&zero,&MT2,&MT2,&MT2,&MUR2,&I);
 
-  I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_1     = qli4_(&zero,&zero,&mt2,&mt2,&S12,&T11,&zero,&zero,&zero,&mt2,&MUR2,&I);
-  I4_0_0_MT2_MT2_S12_T12_0_0_0_MT2_MU2_1     = qli4_(&zero,&zero,&mt2,&mt2,&S12,&T12,&zero,&zero,&zero,&mt2,&MUR2,&I);
+  I4_0_0_MT2_MT2_S12_T11_0_0_0_MT2_MU2_1     = qli4_(&zero,&zero,&MT2,&MT2,&S12,&T11,&zero,&zero,&zero,&MT2,&MUR2,&I);
+  I4_0_0_MT2_MT2_S12_T12_0_0_0_MT2_MU2_1     = qli4_(&zero,&zero,&MT2,&MT2,&S12,&T12,&zero,&zero,&zero,&MT2,&MUR2,&I);
 
-  I4_0_T11_0_T12_MT2_MT2_0_0_MT2_MT2_MU2_1   = qli4_(&zero,&mt2,&zero,&mt2,&T11,&T12,&zero,&zero,&mt2,&mt2,&MUR2,&I);
-  I4_0_T12_0_T11_MT2_MT2_0_0_MT2_MT2_MU2_1   = qli4_(&zero,&mt2,&zero,&mt2,&T12,&T11,&zero,&zero,&mt2,&mt2,&MUR2,&I);
+  I4_0_T11_0_T12_MT2_MT2_0_0_MT2_MT2_MU2_1   = qli4_(&zero,&MT2,&zero,&MT2,&T11,&T12,&zero,&zero,&MT2,&MT2,&MUR2,&I);
+  I4_0_T12_0_T11_MT2_MT2_0_0_MT2_MT2_MU2_1   = qli4_(&zero,&MT2,&zero,&MT2,&T12,&T11,&zero,&zero,&MT2,&MT2,&MUR2,&I);
 
 
 #ifdef WITH_NON_FACT_DIAGRAMS

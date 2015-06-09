@@ -10,6 +10,7 @@
 #include "Flags.h"
 #include "Makros.h"
 #include "Functions_Shared.h"
+#include "PhaseSpace.h"
 
 //! Evaluates the squared tree-level amplitudes for the process \f$ gg \rightarrow \phi \rightarrow t\bar{t} + g \f$ and the interferences with the QCD background at the given phase space point. Uses the effective Higgs-gluon vertex. NO spin/colour averaging factor included.
 /*!

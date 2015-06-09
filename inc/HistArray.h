@@ -36,26 +36,26 @@ enum H_TYPE
 #define NHIST 6
 /*!
   This class stores an array of ROOT TH1D's. In the default setup there are 6 histograms, one for each contribution: LO QCD, LO PHIxPHI, LO PHIxQCD, virtual corrections, integrated dipoles and real corrections. Use one HistArray for each observable. There are some helper functions for plotting in Functions_Shared.h. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space.
-  \sa Functions_Shared.h, PhaseSpace.h
+  \sa Functions_Shared.h
 */
 class HistArray {
  protected:
-  //! the histograms
+  //! The histograms
   TH1D d_histograms[NHIST];
-  //! these flags indicate which histogram in the array is active, i.e. gets filled if FillAll()/FillOne() is called
+  //! These flags indicate which histogram in the array is active, i.e. gets filled if FillAll()/FillOne() is called
   unsigned d_active;
   //! tmp. flags, used in Pause()/Resume()
   unsigned d_active_t;
-  //! distribution name
+  //! Distribution name
   std::string d_name;
-  //! latex label x-axis
+  //! Latex label x-axis
   std::string d_label_x;
-  //! latex label y-axis
+  //! Latex label y-axis
   std::string d_label_y;
-  //! mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
+  //! Mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
   int d_mass_dim;
 
-  //! running histogram id
+  //! Histogram ID
   static int d_ID;
   
  public:
@@ -69,51 +69,51 @@ class HistArray {
 	    bool SUMW2 = false);
   ~HistArray() {}
 
-  //! access a specific histogram in the array
+  //! Access a specific histogram in the array.
   /*!
     \param i histogram index, NO RANGE CHECK!
   */
   TH1D* operator[](unsigned i) { return &d_histograms[i]; }
   
-  //! check if a specific histogram is active
+  //! Check if a specific histogram is active.
   bool IsActive(unsigned i) { return d_active & (1<<i);}
   
-  //! activate specific histogram
+  //! Activate only one specific histogram.
   void SetActive(unsigned i) { d_active = (1<<i); }
 
-  //! activate all histograms
+  //! Activate all histograms.
   void ActivateAll() { d_active = F_H_ALL; }
 
-  //! deactivate all histograms
+  //! Deactivate all histograms.
   void DeactivateAll() { d_active = 0; }
   
-  //! change state of specific histogram without touching the others
+  //! Change state of specific histogram without touching the others.
   void ToggleActive(unsigned i) { d_active ^= (1<<i); }
   
-  //! deactivate all histograms, used for VEGAS warmup run
+  //! Deactivate all histograms, used for VEGAS warmup run.
   void Pause() { if (d_active != 0) std::swap(d_active_t,d_active); }
   bool IsPaused() { return !d_active; } 
   
-  //! reset flags to previous state
+  //! Reset flags to previous state.
   void Resume() { if (d_active == 0) std::swap(d_active_t,d_active); }
   
-  //! set the description of the distribution
+  //! Set the description of the distribution.
   void SetName(std::string const& name) { d_name = name; }
   
-  //! get the description of the distribution, const char* for ROOT classes/functions
+  //! Get the description of the distribution, const char* for ROOT classes/functions.
   const char* GetName() { return d_name.c_str(); }
 
-  //! get mass dimension of the associated observable
+  //! Get mass dimension of the associated observable.
   int GetMassDim() { return d_mass_dim; }
   
-  //! fill weight into all active histograms
+  //! Fill weight into all active histograms.
   /*!
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
   void FillAll(double const& x, double const& wgt) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Fill(x,wgt);} }
   
-  //! fill weight into a single histogram if activated
+  //! Fill weight into a single histogram if activated.
   /*!
     \param i histogram index, NO RANGE CHECK!
     \param x value of the observable -> specifies the bin that will be filled
@@ -121,13 +121,13 @@ class HistArray {
   */
   void FillOne(H_TYPE i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
   
-  //! draw all histograms into the currently selected canvas
+  //! Draw all histograms into the currently selected canvas.
   /*!
     \param opt ROOT drawing options
   */
   void Draw(const char* opt="") { for (unsigned i=0;i<NHIST;i++) {d_histograms[i].Draw(opt);} }
 
-  //! rescale all active histograms by a factor of 1/c
+  //! Rescale all active histograms by a factor of 1/c.
   void Scale(double c) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Scale(1.0/c); } }
   
   //! normalize all histograms such that sum(b_i) = sigma, where b_i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!!
@@ -194,6 +194,9 @@ extern HistArray Chel_Histograms;
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 class PS_2;
+/*!
+\typedef observable function type
+ */
 typedef double (*OBSFnc)(const PS_2*);
 
 class Distribution {
@@ -231,6 +234,12 @@ class MeanDistribution: public Distribution {
 };
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
+
+
+/*!
+\typedef A vector with pointers to distributions.
+ */
+typedef std::vector< std::shared_ptr<Distribution> > DistVec; 
 
 
 

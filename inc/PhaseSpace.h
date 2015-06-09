@@ -120,20 +120,20 @@ class PS_2: PS_Named {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*!
-\typedef observable function type
- */
-typedef double (*OBSFnc)(const PS_2*);
+/* /\*! */
+/* \typedef observable function type */
+/*  *\/ */
+/* typedef double (*OBSFnc)(const PS_2*); */
 
-/*!
-\typedef A distribution is specified by the histogram that stores the data and the observable that is historgammed.
- */
-//typedef std::pair<HistArray*,OBSFnc> Distribution; 
+/* /\*! */
+/* \typedef A distribution is specified by the histogram that stores the data and the observable that is historgammed. */
+/*  *\/ */
+/* //typedef std::pair<HistArray*,OBSFnc> Distribution;  */
 
-/*!
-\typedef A vector with pointers to distributions.
- */
-typedef std::vector< std::shared_ptr<Distribution> > DistVec; 
+/* /\*! */
+/* \typedef A vector with pointers to distributions. */
+/*  *\/ */
+/* typedef std::vector< std::shared_ptr<Distribution> > DistVec;  */
 
 
 
@@ -434,6 +434,9 @@ double obs_PHIT(FV const& k1, FV const& k2);
 
 //! Computes the spatial triple product of three 4-vectors k1,k2,k3
 double obs_TriProd(FV const& k1, FV const& k2, FV const& k3);
+
+//! Computes the normalized spatial triple product of three 4-vectors k1,k2,k3
+double obs_TriProdN(FV const& k1, FV const& k2, FV const& k3);
 
 
 #ifdef WITH_T_SPIN  

@@ -17,8 +17,8 @@
 
 #include "Global.h"
 #include "HistArray.h"
-#include "PhaseSpace.h"
 #include "HiggsModel.h"
+#include "PhaseSpace.h"
 
 #include "LHAPDF/LHAPDF.h"
 

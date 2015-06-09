@@ -225,7 +225,12 @@ double Eval_V(
   // these have to be adjusted whenever S changes!!!
   hm.SetHiggsPrefactors(ps.get_s(),1);
   // set scalar integrals (update invariants sometime before this call by Set_Invariants())
-  Set_SI(ps,hm.MUR2(),flags);
+  Set_SI(ps.get_msq(0), // assuming that get_msq(1) is the same value
+	 ps.get_rs(),
+	 ps.get_t11(),
+	 ps.get_t12(),
+	 hm.MUR2(),
+	 flags);
 
   double res = 0.0;
   // add contributions of individual diagrams according to flags in flags

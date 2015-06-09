@@ -171,7 +171,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	  options.useK  = !options.useK;
 	  break;	  
 	case 'L':
-	  options.logfile  = true;
+	  options.logfile  = !options.logfile;
 	  // ! optional arguments must be given with '--long_opt=arg'
 	  if (optarg)
 	    {
@@ -181,7 +181,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	    }
 	  break;
 	case 'F':
-	  options.rootfile  = true;
+	  options.rootfile  = !options.rootfile;
 	  // ! optional arguments must be given with '--long_opt=arg'
 	  if (optarg)
 	    {
@@ -191,7 +191,7 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 	    }
 	  break;
 	case 'Q':
-	  options.qcdfile  = true;
+	  options.qcdfile  = !options.qcdfile;
 	  // ! optional arguments must be given with '--long_opt=arg'
 	  if (optarg)
 	    {
@@ -349,6 +349,9 @@ void parse_arguments(int argc, char** argv, struct opt& options,HiggsModel& hm)
 // filename NLO_QCD_??TeV_mu???.txt
 int read_qcd_data(DistVec* dist_vec, std::string const& path, std::string const& filename)
 {
+  const int colWidth1 = 16;
+  const int colWidth2 = 20;
+  
   // try to open the file
   if (!dist_vec)
     {
@@ -426,15 +429,14 @@ int read_qcd_data(DistVec* dist_vec, std::string const& path, std::string const&
 		      // NLO QCD bin value
 		      iss >> val_nlo;
 		      ///////////////////////////////
-		      std::cout << bincount << " " << '\t';
-		      std::cout << bin << " " << '\t';
-		      std::cout << val_lo << " " << '\t';
-		      std::cout << val_nlo << " " << std::endl;
+		      std::cout << std::setw(5) << bincount << " ";
+		      std::cout << std::setw(colWidth1) << bin << " ";
+		      std::cout << std::setw(colWidth2) << val_lo << " ";
+		      std::cout << std::setw(colWidth2) << val_nlo << " " << std::endl;
 		      if ( fabs( bin - (hist_lo->GetBinLowEdge(bincount)) ) > 1e-4 )
 			{
-			  std::cout << std::endl << " Error! ";
-			  std::cout << " hist: " << hist_lo->GetBinLowEdge(bincount) << std::endl;
-			  std::cout << " Input data does not match historgam binning!. " << std::endl;
+			  std::cout << std::endl << " Error at bin (low-edge): " << hist_lo->GetBinLowEdge(bincount) << std::endl;
+			  std::cout << " Input data does not match histogram binning!. " << std::endl;
 			  // discard data for this histogram
 			  hist_lo->Reset();
 			  hist_nlo->Reset();
@@ -550,16 +552,13 @@ void DrawDistribution(
 		      std::string const& titleX,
 		      std::string const& titleY,
 		      bool WRITE,
-		      bool NLO,
+		      bool NLO_PHI,
 		      int CD)
 {
-  double TitleOffsetY = 1.2;
-  double LabelSizeY   = 0.028;
   double LegXPos      = 0.6557;
   // single plot
   if (CD==0)
     {
-      TitleOffsetY = 0.8;
       LegXPos = 0.7428;
     }
   //////////////////////////////////////////////////////
@@ -577,11 +576,18 @@ void DrawDistribution(
 
       // use NLO V historgam to add up all the PHI contributions
       H_TYPE H_NLO_PHI = H_NLO_PHI_V;
+      bool NLO_QCD = (histograms[H_NLO_QCD]->GetEntries() > 0 && fabs(histograms[H_NLO_QCD]->Integral()) > 1e-12);
+
+      // only LO QCD
+      if (!NLO_QCD)
+	{
+	  histograms[H_LO_QCD]->Smooth(1);
+	}
       
       // add LO QCD contribution to deltaNLO QCD
       histograms[H_NLO_QCD]->Add(histograms[H_LO_QCD]);
       
-      if (NLO)
+      if (NLO_PHI)
 	{
 	  // add LO PHI
 	  histograms[H_NLO_PHI]->Add(histograms[H_LO_PHI]);
@@ -606,7 +612,7 @@ void DrawDistribution(
 	  histograms[H_LO_PHI]->Scale(1.0/norm[2]);// NLO QCD + LO PHI cross section
 	}
       
-      if (NLO)
+      if (NLO_PHI)
 	{
 	  // normalize NLO  histograms with the factors given in array norm[]
 	  if (norm)
@@ -631,27 +637,40 @@ void DrawDistribution(
       histograms[H_LO_QCD]->SetLineStyle(2);
       histograms[H_LO_QCD]->DrawCopy("same hist ][");
       // draw NLO QCD
-      histograms[H_NLO_QCD]->DrawCopy("same hist ][");
-      
+      if (NLO_QCD) histograms[H_NLO_QCD]->DrawCopy("same hist ][");
+
+      // write the 'raw' data to the root file
       if (WRITE)
 	{
 	  histograms[H_NLO_QCD]->Write();
 	  histograms[H_LO_PHI]->Write();
-	  if (NLO) histograms[H_NLO_PHI]->Write();
+	  if (NLO_PHI) histograms[H_NLO_PHI]->Write();
+	  if (NLO_QCD) histograms[H_NLO_QCD]->Write();
 	}
+
       
-      leg->AddEntry(histograms[H_LO_QCD] ,"LO QCD","L");
-      leg->AddEntry(histograms[H_NLO_QCD] ,"NLOW QCD","L");
-      if (THDM.NBosons()>1)
+      std::string phi_leg_label;
+      if (NLO_QCD)
 	{
-	  if (NLO) leg->AddEntry(histograms[H_NLO_PHI] ,"NLOW QCD + NLO #Phi_{2}, #Phi_{3} ","L");
-	  else     leg->AddEntry(histograms[H_LO_PHI] ,"NLOW QCD + LO #Phi_{2}, #Phi_{3} ","L");
+	  leg->AddEntry(histograms[H_LO_QCD] ,"LO QCD","L");
+	  leg->AddEntry(histograms[H_NLO_QCD] ,"NLOW QCD","L");
+	  phi_leg_label += "NLOW QCD + ";
 	}
       else
 	{
-	  if (NLO) leg->AddEntry(histograms[H_NLO_PHI] ,"NLOW QCD + NLO #Phi ","L");
-	  else     leg->AddEntry(histograms[H_LO_PHI] ,"NLOW QCD + LO #Phi ","L");
+	  leg->AddEntry(histograms[H_LO_QCD] ,"LO QCD","L");
+	  phi_leg_label += "LO QCD + ";
 	}
+
+      if (NLO_PHI) phi_leg_label += "NLO ";
+      else         phi_leg_label += "LO ";
+      
+      if (THDM.NBosons()>1) phi_leg_label += "#Phi_{2}, #Phi_{3} ";
+      else                  phi_leg_label += "#Phi ";
+
+      if (NLO_PHI) leg->AddEntry(histograms[H_NLO_PHI] ,phi_leg_label.c_str(),"L");
+      else         leg->AddEntry(histograms[H_LO_PHI] ,phi_leg_label.c_str(),"L");
+      
       leg->Draw("same");
 
       //////////////////////////////////////////////////////
@@ -661,7 +680,7 @@ void DrawDistribution(
       canvas.p1_2->cd();
 
       // for the ratio plot ...
-      if (NLO)
+      if (NLO_PHI)
 	{
 	  // normalize everything to NLO QCD histograms
 	  histograms[H_NLO_PHI]->Divide(histograms[H_NLO_QCD]);
@@ -670,10 +689,22 @@ void DrawDistribution(
 	  SetRatioPlot(histograms[H_NLO_PHI],titleX.c_str());
 	  histograms[H_NLO_PHI]->DrawCopy("hist ][");
 	  histograms[H_NLO_QCD]->DrawCopy("same hist ][");
+
+	  if (NLO_QCD)
+	    {
+	      // draw also the LO ratio with dotted line if NLO PHI and NLO QCD available
+	      histograms[H_LO_PHI]->Add(histograms[H_LO_QCD]);
+	      histograms[H_LO_PHI]->Divide(histograms[H_LO_QCD]);
+	      histograms[H_LO_PHI]->SetLineStyle(3);
+	      histograms[H_LO_PHI]->SetLineColor(1);
+	      histograms[H_LO_PHI]->SetLineWidth(1);
+	      histograms[H_LO_PHI]->DrawCopy("same hist ][");
+	    }
 	}
       else
 	{
 	  // normalize everything to LO QCD histograms
+	  //TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
 	  histograms[H_LO_PHI]->Divide(histograms[H_NLO_QCD]);
 	  histograms[H_NLO_QCD]->Divide(histograms[H_NLO_QCD]);
       
@@ -740,7 +771,7 @@ void SetRatioPlot(TH1D* hist,std::string xtitle)
   hist->GetXaxis()->SetLabelFont(43); //font in pixels
   hist->GetXaxis()->SetLabelSize(20); //in pixels
   hist->GetXaxis()->SetTickLength(0.1); //in pixels
-  hist->GetXaxis()->SetTitle(xtitle.c_str());
+  //hist->GetXaxis()->SetTitle(xtitle.c_str());
   hist->GetXaxis()->SetTitleSize(25);
   hist->GetXaxis()->SetTitleOffset(4.5);
 }
@@ -750,8 +781,38 @@ void SetRatioPlot(TH1D* hist,std::string xtitle)
 
 
 
+// divide content of h1 by a*h2 bin-wise
+void TH1DivideStable(TH1D* h1, TH1D* h2, const double& a)
+{
+  int n1 = h1->GetNbinsX();
+  int n2 = h2->GetNbinsX();
+  if (n1 != n2)
+    {
+      ERROR("Histograms do not match in size.");
+    }
+  if (a==0.0)
+    {
+      ERROR("Division by 0 (a=0).");
+    }
 
+  for (int i=1;i<=n1;++i)
+    {
+      if (fabs(h1->GetBinLowEdge(i)-h2->GetBinLowEdge(i))>1e-12)
+	{
+	  ERROR("Histogram binning does not match.");
+	}
+      double c1 = h1->GetBinContent(i);
+      double c2 = h2->GetBinContent(i) * a;
+      if ( c2 == 0.0) continue;
+      if ( fabs(c2) < 1e-5 )
+	{
+	  c1 += 1;
+	  c2 += 1;
+	}
+      h1->SetBinContent(i,c1/(c2));
+    }
 
+}
 
 
 

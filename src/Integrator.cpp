@@ -13,7 +13,7 @@ vegas_par::vegas_par():
   iterations(5),
   max_runs(10),
   num_runs(0),
-  chisq_limit(0.2),
+  chisq_limit(0.25),
   chisq(0.0),
   do_warmup(true),
   grid_fixed(false),

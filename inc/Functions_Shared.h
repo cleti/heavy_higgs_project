@@ -12,11 +12,7 @@
 
 #include "Global.h"
 #include "Makros.h"
-#include "Lorentz.h"
-#include "PhaseSpace.h"
 #include "HistArray.h"
-#include "Integrator.h"
-#include "ScalarIntegrals.h"
 #include "HiggsModel.h"
 
 #include <sys/syscall.h>
@@ -141,6 +137,8 @@ void DrawTwoDistributions(
 			  bool WRITE=true,
 			  bool NLO=true);
 void SetRatioPlot(TH1D* hist,std::string xtitle = "");
+
+void TH1DivideStable(TH1D* h1, TH1D* h2, const double& a=1.0);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////

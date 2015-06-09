@@ -36,7 +36,7 @@ HistArray::HistArray(int nbinsx,
 	TH1D(cat("NLO_PHI_V_",d_ID).c_str() ,"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_PHI_D_",d_ID).c_str() ,"",nbinsx,xlow,xup),
 	TH1D(cat("NLO_PHI_R_",d_ID).c_str() ,"",nbinsx,xlow,xup)}),
-  d_active(BOOST_BINARY(11 111 1)),
+  d_active(0),
   d_active_t(0),
   d_name(name),
   d_label_x(),
@@ -92,8 +92,8 @@ void HistArray::Normalize(const double& mScale, int verb)
 
 void HistArray::Print(std::ostream& ost)
 {
-  static const int colWidth1 = 16;
-  static const int colWidth2 = 20;
+  const int colWidth1 = 16;
+  const int colWidth2 = 20;
   
   ost << std::endl;
   ost << "#  "  << d_name << std::endl;
@@ -124,11 +124,12 @@ void HistArray::Print(std::ostream& ost)
 	+ d_histograms[H_LO_PHI].GetBinContent(i);   
       QCD_NLO     = QCD_LO + d_histograms[H_NLO_QCD].GetBinContent(i);
       QCD_PHI_NLO = QCD_NLO
+	+ d_histograms[H_LO_PHI].GetBinContent(i) 
 	+ d_histograms[H_NLO_PHI_V].GetBinContent(i)
 	+ d_histograms[H_NLO_PHI_ID].GetBinContent(i)
 	+ d_histograms[H_NLO_PHI_R].GetBinContent(i);
-      // update integral values (ignore overflow bin)
-      if (i<=d_histograms[0].GetNbinsX())
+      // update integral values (ignore overflow and underflow bin)
+      if (i>0 && i<=d_histograms[0].GetNbinsX())
 	{
 	  double binw = d_histograms[H_LO_QCD].GetBinWidth(i);
 	  I_QCD_LO      += QCD_LO*binw;
@@ -217,31 +218,32 @@ HistArray Y2_Histograms(12,DIST_Y_L,DIST_Y_U,0,
 			"#frac{d#sigma}{dy_{#bar{t}}} [pb]");
 HistArray DY_Histograms(12,DIST_Y_L,DIST_Y_U,0,
 			"Distribution of top/antitop rapidity difference",
-			"#Delta y_{t#bar{t}}",
-			"#frac{d#sigma}{d #Delta y_{t#bar{t}}} [pb]");
+			"#Delta |y|",
+			"#frac{d#sigma}{d #Delta |y|} [pb]");
 
+const int NbinsS = 56;
 // spin-dependent observables
-HistArray PHIT12_Histograms(33,DIST_M_L,DIST_M_U2,1,
+HistArray PHIT12_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
 			    "Lepton-Anti-lepton transversal opening angle [lab frame]",
 			    "M_{t#bar{t}} [GeV]",
 			    "D_{T,open}^{lab} [pb/GeV]",
 			    true);
-HistArray Dopen_Histograms(33,DIST_M_L,DIST_M_U2,1,
-			   "Lepton-Anti-lepton opening angle",
+HistArray Dopen_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
+			   "Lepton-Anti-lepton opening angle [ttbar z.m.f.]",
 			   "M_{t#bar{t}} [GeV]",
 			   "D_{open} [pb/GeV]",
 			   true);
-HistArray OCP1_Histograms(33,DIST_M_L,DIST_M_U2,1,
+HistArray OCP1_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
 			  "CP-odd triple correlation",
 			  "M_{t#bar{t}} [GeV]",
 			  "O_{CP1} [pb/GeV]",
 			  true);
-HistArray B1_Histograms(33,DIST_M_L,DIST_M_U2,1,
+HistArray B1_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
 			"Longitudinal polarization",
 			"M_{t#bar{t}} [GeV]",
 			"B_{1} [pb/GeV]",
 			true);
-HistArray Chel_Histograms(33,DIST_M_L,DIST_M_U2,1,
+HistArray Chel_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
 			  "Helicity angle distribution",
 			  "M_{t#bar{t}} [GeV]",
 			  "C_{hel} [pb/GeV]",

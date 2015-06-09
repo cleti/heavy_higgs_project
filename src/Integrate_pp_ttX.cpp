@@ -5,6 +5,7 @@
 #include "../inc/Global.h"
 #include "../inc/Makros.h"
 #include "../inc/Functions_Shared.h"
+#include "../inc/Integrator.h"
 #include "../inc/Integrands_pp_ttX.h"
 
 // LHAPDF header files
@@ -132,11 +133,11 @@ int main(int argc, char** argv)
     std::make_shared<MeanDistribution>(&Chel_Histograms,&OBS_M12,&OBS_HEL12)
 #else
     std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
-    // std::make_shared<Distribution>(&PT2_Histograms,&OBS_PT2),
     std::make_shared<Distribution>(&PT12_Histograms,&OBS_PT12),
     std::make_shared<Distribution>(&Y1_Histograms,&OBS_Y1),
-    std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2)
-    // std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12)
+    std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2),
+    std::make_shared<Distribution>(&PT2_Histograms,&OBS_PT2),
+    std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12)
 #endif
   };
   double CME = sqrt(ip.s_hadr)*mScale;
@@ -187,12 +188,12 @@ int main(int argc, char** argv)
 
 #ifdef WITH_T_SPIN
   couT << endl << endl << " ===================== Using spin dependent matrix elements ===================== " << endl << endl;
-      couT << endl << " Computing the process pp -> ttbar -> e+ e-  + b-jets, LO top/antitop decay" << endl << endl;
+      couT << endl << " Computing the process pp -> ttbar -> e+ e-  + b-jets, LO top/antitop decay." << endl << endl;
   #else
-    couT << endl << " Computing the process pp -> ttbar " << endl << endl;
+    couT << endl << " Computing the process pp -> ttbar. " << endl << endl;
 #endif
     if (g_options.dist) couT << endl << " Distributions will be computed. " << endl << endl;
-    if (THDM_1.UseK()) couT << endl << " Using eff. ggH coupling in Born amplitudes. " << endl << endl;
+    if (THDM_1.UseK()) couT << endl << " Using eff. K-factors to rescale NLO contributions. " << endl << endl;
 
   Integrator INT(couT);
   
@@ -250,19 +251,30 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
 #endif
       
-      // activate LO (QCD) histograms 
+      // activate LO (QCD) histograms
       for (auto e: *ip.distributions)
-      	{
-      	  e->GetHistograms()->SetActive(H_LO_QCD);
-      	}
-
+	{
+	  HistArray* hist = e->GetHistograms();
+	  // these spin-observalbes receive no contribution from QCD, only stat. fluctuation
+	  // better check for the Avg function here? 
+	  if ( hist == &OCP1_Histograms
+	       // || hist != &OCP2_Histograms
+	       || hist == &B1_Histograms
+	       // || hist != &B2_Histograms 
+	       )
+	    {
+	      hist->DeactivateAll();
+	    }
+	  else
+	    {
+	      hist->SetActive(H_LO_QCD);
+	    }
+	}
+      
       INT.Integrate(Int_2_2_BV,ip,vp);
 
       // normalize entries of activated histogram to bin width
-      for (auto e: *ip.distributions)
-	{ 
-	  e->GetHistograms()->Normalize();
-	}
+      for (auto e: *ip.distributions) e->GetHistograms()->Normalize();
       results[0] = vp.result;
       errors[0]  = vp.error;
     }
@@ -569,15 +581,25 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       DY_Histograms.Print(couT);
 
 
-      CanvasPtr c1 = MakeCanvas("Top transverse momentum distributions",1000,1000);
-      DrawDistribution(c1,
+      CanvasPtr c11 = MakeCanvas("Top transverse momentum distributions",1000,1000);
+      DrawDistribution(c11,
       		       PT1_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("p_{T,t} [GeV]"),
       		       string("#frac{d#sigma}{d p_{T,t}} [pb/GeV]"),
       		       g_options.rootfile,
-      		       PLOT_NLO); 
+      		       PLOT_NLO);
+      
+      CanvasPtr c12 = MakeCanvas("Antitop transverse momentum distributions",1000,1000);
+      DrawDistribution(c12,
+      		       PT2_Histograms,
+      		       THDM_1,
+      		       &norm[0],
+      		       string("p_{T,#bar{t}} [GeV]"),
+      		       string("#frac{d#sigma}{d p_{T,#\bar{t}}} [pb/GeV]"),
+      		       g_options.rootfile,
+      		       PLOT_NLO);
       
       CanvasPtr c2 = MakeCanvas("Top+Antitop transverse momentum distributions",1000,1000);
       DrawDistribution(c2,
@@ -589,8 +611,8 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       		       g_options.rootfile,
       		       PLOT_NLO);   
 
-      CanvasPtr c3 = MakeCanvas("Top rapidity dsitribution",1000,1000);
-      DrawDistribution(c3,
+      CanvasPtr c31 = MakeCanvas("Top rapidity dsitribution",1000,1000);
+      DrawDistribution(c31,
 		       Y1_Histograms,
 		       THDM_1,
 		       &norm[0],
@@ -599,8 +621,8 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 		       g_options.rootfile,
 		       PLOT_NLO);
 
-      CanvasPtr c4 = MakeCanvas("Antitop rapidity distribution",1000,1000);
-      DrawDistribution(c4,
+      CanvasPtr c32 = MakeCanvas("Antitop rapidity distribution",1000,1000);
+      DrawDistribution(c32,
 		       Y2_Histograms,
 		       THDM_1,
 		       &norm[0],
@@ -608,18 +630,16 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 		       string("#frac{d#sigma}{d y_{#bar{t}}} [pb]"),
 		       g_options.rootfile,
 		       PLOT_NLO);
-
-      // DoubleCanvasPtr cd0 = MakeDoubleCanvas("Top transverse momentum/rapidity distribution");
-      // DrawTwoDistributions(cd0,
-      // 			   PT1_Histograms,
-      // 			   Y1_Histograms,
-      // 			   THDM_1,
-      // 			   &norm[0],
-      // 			   string("p_{T,t} [GeV]"),string("y_{t}"),
-      // 			   string("#frac{d#sigma}{dp_{T,t}} [pb/GeV]"),
-      // 			   string("#frac{d#sigma}{dy_{t}} [pb]"),
-      // 			   g_options.rootfile, 
-      // 			   PLOT_NLO);
+      
+      CanvasPtr c4 = MakeCanvas("Top/Antitop rapidity difference distribution",1000,1000);
+      DrawDistribution(c4,
+		       DY_Histograms,
+		       THDM_1,
+		       &norm[0],
+		       string("#Delta |y|"),
+		       string("#frac{d#sigma}{d #Delta |y|} [pb]"),
+		       g_options.rootfile,
+		       PLOT_NLO);
 
 
       

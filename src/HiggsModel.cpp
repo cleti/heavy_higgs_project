@@ -49,9 +49,11 @@ void HiggsBoson::SetFormFactors(
 				double const& mt2,
 				double const& mb2)
 {
-  static int I = 0;// finite part (the integrals here are not divergent)
-  static double zero = 0.0;
-  static double MUR2 = 0.0; // finite integrals do not depend on MUR
+  // we only need the finite part of the itnegrals
+  const int I = 0;
+  const double zero = 0.0;
+  // as long as mt>0, mb>0 the integrals are finite and do not depend on MUR
+  const double MUR2 = 0.0;
   
   if (S!=d_S_FF)
     {
@@ -60,22 +62,23 @@ void HiggsBoson::SetFormFactors(
       d_FH_full = 0.0;
       d_FA_full = 0.0;
 	
-      // top contribution
-      if (d_At != 0.0 || d_Bt != 0.0)
-	{
-	  c_double I3t = qli3_(&S,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
-	  d_FH_full += mt2 * d_At * ( (S-4.0*mt2) * I3t - 2.0 );
-	  d_FA_full += mt2 * d_Bt * S * I3t;
-	}
+      // // top contribution
+      // if (d_At != 0.0 || d_Bt != 0.0)
+      // 	{
+      c_double I3t = qli3_(&S,&zero,&zero,&mt2,&mt2,&mt2,&MUR2,&I);
+      d_FH_full += mt2 * d_At * ( (S-4.0*mt2) * I3t - 2.0 );
+      d_FA_full += mt2 * d_Bt * S * I3t;
+      // }
+      // mb = 0 indicates that b-quark effects on the effective gg-phi coupling should be negledted
       if (mb2>0.0)
 	{
-	  // bottom contribution
-	  if (d_Ab != 0.0 || d_Bb != 0.0)
-	    {
-	      c_double I3b = qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I);
-	      d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );
-	      d_FA_full += mb2 * d_Bb * S * I3b;
-	    }
+	  // // bottom contribution
+	  // if (d_Ab != 0.0 || d_Bb != 0.0)
+	  //   {
+	  c_double I3b = qli3_(&S,&zero,&zero,&mb2,&mb2,&mb2,&MUR2,&I);
+	  d_FH_full += mb2 * d_Ab * ( (S-4.0*mb2) * I3b - 2.0 );
+	  d_FA_full += mb2 * d_Bb * S * I3b;
+	  // }
 	}
       d_FH_full /= -(4.0*S);
       d_FA_full /=  (8.0*S);
@@ -126,16 +129,15 @@ void HiggsBoson::SetPropagator(double const& S, bool rescale)
       // rescale effective Higgs-gluon vertex by ratio full vertex/eff. vertex
       // here it is assumed that each scalar propagator is connected to one ggH vertex
       // assumes that d_FH_full and d_FA_full have been set up correctly
-      // if (rescale)
-      // 	{
-      // 	  c_double K1 = ((d_FH_full)+4.0*(d_FA_full))/((d_FH_eff)+4.0*(d_FA_eff));
-      // 	  double   K2 = (std::norm(d_FH_full)+4.0*std::norm(d_FA_full))/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff));
-      // 	  d_Den   *= K1;
-      // 	  d_DenSq *= K2;
-      // 	  // PRINT(K);
-      // 	  // PRINT(S);
-      // 	  // exit(1);
-      // 	}
+      if (rescale)
+      	{
+      	  //c_double K1 = ((d_FH_full)+4.0*(d_FA_full))/((d_FH_eff)+4.0*(d_FA_eff));
+      	  double   K2 = (std::norm(d_FH_full)+4.0*std::norm(d_FA_full))/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff));
+      	  // this affects the interference terms QCD x PHI_i as well as PHI_i x PHI_j
+      	  d_Den   *= std::sqrt(K2);
+      	  // this affects only the squared terms PHI_i x PHI_i
+      	  d_DenSq *= K2;
+      	}
     }
 }
 
@@ -249,7 +251,10 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
   for (auto phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)
     {
       if (!EFF || d_useK) (*phi_i)->SetFormFactors(S,d_mt2,d_mb2);
-      (*phi_i)->SetPropagator(S,d_useK);
+      // multiply prop. with K-factor only if effective vertices are used
+      // in this case we also need to compute the full form factors
+      // when the full vertices are used in the amplitudes do nothing
+      (*phi_i)->SetPropagator(S,d_useK && EFF);
       c_double const& FHi = (*phi_i)->GetFH(EFF);
       c_double const& FAi = (*phi_i)->GetFA(EFF);
       c_double const& Di  = (*phi_i)->GetPropagator();
@@ -291,7 +296,10 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       for (auto phi_j = phi_i+1; phi_j!=last; ++phi_j)
 	{
 	  if (!EFF || d_useK) (*phi_j)->SetFormFactors(S,d_mt2,d_mb2);
-	  (*phi_j)->SetPropagator(S,d_useK);
+	  // multiply prop. with K-factor only if effective vertices are used
+	  // in this case we also need to compute the full form factors
+	  // when the full vertices are used in the amplitudes do nothing
+	  (*phi_j)->SetPropagator(S,d_useK && EFF);
 
 	  c_double const& FHj = (*phi_j)->GetFH(EFF);
 	  c_double const& FAj = (*phi_j)->GetFA(EFF);

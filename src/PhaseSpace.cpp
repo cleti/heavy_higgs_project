@@ -358,6 +358,7 @@ void PS_2_2::FillDistributions(
 			       double const& wgt,
 			       double const& mScale) const
 {
+  
 #ifdef WITH_T_SPIN
   ///////////////////////////////////////////////////////
   // spin-dependent observables /////////////////////////
@@ -384,6 +385,7 @@ void PS_2_2::FillDistributions(
   ps_lab = *this;
   boost_to_lab_frame.apply(ps_lab.k1());
   boost_to_lab_frame.apply(ps_lab.k2());
+
   
   for (auto dist: dist_vec)
     {
@@ -598,18 +600,29 @@ void PS_2_3::FillDistributions(
   // dist[4].first->FillOne(id,obs_Y(K2),wgt);
   // // dist[6].first->FillOne(id,obs_DY(K1,K2) ,wgt);
 
+
+
   for (auto dist: dist_vec)
     {
       HistArray* hist = dist->GetHistograms();
       double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
       double obs_val  = (*dist)(&ps_lab)*mass_dim;
       double avg_val  = dist->Avg(&ps_lab);
-      dist->GetHistograms()->FillOne(id,obs_val,avg_val);
-      //e.first->FillOne(id,e.second(&ps_lab)*m,wgt);
-      // PRINT(mass_dim);
-      // PRINT(obs_val);
-      // PRINT(avg_val);
+      dist->GetHistograms()->FillOne(id,obs_val,avg_val*wgt);
     }
+  
+  // for (auto dist: dist_vec)
+  //   {
+  //     HistArray* hist = dist->GetHistograms();
+  //     double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
+  //     double obs_val  = (*dist)(&ps_lab)*mass_dim;
+  //     double avg_val  = dist->Avg(&ps_lab);
+  //     dist->GetHistograms()->FillOne(id,obs_val,avg_val);
+  //     //e.first->FillOne(id,e.second(&ps_lab)*m,wgt);
+  //     // PRINT(mass_dim);
+  //     // PRINT(obs_val);
+  //     // PRINT(avg_val);
+  //   }
   //EXIT(1);
   ///////////////////////////////////////////////////////
 #endif
@@ -715,6 +728,14 @@ double obs_PHIT(FV const& k1, FV const& k2)
 // spatial triple product of three 4-vectors k1,k2,k3
 double obs_TriProd(FV const& k1, FV const& k2, FV const& k3)
 {
+  // = (k1 x k2) dot k3 
+  double t3 = k1[1] * k2[2] - k1[2] * k2[1];
+  double t7 = -k1[1] * k2[3] + k1[3] * k2[1];
+  double t11 = k1[2] * k2[3] - k1[3] * k2[2];
+  return (t11 * k3[1] + t3 * k3[3] + t7 * k3[2]);
+}
+double obs_TriProdN(FV const& k1, FV const& k2, FV const& k3)
+{
   // = (k1 x k2) dot k3 / |k1 x k2| / |k3|
   double t3 = k1[1] * k2[2] - k1[2] * k2[1];
   double t7 = -k1[1] * k2[3] + k1[3] * k2[1];
@@ -737,7 +758,7 @@ double obs_TriProd(FV const& k1, FV const& k2, FV const& k3)
 double OBS_D12(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  return (4.0/3.0)*obs_PHI(ps->s1_r(),ps->s2_r());
+  return (3.0)*obs_PHI(ps->s1_r(),ps->s2_r());
 }
 
 double OBS_CP1(const PS_2* ps)
@@ -756,7 +777,7 @@ double OBS_HEL12(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return obs_PHI(ps->k1(),ps->s1_r())*obs_PHI(ps->k2(),ps->s2_r());
+  return (9.0)*obs_PHI(ps->k1(),ps->s1_r())*obs_PHI(ps->k2(),ps->s2_r());
 }
 double OBS_B1(const PS_2* ps)
 {

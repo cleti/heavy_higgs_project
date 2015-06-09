@@ -9,10 +9,11 @@
 #include <gsl/gsl_sf_dilog.h>
 
 #include "Global.h"
-#include "ScalarIntegrals.h"
 #include "Flags.h"
 #include "Makros.h"
 #include "Functions_Shared.h"
+#include "ScalarIntegrals.h"
+#include "PhaseSpace.h"
 #include "HiggsModel.h"
 
 

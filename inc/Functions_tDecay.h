@@ -7,6 +7,9 @@
 #define FUNCTIONS_TDECAY
 
 #include "Functions_Shared.h"
+#include "PhaseSpace.h"
+#include "Lorentz.h"
+#include "HiggsModel.h"
 
 
 /* namespace ParametersTDecay */

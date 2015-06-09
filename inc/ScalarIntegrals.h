@@ -11,7 +11,6 @@
 #include "Global.h"
 #include "Makros.h"
 #include "Flags.h"
-#include "PhaseSpace.h"
 
 #ifdef WITH_NON_FACT_DIAGRAMS
 #include "../LoopTools-2.12/build/clooptools.h"
@@ -103,12 +102,21 @@ extern c_double I3_0_0_S12_0_0_MH2_MU2_2;
 
 /*!
   \brief Set global variables according to the given phase space point.
-  \param ps 2->2 phase space
+  \param mt2  top-quark mass squared
+  \param rs   sqrt(s)
+  \param t11  2*p1.k1
+  \param t12  2*p1.k2
   \param MUR2 renormalization scale squared
   \param flags specify which groups of integrals get evaluated
-  \sa Flags.h, PhaseSpace.h
+  \sa Flags.h
 */
-void Set_SI(const PS_2_2& ps, const double& MUR2, unsigned flags);
+void Set_SI(
+	    const double& mt2,
+	    const double& rs,
+	    const double& t11,
+	    const double& t12,
+	    const double& MUR2,
+	    unsigned flags);
 /*!
   \brief Evaluate the 1-point functions.
 */

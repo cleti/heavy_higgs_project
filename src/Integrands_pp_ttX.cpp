@@ -29,7 +29,6 @@ static int Eval_tt_decay(
   FV& S1_r = ps->s1_r();
   FV& S2_r = ps->s2_r();
 
-
   if ( ps_t1->set(mt2,x[3] ,x[4] ,x[5] ,x[6] ,x[7] ) &&
        ps_t2->set(mt2,x[8] ,x[9] ,x[10],x[11],x[12])    )
     {
@@ -42,8 +41,8 @@ static int Eval_tt_decay(
       ///////////////// decay of anti-top quark ///////////////////////////////////////
       tt_decay *= (ps_t2->get_wgt() * Eval_t_blnu(*ps_t2,S2_r,hm));
       // PRINT_4VEC(S2_r);
-      S1_r *=  kappa_p;// antitop spin vector receives relative sign
-      S2_r *=  kappa_m;// antitop spin vector receives relative sign
+      S1_r *=  kappa_p;
+      S2_r *=  kappa_m;// antitop spin vector receives relative sign through kappa_m!
       // // PRINT_4VEC(S2_r);
       // // exit(1);
       /////////////////////////////////////////////////////////////////////////////////
@@ -96,12 +95,13 @@ static int Eval_tt_decay(
   // PRINT_4VEC(S2);
   // exit(1);
   ////////////////////////////////////////////////////////////////////
+  tt_decay *= 4.0;//*0.7983;
 #else
   /////////////////////////////////////////////////////////////////////////////////////
   // unpolarized amplitudes: mulitply tt -> l + jets branching fraction, approx. 24/81
   /////////////////////////////////////////////////////////////////////////////////////
   // factor 4 accounts for summation over tt spin configurations
-  //tt_decay *= 24./81.;
+  // tt_decay *= 24./81.;
 #endif
   return 1;
 }
@@ -213,7 +213,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
   double const&   mScale = hm->Scale(); 
   double const&   mScale2= hm->Scale2();
   // use eff. Higgs-gluon coupling in the ME if rescaling factor is used
-  bool EFF = hm->UseK();
+  bool EFF = false; // hm->UseK();
   // spin/color average for gg initial state, conversion GeV^-2 -> picobarn
   static const double cf_gg = PREF_GG*CONV_GeV2i_pbarn/mScale2;
   // spin/color average for qq initial state, conversion GeV^-2 -> picobarn
@@ -289,7 +289,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 				(flags & F_EVAL_B_QCDxQCD)?H_LO_QCD:H_LO_PHI,
 				res_b*vwgt,
 				mScale);
-	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_PHI_V,res_v*vwgt,mScale);//res_v*
+	  if (EVAL_V(flags)) ps->FillDistributions(*dist,H_NLO_PHI_V,res_v*vwgt,mScale);
 	}
       ////////////////////////////////////////////////////////////////////////////
       return (res_b+res_v);

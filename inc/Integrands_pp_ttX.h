@@ -9,12 +9,15 @@
 #define INTEGRANDS_PPTT_H
 
 #include "Global.h"
+#include "Makros.h"
 #include "Functions_Shared.h"
+#include "Integrator.h"
 
 #include "Functions_pp_ttX_V.h"
 #include "Functions_pp_ttX_ID.h"
 #include "Functions_pp_ttX_R.h"
 #include "Functions_pp_ttX_UID.h"
+
 #ifdef WITH_T_SPIN
 #include "Functions_tDecay.h"
 #endif
