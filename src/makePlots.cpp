@@ -33,9 +33,9 @@ const string scale_l_path = "mu0.5";
 // some constants to compute the event rates in ll and lj channels
 const double eps_ll = 0.22;
 const double Br_ll  = 4.0/81.0;
-const double eps_lj = 0.04;
+const double eps_lj = 0.12;
 const double Br_lj  = 24.0/81.0;
-const double Lumi   = 20*1000.0; // integrated lumi of 8TeV run in [pb^-1]
+double Lumi   = 100*1000.0; // integrated lumi of 8TeV run in [pb^-1]
 
 
 TH1D* makeErrorHist(TH1D* hist_l, TH1D* hist_h)
@@ -61,7 +61,7 @@ TH1D* makeErrorHist(TH1D* hist_l, TH1D* hist_h)
     }
 
   ret->SetFillStyle(3002);
-  ret->SetFillColor(1);//9
+  ret->SetFillColor(1);
   ret->SetLineWidth(0);
   return ret;  
 }

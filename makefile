@@ -94,6 +94,8 @@ $(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/pVEGAS.o
 $(BIN-PATH)/makePlots: $(LIB-PATH)/makePlots.o
 	$(CC) -o $@  $^ -L/usr/local/lib -lboost_system -lboost_filesystem $(ROOTLIBS)
 
+$(BIN-PATH)/readDat: $(LIB-PATH)/readDat.o
+	$(CC) -o $@  $^ -L/usr/local/lib -lboost_system -lboost_filesystem $(ROOTLIBS)
 ####################################################################
 
 ### targets without reference to a file
