@@ -40,6 +40,7 @@ using namespace std;
 #include "LHAPDF/PDFSet.h"
 #include "LHAPDF/Factories.h"
 
+#include <boost/type_traits.hpp>
 
 #ifdef __cplusplus
 extern "C" {
@@ -136,6 +137,8 @@ static double x (const FV& p_i, const FV& p_a, const FV& p_b)
 
 
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,14 +150,27 @@ int main(int argc, char** argv)
 
 
   qlinit_();
-  ltini();
+  //  ltini();
 
   int PREC = (argc>1) ? atoi(argv[1]) : 5;
   cout << setprecision(PREC);
 
+  typedef std::vector<double> DVec;
+  DVec::iterator it;
+  boost::is_pointer<DVec::iterator>::type it_type;
+  boost::is_pointer<DVec*>::type p_type;
+  cout << endl << it_type << endl;
+  cout << endl << p_type << endl;
 
+  FV a = {1,2,3,4};
+  
+  cout << endl << sizeof(a)/sizeof(int) << endl;    
+  cout << endl << sizeof(PS_2_1)/sizeof(int) << endl;  
+  cout << endl << sizeof(PS_2_2)/sizeof(int) << endl;
+  cout << endl << sizeof(PS_2_3)/sizeof(int) << endl;  
 
-
+  EXIT(1);
+  
   {
     int cols = 80;
     int lines = 24;

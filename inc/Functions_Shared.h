@@ -17,6 +17,7 @@
 
 #include <sys/syscall.h>
 
+
 // GSL header files
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_monte.h>
@@ -137,8 +138,7 @@ void DrawTwoDistributions(
 			  bool WRITE=true,
 			  bool NLO=true);
 void SetRatioPlot(TH1D* hist,std::string xtitle = "");
-
-void TH1DivideStable(TH1D* h1, TH1D* h2, const double& a=1.0);
+void TH1RelDiff(TH1D* h1, const TH1D* h2);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +191,12 @@ inline double Den(FV const& p1, double const& m)
 c_double LN(double const& b, int C=+1);
 
 double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4);
+
+TH1D* fabs(TH1D* hist);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

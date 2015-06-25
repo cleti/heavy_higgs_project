@@ -1,147 +1,165 @@
-\hypertarget{HistArray_8h}{\section{inc/\-Hist\-Array.h File Reference}
-\label{HistArray_8h}\index{inc/\-Hist\-Array.\-h@{inc/\-Hist\-Array.\-h}}
-}
+\hypertarget{HistArray_8h}{}\section{inc/\+Hist\+Array.h File Reference}
+\label{HistArray_8h}\index{inc/\+Hist\+Array.\+h@{inc/\+Hist\+Array.\+h}}
 
 
-Histogram class for the computation of differential distributions and definition of various observables.  
+Histogram and distribution classes for the computation of differential observables.  
 
 
 {\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
 {\ttfamily \#include $<$vector$>$}\\*
 {\ttfamily \#include $<$sstream$>$}\\*
-{\ttfamily \#include $<$T\-H1.\-h$>$}\\*
-{\ttfamily \#include $<$boost/utility.\-hpp$>$}\\*
-{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Lorentz.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$T\+H1.\+h$>$}\\*
+{\ttfamily \#include $<$boost/utility.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Lorentz.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}File\+Browser.\+h\char`\"{}}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classHistArray}{Hist\-Array}
+class \hyperlink{classHistArray}{Hist\+Array}
+\item 
+class \hyperlink{classDistribution}{Distribution}
+\item 
+class \hyperlink{classMeanDistribution}{Mean\+Distribution}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{HistArray_8h_aeca3e84866ae71cea7deebe8e7998dc5}{\#define {\bfseries H\-\_\-\-L\-O\-\_\-\-Q\-C\-D}~0}\label{HistArray_8h_aeca3e84866ae71cea7deebe8e7998dc5}
-
-\item 
-\hypertarget{HistArray_8h_a9ae0f7eae241d0f192260e4941650c75}{\#define {\bfseries H\-\_\-\-L\-O\-\_\-\-P\-H\-I}~1}\label{HistArray_8h_a9ae0f7eae241d0f192260e4941650c75}
-
-\item 
-\hypertarget{HistArray_8h_a3ca574bd5e9045802ecf9a19c5dc37fb}{\#define {\bfseries H\-\_\-\-N\-L\-O\-\_\-\-V}~3}\label{HistArray_8h_a3ca574bd5e9045802ecf9a19c5dc37fb}
-
-\item 
-\hypertarget{HistArray_8h_a33daceb94e71b1af4e27dc4508fee215}{\#define {\bfseries H\-\_\-\-N\-L\-O\-\_\-\-I\-D}~4}\label{HistArray_8h_a33daceb94e71b1af4e27dc4508fee215}
-
-\item 
-\hypertarget{HistArray_8h_a98afb2ac8815048c59b82d41487a64b2}{\#define {\bfseries H\-\_\-\-N\-L\-O\-\_\-\-R}~5}\label{HistArray_8h_a98afb2ac8815048c59b82d41487a64b2}
-
-\item 
-\hypertarget{HistArray_8h_aceb7835db76fab36997cd7f90c1e1b4a}{\#define {\bfseries N\-H\-I\-S\-T}~6}\label{HistArray_8h_aceb7835db76fab36997cd7f90c1e1b4a}
+\hypertarget{HistArray_8h_aceb7835db76fab36997cd7f90c1e1b4a}{}\#define {\bfseries N\+H\+I\+S\+T}~6\label{HistArray_8h_aceb7835db76fab36997cd7f90c1e1b4a}
 
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{HistArray_8h_aae5272d576d57c323eb9cf514970d043}{typedef double($\ast$ {\bfseries O\-B\-S} )(\hyperlink{classFV}{F\-V} const \&)}\label{HistArray_8h_aae5272d576d57c323eb9cf514970d043}
+\hypertarget{HistArray_8h_aaa16461c5e46362f32f49a1e5b355425}{}typedef boost\+::filesystem\+::path {\bfseries boost\+\_\+path}\label{HistArray_8h_aaa16461c5e46362f32f49a1e5b355425}
 
 \item 
-\hypertarget{HistArray_8h_af48fd49facd170f2071036b91e2ad0cf}{typedef std\-::vector$<$ \hyperlink{classHistArray}{Hist\-Array} $\ast$ $>$ {\bfseries H\-Avec}}\label{HistArray_8h_af48fd49facd170f2071036b91e2ad0cf}
+\hypertarget{HistArray_8h_af760c4e5f35192b647e6d4f4ecd01580}{}typedef std\+::map$<$ int, \hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} $>$ {\bfseries H\+\_\+\+Index\+Map}\label{HistArray_8h_af760c4e5f35192b647e6d4f4ecd01580}
+
+\item 
+\hypertarget{HistArray_8h_a399fb9ee95dfcad6d6cbd11ca1486d45}{}typedef double($\ast$ {\bfseries O\+B\+S\+Fnc}) (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$)\label{HistArray_8h_a399fb9ee95dfcad6d6cbd11ca1486d45}
+
+\item 
+\hypertarget{HistArray_8h_a52fa10237a789eab7d657d5b46942369}{}typedef std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classDistribution}{Distribution} $>$ $>$ {\bfseries Dist\+Vec}\label{HistArray_8h_a52fa10237a789eab7d657d5b46942369}
 
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{double \hyperlink{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}{obs\-\_\-\-M12} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_aacc539fa8f2e658d5013f8df7a272c33}
-
-\begin{DoxyCompactList}\small\item\em Computes invariant mass of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}{double \hyperlink{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}{obs\-\_\-\-P\-T} (\hyperlink{classFV}{F\-V} const \&k)}\label{HistArray_8h_a5785c86f2a238c7d1cf72e71f6df4d57}
-
-\begin{DoxyCompactList}\small\item\em Computes transverse momentum of a 4-\/vector k1 (transverse = x-\/y-\/plane), i.\-e. k\-\_\-\{T,1\} = \{k1\-\_\-\{1\}$^\wedge$2+k1\-\_\-\{2\}$^\wedge$2\}. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_aae571978ff072d099b4baf69921afd60}{double \hyperlink{HistArray_8h_aae571978ff072d099b4baf69921afd60}{obs\-\_\-\-P\-T12} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_aae571978ff072d099b4baf69921afd60}
-
-\begin{DoxyCompactList}\small\item\em Computes transverse momentum of two particle system k1,k2, k\-\_\-\{T,12\} = $\vert$k\-\_\-\{T,1\}+k\-\_\-\{T,2\}$\vert$. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_ae677072636551874da62f32601db682e}{double \hyperlink{HistArray_8h_ae677072636551874da62f32601db682e}{obs\-\_\-\-Y} (\hyperlink{classFV}{F\-V} const \&k)}\label{HistArray_8h_ae677072636551874da62f32601db682e}
-
-\begin{DoxyCompactList}\small\item\em Computes rapidity of a 4-\/vector k1. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a325229be26684d1beaff261e9e878617}{double \hyperlink{HistArray_8h_a325229be26684d1beaff261e9e878617}{obs\-\_\-\-D\-Y} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_a325229be26684d1beaff261e9e878617}
-
-\begin{DoxyCompactList}\small\item\em Computes rapidity difference of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{double \hyperlink{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}{obs\-\_\-\-P\-H\-I} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_af4b7a6c82521f1c4cbf2df34b5e9c1d6}
-
-\begin{DoxyCompactList}\small\item\em Computes spatial opening angle of two 4-\/vectors k1 and k2. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}{double \hyperlink{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}{obs\-\_\-\-P\-H\-I\-T} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2)}\label{HistArray_8h_acb2a62cf7d0833ad02d41f9fd7af75b4}
-
-\begin{DoxyCompactList}\small\item\em Computes opening angle of the spatial projections on the x-\/y plane. \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}{double \hyperlink{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}{obs\-\_\-\-Tri\-Prod} (\hyperlink{classFV}{F\-V} const \&k1, \hyperlink{classFV}{F\-V} const \&k2, \hyperlink{classFV}{F\-V} const \&k3)}\label{HistArray_8h_a760d56e65d1ded8929fc2986a641ce75}
-
-\begin{DoxyCompactList}\small\item\em Computes the spatial triple product of three 4-\/vectors k1,k2,k3. \end{DoxyCompactList}\end{DoxyCompactItemize}
+enum \hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} \{ \\*
+{\bfseries H\+\_\+\+L\+O\+\_\+\+Q\+C\+D} = 0, 
+{\bfseries H\+\_\+\+N\+L\+O\+\_\+\+Q\+C\+D} = 1, 
+{\bfseries H\+\_\+\+L\+O\+\_\+\+P\+H\+I} = 2, 
+{\bfseries H\+\_\+\+N\+L\+O\+\_\+\+P\+H\+I\+\_\+\+V} = 3, 
+\\*
+{\bfseries H\+\_\+\+N\+L\+O\+\_\+\+P\+H\+I\+\_\+\+I\+D} = 4, 
+{\bfseries H\+\_\+\+N\+L\+O\+\_\+\+P\+H\+I\+\_\+\+R} = 5
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}{int {\bfseries D\-I\-S\-T\-\_\-\-N\-\_\-bins}}\label{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}
+H\+\_\+\+Index\+Map {\bfseries ind\+\_\+default}
+\item 
+\hypertarget{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}{}int {\bfseries D\+I\+S\+T\+\_\+\+N\+\_\+bins}\label{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}
 
 \item 
-\hypertarget{HistArray_8h_ad96d34f45dfaf22dd8b63d4d66e9fde5}{double {\bfseries D\-I\-S\-T\-\_\-\-M\-\_\-\-L}}\label{HistArray_8h_ad96d34f45dfaf22dd8b63d4d66e9fde5}
+\hypertarget{HistArray_8h_ad96d34f45dfaf22dd8b63d4d66e9fde5}{}double {\bfseries D\+I\+S\+T\+\_\+\+M\+\_\+\+L}\label{HistArray_8h_ad96d34f45dfaf22dd8b63d4d66e9fde5}
 
 \item 
-\hypertarget{HistArray_8h_ad951a9ca8a9b047aa9edc753211b733e}{double {\bfseries D\-I\-S\-T\-\_\-\-M\-\_\-\-U}}\label{HistArray_8h_ad951a9ca8a9b047aa9edc753211b733e}
+\hypertarget{HistArray_8h_ad951a9ca8a9b047aa9edc753211b733e}{}double {\bfseries D\+I\+S\+T\+\_\+\+M\+\_\+\+U}\label{HistArray_8h_ad951a9ca8a9b047aa9edc753211b733e}
 
 \item 
-\hypertarget{HistArray_8h_aa3b29c36e05186ccb4db5d4d76c9caef}{double {\bfseries D\-I\-S\-T\-\_\-\-P\-\_\-\-L}}\label{HistArray_8h_aa3b29c36e05186ccb4db5d4d76c9caef}
+\hypertarget{HistArray_8h_aa3b29c36e05186ccb4db5d4d76c9caef}{}double {\bfseries D\+I\+S\+T\+\_\+\+P\+\_\+\+L}\label{HistArray_8h_aa3b29c36e05186ccb4db5d4d76c9caef}
 
 \item 
-\hypertarget{HistArray_8h_a29049af0c124c034fafe969c21a49933}{double {\bfseries D\-I\-S\-T\-\_\-\-P\-\_\-\-U}}\label{HistArray_8h_a29049af0c124c034fafe969c21a49933}
+\hypertarget{HistArray_8h_a29049af0c124c034fafe969c21a49933}{}double {\bfseries D\+I\+S\+T\+\_\+\+P\+\_\+\+U}\label{HistArray_8h_a29049af0c124c034fafe969c21a49933}
 
 \item 
-\hypertarget{HistArray_8h_ad95b7626d811fd42bab005d0be91c823}{double {\bfseries D\-I\-S\-T\-\_\-\-Y\-\_\-\-L}}\label{HistArray_8h_ad95b7626d811fd42bab005d0be91c823}
+\hypertarget{HistArray_8h_ad95b7626d811fd42bab005d0be91c823}{}double {\bfseries D\+I\+S\+T\+\_\+\+Y\+\_\+\+L}\label{HistArray_8h_ad95b7626d811fd42bab005d0be91c823}
 
 \item 
-\hypertarget{HistArray_8h_a7cf7afa9cdbedb49160a6efba6cddfb7}{double {\bfseries D\-I\-S\-T\-\_\-\-Y\-\_\-\-U}}\label{HistArray_8h_a7cf7afa9cdbedb49160a6efba6cddfb7}
+\hypertarget{HistArray_8h_a7cf7afa9cdbedb49160a6efba6cddfb7}{}double {\bfseries D\+I\+S\+T\+\_\+\+Y\+\_\+\+U}\label{HistArray_8h_a7cf7afa9cdbedb49160a6efba6cddfb7}
 
 \item 
-\hypertarget{HistArray_8h_a69e7680990b6dcec256746edf56863b4}{double {\bfseries D\-I\-S\-T\-\_\-\-A\-\_\-\-L}}\label{HistArray_8h_a69e7680990b6dcec256746edf56863b4}
+\hypertarget{HistArray_8h_a69e7680990b6dcec256746edf56863b4}{}double {\bfseries D\+I\+S\+T\+\_\+\+A\+\_\+\+L}\label{HistArray_8h_a69e7680990b6dcec256746edf56863b4}
 
 \item 
-\hypertarget{HistArray_8h_a01bfce0de5b388377a18ede847530ee0}{double {\bfseries D\-I\-S\-T\-\_\-\-A\-\_\-\-U}}\label{HistArray_8h_a01bfce0de5b388377a18ede847530ee0}
+\hypertarget{HistArray_8h_a01bfce0de5b388377a18ede847530ee0}{}double {\bfseries D\+I\+S\+T\+\_\+\+A\+\_\+\+U}\label{HistArray_8h_a01bfce0de5b388377a18ede847530ee0}
 
 \item 
-\hypertarget{HistArray_8h_ac844fac25a02cec13eb11a2e78d560a8}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_ac844fac25a02cec13eb11a2e78d560a8}{Mtt\-Distributions}}\label{HistArray_8h_ac844fac25a02cec13eb11a2e78d560a8}
+\hypertarget{HistArray_8h_a1d9073fb0b234d8da36978a156c515c2}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a1d9073fb0b234d8da36978a156c515c2}{Mtt\+\_\+\+Histograms}\label{HistArray_8h_a1d9073fb0b234d8da36978a156c515c2}
 
 \begin{DoxyCompactList}\small\item\em top-\/antitop invariant mass distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a5f85d9273951686605f1ad6e60cdd80e}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a5f85d9273951686605f1ad6e60cdd80e}{P\-T1\-Distributions}}\label{HistArray_8h_a5f85d9273951686605f1ad6e60cdd80e}
+\hypertarget{HistArray_8h_acff0a4d662d32a10fd8948dd510f0859}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_acff0a4d662d32a10fd8948dd510f0859}{P\+T1\+\_\+\+Histograms}\label{HistArray_8h_acff0a4d662d32a10fd8948dd510f0859}
 
 \begin{DoxyCompactList}\small\item\em top transverse momentum distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}{P\-T2\-Distributions}}\label{HistArray_8h_a35d362b5338e1ae6cc62b7529cd33fe9}
+\hypertarget{HistArray_8h_a97b1c1cd5b340772dafce4996e566546}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a97b1c1cd5b340772dafce4996e566546}{P\+T2\+\_\+\+Histograms}\label{HistArray_8h_a97b1c1cd5b340772dafce4996e566546}
 
 \begin{DoxyCompactList}\small\item\em antitop transverse momentum distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}{P\-T12\-Distributions}}\label{HistArray_8h_a56123d8a0f81ebfa69695b82993dce20}
+\hypertarget{HistArray_8h_a05a8eb8814251051ffd44f7dee1d4d77}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a05a8eb8814251051ffd44f7dee1d4d77}{P\+T12\+\_\+\+Histograms}\label{HistArray_8h_a05a8eb8814251051ffd44f7dee1d4d77}
 
 \begin{DoxyCompactList}\small\item\em top+antitop transverse momentum distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}{Y1\-Distributions}}\label{HistArray_8h_a6bdc37a33dfa4dc40aa4c222e47c2fa1}
+\hypertarget{HistArray_8h_ad195979dff44fb0bcd4fd44517c8ff83}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_ad195979dff44fb0bcd4fd44517c8ff83}{Y1\+\_\+\+Histograms}\label{HistArray_8h_ad195979dff44fb0bcd4fd44517c8ff83}
 
 \begin{DoxyCompactList}\small\item\em top rapidity distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a467f60fe7bf0154750dc68b8cc4ceb6a}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_a467f60fe7bf0154750dc68b8cc4ceb6a}{Y2\-Distributions}}\label{HistArray_8h_a467f60fe7bf0154750dc68b8cc4ceb6a}
+\hypertarget{HistArray_8h_a96c43acb917cbf09926cf6e160312d50}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a96c43acb917cbf09926cf6e160312d50}{Y2\+\_\+\+Histograms}\label{HistArray_8h_a96c43acb917cbf09926cf6e160312d50}
 
 \begin{DoxyCompactList}\small\item\em antitop rapidity distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}{\hyperlink{classHistArray}{Hist\-Array} \hyperlink{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}{D\-Y\-Distributions}}\label{HistArray_8h_aa2b6c6d455c470b6dca0820864fe9984}
+\hypertarget{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{D\+Y\+\_\+\+Histograms}\label{HistArray_8h_a8795054ff19f73feeccb324141ac6077}
 
 \begin{DoxyCompactList}\small\item\em top-\/antitop rapidity difference distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a397d83574b144072a74e159ed93fae42}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries P\-H\-I\-T12\-Distributions}}\label{HistArray_8h_a397d83574b144072a74e159ed93fae42}
+\hypertarget{HistArray_8h_a9f7647c914ecd6734a0d9584f9c06b2a}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries P\+H\+I\+T12\+\_\+\+Histograms}\label{HistArray_8h_a9f7647c914ecd6734a0d9584f9c06b2a}
 
 \item 
-\hypertarget{HistArray_8h_a7c1ca0b67f942ad2764cc7a8d6377043}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries Dopen\-Distributions}}\label{HistArray_8h_a7c1ca0b67f942ad2764cc7a8d6377043}
+\hypertarget{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries Dopen\+\_\+\+Histograms}\label{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}
 
 \item 
-\hypertarget{HistArray_8h_aaa7930db34086ff9c5aaac3ec3f372e1}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries O\-C\-P\-Distributions}}\label{HistArray_8h_aaa7930db34086ff9c5aaac3ec3f372e1}
+\hypertarget{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries O\+C\+P1\+\_\+\+Histograms}\label{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}
 
 \item 
-\hypertarget{HistArray_8h_ac260483ebf7ccdd90b34e6d3642f85a1}{\hyperlink{classHistArray}{Hist\-Array} {\bfseries Chel\-Distributions}}\label{HistArray_8h_ac260483ebf7ccdd90b34e6d3642f85a1}
+\hypertarget{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries B1\+\_\+\+Histograms}\label{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}
+
+\item 
+\hypertarget{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries B2\+\_\+\+Histograms}\label{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}
+
+\item 
+\hypertarget{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries Chel\+\_\+\+Histograms}\label{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Histogram class for the computation of differential distributions and definition of various observables. 
+Histogram and distribution classes for the computation of differential observables. 
 
-Definition in file \hyperlink{HistArray_8h_source}{Hist\-Array.\-h}.
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{}\index{Hist\+Array.\+h@{Hist\+Array.\+h}!H\+\_\+\+Index@{H\+\_\+\+Index}}
+\index{H\+\_\+\+Index@{H\+\_\+\+Index}!Hist\+Array.\+h@{Hist\+Array.\+h}}
+\subsubsection[{H\+\_\+\+Index}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+\_\+\+Index}}\label{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}
+Used to specify histograms in the \hyperlink{classHistArray}{Hist\+Array} class. In the default setup there are 6 histograms, one for each contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O P\+H\+Ix\+P\+H\+I + L\+O P\+H\+Ix\+Q\+C\+D, virtual corrections, integrated dipoles and real corrections. 
+
+Definition at line 32 of file Hist\+Array.\+h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{HistArray_8h_a68ac02ee7d92058bf4945bdc985baf61}{}\index{Hist\+Array.\+h@{Hist\+Array.\+h}!ind\+\_\+default@{ind\+\_\+default}}
+\index{ind\+\_\+default@{ind\+\_\+default}!Hist\+Array.\+h@{Hist\+Array.\+h}}
+\subsubsection[{ind\+\_\+default}]{\setlength{\rightskip}{0pt plus 5cm}H\+\_\+\+Index\+Map ind\+\_\+default}\label{HistArray_8h_a68ac02ee7d92058bf4945bdc985baf61}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+  (0,H\_LO\_QCD),
+  (1,H\_NLO\_QCD),
+  (2,H\_LO\_PHI),
+  (3,H\_NLO\_PHI\_V)
+\}
+\end{DoxyCode}
+
+
+Definition at line 47 of file Hist\+Array.\+h.
 

@@ -133,6 +133,7 @@ void HiggsBoson::SetPropagator(double const& S, bool rescale)
       	{
       	  //c_double K1 = ((d_FH_full)+4.0*(d_FA_full))/((d_FH_eff)+4.0*(d_FA_eff));
       	  double   K2 = (std::norm(d_FH_full)+4.0*std::norm(d_FA_full))/(std::norm(d_FH_eff)+4.0*std::norm(d_FA_eff));
+	  std::cout << std::endl << K2 << std::endl;
       	  // this affects the interference terms QCD x PHI_i as well as PHI_i x PHI_j
       	  d_Den   *= std::sqrt(K2);
       	  // this affects only the squared terms PHI_i x PHI_i
@@ -248,6 +249,7 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
   d_HPref.Reset();
   // iterate over d_Bosons and add the individual contributions
   auto last  = std::end(d_Bosons);
+  // PRINT(std::sqrt(S));
   for (auto phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)
     {
       if (!EFF || d_useK) (*phi_i)->SetFormFactors(S,d_mt2,d_mb2);
@@ -266,6 +268,13 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
       double At2i = std::pow(Ati,2);
       double Bt2i = std::pow(Bti,2);
 
+      // PRINT(Ati);
+      // PRINT(Bti);
+      // PRINT(Di*FHi*(-4.0*S));
+      // PRINT(Di*FAi*( 8.0*S));
+      // PRINT(Di);
+
+      
       // prefactors in PHIxQCD amplitudes
       // these are just the sum of individual phi contributions
       d_HPref.At_fH_re += Ati*(FHi*Di).real();
@@ -321,11 +330,12 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 	  d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();
 	  d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();	
 	  // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
-	  d_HPref.At_Bt_fH2_DeIM += (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
-	  d_HPref.At_Bt_fA2_DeIM += (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
+	  d_HPref.At_Bt_fH2_DeIM -= (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
+	  d_HPref.At_Bt_fA2_DeIM -= (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
 #endif
 	}
     }
+  // EXIT(1);
 }
 
 

@@ -104,7 +104,7 @@ void PS_2_1::print() const
 
 void PS_2_1::FillDistributions(
 			       DistVec& dist,
-			       H_TYPE id,
+			       H_Index id,
 			       double const & wgt,
 			       double const& mScale) const
 {
@@ -230,6 +230,7 @@ int PS_2_2::set(double const& rs,
 #ifdef DEBUG
   if ( std::isnan(P) || std::isinf(P) )
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("P is inf/NaN, this should better not happen too often!");
       PRINT(lambda(rs*rs,d_msq[0],d_msq[1]));
       SLEEP(3);
@@ -237,6 +238,7 @@ int PS_2_2::set(double const& rs,
     }
   if ( std::isnan(E1) || std::isinf(E1) )
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("E1 is inf/NaN, too small value for sqrt(s)?");
       PRINT(rs);
       SLEEP(3);
@@ -244,6 +246,7 @@ int PS_2_2::set(double const& rs,
     }
   if ( std::isnan(sy) || std::isinf(sy) )
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("sy is inf/NaN, incorrect value for y!");
       PRINT(1.0-y*y);
       SLEEP(3);
@@ -303,6 +306,7 @@ int PS_2_2::set(double const& x)
 #ifdef DEBUG
   if (s<=4.0*std::max(m1sq,m2sq))
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("s is below threshold given by the final state masses!");
       SLEEP(3);
       return 0;
@@ -354,7 +358,7 @@ void PS_2_2::print() const
 }
 void PS_2_2::FillDistributions(
 			       DistVec& dist_vec,
-			       H_TYPE id,
+			       H_Index id,
 			       double const& wgt,
 			       double const& mScale) const
 {
@@ -450,6 +454,7 @@ int PS_2_3::boost_to_parent()
 
   if (!boost.set_boost(K))
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("could not compute boosted 1->2 final state vectors.");
       SLEEP(3);
       return 0;
@@ -466,10 +471,17 @@ int PS_2_3::boost_to_parent()
   return 1;
 }
 
-int  PS_2_3::set(double const& rs,
+int  PS_2_3::set(
+		 double const& rs,
 		 double const& y_cm,
 		 double const& phi_cm,
 		 double const& M12,
+		 // //////////////////////////////////////////////
+		 // // runs from a12 to 1, used instead of M12
+		 // double const& r12,
+		 // // lower bound of integrationd variable r12
+		 // double const& a12,
+		 // //////////////////////////////////////////////
 		 double const& y_12,
 		 double const& phi_12)
 {
@@ -495,6 +507,7 @@ int  PS_2_3::set(double const& rs,
   // boost from Q restframe to current frame
   if (!boost.set_boost(ps_Q3.k1(),1))
     {
+      std::cout << std::endl << get_name() << std::endl;
       WARNING("could not compute boosted 1->2 final state vectors.");
       SLEEP(3);
       return 0;
@@ -550,7 +563,7 @@ void PS_2_3::print() const
 
 void PS_2_3::FillDistributions(
 			       DistVec& dist_vec,
-			       H_TYPE id,
+			       H_Index id,
 			       double const & wgt,
 			       double const& mScale) const
 {
@@ -758,37 +771,37 @@ double obs_TriProdN(FV const& k1, FV const& k2, FV const& k3)
 double OBS_D12(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  return (3.0)*obs_PHI(ps->s1_r(),ps->s2_r());
+  return (-3.0)*obs_PHI(ps->s1_r(),ps->s2_r())/Constants::kappa_p/Constants::kappa_m;
 }
 
 double OBS_CP1(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1 is the top momentum in the ttbar zero-momentum frame
-  return obs_TriProd(ps->s1_r(),ps->s2_r(),ps->k1());
+  return obs_TriProdN(ps->s1_r(),ps->s2_r(),ps->k1())/Constants::kappa_p/Constants::kappa_m;
 }
 double OBS_CP2(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1 is the top momentum in the ttbar zero-momentum frame
-  return obs_TriProd(ps->s1_r(),ps->s2_r(),ps->k2());
+  return obs_TriProdN(ps->s1_r(),ps->s2_r(),ps->k2())/Constants::kappa_p/Constants::kappa_m;
 }
 double OBS_HEL12(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (9.0)*obs_PHI(ps->k1(),ps->s1_r())*obs_PHI(ps->k2(),ps->s2_r());
+  return (-9.0)*obs_PHI(ps->k1(),ps->s1_r())*obs_PHI(ps->k2(),ps->s2_r())/Constants::kappa_p/Constants::kappa_m;
 }
 double OBS_B1(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (3.0)*obs_PHI(ps->k1(),ps->s1_r());
+  return (3.0)*obs_PHI(ps->k1(),ps->s1_r())/Constants::kappa_p;
 }
 double OBS_B2(const PS_2* ps)
 {
   // s1_r, s2_r are the lepton momenta in t/tbar rest frames
   // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (3.0)*obs_PHI(ps->k2(),ps->s2_r());
+  return (3.0)*obs_PHI(ps->k2(),ps->s2_r())/Constants::kappa_m;
 }
 #endif

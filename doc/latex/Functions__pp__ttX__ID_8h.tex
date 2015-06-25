@@ -1,48 +1,46 @@
-\hypertarget{Functions__pp__ttX__ID_8h}{\section{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.h File Reference}
-\label{Functions__pp__ttX__ID_8h}\index{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h@{inc/\-Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}}
-}
+\hypertarget{Functions__pp__ttX__ID_8h}{}\section{inc/\+Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.h File Reference}
+\label{Functions__pp__ttX__ID_8h}\index{inc/\+Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h@{inc/\+Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h}}
 
 
-Interface for the evaluation of the integrated Catani/\-Seymour dipoles for the processes gg-\/$>$ttbar+g and qg-\/$>$ttbar + q, c.\-f. ar\-Xiv\-:hep-\/ph/0201036.  
+Interface for the evaluation of the integrated Catani/\+Seymour dipoles for the processes gg-\/$>$ttbar+g and qg-\/$>$ttbar + q, c.\+f. ar\+Xiv\+:hep-\/ph/0201036.  
 
 
-{\ttfamily \#include $<$gsl/gsl\-\_\-sf\-\_\-dilog.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Scalar\-Integrals.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Flags.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Makros.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-\-Shared.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$gsl/gsl\+\_\+sf\+\_\+dilog.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Scalar\+Integrals.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Flags.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+\+Shared.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+V.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Phase\+Space.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-double \hyperlink{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}{Eval\-\_\-\-I\-D\-\_\-\-G\-G} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps, const double \&x, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const \hyperlink{Global_8h_a1398ea0e48e059bf4db2f4bcd7eb31fa}{ulong} \&flags)
-\begin{DoxyCompactList}\small\item\em Evaluates the integrated dipoles that live on the normal 2-\/$>$2 phase space, i.\-e. delta terms and distribution end-\/point terms. \end{DoxyCompactList}\item 
-int \hyperlink{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}{Eval\-\_\-\-I\-D\-\_\-\-X} (const \hyperlink{classPS__2__2}{P\-S\-\_\-2\-\_\-2} \&ps\-\_\-x, const double \&x, \hyperlink{classHiggsModel}{Higgs\-Model} \&hm, const \hyperlink{Global_8h_a1398ea0e48e059bf4db2f4bcd7eb31fa}{ulong} \&flags, double \&res\-\_\-gg, double \&res\-\_\-qg)
+double \hyperlink{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}{Eval\+\_\+\+I\+D\+\_\+\+G\+G} (const \hyperlink{classPS__2__2}{P\+S\+\_\+2\+\_\+2} \&ps, const double \&x, \hyperlink{classHiggsModel}{Higgs\+Model} \&hm, const \hyperlink{Global_8h_a1398ea0e48e059bf4db2f4bcd7eb31fa}{ulong} \&flags)
+\begin{DoxyCompactList}\small\item\em Evaluates the integrated dipoles that live on the normal 2-\/$>$2 phase space, i.\+e. delta terms and distribution end-\/point terms. \end{DoxyCompactList}\item 
+int \hyperlink{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}{Eval\+\_\+\+I\+D\+\_\+\+X} (const \hyperlink{classPS__2__2}{P\+S\+\_\+2\+\_\+2} \&ps\+\_\+x, const double \&x, \hyperlink{classHiggsModel}{Higgs\+Model} \&hm, const \hyperlink{Global_8h_a1398ea0e48e059bf4db2f4bcd7eb31fa}{ulong} \&flags, double \&res\+\_\+gg, double \&res\+\_\+qg)
 \begin{DoxyCompactList}\small\item\em Evaluates the continuum part of the integrated dipoles that live on the boosted 2-\/$>$2 phase space. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Interface for the evaluation of the integrated Catani/\-Seymour dipoles for the processes gg-\/$>$ttbar+g and qg-\/$>$ttbar + q, c.\-f. ar\-Xiv\-:hep-\/ph/0201036. 
-
-Definition in file \hyperlink{Functions__pp__ttX__ID_8h_source}{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}.
+Interface for the evaluation of the integrated Catani/\+Seymour dipoles for the processes gg-\/$>$ttbar+g and qg-\/$>$ttbar + q, c.\+f. ar\+Xiv\+:hep-\/ph/0201036. 
 
 
 
 \subsection{Function Documentation}
-\hypertarget{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}!Eval\-\_\-\-I\-D\-\_\-\-G\-G@{Eval\-\_\-\-I\-D\-\_\-\-G\-G}}
-\index{Eval\-\_\-\-I\-D\-\_\-\-G\-G@{Eval\-\_\-\-I\-D\-\_\-\-G\-G}!Functions_pp_ttX_ID.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}}
-\subsubsection[{Eval\-\_\-\-I\-D\-\_\-\-G\-G}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\-\_\-\-I\-D\-\_\-\-G\-G (
+\hypertarget{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}{}\index{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h@{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h}!Eval\+\_\+\+I\+D\+\_\+\+G\+G@{Eval\+\_\+\+I\+D\+\_\+\+G\+G}}
+\index{Eval\+\_\+\+I\+D\+\_\+\+G\+G@{Eval\+\_\+\+I\+D\+\_\+\+G\+G}!Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h@{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h}}
+\subsubsection[{Eval\+\_\+\+I\+D\+\_\+\+G\+G}]{\setlength{\rightskip}{0pt plus 5cm}double Eval\+\_\+\+I\+D\+\_\+\+G\+G (
 \begin{DoxyParamCaption}
-\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps, }
+\item[{const {\bf P\+S\+\_\+2\+\_\+2} \&}]{ps, }
 \item[{const double \&}]{x, }
-\item[{{\bf Higgs\-Model} \&}]{hm, }
+\item[{{\bf Higgs\+Model} \&}]{hm, }
 \item[{const {\bf ulong} \&}]{flags}
 \end{DoxyParamCaption}
-)}}\label{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}
+)}\label{Functions__pp__ttX__ID_8h_a369e33804b6c11f51c145dc848d7ab9d}
 
 
-Evaluates the integrated dipoles that live on the normal 2-\/$>$2 phase space, i.\-e. delta terms and distribution end-\/point terms. 
+Evaluates the integrated dipoles that live on the normal 2-\/$>$2 phase space, i.\+e. delta terms and distribution end-\/point terms. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -53,25 +51,25 @@ Evaluates the integrated dipoles that live on the normal 2-\/$>$2 phase space, i
 {\em flags} & specify which subamplitudes get evaluated \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Flags_8h_source}{Flags.\+h}, \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h}, \hyperlink{HiggsModel_8h}{Higgs\+Model.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 42 of file Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-cpp.
+Definition at line 42 of file Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+cpp.
 
-\hypertarget{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}{\index{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}!Eval\-\_\-\-I\-D\-\_\-\-X@{Eval\-\_\-\-I\-D\-\_\-\-X}}
-\index{Eval\-\_\-\-I\-D\-\_\-\-X@{Eval\-\_\-\-I\-D\-\_\-\-X}!Functions_pp_ttX_ID.h@{Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h}}
-\subsubsection[{Eval\-\_\-\-I\-D\-\_\-\-X}]{\setlength{\rightskip}{0pt plus 5cm}int Eval\-\_\-\-I\-D\-\_\-\-X (
+\hypertarget{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}{}\index{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h@{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h}!Eval\+\_\+\+I\+D\+\_\+\+X@{Eval\+\_\+\+I\+D\+\_\+\+X}}
+\index{Eval\+\_\+\+I\+D\+\_\+\+X@{Eval\+\_\+\+I\+D\+\_\+\+X}!Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h@{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h}}
+\subsubsection[{Eval\+\_\+\+I\+D\+\_\+\+X}]{\setlength{\rightskip}{0pt plus 5cm}int Eval\+\_\+\+I\+D\+\_\+\+X (
 \begin{DoxyParamCaption}
-\item[{const {\bf P\-S\-\_\-2\-\_\-2} \&}]{ps\-\_\-x, }
+\item[{const {\bf P\+S\+\_\+2\+\_\+2} \&}]{ps\+\_\+x, }
 \item[{const double \&}]{x, }
-\item[{{\bf Higgs\-Model} \&}]{hm, }
+\item[{{\bf Higgs\+Model} \&}]{hm, }
 \item[{const {\bf ulong} \&}]{flags, }
-\item[{double \&}]{res\-\_\-gg, }
-\item[{double \&}]{res\-\_\-qg}
+\item[{double \&}]{res\+\_\+gg, }
+\item[{double \&}]{res\+\_\+qg}
 \end{DoxyParamCaption}
-)}}\label{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}
+)}\label{Functions__pp__ttX__ID_8h_a5ffa584daccf5765b8202397ec173bdb}
 
 
 Evaluates the continuum part of the integrated dipoles that live on the boosted 2-\/$>$2 phase space. 
@@ -84,15 +82,15 @@ Evaluates the continuum part of the integrated dipoles that live on the boosted 
 \hline
 {\em flags} & specify which subamplitudes get evaluated \\
 \hline
-{\em res\-\_\-gg} & the result for the integrated dipoles associated with initial g-\/$>$gg splitting \\
+{\em res\+\_\+gg} & the result for the integrated dipoles associated with initial g-\/$>$gg splitting \\
 \hline
-{\em res\-\_\-qg} & the result for the integrated dipoles associated with initial q-\/$>$qg splitting \\
+{\em res\+\_\+qg} & the result for the integrated dipoles associated with initial q-\/$>$qg splitting \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Flags_8h_source}{Flags.\-h}, \hyperlink{PhaseSpace_8h}{Phase\-Space.\-h}, \hyperlink{HiggsModel_8h}{Higgs\-Model.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Flags_8h_source}{Flags.\+h}, \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h}, \hyperlink{HiggsModel_8h}{Higgs\+Model.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 212 of file Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-cpp.
+Definition at line 136 of file Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+cpp.
 

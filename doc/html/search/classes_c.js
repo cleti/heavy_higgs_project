@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vegas_5fpar',['vegas_par',['../classvegas__par.html',1,'']]]
+  ['teebuf',['teebuf',['../classteebuf.html',1,'']]],
+  ['teestream',['teestream',['../classteestream.html',1,'']]]
 ];

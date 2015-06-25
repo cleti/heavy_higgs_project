@@ -32,22 +32,20 @@ static int Eval_tt_decay(
   if ( ps_t1->set(mt2,x[3] ,x[4] ,x[5] ,x[6] ,x[7] ) &&
        ps_t2->set(mt2,x[8] ,x[9] ,x[10],x[11],x[12])    )
     {
-      // factor 1/GammaT already included in the output of Eval_t_blnu() !
       ///////////////// decay of top quark ////////////////////////////////////////////
       tt_decay *= (ps_t1->get_wgt() * Eval_t_blnu(*ps_t1,S1_r,hm));
-      // spin vector in top restframe
-      /////////////////////////////////////////////////////////////////////////////////
-      //PRINT(ps_t1->get_wgt());PRINT(Eval_t_blnu(*ps_t1,S1_r,hm));
       ///////////////// decay of anti-top quark ///////////////////////////////////////
       tt_decay *= (ps_t2->get_wgt() * Eval_t_blnu(*ps_t2,S2_r,hm));
-      // PRINT_4VEC(S2_r);
+      /////////////////////////////////////////////////////////////////////////////////
       S1_r *=  kappa_p;
       S2_r *=  kappa_m;// antitop spin vector receives relative sign through kappa_m!
-      // // PRINT_4VEC(S2_r);
-      // // exit(1);
       /////////////////////////////////////////////////////////////////////////////////
-      //PRINT(ps_t2->get_wgt());PRINT(Eval_t_blnu(*ps_t2,S1_r,hm));
+      // in the production matrix element we have to subtitute S1 -> kappa_p * lepton-mom.
+      // and  S1 -> kappa_m * antilepton-mom., but these factors have to be removed again
+      // when observables involving the lepton/antilepton momenta are considered !!!
+      /////////////////////////////////////////////////////////////////////////////////
       // normalization factor from t/tbar propagators pi/(mt*GammaT) * 1/(2*pi)
+      // factor 1/GammaT already included in the output of Eval_t_blnu() !
       tt_decay /= (4.0*mt2); 
     }
   else

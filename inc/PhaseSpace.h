@@ -39,6 +39,7 @@ class PS_Named {
   PS_Named(std::string const& nm) : d_name(nm) {}
   PS_Named const& operator=(PS_Named const& rhs) { return *this; }
   void set_name(std::string const& name) { d_name = name; }
+  std::string get_name() { return d_name; }
 };
 
 ////// class PS_2 [abstract base class] ///////////////////////////////////////////////////////////
@@ -46,7 +47,7 @@ class PS_Named {
   Abstract base class for 2->X phase space classes, holds among others the 4-vectors of the incoming partons.
   \sa Lorentz.h, HistArray.h
 */
-class PS_2: PS_Named {
+class PS_2: public PS_Named {
  protected:
   //! square root of the current partonic c.m.e.
   double d_rs;
@@ -172,9 +173,17 @@ class PS_2_1: public PS_2 {
   int set_child(int i, PS_2* child) { if (child->set_parent(this)) { d_child = child; return 1;} return 0; }
   int whattype() const { return 21; }
   void print() const;
+
+  /*!
+    Feed the distributions in the vector 'dist' with the weight 'wgt' in the bin corresponding to their observable evaluated at the current point of this phase space object. NOT YET IMPLEMENTED ON PS_2_1 !!!
+    \param dist   Vector of distributions.
+    \param id     Fill into this histogram in each HistArray.
+    \param wgt    Weigth to dill into the distributions.
+    \param mScale Mass scale used for normalization. Necessary to get the correct numerical values of the observables with non-zero mass dimension.
+  */
   void FillDistributions(
 			 DistVec& dist,
-			 H_TYPE id,
+			 H_Index id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
@@ -281,9 +290,17 @@ class PS_2_2: public PS_2 {
   int set_child(int i, PS_2* child) { if (!RANGE(i,2)) {ERROR("i is out of range (2)");} if (child->set_parent(this)) { d_child[i] = child; return 1;} return 0; }
   int whattype() const { return 22; }
   void print() const;
+
+  /*!
+    Feed the distributions in the vector 'dist' with the weight 'wgt' in the bin corresponding to their observable evaluated at the current point of this phase space object.
+    \param dist   Vector of distributions.
+    \param id     Fill into this histogram in each HistArray.
+    \param wgt    Weigth to dill into the distributions.
+    \param mScale Mass scale used for normalization. Necessary to get the correct numerical values of the observables with non-zero mass dimension.
+  */
   void FillDistributions(
 			 DistVec& dist,
-			 H_TYPE id,
+			 H_Index id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };
@@ -386,9 +403,17 @@ class PS_2_3: public PS_2 {
 
   int whattype() const { return 23; }
   void print() const;
+
+  /*!
+    Feed the distributions in the vector 'dist' with the weight 'wgt' in the bin corresponding to their observable evaluated at the current point of this phase space object.
+    \param dist   Vector of distributions.
+    \param id     Fill into this histogram in each HistArray.
+    \param wgt    Weigth to dill into the distributions.
+    \param mScale Mass scale used for normalization. Necessary to get the correct numerical values of the observables with non-zero mass dimension.
+  */
   void FillDistributions(
 			 DistVec& dist,
-			 H_TYPE id,
+			 H_Index id,
 			 double const& wgt,
 			 double const& mScale=1.0) const;
 };

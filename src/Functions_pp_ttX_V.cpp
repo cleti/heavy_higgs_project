@@ -75,7 +75,7 @@ inline double Z2M (
 #include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/QCDxQCD_LO_eps0_g4_qq.cpp"
 // PHI x QCD
-#include "../amp/virtual/fullSpin/2RE_PHIxQCD_LO_eps0_g4.cpp"
+#include "../amp/virtual/fullSpin/2RE_PHIxQCD_LO_eps0_g4_b.cpp"
 
 // NLO virtual amplitudes
 // PHI0 x QCD1
@@ -148,14 +148,6 @@ double Eval_B(
   if (EVAL_B_PHI(flags))
     {
       hm.SetHiggsPrefactors(ps.get_s(),EFF);
-      //HiggsBosons::ResetHiggsPrefactors(ps.get_s(),EFF);
-      // PRINT(hp.At2_fH2_De);
-      // PRINT(hp.Bt2_fH2_De);
-      // PRINT(hp.At2_fA2_De);
-      // PRINT(hp.Bt2_fA2_De);
-      // PRINT(hp.At_Bt_fH2_De);
-      // PRINT(hp.At_Bt_fA2_De);
-      // exit(1);
     }
 
        
@@ -195,10 +187,7 @@ double Eval_B_PHIxPHI_withINT12(
   // when models with more than 1 heavy Higgs boson are considered
   if (hm.NBosons()>1)
     {
-      // PRINT(Eval_B_PHIxPHI(ps,ap,hp));
-      // PRINT(Eval_B_PHIxPHI_IM_INTab(ps,ap,hp));
-      // EXIT(1);
-      ret += 2.0*Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
+      ret += Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
     }
 #endif  
   return ret;
@@ -283,7 +272,7 @@ double Eval_V(
 #ifdef WITH_T_SPIN
       if (hm.NBosons()>1)
 	{
-	  res -= Eval_V_PHIxPHI_IM_INTab(ps,ap,hp);
+	  res += Eval_V_PHIxPHI_IM_INTab(ps,ap,hp);
 	}
 #endif
 #ifdef DEBUG

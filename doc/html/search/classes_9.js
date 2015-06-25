@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['opt',['opt',['../structopt.html',1,'']]]
+  ['meandistribution',['MeanDistribution',['../classMeanDistribution.html',1,'']]]
 ];

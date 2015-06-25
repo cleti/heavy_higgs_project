@@ -575,7 +575,7 @@ void DrawDistribution(
       canvas.p1_1->cd();
 
       // use NLO V historgam to add up all the PHI contributions
-      H_TYPE H_NLO_PHI = H_NLO_PHI_V;
+      H_Index H_NLO_PHI = H_NLO_PHI_V;
       bool NLO_QCD = (histograms[H_NLO_QCD]->GetEntries() > 0 && fabs(histograms[H_NLO_QCD]->Integral()) > 1e-12);
 
       // only LO QCD
@@ -583,6 +583,7 @@ void DrawDistribution(
 	{
 	  histograms[H_LO_QCD]->Smooth(1);
 	}
+
       
       // add LO QCD contribution to deltaNLO QCD
       histograms[H_NLO_QCD]->Add(histograms[H_LO_QCD]);
@@ -704,9 +705,10 @@ void DrawDistribution(
       else
 	{
 	  // normalize everything to LO QCD histograms
-	  //TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
-	  histograms[H_LO_PHI]->Divide(histograms[H_NLO_QCD]);
-	  histograms[H_NLO_QCD]->Divide(histograms[H_NLO_QCD]);
+	  // TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
+	  TH1RelDiff(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
+	  // (histograms[H_LO_PHI])->Divide((histograms[H_NLO_QCD]));
+	  (histograms[H_NLO_QCD])->Divide(histograms[H_NLO_QCD]);
       
 	  SetRatioPlot(histograms[H_LO_PHI],titleX.c_str());
 	  histograms[H_LO_PHI]->DrawCopy("hist ][");
@@ -781,8 +783,9 @@ void SetRatioPlot(TH1D* hist,std::string xtitle)
 
 
 
-// divide content of h1 by a*h2 bin-wise
-void TH1DivideStable(TH1D* h1, TH1D* h2, const double& a)
+
+
+void TH1RelDiff(TH1D* h1, const TH1D* h2)
 {
   int n1 = h1->GetNbinsX();
   int n2 = h2->GetNbinsX();
@@ -790,31 +793,18 @@ void TH1DivideStable(TH1D* h1, TH1D* h2, const double& a)
     {
       ERROR("Histograms do not match in size.");
     }
-  if (a==0.0)
-    {
-      ERROR("Division by 0 (a=0).");
-    }
-
   for (int i=1;i<=n1;++i)
     {
       if (fabs(h1->GetBinLowEdge(i)-h2->GetBinLowEdge(i))>1e-12)
 	{
 	  ERROR("Histogram binning does not match.");
 	}
-      double c1 = h1->GetBinContent(i);
-      double c2 = h2->GetBinContent(i) * a;
-      if ( c2 == 0.0) continue;
-      if ( fabs(c2) < 1e-5 )
-	{
-	  c1 += 1;
-	  c2 += 1;
-	}
-      h1->SetBinContent(i,c1/(c2));
+      double c1 = std::fabs(h1->GetBinContent(i));
+      double c2 = std::fabs(h2->GetBinContent(i));
+      h1->SetBinContent(i,1.0+(c1-c2)/((c1)+(c2)));
     }
 
 }
-
-
 
 
 
@@ -970,3 +960,18 @@ double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4)
 }
 
 
+
+
+TH1D* fabs(TH1D* hist)
+{
+  for (int i=1; i<hist->GetNbinsX(); ++i)
+    {
+      hist->SetBinContent(i,std::fabs(hist->GetBinContent(i)));
+    }
+  return hist;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////

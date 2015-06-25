@@ -1,0 +1,29 @@
+
+#! /bin/bash
+
+
+FILES=$1*
+
+for f in $FILES
+do
+# bernies files have no extension
+### fileext=${filename##*.}
+if [[ -f $f  ]] ; then    
+if [[ $f = ?*.* ]] ; then
+    echo "omitting $f ..."
+else
+    echo "Processing $f ..."		       
+gawk '
+BEGIN { \
+    print "\n\n# mean: opening angle\n# distribution: Mtt";	\
+    print "#\tbin low\t\tval QCD LO\t\tval 2HDM";					\
+}
+#{ printf("\t%.2f\t\t%.12g\t\t%.12g\n",$1-5.0,$3*10.0*81.0/4.0/0.997,($2)*10.0*81.0/4.0/0.997)}
+{ printf("\t%.2f\t\t%.12g\t\t%.12g\n",$1-5.0,$2*10.0*81.0/4.0/0.997,($3-$2)*10.0*81.0/4.0/0.997)}
+' < $f > $f.b
+fi
+fi
+done
+
+exit 0
+

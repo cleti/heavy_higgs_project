@@ -6,7 +6,7 @@ var searchData=
   ['pref_5fqg',['PREF_QG',['../namespaceConstants.html#a51ed5e005486d4e9af1c3a84eb3be1ba',1,'Constants']]],
   ['pref_5fqq',['PREF_QQ',['../namespaceConstants.html#a1f51674d250f71ebde34af46ff997504',1,'Constants']]],
   ['ps',['ps',['../classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238',1,'integrand_par']]],
-  ['pt12distributions',['PT12Distributions',['../HistArray_8h.html#a56123d8a0f81ebfa69695b82993dce20',1,'HistArray.h']]],
-  ['pt1distributions',['PT1Distributions',['../HistArray_8h.html#a5f85d9273951686605f1ad6e60cdd80e',1,'HistArray.h']]],
-  ['pt2distributions',['PT2Distributions',['../HistArray_8h.html#a35d362b5338e1ae6cc62b7529cd33fe9',1,'HistArray.h']]]
+  ['pt12_5fhistograms',['PT12_Histograms',['../HistArray_8h.html#a05a8eb8814251051ffd44f7dee1d4d77',1,'HistArray.h']]],
+  ['pt1_5fhistograms',['PT1_Histograms',['../HistArray_8h.html#acff0a4d662d32a10fd8948dd510f0859',1,'HistArray.h']]],
+  ['pt2_5fhistograms',['PT2_Histograms',['../HistArray_8h.html#a97b1c1cd5b340772dafce4996e566546',1,'HistArray.h']]]
 ];

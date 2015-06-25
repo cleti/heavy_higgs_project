@@ -33,7 +33,7 @@ namespace Constants {
   const double TF	 = 0.5;
   const double CF	 = (pow(CA,0.2e1)-0.1e1)/(0.2e1*CA);
   const double CFCA2	 = CF-0.5*CA;
-  const double Nf	 = 5.0; // # light quarks in loops -> running coupling
+  const double Nf	 = 5.0; // # light quarks for running QCD coupling
   const double CA2	 = pow(CA,2);
   const double TF2	 = pow(TF,2);
   const double CF2	 = pow(CF,2);

@@ -10,7 +10,10 @@
 #define INTEGRANDS_PPHX_H
 
 #include "Global.h"
+#include "Makros.h"
 #include "Functions_Shared.h"
+#include "Integrator.h"
+
 #include "Functions_pp_HX.h"
 
 

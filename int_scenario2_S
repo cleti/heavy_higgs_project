@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CALLS="1000000"
-FLAGS="0000011"
+CALLS="100000000"
+FLAGS="0000010"
 
 if [ $# -eq 2 ]
 then
@@ -15,4 +15,4 @@ FLAGS=$1
 fi
 
 
-./bin/Integrate_pp_ttX_S -I $FLAGS -N $CALLS -E 8 -D --add_higgs 550,37.74,1.4286,0,-0.7,0 --add_higgs 700,92.26,0,1.4286,0,0.7 -v 1  -r 1.0 -K
+./bin/Integrate_pp_ttX_S -I $FLAGS -N $CALLS -E 13 -D --add_higgs 550,47.74,1.4286,0,0,0 --add_higgs 700,92.26,0,1.4286,0,0 -v 1  -r 1.0 -Q

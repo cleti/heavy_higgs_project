@@ -9,11 +9,10 @@
 using namespace std;
 
 // local header files
-
 #include "../inc/Global.h"
-#include "../inc/Functions_Shared.h"
 #include "../inc/Makros.h"
-#include "../inc/Flags.h"
+#include "../inc/Functions_Shared.h"
+#include "../inc/Integrator.h"
 #include "../inc/Integrands_pp_HX.h"
 
 // LHAPDF header files

@@ -1,57 +1,56 @@
-\hypertarget{Integrands__pp__ttX_8h}{\section{inc/\-Integrands\-\_\-pp\-\_\-tt\-X.h File Reference}
-\label{Integrands__pp__ttX_8h}\index{inc/\-Integrands\-\_\-pp\-\_\-tt\-X.\-h@{inc/\-Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-}
+\hypertarget{Integrands__pp__ttX_8h}{}\section{inc/\+Integrands\+\_\+pp\+\_\+tt\+X.h File Reference}
+\label{Integrands__pp__ttX_8h}\index{inc/\+Integrands\+\_\+pp\+\_\+tt\+X.\+h@{inc/\+Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
 
 
-Integrand functions used by V\-E\-G\-A\-S (wrapped in the \hyperlink{classIntegrator}{Integrator} class) to compute cross sections for the processes pp -\/$>$ tt + X and pp -\/$>$ tt + X -\/$>$ l+ l-\/ + b b-\/bar + jets.  
+Integrand functions used by V\+E\+G\+A\+S (wrapped in the \hyperlink{classIntegrator}{Integrator} class) to compute cross sections for the processes pp -\/$>$ tt + X and pp -\/$>$ tt + X -\/$>$ l+ l-\/ + b b-\/bar + jets.  
 
 
-{\ttfamily \#include \char`\"{}Global.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-\-Shared.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-V.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-I\-D.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-R.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Functions\-\_\-pp\-\_\-tt\-X\-\_\-\-U\-I\-D.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Makros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+\+Shared.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Integrator.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+V.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+R.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+U\+I\+D.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-double \hyperlink{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}{Integrand\-\_\-poly2} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
+double \hyperlink{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}{Integrand\+\_\+poly2} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Just for testing. \end{DoxyCompactList}\item 
-double \hyperlink{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}{Integrand\-\_\-2\-\_\-2} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
-\begin{DoxyCompactList}\small\item\em Integrand without P\-D\-Fs to reproduce some of W.\-B.'s plots. \end{DoxyCompactList}\item 
-double \hyperlink{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
+double \hyperlink{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}{Integrand\+\_\+2\+\_\+2} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Integrand without P\+D\+Fs to reproduce some of W.\+B.\textquotesingle{}s plots. \end{DoxyCompactList}\item 
+double \hyperlink{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Integrand function for Born/virtual contribution to pp -\/$>$ tt + X. \end{DoxyCompactList}\item 
-double \hyperlink{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
+double \hyperlink{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Integrand function for integrated dipole contribution to pp -\/$>$ tt + X. \end{DoxyCompactList}\item 
-double \hyperlink{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}{Integrand\-\_\-2\-\_\-3\-\_\-pdf} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
+double \hyperlink{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}{Integrand\+\_\+2\+\_\+3\+\_\+pdf} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Integrand function for real corrections to gg -\/$>$ tt + X. \end{DoxyCompactList}\item 
-double \hyperlink{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}{Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf} (double $\ast$x, size\-\_\-t dim, void $\ast$arg)
+double \hyperlink{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}{Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf} (double $\ast$x, size\+\_\+t dim, void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Integrand function for real corrections to qg/qqbar -\/$>$ tt + X. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Integrand functions used by V\-E\-G\-A\-S (wrapped in the \hyperlink{classIntegrator}{Integrator} class) to compute cross sections for the processes pp -\/$>$ tt + X and pp -\/$>$ tt + X -\/$>$ l+ l-\/ + b b-\/bar + jets. \begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+Integrand functions used by V\+E\+G\+A\+S (wrapped in the \hyperlink{classIntegrator}{Integrator} class) to compute cross sections for the processes pp -\/$>$ tt + X and pp -\/$>$ tt + X -\/$>$ l+ l-\/ + b b-\/bar + jets. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition in file \hyperlink{Integrands__pp__ttX_8h_source}{Integrands\-\_\-pp\-\_\-tt\-X.\-h}.
-
-
-
 \subsection{Function Documentation}
-\hypertarget{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-2\-\_\-2@{Integrand\-\_\-2\-\_\-2}}
-\index{Integrand\-\_\-2\-\_\-2@{Integrand\-\_\-2\-\_\-2}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-2\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-2\-\_\-2 (
+\hypertarget{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+2\+\_\+2@{Integrand\+\_\+2\+\_\+2}}
+\index{Integrand\+\_\+2\+\_\+2@{Integrand\+\_\+2\+\_\+2}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+2\+\_\+2}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+2\+\_\+2 (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}
+)}\label{Integrands__pp__ttX_8h_a52b7333b15fc5bce79b93633f7e540a3}
 
 
-Integrand without P\-D\-Fs to reproduce some of W.\-B.'s plots. 
+Integrand without P\+D\+Fs to reproduce some of W.\+B.\textquotesingle{}s plots. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -62,22 +61,22 @@ Integrand without P\-D\-Fs to reproduce some of W.\-B.'s plots.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 125 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 125 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 
-\hypertarget{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V@{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V}}
-\index{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V@{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-B\-V (
+\hypertarget{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V@{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V}}
+\index{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V@{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+B\+V (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}
+)}\label{Integrands__pp__ttX_8h_a853cf5d729c73fc2c49969444370231b}
 
 
 Integrand function for Born/virtual contribution to pp -\/$>$ tt + X. 
@@ -91,22 +90,22 @@ Integrand function for Born/virtual contribution to pp -\/$>$ tt + X.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 192 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 192 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 
-\hypertarget{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D@{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D}}
-\index{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D@{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-2\-\_\-2\-\_\-pdf\-\_\-\-I\-D (
+\hypertarget{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D@{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D}}
+\index{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D@{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+2\+\_\+2\+\_\+pdf\+\_\+\+I\+D (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}
+)}\label{Integrands__pp__ttX_8h_a449617f74312e3cc9d187714ec31e400}
 
 
 Integrand function for integrated dipole contribution to pp -\/$>$ tt + X. 
@@ -120,22 +119,22 @@ Integrand function for integrated dipole contribution to pp -\/$>$ tt + X.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 319 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 302 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 
-\hypertarget{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-2\-\_\-3\-\_\-pdf@{Integrand\-\_\-2\-\_\-3\-\_\-pdf}}
-\index{Integrand\-\_\-2\-\_\-3\-\_\-pdf@{Integrand\-\_\-2\-\_\-3\-\_\-pdf}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-2\-\_\-3\-\_\-pdf}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-2\-\_\-3\-\_\-pdf (
+\hypertarget{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+2\+\_\+3\+\_\+pdf@{Integrand\+\_\+2\+\_\+3\+\_\+pdf}}
+\index{Integrand\+\_\+2\+\_\+3\+\_\+pdf@{Integrand\+\_\+2\+\_\+3\+\_\+pdf}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+2\+\_\+3\+\_\+pdf}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+2\+\_\+3\+\_\+pdf (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}
+)}\label{Integrands__pp__ttX_8h_a55b828729060b92d6511d4bf522fa3a4}
 
 
 Integrand function for real corrections to gg -\/$>$ tt + X. 
@@ -149,22 +148,22 @@ Integrand function for real corrections to gg -\/$>$ tt + X.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 462 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 446 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 
-\hypertarget{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf@{Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf}}
-\index{Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf@{Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-2\-\_\-3\-\_\-qg\-\_\-qq\-\_\-pdf (
+\hypertarget{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf@{Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf}}
+\index{Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf@{Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+2\+\_\+3\+\_\+qg\+\_\+qq\+\_\+pdf (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}
+)}\label{Integrands__pp__ttX_8h_a8ba829dbe53ebcecb439dae800e9a565}
 
 
 Integrand function for real corrections to qg/qqbar -\/$>$ tt + X. 
@@ -178,22 +177,22 @@ Integrand function for real corrections to qg/qqbar -\/$>$ tt + X.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 543 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 527 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 
-\hypertarget{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}{\index{Integrands\-\_\-pp\-\_\-tt\-X.\-h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}!Integrand\-\_\-poly2@{Integrand\-\_\-poly2}}
-\index{Integrand\-\_\-poly2@{Integrand\-\_\-poly2}!Integrands_pp_ttX.h@{Integrands\-\_\-pp\-\_\-tt\-X.\-h}}
-\subsubsection[{Integrand\-\_\-poly2}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\-\_\-poly2 (
+\hypertarget{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}{}\index{Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}!Integrand\+\_\+poly2@{Integrand\+\_\+poly2}}
+\index{Integrand\+\_\+poly2@{Integrand\+\_\+poly2}!Integrands\+\_\+pp\+\_\+tt\+X.\+h@{Integrands\+\_\+pp\+\_\+tt\+X.\+h}}
+\subsubsection[{Integrand\+\_\+poly2}]{\setlength{\rightskip}{0pt plus 5cm}double Integrand\+\_\+poly2 (
 \begin{DoxyParamCaption}
 \item[{double $\ast$}]{x, }
-\item[{size\-\_\-t}]{dim, }
+\item[{size\+\_\+t}]{dim, }
 \item[{void $\ast$}]{arg}
 \end{DoxyParamCaption}
-)}}\label{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}
+)}\label{Integrands__pp__ttX_8h_ac80c9bffa867aac806700428c8995c5a}
 
 
 Just for testing. 
@@ -207,10 +206,10 @@ Just for testing.
 {\em arg} & additional parameters \\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{Integrator_8h}{Integrator.\-h} 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Integrator_8h}{Integrator.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 113 of file Integrands\-\_\-pp\-\_\-tt\-X.\-cpp.
+Definition at line 113 of file Integrands\+\_\+pp\+\_\+tt\+X.\+cpp.
 

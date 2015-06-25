@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['y1distributions',['Y1Distributions',['../HistArray_8h.html#a6bdc37a33dfa4dc40aa4c222e47c2fa1',1,'HistArray.h']]],
-  ['y2distributions',['Y2Distributions',['../HistArray_8h.html#a467f60fe7bf0154750dc68b8cc4ceb6a',1,'HistArray.h']]]
+  ['y1_5fhistograms',['Y1_Histograms',['../HistArray_8h.html#ad195979dff44fb0bcd4fd44517c8ff83',1,'HistArray.h']]],
+  ['y2_5fhistograms',['Y2_Histograms',['../HistArray_8h.html#a96c43acb917cbf09926cf6e160312d50',1,'HistArray.h']]]
 ];

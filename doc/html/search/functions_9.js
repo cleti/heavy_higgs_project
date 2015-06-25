@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normalize',['Normalize',['../classHistArray.html#a1a5eb9be28921e67bf3612e5b82954df',1,'HistArray']]]
+  ['normalize',['Normalize',['../classHistArray.html#a2c7edebf7ddf7d5dcc2cbb30f46601e5',1,'HistArray']]]
 ];

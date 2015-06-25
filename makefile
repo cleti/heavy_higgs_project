@@ -6,7 +6,9 @@ ROOTLIBS    = $(shell root-config --libs)
 QCDLOOPLIBS = ext/ql/libqcdloop.a ext/ff/libff.a  -lgfortran
 LOOPTOOLS   = ext/LoopTools-2.12/build/libooptools.a
 GSLLIBS     = -lgsl -lgslcblas
+BOOSTLIBS   = -lboost_system -lboost_filesystem
 
+EXT_LIBS    = $(ROOTLIBS) $(QCDLOOPLIBS) $(GSLLIBS) $(BOOSTLIBS) -lLHAPDF
 
 DEBUG-FLAGS = -g -O0 -DDEBUG -pedantic
 PERF1-FLAGS = -m64 -O1 -march=native
@@ -37,7 +39,7 @@ CPP = /usr/lib/cpp
 ###################### local libraries #############################
 ####################################################################
 
-_LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Functions_Shared.o ScalarIntegrals.o
+_LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Functions_Shared.o ScalarIntegrals.o FileBrowser.o
 _LIBS_PP_HX    =  $(_LIBS_COMMON) HiggsModel_.o Integrator_.o PhaseSpace_.o Integrands_pp_HX.o Functions_pp_HX.o
 
 _LIBS_PP_TTX   = $(_LIBS_COMMON) HiggsModel_.o  Integrator_.o  PhaseSpace_.o  Integrands_pp_ttX_.o  Functions_pp_ttX_V_.o  Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
@@ -71,22 +73,22 @@ exec:    $(BIN-PATH)/Test  $(BIN-PATH)/Integrate_pp_ttX $(BIN-PATH)/Integrate_pp
 
 
 $(BIN-PATH)/Integrate_pp_ttX: $(LIB-PATH)/Integrate_pp_ttX.o $(LIBS_COMMON) $(LIBS_PP_TTX) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Integrate_pp_ttX_S: $(LIB-PATH)/Integrate_pp_ttX_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Integrate_pp_HX: $(LIB-PATH)/Integrate_pp_HX.o $(LIBS_PP_HX)
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Test: $(LIB-PATH)/Test.o $(LIBS_COMMON) $(LIBS_PP_TTX) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Test_S: $(LIB-PATH)/Test_S.o $(LIBS_COMMON) $(LIBS_PP_TTX_S) 
-	$(CC) -o $@  $^ -L/usr/local/lib $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) -lLHAPDF $(ROOTLIBS)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/EvalSI: $(LIB-PATH)/EvalSI.o 
-	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(LOOPTOOLS) $(GSLLIBS) 
+	$(CC) -o $@  $^ $(LIB-PATH)/Global.o $(QCDLOOPLIBS) $(GSLLIBS) 
 
 $(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/pVEGAS.o
 	$(CC) -o $@  $^ -lgsl -lgomp  
@@ -94,7 +96,7 @@ $(BIN-PATH)/TestVEGAS: $(LIB-PATH)/TestVEGAS.o $(LIB-PATH)/pVEGAS.o
 $(BIN-PATH)/makePlots: $(LIB-PATH)/makePlots.o
 	$(CC) -o $@  $^ -L/usr/local/lib -lboost_system -lboost_filesystem $(ROOTLIBS)
 
-$(BIN-PATH)/readDat: $(LIB-PATH)/readDat.o
+$(BIN-PATH)/readDat: $(LIB-PATH)/readDat.o $(LIB-PATH)/FileBrowser.o
 	$(CC) -o $@  $^ -L/usr/local/lib -lboost_system -lboost_filesystem $(ROOTLIBS)
 ####################################################################
 

@@ -127,17 +127,18 @@ int main(int argc, char** argv)
   ip.distributions = new DistVec{
     std::make_shared<Distribution>(&Mtt_Histograms,&OBS_M12),
 #ifdef WITH_T_SPIN
+    std::make_shared<MeanDistribution>(&Chel_Histograms,&OBS_M12,&OBS_HEL12),
     std::make_shared<MeanDistribution>(&Dopen_Histograms,&OBS_M12,&OBS_D12),
-    std::make_shared<MeanDistribution>(&OCP1_Histograms,&OBS_M12,&OBS_CP1),
     std::make_shared<MeanDistribution>(&B1_Histograms,&OBS_M12,&OBS_B1),
-    std::make_shared<MeanDistribution>(&Chel_Histograms,&OBS_M12,&OBS_HEL12)
+    std::make_shared<MeanDistribution>(&B2_Histograms,&OBS_M12,&OBS_B2),
+    std::make_shared<MeanDistribution>(&OCP1_Histograms,&OBS_M12,&OBS_CP1),
 #else
     std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
     std::make_shared<Distribution>(&PT12_Histograms,&OBS_PT12),
     std::make_shared<Distribution>(&Y1_Histograms,&OBS_Y1),
     std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2),
     std::make_shared<Distribution>(&PT2_Histograms,&OBS_PT2),
-    std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12)
+    std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12),
 #endif
   };
   double CME = sqrt(ip.s_hadr)*mScale;
@@ -168,13 +169,74 @@ int main(int argc, char** argv)
   if (g_options.qcdfile)
     {
       stringstream filename;
-      filename << "NLO_QCD_" << std::round(CME/1000) << "TeV_mu" << std::round(THDM_1.MUR()*mScale) << ".dat";
+#ifdef WITH_T_SPIN 
+      filename << "NLO_QCD_Spin_";
+#else
+      filename << "NLO_QCD_";
+#endif
+      filename << std::round(CME/1000) << "TeV_mu" << std::round(THDM_1.MUR()*mScale) << ".dat";
+      
       PRINT(filename.str());
-      g_options.qcdfile = read_qcd_data(ip.distributions,g_options.qcdfile_path,filename.str());
-      if (!g_options.qcdfile)
+
+      H_IndexMap imap_qcd = {
+      	{0,H_LO_QCD},
+      	{1,H_NLO_QCD},
+	//	{2,H_LO_PHI},
+      };
+      if (!ReadData(
+		    g_options.qcdfile_path+filename.str(),
+		    ++(ip.distributions->begin()),
+		    ip.distributions->end(),
+		    4.0/81.0,
+		    imap_qcd
+		    ))
 	{
-	  couT << std::endl << " Error reading QCD data file. " << std::endl;
+	  couT << std::endl << " There have beend errors during data file processing. " << std::endl;
 	}
+      
+      // // if (!file) std::make_shared<std::ifstream>(path.string())
+      // std::ifstream file(g_options.qcdfile_path+filename.str());
+      // while (!file.is_open())
+      // 	{
+      // 	  FileBrowser fb(g_options.qcdfile_path);
+      // 	  std::cout << std::endl << " Could not open file " << g_options.qcdfile_path << std::endl;
+      // 	  std::cout << " Pick new input file:" << std::endl;
+      // 	  file.open(fb.browse());
+      // 	}
+
+      // H_IndexMap imap1 = {
+      // 	{0,H_NLO_QCD},
+      // 	{2,H_LO_QCD},
+      // };
+
+      // if (!ip.distributions->at(1)->GetHistograms()->ReadTable(file))
+      // 	{
+      // 	  EXIT(1);
+      // 	}
+      // if (!ip.distributions->at(2)->GetHistograms()->ReadTable(file))
+      // 	{
+      // 	  EXIT(1);
+      // 	}
+       
+      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_LO_QCD,
+      // 							 g_options.qcdfile_path+filename.str(),
+      // 							 0,0);
+      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_NLO_QCD,
+      // 							 g_options.qcdfile_path+filename.str(),
+      // 							 0,1);
+      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_LO_PHI,
+      // 							 g_options.qcdfile_path+filename.str(),
+      // 							 0,2);
+      // ip.distributions->at(1)->GetHistograms()->Print(cout);
+      // ip.distributions->at(2)->GetHistograms()->Print(cout);
+      
+
+      
+      //g_options.qcdfile = read_qcd_data(ip.distributions,g_options.qcdfile_path,filename.str());
+      // if (!g_options.qcdfile)
+      // 	{
+      // 	  couT << std::endl << " Error reading QCD data file. " << std::endl;
+      // 	}
     }
   ////////////////////////////////////////////////////////////////////////////////
   
@@ -187,13 +249,13 @@ int main(int argc, char** argv)
   double errors [N_res] = {0,0,0,0,0,0};
 
 #ifdef WITH_T_SPIN
-  couT << endl << endl << " ===================== Using spin dependent matrix elements ===================== " << endl << endl;
-      couT << endl << " Computing the process pp -> ttbar -> e+ e-  + b-jets, LO top/antitop decay." << endl << endl;
-  #else
-    couT << endl << " Computing the process pp -> ttbar. " << endl << endl;
+  couT << "\n\n =================== Using spin dependent matrix elements =================== \n\n";
+  couT << "\n Computing the process pp -> ttbar -> e+ e-  + b-jets, LO top/antitop decay.\n\n";
+#else
+  couT << "\n Computing the process pp -> ttbar.\n\n";
 #endif
-    if (g_options.dist) couT << endl << " Distributions will be computed. " << endl << endl;
-    if (THDM_1.UseK()) couT << endl << " Using eff. K-factors to rescale NLO contributions. " << endl << endl;
+  if (g_options.dist) couT << "\n Distributions will be computed.\n\n";
+  if (THDM_1.UseK())  couT << "\n Using eff. K-factors to rescale NLO contributions.\n\n";
 
   Integrator INT(couT);
   
@@ -238,7 +300,7 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////
   // INTEGRATION BLOCK 000 00 01  [LO: QCD]
   ////////////////////////////////////////////////////////////////////
-if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
+  if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
     {
       couT << "\n [LO (QCD)]\n";       
       // set flags to specify which matrix elements will be evaluated
@@ -260,7 +322,7 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 	  if ( hist == &OCP1_Histograms
 	       // || hist != &OCP2_Histograms
 	       || hist == &B1_Histograms
-	       // || hist != &B2_Histograms 
+	       || hist == &B2_Histograms 
 	       )
 	    {
 	      hist->DeactivateAll();
@@ -507,7 +569,7 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       gStyle->SetTitleBorderSize(0);
       gStyle->SetTitleAlign(0);
       
-     // set these variables accordingly to normalize distributions to total cross section
+      // set these variables accordingly to normalize distributions to total cross section
       double norm[4] = {
 	1.0,  // QCD LO
 	1.0,  // QCD NLO
@@ -553,13 +615,22 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
       		       string("O_{CP} [pb/GeV]"),
       		       g_options.rootfile,
       		       PLOT_NLO);
-      CanvasPtr c3 = MakeCanvas("Longitudinal polarization",1000,1000);
-      DrawDistribution(c3,
+      CanvasPtr c31 = MakeCanvas("Top longitudinal polarization",1000,1000);
+      DrawDistribution(c31,
       		       B1_Histograms,
       		       THDM_1,
       		       &norm[0],
       		       string("M_{t#bar{t}} [GeV]"),
       		       string("B_{1} [pb/GeV]"),
+      		       g_options.rootfile,
+      		       PLOT_NLO);
+      CanvasPtr c32 = MakeCanvas("Antiotop longitudinal polarization",1000,1000);
+      DrawDistribution(c32,
+      		       B2_Histograms,
+      		       THDM_1,
+      		       &norm[0],
+      		       string("M_{t#bar{t}} [GeV]"),
+      		       string("B_{2} [pb/GeV]"),
       		       g_options.rootfile,
       		       PLOT_NLO);    
       CanvasPtr c4 = MakeCanvas("Helicity angle distribution",1000,1000);
@@ -641,9 +712,7 @@ if ( (int_flags & I_FLAGS_B_QCD) && !g_options.qcdfile)
 		       g_options.rootfile,
 		       PLOT_NLO);
 
-
-      
- #endif
+#endif
 
       if (file)
 	{
