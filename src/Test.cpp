@@ -155,21 +155,6 @@ int main(int argc, char** argv)
   int PREC = (argc>1) ? atoi(argv[1]) : 5;
   cout << setprecision(PREC);
 
-  typedef std::vector<double> DVec;
-  DVec::iterator it;
-  boost::is_pointer<DVec::iterator>::type it_type;
-  boost::is_pointer<DVec*>::type p_type;
-  cout << endl << it_type << endl;
-  cout << endl << p_type << endl;
-
-  FV a = {1,2,3,4};
-  
-  cout << endl << sizeof(a)/sizeof(int) << endl;    
-  cout << endl << sizeof(PS_2_1)/sizeof(int) << endl;  
-  cout << endl << sizeof(PS_2_2)/sizeof(int) << endl;
-  cout << endl << sizeof(PS_2_3)/sizeof(int) << endl;  
-
-  EXIT(1);
   
   {
     int cols = 80;
@@ -410,7 +395,7 @@ int main(int argc, char** argv)
   ////////////////////////////////////////////////////////////////////////////////////////////
   double MT = 173.5;
   const double S = 25.0;
-  int GGH_EFF = 0;
+  bool GGH_EFF = false;
   
   HiggsModel THDM;
   // from now on all dimensionfull quantities are normalized to the top mass
@@ -458,30 +443,29 @@ int main(int argc, char** argv)
     // set flags to specify which matrix elements will be evaluated
     g_flags_eval_v = 0;
     // Born
-    SET_EVAL_B_PHIxPHI(g_flags_eval_v);
+    USET_EVAL_B_PHIxPHI(g_flags_eval_v);
     USET_EVAL_B_PHIxQCD(g_flags_eval_v);
     USET_EVAL_B_QCDxQCD(g_flags_eval_v);
     // virtual corrections
-    SET_EVAL_V_PHIxPHI(g_flags_eval_v);
-    SET_EVAL_V_PHI1xQCD0(g_flags_eval_v);
+    USET_EVAL_V_PHIxPHI(g_flags_eval_v);
+    USET_EVAL_V_PHI1xQCD0(g_flags_eval_v);
     SET_EVAL_V_PHI0xQCD1(g_flags_eval_v);
-    //SET_EVAL_V_NF(g_flags_eval_v);
 
     
     // integrated dipoles
     g_flags_eval_id = 0;
-    USET_EVAL_B_PHIxQCD(g_flags_eval_id);
+    SET_EVAL_B_PHIxQCD(g_flags_eval_id);
     SET_EVAL_B_PHIxPHI(g_flags_eval_id);
     // integrated dipoles 
-    USET_FLAG(F_EVAL_D_GG_ALL,g_flags_eval_id);
-    SET_FLAG(F_EVAL_D_QG_CONT,g_flags_eval_id);
+    SET_FLAG(F_EVAL_D_GG_CONT,g_flags_eval_id);
+    USET_FLAG(F_EVAL_D_QG_CONT,g_flags_eval_id);
     
     cout << endl << " EVAL_V_FLAGS = " << bitset<32>(g_flags_eval_v ).to_string() << endl;
     cout << endl << " EVAL_D_FLAGS = " << bitset<32>(g_flags_eval_id).to_string() << endl;
 
     
     double res_b=0,res_v=0,res_d=0,res_dx=0,res_dx_gg=0,res_dx_qg=0;
-    double y_values[] = {-0.9};//-0.9,-0.6,-0.3,0.0,0.3,0.6,0.9};
+    double y_values[] = {0.9};//-0.9,-0.6,-0.3,0.0,0.3,0.6,0.9};
     double x_values[] = {0.85};//,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9};
 
     for (auto x : x_values)
@@ -509,6 +493,8 @@ int main(int argc, char** argv)
 		// spin vectors in t/tbar restframe
 		s1 = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
 		s2 = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
+		// s1 = {0,0,0,0};
+		// s2 = {0,0,0,0};
 		// boost from k1 restframe to tt z.m.f.
 		static LT boost_k1_RF;
 		boost_k1_RF.set_boost(k1,1);
@@ -517,11 +503,17 @@ int main(int argc, char** argv)
 		boost_k2_RF.set_boost(k2,1);
 		boost_k1_RF.apply(s1);
 		boost_k2_RF.apply(s2);
-		PRINT(sp(k1,s1));
-		PRINT(sp(k2,s2));
+		PRINT(sp(k1,s2));
+		PRINT(sp(k2,s1));
+		PRINT(sp(s1,s2));
+		PRINT(sp(k1,s2)+sp(k2,s1));
+		PRINT(sp(k1,s2)*sp(k2,s1));
 		PRINT_4VEC(s1);
 		PRINT_4VEC(s2);
+		PRINT_4VEC(k1);
+		PRINT_4VEC(k2);
 		//////////////////////////////////////
+		// need to transform spin vectors to boosted frame
 #endif
 
 

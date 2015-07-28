@@ -2,6 +2,11 @@
 \label{classPS__2__3}\index{P\+S\+\_\+2\+\_\+3@{P\+S\+\_\+2\+\_\+3}}
 
 
+Phase space for 2-\/$>$3 scattering.  
+
+
+
+
 {\ttfamily \#include $<$Phase\+Space.\+h$>$}
 
 Inheritance diagram for P\+S\+\_\+2\+\_\+3\+:\begin{figure}[H]
@@ -84,7 +89,7 @@ int \hyperlink{classPS__2__3_a278af8edd62fe80330a5dc5f2d385bf5}{set} (double con
 \hypertarget{classPS__2__3_a98b7559fbc72002c2dd6dadb1db9be0b}{}void {\bfseries print} () const \label{classPS__2__3_a98b7559fbc72002c2dd6dadb1db9be0b}
 
 \item 
-void \hyperlink{classPS__2__3_a2b4d8bb79778e6281a3e53e2118a4d1c}{Fill\+Distributions} (Dist\+Vec \&dist, H\+\_\+\+I\+N\+D\+E\+X id, double const \&wgt, double const \&m\+Scale=1.\+0) const 
+void \hyperlink{classPS__2__3_a9beba1918553b1878e6654c70edf9387}{Fill\+Distributions} (Dist\+Vec \&dist, \hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} id, double const \&wgt, double const \&m\+Scale=1.\+0) const 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -92,21 +97,21 @@ void \hyperlink{classPS__2__3_a2b4d8bb79778e6281a3e53e2118a4d1c}{Fill\+Distribut
 \subsection{Detailed Description}
 Phase space for 2-\/$>$3 scattering. 
 
-Definition at line 312 of file Phase\+Space.\+h.
+Definition at line 316 of file Phase\+Space.\+h.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classPS__2__3_a2b4d8bb79778e6281a3e53e2118a4d1c}{}\index{P\+S\+\_\+2\+\_\+3@{P\+S\+\_\+2\+\_\+3}!Fill\+Distributions@{Fill\+Distributions}}
+\hypertarget{classPS__2__3_a9beba1918553b1878e6654c70edf9387}{}\index{P\+S\+\_\+2\+\_\+3@{P\+S\+\_\+2\+\_\+3}!Fill\+Distributions@{Fill\+Distributions}}
 \index{Fill\+Distributions@{Fill\+Distributions}!P\+S\+\_\+2\+\_\+3@{P\+S\+\_\+2\+\_\+3}}
 \subsubsection[{Fill\+Distributions}]{\setlength{\rightskip}{0pt plus 5cm}void P\+S\+\_\+2\+\_\+3\+::\+Fill\+Distributions (
 \begin{DoxyParamCaption}
 \item[{Dist\+Vec \&}]{dist, }
-\item[{H\+\_\+\+I\+N\+D\+E\+X}]{id, }
+\item[{{\bf H\+\_\+\+Index}}]{id, }
 \item[{double const \&}]{wgt, }
 \item[{double const \&}]{m\+Scale = {\ttfamily 1.0}}
 \end{DoxyParamCaption}
-) const}\label{classPS__2__3_a2b4d8bb79778e6281a3e53e2118a4d1c}
+) const}\label{classPS__2__3_a9beba1918553b1878e6654c70edf9387}
 Feed the distributions in the vector \textquotesingle{}dist\textquotesingle{} with the weight \textquotesingle{}wgt\textquotesingle{} in the bin corresponding to their observable evaluated at the current point of this phase space object. 
 \begin{DoxyParams}{Parameters}
 {\em dist} & Vector of distributions. \\

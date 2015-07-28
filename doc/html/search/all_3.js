@@ -4,7 +4,7 @@ var searchData=
   ['d_5factive_5ft',['d_active_t',['../classHistArray.html#ac477be77aa121bf1cbeea842debb2579',1,'HistArray']]],
   ['d_5fdecay',['d_decay',['../classPS__2.html#a973be656af67bb3516424e664a49ae55',1,'PS_2']]],
   ['d_5fhistograms',['d_histograms',['../classHistArray.html#a53fda50a10b8ba766d44b789313c64c4',1,'HistArray']]],
-  ['d_5fid',['d_ID',['../classHistArray.html#a01616b3115c8b243e2bd924788d47589',1,'HistArray']]],
+  ['d_5fid',['d_id',['../classHistArray.html#a2b61b8b56cd4b0ca27d16855d4e1aef3',1,'HistArray::d_id()'],['../classHistArray.html#a01616b3115c8b243e2bd924788d47589',1,'HistArray::d_ID()']]],
   ['d_5flabel_5fx',['d_label_x',['../classHistArray.html#abda4dd3f06a82c34fff098de0dbcd75a',1,'HistArray']]],
   ['d_5flabel_5fy',['d_label_y',['../classHistArray.html#a884c9ad37bb3bc65bed3c33928c12f7d',1,'HistArray']]],
   ['d_5fmass_5fdim',['d_mass_dim',['../classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71',1,'HistArray']]],
@@ -15,7 +15,8 @@ var searchData=
   ['deactivateall',['DeactivateAll',['../classHistArray.html#a74a91eee643bcadc657103521549d275',1,'HistArray']]],
   ['distribution',['Distribution',['../classDistribution.html',1,'']]],
   ['distributions',['distributions',['../classintegrand__par.html#acd322d49688d798e5f71eb9ea63a4d46',1,'integrand_par']]],
-  ['doublecanvasptr',['DoubleCanvasPtr',['../structDoubleCanvasPtr.html',1,'']]],
+  ['dopen_5fhistograms',['Dopen_Histograms',['../HistArray_8h.html#a0474c519fc5970c54984e9fc259da14f',1,'HistArray.h']]],
   ['draw',['Draw',['../classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389',1,'HistArray']]],
+  ['drawcanvas',['DrawCanvas',['../classHistArray.html#affb2356ef7063d7dad7873fe41dd95c8',1,'HistArray']]],
   ['dy_5fhistograms',['DY_Histograms',['../HistArray_8h.html#a8795054ff19f73feeccb324141ac6077',1,'HistArray.h']]]
 ];

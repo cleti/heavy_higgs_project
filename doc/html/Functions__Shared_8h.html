@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Interface for the evaluation of the real corrections to the process pp -&gt; ttbar +X.  
+<p>Some shared helper functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;bitset&gt;</code><br />
 <code>#include &quot;<a class="el" href="Global_8h_source.html">Global.h</a>&quot;</code><br />
@@ -123,22 +123,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structopt.html">opt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to represent the command line options given by the user.  <a href="structopt.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCanvasPtr.html">CanvasPtr</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7bc8f463ae6632c9bab80d4b46b736a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bc8f463ae6632c9bab80d4b46b736a6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>parse_arguments</b> (int argc, char **argv, struct <a class="el" href="structopt.html">opt</a> &amp;options, <a class="el" href="classHiggsModel.html">HiggsModel</a> &amp;hm)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Functions__Shared_8h.html#a7bc8f463ae6632c9bab80d4b46b736a6">parse_arguments</a> (int argc, char **argv, struct <a class="el" href="structopt.html">opt</a> &amp;options, <a class="el" href="classHiggsModel.html">HiggsModel</a> &amp;hm)</td></tr>
+<tr class="memdesc:a7bc8f463ae6632c9bab80d4b46b736a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the command line options given by the user. The results are stored in g_options. <br /></td></tr>
 <tr class="separator:a7bc8f463ae6632c9bab80d4b46b736a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2c1f41ec0950813bbc28490e903269f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2c1f41ec0950813bbc28490e903269f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>usage</b> (int status)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">usage</a> (int status)</td></tr>
+<tr class="memdesc:ad2c1f41ec0950813bbc28490e903269f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print usage information. <br /></td></tr>
 <tr class="separator:ad2c1f41ec0950813bbc28490e903269f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e246a8b73be3e9695644297ef7ba079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e246a8b73be3e9695644297ef7ba079"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>version</b> (int status)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Functions__Shared_8h.html#a0e246a8b73be3e9695644297ef7ba079">version</a> (int status)</td></tr>
+<tr class="memdesc:a0e246a8b73be3e9695644297ef7ba079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print program version. <br /></td></tr>
 <tr class="separator:a0e246a8b73be3e9695644297ef7ba079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0df78f55f767ea55afece14544059f45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0df78f55f767ea55afece14544059f45"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>read_qcd_data</b> (DistVec *dist, std::string const &amp;path, std::string const &amp;filename)</td></tr>
@@ -146,24 +148,18 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>read_qcd_data</b> (Dis
 <tr class="memitem:a1996b7bae62e6e74511bbcc656e9329a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1996b7bae62e6e74511bbcc656e9329a"></a>
 pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>gettid</b> (void)</td></tr>
 <tr class="separator:a1996b7bae62e6e74511bbcc656e9329a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a848eb73c671b034178762242b47a99ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a848eb73c671b034178762242b47a99ea"></a>
-<a class="el" href="structCanvasPtr.html">CanvasPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MakeCanvas</b> (const char *title, int width=1000, int height=1000, TCanvas *c=nullptr, double left_marg_scale=1.0, double bottom_marg_scale=1.0)</td></tr>
-<tr class="separator:a848eb73c671b034178762242b47a99ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fa694b8111df1ee3fea1e311847d39f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fa694b8111df1ee3fea1e311847d39f"></a>
-<a class="el" href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MakeDoubleCanvas</b> (const char *title, int width=2000, int height=1000)</td></tr>
-<tr class="separator:a8fa694b8111df1ee3fea1e311847d39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1f4bd3cf724c4085c1dc52ffdf5e14f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1f4bd3cf724c4085c1dc52ffdf5e14f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawDistribution</b> (<a class="el" href="structCanvasPtr.html">CanvasPtr</a> &amp;canvas, <a class="el" href="classHistArray.html">HistArray</a> &amp;histograms, const <a class="el" href="classHiggsModel.html">HiggsModel</a> &amp;THDM, double *norm, std::string const &amp;titleX, std::string const &amp;titleY, bool WRITE=true, bool NLO=true, int CD=0)</td></tr>
-<tr class="separator:aa1f4bd3cf724c4085c1dc52ffdf5e14f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a727987f9d3940406f288a9ead0bfcb5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a727987f9d3940406f288a9ead0bfcb5a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTwoDistributions</b> (<a class="el" href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a> &amp;canvas, <a class="el" href="classHistArray.html">HistArray</a> &amp;histogramsL, <a class="el" href="classHistArray.html">HistArray</a> &amp;histogramsR, const <a class="el" href="classHiggsModel.html">HiggsModel</a> &amp;THDM, double *norm, std::string const &amp;titleLX, std::string const &amp;titleRX, std::string const &amp;titleLY, std::string const &amp;titleRY, bool WRITE=true, bool NLO=true)</td></tr>
-<tr class="separator:a727987f9d3940406f288a9ead0bfcb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f5660f756b65b9351cc1c2977fe1ff9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f5660f756b65b9351cc1c2977fe1ff9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRatioPlot</b> (TH1D *hist, std::string xtitle=&quot;&quot;)</td></tr>
-<tr class="separator:a0f5660f756b65b9351cc1c2977fe1ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5ccc3da8172fbbffe9850e9447993b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5ccc3da8172fbbffe9850e9447993b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TH1DivideStable</b> (TH1D *h1, TH1D *h2, const double &amp;a=1.0)</td></tr>
-<tr class="separator:ac5ccc3da8172fbbffe9850e9447993b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6326b2307cfd45379e9319591c6d7025"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6326b2307cfd45379e9319591c6d7025"></a>
+<a class="el" href="structCanvasPtr.html">CanvasPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MakeCanvas</b> (const <a class="el" href="classHistArray.html">HistArray</a> &amp;histograms, int width=1000, int height=1000, double left_marg_scale=1.0, double bottom_marg_scale=1.0)</td></tr>
+<tr class="separator:a6326b2307cfd45379e9319591c6d7025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcf278b8bdbc86602b09c4435b22f5f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcf278b8bdbc86602b09c4435b22f5f0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawDistribution</b> (<a class="el" href="structCanvasPtr.html">CanvasPtr</a> &amp;canvas, <a class="el" href="classHistArray.html">HistArray</a> &amp;histograms, const <a class="el" href="classHiggsModel.html">HiggsModel</a> &amp;THDM, bool WRITE=true, bool NLO=true, int CD=0)</td></tr>
+<tr class="separator:afcf278b8bdbc86602b09c4435b22f5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3508a17afddde2630416bc05f476e626"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3508a17afddde2630416bc05f476e626"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRatioPlot</b> (TH1D *hist)</td></tr>
+<tr class="separator:a3508a17afddde2630416bc05f476e626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add627eeef07d40d4d20b9e4c583aebb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add627eeef07d40d4d20b9e4c583aebb5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TH1RelDiff</b> (TH1D *h1, const TH1D *h2)</td></tr>
+<tr class="separator:add627eeef07d40d4d20b9e4c583aebb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15036b1c9654e1e24a395e792d1a63fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15036b1c9654e1e24a395e792d1a63fe"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>match_AlphaS_f5_to_f6</b> (double const &amp;mu2, const int VERB=1)</td></tr>
 <tr class="separator:a15036b1c9654e1e24a395e792d1a63fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,7 +210,7 @@ struct <a class="el" href="structopt.html">opt</a>&#160;</td><td class="memItemR
 <tr class="separator:a8f94cc1f8461c2b8c31b3eebb5f5a250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interface for the evaluation of the real corrections to the process pp -&gt; ttbar +X. </p>
+<div class="textblock"><p>Some shared helper functions. </p>
 
 <p>Definition in file <a class="el" href="Functions__Shared_8h_source.html">Functions_Shared.h</a>.</p>
 </div></div><!-- contents -->

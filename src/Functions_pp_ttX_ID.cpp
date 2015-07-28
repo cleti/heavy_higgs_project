@@ -62,7 +62,7 @@ double Eval_ID_GG(
       double B_phi=0.0;
       if (flags & F_EVAL_B_PHIxPHI) 
 	{
-	  B_phi += Eval_B_PHIxPHI(ps,ap,hp);
+	  B_phi += Eval_B_PHIxPHI_withINT12(ps,hm);
 	}
       // PHIxQCD interference
       double B_int=0.0,BC_int=0.0;
@@ -151,13 +151,22 @@ int Eval_ID_X(
   // these have to be adjusted before calls to Eval_??? whenever S changes!!!
   hm.SetHiggsPrefactors(s12_x,1);
 
+#ifdef WITH_T_SPIN
+  // need to transform spin vectors to boosted frame
+  PRINT_4VEC(ps_x.s1());
+  PRINT_4VEC(ps_x.s2());
+
+  PRINT(sp(ps_x.k1(),ps_x.s1()));
+  PRINT(sp(ps_x.k2(),ps_x.s2()));
+#endif
+  
   // collect the Born contributions evaluated at boosted phase space point
   // II and FF colour correlations only amount to factors of CF, CA included in Eval_DIP_GG_CONT()
   // PHI^2
   double B_phi_x = 0.0;
   if (flags & F_EVAL_B_PHIxPHI) 
     {
-      B_phi_x += Eval_B_PHIxPHI(ps_x,ap,hp);
+      B_phi_x += Eval_B_PHIxPHI_withINT12(ps_x,hm);
     }
 #ifdef DEBUG
   CHECKNA(B_phi_x);

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['p',['p',['../classPS__2.html#ac717630d614c3bce592b1d0ba1d969c7',1,'PS_2::p()'],['../classPS__2.html#a9c8c1bd53ef9086e96705be1377564ec',1,'PS_2::P()']]],
+  ['p',['P',['../classPS__2.html#a9c8c1bd53ef9086e96705be1377564ec',1,'PS_2::P()'],['../classPS__2.html#ac717630d614c3bce592b1d0ba1d969c7',1,'PS_2::p()']]],
   ['pdf',['pdf',['../classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15',1,'integrand_par']]],
   ['pref_5fgg',['PREF_GG',['../namespaceConstants.html#a86300d39a41e924fc25d986be2e42de1',1,'Constants']]],
   ['pref_5fqg',['PREF_QG',['../namespaceConstants.html#a51ed5e005486d4e9af1c3a84eb3be1ba',1,'Constants']]],

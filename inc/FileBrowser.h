@@ -1,4 +1,7 @@
 
+/*! \file
+  \brief Simple, text-based file browser.
+*/ 
 
 #ifndef FILEBROWSER_H
 #define FILEBROWSER_H 
@@ -8,6 +11,11 @@
 #include <sstream>
 #include "boost/filesystem.hpp" 
 
+/*!
+  \brief Simple, text-based file browser class.
+  
+  This is used to select files with input data for the HistArray objects. 
+*/
 class FileBrowser
 {
 private:
@@ -23,9 +31,11 @@ private:
   int apply_filter(const boost::filesystem::path &path);
   
 public:
+  //! Specify base path when constructing the FileBrowser object.
   FileBrowser(const std::string &base_path = ".");
   ~FileBrowser() {}
 
+  //! Browse through files and folders starting at the selected base path. Returns a string with the path and name of the selected file.
   std::string browse();
   int set_cdir(const boost::filesystem::path &path);
   

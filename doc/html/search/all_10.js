@@ -21,5 +21,6 @@ var searchData=
   ['setpropagator',['SetPropagator',['../classHiggsBoson.html#afebe4ad11ea2cbc2ec0ed1b94759c293',1,'HiggsBoson']]],
   ['setps',['SetPS',['../classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4',1,'integrand_par']]],
   ['soft_5fcut',['SOFT_CUT',['../namespaceCuts.html#ab5b6f8f12059d55ffb68f56fecc10d65',1,'Cuts']]],
+  ['status',['Status',['../classHistArray.html#a1e56292db3641c5b80aaf0eb089b2d41',1,'HistArray']]],
   ['swap_5finitial_5fstate',['swap_initial_state',['../classPS__2.html#afefab6481fa7a0dde6ddc5a1f8d1642f',1,'PS_2']]]
 ];

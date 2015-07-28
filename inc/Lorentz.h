@@ -15,7 +15,7 @@
 ////// class FV     ///////////////////////////////////////////////////////////////////////////////////////
 #define RANGE(i,J) (i>=0 && i<J)
 /*!
-  Lorentz 4-vector.
+  \brief Lorentz 4-vector.
 */
 class FV {
  protected:
@@ -74,7 +74,7 @@ FV&& operator-(FV&& v1) noexcept;
 
 ////// class LT     ///////////////////////////////////////////////////////////////////////////////////////
 /*!
-  Lorentz transformation.
+  \brief Lorentz transformation.
 */
 class LT {
  protected:
@@ -98,11 +98,15 @@ class LT {
     \param v 4-vector to be transformed.
   */
   void apply(FV& v);
+  void apply_cpy(FV const &src, FV &trg);
+    
   /*!
     Apply transformation to contravariant components of the 4-vector.
     \param v 4-vector to be transformed.
   */
   void apply_G(FV& v);
+  void apply_G_cpy(FV const &src, FV &trg);
+    
   int set_FF(FV const& p1, FV const& p2);
   int set_II(FV const& K , FV const& Kb);
   /*!

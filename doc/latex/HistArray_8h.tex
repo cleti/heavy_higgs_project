@@ -19,11 +19,11 @@ Histogram and distribution classes for the computation of differential observabl
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classHistArray}{Hist\+Array}
-\item 
+\begin{DoxyCompactList}\small\item\em This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. \end{DoxyCompactList}\item 
 class \hyperlink{classDistribution}{Distribution}
-\item 
+\begin{DoxyCompactList}\small\item\em Class for differential distributions. \end{DoxyCompactList}\item 
 class \hyperlink{classMeanDistribution}{Mean\+Distribution}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class for differential distributions of mean values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,10 +58,16 @@ enum \hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} 
 {\bfseries H\+\_\+\+N\+L\+O\+\_\+\+P\+H\+I\+\_\+\+R} = 5
  \}
 \end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{HistArray_8h_ae766711dbc38e3b9a222b5395c4a7189}{}int {\bfseries Read\+Data} (std\+::string path, Dist\+Vec\+::iterator it\+\_\+start, Dist\+Vec\+::const\+\_\+iterator it\+\_\+end, const double \&norm=1.\+0, const H\+\_\+\+Index\+Map \&imap=\hyperlink{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}{imap\+\_\+default})\label{HistArray_8h_ae766711dbc38e3b9a222b5395c4a7189}
+
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-H\+\_\+\+Index\+Map {\bfseries ind\+\_\+default}
+const H\+\_\+\+Index\+Map \hyperlink{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}{imap\+\_\+default}
 \item 
 \hypertarget{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}{}int {\bfseries D\+I\+S\+T\+\_\+\+N\+\_\+bins}\label{HistArray_8h_ab74c915c1de1dbbe3a02bf9abde836ad}
 
@@ -111,24 +117,21 @@ H\+\_\+\+Index\+Map {\bfseries ind\+\_\+default}
 \hypertarget{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{D\+Y\+\_\+\+Histograms}\label{HistArray_8h_a8795054ff19f73feeccb324141ac6077}
 
 \begin{DoxyCompactList}\small\item\em top-\/antitop rapidity difference distributions \end{DoxyCompactList}\item 
-\hypertarget{HistArray_8h_a9f7647c914ecd6734a0d9584f9c06b2a}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries P\+H\+I\+T12\+\_\+\+Histograms}\label{HistArray_8h_a9f7647c914ecd6734a0d9584f9c06b2a}
+\hypertarget{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{Dopen\+\_\+\+Histograms}\label{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}
 
-\item 
-\hypertarget{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries Dopen\+\_\+\+Histograms}\label{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}
+\begin{DoxyCompactList}\small\item\em Mtt distribution of lepton opening angle correlation. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}{O\+C\+P1\+\_\+\+Histograms}\label{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}
 
-\item 
-\hypertarget{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries O\+C\+P1\+\_\+\+Histograms}\label{HistArray_8h_ad6feab2fdd9d8e5eead9a59159d52e9d}
+\begin{DoxyCompactList}\small\item\em Mtt distribution of C\+P-\/odd triple correlation. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}{B1\+\_\+\+Histograms}\label{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}
 
-\item 
-\hypertarget{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries B1\+\_\+\+Histograms}\label{HistArray_8h_a8b15f4d32fb92f7ad50b24302a9f9dea}
+\begin{DoxyCompactList}\small\item\em Mtt distribution of top transverse polarization. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}{B2\+\_\+\+Histograms}\label{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}
 
-\item 
-\hypertarget{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries B2\+\_\+\+Histograms}\label{HistArray_8h_ae1dafe4022396daf41aab26a5819af2c}
+\begin{DoxyCompactList}\small\item\em Mtt distribution of antitop transverse polarization. \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}{Chel\+\_\+\+Histograms}\label{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}
 
-\item 
-\hypertarget{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}{}\hyperlink{classHistArray}{Hist\+Array} {\bfseries Chel\+\_\+\+Histograms}\label{HistArray_8h_a4c1f1c3634f09707b720b339d7356265}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Mtt distribution of helicity angle correlation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -140,26 +143,17 @@ Histogram and distribution classes for the computation of differential observabl
 \hypertarget{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{}\index{Hist\+Array.\+h@{Hist\+Array.\+h}!H\+\_\+\+Index@{H\+\_\+\+Index}}
 \index{H\+\_\+\+Index@{H\+\_\+\+Index}!Hist\+Array.\+h@{Hist\+Array.\+h}}
 \subsubsection[{H\+\_\+\+Index}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+\_\+\+Index}}\label{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}
-Used to specify histograms in the \hyperlink{classHistArray}{Hist\+Array} class. In the default setup there are 6 histograms, one for each contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O P\+H\+Ix\+P\+H\+I + L\+O P\+H\+Ix\+Q\+C\+D, virtual corrections, integrated dipoles and real corrections. 
+Better readable labels for the histograms in the \hyperlink{classHistArray}{Hist\+Array}. In the default setup there are 6 histograms, one for each of the following contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), virtual corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), integrated dipoles (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D) and real corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D). 
 
 Definition at line 32 of file Hist\+Array.\+h.
 
 
 
 \subsection{Variable Documentation}
-\hypertarget{HistArray_8h_a68ac02ee7d92058bf4945bdc985baf61}{}\index{Hist\+Array.\+h@{Hist\+Array.\+h}!ind\+\_\+default@{ind\+\_\+default}}
-\index{ind\+\_\+default@{ind\+\_\+default}!Hist\+Array.\+h@{Hist\+Array.\+h}}
-\subsubsection[{ind\+\_\+default}]{\setlength{\rightskip}{0pt plus 5cm}H\+\_\+\+Index\+Map ind\+\_\+default}\label{HistArray_8h_a68ac02ee7d92058bf4945bdc985baf61}
-{\bfseries Initial value\+:}
-\begin{DoxyCode}
-= \{
-  (0,H\_LO\_QCD),
-  (1,H\_NLO\_QCD),
-  (2,H\_LO\_PHI),
-  (3,H\_NLO\_PHI\_V)
-\}
-\end{DoxyCode}
+\hypertarget{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}{}\index{Hist\+Array.\+h@{Hist\+Array.\+h}!imap\+\_\+default@{imap\+\_\+default}}
+\index{imap\+\_\+default@{imap\+\_\+default}!Hist\+Array.\+h@{Hist\+Array.\+h}}
+\subsubsection[{imap\+\_\+default}]{\setlength{\rightskip}{0pt plus 5cm}const H\+\_\+\+Index\+Map imap\+\_\+default}\label{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}
+Default mapping from data table column to histogram indices used for input file operations. 
 
-
-Definition at line 47 of file Hist\+Array.\+h.
+Definition at line 8 of file Hist\+Array.\+cpp.
 

@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;           <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;           <span class="keyword">const</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&amp; flags)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">if</span> (flags &amp; (F_EVAL_D_GG_DELTA | F_EVAL_D_GG_END))</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">if</span> (flags &amp; (<a class="code" href="Flags_8h.html#af6f2ccc6fd003a2c33593acca9f88bf4">F_EVAL_D_GG_DELTA</a> | <a class="code" href="Flags_8h.html#a53774bab74d633807e801ccac8c86c4f">F_EVAL_D_GG_END</a>))</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      PREFACTORS(hm); <span class="comment">// defines ap and hp</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="keywordtype">double</span> res = 0.0;</div>
@@ -151,13 +151,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="comment">// II/FF colour correlations only amount to factors of CF, CA included in Eval_DIP_GG_CONT()</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="comment">// PHI^2      </span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordtype">double</span> B_phi=0.0;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxPHI) </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a382b0eae8408260d329197173ca3d5a3">F_EVAL_B_PHIxPHI</a>) </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      B_phi += Eval_B_PHIxPHI(ps,ap,hp);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <span class="comment">// PHIxQCD interference</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keywordtype">double</span> B_int=0.0,BC_int=0.0;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxQCD) </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#abe4da41ec421ae0731d3ec791d150d9a">F_EVAL_B_PHIxQCD</a>) </div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      B_int  += Eval_B_2PHIxQCD(ps,ap,hp);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      <span class="comment">// IF and FI colour correlated Born MEs, only PHIxQCD contributes</span></div>
@@ -173,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; t12_1  = ps.get_t12();</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      <span class="comment">// dipole contributions proportional to delta(1-x) originating from I, P and K operators</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <span class="keywordflow">if</span> (flags &amp; F_EVAL_D_GG_DELTA) </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#af6f2ccc6fd003a2c33593acca9f88bf4">F_EVAL_D_GG_DELTA</a>) </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      res += Eval_DIP_GG_DELTA_I (s12_1,</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                      S12_1,</div>
@@ -194,7 +194,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                      AlphaS);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;      <span class="comment">// distribution end-point part (check tech. cut also here)</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      <span class="keywordflow">if</span> (flags &amp; F_EVAL_D_GG_END &amp;&amp; x&lt;<a class="code" href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a>) </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a53774bab74d633807e801ccac8c86c4f">F_EVAL_D_GG_END</a> &amp;&amp; x&lt;<a class="code" href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a>) </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      res += Eval_DIP_GG_DIST_E(s12_1,</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    t11_1,</div>
@@ -246,7 +246,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="comment">// II and FF colour correlations only amount to factors of CF, CA included in Eval_DIP_GG_CONT()</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="comment">// PHI^2</span></div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <span class="keywordtype">double</span> B_phi_x = 0.0;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxPHI) </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a382b0eae8408260d329197173ca3d5a3">F_EVAL_B_PHIxPHI</a>) </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    {</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      B_phi_x += Eval_B_PHIxPHI(ps_x,ap,hp);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
@@ -257,7 +257,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keywordtype">double</span> B_int_x = 0.0;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keywordtype">double</span> BC_int_x= 0.0;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <span class="comment">// PHIxQCD interference</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxQCD) </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#abe4da41ec421ae0731d3ec791d150d9a">F_EVAL_B_PHIxQCD</a>) </div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      B_int_x += Eval_B_2PHIxQCD(ps_x,ap,hp);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      <span class="comment">// IF and FI colour correlated Born MEs, only PHIxQCD contributes</span></div>
@@ -277,7 +277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordtype">double</span> t11_x = ps_x.get_t11() / x; </div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keywordtype">double</span> t12_x = ps_x.get_t12() / x;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordflow">if</span> ( flags &amp; (F_EVAL_D_GG_CONT) )</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordflow">if</span> ( flags &amp; (<a class="code" href="Flags_8h.html#a8a7cfad5c9a577d6e9c306eb54ac20c7">F_EVAL_D_GG_CONT</a>) )</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    {</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      res_gg = Eval_DIP_GG_CONT(s12_1,</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                 t11_x,</div>
@@ -289,7 +289,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                 MUF2,</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                 AlphaS);</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }      </div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <span class="keywordflow">if</span> ( flags &amp; (F_EVAL_D_QG_CONT) )</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <span class="keywordflow">if</span> ( flags &amp; (<a class="code" href="Flags_8h.html#aaa0c5aa3516e1b94bcdb93214c2163bb">F_EVAL_D_QG_CONT</a>) )</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    {      </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      res_qg = Eval_DIP_QG_CONT(s12_1,</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                t11_x,</div>
@@ -306,9 +306,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="Global_8h_html_a1398ea0e48e059bf4db2f4bcd7eb31fa"><div class="ttname"><a href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00029">Global.h:29</a></div></div>
 <div class="ttc" id="Functions__pp__HX_8h_html_a116a2fe3256408eeac1e698ccd4f21f1"><div class="ttname"><a href="Functions__pp__HX_8h.html#a116a2fe3256408eeac1e698ccd4f21f1">Eval_ID_X</a></div><div class="ttdeci">double Eval_ID_X(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, double const &amp;x)</div><div class="ttdoc">Evaluate the integrated dipoles for gg -> H. This is the continuum part evaluated at the boosted phas...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00225">Functions_pp_HX.cpp:225</a></div></div>
 <div class="ttc" id="namespaceCuts_html_a4a86c8447ab5c08303431898f6faae38"><div class="ttname"><a href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a></div><div class="ttdeci">double IDIP_X_CUT</div><div class="ttdoc">Technical cut for boost parameter in the continuum part of the integrated dipoles. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00056">Global.cpp:56</a></div></div>
+<div class="ttc" id="Flags_8h_html_a53774bab74d633807e801ccac8c86c4f"><div class="ttname"><a href="Flags_8h.html#a53774bab74d633807e801ccac8c86c4f">F_EVAL_D_GG_END</a></div><div class="ttdeci">#define F_EVAL_D_GG_END</div><div class="ttdoc">Evaluate endpoint part of integrated dipooles corresponding to gg initial state. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00095">Flags.h:95</a></div></div>
 <div class="ttc" id="classHiggsModel_html_a43f6951291eef31cc18116f7d49f839f"><div class="ttname"><a href="classHiggsModel.html#a43f6951291eef31cc18116f7d49f839f">HiggsModel::SetHiggsPrefactors</a></div><div class="ttdeci">void SetHiggsPrefactors(double const &amp;S, bool EFF)</div><div class="ttdoc">Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into acco...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00247">HiggsModel.cpp:247</a></div></div>
-<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00236">HiggsModel.h:236</a></div></div>
-<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00194">PhaseSpace.h:194</a></div></div>
+<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdoc">This class contains all the physical, model specific parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00243">HiggsModel.h:243</a></div></div>
+<div class="ttc" id="Flags_8h_html_a382b0eae8408260d329197173ca3d5a3"><div class="ttname"><a href="Flags_8h.html#a382b0eae8408260d329197173ca3d5a3">F_EVAL_B_PHIxPHI</a></div><div class="ttdeci">#define F_EVAL_B_PHIxPHI</div><div class="ttdoc">Evaluate LO PHIxPHI amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00048">Flags.h:48</a></div></div>
+<div class="ttc" id="Flags_8h_html_a8a7cfad5c9a577d6e9c306eb54ac20c7"><div class="ttname"><a href="Flags_8h.html#a8a7cfad5c9a577d6e9c306eb54ac20c7">F_EVAL_D_GG_CONT</a></div><div class="ttdeci">#define F_EVAL_D_GG_CONT</div><div class="ttdoc">Evaluate continuum part of integrated dipooles corresponding to gg initial state. ...</div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00097">Flags.h:97</a></div></div>
+<div class="ttc" id="Flags_8h_html_abe4da41ec421ae0731d3ec791d150d9a"><div class="ttname"><a href="Flags_8h.html#abe4da41ec421ae0731d3ec791d150d9a">F_EVAL_B_PHIxQCD</a></div><div class="ttdeci">#define F_EVAL_B_PHIxQCD</div><div class="ttdoc">Evaluate LO PHIxQCD amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00050">Flags.h:50</a></div></div>
+<div class="ttc" id="Flags_8h_html_aaa0c5aa3516e1b94bcdb93214c2163bb"><div class="ttname"><a href="Flags_8h.html#aaa0c5aa3516e1b94bcdb93214c2163bb">F_EVAL_D_QG_CONT</a></div><div class="ttdeci">#define F_EVAL_D_QG_CONT</div><div class="ttdoc">Evaluate continuum part of integrated dipooles corresponding to qg initial statet. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00089">Flags.h:89</a></div></div>
+<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdoc">Phase space for 2->2 scattering. </div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00197">PhaseSpace.h:197</a></div></div>
+<div class="ttc" id="Flags_8h_html_af6f2ccc6fd003a2c33593acca9f88bf4"><div class="ttname"><a href="Flags_8h.html#af6f2ccc6fd003a2c33593acca9f88bf4">F_EVAL_D_GG_DELTA</a></div><div class="ttdeci">#define F_EVAL_D_GG_DELTA</div><div class="ttdoc">Evaluate delta distribution terms of integrated dipooles corresponding to gg initial state...</div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00093">Flags.h:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

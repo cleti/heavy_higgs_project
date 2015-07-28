@@ -92,6 +92,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm.  
+ <a href="classintegrand__par.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Integrator_8h_source.html">Integrator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -101,68 +104,69 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a91beb4d7cdba03603a3d95d46ee0621f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac7bdde6abcb8d81db5af3a24ce51f7d"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d">cmp_v_weight</a> ()</td></tr>
-<tr class="memdesc:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the weight of the VEGAS algorithm at the current point <br /></td></tr>
+<tr class="memdesc:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the weight of the VEGAS algorithm at the current point. <br /></td></tr>
 <tr class="separator:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18a461b09009de0b9f8c6139994c52c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18a461b09009de0b9f8c6139994c52c4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4">SetPS</a> (<a class="el" href="classPS__2.html">PS_2</a> *psn)</td></tr>
-<tr class="memdesc:a18a461b09009de0b9f8c6139994c52c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">set ps pointer, the former PS instance will be deleted! <br /></td></tr>
+<tr class="memdesc:a18a461b09009de0b9f8c6139994c52c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set ps pointer, the former PS instance will be deleted! <br /></td></tr>
 <tr class="separator:a18a461b09009de0b9f8c6139994c52c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9becf94ac239a82b946f53e36c75c83c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9becf94ac239a82b946f53e36c75c83c"></a>
 <a class="el" href="classHiggsModel.html">HiggsModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a9becf94ac239a82b946f53e36c75c83c">higgs_model</a></td></tr>
-<tr class="memdesc:a9becf94ac239a82b946f53e36c75c83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to object with model parameters <br /></td></tr>
+<tr class="memdesc:a9becf94ac239a82b946f53e36c75c83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to object with model parameters. <br /></td></tr>
 <tr class="separator:a9becf94ac239a82b946f53e36c75c83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02a52a8cc95edeadf423f181936617d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02a52a8cc95edeadf423f181936617d0"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a02a52a8cc95edeadf423f181936617d0">s_hadr</a></td></tr>
-<tr class="memdesc:a02a52a8cc95edeadf423f181936617d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">hadronic c.m.e. <br /></td></tr>
+<tr class="memdesc:a02a52a8cc95edeadf423f181936617d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hadronic c.m.e. <br /></td></tr>
 <tr class="separator:a02a52a8cc95edeadf423f181936617d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c52a4045c079f7314cbc8a876f98238"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c52a4045c079f7314cbc8a876f98238"></a>
 <a class="el" href="classPS__2.html">PS_2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a></td></tr>
-<tr class="memdesc:a9c52a4045c079f7314cbc8a876f98238"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to phase space <br /></td></tr>
+<tr class="memdesc:a9c52a4045c079f7314cbc8a876f98238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to phase space. <br /></td></tr>
 <tr class="separator:a9c52a4045c079f7314cbc8a876f98238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a082dc10e0e72baedade3f46cfffa4c15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a082dc10e0e72baedade3f46cfffa4c15"></a>
 LHAPDF::PDF *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a></td></tr>
-<tr class="memdesc:a082dc10e0e72baedade3f46cfffa4c15"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the parton distribution function <br /></td></tr>
+<tr class="memdesc:a082dc10e0e72baedade3f46cfffa4c15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the parton distribution function. <br /></td></tr>
 <tr class="separator:a082dc10e0e72baedade3f46cfffa4c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b5e2c8a2f3c33f0ebc594fd8f42210e"></a>
 gsl_monte_vegas_state *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a3b5e2c8a2f3c33f0ebc594fd8f42210e">v_state</a></td></tr>
-<tr class="memdesc:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the GSL VEGAS state <br /></td></tr>
+<tr class="memdesc:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the GSL VEGAS state. <br /></td></tr>
 <tr class="separator:a3b5e2c8a2f3c33f0ebc594fd8f42210e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd322d49688d798e5f71eb9ea63a4d46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd322d49688d798e5f71eb9ea63a4d46"></a>
 DistVec *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#acd322d49688d798e5f71eb9ea63a4d46">distributions</a></td></tr>
-<tr class="memdesc:acd322d49688d798e5f71eb9ea63a4d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to histograms with distributions <br /></td></tr>
+<tr class="memdesc:acd322d49688d798e5f71eb9ea63a4d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to histograms with distributions. <br /></td></tr>
 <tr class="separator:acd322d49688d798e5f71eb9ea63a4d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2227f484c28e54b55769b2fe6911a782"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2227f484c28e54b55769b2fe6911a782"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">collect_dist</a></td></tr>
-<tr class="memdesc:a2227f484c28e54b55769b2fe6911a782"><td class="mdescLeft">&#160;</td><td class="mdescRight">switch to enable distribution collection <br /></td></tr>
+<tr class="memdesc:a2227f484c28e54b55769b2fe6911a782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to enable distribution collection. <br /></td></tr>
 <tr class="separator:a2227f484c28e54b55769b2fe6911a782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a725bfa73c797c38c5575594d0ff53eb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a725bfa73c797c38c5575594d0ff53eb6"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a725bfa73c797c38c5575594d0ff53eb6">tDecay</a></td></tr>
-<tr class="memdesc:a725bfa73c797c38c5575594d0ff53eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">include the decays of top/antitop <br /></td></tr>
+<tr class="memdesc:a725bfa73c797c38c5575594d0ff53eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Include the decays of top/antitop. <br /></td></tr>
 <tr class="separator:a725bfa73c797c38c5575594d0ff53eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab817e73577da97cd660ad01761521d3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab817e73577da97cd660ad01761521d3b"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#ab817e73577da97cd660ad01761521d3b">ost</a></td></tr>
-<tr class="memdesc:ab817e73577da97cd660ad01761521d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">output stream <br /></td></tr>
+<tr class="memdesc:ab817e73577da97cd660ad01761521d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output stream. <br /></td></tr>
 <tr class="separator:ab817e73577da97cd660ad01761521d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb701c9d21e3b412032dca85ebcde090"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb701c9d21e3b412032dca85ebcde090"></a>
 <a class="el" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#adb701c9d21e3b412032dca85ebcde090">eval_flags</a></td></tr>
-<tr class="memdesc:adb701c9d21e3b412032dca85ebcde090"><td class="mdescLeft">&#160;</td><td class="mdescRight">evaluation flags <br /></td></tr>
+<tr class="memdesc:adb701c9d21e3b412032dca85ebcde090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluation flags. <br /></td></tr>
 <tr class="separator:adb701c9d21e3b412032dca85ebcde090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae7075055e10bd188d53fe2e1edd1e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afae7075055e10bd188d53fe2e1edd1e3"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#afae7075055e10bd188d53fe2e1edd1e3">K</a></td></tr>
-<tr class="memdesc:afae7075055e10bd188d53fe2e1edd1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">rescaling factor |full ggH|^2 / |eff. ggH|^2 <br /></td></tr>
+<tr class="memdesc:afae7075055e10bd188d53fe2e1edd1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescaling factor |full ggH|^2 / |eff. ggH|^2 . <br /></td></tr>
 <tr class="separator:afae7075055e10bd188d53fe2e1edd1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1655b43b8c9e09a8bfbab014375aca49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1655b43b8c9e09a8bfbab014375aca49"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a1655b43b8c9e09a8bfbab014375aca49">cleanup</a></td></tr>
-<tr class="memdesc:a1655b43b8c9e09a8bfbab014375aca49"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete ps and pdf on destruction <br /></td></tr>
+<tr class="memdesc:a1655b43b8c9e09a8bfbab014375aca49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete ps and pdf on destruction. <br /></td></tr>
 <tr class="separator:a1655b43b8c9e09a8bfbab014375aca49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm. In particular the model parameters contained in the <a class="el" href="classHiggsModel.html">HiggsModel</a> instance are needed by the functions that evaluate the matrix elements. </p>
+<div class="textblock"><p>This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm. </p>
+<p>In particular the model parameters contained in the <a class="el" href="classHiggsModel.html" title="This class contains all the physical, model specific parameters. ">HiggsModel</a> instance are needed by the functions that evaluate the matrix elements. </p>
 
-<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00160">160</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
+<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00164">164</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="Integrator_8h_source.html">Integrator.h</a></li>
 <li>src/<a class="el" href="Integrator_8cpp_source.html">Integrator.cpp</a></li>

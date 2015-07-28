@@ -492,53 +492,41 @@ static std::string cat(std::string str, int number)
 
 
 
-CanvasPtr MakeCanvas(const char* title,
+CanvasPtr MakeCanvas(
+		     const HistArray& histograms,
 		     int width,
 		     int height,
-		     TCanvas* c,
 		     double left_marg_scale,
 		     double bottom_marg_scale)
 {
-  static int c_counter = 0;
-  static int p_counter = 0;
+  int c_counter = histograms.GetID();
+  
   // alllocate new canvas if neccessary
-  if ( c == nullptr )
-    {
-
-      c = new TCanvas(cat("Canvas_",c_counter++).c_str(),title,0,0,width,height);
-      c->Divide(1,1);
-    }
+  TCanvas* c = new TCanvas(cat("Canvas_",c_counter).c_str(),histograms.GetName(),0,0,width,height);
+  c->Divide(1,1);
+  
   double can_size_ratio = (double)height/(double)width;
 
   
   // upper pad
   TPad* p1_1 = new TPad(
-			cat("upper_pad_",p_counter).c_str(),
-			cat("upper_pad_",p_counter).c_str(),
+			cat("upper_pad_",c_counter).c_str(),
+			cat("upper_pad_",c_counter).c_str(),
 			0,0.2,1,1);
-  ++p_counter;
   p1_1->SetTopMargin(0.05);
   p1_1->SetBottomMargin(0.0075);
   p1_1->SetLeftMargin(0.1*can_size_ratio*left_marg_scale);
   p1_1->SetRightMargin(0.05);
   // lower pad
   TPad* p1_2 = new TPad(
-			cat("lower_pad_",p_counter).c_str(),
-			cat("lower_pad_",p_counter).c_str(),
+			cat("lower_pad_",c_counter).c_str(),
+			cat("lower_pad_",c_counter).c_str(),
 			0,0,1,0.2);
-  ++p_counter;
   p1_2->SetTopMargin(0.0025);
   p1_2->SetBottomMargin(0.3*bottom_marg_scale);
   p1_2->SetLeftMargin(0.1*can_size_ratio*left_marg_scale);
   p1_2->SetRightMargin(0.05);
   return {c,p1_1,p1_2};
-}
-DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width, int height)
-{
-  static int c_counter = 0;
-  TCanvas* c = new TCanvas(cat("DoubleCanvas_",c_counter++).c_str(),title,0,0,width,height);
-  c->Divide(2,1);
-  return {MakeCanvas(title,width/2,height,c),MakeCanvas(title,width/2,height,c)};
 }
 
 
@@ -548,9 +536,6 @@ void DrawDistribution(
 		      CanvasPtr& canvas,
 		      HistArray& histograms,
 		      const HiggsModel& THDM,
-		      double* norm,
-		      std::string const& titleX,
-		      std::string const& titleY,
 		      bool WRITE,
 		      bool NLO_PHI,
 		      int CD)
@@ -570,7 +555,8 @@ void DrawDistribution(
 			     0.9550
 			     );
 
-      canvas.c->cd(CD); // upper pad conatins the distributions
+      canvas.c->cd(CD);
+      // upper pad conatins the distributions
       canvas.p1_1->Draw();
       canvas.p1_1->cd();
 
@@ -587,11 +573,10 @@ void DrawDistribution(
       
       // add LO QCD contribution to deltaNLO QCD
       histograms[H_NLO_QCD]->Add(histograms[H_LO_QCD]);
-      
+      // add LO PHI
+      histograms[H_NLO_PHI]->Add(histograms[H_LO_PHI]);
       if (NLO_PHI)
 	{
-	  // add LO PHI
-	  histograms[H_NLO_PHI]->Add(histograms[H_LO_PHI]);
 	  // add NLO PHI int. dip.
 	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_PHI_ID]);
 	  // add NLO PHI real
@@ -605,22 +590,9 @@ void DrawDistribution(
 	  // add LO QCD to LO PHI
 	  histograms[H_LO_PHI]->Add(histograms[H_NLO_QCD]);
 	}
-
-      // normalize LO histograms with the factors given in array norm[]
-      if (norm)
-	{
-	  histograms[H_LO_QCD]->Scale(1.0/norm[0]);// LO QCD cross section
-	  histograms[H_LO_PHI]->Scale(1.0/norm[2]);// NLO QCD + LO PHI cross section
-	}
       
       if (NLO_PHI)
 	{
-	  // normalize NLO  histograms with the factors given in array norm[]
-	  if (norm)
-	    {
-	      histograms[H_NLO_QCD]->Scale(1.0/norm[1]);// NLO QCD cross section
-	      histograms[H_NLO_PHI]->Scale(1.0/norm[3]);// NLO QCD + NLO PHI cross section
-	    }
 	  // draw NLO PHI
 	  histograms[H_NLO_PHI]->SetLineWidth(2);
 	  histograms[H_NLO_PHI]->SetLineColor(2);
@@ -643,7 +615,7 @@ void DrawDistribution(
       // write the 'raw' data to the root file
       if (WRITE)
 	{
-	  histograms[H_NLO_QCD]->Write();
+	  histograms[H_LO_QCD]->Write();
 	  histograms[H_LO_PHI]->Write();
 	  if (NLO_PHI) histograms[H_NLO_PHI]->Write();
 	  if (NLO_QCD) histograms[H_NLO_QCD]->Write();
@@ -676,7 +648,8 @@ void DrawDistribution(
 
       //////////////////////////////////////////////////////
       //////////////////////////////////////////////////////
-      canvas.c->cd(CD); //lower pad contains ratio NLO/LO
+      canvas.c->cd(CD);
+      //lower pad contains ratio NLO/LO
       canvas.p1_2->Draw();
       canvas.p1_2->cd();
 
@@ -687,7 +660,7 @@ void DrawDistribution(
 	  histograms[H_NLO_PHI]->Divide(histograms[H_NLO_QCD]);
 	  histograms[H_NLO_QCD]->Divide(histograms[H_NLO_QCD]);
 	  
-	  SetRatioPlot(histograms[H_NLO_PHI],titleX.c_str());
+	  SetRatioPlot(histograms[H_NLO_PHI]);
 	  histograms[H_NLO_PHI]->DrawCopy("hist ][");
 	  histograms[H_NLO_QCD]->DrawCopy("same hist ][");
 
@@ -706,11 +679,11 @@ void DrawDistribution(
 	{
 	  // normalize everything to LO QCD histograms
 	  // TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
-	  TH1RelDiff(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
-	  // (histograms[H_LO_PHI])->Divide((histograms[H_NLO_QCD]));
+	  // TH1RelDiff(histograms[H_LO_PHI],histograms[H_NLO_QCD]);
+	  (histograms[H_LO_PHI])->Divide((histograms[H_NLO_QCD]));
 	  (histograms[H_NLO_QCD])->Divide(histograms[H_NLO_QCD]);
       
-	  SetRatioPlot(histograms[H_LO_PHI],titleX.c_str());
+	  SetRatioPlot(histograms[H_LO_PHI]);
 	  histograms[H_LO_PHI]->DrawCopy("hist ][");
 	  histograms[H_NLO_QCD]->DrawCopy("same hist ][");
 	}
@@ -721,40 +694,8 @@ void DrawDistribution(
 }
 
 
-void DrawTwoDistributions(
-			  DoubleCanvasPtr& canvas,
-			  HistArray& histogramsL,
-			  HistArray& histogramsR,
-			  const HiggsModel& THDM,
-			  double* norm,
-			  std::string const& titleLX,std::string const& titleRX,
-			  std::string const& titleLY,std::string const& titleRY,
-			  bool WRITE,
-			  bool NLO)
-{
-  DrawDistribution(
-		   canvas.c1,
-		   histogramsL,
-		   THDM,
-		   norm,
-		   titleLX,
-		   titleLY,
-		   WRITE,
-		   NLO,
-		   1);
-  DrawDistribution(
-		   canvas.c2,
-		   histogramsR,
-		   THDM,
-		   norm,
-		   titleRX,
-		   titleRY,
-		   WRITE,
-		   NLO,
-		   2);
-}
 
-void SetRatioPlot(TH1D* hist,std::string xtitle)
+void SetRatioPlot(TH1D* hist)
 {
   hist->SetTitle("");
   // hist->Smooth();
@@ -903,56 +844,85 @@ struct eps_entry {
   int  sign;
 };
 
+const eps_entry eps_tensor[24] = {
+  {{0,1,2,3}, 1},
+  {{0,1,3,2},-1},
+  {{0,2,1,3},-1},
+  {{0,2,3,1}, 1},
+  {{0,3,1,2}, 1},
+  {{0,3,2,1},-1},
+  {{1,0,2,3},-1},
+  {{1,0,3,2}, 1},
+  {{1,2,0,3}, 1},
+  {{1,2,3,0},-1},
+  {{1,3,0,2},-1},
+  {{1,3,2,0}, 1},
+  {{2,0,1,3}, 1},
+  {{2,0,3,1},-1},
+  {{2,1,0,3},-1},
+  {{2,1,3,0}, 1},
+  {{2,3,0,1}, 1},
+  {{2,3,1,0},-1},
+  {{3,0,1,2},-1},
+  {{3,0,2,1}, 1},
+  {{3,1,0,2}, 1},
+  {{3,1,2,0},-1},
+  {{3,2,0,1},-1},
+  {{3,2,1,0}, 1},
+};
+
 // double EPS_(double const* __restrict__ k1, double const* __restrict__ k2, double const* __restrict__ k3, double const* __restrict__ k4, int DEALLOC)
 double EPS_(FV const& k1, FV const& k2, FV const& k3, FV const& k4)
 {
+  // /////////////////////////////////////////////////////////////////////////////////////////////
+  // // executed only on first call //////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////////////////////////////////////
+  // static bool DO_INIT = 1;
+  // // 4dim epsilon tensor entries in linear row
+  // static eps_entry eps_list[24];
+  // /////////////////////////////////////////////////////////////////////////////////////////////
+  // if ((DO_INIT)) {
+  //   // initialize eps_list entries
+  //   double eps[4][4][4][4];
+  //   int I = 0;
+  //   std::cout  << std::endl;
+  //   for (int i=0;i<4;++i)
+  //     {
+  // 	for (int j=0;j<4;++j)
+  // 	  {
+  // 	    for (int k=0;k<4;++k)
+  // 	      {
+  // 		for (int l=0;l<4;++l)
+  // 		  {
+  // 		    eps[i][j][k][l] = (double)((i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12);
+  // 		    if (eps[i][j][k][l]!=0.0)
+  // 		      {
+  // 			eps_list[I].indices[0] = i;
+  // 			eps_list[I].indices[1] = j;
+  // 			eps_list[I].indices[2] = k;
+  // 			eps_list[I].indices[3] = l;
+  // 			eps_list[I++].sign = eps[i][j][k][l];
+  // 			std::cout << "{{" << i << "," << j << "," << k << "," << l << "}," << eps[i][j][k][l] << "}," << std::endl;
+  // 		      }
+  // 		  }
+  // 	      }
+  // 	  }
+  //     }
+  //   std::cout  << std::endl;
+  //   DO_INIT = 0;
+  // }
   /////////////////////////////////////////////////////////////////////////////////////////////
-  // executed only on first call //////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  static bool DO_INIT = 1;
-  // 4dim epsilon tensor entries in linear row
-  static eps_entry eps_list[24];
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  if ((DO_INIT)) {
-    // initialize eps_list entries
-    double eps[4][4][4][4];
-    int I = 0;
-    for (int i=0;i<4;++i)
-      {
-	for (int j=0;j<4;++j)
-	  {
-	    for (int k=0;k<4;++k)
-	      {
-		for (int l=0;l<4;++l)
-		  {
-		    eps[i][j][k][l] = (double)((i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12);
-		    if (eps[i][j][k][l]!=0.0)
-		      {
-			eps_list[I].indices[0] = i;
-			eps_list[I].indices[1] = j;
-			eps_list[I].indices[2] = k;
-			eps_list[I].indices[3] = l;
-			eps_list[I++].sign = eps[i][j][k][l];
-		      }
-		  }
-	      }
-	  }
-      }
-    DO_INIT = 0;
-  }
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  // this code is executed each call
   // loop is reduced to the 24 non-zero elements in the eps-tensor
   /////////////////////////////////////////////////////////////////////////////////////////////
   double res = 0.0;
   for (int I=0; I<24; ++I)
     {
-      int const& i    = eps_list[I].indices[0];
-      int const& j    = eps_list[I].indices[1];
-      int const& k    = eps_list[I].indices[2];
-      int const& l    = eps_list[I].indices[3];
+      int const& i    = eps_tensor[I].indices[0];
+      int const& j    = eps_tensor[I].indices[1];
+      int const& k    = eps_tensor[I].indices[2];
+      int const& l    = eps_tensor[I].indices[3];
       if (k1[i]==0.0 || k2[j]==0.0 || k3[k]==0.0 || k4[l]==0.0) continue;
-      res -= k1[i]*k2[j]*k3[k]*k4[l]*eps_list[I].sign;
+      res -= k1[i]*k2[j]*k3[k]*k4[l]*eps_tensor[I].sign;
     }
   return res;
   /////////////////////////////////////////////////////////////////////////////////////////////

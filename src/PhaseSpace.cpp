@@ -162,6 +162,7 @@ int PS_2_2::boost_initial_state()
 {
   return boost_initial_state(d_x);
 }
+
 int PS_2_2::boost_initial_state(double const& x)
 {
   if (x<=0.0) return 0;
@@ -207,20 +208,22 @@ int PS_2_2::boost_final_state()
     }
 }
 
-// set the 4-vector components corresponding to p1,p2 -> k1,k2
-// evaluated in the p1-p2/k1-k2 c.m.f., where p1 defines the z-direction !!!
-// independent phase space variables are rs=sqrt((p1+p2)^2)
+// set the 4-vector components for p1,p2 -> k1,k2 process
+// as seen in the p1-p2 / k1-k2 z.m.f., where p1 defines the z-direction !!!
+// independent phase space variables are the c.m.e. rs=sqrt((p1+p2)^2)
 // and the scattering angles y=cos(theta),phi
 int PS_2_2::set(double const& rs,
 		double const& y,
 		double const& phi)
 {
-  // check if the setting is physical sqrt(s)>m1+m2
+  // check if the setting is physical, i.e. sqrt(s)>m1+m2
   if ( (rs-sqrt(d_msq[0])-sqrt(d_msq[1]))<EPS_BETA2) return 0;
   //////////////////////////////////////////////////////////////
+  // set up incoming momentum 4-vectors
   PS_2::set_initial_state(rs);
   //////////////////////////////////////////////////////////////
 
+  // compute outgoing particle energies and momentum modulus
   double dm2= d_msq[0]-d_msq[1];
   double P  = 0.5*sqrt(lambda(rs*rs,d_msq[0],d_msq[1]))/rs;
   double E1 = rs - 0.5*(rs-dm2/rs);
@@ -254,12 +257,13 @@ int PS_2_2::set(double const& rs,
     }
 #endif
   
-  // set class members
+  // polar angle
   double cphi = cos(phi);
+  // need to switch sign for phi>pi if we compute sin(phi) in this way
   double sphi = sqrt(1.0-cphi*cphi);
   if (phi>Constants::Pi) sphi *= (-1);
 
-  
+  // set up the two outgoing momentum 4-vectors
   k[0][0] = E1;
   k[0][1] = P*sy*cphi;
   k[0][2] = P*sy*sphi;
@@ -270,7 +274,7 @@ int PS_2_2::set(double const& rs,
   k[1][2] = -P*sy*sphi;
   k[1][3] = -P*y;
 
-  // copy new values to class member variables
+  // store phase space variables and compute invariants
   d_rs   = rs;
   d_beta[0]= P/E1;
   d_beta[1]= P/E2;
@@ -280,17 +284,23 @@ int PS_2_2::set(double const& rs,
   d_t12  = 2.0*sp(p[0],k[1]);
   d_beta_y = d_y*d_beta[0];
 
-  // store store phase space density/weight
+  // store store phase space density/weight for later use
   d_wgt = P/(4.0*rs*pow(Constants::TwoPi,2));
 
   return 1;
 }
 
+/*
+  this function assumes that the 4-vector components of p1,p2,k1,k2
+  have been set up correctly prior to this call and that they are given in
+  the p1-p2 / k1-k2 z.m.f. , to get this ps object in a consistent state
+  we then have to derive masses, invariants and other phase space variables 
+*/
 int PS_2_2::set(double const& x)
 {
-  // this function assumes that the vectors p1,p2,k1,k2 have been set up correctly
   // no checks at all !!!
   double s  = (2.0*sp(p[0],p[1]));
+  
 #ifdef DEBUG
   if (s<=0.0)
     {
@@ -299,10 +309,12 @@ int PS_2_2::set(double const& x)
       return 0;
     }
 #endif
+  
   d_rs      = sqrt(s);
   d_x       = x;
   double m1sq = sp(k[0],k[0]);
   double m2sq = sp(k[1],k[1]);
+  
 #ifdef DEBUG
   if (s<=4.0*std::max(m1sq,m2sq))
     {
@@ -312,6 +324,8 @@ int PS_2_2::set(double const& x)
       return 0;
     }
 #endif
+
+  // outgoing particle masses
   d_msq[0] = m1sq;
   d_msq[1] = m2sq;
   // use invariant description to define beta
@@ -323,13 +337,12 @@ int PS_2_2::set(double const& x)
   // sp(k1,p2)-sp(k1,p1) = sp(k2,p1) - sp(k1,p1)  = s/2*beta*y
   d_beta_y = (d_t12-d_t11)/s;
   d_y      = d_beta_y/d_beta[0];
-  // not needed at the moment ///
+  // not needed at the moment //
   d_phi    = 0.0;
-  ///////////////////////////////
   return 1;
 }
 
-
+// recompute the phase space weight
 double PS_2_2::cmp_wgt()
 {
   double m1sq = sp(k[0],k[0]);

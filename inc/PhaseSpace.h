@@ -44,7 +44,9 @@ class PS_Named {
 
 ////// class PS_2 [abstract base class] ///////////////////////////////////////////////////////////
 /*!
-  Abstract base class for 2->X phase space classes, holds among others the 4-vectors of the incoming partons.
+  \brief Abstract base class for 2->X phase space classes.
+  
+  Holds among others the 4-vectors of the incoming partons.
   \sa Lorentz.h, HistArray.h
 */
 class PS_2: public PS_Named {
@@ -140,7 +142,7 @@ class PS_2: public PS_Named {
 
 ////// class PS_2_1 ////////////////////////////////////////////////////////////////////////////////
 /*!
-  Phase space for 2->1 scattering.
+  \brief Phase space for 2->1 scattering.
 */
 class PS_2_1: public PS_2 {
  protected:
@@ -188,8 +190,9 @@ class PS_2_1: public PS_2 {
 			 double const& mScale=1.0) const;
 };
 ////// class PS_2_2 ////////////////////////////////////////////////////////////////////////////////
+
 /*!
-  Phase space for 2->2 scattering.
+  \brief Phase space for 2->2 scattering.
 */
 class PS_2_2: public PS_2 {
  private:
@@ -306,8 +309,9 @@ class PS_2_2: public PS_2 {
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// class PS_2_3 ////////////////////////////////////////////////////////////////////////////////
+
 /*!
-  Phase space for 2->3 scattering.
+  \brief Phase space for 2->3 scattering.
 */
 class PS_2_3: public PS_2 {
  private:

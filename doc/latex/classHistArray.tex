@@ -2,6 +2,11 @@
 \label{classHistArray}\index{Hist\+Array@{Hist\+Array}}
 
 
+This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s.  
+
+
+
+
 {\ttfamily \#include $<$Hist\+Array.\+h$>$}
 
 \subsection*{Public Member Functions}
@@ -11,7 +16,7 @@
 
 \item 
 T\+H1\+D $\ast$ \hyperlink{classHistArray_a914db159343d33fdb5b2ccb9210792fa}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} i)
-\begin{DoxyCompactList}\small\item\em Access a specific histogram in the array. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Access a specific histogram in the array. Returns pointer to the respective T\+H1\+D instance. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_ab324fc243624240fe661ab18529f70c3}{}bool \hyperlink{classHistArray_ab324fc243624240fe661ab18529f70c3}{Is\+Active} (unsigned i)\label{classHistArray_ab324fc243624240fe661ab18529f70c3}
 
 \begin{DoxyCompactList}\small\item\em Check if a specific histogram is active. \end{DoxyCompactList}\item 
@@ -29,51 +34,69 @@ T\+H1\+D $\ast$ \hyperlink{classHistArray_a914db159343d33fdb5b2ccb9210792fa}{ope
 \begin{DoxyCompactList}\small\item\em Change state of specific histogram without touching the others. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{}void \hyperlink{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{Pause} ()\label{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}
 
-\begin{DoxyCompactList}\small\item\em Deactivate all histograms, used for V\+E\+G\+A\+S warmup run. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Deactivate all histograms temporarely, used for V\+E\+G\+A\+S warmup run. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_a29c4b8cbb3613f5220e32be5559c55d7}{}bool {\bfseries Is\+Paused} ()\label{classHistArray_a29c4b8cbb3613f5220e32be5559c55d7}
 
 \item 
 \hypertarget{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}{}void \hyperlink{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}{Resume} ()\label{classHistArray_ab6afeb98498add41c6f810eb68ed28ba}
 
-\begin{DoxyCompactList}\small\item\em Reset flags to previous state. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reset flags to previous state after \hyperlink{classHistArray_a27f9acb7029ec4c90b4476e5bc26037d}{Pause()} was called. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}{}void \hyperlink{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}{Set\+Name} (std\+::string const \&name)\label{classHistArray_af40b91f1863ab8e68bdf2ac11e8f9767}
 
 \begin{DoxyCompactList}\small\item\em Set the description of the distribution. \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}{}const char $\ast$ \hyperlink{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}{Get\+Name} ()\label{classHistArray_a9fc7b2ffd135531fee3bdb47c4c00c2b}
+\hypertarget{classHistArray_ad893a01d5a59715e33ce2a67b316f9e1}{}const char $\ast$ \hyperlink{classHistArray_ad893a01d5a59715e33ce2a67b316f9e1}{Get\+Name} () const \label{classHistArray_ad893a01d5a59715e33ce2a67b316f9e1}
 
 \begin{DoxyCompactList}\small\item\em Get the description of the distribution, const char$\ast$ for R\+O\+O\+T classes/functions. \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a0e41187ec5f353409d7ad4e0208973f9}{}const char $\ast$ \hyperlink{classHistArray_a0e41187ec5f353409d7ad4e0208973f9}{Get\+Lab\+X} () const \label{classHistArray_a0e41187ec5f353409d7ad4e0208973f9}
+
+\begin{DoxyCompactList}\small\item\em Get x-\/axis label, const char$\ast$ for R\+O\+O\+T classes/functions. \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a2ebf036d68aec59b36d02768d2909b90}{}const char $\ast$ \hyperlink{classHistArray_a2ebf036d68aec59b36d02768d2909b90}{Get\+Lab\+Y} () const \label{classHistArray_a2ebf036d68aec59b36d02768d2909b90}
+
+\begin{DoxyCompactList}\small\item\em Get y-\/axis label, const char$\ast$ for R\+O\+O\+T classes/functions. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_aa2f028b5c80394b8e5a449c137d43f63}{}int \hyperlink{classHistArray_aa2f028b5c80394b8e5a449c137d43f63}{Get\+Mass\+Dim} ()\label{classHistArray_aa2f028b5c80394b8e5a449c137d43f63}
 
 \begin{DoxyCompactList}\small\item\em Get mass dimension of the associated observable. \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{Fill\+All} (double const \&x, double const \&wgt)
-\begin{DoxyCompactList}\small\item\em Fill weight into all active histograms. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fill weight into all active histograms. Calls the respective T\+H1\+D member function on active histograms. \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_a1f29f32f1eab7ee9315b93000387bd56}{Fill\+One} (\hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} i, double const \&x, double const \&wgt)
-\begin{DoxyCompactList}\small\item\em Fill weight into a single histogram if activated. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fill weight into a single histogram if activated. Calls the respective T\+H1\+D member function if the histogram is activated. \end{DoxyCompactList}\item 
+void \hyperlink{classHistArray_affb2356ef7063d7dad7873fe41dd95c8}{Draw\+Canvas} (bool write\+To\+Root\+File)
+\begin{DoxyCompactList}\small\item\em Create canvas with ratio plot and draw the histgrams. \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_a4ebaa67b67958c1ee70ebdb056b5a389}{Draw} (const char $\ast$\hyperlink{structopt}{opt}=\char`\"{}\char`\"{})
-\begin{DoxyCompactList}\small\item\em Draw all histograms into the currently selected canvas. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Draw all histograms into the currently selected canvas. Calls the respective T\+H1\+D member function. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_a64fb4832bfab2d8e2e47e56d99902236}{}void \hyperlink{classHistArray_a64fb4832bfab2d8e2e47e56d99902236}{Scale} (double c)\label{classHistArray_a64fb4832bfab2d8e2e47e56d99902236}
 
-\begin{DoxyCompactList}\small\item\em Rescale all active histograms by a factor of 1/c. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Rescale all active histograms by a factor of 1/c. Calls the respective T\+H1\+D member function. \end{DoxyCompactList}\item 
 void \hyperlink{classHistArray_a2c7edebf7ddf7d5dcc2cbb30f46601e5}{Normalize} (const double \&m\+Scale=1.\+0, int verb=0)
 \begin{DoxyCompactList}\small\item\em normalize all histograms such that sum(b\+\_\+i) = sigma, where b\+\_\+i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!! \end{DoxyCompactList}\item 
+void \hyperlink{classHistArray_a75049ae9fb04661cdd2f3c3e67550568}{Reset} (const char $\ast$\hyperlink{structopt}{opt}=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Reset all histograms. Calls the respective T\+H1\+D member function. \end{DoxyCompactList}\item 
 int \hyperlink{classHistArray_a86df487949773c027114237875ba7c94}{Read\+File} (\hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} i, const boost\+\_\+path \&path, int tab\+Num, int col\+Num)
-\begin{DoxyCompactList}\small\item\em Read data from file into histogram \textquotesingle{}i\textquotesingle{}. The method checks if the histogram binning matches the input data. Expecting format\+: \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_a6ae2aa8b442f3dd9680964d2b5ad6809}{}int {\bfseries Read\+Table} (std\+::ifstream \&file, const H\+\_\+\+Index\+Map \&ind)\label{classHistArray_a6ae2aa8b442f3dd9680964d2b5ad6809}
+\begin{DoxyCompactList}\small\item\em Read data in column \textquotesingle{}col\+Num\textquotesingle{} of table \textquotesingle{}tab\+Num\textquotesingle{} in the file specified by \textquotesingle{}path\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: \end{DoxyCompactList}\item 
+int \hyperlink{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}{Read\+Table} (std\+::ifstream \&file, const double \&norm=1.\+0, const H\+\_\+\+Index\+Map \&imap=\hyperlink{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}{imap\+\_\+default}, bool discard\+Current\+Table=false)
+\begin{DoxyCompactList}\small\item\em Read data in the next table from ifstream \textquotesingle{}file\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. The Index\+Map specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{}void \hyperlink{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{Print} (std\+::ostream \&ost)\label{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}
 
-\item 
-\hypertarget{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{}void {\bfseries Print} (std\+::ostream \&ost)\label{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}
+\begin{DoxyCompactList}\small\item\em Print content of the \hyperlink{classHistArray}{Hist\+Array} instance to the specified std\+::ostream. \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}{}void \hyperlink{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}{Status} (std\+::ostream \&ost)\label{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}
 
-\item 
-\hypertarget{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}{}void {\bfseries Status} (std\+::ostream \&ost)\label{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}
+\begin{DoxyCompactList}\small\item\em Shows which histogram in the array is currently active. \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a5957d6ee5e35e9608adbfe39b6bac23c}{}int \hyperlink{classHistArray_a5957d6ee5e35e9608adbfe39b6bac23c}{Get\+I\+D} () const \label{classHistArray_a5957d6ee5e35e9608adbfe39b6bac23c}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the unique I\+D of this \hyperlink{classHistArray}{Hist\+Array} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classHistArray_aa412b087fd57054299b360d56aea1aa0}{}static double {\bfseries Label\+Size\+Y} = 0.\+028\label{classHistArray_aa412b087fd57054299b360d56aea1aa0}
+\hypertarget{classHistArray_a845bfc93a180b366d44e8b24eb64a580}{}static double {\bfseries Label\+Size} = 0.\+025\label{classHistArray_a845bfc93a180b366d44e8b24eb64a580}
 
 \item 
-\hypertarget{classHistArray_a80007e442f992220a29883040013931e}{}static double {\bfseries Title\+Offset\+Y} = 1.\+2\label{classHistArray_a80007e442f992220a29883040013931e}
+\hypertarget{classHistArray_a01a6c76e60d235edbc672c7ce0fbb760}{}static double {\bfseries Title\+Offset} = 1.\+3\label{classHistArray_a01a6c76e60d235edbc672c7ce0fbb760}
+
+\item 
+\hypertarget{classHistArray_a3b9428401fbbcf2ed333ac20ad65ef1a}{}static double {\bfseries Canvas\+Left\+Margin}\label{classHistArray_a3b9428401fbbcf2ed333ac20ad65ef1a}
+
+\item 
+\hypertarget{classHistArray_af651ef39b498decd7dda5550ef13f357}{}static double {\bfseries Canvas\+Bottom\+Margin}\label{classHistArray_af651ef39b498decd7dda5550ef13f357}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
@@ -99,18 +122,23 @@ int \hyperlink{classHistArray_a86df487949773c027114237875ba7c94}{Read\+File} (\h
 \begin{DoxyCompactList}\small\item\em Latex label y-\/axis. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{}int \hyperlink{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}{d\+\_\+mass\+\_\+dim}\label{classHistArray_ac682fdf0aeedf8f0b9fb8c4c4b1fee71}
 
-\begin{DoxyCompactList}\small\item\em Mass dimension of the observable, needed for proper normalization, for example \mbox{[}M\+\_\+tt\mbox{]}=1, \mbox{[}Y\+\_\+t\mbox{]}=0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Mass dimension of the observable, needed for proper normalization, for example \mbox{[}M\+\_\+tt\mbox{]}=1, \mbox{[}Y\+\_\+t\mbox{]}=0. \end{DoxyCompactList}\item 
+\hypertarget{classHistArray_a2b61b8b56cd4b0ca27d16855d4e1aef3}{}int \hyperlink{classHistArray_a2b61b8b56cd4b0ca27d16855d4e1aef3}{d\+\_\+id}\label{classHistArray_a2b61b8b56cd4b0ca27d16855d4e1aef3}
+
+\begin{DoxyCompactList}\small\item\em Unique number for the \hyperlink{classHistArray}{Hist\+Array} instance. Derived from the static d\+\_\+\+I\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classHistArray_a01616b3115c8b243e2bd924788d47589}{}static int \hyperlink{classHistArray_a01616b3115c8b243e2bd924788d47589}{d\+\_\+\+I\+D} = 0\label{classHistArray_a01616b3115c8b243e2bd924788d47589}
 
-\begin{DoxyCompactList}\small\item\em Histogram I\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classHistArray}{Hist\+Array} I\+D counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. In the default setup there are 6 histograms, one for each contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O P\+H\+Ix\+P\+H\+I + L\+O P\+H\+Ix\+Q\+C\+D, virtual corrections, integrated dipoles and real corrections. Use one \hyperlink{classHistArray}{Hist\+Array} for each observable. There are some helper functions for plotting in \hyperlink{Functions__Shared_8h}{Functions\+\_\+\+Shared.\+h}. The P\+S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See also}
-\hyperlink{Functions__Shared_8h}{Functions\+\_\+\+Shared.\+h} 
+This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. 
+
+In the default setup there are 6 histograms, one for each of the following contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), virtual corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), integrated dipoles (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D) and real corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D). Use one \hyperlink{classHistArray}{Hist\+Array} for each observable. Historgams in the array can be activated seperately, so that calls to Fill\+One/\+Fill\+All only affect the activated histograms. The P\+S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See also}
+\hyperlink{PhaseSpace_8h}{Phase\+Space.\+h} 
 \end{DoxySeeAlso}
 
 
@@ -128,7 +156,7 @@ Definition at line 62 of file Hist\+Array.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{classHistArray_a4ebaa67b67958c1ee70ebdb056b5a389}
 
 
-Draw all histograms into the currently selected canvas. 
+Draw all histograms into the currently selected canvas. Calls the respective T\+H1\+D member function. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -137,7 +165,27 @@ Draw all histograms into the currently selected canvas.
 \end{DoxyParams}
 
 
-Definition at line 150 of file Hist\+Array.\+h.
+Definition at line 165 of file Hist\+Array.\+h.
+
+\hypertarget{classHistArray_affb2356ef7063d7dad7873fe41dd95c8}{}\index{Hist\+Array@{Hist\+Array}!Draw\+Canvas@{Draw\+Canvas}}
+\index{Draw\+Canvas@{Draw\+Canvas}!Hist\+Array@{Hist\+Array}}
+\subsubsection[{Draw\+Canvas}]{\setlength{\rightskip}{0pt plus 5cm}void Hist\+Array\+::\+Draw\+Canvas (
+\begin{DoxyParamCaption}
+\item[{bool}]{write\+To\+Root\+File}
+\end{DoxyParamCaption}
+)}\label{classHistArray_affb2356ef7063d7dad7873fe41dd95c8}
+
+
+Create canvas with ratio plot and draw the histgrams. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em write\+To\+Root\+File} & Write canvas and histograms to the R\+O\+O\+T file which is currently opened. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 483 of file Hist\+Array.\+cpp.
 
 \hypertarget{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{}\index{Hist\+Array@{Hist\+Array}!Fill\+All@{Fill\+All}}
 \index{Fill\+All@{Fill\+All}!Hist\+Array@{Hist\+Array}}
@@ -149,7 +197,7 @@ Definition at line 150 of file Hist\+Array.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}
 
 
-Fill weight into all active histograms. 
+Fill weight into all active histograms. Calls the respective T\+H1\+D member function on active histograms. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -160,7 +208,7 @@ Fill weight into all active histograms.
 \end{DoxyParams}
 
 
-Definition at line 136 of file Hist\+Array.\+h.
+Definition at line 144 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a1f29f32f1eab7ee9315b93000387bd56}{}\index{Hist\+Array@{Hist\+Array}!Fill\+One@{Fill\+One}}
 \index{Fill\+One@{Fill\+One}!Hist\+Array@{Hist\+Array}}
@@ -173,7 +221,7 @@ Definition at line 136 of file Hist\+Array.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{classHistArray_a1f29f32f1eab7ee9315b93000387bd56}
 
 
-Fill weight into a single histogram if activated. 
+Fill weight into a single histogram if activated. Calls the respective T\+H1\+D member function if the histogram is activated. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -186,7 +234,7 @@ Fill weight into a single histogram if activated.
 \end{DoxyParams}
 
 
-Definition at line 144 of file Hist\+Array.\+h.
+Definition at line 152 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a2c7edebf7ddf7d5dcc2cbb30f46601e5}{}\index{Hist\+Array@{Hist\+Array}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!Hist\+Array@{Hist\+Array}}
@@ -207,7 +255,7 @@ normalize all histograms such that sum(b\+\_\+i) = sigma, where b\+\_\+i are the
 \end{DoxyParams}
 
 
-Definition at line 60 of file Hist\+Array.\+cpp.
+Definition at line 74 of file Hist\+Array.\+cpp.
 
 \hypertarget{classHistArray_a914db159343d33fdb5b2ccb9210792fa}{}\index{Hist\+Array@{Hist\+Array}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!Hist\+Array@{Hist\+Array}}
@@ -218,7 +266,7 @@ Definition at line 60 of file Hist\+Array.\+cpp.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{classHistArray_a914db159343d33fdb5b2ccb9210792fa}
 
 
-Access a specific histogram in the array. 
+Access a specific histogram in the array. Returns pointer to the respective T\+H1\+D instance. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -227,7 +275,7 @@ Access a specific histogram in the array.
 \end{DoxyParams}
 
 
-Definition at line 97 of file Hist\+Array.\+h.
+Definition at line 99 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a86df487949773c027114237875ba7c94}{}\index{Hist\+Array@{Hist\+Array}!Read\+File@{Read\+File}}
 \index{Read\+File@{Read\+File}!Hist\+Array@{Hist\+Array}}
@@ -241,19 +289,19 @@ Definition at line 97 of file Hist\+Array.\+h.
 )}\label{classHistArray_a86df487949773c027114237875ba7c94}
 
 
-Read data from file into histogram \textquotesingle{}i\textquotesingle{}. The method checks if the histogram binning matches the input data. Expecting format\+: 
+Read data in column \textquotesingle{}col\+Num\textquotesingle{} of table \textquotesingle{}tab\+Num\textquotesingle{} in the file specified by \textquotesingle{}path\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: 
 
 \subsection*{table 1}
 
 ... lower\+\_\+bin\+\_\+edge $\vert$ data\+\_\+col\+\_\+1 $\vert$ ... $\vert$ data\+\_\+col\+\_\+n ... \subsection*{table 2}
 
-... lower\+\_\+bin\+\_\+edge $\vert$ data\+\_\+col\+\_\+1 $\vert$ ... $\vert$ data\+\_\+col\+\_\+n ... ...Lines starting with \textquotesingle{}\#\textquotesingle{} will be ignored. Tables need to be separated with one comment line!
+... lower\+\_\+bin\+\_\+edge $\vert$ data\+\_\+col\+\_\+1 $\vert$ ... $\vert$ data\+\_\+col\+\_\+n ... ...Lines starting with \textquotesingle{}\#\textquotesingle{} will be ignored as comments. Tables need to be separated with one comment line!
 
 
 \begin{DoxyParams}{Parameters}
-{\em i} & Histogram index. \\
+{\em i} & Histogram index, data destination. \\
 \hline
-{\em x} & The path of the input file. \\
+{\em x} & The path of the input file, data source. \\
 \hline
 {\em tab\+Num} & Pick table \textquotesingle{}tab\+Num\textquotesingle{} from the input data in the file and copy to histogram \textquotesingle{}i\textquotesingle{}. \\
 \hline
@@ -262,7 +310,62 @@ Read data from file into histogram \textquotesingle{}i\textquotesingle{}. The me
 \end{DoxyParams}
 
 
-Definition at line 183 of file Hist\+Array.\+cpp.
+Definition at line 198 of file Hist\+Array.\+cpp.
+
+\hypertarget{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}{}\index{Hist\+Array@{Hist\+Array}!Read\+Table@{Read\+Table}}
+\index{Read\+Table@{Read\+Table}!Hist\+Array@{Hist\+Array}}
+\subsubsection[{Read\+Table}]{\setlength{\rightskip}{0pt plus 5cm}int Hist\+Array\+::\+Read\+Table (
+\begin{DoxyParamCaption}
+\item[{std\+::ifstream \&}]{file, }
+\item[{const double \&}]{norm = {\ttfamily 1.0}, }
+\item[{const H\+\_\+\+Index\+Map \&}]{imap = {\ttfamily {\bf imap\+\_\+default}}, }
+\item[{bool}]{discard\+Current\+Table = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\label{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}
+
+
+Read data in the next table from ifstream \textquotesingle{}file\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. The Index\+Map specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: 
+
+\subsection*{table 1}
+
+... lower\+\_\+bin\+\_\+edge data\+\_\+col\+\_\+1 ... data\+\_\+col\+\_\+n ... \subsection*{table 2}
+
+... lower\+\_\+bin\+\_\+edge data\+\_\+col\+\_\+1 ... data\+\_\+col\+\_\+n ... ...Lines starting with \textquotesingle{}\#\textquotesingle{} will be ignored as comments. Tables need to be separated with one comment line!
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Input file, data source. \\
+\hline
+{\em norm} & Normalization factor applied to all data elements read from the ifstream. \\
+\hline
+{\em imap} & Index\+Map, specifies which source column is copied to which histogram in the array. \\
+\hline
+{\em discard\+Current\+Table} & Jump to the next table if previous read operation has left the ifstream in the middle of a table. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 346 of file Hist\+Array.\+cpp.
+
+\hypertarget{classHistArray_a75049ae9fb04661cdd2f3c3e67550568}{}\index{Hist\+Array@{Hist\+Array}!Reset@{Reset}}
+\index{Reset@{Reset}!Hist\+Array@{Hist\+Array}}
+\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}void Hist\+Array\+::\+Reset (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{opt = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classHistArray_a75049ae9fb04661cdd2f3c3e67550568}
+
+
+Reset all histograms. Calls the respective T\+H1\+D member function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opt} & R\+O\+O\+T options \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 180 of file Hist\+Array.\+h.
 
 
 

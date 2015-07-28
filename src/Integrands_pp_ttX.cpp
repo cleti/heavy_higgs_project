@@ -4,6 +4,15 @@
 
 
 
+
+// these numbers indentify the quark PDF sets in LHAPDF
+// 5: b-quark ... 1: d-quark
+const int quark_pids[] = {  5,  4,  3,  2,  1};
+
+  
+
+
+
 static int Eval_tt_decay(
 			 PS_2_2* ps,
 			 const HiggsModel& hm,
@@ -120,7 +129,6 @@ double Integrand_poly2(double* x, size_t dim, void* arg)
   return res;
 }
 
-
 // to reproduce Bernies s_part plots
 double Integrand_2_2(double* x, size_t dim, void* arg)
 {
@@ -193,14 +201,18 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
 
+#ifdef DEBUG
 #ifdef WITH_T_SPIN
   if (unlikely(dim!=13))
 #else
   if (unlikely(dim!=3))
 #endif
-  {
-    ERROR("wrong integral dimension!");
-  }
+    {
+      ERROR("wrong integral dimension!");
+    }
+#endif
+  
+
 
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_2*         ps    = dynamic_cast<PS_2_2*> (ip->ps);
@@ -252,8 +264,7 @@ double Integrand_2_2_pdf_BV(double* x, size_t dim, void* arg)
 
       // born matrix elements (QQ)
       if (flags & F_EVAL_B_QCDxQCD)
-        {
-          static auto quark_pids     = {  5,  4,  3,  2,  1};	  
+        {  
           double qq_pdf = 0.0;
           // get the quark/antiquark pdfs
           for (auto i: quark_pids)
@@ -303,15 +314,17 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
 
+#ifdef DEBUG
 #ifdef WITH_T_SPIN
   if (unlikely(dim!=14))
 #else
-    if (unlikely(dim!=4))
+  if (unlikely(dim!=4))
 #endif
-      {
-	ERROR("wrong integral dimension!");
-      }
-
+    {
+      ERROR("wrong integral dimension!");
+    }
+#endif
+  
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_2*         ps    = dynamic_cast<PS_2_2*> (ip->ps);
   const ulong&    flags = ip->eval_flags;
@@ -371,7 +384,37 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
       // boosted phase space (boost is done in Eval_ID_X)
       static PS_2_2 ps_x1(mt2,mt2,"x*p1 p2 -> k1' k2'  [static in Integrand_2_2_pdf_ID]");
       static PS_2_2 ps_x2(mt2,mt2,"p1 x*p2 -> k1' k2'  [static in Integrand_2_2_pdf_ID]");
-  
+      static LT dip_boost;
+
+      /*
+	the continuum part of the integrated dipoles is evaluated on
+	a boosted phase space, the boost is along the +-z directions,
+	x[3]=(1+beta)/(1-beta) is the boost parameter, the parton c.m.e.
+	is then x*s
+      */
+	
+      // set up boosted phase space (boost in +z direction)
+      dip_boost.set_boost_z(x[3],0);
+      dip_boost.apply_cpy(ps->p1(),ps_x1.p1());
+      dip_boost.apply_cpy(ps->p2(),ps_x1.p2());
+      dip_boost.apply_cpy(ps->k1(),ps_x1.k1());
+      dip_boost.apply_cpy(ps->k2(),ps_x1.k2());
+#ifdef WITH_T_SPIN
+      dip_boost.apply_cpy(ps->s1(),ps_x1.s1());
+      dip_boost.apply_cpy(ps->s2(),ps_x1.s2());
+#endif
+
+      // set up boosted phase space (boost in -z direction)
+      dip_boost.set_boost_z(x[3],1);
+      dip_boost.apply_cpy(ps->p1(),ps_x2.p1());
+      dip_boost.apply_cpy(ps->p2(),ps_x2.p2());
+      dip_boost.apply_cpy(ps->k1(),ps_x2.k1());
+      dip_boost.apply_cpy(ps->k2(),ps_x2.k2());
+#ifdef WITH_T_SPIN
+      dip_boost.apply_cpy(ps->s1(),ps_x2.s1());
+      dip_boost.apply_cpy(ps->s2(),ps_x2.s2());
+#endif
+      
       // finite part of the integrated dipoles: x-dependent terms of P and K operators
       double sx = x[3]*s_part;
       if ( ps_x1.set(sqrt(sx),x[2],0.0) )
@@ -384,9 +427,7 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 	      res_dx_gg *= jac_flux_x*cf_gg*f1_g*f2_g;
 	      // QG/GQ contribution
 	      if (flags & F_EVAL_D_QG_CONT)
-		{
-		  // need quark PDFs
-		  static auto quark_pids     = { 5,  4,  3,  2,  1};	  
+		{	  
 		  double qg_pdf = 0.0;
 		  double gq_pdf = 0.0;
 		  for (auto i: quark_pids)
@@ -399,9 +440,11 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 		      gq_pdf += f1_g*(f2_q+f2_qb);
 		    }
 		  res_dx_qg *= jac_flux_x*cf_gg*(qg_pdf+gq_pdf);
-		  // the following is not necessary, Eval_ID_X_QG() is invariant under p1<->p2
+		  // the following lines of code are not necessary
+		  // Eval_ID_X_QG() is invariant under p1<->p2
 		  // (this is mainly because the gg->tt Born MEs are symmetric under p1<->p2,
-		  //  while the IF/FI colour correlated Born MEs are asymmetric)
+		  // while the IF/FI colour correlated Born MEs are asymmetric)
+		  
 		  // ps_x1.swap_initial_state();
 		  // res_dx_gq += Eval_ID_X_QG(ps_x1,*hm,flags)*jac_flux_x*cf_gg*gq_pdf;
 		  // ps_x1.swap_initial_state();
@@ -409,21 +452,20 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 	      // DISTRIBUTIONS: x neq 1 contribution //////////////////////////////////////
 	      if (ip->collect_dist)
 		{
-		  static LT dip_boost;
 		  auto dist = (ip->distributions);
 		  double vwgt  = ip->cmp_v_weight();
 		  ps_x1.P1() = (ps->P1());
 		  ps_x1.P2() = (ps->P2());
-		  ps_x1.set_x(x[3]);
-		  ps_x2 = ps_x1;
+		  // ps_x1.set_x(x[3]);
+		  // ps_x2 = ps_x1;
 	      
-		  dip_boost.set_boost_z(x[3],0);
-		  dip_boost.apply(ps_x1.k1());
-		  dip_boost.apply(ps_x1.k2());
+		  // dip_boost.set_boost_z(x[3],0);
+		  // dip_boost.apply(ps_x1.k1());
+		  // dip_boost.apply(ps_x1.k2());
 	      
-		  dip_boost.set_boost_z(x[3],1);
-		  dip_boost.apply(ps_x2.k1());
-		  dip_boost.apply(ps_x2.k2());
+		  // dip_boost.set_boost_z(x[3],1);
+		  // dip_boost.apply(ps_x2.k1());
+		  // dip_boost.apply(ps_x2.k2());
 	      
 		  ps_x1.FillDistributions(*dist,H_NLO_PHI_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
 		  ps_x2.FillDistributions(*dist,H_NLO_PHI_ID,0.5*(res_dx_gg+res_dx_qg)*vwgt,mScale);
@@ -446,6 +488,17 @@ double Integrand_2_2_pdf_ID(double* x, size_t dim, void* arg)
 double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
+
+#ifdef DEBUG
+#ifdef WITH_T_SPIN
+  if (unlikely(dim!=16))
+#else
+  if (unlikely(dim!=6))
+#endif
+    {
+      ERROR("wrong integral dimension!");
+    }
+#endif
   
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_3*         ps    = dynamic_cast<PS_2_3*> (ip->ps);
@@ -527,7 +580,17 @@ double Integrand_2_3_pdf(double* x, size_t dim, void* arg)
 double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
 {
   using namespace Constants;
-  //using namespace RunParameters;
+
+#ifdef DEBUG
+#ifdef WITH_T_SPIN
+  if (unlikely(dim!=16))
+#else
+  if (unlikely(dim!=6))
+#endif
+    {
+      ERROR("wrong integral dimension!");
+    }
+#endif
   
   integrand_par*  ip    = static_cast<integrand_par*> (arg);
   PS_2_3*         ps    = dynamic_cast<PS_2_3*> (ip->ps);
@@ -569,7 +632,6 @@ double Integrand_2_3_qg_qq_pdf(double* x, size_t dim, void* arg)
       double f1_g = ip->pdf->xfxQ2(21, x[0], MUF2*mScale2) / x[0];
       double f2_g = ip->pdf->xfxQ2(21, x[1], MUF2*mScale2) / x[1];
       // get the quark/antiquark pdfs
-      static auto quark_pids     = { 5,  4,  3,  2,  1};	  
       for (auto i: quark_pids)
 	{
 	  double f1_q  = ip->pdf->xfxQ2(+i, x[0], MUF2*mScale2) / x[0];

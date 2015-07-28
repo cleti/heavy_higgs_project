@@ -91,6 +91,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Phase space for 2-&gt;2 scattering.  
+ <a href="classPS__2__2.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PhaseSpace_8h_source.html">PhaseSpace.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PS_2_2:</div>
@@ -98,7 +101,7 @@ Inheritance diagram for PS_2_2:</div>
  <div class="center">
   <img src="classPS__2__2.png" usemap="#PS_2_2_map" alt=""/>
   <map id="PS_2_2_map" name="PS_2_2_map">
-<area href="classPS__2.html" alt="PS_2" shape="rect" coords="0,56,74,80"/>
+<area href="classPS__2.html" title="Abstract base class for 2->X phase space classes. " alt="PS_2" shape="rect" coords="0,56,74,80"/>
 <area href="classPS__Named.html" alt="PS_Named" shape="rect" coords="0,0,74,24"/>
 </map>
  </div></div>
@@ -192,8 +195,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>whattype</b> () const 
 <tr class="memitem:af19d44fe30fb72ccfc20f5626f04dcdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af19d44fe30fb72ccfc20f5626f04dcdc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const </td></tr>
 <tr class="separator:af19d44fe30fb72ccfc20f5626f04dcdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a0123bc7015775e5aba3a862f5ac456"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPS__2__2.html#a0a0123bc7015775e5aba3a862f5ac456">FillDistributions</a> (DistVec &amp;dist, H_INDEX id, double const &amp;wgt, double const &amp;mScale=1.0) const </td></tr>
-<tr class="separator:a0a0123bc7015775e5aba3a862f5ac456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a253769d43f0d405d6109d16805a4b0c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPS__2__2.html#a253769d43f0d405d6109d16805a4b0c2">FillDistributions</a> (DistVec &amp;dist, <a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> id, double const &amp;wgt, double const &amp;mScale=1.0) const </td></tr>
+<tr class="separator:a253769d43f0d405d6109d16805a4b0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classPS__2"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPS__2')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPS__2.html">PS_2</a></td></tr>
 <tr class="memitem:ae359831d133d3a4830c3600fa8d32c06 inherit pub_methods_classPS__2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae359831d133d3a4830c3600fa8d32c06"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PS_2</b> (const std::string &amp;nm=&quot;&quot;)</td></tr>
@@ -315,9 +318,9 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Phase space for 2-&gt;2 scattering. </p>
 
-<p>Definition at line <a class="el" href="PhaseSpace_8h_source.html#l00194">194</a> of file <a class="el" href="PhaseSpace_8h_source.html">PhaseSpace.h</a>.</p>
+<p>Definition at line <a class="el" href="PhaseSpace_8h_source.html#l00197">197</a> of file <a class="el" href="PhaseSpace_8h_source.html">PhaseSpace.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0a0123bc7015775e5aba3a862f5ac456"></a>
+<a class="anchor" id="a253769d43f0d405d6109d16805a4b0c2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -330,7 +333,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">H_INDEX&#160;</td>
+          <td class="paramtype"><a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a>&#160;</td>
           <td class="paramname"><em>id</em>, </td>
         </tr>
         <tr>
@@ -355,7 +358,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <p>Feed the distributions in the vector 'dist' with the weight 'wgt' in the bin corresponding to their observable evaluated at the current point of this phase space object. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dist</td><td>Vector of distributions. </td></tr>
-    <tr><td class="paramname">id</td><td>Fill into this histogram in each <a class="el" href="classHistArray.html">HistArray</a>. </td></tr>
+    <tr><td class="paramname">id</td><td>Fill into this histogram in each <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a>. </td></tr>
     <tr><td class="paramname">wgt</td><td>Weigth to dill into the distributions. </td></tr>
     <tr><td class="paramname">mScale</td><td>Mass scale used for normalization. Necessary to get the correct numerical values of the observables with non-zero mass dimension. </td></tr>
   </table>

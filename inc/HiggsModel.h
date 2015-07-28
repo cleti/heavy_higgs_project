@@ -42,7 +42,8 @@ enum GGHVertexMode {full=0,effective=1};
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-  This class contains the parameters that describe a single neutral Higgs boson.
+  \brief This class contains the parameters that describe a single neutral Higgs boson.
+ 
   \sa HiggsModel
 */
 class HiggsBoson
@@ -153,8 +154,10 @@ using HPtr = std::shared_ptr<HiggsBoson>;
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-This structure contains the Higgs specific prefactors, i.e. couplings and the propagator denominator. The prefactors depend on the momentum of the Higgs boson and have to be reset whenever the phase space point changes (usually for every call of the integrand). This is done via the HiggsModel class.
-\sa HiggsModel::SetPrefactors()
+  \brief This structure contains the Higgs specific prefactors used in the amplitudes.
+  
+  These are the couplings and the propagator denominator. The prefactors depend on the momentum of the Higgs boson and have to be reset whenever the phase space point changes (usually for every call of the integrand). This is done via the HiggsModel class.
+  \sa HiggsModel::SetPrefactors()
 */
 struct HiggsPrefactors {
  public:
@@ -186,7 +189,9 @@ struct HiggsPrefactors {
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-This structure contains the prefactors used in the amplitudes. The prefactors depend on AlphaS and have to be reset whenever it changes (usually only once for each run). This is done via the HiggsModel class.
+  \brief This structure contains the prefactors used in the amplitudes.
+  
+The prefactors depend on AlphaS and have to be reset whenever it changes (usually only once for each run). This is done via the HiggsModel class.
 \sa HiggsModel::SetAmpPrefactors()
 */
 struct AmplitudePrefactors {
@@ -230,7 +235,9 @@ struct AmplitudePrefactors {
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-This class contains all the physical, model specific parameters, i.e. the strong coupling AlphaS, renormalization and factorization scales MUR, MUF, the third generation quark masses mt and mb as well as the combined Higgs vacuum expectation value VH and the individual Higgs boson parameters. It also provides appropriate setter functions. It contains instances of the HiggsPrefactors and Amprefactors structures that are needed for the evaluation of the amplitudes. Take care to provide numerical values consistently in the same units.
+  \brief This class contains all the physical, model specific parameters.
+  
+These are the strong coupling AlphaS, renormalization and factorization scales MUR, MUF, the third generation quark masses mt and mb as well as the combined Higgs vacuum expectation value VH and the individual Higgs boson parameters. It also provides appropriate setter functions. It contains instances of the HiggsPrefactors and Amprefactors structures that are needed for the evaluation of the amplitudes. Take care to provide numerical values consistently in the same units.
 \sa AmpPrefactors, HiggsPrefactors, HiggsBoson
 */
 class HiggsModel

@@ -2,7 +2,7 @@
 \label{Functions__Shared_8h}\index{inc/\+Functions\+\_\+\+Shared.\+h@{inc/\+Functions\+\_\+\+Shared.\+h}}
 
 
-Interface for the evaluation of the real corrections to the process pp -\/$>$ ttbar +\+X.  
+Some shared helper functions.  
 
 
 {\ttfamily \#include $<$bitset$>$}\\*
@@ -30,45 +30,37 @@ Interface for the evaluation of the real corrections to the process pp -\/$>$ tt
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structopt}{opt}
-\item 
+\begin{DoxyCompactList}\small\item\em Structure to represent the command line options given by the user. \end{DoxyCompactList}\item 
 struct \hyperlink{structCanvasPtr}{Canvas\+Ptr}
-\item 
-struct \hyperlink{structDoubleCanvasPtr}{Double\+Canvas\+Ptr}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}{}void {\bfseries parse\+\_\+arguments} (int argc, char $\ast$$\ast$argv, struct \hyperlink{structopt}{opt} \&options, \hyperlink{classHiggsModel}{Higgs\+Model} \&hm)\label{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}
+\hypertarget{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}{}void \hyperlink{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}{parse\+\_\+arguments} (int argc, char $\ast$$\ast$argv, struct \hyperlink{structopt}{opt} \&options, \hyperlink{classHiggsModel}{Higgs\+Model} \&hm)\label{Functions__Shared_8h_a7bc8f463ae6632c9bab80d4b46b736a6}
 
-\item 
-\hypertarget{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}{}void {\bfseries usage} (int status)\label{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}
+\begin{DoxyCompactList}\small\item\em Parse the command line options given by the user. The results are stored in g\+\_\+options. \end{DoxyCompactList}\item 
+\hypertarget{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}{}void \hyperlink{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}{usage} (int status)\label{Functions__Shared_8h_ad2c1f41ec0950813bbc28490e903269f}
 
-\item 
-\hypertarget{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}{}void {\bfseries version} (int status)\label{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}
+\begin{DoxyCompactList}\small\item\em Print usage information. \end{DoxyCompactList}\item 
+\hypertarget{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}{}void \hyperlink{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}{version} (int status)\label{Functions__Shared_8h_a0e246a8b73be3e9695644297ef7ba079}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Print program version. \end{DoxyCompactList}\item 
 \hypertarget{Functions__Shared_8h_a0df78f55f767ea55afece14544059f45}{}int {\bfseries read\+\_\+qcd\+\_\+data} (Dist\+Vec $\ast$dist, std\+::string const \&path, std\+::string const \&filename)\label{Functions__Shared_8h_a0df78f55f767ea55afece14544059f45}
 
 \item 
 \hypertarget{Functions__Shared_8h_a1996b7bae62e6e74511bbcc656e9329a}{}pid\+\_\+t {\bfseries gettid} (void)\label{Functions__Shared_8h_a1996b7bae62e6e74511bbcc656e9329a}
 
 \item 
-\hypertarget{Functions__Shared_8h_a848eb73c671b034178762242b47a99ea}{}\hyperlink{structCanvasPtr}{Canvas\+Ptr} {\bfseries Make\+Canvas} (const char $\ast$title, int width=1000, int height=1000, T\+Canvas $\ast$c=nullptr, double left\+\_\+marg\+\_\+scale=1.\+0, double bottom\+\_\+marg\+\_\+scale=1.\+0)\label{Functions__Shared_8h_a848eb73c671b034178762242b47a99ea}
+\hypertarget{Functions__Shared_8h_a6326b2307cfd45379e9319591c6d7025}{}\hyperlink{structCanvasPtr}{Canvas\+Ptr} {\bfseries Make\+Canvas} (const \hyperlink{classHistArray}{Hist\+Array} \&histograms, int width=1000, int height=1000, double left\+\_\+marg\+\_\+scale=1.\+0, double bottom\+\_\+marg\+\_\+scale=1.\+0)\label{Functions__Shared_8h_a6326b2307cfd45379e9319591c6d7025}
 
 \item 
-\hypertarget{Functions__Shared_8h_a8fa694b8111df1ee3fea1e311847d39f}{}\hyperlink{structDoubleCanvasPtr}{Double\+Canvas\+Ptr} {\bfseries Make\+Double\+Canvas} (const char $\ast$title, int width=2000, int height=1000)\label{Functions__Shared_8h_a8fa694b8111df1ee3fea1e311847d39f}
+\hypertarget{Functions__Shared_8h_afcf278b8bdbc86602b09c4435b22f5f0}{}void {\bfseries Draw\+Distribution} (\hyperlink{structCanvasPtr}{Canvas\+Ptr} \&canvas, \hyperlink{classHistArray}{Hist\+Array} \&histograms, const \hyperlink{classHiggsModel}{Higgs\+Model} \&T\+H\+D\+M, bool W\+R\+I\+T\+E=true, bool N\+L\+O=true, int C\+D=0)\label{Functions__Shared_8h_afcf278b8bdbc86602b09c4435b22f5f0}
 
 \item 
-\hypertarget{Functions__Shared_8h_aa1f4bd3cf724c4085c1dc52ffdf5e14f}{}void {\bfseries Draw\+Distribution} (\hyperlink{structCanvasPtr}{Canvas\+Ptr} \&canvas, \hyperlink{classHistArray}{Hist\+Array} \&histograms, const \hyperlink{classHiggsModel}{Higgs\+Model} \&T\+H\+D\+M, double $\ast$norm, std\+::string const \&title\+X, std\+::string const \&title\+Y, bool W\+R\+I\+T\+E=true, bool N\+L\+O=true, int C\+D=0)\label{Functions__Shared_8h_aa1f4bd3cf724c4085c1dc52ffdf5e14f}
+\hypertarget{Functions__Shared_8h_a3508a17afddde2630416bc05f476e626}{}void {\bfseries Set\+Ratio\+Plot} (T\+H1\+D $\ast$hist)\label{Functions__Shared_8h_a3508a17afddde2630416bc05f476e626}
 
 \item 
-\hypertarget{Functions__Shared_8h_a727987f9d3940406f288a9ead0bfcb5a}{}void {\bfseries Draw\+Two\+Distributions} (\hyperlink{structDoubleCanvasPtr}{Double\+Canvas\+Ptr} \&canvas, \hyperlink{classHistArray}{Hist\+Array} \&histograms\+L, \hyperlink{classHistArray}{Hist\+Array} \&histograms\+R, const \hyperlink{classHiggsModel}{Higgs\+Model} \&T\+H\+D\+M, double $\ast$norm, std\+::string const \&title\+L\+X, std\+::string const \&title\+R\+X, std\+::string const \&title\+L\+Y, std\+::string const \&title\+R\+Y, bool W\+R\+I\+T\+E=true, bool N\+L\+O=true)\label{Functions__Shared_8h_a727987f9d3940406f288a9ead0bfcb5a}
-
-\item 
-\hypertarget{Functions__Shared_8h_a0f5660f756b65b9351cc1c2977fe1ff9}{}void {\bfseries Set\+Ratio\+Plot} (T\+H1\+D $\ast$hist, std\+::string xtitle=\char`\"{}\char`\"{})\label{Functions__Shared_8h_a0f5660f756b65b9351cc1c2977fe1ff9}
-
-\item 
-\hypertarget{Functions__Shared_8h_ac5ccc3da8172fbbffe9850e9447993b1}{}void {\bfseries T\+H1\+Divide\+Stable} (T\+H1\+D $\ast$h1, T\+H1\+D $\ast$h2, const double \&a=1.\+0)\label{Functions__Shared_8h_ac5ccc3da8172fbbffe9850e9447993b1}
+\hypertarget{Functions__Shared_8h_add627eeef07d40d4d20b9e4c583aebb5}{}void {\bfseries T\+H1\+Rel\+Diff} (T\+H1\+D $\ast$h1, const T\+H1\+D $\ast$h2)\label{Functions__Shared_8h_add627eeef07d40d4d20b9e4c583aebb5}
 
 \item 
 \hypertarget{Functions__Shared_8h_a15036b1c9654e1e24a395e792d1a63fe}{}void {\bfseries match\+\_\+\+Alpha\+S\+\_\+f5\+\_\+to\+\_\+f6} (double const \&mu2, const int V\+E\+R\+B=1)\label{Functions__Shared_8h_a15036b1c9654e1e24a395e792d1a63fe}
@@ -122,5 +114,5 @@ struct \hyperlink{structDoubleCanvasPtr}{Double\+Canvas\+Ptr}
 
 
 \subsection{Detailed Description}
-Interface for the evaluation of the real corrections to the process pp -\/$>$ ttbar +\+X. 
+Some shared helper functions. 
 

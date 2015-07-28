@@ -30,7 +30,7 @@ typedef unsigned long ulong;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-  This class contains the parameters to control the GSL VEGAS algorithm.
+  \brief This class contains the parameters to control the GSL VEGAS algorithm.
 */
 class vegas_par
 {
@@ -60,21 +60,23 @@ class vegas_par
 typedef double (*GSLIFnc)(double*,size_t,void*);
 
 /*!
-  This class represents an integral to be computed by VEGAS. This comprises the integral dimension, integral limits and a pointer to the integrand function.
+  \brief This class represents an integral to be computed by VEGAS.
+  
+   This comprises the integral dimension, integral limits and a pointer to the integrand function.
 */
 class Integral {
 
  private:
-  //! integral dimension
+  //! Integral dimension.
   size_t     d_Dim;
-  //! lower integration limits
+  //! Lower integration limits.
   double *   d_IntLimitLo;
-  //! upper integration limits
+  //! Upper integration limits.
   double *   d_IntLimitUp;
-  //! pointer to integrand
+  //! Pointer to integrand.
   GSLIFnc    d_Integrand;
 
-  //! initialize integral of dimension dim
+  //! Initialize integral of dimension dim.
   void Init(size_t dim);
   
  public:
@@ -93,19 +95,19 @@ class Integral {
   bool operator==(size_t rhs) { return d_Dim==rhs; }
   bool operator!=(size_t rhs) { return d_Dim!=rhs; }
 
-  //! check if index i is covered by the current integral size
+  //! Check if index i is covered by the current integral size.
   bool InRange(size_t i) { return (i>=0 && i<d_Dim); }
-  //! get lower integration limit in direction i 
+  //! Get lower integration limit in direction i.
   double Lo(size_t i) { if (InRange(i)) return d_IntLimitLo[i]; else return 0.0; }
-  //! get upper integration limit in direction i 
+  //! Get upper integration limit in direction i.
   double Up(size_t i) { if (InRange(i)) return d_IntLimitUp[i]; else return 0.0; }
-  //! get pointer to lower integration limits
+  //! Get pointer to lower integration limits.
   double* Lo() { return d_IntLimitLo; }
-  //! get pointer to upper integration limits
+  //! Get pointer to upper integration limits.
   double* Up() { return d_IntLimitUp; }
-  //! get integral dimension
+  //! Get integral dimension.
   unsigned GetDim() { return d_Dim; }
-  //! set integrand
+  //! Set integrand.
   void SetIntegrand(GSLIFnc Integrand) { d_Integrand = Integrand; }
   GSLIFnc GetIntegrand() { return d_Integrand; }
   void PrintLimits(std::ostream& ost = std::cout);
@@ -155,62 +157,66 @@ namespace IntLimits
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-  This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm. In particular the model parameters contained in the HiggsModel instance are needed by the functions that evaluate the matrix elements.
+  \brief This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm.
+  
+  In particular the model parameters contained in the HiggsModel instance are needed by the functions that evaluate the matrix elements.
 */
 class integrand_par
 {
  public:
-  //! pointer to object with model parameters
+  //! Pointer to object with model parameters.
   HiggsModel*              higgs_model;
-  //! hadronic c.m.e.
+  //! Hadronic c.m.e.
   double                   s_hadr;
-  //! pointer to phase space
+  //! Pointer to phase space.
   PS_2*                    ps;
-  //! pointer to the parton distribution function
+  //! Pointer to the parton distribution function.
   LHAPDF::PDF*             pdf;
-  //! pointer to the GSL VEGAS state
+  //! Pointer to the GSL VEGAS state.
   gsl_monte_vegas_state*   v_state;
-  //! pointer to histograms with distributions
+  //! Pointer to histograms with distributions.
   DistVec*                 distributions;
-  //! switch to enable distribution collection
+  //! Switch to enable distribution collection.
   bool                     collect_dist;
-  //! include the decays of top/antitop
+  //! Include the decays of top/antitop.
   bool                     tDecay;
-  //! output stream
+  //! Output stream.
   std::ostream&            ost;
-  //! evaluation flags
+  //! Evaluation flags.
   ulong                    eval_flags;
-  //! rescaling factor |full ggH|^2 / |eff. ggH|^2 
+  //! Rescaling factor |full ggH|^2 / |eff. ggH|^2 .
   double                   K;
-  //! delete ps and pdf on destruction
+  //! Delete ps and pdf on destruction.
   bool                     cleanup;           
   
   integrand_par(std::ostream& os = std::cout);
   ~integrand_par();
-  //! compute the weight of the VEGAS algorithm at the current point
+  //! Compute the weight of the VEGAS algorithm at the current point.
   double cmp_v_weight();
-  //! set ps pointer, the former PS instance will be deleted!
+  //! Set ps pointer, the former PS instance will be deleted!
   void SetPS(PS_2* psn) { if (ps!=nullptr) delete ps; ps = psn; }
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /*!
-  Wrapper class for the GSL VEGAS algorithm. Does the integration, checking integration parameters, output.
+  \brief Wrapper class for the GSL VEGAS algorithm.
+  
+  Integrates the function specified by an Integral object. The options to control the VEGAS algorithm are passed via a vegas_par object, an instance of integrand_par is passed to the integrand function. Does some simple consitency checks and ouput.
 */
 class Integrator {
 
  private:
   std::ostream&          d_Ost;
-  //! GSL integrand function 
+  //! GSL integrand function.
   gsl_monte_function     d_GSLIntegrand;
-  //! GSL random number generator
+  //! GSL random number generator.
   gsl_rng*               d_GSLRng;
-  //! GSL VEGAS state
+  //! GSL VEGAS state.
   gsl_monte_vegas_state* d_GSLState;
-  //! if an external state was passed  it will not be deleted after finishing the integration
+  //! If an external state was passed  it will not be deleted after finishing the integration.
   bool d_externalGSLState;
 
-  //! check integrand paramters and vegas parameters for consistency
+  //! Check integrand paramters and vegas parameters for consistency.
   int Init(Integral& integral, integrand_par& ip, vegas_par& vp);
 
  public:
@@ -220,7 +226,7 @@ class Integrator {
   void SetState(gsl_monte_vegas_state* extGSLState) { d_GSLState = extGSLState; d_externalGSLState = true; }
   void DropState() { d_GSLState = nullptr; d_externalGSLState = false; }
   /*!
-    invoces the GSL VEGAS algorithm with parameters set in vp, parameters in ip are handed down to the integrand
+    Invoces the GSL VEGAS algorithm with parameters set in vp, parameters in ip are handed down to the integrand.
   */
   void Integrate(Integral& integral, integrand_par& ip, vegas_par& vp);
   void Reset();

@@ -291,6 +291,31 @@ void LT::apply_G(FV& v)
     }
 }
 
+
+void LT::apply_cpy(FV const &src, FV &trg)
+{
+  for (int i=0;i<4;++i)
+    {
+      for (int j=0;j<4;++j)
+	{
+	  if (M[i][j]==0.0) continue;
+	  trg[i] += M[i][j]*src[j];
+	}
+    }
+}
+void LT::apply_G_cpy(FV const &src, FV &trg)
+{
+  for (int i=0;i<4;++i)
+    {
+      for (int j=0;j<4;++j)
+	{
+	  if (M[i][j]==0.0) continue;
+	  trg[i] += M[i][j]*src[j]*G[j];
+	}
+    }
+}
+
+
 int LT::set_wigner(FV const& P1, FV const& P2)
 {
   double m1 = sqrt(MSQ(P1));
@@ -495,37 +520,49 @@ int LT::set_boost_z(double const& x,bool INV)
 {
   // x = sqrt((1+beta)/(1-beta))
   // -> beta = (1-x^2)/(1+x^2)
+#ifdef DEBUG
   if (x<=0.0 || x>=1.0)
     {
       WARNING("x out of range! provide 0<x<1!");
       return 0;
     }
- 
-  double beta = (x-1.0)/(1.0+x);
-  double gamma= (1.0+x)/(2.0*sqrt(x));
+#endif
 
-  M[0][0] = gamma;
-  M[0][1] = 0.0;
-  M[0][2] = 0.0;
-  M[0][3] = beta*gamma;
-  if (INV) M[0][3] *= (-1);
+  static double x_t = -1000;
 
-  M[1][1] = 1.0;
-  M[1][2] = 0.0;
-  M[1][3] = 0.0;  
+  if (x != x_t)
+    {
+      x_t = x;
+      double beta = (x-1.0)/(1.0+x);
+      double gamma= (1.0+x)/(2.0*sqrt(x));
 
-  M[2][2] = 1.0;
-  M[2][3] = 0.0;  
+      M[0][0] = gamma;
+      M[0][1] = 0.0;
+      M[0][2] = 0.0;
+      M[0][3] = beta*gamma;
 
-  M[3][3] = gamma;
+      M[1][1] = 1.0;
+      M[1][2] = 0.0;
+      M[1][3] = 0.0;  
+
+      M[2][2] = 1.0;
+      M[2][3] = 0.0;  
+
+      M[3][3] = gamma;
 
   
-  for (int i=0;i<4;++i)
-    {
-      for (int j=i+1;j<4;++j)
+      for (int i=0;i<4;++i)
 	{
-	  M[j][i] = M[i][j];
+	  for (int j=i+1;j<4;++j)
+	    {
+	      M[j][i] = M[i][j];
+	    }
 	}
+    }
+  if (INV)
+    {
+      M[0][3] *= (-1);
+      M[3][0] *= (-1);
     }
   return 1;
 }

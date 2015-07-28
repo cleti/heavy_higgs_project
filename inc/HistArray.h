@@ -23,11 +23,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*!
 \typedef Alias for the boost path class.
- */
+*/
 typedef boost::filesystem::path boost_path;
 
 /*!
- Used to specify histograms in the HistArray class. In the default setup there are 6 histograms, one for each contribution: LO QCD, NLO QCD, LO PHIxPHI + LO PHIxQCD, virtual corrections, integrated dipoles and real corrections.
+  Better readable labels for the histograms in the HistArray. In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD)  and real corrections (PHIxPHI + PHIxQCD).
 */
 enum H_Index
   {
@@ -40,7 +40,7 @@ enum H_Index
   };
 
 /*!
-\typedef For input file operations: mapping of table column number to HistArray index.
+\typedef This is used for input file operations: mapping of table column number to HistArray index, i.e. each entry in the map specifies which column in the file is read into which histogram in the array.
  */
 typedef std::map<int,H_Index> H_IndexMap;
 
@@ -54,8 +54,10 @@ extern const H_IndexMap imap_default;
 // stores a histogram for Born(QCD), Born(INT+PHI), (empty), virtual, int. dipoles and real corrections
 #define NHIST 6
 /*!
-  This class stores an array of ROOT TH1D's. In the default setup there are 6 histograms, one for each contribution: LO QCD, NLO QCD, LO PHIxPHI + LO PHIxQCD, virtual corrections, integrated dipoles and real corrections. Use one HistArray for each observable. There are some helper functions for plotting in Functions_Shared.h. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space.
-  \sa Functions_Shared.h
+  \brief This class stores an array of ROOT TH1D's.
+  
+  In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD)  and real corrections (PHIxPHI + PHIxQCD). Use one HistArray for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space.
+  \sa PhaseSpace.h
 */
 class HistArray {
  protected:
@@ -73,8 +75,10 @@ class HistArray {
   std::string d_label_y;
   //! Mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0
   int d_mass_dim;
-
-  //! Histogram ID
+  //! Unique number for the HistArray instance. Derived from the static d_ID.
+  int d_id;
+  
+  //! HistArray ID counter.
   static int d_ID;
   
  public:
@@ -88,7 +92,7 @@ class HistArray {
 	    bool SUMW2 = false);
   ~HistArray() {}
 
-  //! Access a specific histogram in the array.
+  //! Access a specific histogram in the array. Returns pointer to the respective TH1D instance.
   /*!
     \param i Histogram index.
   */
@@ -110,44 +114,57 @@ class HistArray {
   //! Change state of specific histogram without touching the others.
   void ToggleActive(unsigned i) { d_active ^= (1<<i); }
   
-  //! Deactivate all histograms, used for VEGAS warmup run.
+  //! Deactivate all histograms temporarely, used for VEGAS warmup run.
   void Pause() { if (d_active != 0) std::swap(d_active_t,d_active); }
   bool IsPaused() { return !d_active; } 
   
-  //! Reset flags to previous state.
+  //! Reset flags to previous state after Pause() was called.
   void Resume() { if (d_active == 0) std::swap(d_active_t,d_active); }
   
   //! Set the description of the distribution.
   void SetName(std::string const& name) { d_name = name; }
   
   //! Get the description of the distribution, const char* for ROOT classes/functions.
-  const char* GetName() { return d_name.c_str(); }
+  const char* GetName() const { return d_name.c_str(); }
 
+  //! Get x-axis label, const char* for ROOT classes/functions.
+  const char* GetLabX() const { return d_label_x.c_str(); }
+
+  //! Get y-axis label, const char* for ROOT classes/functions.
+  const char* GetLabY() const { return d_label_y.c_str(); }
+  
   //! Get mass dimension of the associated observable.
   int GetMassDim() { return d_mass_dim; }
   
-  //! Fill weight into all active histograms.
+  //! Fill weight into all active histograms. Calls the respective TH1D member function on active histograms.
   /*!
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
   void FillAll(double const& x, double const& wgt) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Fill(x,wgt);} }
   
-  //! Fill weight into a single histogram if activated.
+  //! Fill weight into a single histogram if activated. Calls the respective TH1D member function if the histogram is activated.
   /*!
     \param i Histogram index.
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
   void FillOne(H_Index i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
+
+  //! Create canvas with ratio plot and draw the histgrams.
+  /*!
+    \param writeToRootFile Write canvas and histograms to the ROOT file which is currently opened.
+  */
+  void DrawCanvas(bool writeToRootFile);
   
-  //! Draw all histograms into the currently selected canvas.
+  
+  //! Draw all histograms into the currently selected canvas. Calls the respective TH1D member function.
   /*!
     \param opt ROOT drawing options
   */
   void Draw(const char* opt="") { for (unsigned i=0;i<NHIST;i++) {d_histograms[i].Draw(opt);} }
 
-  //! Rescale all active histograms by a factor of 1/c.
+  //! Rescale all active histograms by a factor of 1/c. Calls the respective TH1D member function.
   void Scale(double c) { for (unsigned i=0;i<NHIST;i++) { if(IsActive(i)) d_histograms[i].Scale(1.0/c); } }
   
   //! normalize all histograms such that sum(b_i) = sigma, where b_i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!!
@@ -156,13 +173,13 @@ class HistArray {
   */
   void Normalize(const double& mScale=1.0, int verb = 0);
 
-  //! Reset all histograms.
+  //! Reset all histograms. Calls the respective TH1D member function.
   /*!
-    \param opt ROOT  options
+    \param opt ROOT options
   */
   void Reset(const char* opt="") { for (unsigned i=0;i<NHIST;i++) {d_histograms[i].Reset(opt);} }
   
-  //! Read data from file into histogram 'i'. The method checks if the histogram binning matches the input data. Expecting format:
+  //! Read data in column 'colNum' of table 'tabNum' in the file specified by 'path' into histogram 'i'. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is:
   /*!
     # table 1
     ...
@@ -174,28 +191,58 @@ class HistArray {
     ...
     ...
   */
-  //! Lines starting with '#' will be ignored. Tables need to be separated with one comment line!
+  //! Lines starting with '#' will be ignored as comments. Tables need to be separated with one comment line!
   /*!
-    \param i Histogram index.
-    \param x The path of the input file.
+    \param i Histogram index, data destination.
+    \param x The path of the input file, data source.
     \param tabNum Pick table  'tabNum' from the input data in the file and copy to histogram 'i'.
     \param colNum Pick column 'colNum' from this table.
   */
-  int ReadFile(H_Index i, const boost_path& path, int tabNum, int colNum);
+  int ReadFile(H_Index i,
+	       const boost_path& path,
+	       int tabNum,
+	       int colNum);
+
+
+  //! Read data in the next table from ifstream 'file' into histogram 'i'. The IndexMap specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is:
+  /*!
+    # table 1
+    ...
+    lower_bin_edge   data_col_1  ...  data_col_n
+    ...
+    # table 2
+    ...
+    lower_bin_edge   data_col_1  ...  data_col_n
+    ...
+    ...
+  */
+  //! Lines starting with '#' will be ignored as comments. Tables need to be separated with one comment line!
+  /*!
+    \param file Input file, data source.
+    \param norm Normalization factor applied to all data elements read from the ifstream.
+    \param imap IndexMap, specifies which source column is copied to which histogram in the array.
+    \param discardCurrentTable Jump to the next table if previous read operation has left the ifstream in the middle of a table.
+  */  
   int ReadTable(
 		std::ifstream& file,
 		const double& norm = 1.0,
 		const H_IndexMap& imap = imap_default,
 		bool discardCurrentTable=false);
    
-  
+  //! Print content of the HistArray instance to the specified std::ostream.
   void Print(std::ostream& ost);
+
+  //! Shows which histogram in the array is currently active.
   void Status(std::ostream& ost);
 
-  // layout settings for the generated TH1D's
-  static double LabelSizeY;
-  static double TitleOffsetY;
+  //! Get the unique ID of this HistArray instance.
+  int GetID() const { return d_id; }
   
+  // layout settings for the generated TH1D's
+  static double LabelSize;
+  static double TitleOffset;
+  static double CanvasLeftMargin;
+  static double CanvasBottomMargin;
 };
 
 
@@ -220,6 +267,8 @@ extern double DIST_A_U;
 
 //! top-antitop invariant mass distributions
 extern HistArray Mtt_Histograms;
+
+
 //! top transverse momentum distributions
 extern HistArray PT1_Histograms;
 //! antitop transverse momentum distributions
@@ -233,14 +282,18 @@ extern HistArray Y2_Histograms;
 //! top-antitop rapidity difference distributions
 extern HistArray DY_Histograms;
 
-// angular distributions (spin dependent)
-extern HistArray PHIT12_Histograms;
-extern HistArray Dopen_Histograms;
-extern HistArray OCP1_Histograms;
-extern HistArray B1_Histograms;
-extern HistArray B2_Histograms;
-extern HistArray Chel_Histograms;
 
+// angular distributions (spin dependent)
+//! Mtt distribution of lepton opening angle correlation
+extern HistArray Dopen_Histograms;
+//! Mtt distribution of CP-odd triple correlation
+extern HistArray OCP1_Histograms;
+//! Mtt distribution of top transverse polarization
+extern HistArray B1_Histograms;
+//! Mtt distribution of antitop transverse polarization
+extern HistArray B2_Histograms;
+//! Mtt distribution of helicity angle correlation
+extern HistArray Chel_Histograms;
 
 
 
@@ -254,6 +307,8 @@ class PS_2;
 typedef double (*OBSFnc)(const PS_2*);
 
 /*!
+  \brief Class for differential distributions.
+  
   The distribution class holds a pointer to a storage object (HistArray) and an associated observable function (OBSFnc). Some predefined OBSFnc's can be found in PhaseSpace.h.
   \sa PhaseSpace.h
 */
@@ -282,10 +337,18 @@ class Distribution {
   */  
   double         operator()(const PS_2* ps) { return d_fnc(ps);  }
   virtual double Avg(const PS_2* ps)        { return 1.0;    }
+
+  //! Fill histograms with data obtained from the PS object.
+  /*!
+    \param ps Phase space object
+  */
+  virtual void Fill(const PS_2* ps);
 };
 
 
 /*!
+  \brief Class for differential distributions of mean values.
+  
   The mean distribution is an extension of the distribution class. It stores a pointer to a second observable function (OBSFnc). The class serves to compute distributions of the mean value of this second observable.
   \sa PhaseSpace.h
 */
@@ -307,6 +370,12 @@ class MeanDistribution: public Distribution {
     \param ps Phase space point
   */    
   double Avg(const PS_2* ps)        { return d_fnc_mean(ps); }
+
+  //! Fill histograms with data obtained from the PS object.
+  /*!
+    \param ps Phase space object
+  */
+  void Fill(const PS_2* ps);
 };
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////

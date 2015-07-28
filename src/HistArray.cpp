@@ -25,11 +25,11 @@ static std::string cat(std::string str, int number)
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-// histogram array counter to generate unique labels for each ROOT histogram
+// global histogram array counter to generate unique labels for each ROOT histogram
 int HistArray::d_ID = 0;
 // layout settings for the generated TH1D's
-double HistArray::LabelSizeY   = 0.028;
-double HistArray::TitleOffsetY = 1.2;
+double HistArray::LabelSize   = 0.025;
+double HistArray::TitleOffset = 1.3;
 
 
 HistArray::HistArray(int nbinsx,
@@ -52,13 +52,15 @@ HistArray::HistArray(int nbinsx,
   d_name(name),
   d_label_x(),
   d_label_y(),
-  d_mass_dim(mass_dim)
-
+  d_mass_dim(mass_dim),
+  d_id(d_ID)
 {
   for (int i=0;i<NHIST;++i)
     {
-      d_histograms[i].GetYaxis()->SetLabelSize(HistArray::LabelSizeY);
-      d_histograms[i].GetYaxis()->SetTitleOffset(HistArray::TitleOffsetY);
+      d_histograms[i].GetXaxis()->SetLabelSize(HistArray::LabelSize);
+      d_histograms[i].GetXaxis()->SetTitleOffset(HistArray::TitleOffset);
+      d_histograms[i].GetYaxis()->SetLabelSize(HistArray::LabelSize);
+      d_histograms[i].GetYaxis()->SetTitleOffset(HistArray::TitleOffset);
       //d_histograms[i].GetYaxis()->SetMaxDigits(3);
       d_histograms[i].GetXaxis()->SetTitle(lab_x.c_str());
       d_histograms[i].GetYaxis()->SetTitle(lab_y.c_str());
@@ -88,6 +90,7 @@ void HistArray::Normalize(const double& mScale, int verb)
 
 	      // ROOT counts bins from 1 to NBinsX, 0 and NBinsX+1 are underflow and overflow
 	      binc = d_histograms[i].GetBinContent(j);
+	      // normalize to bin-width
 	      d_histograms[i].SetBinContent(j,binc*fmass/(d_histograms[i].GetBinWidth(j)));
 	    }
 	  if (verb>1) std::cout << "  hist " << i <<  " done..\n";
@@ -476,6 +479,11 @@ int HistArray::ReadTable(
   return 1;
 }
 
+
+void HistArray::DrawCanvas(bool writeToRootFile)
+{
+  
+}
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -502,7 +510,6 @@ HistArray Mtt_Histograms(33,DIST_M_L,DIST_M_U,1,
 			 "Top/Antitop invariant mass distribution",
 			 "M_{t#bar{t}} [GeV]",
 			 "#frac{d#sigma}{dM_{t#bar{t}}} [pb/GeV]");
-
 HistArray PT1_Histograms(22,DIST_P_L,DIST_P_U,1,
 			 "Top transverse momentum distribution",
 			 "p_{T,t} [GeV]",
@@ -528,13 +535,8 @@ HistArray DY_Histograms(12,DIST_Y_L,DIST_Y_U,0,
 			"#Delta |y|",
 			"#frac{d#sigma}{d #Delta |y|} [pb]");
 
-const int NbinsS = 86;
 // spin-dependent observables
-HistArray PHIT12_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
-			    "Lepton-Anti-lepton transversal opening angle [lab frame]",
-			    "M_{t#bar{t}} [GeV]",
-			    "D_{T,open}^{lab} [pb/GeV]",
-			    true);
+const int NbinsS = 86;
 HistArray Dopen_Histograms(NbinsS,DIST_M_L,DIST_M_U2,1,
 			   "Lepton-Anti-lepton opening angle [ttbar z.m.f.]",
 			   "M_{t#bar{t}} [GeV]",
@@ -601,3 +603,8 @@ int ReadData(
 
 
 
+void Distribution::Fill(const PS_2* ps)
+{
+
+
+}

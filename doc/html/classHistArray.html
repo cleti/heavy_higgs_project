@@ -94,6 +94,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>This class stores an array of ROOT TH1D's.  
+ <a href="classHistArray.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="HistArray_8h_source.html">HistArray.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -102,7 +105,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>HistArray</b> (int nbinsx, double xlow, double xup, int mass_dim, std::string const &amp;name=&quot;&quot;, std::string const &amp;lab_x=&quot;&quot;, std::string const &amp;lab_y=&quot;&quot;, bool SUMW2=false)</td></tr>
 <tr class="separator:a0458829293fd8da3993d7bde7843e8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a914db159343d33fdb5b2ccb9210792fa"><td class="memItemLeft" align="right" valign="top">TH1D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a914db159343d33fdb5b2ccb9210792fa">operator[]</a> (<a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> i)</td></tr>
-<tr class="memdesc:a914db159343d33fdb5b2ccb9210792fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a specific histogram in the array.  <a href="#a914db159343d33fdb5b2ccb9210792fa">More...</a><br /></td></tr>
+<tr class="memdesc:a914db159343d33fdb5b2ccb9210792fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a specific histogram in the array. Returns pointer to the respective TH1D instance.  <a href="#a914db159343d33fdb5b2ccb9210792fa">More...</a><br /></td></tr>
 <tr class="separator:a914db159343d33fdb5b2ccb9210792fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab324fc243624240fe661ab18529f70c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab324fc243624240fe661ab18529f70c3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ab324fc243624240fe661ab18529f70c3">IsActive</a> (unsigned i)</td></tr>
@@ -126,64 +129,90 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:ab6d76cb0d5bf1915dbc48f53ce498bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27f9acb7029ec4c90b4476e5bc26037d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27f9acb7029ec4c90b4476e5bc26037d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a27f9acb7029ec4c90b4476e5bc26037d">Pause</a> ()</td></tr>
-<tr class="memdesc:a27f9acb7029ec4c90b4476e5bc26037d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate all histograms, used for VEGAS warmup run. <br /></td></tr>
+<tr class="memdesc:a27f9acb7029ec4c90b4476e5bc26037d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate all histograms temporarely, used for VEGAS warmup run. <br /></td></tr>
 <tr class="separator:a27f9acb7029ec4c90b4476e5bc26037d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29c4b8cbb3613f5220e32be5559c55d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29c4b8cbb3613f5220e32be5559c55d7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPaused</b> ()</td></tr>
 <tr class="separator:a29c4b8cbb3613f5220e32be5559c55d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6afeb98498add41c6f810eb68ed28ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6afeb98498add41c6f810eb68ed28ba"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ab6afeb98498add41c6f810eb68ed28ba">Resume</a> ()</td></tr>
-<tr class="memdesc:ab6afeb98498add41c6f810eb68ed28ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset flags to previous state. <br /></td></tr>
+<tr class="memdesc:ab6afeb98498add41c6f810eb68ed28ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset flags to previous state after <a class="el" href="classHistArray.html#a27f9acb7029ec4c90b4476e5bc26037d" title="Deactivate all histograms temporarely, used for VEGAS warmup run. ">Pause()</a> was called. <br /></td></tr>
 <tr class="separator:ab6afeb98498add41c6f810eb68ed28ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af40b91f1863ab8e68bdf2ac11e8f9767"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af40b91f1863ab8e68bdf2ac11e8f9767"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#af40b91f1863ab8e68bdf2ac11e8f9767">SetName</a> (std::string const &amp;name)</td></tr>
 <tr class="memdesc:af40b91f1863ab8e68bdf2ac11e8f9767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the description of the distribution. <br /></td></tr>
 <tr class="separator:af40b91f1863ab8e68bdf2ac11e8f9767"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fc7b2ffd135531fee3bdb47c4c00c2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fc7b2ffd135531fee3bdb47c4c00c2b"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a9fc7b2ffd135531fee3bdb47c4c00c2b">GetName</a> ()</td></tr>
-<tr class="memdesc:a9fc7b2ffd135531fee3bdb47c4c00c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the description of the distribution, const char* for ROOT classes/functions. <br /></td></tr>
-<tr class="separator:a9fc7b2ffd135531fee3bdb47c4c00c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad893a01d5a59715e33ce2a67b316f9e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad893a01d5a59715e33ce2a67b316f9e1"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ad893a01d5a59715e33ce2a67b316f9e1">GetName</a> () const </td></tr>
+<tr class="memdesc:ad893a01d5a59715e33ce2a67b316f9e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the description of the distribution, const char* for ROOT classes/functions. <br /></td></tr>
+<tr class="separator:ad893a01d5a59715e33ce2a67b316f9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e41187ec5f353409d7ad4e0208973f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e41187ec5f353409d7ad4e0208973f9"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a0e41187ec5f353409d7ad4e0208973f9">GetLabX</a> () const </td></tr>
+<tr class="memdesc:a0e41187ec5f353409d7ad4e0208973f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get x-axis label, const char* for ROOT classes/functions. <br /></td></tr>
+<tr class="separator:a0e41187ec5f353409d7ad4e0208973f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ebf036d68aec59b36d02768d2909b90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ebf036d68aec59b36d02768d2909b90"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a2ebf036d68aec59b36d02768d2909b90">GetLabY</a> () const </td></tr>
+<tr class="memdesc:a2ebf036d68aec59b36d02768d2909b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get y-axis label, const char* for ROOT classes/functions. <br /></td></tr>
+<tr class="separator:a2ebf036d68aec59b36d02768d2909b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f028b5c80394b8e5a449c137d43f63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2f028b5c80394b8e5a449c137d43f63"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#aa2f028b5c80394b8e5a449c137d43f63">GetMassDim</a> ()</td></tr>
 <tr class="memdesc:aa2f028b5c80394b8e5a449c137d43f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get mass dimension of the associated observable. <br /></td></tr>
 <tr class="separator:aa2f028b5c80394b8e5a449c137d43f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8d7189d1f2b9710a3228deac3eb1fa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ae8d7189d1f2b9710a3228deac3eb1fa4">FillAll</a> (double const &amp;x, double const &amp;wgt)</td></tr>
-<tr class="memdesc:ae8d7189d1f2b9710a3228deac3eb1fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill weight into all active histograms.  <a href="#ae8d7189d1f2b9710a3228deac3eb1fa4">More...</a><br /></td></tr>
+<tr class="memdesc:ae8d7189d1f2b9710a3228deac3eb1fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill weight into all active histograms. Calls the respective TH1D member function on active histograms.  <a href="#ae8d7189d1f2b9710a3228deac3eb1fa4">More...</a><br /></td></tr>
 <tr class="separator:ae8d7189d1f2b9710a3228deac3eb1fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f29f32f1eab7ee9315b93000387bd56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a1f29f32f1eab7ee9315b93000387bd56">FillOne</a> (<a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> i, double const &amp;x, double const &amp;wgt)</td></tr>
-<tr class="memdesc:a1f29f32f1eab7ee9315b93000387bd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill weight into a single histogram if activated.  <a href="#a1f29f32f1eab7ee9315b93000387bd56">More...</a><br /></td></tr>
+<tr class="memdesc:a1f29f32f1eab7ee9315b93000387bd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill weight into a single histogram if activated. Calls the respective TH1D member function if the histogram is activated.  <a href="#a1f29f32f1eab7ee9315b93000387bd56">More...</a><br /></td></tr>
 <tr class="separator:a1f29f32f1eab7ee9315b93000387bd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affb2356ef7063d7dad7873fe41dd95c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#affb2356ef7063d7dad7873fe41dd95c8">DrawCanvas</a> (bool writeToRootFile)</td></tr>
+<tr class="memdesc:affb2356ef7063d7dad7873fe41dd95c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create canvas with ratio plot and draw the histgrams.  <a href="#affb2356ef7063d7dad7873fe41dd95c8">More...</a><br /></td></tr>
+<tr class="separator:affb2356ef7063d7dad7873fe41dd95c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ebaa67b67958c1ee70ebdb056b5a389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389">Draw</a> (const char *<a class="el" href="structopt.html">opt</a>=&quot;&quot;)</td></tr>
-<tr class="memdesc:a4ebaa67b67958c1ee70ebdb056b5a389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw all histograms into the currently selected canvas.  <a href="#a4ebaa67b67958c1ee70ebdb056b5a389">More...</a><br /></td></tr>
+<tr class="memdesc:a4ebaa67b67958c1ee70ebdb056b5a389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw all histograms into the currently selected canvas. Calls the respective TH1D member function.  <a href="#a4ebaa67b67958c1ee70ebdb056b5a389">More...</a><br /></td></tr>
 <tr class="separator:a4ebaa67b67958c1ee70ebdb056b5a389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64fb4832bfab2d8e2e47e56d99902236"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64fb4832bfab2d8e2e47e56d99902236"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">Scale</a> (double c)</td></tr>
-<tr class="memdesc:a64fb4832bfab2d8e2e47e56d99902236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescale all active histograms by a factor of 1/c. <br /></td></tr>
+<tr class="memdesc:a64fb4832bfab2d8e2e47e56d99902236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescale all active histograms by a factor of 1/c. Calls the respective TH1D member function. <br /></td></tr>
 <tr class="separator:a64fb4832bfab2d8e2e47e56d99902236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c7edebf7ddf7d5dcc2cbb30f46601e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a2c7edebf7ddf7d5dcc2cbb30f46601e5">Normalize</a> (const double &amp;mScale=1.0, int verb=0)</td></tr>
 <tr class="memdesc:a2c7edebf7ddf7d5dcc2cbb30f46601e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">normalize all histograms such that sum(b_i) = sigma, where b_i are the bins contents and sigma is the total cross section. This function assumes equal bin widths!!!  <a href="#a2c7edebf7ddf7d5dcc2cbb30f46601e5">More...</a><br /></td></tr>
 <tr class="separator:a2c7edebf7ddf7d5dcc2cbb30f46601e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75049ae9fb04661cdd2f3c3e67550568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a75049ae9fb04661cdd2f3c3e67550568">Reset</a> (const char *<a class="el" href="structopt.html">opt</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a75049ae9fb04661cdd2f3c3e67550568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all histograms. Calls the respective TH1D member function.  <a href="#a75049ae9fb04661cdd2f3c3e67550568">More...</a><br /></td></tr>
+<tr class="separator:a75049ae9fb04661cdd2f3c3e67550568"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86df487949773c027114237875ba7c94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a86df487949773c027114237875ba7c94">ReadFile</a> (<a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> i, const boost_path &amp;path, int tabNum, int colNum)</td></tr>
-<tr class="memdesc:a86df487949773c027114237875ba7c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from file into histogram 'i'. The method checks if the histogram binning matches the input data. Expecting format:  <a href="#a86df487949773c027114237875ba7c94">More...</a><br /></td></tr>
+<tr class="memdesc:a86df487949773c027114237875ba7c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data in column 'colNum' of table 'tabNum' in the file specified by 'path' into histogram 'i'. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is:  <a href="#a86df487949773c027114237875ba7c94">More...</a><br /></td></tr>
 <tr class="separator:a86df487949773c027114237875ba7c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae2aa8b442f3dd9680964d2b5ad6809"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ae2aa8b442f3dd9680964d2b5ad6809"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ReadTable</b> (std::ifstream &amp;file, const H_IndexMap &amp;ind)</td></tr>
-<tr class="separator:a6ae2aa8b442f3dd9680964d2b5ad6809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad41461653c6d0a87d8b36db233a71a0f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ad41461653c6d0a87d8b36db233a71a0f">ReadTable</a> (std::ifstream &amp;file, const double &amp;norm=1.0, const H_IndexMap &amp;imap=<a class="el" href="HistArray_8h.html#a8f6e68438441b2967eb8e97c8b4c2380">imap_default</a>, bool discardCurrentTable=false)</td></tr>
+<tr class="memdesc:ad41461653c6d0a87d8b36db233a71a0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data in the next table from ifstream 'file' into histogram 'i'. The IndexMap specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is:  <a href="#ad41461653c6d0a87d8b36db233a71a0f">More...</a><br /></td></tr>
+<tr class="separator:ad41461653c6d0a87d8b36db233a71a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb997e3f81ccdf02e7964dcbac1bff6e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Print</b> (std::ostream &amp;ost)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#adb997e3f81ccdf02e7964dcbac1bff6e">Print</a> (std::ostream &amp;ost)</td></tr>
+<tr class="memdesc:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance to the specified std::ostream. <br /></td></tr>
 <tr class="separator:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e56292db3641c5b80aaf0eb089b2d41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e56292db3641c5b80aaf0eb089b2d41"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Status</b> (std::ostream &amp;ost)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a1e56292db3641c5b80aaf0eb089b2d41">Status</a> (std::ostream &amp;ost)</td></tr>
+<tr class="memdesc:a1e56292db3641c5b80aaf0eb089b2d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows which histogram in the array is currently active. <br /></td></tr>
 <tr class="separator:a1e56292db3641c5b80aaf0eb089b2d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5957d6ee5e35e9608adbfe39b6bac23c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a5957d6ee5e35e9608adbfe39b6bac23c">GetID</a> () const </td></tr>
+<tr class="memdesc:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the unique ID of this <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance. <br /></td></tr>
+<tr class="separator:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aa412b087fd57054299b360d56aea1aa0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa412b087fd57054299b360d56aea1aa0"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><b>LabelSizeY</b> = 0.028</td></tr>
-<tr class="separator:aa412b087fd57054299b360d56aea1aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80007e442f992220a29883040013931e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80007e442f992220a29883040013931e"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><b>TitleOffsetY</b> = 1.2</td></tr>
-<tr class="separator:a80007e442f992220a29883040013931e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845bfc93a180b366d44e8b24eb64a580"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a845bfc93a180b366d44e8b24eb64a580"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><b>LabelSize</b> = 0.025</td></tr>
+<tr class="separator:a845bfc93a180b366d44e8b24eb64a580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a6c76e60d235edbc672c7ce0fbb760"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01a6c76e60d235edbc672c7ce0fbb760"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><b>TitleOffset</b> = 1.3</td></tr>
+<tr class="separator:a01a6c76e60d235edbc672c7ce0fbb760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9428401fbbcf2ed333ac20ad65ef1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b9428401fbbcf2ed333ac20ad65ef1a"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><b>CanvasLeftMargin</b></td></tr>
+<tr class="separator:a3b9428401fbbcf2ed333ac20ad65ef1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af651ef39b498decd7dda5550ef13f357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af651ef39b498decd7dda5550ef13f357"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><b>CanvasBottomMargin</b></td></tr>
+<tr class="separator:af651ef39b498decd7dda5550ef13f357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -193,15 +222,15 @@ TH1D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a53fda50a10b8ba766d44b789313c64c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6faae6b22f5dc62ba9c664a93e8ea82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6faae6b22f5dc62ba9c664a93e8ea82"></a>
 unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ae6faae6b22f5dc62ba9c664a93e8ea82">d_active</a></td></tr>
-<tr class="memdesc:ae6faae6b22f5dc62ba9c664a93e8ea82"><td class="mdescLeft">&#160;</td><td class="mdescRight">These flags indicate which histogram in the array is active, i.e. gets filled if <a class="el" href="classHistArray.html#ae8d7189d1f2b9710a3228deac3eb1fa4" title="Fill weight into all active histograms. ">FillAll()</a>/FillOne() is called. <br /></td></tr>
+<tr class="memdesc:ae6faae6b22f5dc62ba9c664a93e8ea82"><td class="mdescLeft">&#160;</td><td class="mdescRight">These flags indicate which histogram in the array is active, i.e. gets filled if <a class="el" href="classHistArray.html#ae8d7189d1f2b9710a3228deac3eb1fa4" title="Fill weight into all active histograms. Calls the respective TH1D member function on active histogram...">FillAll()</a>/FillOne() is called. <br /></td></tr>
 <tr class="separator:ae6faae6b22f5dc62ba9c664a93e8ea82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac477be77aa121bf1cbeea842debb2579"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac477be77aa121bf1cbeea842debb2579"></a>
 unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ac477be77aa121bf1cbeea842debb2579">d_active_t</a></td></tr>
-<tr class="memdesc:ac477be77aa121bf1cbeea842debb2579"><td class="mdescLeft">&#160;</td><td class="mdescRight">tmp. flags, used in <a class="el" href="classHistArray.html#a27f9acb7029ec4c90b4476e5bc26037d" title="Deactivate all histograms, used for VEGAS warmup run. ">Pause()</a>/Resume() <br /></td></tr>
+<tr class="memdesc:ac477be77aa121bf1cbeea842debb2579"><td class="mdescLeft">&#160;</td><td class="mdescRight">tmp. flags, used in <a class="el" href="classHistArray.html#a27f9acb7029ec4c90b4476e5bc26037d" title="Deactivate all histograms temporarely, used for VEGAS warmup run. ">Pause()</a>/Resume() <br /></td></tr>
 <tr class="separator:ac477be77aa121bf1cbeea842debb2579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a725babbcaabff43acabfbcd8a50eaf76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a725babbcaabff43acabfbcd8a50eaf76"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a725babbcaabff43acabfbcd8a50eaf76">d_name</a></td></tr>
-<tr class="memdesc:a725babbcaabff43acabfbcd8a50eaf76"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classDistribution.html">Distribution</a> name. <br /></td></tr>
+<tr class="memdesc:a725babbcaabff43acabfbcd8a50eaf76"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classDistribution.html" title="Class for differential distributions. ">Distribution</a> name. <br /></td></tr>
 <tr class="separator:a725babbcaabff43acabfbcd8a50eaf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abda4dd3f06a82c34fff098de0dbcd75a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abda4dd3f06a82c34fff098de0dbcd75a"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#abda4dd3f06a82c34fff098de0dbcd75a">d_label_x</a></td></tr>
@@ -215,16 +244,21 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ac682fdf0aeedf8f0b9fb8c4c4b1fee71">d_mass_dim</a></td></tr>
 <tr class="memdesc:ac682fdf0aeedf8f0b9fb8c4c4b1fee71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mass dimension of the observable, needed for proper normalization, for example [M_tt]=1, [Y_t]=0. <br /></td></tr>
 <tr class="separator:ac682fdf0aeedf8f0b9fb8c4c4b1fee71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b61b8b56cd4b0ca27d16855d4e1aef3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a2b61b8b56cd4b0ca27d16855d4e1aef3">d_id</a></td></tr>
+<tr class="memdesc:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique number for the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance. Derived from the static d_ID. <br /></td></tr>
+<tr class="separator:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a01616b3115c8b243e2bd924788d47589"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01616b3115c8b243e2bd924788d47589"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">d_ID</a> = 0</td></tr>
-<tr class="memdesc:a01616b3115c8b243e2bd924788d47589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Histogram ID. <br /></td></tr>
+<tr class="memdesc:a01616b3115c8b243e2bd924788d47589"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> ID counter. <br /></td></tr>
 <tr class="separator:a01616b3115c8b243e2bd924788d47589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class stores an array of ROOT TH1D's. In the default setup there are 6 histograms, one for each contribution: LO QCD, NLO QCD, LO PHIxPHI + LO PHIxQCD, virtual corrections, integrated dipoles and real corrections. Use one <a class="el" href="classHistArray.html">HistArray</a> for each observable. There are some helper functions for plotting in <a class="el" href="Functions__Shared_8h.html" title="Interface for the evaluation of the real corrections to the process pp -> ttbar +X. ">Functions_Shared.h</a>. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="Functions__Shared_8h.html" title="Interface for the evaluation of the real corrections to the process pp -> ttbar +X. ">Functions_Shared.h</a> </dd></dl>
+<div class="textblock"><p>This class stores an array of ROOT TH1D's. </p>
+<p>In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD) and real corrections (PHIxPHI + PHIxQCD). Use one <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="HistArray_8h_source.html#l00062">62</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -250,7 +284,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Draw all histograms into the currently selected canvas. </p>
+<p>Draw all histograms into the currently selected canvas. Calls the respective TH1D member function. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">opt</td><td>ROOT drawing options </td></tr>
@@ -258,7 +292,33 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00150">150</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00165">165</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affb2356ef7063d7dad7873fe41dd95c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HistArray::DrawCanvas </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>writeToRootFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create canvas with ratio plot and draw the histgrams. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">writeToRootFile</td><td>Write canvas and histograms to the ROOT file which is currently opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00483">483</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +354,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Fill weight into all active histograms. </p>
+<p>Fill weight into all active histograms. Calls the respective TH1D member function on active histograms. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>value of the observable -&gt; specifies the bin that will be filled </td></tr>
@@ -303,7 +363,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00136">136</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00144">144</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -345,7 +405,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Fill weight into a single histogram if activated. </p>
+<p>Fill weight into a single histogram if activated. Calls the respective TH1D member function if the histogram is activated. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Histogram index. </td></tr>
@@ -355,7 +415,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00144">144</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00152">152</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -391,7 +451,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00060">60</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00074">74</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -417,7 +477,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Access a specific histogram in the array. </p>
+<p>Access a specific histogram in the array. Returns pointer to the respective TH1D instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Histogram index. </td></tr>
@@ -425,7 +485,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00097">97</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00099">99</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -465,21 +525,109 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
       </table>
 </div><div class="memdoc">
 
-<p>Read data from file into histogram 'i'. The method checks if the histogram binning matches the input data. Expecting format: </p>
+<p>Read data in column 'colNum' of table 'tabNum' in the file specified by 'path' into histogram 'i'. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is: </p>
 <h1>table 1</h1>
 <p>... lower_bin_edge | data_col_1 | ... | data_col_n ... </p><h1>table 2</h1>
-<p>... lower_bin_edge | data_col_1 | ... | data_col_n ... ...Lines starting with '#' will be ignored. Tables need to be separated with one comment line!</p>
+<p>... lower_bin_edge | data_col_1 | ... | data_col_n ... ...Lines starting with '#' will be ignored as comments. Tables need to be separated with one comment line!</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Histogram index. </td></tr>
-    <tr><td class="paramname">x</td><td>The path of the input file. </td></tr>
+    <tr><td class="paramname">i</td><td>Histogram index, data destination. </td></tr>
+    <tr><td class="paramname">x</td><td>The path of the input file, data source. </td></tr>
     <tr><td class="paramname">tabNum</td><td>Pick table 'tabNum' from the input data in the file and copy to histogram 'i'. </td></tr>
     <tr><td class="paramname">colNum</td><td>Pick column 'colNum' from this table. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00183">183</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00198">198</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad41461653c6d0a87d8b36db233a71a0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int HistArray::ReadTable </td>
+          <td>(</td>
+          <td class="paramtype">std::ifstream &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>norm</em> = <code>1.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const H_IndexMap &amp;&#160;</td>
+          <td class="paramname"><em>imap</em> = <code><a class="el" href="HistArray_8h.html#a8f6e68438441b2967eb8e97c8b4c2380">imap_default</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>discardCurrentTable</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read data in the next table from ifstream 'file' into histogram 'i'. The IndexMap specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is: </p>
+<h1>table 1</h1>
+<p>... lower_bin_edge data_col_1 ... data_col_n ... </p><h1>table 2</h1>
+<p>... lower_bin_edge data_col_1 ... data_col_n ... ...Lines starting with '#' will be ignored as comments. Tables need to be separated with one comment line!</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Input file, data source. </td></tr>
+    <tr><td class="paramname">norm</td><td>Normalization factor applied to all data elements read from the ifstream. </td></tr>
+    <tr><td class="paramname">imap</td><td>IndexMap, specifies which source column is copied to which histogram in the array. </td></tr>
+    <tr><td class="paramname">discardCurrentTable</td><td>Jump to the next table if previous read operation has left the ifstream in the middle of a table. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00346">346</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a75049ae9fb04661cdd2f3c3e67550568"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HistArray::Reset </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>opt</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset all histograms. Calls the respective TH1D member function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opt</td><td>ROOT options </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00180">180</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>

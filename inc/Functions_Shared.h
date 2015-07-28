@@ -1,7 +1,7 @@
 
 
 /*! \file
-  \brief Interface for the evaluation of the real corrections to the process pp -> ttbar +X.
+  \brief Some shared helper functions.
 */ 
 
 #ifndef FUNCTIONS_SHARED_H
@@ -47,7 +47,7 @@ extern char *program_name;
 extern struct option const longopts[];
 
 
-
+//! Structure to represent the command line options given by the user.
 struct opt {
   int int_flags;
   int n_calls;
@@ -74,8 +74,11 @@ struct opt {
 
 extern struct opt g_options;
 
+//! Parse the command line options given by the user. The results are stored in g_options.
 void parse_arguments(int argc, char** argv, struct opt& options, HiggsModel& hm);
+//! Print usage information.
 void usage (int status);
+//! Print program version
 void version (int status);
 
 int read_qcd_data(DistVec* dist, std::string const& path, std::string const& filename);
@@ -103,41 +106,22 @@ struct CanvasPtr
   TPad* p1_1;
   TPad* p1_2;
 };
-struct DoubleCanvasPtr
-{
-  CanvasPtr c1;
-  CanvasPtr c2;
-};
 
-CanvasPtr MakeCanvas(const char* title,
+CanvasPtr MakeCanvas(const HistArray& histograms,
 		     int width=1000,
 		     int height=1000,
-		     TCanvas* c = nullptr,
 		     double left_marg_scale=1.0,
 		     double bottom_marg_scale=1.0);
 
-DoubleCanvasPtr MakeDoubleCanvas(const char* title, int width=2000, int height=1000);
 void DrawDistribution(
 		      CanvasPtr& canvas,
 		      HistArray& histograms,
 		      const HiggsModel& THDM,
-		      double* norm,
-		      std::string const& titleX,
-		      std::string const& titleY,
 		      bool WRITE=true,
 		      bool NLO=true,
 		      int CD=0);
-void DrawTwoDistributions(
-			  DoubleCanvasPtr& canvas,
-			  HistArray& histogramsL,
-			  HistArray& histogramsR,
-			  const HiggsModel& THDM,
-			  double* norm,
-			  std::string const& titleLX,std::string const& titleRX,
-			  std::string const& titleLY,std::string const& titleRY,
-			  bool WRITE=true,
-			  bool NLO=true);
-void SetRatioPlot(TH1D* hist,std::string xtitle = "");
+
+void SetRatioPlot(TH1D* hist);
 void TH1RelDiff(TH1D* h1, const TH1D* h2);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

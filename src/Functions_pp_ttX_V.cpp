@@ -82,6 +82,7 @@ inline double Z2M (
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_SE_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_4Gluon_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_Vertex1_eps0_g4.cpp"
+#include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_Vertex2_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_Box1_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_Box2_eps0_g4.cpp"
 #include "../amp/virtual/fullSpin/2RE_HIGGSxQCD_NLO_V_Box3_eps0_g4.cpp"
@@ -227,36 +228,79 @@ double Eval_V(
     {
       // 2RE[PHI0 x QCD1] interference terms classified by QCD1 diagram type
       // self-energy diagram including ren. counter term
-      res += Eval_V_SE (ps,ap,hp);
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_SE)
+	{
+#endif      
+	  res += Eval_V_SE (ps,ap,hp);
+#ifdef DEBUG
+	  CHECKNAN(res);
+	}
 #endif
+      
       // 4g vertex diagram
-      res += Eval_V_4G (ps,ap,hp);
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_4G)
+	{
+#endif         
+	  res += Eval_V_4G (ps,ap,hp);
+#ifdef DEBUG
+	  CHECKNAN(res);
+      	}
 #endif
+      
       // qg veretx correction (upper and lower vertex) including ren. counter term
-      res += 2.0*Eval_V_V1 (ps,ap,hp); 
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_V1)
+	{
 #endif
+#ifdef WITH_T_SPIN
+	  res += Eval_V_V1 (ps,ap,hp);
+	  res += Eval_V_V2 (ps,ap,hp);
+#else
+	  // the two vertex corrections are equal if summed over top-spins
+	  // -> evaluate only once
+	  res += 2.0 * Eval_V_V1 (ps,ap,hp);
+#endif
+#ifdef DEBUG
+	  CHECKNAN(res);
+      	}
+#endif
+      
       // box 1
-      res += Eval_V_B1 (ps,ap,hp);
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_B1)
+	{
+#endif         
+	  res += Eval_V_B1 (ps,ap,hp);
+#ifdef DEBUG
+	  CHECKNAN(res);
+      	}
 #endif
+      
       // box 2
-      res += Eval_V_B2 (ps,ap,hp);
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_B2)
+	{
+#endif         
+	  res += Eval_V_B2 (ps,ap,hp);
+#ifdef DEBUG
+	  CHECKNAN(res);
+      	}
 #endif
+      
       // box 3
-      res += Eval_V_B3 (ps,ap,hp);
 #ifdef DEBUG
-      CHECKNAN(res);
+      if (flags & F_EVAL_V_B3)
+	{
+#endif         
+	  res += Eval_V_B3 (ps,ap,hp);
+#ifdef DEBUG
+	  CHECKNAN(res);
+      	}
 #endif
     }
+  
   // 2RE[PHI1 x QCD0] interference terms
   if (flags & F_EVAL_V_PHI1xQCD0)
     {
@@ -265,6 +309,7 @@ double Eval_V(
       CHECKNAN(res);
 #endif
     }
+
   // 2RE[PHI1xPHI0] interference terms
   if (flags & F_EVAL_V_PHIxPHI)
     {

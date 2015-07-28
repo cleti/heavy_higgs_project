@@ -166,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;usage (<span class="keywordtype">int</span> status)</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">   80</a></span>&#160;<a class="code" href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">usage</a> (<span class="keywordtype">int</span> status)</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keywordflow">if</span> (status != 0)</div>
@@ -203,7 +203,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">void</span> parse_arguments(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, <span class="keyword">struct</span> <a class="code" href="structopt.html">opt</a>&amp; options,<a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm)</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="Functions__Shared_8h.html#a7bc8f463ae6632c9bab80d4b46b736a6">  117</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Functions__Shared_8h.html#a7bc8f463ae6632c9bab80d4b46b736a6">parse_arguments</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, <span class="keyword">struct</span> <a class="code" href="structopt.html">opt</a>&amp; options,<a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm)</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span>* arglist = <span class="stringliteral">&quot;M:I:N:R:r:E:A:m:V:H:T:P:v:DtLFQKi&quot;</span>;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  std::string arg;</div>
@@ -293,10 +293,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;      options.verb_level  = atoi(optarg);</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      usage(0);   </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <a class="code" href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">usage</a>(0);   </div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;      usage(1);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;      <a class="code" href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">usage</a>(1);</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    }</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
@@ -575,493 +575,457 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<a class="code" href="structCanvasPtr.html">CanvasPtr</a> MakeCanvas(<span class="keyword">const</span> <span class="keywordtype">char</span>* title,</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;             <span class="keywordtype">int</span> width,</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;             <span class="keywordtype">int</span> height,</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;             TCanvas* c,</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<a class="code" href="structCanvasPtr.html">CanvasPtr</a> MakeCanvas(</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;             <span class="keyword">const</span> <a class="code" href="classHistArray.html">HistArray</a>&amp; histograms,</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;             <span class="keywordtype">int</span> width,</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;             <span class="keywordtype">int</span> height,</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;             <span class="keywordtype">double</span> left_marg_scale,</div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;             <span class="keywordtype">double</span> bottom_marg_scale)</div>
 <div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;{</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">int</span> c_counter = 0;</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">int</span> p_counter = 0;</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;  <span class="keywordtype">int</span> c_counter = histograms.<a class="code" href="classHistArray.html#a5957d6ee5e35e9608adbfe39b6bac23c">GetID</a>();</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;  </div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;  <span class="comment">// alllocate new canvas if neccessary</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;  <span class="keywordflow">if</span> ( c == <span class="keyword">nullptr</span> )</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    {</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;      c = <span class="keyword">new</span> TCanvas(cat(<span class="stringliteral">&quot;Canvas_&quot;</span>,c_counter++).c_str(),title,0,0,width,height);</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;      c-&gt;Divide(1,1);</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    }</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;  <span class="keywordtype">double</span> can_size_ratio = (double)height/(<span class="keywordtype">double</span>)width;</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;  </div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  <span class="comment">// upper pad</span></div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;  TPad* p1_1 = <span class="keyword">new</span> TPad(</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            cat(<span class="stringliteral">&quot;upper_pad_&quot;</span>,p_counter).c_str(),</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;            cat(<span class="stringliteral">&quot;upper_pad_&quot;</span>,p_counter).c_str(),</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;            0,0.2,1,1);</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;  ++p_counter;</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;  p1_1-&gt;SetTopMargin(0.05);</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;  p1_1-&gt;SetBottomMargin(0.0075);</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;  p1_1-&gt;SetLeftMargin(0.1*can_size_ratio*left_marg_scale);</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;  p1_1-&gt;SetRightMargin(0.05);</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;  <span class="comment">// lower pad</span></div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;  TPad* p1_2 = <span class="keyword">new</span> TPad(</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;            cat(<span class="stringliteral">&quot;lower_pad_&quot;</span>,p_counter).c_str(),</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;            cat(<span class="stringliteral">&quot;lower_pad_&quot;</span>,p_counter).c_str(),</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;            0,0,1,0.2);</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;  ++p_counter;</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;  p1_2-&gt;SetTopMargin(0.0025);</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;  p1_2-&gt;SetBottomMargin(0.3*bottom_marg_scale);</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;  p1_2-&gt;SetLeftMargin(0.1*can_size_ratio*left_marg_scale);</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;  p1_2-&gt;SetRightMargin(0.05);</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;  <span class="keywordflow">return</span> {c,p1_1,p1_2};</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;}</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<a class="code" href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a> MakeDoubleCanvas(<span class="keyword">const</span> <span class="keywordtype">char</span>* title, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height)</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;{</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">int</span> c_counter = 0;</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;  TCanvas* c = <span class="keyword">new</span> TCanvas(cat(<span class="stringliteral">&quot;DoubleCanvas_&quot;</span>,c_counter++).c_str(),title,0,0,width,height);</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;  c-&gt;Divide(2,1);</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;  <span class="keywordflow">return</span> {MakeCanvas(title,width/2,height,c),MakeCanvas(title,width/2,height,c)};</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;}</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="keywordtype">void</span> DrawDistribution(</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;              <a class="code" href="structCanvasPtr.html">CanvasPtr</a>&amp; canvas,</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;              <a class="code" href="classHistArray.html">HistArray</a>&amp; histograms,</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;              <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; THDM,</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;              <span class="keywordtype">double</span>* norm,</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;              std::string <span class="keyword">const</span>&amp; titleX,</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;              std::string <span class="keyword">const</span>&amp; titleY,</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;              <span class="keywordtype">bool</span> WRITE,</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;              <span class="keywordtype">bool</span> NLO_PHI,</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;              <span class="keywordtype">int</span> CD)</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;{</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;  <span class="keywordtype">double</span> LegXPos      = 0.6557;</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;  <span class="comment">// single plot</span></div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;  <span class="keywordflow">if</span> (CD==0)</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    {</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;      LegXPos = 0.7428;</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;    }</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;  TLegend* leg = <span class="keyword">new</span> TLegend(</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                 LegXPos,</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                 0.8461 ,</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                 0.9559 ,</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;                 0.9550</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                 );</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;  TCanvas* c = <span class="keyword">new</span> TCanvas(cat(<span class="stringliteral">&quot;Canvas_&quot;</span>,c_counter).c_str(),histograms.<a class="code" href="classHistArray.html#ad893a01d5a59715e33ce2a67b316f9e1">GetName</a>(),0,0,width,height);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  c-&gt;Divide(1,1);</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;  </div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;  <span class="keywordtype">double</span> can_size_ratio = (double)height/(<span class="keywordtype">double</span>)width;</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;  </div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;  <span class="comment">// upper pad</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;  TPad* p1_1 = <span class="keyword">new</span> TPad(</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;            cat(<span class="stringliteral">&quot;upper_pad_&quot;</span>,c_counter).c_str(),</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;            cat(<span class="stringliteral">&quot;upper_pad_&quot;</span>,c_counter).c_str(),</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;            0,0.2,1,1);</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;  p1_1-&gt;SetTopMargin(0.05);</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;  p1_1-&gt;SetBottomMargin(0.0075);</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;  p1_1-&gt;SetLeftMargin(0.1*can_size_ratio*left_marg_scale);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;  p1_1-&gt;SetRightMargin(0.05);</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;  <span class="comment">// lower pad</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;  TPad* p1_2 = <span class="keyword">new</span> TPad(</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;            cat(<span class="stringliteral">&quot;lower_pad_&quot;</span>,c_counter).c_str(),</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;            cat(<span class="stringliteral">&quot;lower_pad_&quot;</span>,c_counter).c_str(),</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;            0,0,1,0.2);</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;  p1_2-&gt;SetTopMargin(0.0025);</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;  p1_2-&gt;SetBottomMargin(0.3*bottom_marg_scale);</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;  p1_2-&gt;SetLeftMargin(0.1*can_size_ratio*left_marg_scale);</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;  p1_2-&gt;SetRightMargin(0.05);</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;  <span class="keywordflow">return</span> {c,p1_1,p1_2};</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;}</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="keywordtype">void</span> DrawDistribution(</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;              <a class="code" href="structCanvasPtr.html">CanvasPtr</a>&amp; canvas,</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;              <a class="code" href="classHistArray.html">HistArray</a>&amp; histograms,</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;              <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; THDM,</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;              <span class="keywordtype">bool</span> WRITE,</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;              <span class="keywordtype">bool</span> NLO_PHI,</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;              <span class="keywordtype">int</span> CD)</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;{</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;  <span class="keywordtype">double</span> LegXPos      = 0.6557;</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;  <span class="comment">// single plot</span></div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;  <span class="keywordflow">if</span> (CD==0)</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    {</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;      LegXPos = 0.7428;</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    }</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;  TLegend* leg = <span class="keyword">new</span> TLegend(</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;                 LegXPos,</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                 0.8461 ,</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                 0.9559 ,</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;                 0.9550</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;                 );</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;      canvas.c-&gt;cd(CD);</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;      <span class="comment">// upper pad conatins the distributions</span></div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;      canvas.p1_1-&gt;Draw();</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;      canvas.p1_1-&gt;cd();</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;      <span class="comment">// use NLO V historgam to add up all the PHI contributions</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;      <a class="code" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> H_NLO_PHI = H_NLO_PHI_V;</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;      <span class="keywordtype">bool</span> NLO_QCD = (histograms[H_NLO_QCD]-&gt;GetEntries() &gt; 0 &amp;&amp; fabs(histograms[H_NLO_QCD]-&gt;<a class="code" href="classIntegral.html">Integral</a>()) &gt; 1e-12);</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;      <span class="comment">// only LO QCD</span></div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      <span class="keywordflow">if</span> (!NLO_QCD)</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    {</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;      histograms[H_LO_QCD]-&gt;Smooth(1);</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    }</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;      canvas.c-&gt;cd(CD); <span class="comment">// upper pad conatins the distributions</span></div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;      canvas.p1_1-&gt;Draw();</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;      canvas.p1_1-&gt;cd();</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;      <span class="comment">// use NLO V historgam to add up all the PHI contributions</span></div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;      <a class="code" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> H_NLO_PHI = H_NLO_PHI_V;</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;      <span class="keywordtype">bool</span> NLO_QCD = (histograms[H_NLO_QCD]-&gt;GetEntries() &gt; 0 &amp;&amp; fabs(histograms[H_NLO_QCD]-&gt;<a class="code" href="classIntegral.html">Integral</a>()) &gt; 1e-12);</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;      <span class="comment">// only LO QCD</span></div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;      <span class="keywordflow">if</span> (!NLO_QCD)</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    {</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;      histograms[H_LO_QCD]-&gt;Smooth(1);</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    }</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;      </div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;      <span class="comment">// add LO QCD contribution to deltaNLO QCD</span></div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;      histograms[H_NLO_QCD]-&gt;Add(histograms[H_LO_QCD]);</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;      </div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    {</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;      <span class="comment">// add LO PHI</span></div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_LO_PHI]);</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;      <span class="comment">// add NLO PHI int. dip.</span></div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_PHI_ID]);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;      <span class="comment">// add NLO PHI real</span></div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;      histograms[H_NLO_PHI_R]-&gt;Smooth(1);</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_PHI_R]);</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;      <span class="comment">// add NLO QCD to LO PHI histogram</span></div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_QCD]);</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    }</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    {</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;      <span class="comment">// add LO QCD to LO PHI</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;      histograms[H_LO_PHI]-&gt;Add(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;      </div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;      <span class="comment">// add LO QCD contribution to deltaNLO QCD</span></div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;      histograms[H_NLO_QCD]-&gt;Add(histograms[H_LO_QCD]);</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      <span class="comment">// add LO PHI</span></div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_LO_PHI]);</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    {</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;      <span class="comment">// add NLO PHI int. dip.</span></div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_PHI_ID]);</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;      <span class="comment">// add NLO PHI real</span></div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;      histograms[H_NLO_PHI_R]-&gt;Smooth(1);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_PHI_R]);</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;      <span class="comment">// add NLO QCD to LO PHI histogram</span></div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;      histograms[H_NLO_PHI]-&gt;Add(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    }</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    {</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;      <span class="comment">// add LO QCD to LO PHI</span></div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;      histograms[H_LO_PHI]-&gt;Add(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    }</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;      </div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;    {</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;      <span class="comment">// draw NLO PHI</span></div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;      histograms[H_NLO_PHI]-&gt;SetLineWidth(2);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;      histograms[H_NLO_PHI]-&gt;SetLineColor(2);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;      histograms[H_NLO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;    }</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    {</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;      <span class="comment">// draw LO PHI</span></div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;      histograms[H_LO_PHI]-&gt;SetLineWidth(2);</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;      histograms[H_LO_PHI]-&gt;SetLineColor(2);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;      histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    }</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;      <span class="comment">// normalize LO histograms with the factors given in array norm[]</span></div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      <span class="keywordflow">if</span> (norm)</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;    {</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;      histograms[H_LO_QCD]-&gt;<a class="code" href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">Scale</a>(1.0/norm[0]);<span class="comment">// LO QCD cross section</span></div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;      histograms[H_LO_PHI]-&gt;<a class="code" href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">Scale</a>(1.0/norm[2]);<span class="comment">// NLO QCD + LO PHI cross section</span></div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;    }</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      </div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;      <span class="comment">// draw LO QCD</span></div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      histograms[H_LO_QCD]-&gt;SetLineStyle(2);</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;      histograms[H_LO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;      <span class="comment">// draw NLO QCD</span></div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD) histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      <span class="comment">// write the &#39;raw&#39; data to the root file</span></div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;      <span class="keywordflow">if</span> (WRITE)</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;    {</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;      <span class="comment">// normalize NLO  histograms with the factors given in array norm[]</span></div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;      <span class="keywordflow">if</span> (norm)</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;        {</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;          histograms[H_NLO_QCD]-&gt;<a class="code" href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">Scale</a>(1.0/norm[1]);<span class="comment">// NLO QCD cross section</span></div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;          histograms[H_NLO_PHI]-&gt;<a class="code" href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">Scale</a>(1.0/norm[3]);<span class="comment">// NLO QCD + NLO PHI cross section</span></div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;        }</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;      <span class="comment">// draw NLO PHI</span></div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;      histograms[H_NLO_PHI]-&gt;SetLineWidth(2);</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;      histograms[H_NLO_PHI]-&gt;SetLineColor(2);</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;      histograms[H_NLO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;    }</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;    {</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;      <span class="comment">// draw LO PHI</span></div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;      histograms[H_LO_PHI]-&gt;SetLineWidth(2);</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;      histograms[H_LO_PHI]-&gt;SetLineColor(2);</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;      histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;    }</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;      <span class="comment">// draw LO QCD</span></div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;      histograms[H_LO_QCD]-&gt;SetLineStyle(2);</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;      histograms[H_LO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;      <span class="comment">// draw NLO QCD</span></div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD) histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;      <span class="comment">// write the &#39;raw&#39; data to the root file</span></div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;      <span class="keywordflow">if</span> (WRITE)</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;    {</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;      histograms[H_NLO_QCD]-&gt;Write();</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;      histograms[H_LO_PHI]-&gt;Write();</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) histograms[H_NLO_PHI]-&gt;Write();</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD) histograms[H_NLO_QCD]-&gt;Write();</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;    }</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;      </div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;      std::string phi_leg_label;</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD)</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    {</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;      leg-&gt;AddEntry(histograms[H_LO_QCD] ,<span class="stringliteral">&quot;LO QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;      leg-&gt;AddEntry(histograms[H_NLO_QCD] ,<span class="stringliteral">&quot;NLOW QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;      phi_leg_label += <span class="stringliteral">&quot;NLOW QCD + &quot;</span>;</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;    }</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;    {</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;      leg-&gt;AddEntry(histograms[H_LO_QCD] ,<span class="stringliteral">&quot;LO QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;      phi_leg_label += <span class="stringliteral">&quot;LO QCD + &quot;</span>;</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;    }</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) phi_leg_label += <span class="stringliteral">&quot;NLO &quot;</span>;</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;      <span class="keywordflow">else</span>         phi_leg_label += <span class="stringliteral">&quot;LO &quot;</span>;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;      </div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;      <span class="keywordflow">if</span> (THDM.NBosons()&gt;1) phi_leg_label += <span class="stringliteral">&quot;#Phi_{2}, #Phi_{3} &quot;</span>;</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;      <span class="keywordflow">else</span>                  phi_leg_label += <span class="stringliteral">&quot;#Phi &quot;</span>;</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) leg-&gt;AddEntry(histograms[H_NLO_PHI] ,phi_leg_label.c_str(),<span class="stringliteral">&quot;L&quot;</span>);</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;      <span class="keywordflow">else</span>         leg-&gt;AddEntry(histograms[H_LO_PHI] ,phi_leg_label.c_str(),<span class="stringliteral">&quot;L&quot;</span>);</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;      </div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;      leg-&gt;<a class="code" href="classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389">Draw</a>(<span class="stringliteral">&quot;same&quot;</span>);</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;      canvas.c-&gt;cd(CD); <span class="comment">//lower pad contains ratio NLO/LO</span></div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;      canvas.p1_2-&gt;Draw();</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;      canvas.p1_2-&gt;cd();</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;      <span class="comment">// for the ratio plot ...</span></div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;    {</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;      <span class="comment">// normalize everything to NLO QCD histograms</span></div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;      histograms[H_NLO_PHI]-&gt;Divide(histograms[H_NLO_QCD]);</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;      histograms[H_NLO_QCD]-&gt;Divide(histograms[H_NLO_QCD]);</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;      </div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;      SetRatioPlot(histograms[H_NLO_PHI],titleX.c_str());</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;      histograms[H_NLO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;      histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD)</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;        {</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;          <span class="comment">// draw also the LO ratio with dotted line if NLO PHI and NLO QCD available</span></div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;          histograms[H_LO_PHI]-&gt;Add(histograms[H_LO_QCD]);</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;          histograms[H_LO_PHI]-&gt;Divide(histograms[H_LO_QCD]);</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineStyle(3);</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineColor(1);</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineWidth(1);</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;          histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        }</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    }</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    {</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;      <span class="comment">// normalize everything to LO QCD histograms</span></div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;      <span class="comment">//TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);</span></div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;      fabs(histograms[H_LO_PHI])-&gt;Divide(fabs(histograms[H_NLO_QCD]));</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;      fabs(histograms[H_NLO_QCD])-&gt;Divide(histograms[H_NLO_QCD]);</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;      </div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;      SetRatioPlot(histograms[H_LO_PHI],titleX.c_str());</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;      histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;      histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    }</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;      </div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;      <span class="keywordflow">if</span> (WRITE) canvas.c-&gt;Write();</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;      histograms[H_LO_QCD]-&gt;Write();</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;      histograms[H_LO_PHI]-&gt;Write();</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) histograms[H_NLO_PHI]-&gt;Write();</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD) histograms[H_NLO_QCD]-&gt;Write();</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;    }</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;      </div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;      std::string phi_leg_label;</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD)</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;    {</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;      leg-&gt;AddEntry(histograms[H_LO_QCD] ,<span class="stringliteral">&quot;LO QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;      leg-&gt;AddEntry(histograms[H_NLO_QCD] ,<span class="stringliteral">&quot;NLOW QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;      phi_leg_label += <span class="stringliteral">&quot;NLOW QCD + &quot;</span>;</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;    }</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;    {</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;      leg-&gt;AddEntry(histograms[H_LO_QCD] ,<span class="stringliteral">&quot;LO QCD&quot;</span>,<span class="stringliteral">&quot;L&quot;</span>);</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;      phi_leg_label += <span class="stringliteral">&quot;LO QCD + &quot;</span>;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    }</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) phi_leg_label += <span class="stringliteral">&quot;NLO &quot;</span>;</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;      <span class="keywordflow">else</span>         phi_leg_label += <span class="stringliteral">&quot;LO &quot;</span>;</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;      </div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;      <span class="keywordflow">if</span> (THDM.NBosons()&gt;1) phi_leg_label += <span class="stringliteral">&quot;#Phi_{2}, #Phi_{3} &quot;</span>;</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;      <span class="keywordflow">else</span>                  phi_leg_label += <span class="stringliteral">&quot;#Phi &quot;</span>;</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI) leg-&gt;AddEntry(histograms[H_NLO_PHI] ,phi_leg_label.c_str(),<span class="stringliteral">&quot;L&quot;</span>);</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;      <span class="keywordflow">else</span>         leg-&gt;AddEntry(histograms[H_LO_PHI] ,phi_leg_label.c_str(),<span class="stringliteral">&quot;L&quot;</span>);</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;      </div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;      leg-&gt;<a class="code" href="classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389">Draw</a>(<span class="stringliteral">&quot;same&quot;</span>);</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;      canvas.c-&gt;cd(CD);</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;      <span class="comment">//lower pad contains ratio NLO/LO</span></div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;      canvas.p1_2-&gt;Draw();</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;      canvas.p1_2-&gt;cd();</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;      <span class="comment">// for the ratio plot ...</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;      <span class="keywordflow">if</span> (NLO_PHI)</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;    {</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;      <span class="comment">// normalize everything to NLO QCD histograms</span></div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;      histograms[H_NLO_PHI]-&gt;Divide(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;      histograms[H_NLO_QCD]-&gt;Divide(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;      </div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;      SetRatioPlot(histograms[H_NLO_PHI]);</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;      histograms[H_NLO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;      histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;      <span class="keywordflow">if</span> (NLO_QCD)</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        {</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;          <span class="comment">// draw also the LO ratio with dotted line if NLO PHI and NLO QCD available</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;          histograms[H_LO_PHI]-&gt;Add(histograms[H_LO_QCD]);</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;          histograms[H_LO_PHI]-&gt;Divide(histograms[H_LO_QCD]);</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineStyle(3);</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineColor(1);</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;          histograms[H_LO_PHI]-&gt;SetLineWidth(1);</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;          histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        }</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    }</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    {</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;      <span class="comment">// normalize everything to LO QCD histograms</span></div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;      <span class="comment">// TH1DivideStable(histograms[H_LO_PHI],histograms[H_NLO_QCD]);</span></div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;      <span class="comment">// TH1RelDiff(histograms[H_LO_PHI],histograms[H_NLO_QCD]);</span></div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;      (histograms[H_LO_PHI])-&gt;Divide((histograms[H_NLO_QCD]));</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;      (histograms[H_NLO_QCD])-&gt;Divide(histograms[H_NLO_QCD]);</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;      </div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;      SetRatioPlot(histograms[H_LO_PHI]);</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;      histograms[H_LO_PHI]-&gt;DrawCopy(<span class="stringliteral">&quot;hist ][&quot;</span>);</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;      histograms[H_NLO_QCD]-&gt;DrawCopy(<span class="stringliteral">&quot;same hist ][&quot;</span>);</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;    }</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;      </div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;      <span class="keywordflow">if</span> (WRITE) canvas.c-&gt;Write();</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;}</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;<span class="keywordtype">void</span> SetRatioPlot(TH1D* hist)</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;{</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;  hist-&gt;SetTitle(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;  <span class="comment">// hist-&gt;Smooth();</span></div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitleSize(12); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  hist-&gt;GetYaxis()-&gt;SetLabelFont(43); <span class="comment">//font in pixels</span></div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;  hist-&gt;GetYaxis()-&gt;SetLabelSize(18); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitleOffset(3.5);</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitle(<span class="stringliteral">&quot;NLO / LO&quot;</span>);</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTickLength(0.02); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;  hist-&gt;GetYaxis()-&gt;SetNdivisions(505,1); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;  <span class="comment">//hist-&gt;GetYaxis()-&gt;SetRangeUser(-0.29,0.29);</span></div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;  hist-&gt;GetYaxis()-&gt;SetRangeUser(0.91,1.09);</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleFont(43); <span class="comment">//font in pixels</span></div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleSize(12); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleOffset(3.5);</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;  hist-&gt;GetXaxis()-&gt;SetLabelFont(43); <span class="comment">//font in pixels</span></div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;  hist-&gt;GetXaxis()-&gt;SetLabelSize(20); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTickLength(0.1); <span class="comment">//in pixels</span></div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  <span class="comment">//hist-&gt;GetXaxis()-&gt;SetTitle(xtitle.c_str());</span></div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleSize(25);</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleOffset(4.5);</div>
 <div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;}</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;<span class="keywordtype">void</span> DrawTwoDistributions(</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;              <a class="code" href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a>&amp; canvas,</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;              <a class="code" href="classHistArray.html">HistArray</a>&amp; histogramsL,</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;              <a class="code" href="classHistArray.html">HistArray</a>&amp; histogramsR,</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;              <span class="keyword">const</span> <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; THDM,</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;              <span class="keywordtype">double</span>* norm,</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;              std::string <span class="keyword">const</span>&amp; titleLX,std::string <span class="keyword">const</span>&amp; titleRX,</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;              std::string <span class="keyword">const</span>&amp; titleLY,std::string <span class="keyword">const</span>&amp; titleRY,</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;              <span class="keywordtype">bool</span> WRITE,</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;              <span class="keywordtype">bool</span> NLO)</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;{</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;  DrawDistribution(</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;           canvas.c1,</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;           histogramsL,</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;           THDM,</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;           norm,</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;           titleLX,</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;           titleLY,</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;           WRITE,</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;           NLO,</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;           1);</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;  DrawDistribution(</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;           canvas.c2,</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;           histogramsR,</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;           THDM,</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;           norm,</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;           titleRX,</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;           titleRY,</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;           WRITE,</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;           NLO,</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;           2);</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;}</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;<span class="keywordtype">void</span> TH1RelDiff(TH1D* h1, <span class="keyword">const</span> TH1D* h2)</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;{</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;  <span class="keywordtype">int</span> n1 = h1-&gt;GetNbinsX();</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;  <span class="keywordtype">int</span> n2 = h2-&gt;GetNbinsX();</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;  <span class="keywordflow">if</span> (n1 != n2)</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    {</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;      ERROR(<span class="stringliteral">&quot;Histograms do not match in size.&quot;</span>);</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;    }</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;=n1;++i)</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    {</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;      <span class="keywordflow">if</span> (fabs(h1-&gt;GetBinLowEdge(i)-h2-&gt;GetBinLowEdge(i))&gt;1e-12)</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    {</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;      ERROR(<span class="stringliteral">&quot;Histogram binning does not match.&quot;</span>);</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    }</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;      <span class="keywordtype">double</span> c1 = std::fabs(h1-&gt;GetBinContent(i));</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      <span class="keywordtype">double</span> c2 = std::fabs(h2-&gt;GetBinContent(i));</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      h1-&gt;SetBinContent(i,1.0+(c1-c2)/((c1)+(c2)));</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    }</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;}</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;</div>
 <div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;<span class="keywordtype">void</span> SetRatioPlot(TH1D* hist,std::string xtitle)</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;{</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;  hist-&gt;SetTitle(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;  <span class="comment">// hist-&gt;Smooth();</span></div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitleSize(12); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;  hist-&gt;GetYaxis()-&gt;SetLabelFont(43); <span class="comment">//font in pixels</span></div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;  hist-&gt;GetYaxis()-&gt;SetLabelSize(18); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitleOffset(3.5);</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTitle(<span class="stringliteral">&quot;NLO / LO&quot;</span>);</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;  hist-&gt;GetYaxis()-&gt;SetTickLength(0.02); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;  hist-&gt;GetYaxis()-&gt;SetNdivisions(505,1); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;  <span class="comment">//hist-&gt;GetYaxis()-&gt;SetRangeUser(-0.29,0.29);</span></div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;  hist-&gt;GetYaxis()-&gt;SetRangeUser(0.91,1.09);</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleFont(43); <span class="comment">//font in pixels</span></div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleSize(12); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleOffset(3.5);</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;  hist-&gt;GetXaxis()-&gt;SetLabelFont(43); <span class="comment">//font in pixels</span></div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;  hist-&gt;GetXaxis()-&gt;SetLabelSize(20); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTickLength(0.1); <span class="comment">//in pixels</span></div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;  <span class="comment">//hist-&gt;GetXaxis()-&gt;SetTitle(xtitle.c_str());</span></div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleSize(25);</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;  hist-&gt;GetXaxis()-&gt;SetTitleOffset(4.5);</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;}</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;<span class="comment">// divide content of h1 by a*h2 bin-wise</span></div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;<span class="keywordtype">void</span> TH1DivideStable(TH1D* h1, TH1D* h2, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a)</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;{</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;  <span class="keywordtype">int</span> n1 = h1-&gt;GetNbinsX();</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;  <span class="keywordtype">int</span> n2 = h2-&gt;GetNbinsX();</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;  <span class="keywordflow">if</span> (n1 != n2)</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;    {</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;      ERROR(<span class="stringliteral">&quot;Histograms do not match in size.&quot;</span>);</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    }</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;  <span class="keywordflow">if</span> (a==0.0)</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    {</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;      ERROR(<span class="stringliteral">&quot;Division by 0 (a=0).&quot;</span>);</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    }</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1;i&lt;=n1;++i)</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    {</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;      <span class="keywordflow">if</span> (fabs(h1-&gt;GetBinLowEdge(i)-h2-&gt;GetBinLowEdge(i))&gt;1e-12)</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    {</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;      ERROR(<span class="stringliteral">&quot;Histogram binning does not match.&quot;</span>);</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;    }</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;      <span class="keywordtype">double</span> c1 = h1-&gt;GetBinContent(i);</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;      <span class="keywordtype">double</span> c2 = h2-&gt;GetBinContent(i) * a;</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;      <span class="keywordflow">if</span> ( c2 == 0.0) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;      <span class="keywordflow">if</span> ( fabs(c2) &lt; 1e-5 )</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;    {</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;      c1 += 1;</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;      c2 += 1;</div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;    }</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;      h1-&gt;SetBinContent(i,c1/(c2));</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;    }</div>
-<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;}</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;</div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;</div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="comment">// complex Phi propagator denominator</span></div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a></div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;{</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;  <span class="keywordtype">double</span>   den_t  = 0.0;</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;  <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>(0.0,0.0);</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;}</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;<span class="comment">// abs. value squared</span></div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; DenS2(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; g)</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;{</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a>;</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m2 = m*m;</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mg = m*g;</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;  den_t  = 0.1e1 / (pow(s-m2,2)+pow(mg,2));</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;  <span class="comment">// important!</span></div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;  <span class="comment">// if this is not here, DenS will return 0 if DenS2 gets called first and s is unchanged!</span></div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;  cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>((s-m2)*den_t,-mg*den_t);</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;  <span class="keywordflow">return</span> den_t;</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;}</div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;<span class="comment">// real and imaginary parts in a complex double</span></div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;<a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; DenS(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; g)</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;{</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a>;</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m2 = m*m;</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mg = m*g;</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;  den_t  = 0.1e1 / (pow(s-m2,2)+pow(mg,2));</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;  cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>((s-m2)*den_t,-mg*den_t);</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;  <span class="keywordflow">return</span> cden_t;</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;}</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;<span class="comment">// this function computes the spin 4-vectors s1,s2 in the k1,k2-z.m.f. (given k1 and k2 in precisely this frame)</span></div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;<span class="comment">// assuming that s1_r and s2_r are the spin directions in the respective restframes</span></div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;<span class="comment">// the restframes are connected to the k1,k2-z.m.f. by rotationfree boosts in the respective directions</span></div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;<span class="comment">// the spin 4-vectors then obey k_i.s_i = 0 and s_i.s_i = -1</span></div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;<span class="keywordtype">void</span> set_spins_in_tt_zmf(</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;             <span class="comment">// top/antitop 4-momenta in the tt z.m.f.</span></div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1,</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2,</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;             <span class="comment">// spin vectors in the tt z.m.f.</span></div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;             <a class="code" href="classFV.html">FV</a>&amp; s1,</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;             <a class="code" href="classFV.html">FV</a>&amp; s2,</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;             <span class="comment">// spin vectors in t and tbar restframe, resp.</span></div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; s1_r,</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; s2_r</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;             )</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;{</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;  <span class="keywordtype">double</span> e1   = (1.0+k1[0]);</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;  <span class="keywordtype">double</span> k1s1 = (k1[1]*s1_r[1]+k1[2]*s1_r[2]+k1[3]*s1_r[3])/e1;</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;  s1[0] = k1s1*e1;</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;  s1[1] = s1_r[1]+k1[1]*k1s1;</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;  s1[2] = s1_r[2]+k1[2]*k1s1;</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;  s1[3] = s1_r[3]+k1[3]*k1s1;</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;  <span class="keywordtype">double</span> e2   = (1.0+k2[0]);</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;  <span class="keywordtype">double</span> k2s2 = (k2[1]*s2_r[1]+k2[2]*s2_r[2]+k2[3]*s2_r[3])/e2;</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;  s2[0] = k2s2*e2;</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;  s2[1] = s2_r[1]+k2[1]*k2s2;</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;  s2[2] = s2_r[2]+k2[2]*k2s2;</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;  s2[3] = s2_r[3]+k2[3]*k2s2;</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;}</div>
 <div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;</div>
 <div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;</div>
 <div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;</div>
 <div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;</div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;<span class="comment">// complex Phi propagator denominator</span></div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a></div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;{</div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;  <span class="keywordtype">double</span>   den_t  = 0.0;</div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;  <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>(0.0,0.0);</div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;}</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;<span class="comment">// abs. value squared</span></div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; DenS2(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; g)</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;{</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a>;</div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m2 = m*m;</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mg = m*g;</div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;  den_t  = 0.1e1 / (pow(s-m2,2)+pow(mg,2));</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;  <span class="comment">// important!</span></div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;  <span class="comment">// if this is not here, DenS will return 0 if DenS2 gets called first and s is unchanged!</span></div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;  cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>((s-m2)*den_t,-mg*den_t);</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;  <span class="keywordflow">return</span> den_t;</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;}</div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;<span class="comment">// real and imaginary parts in a complex double</span></div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;<a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; DenS(<span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; g)</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;{</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceNSP__DENS.html">NSP_DENS</a>;</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; m2 = m*m;</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mg = m*g;</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;  den_t  = 0.1e1 / (pow(s-m2,2)+pow(mg,2));</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;  cden_t = <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a>((s-m2)*den_t,-mg*den_t);</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;  <span class="keywordflow">return</span> cden_t;</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;}</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;</div>
+<div class="line"><a name="l00842"></a><span class="lineno"><a class="line" href="structeps__entry.html">  842</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structeps__entry.html">eps_entry</a> {</div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;  <span class="keywordtype">int</span>  indices[4];</div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;  <span class="keywordtype">int</span>  sign;</div>
+<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;};</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;<span class="keyword">const</span> <a class="code" href="structeps__entry.html">eps_entry</a> eps_tensor[24] = {</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;  {{0,1,2,3}, 1},</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;  {{0,1,3,2},-1},</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;  {{0,2,1,3},-1},</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;  {{0,2,3,1}, 1},</div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;  {{0,3,1,2}, 1},</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;  {{0,3,2,1},-1},</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;  {{1,0,2,3},-1},</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;  {{1,0,3,2}, 1},</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;  {{1,2,0,3}, 1},</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;  {{1,2,3,0},-1},</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;  {{1,3,0,2},-1},</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;  {{1,3,2,0}, 1},</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;  {{2,0,1,3}, 1},</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;  {{2,0,3,1},-1},</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;  {{2,1,0,3},-1},</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;  {{2,1,3,0}, 1},</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;  {{2,3,0,1}, 1},</div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;  {{2,3,1,0},-1},</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;  {{3,0,1,2},-1},</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;  {{3,0,2,1}, 1},</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;  {{3,1,0,2}, 1},</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;  {{3,1,2,0},-1},</div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;  {{3,2,0,1},-1},</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;  {{3,2,1,0}, 1},</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;};</div>
 <div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;</div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;<span class="comment">// this function computes the spin 4-vectors s1,s2 in the k1,k2-z.m.f. (given k1 and k2 in precisely this frame)</span></div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="comment">// assuming that s1_r and s2_r are the spin directions in the respective restframes</span></div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;<span class="comment">// the restframes are connected to the k1,k2-z.m.f. by rotationfree boosts in the respective directions</span></div>
-<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;<span class="comment">// the spin 4-vectors then obey k_i.s_i = 0 and s_i.s_i = -1</span></div>
-<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;<span class="keywordtype">void</span> set_spins_in_tt_zmf(</div>
-<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;             <span class="comment">// top/antitop 4-momenta in the tt z.m.f.</span></div>
-<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1,</div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2,</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;             <span class="comment">// spin vectors in the tt z.m.f.</span></div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;             <a class="code" href="classFV.html">FV</a>&amp; s1,</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;             <a class="code" href="classFV.html">FV</a>&amp; s2,</div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;             <span class="comment">// spin vectors in t and tbar restframe, resp.</span></div>
-<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; s1_r,</div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;             <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; s2_r</div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;             )</div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;{</div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;  <span class="keywordtype">double</span> e1   = (1.0+k1[0]);</div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;  <span class="keywordtype">double</span> k1s1 = (k1[1]*s1_r[1]+k1[2]*s1_r[2]+k1[3]*s1_r[3])/e1;</div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;  s1[0] = k1s1*e1;</div>
-<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;  s1[1] = s1_r[1]+k1[1]*k1s1;</div>
-<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;  s1[2] = s1_r[2]+k1[2]*k1s1;</div>
-<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;  s1[3] = s1_r[3]+k1[3]*k1s1;</div>
-<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;  <span class="keywordtype">double</span> e2   = (1.0+k2[0]);</div>
-<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;  <span class="keywordtype">double</span> k2s2 = (k2[1]*s2_r[1]+k2[2]*s2_r[2]+k2[3]*s2_r[3])/e2;</div>
-<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;  s2[0] = k2s2*e2;</div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;  s2[1] = s2_r[1]+k2[1]*k2s2;</div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;  s2[2] = s2_r[2]+k2[2]*k2s2;</div>
-<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;  s2[3] = s2_r[3]+k2[3]*k2s2;</div>
-<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;}</div>
-<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;</div>
-<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;</div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;</div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;</div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;</div>
-<div class="line"><a name="l00912"></a><span class="lineno"><a class="line" href="structeps__entry.html">  912</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structeps__entry.html">eps_entry</a> {</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;  <span class="keywordtype">int</span>  indices[4];</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;  <span class="keywordtype">int</span>  sign;</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;};</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;<span class="comment">// double EPS_(double const* __restrict__ k1, double const* __restrict__ k2, double const* __restrict__ k3, double const* __restrict__ k4, int DEALLOC)</span></div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;<span class="keywordtype">double</span> EPS_(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k3, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k4)</div>
-<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;{</div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;  <span class="comment">// executed only on first call //////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;<span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> DO_INIT = 1;</div>
-<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;  <span class="comment">// 4dim epsilon tensor entries in linear row</span></div>
-<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;  <span class="keyword">static</span> <a class="code" href="structeps__entry.html">eps_entry</a> eps_list[24];</div>
-<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;  <span class="keywordflow">if</span> ((DO_INIT)) {</div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;    <span class="comment">// initialize eps_list entries</span></div>
-<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;    <span class="keywordtype">double</span> eps[4][4][4][4];</div>
-<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;    <span class="keywordtype">int</span> I = 0;</div>
-<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;4;++i)</div>
-<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;      {</div>
-<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;4;++j)</div>
-<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;      {</div>
-<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k=0;k&lt;4;++k)</div>
-<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;          {</div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> l=0;l&lt;4;++l)</div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;          {</div>
-<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;            eps[i][j][k][l] = (double)((i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12);</div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;            <span class="keywordflow">if</span> (eps[i][j][k][l]!=0.0)</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;              {</div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;            eps_list[I].indices[0] = i;</div>
-<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;            eps_list[I].indices[1] = j;</div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;            eps_list[I].indices[2] = k;</div>
-<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;            eps_list[I].indices[3] = l;</div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;            eps_list[I++].sign = eps[i][j][k][l];</div>
-<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;              }</div>
-<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;          }</div>
-<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;          }</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;      }</div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;      }</div>
-<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;    DO_INIT = 0;</div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;  }</div>
-<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;  <span class="comment">// this code is executed each call</span></div>
-<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;  <span class="comment">// loop is reduced to the 24 non-zero elements in the eps-tensor</span></div>
-<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;<span class="comment"></span>  <span class="keywordtype">double</span> res = 0.0;</div>
-<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> I=0; I&lt;24; ++I)</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;    {</div>
-<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; i    = eps_list[I].indices[0];</div>
-<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; j    = eps_list[I].indices[1];</div>
-<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; k    = eps_list[I].indices[2];</div>
-<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; l    = eps_list[I].indices[3];</div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;      <span class="keywordflow">if</span> (k1[i]==0.0 || k2[j]==0.0 || k3[k]==0.0 || k4[l]==0.0) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;      res -= k1[i]*k2[j]*k3[k]*k4[l]*eps_list[I].sign;</div>
-<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;    }</div>
-<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;  <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;}</div>
-<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;</div>
-<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;</div>
-<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;</div>
-<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;</div>
-<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;TH1D* fabs(TH1D* hist)</div>
-<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;{</div>
-<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1; i&lt;hist-&gt;GetNbinsX(); ++i)</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;    {</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;      hist-&gt;SetBinContent(i,std::fabs(hist-&gt;GetBinContent(i)));</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;    }</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;  <span class="keywordflow">return</span> hist;</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;}</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;</div>
-<div class="ttc" id="classHistArray_html_a4ebaa67b67958c1ee70ebdb056b5a389"><div class="ttname"><a href="classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389">HistArray::Draw</a></div><div class="ttdeci">void Draw(const char *opt=&quot;&quot;)</div><div class="ttdoc">Draw all histograms into the currently selected canvas. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00150">HistArray.h:150</a></div></div>
-<div class="ttc" id="structDoubleCanvasPtr_html"><div class="ttname"><a href="structDoubleCanvasPtr.html">DoubleCanvasPtr</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8h_source.html#l00106">Functions_Shared.h:106</a></div></div>
-<div class="ttc" id="structopt_html"><div class="ttname"><a href="structopt.html">opt</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8h_source.html#l00051">Functions_Shared.h:51</a></div></div>
-<div class="ttc" id="namespaceNSP__DENS_html"><div class="ttname"><a href="namespaceNSP__DENS.html">NSP_DENS</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00845">Functions_Shared.cpp:845</a></div></div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;<span class="comment">// double EPS_(double const* __restrict__ k1, double const* __restrict__ k2, double const* __restrict__ k3, double const* __restrict__ k4, int DEALLOC)</span></div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="keywordtype">double</span> EPS_(<a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k1, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k2, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k3, <a class="code" href="classFV.html">FV</a> <span class="keyword">const</span>&amp; k4)</div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;{</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;  <span class="comment">// /////////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;  <span class="comment">// // executed only on first call //////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;  <span class="comment">// /////////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;  <span class="comment">// static bool DO_INIT = 1;</span></div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;  <span class="comment">// // 4dim epsilon tensor entries in linear row</span></div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;  <span class="comment">// static eps_entry eps_list[24];</span></div>
+<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;  <span class="comment">// /////////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;  <span class="comment">// if ((DO_INIT)) {</span></div>
+<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;  <span class="comment">//   // initialize eps_list entries</span></div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;  <span class="comment">//   double eps[4][4][4][4];</span></div>
+<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;  <span class="comment">//   int I = 0;</span></div>
+<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;  <span class="comment">//   std::cout  &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;  <span class="comment">//   for (int i=0;i&lt;4;++i)</span></div>
+<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;  <span class="comment">//     {</span></div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;  <span class="comment">//    for (int j=0;j&lt;4;++j)</span></div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;  <span class="comment">//      {</span></div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;  <span class="comment">//        for (int k=0;k&lt;4;++k)</span></div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;  <span class="comment">//          {</span></div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;  <span class="comment">//        for (int l=0;l&lt;4;++l)</span></div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;  <span class="comment">//          {</span></div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;  <span class="comment">//            eps[i][j][k][l] = (double)((i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12);</span></div>
+<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;  <span class="comment">//            if (eps[i][j][k][l]!=0.0)</span></div>
+<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;  <span class="comment">//              {</span></div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;  <span class="comment">//            eps_list[I].indices[0] = i;</span></div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;  <span class="comment">//            eps_list[I].indices[1] = j;</span></div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;  <span class="comment">//            eps_list[I].indices[2] = k;</span></div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;  <span class="comment">//            eps_list[I].indices[3] = l;</span></div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;  <span class="comment">//            eps_list[I++].sign = eps[i][j][k][l];</span></div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;  <span class="comment">//            std::cout &lt;&lt; &quot;{{&quot; &lt;&lt; i &lt;&lt; &quot;,&quot; &lt;&lt; j &lt;&lt; &quot;,&quot; &lt;&lt; k &lt;&lt; &quot;,&quot; &lt;&lt; l &lt;&lt; &quot;},&quot; &lt;&lt; eps[i][j][k][l] &lt;&lt; &quot;},&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;  <span class="comment">//              }</span></div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;  <span class="comment">//          }</span></div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;  <span class="comment">//          }</span></div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;  <span class="comment">//      }</span></div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;  <span class="comment">//     }</span></div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;  <span class="comment">//   std::cout  &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;  <span class="comment">//   DO_INIT = 0;</span></div>
+<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;  <span class="comment">// }</span></div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;<span class="comment"></span>  <span class="comment">// loop is reduced to the 24 non-zero elements in the eps-tensor</span></div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;<span class="comment"></span>  <span class="keywordtype">double</span> res = 0.0;</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> I=0; I&lt;24; ++I)</div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;    {</div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; i    = eps_tensor[I].indices[0];</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; j    = eps_tensor[I].indices[1];</div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; k    = eps_tensor[I].indices[2];</div>
+<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;      <span class="keywordtype">int</span> <span class="keyword">const</span>&amp; l    = eps_tensor[I].indices[3];</div>
+<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;      <span class="keywordflow">if</span> (k1[i]==0.0 || k2[j]==0.0 || k3[k]==0.0 || k4[l]==0.0) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;      res -= k1[i]*k2[j]*k3[k]*k4[l]*eps_tensor[I].sign;</div>
+<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;    }</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;  <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;}</div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;</div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;</div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;</div>
+<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;TH1D* fabs(TH1D* hist)</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;{</div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=1; i&lt;hist-&gt;GetNbinsX(); ++i)</div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;    {</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;      hist-&gt;SetBinContent(i,std::fabs(hist-&gt;GetBinContent(i)));</div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;    }</div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;  <span class="keywordflow">return</span> hist;</div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;}</div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;</div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;</div>
+<div class="ttc" id="classHistArray_html_a4ebaa67b67958c1ee70ebdb056b5a389"><div class="ttname"><a href="classHistArray.html#a4ebaa67b67958c1ee70ebdb056b5a389">HistArray::Draw</a></div><div class="ttdeci">void Draw(const char *opt=&quot;&quot;)</div><div class="ttdoc">Draw all histograms into the currently selected canvas. Calls the respective TH1D member function...</div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00165">HistArray.h:165</a></div></div>
+<div class="ttc" id="Functions__Shared_8h_html_a7bc8f463ae6632c9bab80d4b46b736a6"><div class="ttname"><a href="Functions__Shared_8h.html#a7bc8f463ae6632c9bab80d4b46b736a6">parse_arguments</a></div><div class="ttdeci">void parse_arguments(int argc, char **argv, struct opt &amp;options, HiggsModel &amp;hm)</div><div class="ttdoc">Parse the command line options given by the user. The results are stored in g_options. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00117">Functions_Shared.cpp:117</a></div></div>
+<div class="ttc" id="Functions__Shared_8h_html_ad2c1f41ec0950813bbc28490e903269f"><div class="ttname"><a href="Functions__Shared_8h.html#ad2c1f41ec0950813bbc28490e903269f">usage</a></div><div class="ttdeci">void usage(int status)</div><div class="ttdoc">Print usage information. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00080">Functions_Shared.cpp:80</a></div></div>
+<div class="ttc" id="structopt_html"><div class="ttname"><a href="structopt.html">opt</a></div><div class="ttdoc">Structure to represent the command line options given by the user. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8h_source.html#l00051">Functions_Shared.h:51</a></div></div>
+<div class="ttc" id="namespaceNSP__DENS_html"><div class="ttname"><a href="namespaceNSP__DENS.html">NSP_DENS</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00775">Functions_Shared.cpp:775</a></div></div>
 <div class="ttc" id="HistArray_8h_html_abdf25c9f0ab78c4243f63cb2bacf26d9"><div class="ttname"><a href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a></div><div class="ttdeci">H_Index</div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00032">HistArray.h:32</a></div></div>
-<div class="ttc" id="structeps__entry_html"><div class="ttname"><a href="structeps__entry.html">eps_entry</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00912">Functions_Shared.cpp:912</a></div></div>
-<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00236">HiggsModel.h:236</a></div></div>
+<div class="ttc" id="structeps__entry_html"><div class="ttname"><a href="structeps__entry.html">eps_entry</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8cpp_source.html#l00842">Functions_Shared.cpp:842</a></div></div>
+<div class="ttc" id="classHistArray_html_ad893a01d5a59715e33ce2a67b316f9e1"><div class="ttname"><a href="classHistArray.html#ad893a01d5a59715e33ce2a67b316f9e1">HistArray::GetName</a></div><div class="ttdeci">const char * GetName() const </div><div class="ttdoc">Get the description of the distribution, const char* for ROOT classes/functions. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00128">HistArray.h:128</a></div></div>
+<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdoc">This class contains all the physical, model specific parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00243">HiggsModel.h:243</a></div></div>
 <div class="ttc" id="Global_8h_html_af390c6bd8192faf6a1e2d875a1d10ca0"><div class="ttname"><a href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a></div><div class="ttdeci">std::complex&lt; double &gt; c_double</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00023">Global.h:23</a></div></div>
-<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00020">Lorentz.h:20</a></div></div>
-<div class="ttc" id="structCanvasPtr_html"><div class="ttname"><a href="structCanvasPtr.html">CanvasPtr</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8h_source.html#l00100">Functions_Shared.h:100</a></div></div>
-<div class="ttc" id="classHiggsModel_html_acd87bf9a85c37da737aba62a0dc82b5b"><div class="ttname"><a href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a></div><div class="ttdeci">void AddBoson(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;b_t=1.0, double const &amp;a_b=0.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00377">HiggsModel.cpp:377</a></div></div>
-<div class="ttc" id="classHistArray_html"><div class="ttname"><a href="classHistArray.html">HistArray</a></div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00062">HistArray.h:62</a></div></div>
-<div class="ttc" id="classHistArray_html_a64fb4832bfab2d8e2e47e56d99902236"><div class="ttname"><a href="classHistArray.html#a64fb4832bfab2d8e2e47e56d99902236">HistArray::Scale</a></div><div class="ttdeci">void Scale(double c)</div><div class="ttdoc">Rescale all active histograms by a factor of 1/c. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00153">HistArray.h:153</a></div></div>
-<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00065">Integrator.h:65</a></div></div>
+<div class="ttc" id="classFV_html"><div class="ttname"><a href="classFV.html">FV</a></div><div class="ttdoc">Lorentz 4-vector. </div><div class="ttdef"><b>Definition:</b> <a href="Lorentz_8h_source.html#l00020">Lorentz.h:20</a></div></div>
+<div class="ttc" id="structCanvasPtr_html"><div class="ttname"><a href="structCanvasPtr.html">CanvasPtr</a></div><div class="ttdef"><b>Definition:</b> <a href="Functions__Shared_8h_source.html#l00103">Functions_Shared.h:103</a></div></div>
+<div class="ttc" id="classHiggsModel_html_acd87bf9a85c37da737aba62a0dc82b5b"><div class="ttname"><a href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a></div><div class="ttdeci">void AddBoson(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;b_t=1.0, double const &amp;a_b=0.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00386">HiggsModel.cpp:386</a></div></div>
+<div class="ttc" id="classHistArray_html"><div class="ttname"><a href="classHistArray.html">HistArray</a></div><div class="ttdoc">This class stores an array of ROOT TH1D&#39;s. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00062">HistArray.h:62</a></div></div>
+<div class="ttc" id="classHistArray_html_a5957d6ee5e35e9608adbfe39b6bac23c"><div class="ttname"><a href="classHistArray.html#a5957d6ee5e35e9608adbfe39b6bac23c">HistArray::GetID</a></div><div class="ttdeci">int GetID() const </div><div class="ttdoc">Get the unique ID of this HistArray instance. </div><div class="ttdef"><b>Definition:</b> <a href="HistArray_8h_source.html#l00239">HistArray.h:239</a></div></div>
+<div class="ttc" id="classIntegral_html"><div class="ttname"><a href="classIntegral.html">Integral</a></div><div class="ttdoc">This class represents an integral to be computed by VEGAS. </div><div class="ttdef"><b>Definition:</b> <a href="Integrator_8h_source.html#l00067">Integrator.h:67</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

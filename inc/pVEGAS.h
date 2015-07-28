@@ -1,7 +1,7 @@
 
 
 /*! \file
-  \brief GSL VEGAS algorithm. This is my attempt to convert it to a parallel version using the OpenMP API. As long as the integrand function is thread-safe it works correctly. Not sure if it really enhances performance...
+  \brief GSL VEGAS algorithm. This is my attempt to convert it to a parallel version using the OpenMP API. As long as the integrand function is thread-safe it works correctly. Experimental and not used in the main program.
 */ 
 
 /* monte/gsl_monte_vegas.h

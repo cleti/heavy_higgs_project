@@ -90,22 +90,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">FileBrowser Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Simple, text-based file browser class.  
+ <a href="classFileBrowser.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="FileBrowser_8h_source.html">FileBrowser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6fbf64b13ec2e53f375e3e9ea3b1362a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6fbf64b13ec2e53f375e3e9ea3b1362a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FileBrowser</b> (const std::string &amp;base_path=&quot;.&quot;)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileBrowser.html#a6fbf64b13ec2e53f375e3e9ea3b1362a">FileBrowser</a> (const std::string &amp;base_path=&quot;.&quot;)</td></tr>
+<tr class="memdesc:a6fbf64b13ec2e53f375e3e9ea3b1362a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify base path when constructing the <a class="el" href="classFileBrowser.html" title="Simple, text-based file browser class. ">FileBrowser</a> object. <br /></td></tr>
 <tr class="separator:a6fbf64b13ec2e53f375e3e9ea3b1362a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a188c69f0ffb1bc2510df206035fcbfd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a188c69f0ffb1bc2510df206035fcbfd9"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>browse</b> ()</td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileBrowser.html#a188c69f0ffb1bc2510df206035fcbfd9">browse</a> ()</td></tr>
+<tr class="memdesc:a188c69f0ffb1bc2510df206035fcbfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Browse through files and folders starting at the selected base path. Returns a string with the path and name of the selected file. <br /></td></tr>
 <tr class="separator:a188c69f0ffb1bc2510df206035fcbfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae65bbe179dd98f44439fc25a2e46a024"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae65bbe179dd98f44439fc25a2e46a024"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_cdir</b> (const boost::filesystem::path &amp;path)</td></tr>
 <tr class="separator:ae65bbe179dd98f44439fc25a2e46a024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="FileBrowser_8h_source.html#l00011">11</a> of file <a class="el" href="FileBrowser_8h_source.html">FileBrowser.h</a>.</p>
+<div class="textblock"><p>Simple, text-based file browser class. </p>
+<p>This is used to select files with input data for the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> objects. </p>
+
+<p>Definition at line <a class="el" href="FileBrowser_8h_source.html#l00019">19</a> of file <a class="el" href="FileBrowser_8h_source.html">FileBrowser.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="FileBrowser_8h_source.html">FileBrowser.h</a></li>
 <li>src/<a class="el" href="FileBrowser_8cpp_source.html">FileBrowser.cpp</a></li>

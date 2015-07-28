@@ -332,239 +332,248 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;  d_HPref.Reset();</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <span class="comment">// iterate over d_Bosons and add the individual contributions</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  <span class="keyword">auto</span> last  = std::end(d_Bosons);</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    {</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="keywordflow">if</span> (!EFF || d_useK) (*phi_i)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="comment">// multiply prop. with K-factor only if effective vertices are used</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <span class="comment">// in this case we also need to compute the full form factors</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="comment">// when the full vertices are used in the amplitudes do nothing</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      (*phi_i)-&gt;SetPropagator(S,d_useK &amp;&amp; EFF);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHi = (*phi_i)-&gt;GetFH(EFF);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAi = (*phi_i)-&gt;GetFA(EFF);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Di  = (*phi_i)-&gt;GetPropagator();</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <span class="keywordtype">double</span> FH2i  = std::norm(FHi);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      <span class="keywordtype">double</span> FA2i  = std::norm(FAi);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; di  = (*phi_i)-&gt;GetPropagatorSq();</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Ati = (*phi_i)-&gt;At();</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Bti = (*phi_i)-&gt;Bt();</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <span class="keywordtype">double</span> At2i = std::pow(Ati,2);</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <span class="keywordtype">double</span> Bt2i = std::pow(Bti,2);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      <span class="comment">// prefactors in PHIxQCD amplitudes</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      <span class="comment">// these are just the sum of individual phi contributions</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      d_HPref.At_fH_re += Ati*(FHi*Di).real();</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      d_HPref.At_fA_re += Ati*(FAi*Di).real();</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      d_HPref.Bt_fH_re += Bti*(FHi*Di).real();</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      d_HPref.Bt_fA_re += Bti*(FAi*Di).real();</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="comment">// PRINT(std::sqrt(S));</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi_i = std::begin(d_Bosons); phi_i!=last; ++phi_i)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="keywordflow">if</span> (!EFF || d_useK) (*phi_i)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <span class="comment">// multiply prop. with K-factor only if effective vertices are used</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="comment">// in this case we also need to compute the full form factors</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      <span class="comment">// when the full vertices are used in the amplitudes do nothing</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      (*phi_i)-&gt;SetPropagator(S,d_useK &amp;&amp; EFF);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHi = (*phi_i)-&gt;GetFH(EFF);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAi = (*phi_i)-&gt;GetFA(EFF);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Di  = (*phi_i)-&gt;GetPropagator();</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      <span class="keywordtype">double</span> FH2i  = std::norm(FHi);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="keywordtype">double</span> FA2i  = std::norm(FAi);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; di  = (*phi_i)-&gt;GetPropagatorSq();</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Ati = (*phi_i)-&gt;At();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Bti = (*phi_i)-&gt;Bt();</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <span class="keywordtype">double</span> At2i = std::pow(Ati,2);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      <span class="keywordtype">double</span> Bt2i = std::pow(Bti,2);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      <span class="comment">// PRINT(Ati);</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      <span class="comment">// PRINT(Bti);</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      <span class="comment">// PRINT(Di*FHi*(-4.0*S));</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      <span class="comment">// PRINT(Di*FAi*( 8.0*S));</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      <span class="comment">// PRINT(Di);</span></div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      d_HPref.At_fH_im += Ati*(FHi*Di).imag();</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      d_HPref.At_fA_im += Ati*(FAi*Di).imag();</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      d_HPref.Bt_fH_im += Bti*(FHi*Di).imag();</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;      d_HPref.Bt_fA_im += Bti*(FAi*Di).imag();</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      <span class="comment">// prefactors in PHIxPHI amplitudes</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      <span class="comment">// first the sum of the individual phi_i^2 contributions</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      d_HPref.At2_fH2_De += At2i*FH2i*di;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;      d_HPref.At2_fA2_De += At2i*FA2i*di;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      d_HPref.Bt2_fH2_De += Bt2i*FH2i*di;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;      d_HPref.Bt2_fA2_De += Bt2i*FA2i*di;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      </div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      <span class="comment">// only needed for polarized amplitudes:</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      <span class="comment">// PHIxPHI terms: add at*bt interference from Phi1^2 contribution</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      <span class="comment">// second loop to get the phi^2 contributions</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi_j = phi_i+1; phi_j!=last; ++phi_j)</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="keywordflow">if</span> (!EFF || d_useK) (*phi_j)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      <span class="comment">// multiply prop. with K-factor only if effective vertices are used</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="comment">// in this case we also need to compute the full form factors</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      <span class="comment">// when the full vertices are used in the amplitudes do nothing</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      (*phi_j)-&gt;SetPropagator(S,d_useK &amp;&amp; EFF);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHj = (*phi_j)-&gt;GetFH(EFF);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAj = (*phi_j)-&gt;GetFA(EFF);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Dj  = (*phi_j)-&gt;GetPropagator();</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Atj = (*phi_j)-&gt;At();</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Btj = (*phi_j)-&gt;Bt();</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> DiDj = Di*std::conj(Dj);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;     </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      <span class="comment">// prefactors in PHIxPHI amplitudes</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;      <span class="comment">// here we also have to sum all the phi_i * phi_j interferences    </span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;      d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHi*std::conj(FHj)*DiDj).real();</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      d_HPref.At2_fA2_De   += 2.0*Ati*Atj*(FAi*std::conj(FAj)*DiDj).real();</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHi*std::conj(FHj)*DiDj).real();</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAi*std::conj(FAj)*DiDj).real();</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      <span class="comment">// only needed for polarized amplitudes:</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      <span class="comment">// PHIxPHI terms: at Phi1 * bt  Phi2 interferences</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();   </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <span class="comment">// the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      d_HPref.At_Bt_fH2_DeIM -= (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      d_HPref.At_Bt_fA2_DeIM -= (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
-<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">  333</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">HiggsModel::SetAmpPrefactors</a>()</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;{</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespaceConstants.html">Constants</a>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="comment">/* born */</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    d_APref.PREF_B_PHIxPHI      = CF*CA2*d_AlphaS2/Pi2;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    d_APref.PREF_B_PHIxQCD      = CF*CA*d_AlphaS2;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    d_APref.PREF_B_QCDxQCD      = CF*CA*d_AlphaS2*Pi2;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    d_APref.PREF_B_QCDxQCD_CF   = CF2*CA*d_AlphaS2*Pi2;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    d_APref.PREF_B_QCDxQCD_CA   = CF*CA2*d_AlphaS2*Pi2;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    d_APref.PREF_B_QCDxQCD_CFCA = CF*CA*CFCA2*d_AlphaS2*Pi2;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="comment">/* virtual */</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    d_APref.PREF_V_PHIxQCD_CF    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CF;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    d_APref.PREF_V_PHIxQCD_CA    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CA;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    d_APref.PREF_V_PHIxQCD_CFCA2 = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CFCA2;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    d_APref.PREF_V_PHIxQCD_Nf    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*Nf;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    d_APref.PREF_V_PHIxQCD_CT    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    d_APref.PREF_V_PHIxQCD       = d_APref.PREF_B_PHIxQCD*d_AlphaS;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    d_APref.PREF_V_PHIxPHI       = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    d_APref.PREF_V_PHIxPHI_CA    = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi*CA;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    d_APref.PREF_V_PHIxPHI_CF    = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi*CF;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="comment">/* real */</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    d_APref.PREF_R_PHIxQCD       = d_APref.PREF_V_PHIxQCD_CT*Pi2;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    d_APref.PREF_R_PHIxQCD_CF    = d_APref.PREF_V_PHIxQCD_CF*Pi2;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    d_APref.PREF_R_PHIxQCD_CA    = d_APref.PREF_V_PHIxQCD_CA*Pi2;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    d_APref.PREF_R_PHIxQCD_CFCA2 = d_APref.PREF_V_PHIxQCD_CFCA2*Pi2;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    d_APref.PREF_R_PHIxPHI       = d_APref.PREF_V_PHIxPHI*Pi2;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    d_APref.PREF_R_PHIxPHI_CA    = d_APref.PREF_V_PHIxPHI_CA*Pi2;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    d_APref.PREF_R_PHIxPHI_CF    = d_APref.PREF_V_PHIxPHI_CF*Pi2;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="comment">/* UID */</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    d_APref.PREF_UID_TF =  4.0*Pi*d_AlphaS;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    d_APref.PREF_UID_CA = 16.0*Pi*d_AlphaS*CA;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    d_APref.PREF_UID_CF =  8.0*Pi*d_AlphaS*CF;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">/* Needed in  EVAL_V  */</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    d_APref.MUR2   = d_MUR2;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    d_APref.AlphaS = d_AlphaS;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;}</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">// void SetScale(double const&amp; val)</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">// {</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment">//   // // first rescale all values with the previous scale</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">// }</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
-<div class="line"><a name="l00377"></a><span class="lineno"><a class="line" href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">  377</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a>(</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_t,</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_t,</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_b,</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_b)</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;{</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    {</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                              G/d_Scale,</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                              a_t,b_t,a_b,b_b));</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    {</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;}</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
-<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">  398</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">HiggsModel::AddScalar</a>(</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_t,</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_b)</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;{</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    {</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                              G/d_Scale,</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                              a_t,0.0,a_b,0.0));</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    }</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    }</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;}</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
-<div class="line"><a name="l00417"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">  417</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">HiggsModel::AddPseudoscalar</a>(</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_t,</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_b)</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;{</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                              G/d_Scale,</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                              0.0,b_t,0.0,b_b));</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    }</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    {</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    }</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;}</div>
-<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">  435</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">HiggsModel::PopBoson</a>()</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;{</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;  d_Bosons.pop_back();</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;}</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;</div>
-<div class="line"><a name="l00442"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">  442</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a>(std::ostream&amp; ost, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mScale)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; std::setfill(<span class="charliteral">&#39;=&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; Model configuration [&quot;</span> &lt;&lt; d_Name &lt;&lt; <span class="stringliteral">&quot;]: &quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  PRINTS(ost,d_AlphaS);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  PRINTS(ost,d_MUR*mScale);  </div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;  PRINTS(ost,d_MUF*mScale);</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;  PRINTS(ost,d_mt*mScale);</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;  PRINTS(ost,d_mb*mScale);</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;  PRINTS(ost,d_VH*mScale);</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  PRINTS(ost,d_Scale);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  </div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; Higgs bosons:&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <span class="keywordflow">if</span> (d_Bosons.size()&gt;0)</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    {</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;      ost &lt;&lt; std::setw(5) &lt;&lt;  <span class="stringliteral">&quot;#&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;M&quot;</span>  &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;Gamma&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;a_t&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;b_t&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;a_b&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;b_b&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;      ost &lt;&lt; std::setfill(<span class="charliteral">&#39;-&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;      <span class="keywordtype">int</span> I = 1;</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi:d_Bosons)</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    {</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;      ost &lt;&lt; std::setw(5) &lt;&lt; I &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;M()*mScale &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;G()*mScale &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;At()*d_VH &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;Bt()*d_VH &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;Ab()*d_VH &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;Bb()*d_VH &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;      ++I;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    }</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;      <span class="comment">// d_HPref.Print(ost);</span></div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    {</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      ost &lt;&lt; <span class="stringliteral">&quot; no Higgs bosons added so far. &quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    }</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;  ost &lt;&lt; std::setfill(<span class="charliteral">&#39;=&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;  <span class="comment">// d_APref.Print(ost);</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;}</div>
-<div class="ttc" id="classHiggsModel_html_a94f5b60024363838e73e0e1b8d1604ca"><div class="ttname"><a href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">HiggsModel::AddPseudoscalar</a></div><div class="ttdeci">void AddPseudoscalar(double const &amp;M, double const &amp;G, double const &amp;b_t=1.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a pseudoscalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be re...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00417">HiggsModel.cpp:417</a></div></div>
-<div class="ttc" id="classHiggsModel_html_a7aea18c2e6622159e8f6cc29be537c0f"><div class="ttname"><a href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">HiggsModel::PopBoson</a></div><div class="ttdeci">void PopBoson()</div><div class="ttdoc">Remove the last Higgs boson added to the vector d_Bosons. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00435">HiggsModel.cpp:435</a></div></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      <span class="comment">// prefactors in PHIxQCD amplitudes</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      <span class="comment">// these are just the sum of individual phi contributions</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;      d_HPref.At_fH_re += Ati*(FHi*Di).real();</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;      d_HPref.At_fA_re += Ati*(FAi*Di).real();</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      d_HPref.Bt_fH_re += Bti*(FHi*Di).real();</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      d_HPref.Bt_fA_re += Bti*(FAi*Di).real();</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;      d_HPref.At_fH_im += Ati*(FHi*Di).imag();</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      d_HPref.At_fA_im += Ati*(FAi*Di).imag();</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;      d_HPref.Bt_fH_im += Bti*(FHi*Di).imag();</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      d_HPref.Bt_fA_im += Bti*(FAi*Di).imag();</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      <span class="comment">// prefactors in PHIxPHI amplitudes</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      <span class="comment">// first the sum of the individual phi_i^2 contributions</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      d_HPref.At2_fH2_De += At2i*FH2i*di;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      d_HPref.At2_fA2_De += At2i*FA2i*di;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      d_HPref.Bt2_fH2_De += Bt2i*FH2i*di;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;      d_HPref.Bt2_fA2_De += Bt2i*FA2i*di;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      <span class="comment">// only needed for polarized amplitudes:</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="comment">// PHIxPHI terms: add at*bt interference from Phi1^2 contribution</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      d_HPref.At_Bt_fH2_De += Ati*Bti*FH2i*di;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      d_HPref.At_Bt_fA2_De += Ati*Bti*FA2i*di;   </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="comment">// second loop to get the phi^2 contributions</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi_j = phi_i+1; phi_j!=last; ++phi_j)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      <span class="keywordflow">if</span> (!EFF || d_useK) (*phi_j)-&gt;SetFormFactors(S,d_mt2,d_mb2);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      <span class="comment">// multiply prop. with K-factor only if effective vertices are used</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <span class="comment">// in this case we also need to compute the full form factors</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      <span class="comment">// when the full vertices are used in the amplitudes do nothing</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      (*phi_j)-&gt;SetPropagator(S,d_useK &amp;&amp; EFF);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FHj = (*phi_j)-&gt;GetFH(EFF);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; FAj = (*phi_j)-&gt;GetFA(EFF);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> <span class="keyword">const</span>&amp; Dj  = (*phi_j)-&gt;GetPropagator();</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Atj = (*phi_j)-&gt;At();</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; Btj = (*phi_j)-&gt;Bt();</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      </div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;      <a class="code" href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a> DiDj = Di*std::conj(Dj);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;     </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      <span class="comment">// prefactors in PHIxPHI amplitudes</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      <span class="comment">// here we also have to sum all the phi_i * phi_j interferences    </span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHi*std::conj(FHj)*DiDj).real();</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      d_HPref.At2_fA2_De   += 2.0*Ati*Atj*(FAi*std::conj(FAj)*DiDj).real();</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHi*std::conj(FHj)*DiDj).real();</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAi*std::conj(FAj)*DiDj).real();</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      <span class="comment">// only needed for polarized amplitudes:</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      <span class="comment">// PHIxPHI terms: at Phi1 * bt  Phi2 interferences</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();   </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      <span class="comment">// the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      d_HPref.At_Bt_fH2_DeIM -= (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;      d_HPref.At_Bt_fA2_DeIM -= (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  <span class="comment">// EXIT(1);</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;}</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">  342</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">HiggsModel::SetAmpPrefactors</a>()</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespaceConstants.html">Constants</a>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="comment">/* born */</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    d_APref.PREF_B_PHIxPHI      = CF*CA2*d_AlphaS2/Pi2;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    d_APref.PREF_B_PHIxQCD      = CF*CA*d_AlphaS2;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    d_APref.PREF_B_QCDxQCD      = CF*CA*d_AlphaS2*Pi2;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    d_APref.PREF_B_QCDxQCD_CF   = CF2*CA*d_AlphaS2*Pi2;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    d_APref.PREF_B_QCDxQCD_CA   = CF*CA2*d_AlphaS2*Pi2;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    d_APref.PREF_B_QCDxQCD_CFCA = CF*CA*CFCA2*d_AlphaS2*Pi2;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="comment">/* virtual */</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    d_APref.PREF_V_PHIxQCD_CF    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CF;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    d_APref.PREF_V_PHIxQCD_CA    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CA;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    d_APref.PREF_V_PHIxQCD_CFCA2 = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*CFCA2;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    d_APref.PREF_V_PHIxQCD_Nf    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi*Nf;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    d_APref.PREF_V_PHIxQCD_CT    = d_APref.PREF_B_PHIxQCD*d_AlphaS/Pi;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    d_APref.PREF_V_PHIxQCD       = d_APref.PREF_B_PHIxQCD*d_AlphaS;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    d_APref.PREF_V_PHIxPHI       = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    d_APref.PREF_V_PHIxPHI_CA    = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi*CA;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    d_APref.PREF_V_PHIxPHI_CF    = d_APref.PREF_B_PHIxPHI*d_AlphaS/Pi*CF;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="comment">/* real */</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    d_APref.PREF_R_PHIxQCD       = d_APref.PREF_V_PHIxQCD_CT*Pi2;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    d_APref.PREF_R_PHIxQCD_CF    = d_APref.PREF_V_PHIxQCD_CF*Pi2;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    d_APref.PREF_R_PHIxQCD_CA    = d_APref.PREF_V_PHIxQCD_CA*Pi2;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    d_APref.PREF_R_PHIxQCD_CFCA2 = d_APref.PREF_V_PHIxQCD_CFCA2*Pi2;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    d_APref.PREF_R_PHIxPHI       = d_APref.PREF_V_PHIxPHI*Pi2;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    d_APref.PREF_R_PHIxPHI_CA    = d_APref.PREF_V_PHIxPHI_CA*Pi2;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    d_APref.PREF_R_PHIxPHI_CF    = d_APref.PREF_V_PHIxPHI_CF*Pi2;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="comment">/* UID */</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    d_APref.PREF_UID_TF =  4.0*Pi*d_AlphaS;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    d_APref.PREF_UID_CA = 16.0*Pi*d_AlphaS*CA;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    d_APref.PREF_UID_CF =  8.0*Pi*d_AlphaS*CF;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="comment">/* Needed in  EVAL_V  */</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    d_APref.MUR2   = d_MUR2;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    d_APref.AlphaS = d_AlphaS;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;}</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="comment">// void SetScale(double const&amp; val)</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">//   // // first rescale all values with the previous scale</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment">// }</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">  386</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a>(</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_t,</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_t,</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_b,</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;              <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_b)</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;{</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                              G/d_Scale,</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                              a_t,b_t,a_b,b_b));</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    {</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    }</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;}</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">  407</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">HiggsModel::AddScalar</a>(</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_t,</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;               <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; a_b)</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;{</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    {</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                              G/d_Scale,</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                              a_t,0.0,a_b,0.0));</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    }</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    {</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    }</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;}</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
+<div class="line"><a name="l00426"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">  426</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">HiggsModel::AddPseudoscalar</a>(</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; M,</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; G,</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_t,</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;             <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; b_b)</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;{</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;  <span class="keywordflow">if</span> (d_VH&gt;0.0)</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    {</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;      d_Bosons.push_back(std::make_shared&lt;HiggsBoson&gt;(M/d_Scale,</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                              G/d_Scale,</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                              d_VH,<span class="comment">// already normalized to d_Scale</span></div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;                              0.0,b_t,0.0,b_b));</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    }</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    {</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;      ERROR(<span class="stringliteral">&quot;call SetVH(val) to set up the combined VEV&quot;</span>);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;}</div>
+<div class="line"><a name="l00444"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">  444</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">HiggsModel::PopBoson</a>()</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;{</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  d_Bosons.pop_back();</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
+<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">  451</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a>(std::ostream&amp; ost, <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; mScale)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; std::setfill(<span class="charliteral">&#39;=&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; Model configuration [&quot;</span> &lt;&lt; d_Name &lt;&lt; <span class="stringliteral">&quot;]: &quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  PRINTS(ost,d_AlphaS);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  PRINTS(ost,d_MUR*mScale);  </div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  PRINTS(ost,d_MUF*mScale);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  PRINTS(ost,d_mt*mScale);</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;  PRINTS(ost,d_mb*mScale);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  PRINTS(ost,d_VH*mScale);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;  PRINTS(ost,d_Scale);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  </div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  ost &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot; Higgs bosons:&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  <span class="keywordflow">if</span> (d_Bosons.size()&gt;0)</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;      ost &lt;&lt; std::setw(5) &lt;&lt;  <span class="stringliteral">&quot;#&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;M&quot;</span>  &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;Gamma&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;a_t&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;b_t&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;a_b&quot;</span> &lt;&lt; std::setw(15) &lt;&lt;  <span class="stringliteral">&quot;b_b&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;      ost &lt;&lt; std::setfill(<span class="charliteral">&#39;-&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;      <span class="keywordtype">int</span> I = 1;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> phi:d_Bosons)</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    {</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;      ost &lt;&lt; std::setw(5) &lt;&lt; I &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;M()*mScale &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;G()*mScale &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;At()*d_VH &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;Bt()*d_VH &lt;&lt; std::setw(15) &lt;&lt; phi-&gt;Ab()*d_VH &lt;&lt; std::setw(15) &lt;&lt;  phi-&gt;Bb()*d_VH &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      ++I;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    }</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;      <span class="comment">// d_HPref.Print(ost);</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    }</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    {</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;      ost &lt;&lt; <span class="stringliteral">&quot; no Higgs bosons added so far. &quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    }</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;  ost &lt;&lt; std::setfill(<span class="charliteral">&#39;=&#39;</span>) &lt;&lt; std::setw(100) &lt;&lt; <span class="stringliteral">&quot;&quot;</span> &lt;&lt; std::setfill(<span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;  <span class="comment">// d_APref.Print(ost);</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;}</div>
+<div class="ttc" id="classHiggsModel_html_a94f5b60024363838e73e0e1b8d1604ca"><div class="ttname"><a href="classHiggsModel.html#a94f5b60024363838e73e0e1b8d1604ca">HiggsModel::AddPseudoscalar</a></div><div class="ttdeci">void AddPseudoscalar(double const &amp;M, double const &amp;G, double const &amp;b_t=1.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a pseudoscalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be re...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00426">HiggsModel.cpp:426</a></div></div>
+<div class="ttc" id="classHiggsModel_html_a7aea18c2e6622159e8f6cc29be537c0f"><div class="ttname"><a href="classHiggsModel.html#a7aea18c2e6622159e8f6cc29be537c0f">HiggsModel::PopBoson</a></div><div class="ttdeci">void PopBoson()</div><div class="ttdoc">Remove the last Higgs boson added to the vector d_Bosons. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00444">HiggsModel.cpp:444</a></div></div>
 <div class="ttc" id="classHiggsBoson_html_a4edd830907f5f06ac24deed99e64da0c"><div class="ttname"><a href="classHiggsBoson.html#a4edd830907f5f06ac24deed99e64da0c">HiggsBoson::SetFormFactors</a></div><div class="ttdeci">void SetFormFactors(double const &amp;S, double const &amp;mt2, double const &amp;mb2)</div><div class="ttdoc">Compute 1-loop form factors for given c.m.e., top- and bottom mass and store values in member variabl...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00047">HiggsModel.cpp:47</a></div></div>
 <div class="ttc" id="classHiggsModel_html_a43f6951291eef31cc18116f7d49f839f"><div class="ttname"><a href="classHiggsModel.html#a43f6951291eef31cc18116f7d49f839f">HiggsModel::SetHiggsPrefactors</a></div><div class="ttdeci">void SetHiggsPrefactors(double const &amp;S, bool EFF)</div><div class="ttdoc">Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into acco...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00247">HiggsModel.cpp:247</a></div></div>
 <div class="ttc" id="Global_8h_html_af390c6bd8192faf6a1e2d875a1d10ca0"><div class="ttname"><a href="Global_8h.html#af390c6bd8192faf6a1e2d875a1d10ca0">c_double</a></div><div class="ttdeci">std::complex&lt; double &gt; c_double</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00023">Global.h:23</a></div></div>
 <div class="ttc" id="classHiggsBoson_html_afebe4ad11ea2cbc2ec0ed1b94759c293"><div class="ttname"><a href="classHiggsBoson.html#afebe4ad11ea2cbc2ec0ed1b94759c293">HiggsBoson::SetPropagator</a></div><div class="ttdeci">void SetPropagator(double const &amp;S, bool rescale=false)</div><div class="ttdoc">compute propagator value for given c.m.e. and store values in member variables </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00107">HiggsModel.cpp:107</a></div></div>
 <div class="ttc" id="namespaceConstants_html"><div class="ttname"><a href="namespaceConstants.html">Constants</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00014">Global.cpp:14</a></div></div>
-<div class="ttc" id="classHiggsModel_html_a71e8fcd730feb01afd4c39f3cd184655"><div class="ttname"><a href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a></div><div class="ttdeci">void Print(std::ostream &amp;ost, double const &amp;mScale) const </div><div class="ttdoc">Print the model parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00442">HiggsModel.cpp:442</a></div></div>
-<div class="ttc" id="classHiggsModel_html_a514e3dd7854409c622b8e200fe2ee84c"><div class="ttname"><a href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">HiggsModel::SetAmpPrefactors</a></div><div class="ttdeci">void SetAmpPrefactors()</div><div class="ttdoc">Reset values of the amplitude prefactors. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00333">HiggsModel.cpp:333</a></div></div>
-<div class="ttc" id="classHiggsModel_html_acd87bf9a85c37da737aba62a0dc82b5b"><div class="ttname"><a href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a></div><div class="ttdeci">void AddBoson(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;b_t=1.0, double const &amp;a_b=0.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00377">HiggsModel.cpp:377</a></div></div>
-<div class="ttc" id="classHiggsModel_html_ab84c9016bf5a8bd87f82f214c34cce8b"><div class="ttname"><a href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">HiggsModel::AddScalar</a></div><div class="ttdeci">void AddScalar(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;a_b=0.0)</div><div class="ttdoc">Add a scalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00398">HiggsModel.cpp:398</a></div></div>
+<div class="ttc" id="classHiggsModel_html_a71e8fcd730feb01afd4c39f3cd184655"><div class="ttname"><a href="classHiggsModel.html#a71e8fcd730feb01afd4c39f3cd184655">HiggsModel::Print</a></div><div class="ttdeci">void Print(std::ostream &amp;ost, double const &amp;mScale) const </div><div class="ttdoc">Print the model parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00451">HiggsModel.cpp:451</a></div></div>
+<div class="ttc" id="classHiggsModel_html_a514e3dd7854409c622b8e200fe2ee84c"><div class="ttname"><a href="classHiggsModel.html#a514e3dd7854409c622b8e200fe2ee84c">HiggsModel::SetAmpPrefactors</a></div><div class="ttdeci">void SetAmpPrefactors()</div><div class="ttdoc">Reset values of the amplitude prefactors. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00342">HiggsModel.cpp:342</a></div></div>
+<div class="ttc" id="classHiggsModel_html_acd87bf9a85c37da737aba62a0dc82b5b"><div class="ttname"><a href="classHiggsModel.html#acd87bf9a85c37da737aba62a0dc82b5b">HiggsModel::AddBoson</a></div><div class="ttdeci">void AddBoson(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;b_t=1.0, double const &amp;a_b=0.0, double const &amp;b_b=0.0)</div><div class="ttdoc">Add a Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled with d...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00386">HiggsModel.cpp:386</a></div></div>
+<div class="ttc" id="classHiggsModel_html_ab84c9016bf5a8bd87f82f214c34cce8b"><div class="ttname"><a href="classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b">HiggsModel::AddScalar</a></div><div class="ttdeci">void AddScalar(double const &amp;M, double const &amp;G, double const &amp;a_t=1.0, double const &amp;a_b=0.0)</div><div class="ttdoc">Add a scalar Higgs boson to the vector d_Bosons. The dimensionful parameters M and G will be rescaled...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00407">HiggsModel.cpp:407</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -3,7 +3,7 @@
 
 ROOTFLAGS   = $(shell root-config --cflags)
 ROOTLIBS    = $(shell root-config --libs)
-QCDLOOPLIBS = ext/ql/libqcdloop.a ext/ff/libff.a  -lgfortran
+QCDLOOPLIBS = -lgfortran ext/ql/libqcdloop.a ext/ff/libff.a
 LOOPTOOLS   = ext/LoopTools-2.12/build/libooptools.a
 GSLLIBS     = -lgsl -lgslcblas
 BOOSTLIBS   = -lboost_system -lboost_filesystem
@@ -18,7 +18,7 @@ PERF2-FLAGS = -m64 -Ofast -flto -march=native -funroll-loops
 #DEP-PATH = .dep
 LIB-PATH = lib
 BIN-PATH = bin
-CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include -fopenmp
+CC-FLAGS = -Wall -std=c++11 -L/home/clemens/LHAPDF-6.1.4/include
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)

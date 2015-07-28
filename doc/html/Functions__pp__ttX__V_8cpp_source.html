@@ -233,21 +233,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;       </div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="keywordtype">double</span> B_t = 0.0;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxPHI) </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a382b0eae8408260d329197173ca3d5a3">F_EVAL_B_PHIxPHI</a>) </div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    {</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;      B_t += Eval_B_PHIxPHI_withINT12(ps,hm);</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      CHECKNAN(B_t);</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_PHIxQCD) </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#abe4da41ec421ae0731d3ec791d150d9a">F_EVAL_B_PHIxQCD</a>) </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    {</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      B_t += Eval_B_2PHIxQCD(ps,ap,hp);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      CHECKNAN(B_t);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_B_QCDxQCD) </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#adb684c9a5a7b99ed5e54ee0847867fd1">F_EVAL_B_QCDxQCD</a>) </div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      B_t += Eval_B_QCDxQCD_GG(ps,ap,hp);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
@@ -304,7 +304,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="comment">// add contributions of individual diagrams according to flags in flags</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_V_PHI0xQCD1)</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a034edf1bfbab5a9f18c271dc2e265180">F_EVAL_V_PHI0xQCD1</a>)</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    {</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      <span class="comment">// 2RE[PHI0 x QCD1] interference terms classified by QCD1 diagram type</span></div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      <span class="comment">// self-energy diagram including ren. counter term</span></div>
@@ -339,7 +339,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  <span class="comment">// 2RE[PHI1 x QCD0] interference terms</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_V_PHI1xQCD0)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#af81920aa4729032241094208d081a5c5">F_EVAL_V_PHI1xQCD0</a>)</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    {</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      res += Eval_V_2RE_PHI1xQCD0(ps,ap,hp);</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
@@ -347,7 +347,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="comment">// 2RE[PHI1xPHI0] interference terms</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordflow">if</span> (flags &amp; F_EVAL_V_PHIxPHI)</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordflow">if</span> (flags &amp; <a class="code" href="Flags_8h.html#a868b0f70f5031c0d416e8ef94d729552">F_EVAL_V_PHIxPHI</a>)</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    {</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      res += Eval_V_PHIxPHI(ps,ap,hp);</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#ifdef WITH_T_SPIN</span></div>
@@ -371,9 +371,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="Functions__pp__HX_8h_html_a2cecc77291b8bfcc2ab264b924cb3162"><div class="ttname"><a href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a></div><div class="ttdeci">double Eval_B(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, bool EFF)</div><div class="ttdoc">Evaluate the squared Born matrix element for gg -> H. NO spin/colour averaging factor included...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00030">Functions_pp_HX.cpp:30</a></div></div>
 <div class="ttc" id="Functions__pp__HX_8h_html_ae6510939d84dababa1c36762080e9e83"><div class="ttname"><a href="Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83">Eval_V</a></div><div class="ttdeci">double Eval_V(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the virtual corrections for gg -> H: one-loop graphs with effective Higgs-gluon coupling...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00066">Functions_pp_HX.cpp:66</a></div></div>
 <div class="ttc" id="classHiggsModel_html_a43f6951291eef31cc18116f7d49f839f"><div class="ttname"><a href="classHiggsModel.html#a43f6951291eef31cc18116f7d49f839f">HiggsModel::SetHiggsPrefactors</a></div><div class="ttdeci">void SetHiggsPrefactors(double const &amp;S, bool EFF)</div><div class="ttdoc">Reset values of the Higgs prefactors. All Higgs bosons in the vector d_Bosons will be taken into acco...</div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8cpp_source.html#l00247">HiggsModel.cpp:247</a></div></div>
-<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00236">HiggsModel.h:236</a></div></div>
+<div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdoc">This class contains all the physical, model specific parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00243">HiggsModel.h:243</a></div></div>
+<div class="ttc" id="Flags_8h_html_a382b0eae8408260d329197173ca3d5a3"><div class="ttname"><a href="Flags_8h.html#a382b0eae8408260d329197173ca3d5a3">F_EVAL_B_PHIxPHI</a></div><div class="ttdeci">#define F_EVAL_B_PHIxPHI</div><div class="ttdoc">Evaluate LO PHIxPHI amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00048">Flags.h:48</a></div></div>
+<div class="ttc" id="Flags_8h_html_abe4da41ec421ae0731d3ec791d150d9a"><div class="ttname"><a href="Flags_8h.html#abe4da41ec421ae0731d3ec791d150d9a">F_EVAL_B_PHIxQCD</a></div><div class="ttdeci">#define F_EVAL_B_PHIxQCD</div><div class="ttdoc">Evaluate LO PHIxQCD amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00050">Flags.h:50</a></div></div>
+<div class="ttc" id="Flags_8h_html_adb684c9a5a7b99ed5e54ee0847867fd1"><div class="ttname"><a href="Flags_8h.html#adb684c9a5a7b99ed5e54ee0847867fd1">F_EVAL_B_QCDxQCD</a></div><div class="ttdeci">#define F_EVAL_B_QCDxQCD</div><div class="ttdoc">Evaluate LO QCD amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00052">Flags.h:52</a></div></div>
 <div class="ttc" id="namespaceConstants_html"><div class="ttname"><a href="namespaceConstants.html">Constants</a></div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00014">Global.cpp:14</a></div></div>
-<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00194">PhaseSpace.h:194</a></div></div>
+<div class="ttc" id="Flags_8h_html_a868b0f70f5031c0d416e8ef94d729552"><div class="ttname"><a href="Flags_8h.html#a868b0f70f5031c0d416e8ef94d729552">F_EVAL_V_PHIxPHI</a></div><div class="ttdeci">#define F_EVAL_V_PHIxPHI</div><div class="ttdoc">Evaluate virtual PHI1xPHI0 amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00082">Flags.h:82</a></div></div>
+<div class="ttc" id="Flags_8h_html_a034edf1bfbab5a9f18c271dc2e265180"><div class="ttname"><a href="Flags_8h.html#a034edf1bfbab5a9f18c271dc2e265180">F_EVAL_V_PHI0xQCD1</a></div><div class="ttdeci">#define F_EVAL_V_PHI0xQCD1</div><div class="ttdoc">Evaluate all virtual PHI0xQCD1 amplitudes. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00058">Flags.h:58</a></div></div>
+<div class="ttc" id="classPS__2__2_html"><div class="ttname"><a href="classPS__2__2.html">PS_2_2</a></div><div class="ttdoc">Phase space for 2->2 scattering. </div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00197">PhaseSpace.h:197</a></div></div>
+<div class="ttc" id="Flags_8h_html_af81920aa4729032241094208d081a5c5"><div class="ttname"><a href="Flags_8h.html#af81920aa4729032241094208d081a5c5">F_EVAL_V_PHI1xQCD0</a></div><div class="ttdeci">#define F_EVAL_V_PHI1xQCD0</div><div class="ttdoc">Evaluate virtual PHI1xQCD0 amplitude. </div><div class="ttdef"><b>Definition:</b> <a href="Flags_8h_source.html#l00080">Flags.h:80</a></div></div>
 <div class="ttc" id="Functions__pp__ttX__V_8h_html_abbd9d191a2451f81de8457275e19b5d9"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html#abbd9d191a2451f81de8457275e19b5d9">Eval_B_QQ</a></div><div class="ttdeci">double Eval_B_QQ(const PS_2_2 &amp;ps, HiggsModel &amp;hm)</div><div class="ttdoc">Evaluates the squared born amplitudes for the process . NO spin/colour averaging factor included...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__ttX__V_8cpp_source.html#l00197">Functions_pp_ttX_V.cpp:197</a></div></div>
 <div class="ttc" id="ScalarIntegrals_8h_html_acb42904101990394b73373a2b953e04c"><div class="ttname"><a href="ScalarIntegrals_8h.html#acb42904101990394b73373a2b953e04c">Set_SI</a></div><div class="ttdeci">void Set_SI(const double &amp;mt2, const double &amp;rs, const double &amp;t11, const double &amp;t12, const double &amp;MUR2, unsigned flags)</div><div class="ttdoc">Set global variables according to the given phase space point. </div><div class="ttdef"><b>Definition:</b> <a href="ScalarIntegrals_8cpp_source.html#l00093">ScalarIntegrals.cpp:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
