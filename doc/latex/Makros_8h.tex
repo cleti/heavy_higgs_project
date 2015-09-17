@@ -1,0 +1,348 @@
+\hypertarget{Makros_8h}{}\section{inc/\+Makros.h File Reference}
+\label{Makros_8h}\index{inc/\+Makros.\+h@{inc/\+Makros.\+h}}
+
+
+Makros for printing error, warning messages, etc.  
+
+
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$iomanip$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$boost/utility.\+hpp$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Makros_8h_a1c8d833b83b42c5991c09c8585d55c8a}{S\+W\+A\+R\+N\+I\+N\+G}(O\+S\+T,  M\+S\+G)
+\begin{DoxyCompactList}\small\item\em Print warning to stream O\+S\+T. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_af785f9a4a6839363be802b59acaba2f5}{}\#define {\bfseries W\+A\+R\+N\+I\+N\+G}(M\+S\+G)~\hyperlink{Makros_8h_a1c8d833b83b42c5991c09c8585d55c8a}{S\+W\+A\+R\+N\+I\+N\+G}(std\+::cout,M\+S\+G)\label{Makros_8h_af785f9a4a6839363be802b59acaba2f5}
+
+\item 
+\#define \hyperlink{Makros_8h_ac6cc0567b3d112c851643077694384c9}{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}(O\+S\+T,  M\+S\+G)
+\begin{DoxyCompactList}\small\item\em Print error message to stream O\+S\+T without exit. \end{DoxyCompactList}\item 
+\#define \hyperlink{Makros_8h_a10631a6250c11abe2f1890410a30a14b}{S\+E\+R\+R\+O\+R}(O\+S\+T,  M\+S\+G)
+\begin{DoxyCompactList}\small\item\em Print error message to stream O\+S\+T and exit. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{}\#define \hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}(M\+S\+G)~\hyperlink{Makros_8h_ac6cc0567b3d112c851643077694384c9}{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}(std\+::cout,M\+S\+G);\label{Makros_8h_a5099f439a2ff74a4de7d51806693e707}
+
+\begin{DoxyCompactList}\small\item\em Print error message to standard output without exit. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_abd47621d09d5e98d7cc1618dd515b133}{}\#define \hyperlink{Makros_8h_abd47621d09d5e98d7cc1618dd515b133}{E\+R\+R\+O\+R}(M\+S\+G)~\hyperlink{Makros_8h_a10631a6250c11abe2f1890410a30a14b}{S\+E\+R\+R\+O\+R}(std\+::cout,M\+S\+G);\label{Makros_8h_abd47621d09d5e98d7cc1618dd515b133}
+
+\begin{DoxyCompactList}\small\item\em Print error message to standard output and exit. \end{DoxyCompactList}\item 
+\#define \hyperlink{Makros_8h_ad23b5b9cd113b2906f847fde075833b4}{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S}(V\+A\+R,  P\+S)
+\begin{DoxyCompactList}\small\item\em check float for inf/nan, print ps content \end{DoxyCompactList}\item 
+\#define \hyperlink{Makros_8h_aa1c82bf5b1e44f6f34d240ffcf597ed1}{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T}(V\+A\+R)
+\begin{DoxyCompactList}\small\item\em check float for inf/nan \end{DoxyCompactList}\item 
+\#define \hyperlink{Makros_8h_aab5f0142d4ae31a0c9edd885e6c2a85e}{C\+H\+E\+C\+K\+N\+A\+N}(V\+A\+R)
+\begin{DoxyCompactList}\small\item\em check float for inf/nan and exit \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_ad8700448546b3b5111404cc021061fd5}{}\#define {\bfseries unlikely}(expr)~\+\_\+\+\_\+builtin\+\_\+expect(!!(expr), 0)\label{Makros_8h_ad8700448546b3b5111404cc021061fd5}
+
+\item 
+\hypertarget{Makros_8h_aa0672ea7123854cc5f51902a06c473fb}{}\#define {\bfseries likely}(expr)~\+\_\+\+\_\+builtin\+\_\+expect(!!(expr), 1)\label{Makros_8h_aa0672ea7123854cc5f51902a06c473fb}
+
+\item 
+\#define \hyperlink{Makros_8h_a676c89732dd0366a56221d6d7c45e15e}{D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R}(ptr)
+\begin{DoxyCompactList}\small\item\em delete a pointer and reset \end{DoxyCompactList}\item 
+\#define {\bfseries S\+L\+E\+E\+P}(S)
+\item 
+\#define {\bfseries E\+X\+I\+T}(S)
+\item 
+\#define \hyperlink{Makros_8h_acc47de7b8317be6f8c500d1380e41a35}{S\+P\+R\+I\+N\+T}(O\+S\+T,  V\+A\+R)
+\begin{DoxyCompactList}\small\item\em Print variable name and value to ouput stream. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_adafe71dc847c581fb37913fc23525c57}{}\#define \hyperlink{Makros_8h_adafe71dc847c581fb37913fc23525c57}{P\+R\+I\+N\+T}(V\+A\+R)~\hyperlink{Makros_8h_acc47de7b8317be6f8c500d1380e41a35}{S\+P\+R\+I\+N\+T}(std\+::cout,V\+A\+R)\label{Makros_8h_adafe71dc847c581fb37913fc23525c57}
+
+\begin{DoxyCompactList}\small\item\em Print variable name and value to standard output. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_a30de72f2a8e7d2625013da1057fc44ac}{}\#define {\bfseries R\+E}(X)~X.\+real()\label{Makros_8h_a30de72f2a8e7d2625013da1057fc44ac}
+
+\item 
+\hypertarget{Makros_8h_ad40b2b96681e12c87a842d274264afda}{}\#define {\bfseries I\+M}(X)~X.\+imag()\label{Makros_8h_ad40b2b96681e12c87a842d274264afda}
+
+\item 
+\hypertarget{Makros_8h_a638baec430c51e0a381be1d45cd676ee}{}\#define {\bfseries V\+F}(X)~(X)\label{Makros_8h_a638baec430c51e0a381be1d45cd676ee}
+
+\item 
+\hypertarget{Makros_8h_a85410a4ca45bc9b44d9bbbd68ca05a5d}{}\#define \hyperlink{Makros_8h_a85410a4ca45bc9b44d9bbbd68ca05a5d}{sp}(K1,  K2)~(K1\mbox{[}0\mbox{]}$\ast$K2\mbox{[}0\mbox{]}-\/(K1\mbox{[}1\mbox{]}$\ast$K2\mbox{[}1\mbox{]}+K1\mbox{[}2\mbox{]}$\ast$K2\mbox{[}2\mbox{]}+K1\mbox{[}3\mbox{]}$\ast$K2\mbox{[}3\mbox{]}))\label{Makros_8h_a85410a4ca45bc9b44d9bbbd68ca05a5d}
+
+\begin{DoxyCompactList}\small\item\em Lorentz product of two 4 vectors K1, K2. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_a24c70b777ea8f96e21251475231ee800}{}\#define \hyperlink{Makros_8h_a24c70b777ea8f96e21251475231ee800}{sp3}(K1,  K2)~(K1\mbox{[}1\mbox{]}$\ast$K2\mbox{[}1\mbox{]}+K1\mbox{[}2\mbox{]}$\ast$K2\mbox{[}2\mbox{]}+K1\mbox{[}3\mbox{]}$\ast$K2\mbox{[}3\mbox{]})\label{Makros_8h_a24c70b777ea8f96e21251475231ee800}
+
+\begin{DoxyCompactList}\small\item\em Scalar product of the spatial components of 4-\/vectors K1, K2. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_abf7706b9d685ffcd8453326b9f4394aa}{}\#define \hyperlink{Makros_8h_abf7706b9d685ffcd8453326b9f4394aa}{M\+S\+Q}(K)~\hyperlink{Makros_8h_a85410a4ca45bc9b44d9bbbd68ca05a5d}{sp}(K,K)\label{Makros_8h_abf7706b9d685ffcd8453326b9f4394aa}
+
+\begin{DoxyCompactList}\small\item\em Mass squared of a 4-\/vector K. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_a8909f3f29683e8013e7fb8f32086cf3b}{}\#define \hyperlink{Makros_8h_a8909f3f29683e8013e7fb8f32086cf3b}{L\+E\+N}(K)~std\+::sqrt(K\mbox{[}1\mbox{]}$\ast$K\mbox{[}1\mbox{]}+K\mbox{[}2\mbox{]}$\ast$K\mbox{[}2\mbox{]}+K\mbox{[}3\mbox{]}$\ast$K\mbox{[}3\mbox{]})\label{Makros_8h_a8909f3f29683e8013e7fb8f32086cf3b}
+
+\begin{DoxyCompactList}\small\item\em Length of a 4-\/vector K. \end{DoxyCompactList}\item 
+\#define \hyperlink{Makros_8h_aafed3ec2d40f1bb090c7024565a33ffe}{P\+R\+I\+N\+T\+\_\+4\+V\+E\+C}(P)
+\begin{DoxyCompactList}\small\item\em Print 4-\/vector P. \end{DoxyCompactList}\item 
+\hypertarget{Makros_8h_af810616cda1635bc1f906f06f5c5d1ca}{}\#define \hyperlink{Makros_8h_af810616cda1635bc1f906f06f5c5d1ca}{dilog}(x)~gsl\+\_\+sf\+\_\+dilog(x)\label{Makros_8h_af810616cda1635bc1f906f06f5c5d1ca}
+
+\begin{DoxyCompactList}\small\item\em We use the G\+S\+L dilogarithm function in this program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Makros for printing error, warning messages, etc. 
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{Makros_8h_aab5f0142d4ae31a0c9edd885e6c2a85e}{}\index{Makros.\+h@{Makros.\+h}!C\+H\+E\+C\+K\+N\+A\+N@{C\+H\+E\+C\+K\+N\+A\+N}}
+\index{C\+H\+E\+C\+K\+N\+A\+N@{C\+H\+E\+C\+K\+N\+A\+N}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{C\+H\+E\+C\+K\+N\+A\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+C\+K\+N\+A\+N(
+\begin{DoxyParamCaption}
+\item[{}]{V\+A\+R}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_aab5f0142d4ae31a0c9edd885e6c2a85e}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if} ( std::isnan(VAR) || std::isinf(VAR) )   \(\backslash\)
+    \{                       \hyperlink{Makros_8h_abd47621d09d5e98d7cc1618dd515b133}{\(\backslash\)}
+\hyperlink{Makros_8h_abd47621d09d5e98d7cc1618dd515b133}{      ERROR}(#VAR << \textcolor{stringliteral}{" is inf/nan"});      \(\backslash\)
+    \}                       \(\backslash\)
+\end{DoxyCode}
+
+
+check float for inf/nan and exit 
+
+
+
+Definition at line 78 of file Makros.\+h.
+
+\hypertarget{Makros_8h_aa1c82bf5b1e44f6f34d240ffcf597ed1}{}\index{Makros.\+h@{Makros.\+h}!C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T@{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T}}
+\index{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T@{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+N\+O\+E\+X\+I\+T(
+\begin{DoxyParamCaption}
+\item[{}]{V\+A\+R}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_aa1c82bf5b1e44f6f34d240ffcf597ed1}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if} ( std::isnan(VAR) || std::isinf(VAR) )   \(\backslash\)
+    \{                       \hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{\(\backslash\)}
+\hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{      ERROR\_NOEXIT}(#VAR << \textcolor{stringliteral}{" is inf/nan"});    \(\backslash\)
+    \}                       \(\backslash\)
+\end{DoxyCode}
+
+
+check float for inf/nan 
+
+
+
+Definition at line 71 of file Makros.\+h.
+
+\hypertarget{Makros_8h_ad23b5b9cd113b2906f847fde075833b4}{}\index{Makros.\+h@{Makros.\+h}!C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S@{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S}}
+\index{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S@{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+C\+K\+N\+A\+N\+\_\+\+P\+S(
+\begin{DoxyParamCaption}
+\item[{}]{V\+A\+R, }
+\item[{}]{P\+S}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_ad23b5b9cd113b2906f847fde075833b4}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if} ( std::isnan(VAR) || std::isinf(VAR) )   \(\backslash\)
+    \{                       \hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{\(\backslash\)}
+\hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{      ERROR\_NOEXIT}(#VAR << \textcolor{stringliteral}{" is inf/nan"});    \(\backslash\)
+      PS.print();               \(\backslash\)
+      std::exit(1);             \(\backslash\)
+    \}                       \(\backslash\)
+\end{DoxyCode}
+
+
+check float for inf/nan, print ps content 
+
+
+
+Definition at line 62 of file Makros.\+h.
+
+\hypertarget{Makros_8h_a676c89732dd0366a56221d6d7c45e15e}{}\index{Makros.\+h@{Makros.\+h}!D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R@{D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R}}
+\index{D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R@{D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+L\+E\+T\+E\+\_\+\+P\+T\+R(
+\begin{DoxyParamCaption}
+\item[{}]{ptr}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_a676c89732dd0366a56221d6d7c45e15e}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                       \(\backslash\)
+    delete ptr;                 \(\backslash\)
+    ptr = \textcolor{keyword}{nullptr};              \(\backslash\)
+  \}                     \(\backslash\)
+\end{DoxyCode}
+
+
+delete a pointer and reset 
+
+
+
+Definition at line 89 of file Makros.\+h.
+
+\hypertarget{Makros_8h_a7381587c65f10a57788ea8ab817d1fff}{}\index{Makros.\+h@{Makros.\+h}!E\+X\+I\+T@{E\+X\+I\+T}}
+\index{E\+X\+I\+T@{E\+X\+I\+T}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{E\+X\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+X\+I\+T(
+\begin{DoxyParamCaption}
+\item[{}]{S}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_a7381587c65f10a57788ea8ab817d1fff}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                       \(\backslash\)
+    std::cout << std::endl;         \(\backslash\)
+    std::cout << \textcolor{stringliteral}{" exit called from "};      \(\backslash\)
+    std::cout << \_\_FILE\_\_ << \textcolor{stringliteral}{", "};      \(\backslash\)
+    std::cout << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{", line "}; \(\backslash\)
+    std::cout << \_\_LINE\_\_ << std::endl;     \(\backslash\)
+    exit(S);                    \(\backslash\)
+  \}                     \(\backslash\)
+\end{DoxyCode}
+
+
+Definition at line 104 of file Makros.\+h.
+
+\hypertarget{Makros_8h_aafed3ec2d40f1bb090c7024565a33ffe}{}\index{Makros.\+h@{Makros.\+h}!P\+R\+I\+N\+T\+\_\+4\+V\+E\+C@{P\+R\+I\+N\+T\+\_\+4\+V\+E\+C}}
+\index{P\+R\+I\+N\+T\+\_\+4\+V\+E\+C@{P\+R\+I\+N\+T\+\_\+4\+V\+E\+C}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{P\+R\+I\+N\+T\+\_\+4\+V\+E\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+I\+N\+T\+\_\+4\+V\+E\+C(
+\begin{DoxyParamCaption}
+\item[{}]{P}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_aafed3ec2d40f1bb090c7024565a33ffe}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                                   \(\backslash\)
+    std::cout << std::endl << #P << \textcolor{stringliteral}{" =  [ "};               \(\backslash\)
+      std::cout << std::setw(8) << P[0] << \textcolor{stringliteral}{", "};            \(\backslash\)
+      std::cout << std::setw(8) << P[1] << \textcolor{stringliteral}{", "};            \(\backslash\)
+      std::cout << std::setw(8) << P[2] << \textcolor{stringliteral}{", "};            \(\backslash\)
+      std::cout << std::setw(8) << P[3] << \textcolor{stringliteral}{" ]"};            \(\backslash\)
+      std::cout << std::endl << #P << \textcolor{stringliteral}{"^2 = "} << std::setw(8) << \hyperlink{Makros_8h_abf7706b9d685ffcd8453326b9f4394aa}{MSQ}(P) << std::endl; \(\backslash\)
+  \}                                 \(\backslash\)
+\end{DoxyCode}
+
+
+Print 4-\/vector P. 
+
+
+
+Definition at line 148 of file Makros.\+h.
+
+\hypertarget{Makros_8h_a10631a6250c11abe2f1890410a30a14b}{}\index{Makros.\+h@{Makros.\+h}!S\+E\+R\+R\+O\+R@{S\+E\+R\+R\+O\+R}}
+\index{S\+E\+R\+R\+O\+R@{S\+E\+R\+R\+O\+R}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{S\+E\+R\+R\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+R\+R\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{O\+S\+T, }
+\item[{}]{M\+S\+G}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_a10631a6250c11abe2f1890410a30a14b}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                       \hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{\(\backslash\)}
+\hyperlink{Makros_8h_a5099f439a2ff74a4de7d51806693e707}{    ERROR\_NOEXIT}(MSG);              \(\backslash\)
+    std::exit(1);               \(\backslash\)
+  \}                     \(\backslash\)
+\end{DoxyCode}
+
+
+Print error message to stream O\+S\+T and exit. 
+
+
+
+Definition at line 47 of file Makros.\+h.
+
+\hypertarget{Makros_8h_ac6cc0567b3d112c851643077694384c9}{}\index{Makros.\+h@{Makros.\+h}!S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T@{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}}
+\index{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T@{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+R\+R\+O\+R\+\_\+\+N\+O\+E\+X\+I\+T(
+\begin{DoxyParamCaption}
+\item[{}]{O\+S\+T, }
+\item[{}]{M\+S\+G}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_ac6cc0567b3d112c851643077694384c9}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                           \(\backslash\)
+    OST << std::endl;                   \(\backslash\)
+    std::cout << \textcolor{stringliteral}{" ERROR in "};              \(\backslash\)
+    std::cout << \_\_FILE\_\_ << \textcolor{stringliteral}{", "};          \(\backslash\)
+    std::cout << \_\_FUNCTION\_\_  << \textcolor{stringliteral}{", line "};        \(\backslash\)
+    std::cout << \_\_LINE\_\_ << \textcolor{stringliteral}{": "} <<  MSG << \textcolor{stringliteral}{"! "};  \(\backslash\)
+    std::cout << std::endl;             \(\backslash\)
+  \}                         \(\backslash\)
+\end{DoxyCode}
+
+
+Print error message to stream O\+S\+T without exit. 
+
+
+
+Definition at line 36 of file Makros.\+h.
+
+\hypertarget{Makros_8h_aaec8e2266e4c5e73f1b751958e88089c}{}\index{Makros.\+h@{Makros.\+h}!S\+L\+E\+E\+P@{S\+L\+E\+E\+P}}
+\index{S\+L\+E\+E\+P@{S\+L\+E\+E\+P}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{S\+L\+E\+E\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+L\+E\+E\+P(
+\begin{DoxyParamCaption}
+\item[{}]{S}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_aaec8e2266e4c5e73f1b751958e88089c}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                               \(\backslash\)
+    std::this\_thread::sleep\_for( std::chrono::seconds(S) ); \(\backslash\)
+  \}                             \(\backslash\)
+\end{DoxyCode}
+
+
+Definition at line 98 of file Makros.\+h.
+
+\hypertarget{Makros_8h_acc47de7b8317be6f8c500d1380e41a35}{}\index{Makros.\+h@{Makros.\+h}!S\+P\+R\+I\+N\+T@{S\+P\+R\+I\+N\+T}}
+\index{S\+P\+R\+I\+N\+T@{S\+P\+R\+I\+N\+T}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{S\+P\+R\+I\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+P\+R\+I\+N\+T(
+\begin{DoxyParamCaption}
+\item[{}]{O\+S\+T, }
+\item[{}]{V\+A\+R}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_acc47de7b8317be6f8c500d1380e41a35}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                       \(\backslash\)
+    OST << std::endl;               \(\backslash\)
+    OST << \textcolor{stringliteral}{" Value of "};            \(\backslash\)
+    OST << std::setw(20) << #VAR << \textcolor{stringliteral}{" = "};  \(\backslash\)
+    OST << std::setw(20) << VAR;        \(\backslash\)
+    OST << std::endl;               \(\backslash\)
+  \}                     \(\backslash\)
+\end{DoxyCode}
+
+
+Print variable name and value to ouput stream. 
+
+
+
+Definition at line 116 of file Makros.\+h.
+
+\hypertarget{Makros_8h_a1c8d833b83b42c5991c09c8585d55c8a}{}\index{Makros.\+h@{Makros.\+h}!S\+W\+A\+R\+N\+I\+N\+G@{S\+W\+A\+R\+N\+I\+N\+G}}
+\index{S\+W\+A\+R\+N\+I\+N\+G@{S\+W\+A\+R\+N\+I\+N\+G}!Makros.\+h@{Makros.\+h}}
+\subsubsection[{S\+W\+A\+R\+N\+I\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+W\+A\+R\+N\+I\+N\+G(
+\begin{DoxyParamCaption}
+\item[{}]{O\+S\+T, }
+\item[{}]{M\+S\+G}
+\end{DoxyParamCaption}
+)}\label{Makros_8h_a1c8d833b83b42c5991c09c8585d55c8a}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                       \(\backslash\)
+    OST << std::endl;               \(\backslash\)
+    OST << \textcolor{stringliteral}{" Warning in "};          \(\backslash\)
+    OST << \_\_FILE\_\_ << \textcolor{stringliteral}{", "};            \(\backslash\)
+    OST << \_\_FUNCTION\_\_  << \textcolor{stringliteral}{", line "};      \(\backslash\)
+    OST << \_\_LINE\_\_ << \textcolor{stringliteral}{": "} <<  MSG << \textcolor{stringliteral}{". "};    \(\backslash\)
+    OST << std::endl;               \(\backslash\)
+  \}                     \(\backslash\)
+\end{DoxyCode}
+
+
+Print warning to stream O\+S\+T. 
+
+
+
+Definition at line 22 of file Makros.\+h.
+

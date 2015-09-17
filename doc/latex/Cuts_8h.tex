@@ -1,0 +1,56 @@
+\hypertarget{Cuts_8h}{}\section{inc/\+Cuts.h File Reference}
+\label{Cuts_8h}\index{inc/\+Cuts.\+h@{inc/\+Cuts.\+h}}
+
+
+Phase space cuts and collections of cuts.  
+
+
+{\ttfamily \#include \char`\"{}Observables.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Phase\+Space.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classCut}{Cut}
+\begin{DoxyCompactList}\small\item\em Represents a single phase space cut. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Cuts_8h_a61e538752de0e89c62ff420ec568e582}{}typedef std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classCut}{Cut} $>$ $>$ \hyperlink{Cuts_8h_a61e538752de0e89c62ff420ec568e582}{Cut\+Vec}\label{Cuts_8h_a61e538752de0e89c62ff420ec568e582}
+
+\begin{DoxyCompactList}\small\item\em Collection of phase space cuts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{Cuts_8h_a06b33b7f0cc247e35d32a45ad35b6a6c}{Eval\+Cuts} (const \hyperlink{Cuts_8h_a61e538752de0e89c62ff420ec568e582}{Cut\+Vec} $\ast$cuts, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+lab, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+tt)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Phase space cuts and collections of cuts. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{Cuts_8h_a06b33b7f0cc247e35d32a45ad35b6a6c}{}\index{Cuts.\+h@{Cuts.\+h}!Eval\+Cuts@{Eval\+Cuts}}
+\index{Eval\+Cuts@{Eval\+Cuts}!Cuts.\+h@{Cuts.\+h}}
+\subsubsection[{Eval\+Cuts}]{\setlength{\rightskip}{0pt plus 5cm}bool Eval\+Cuts (
+\begin{DoxyParamCaption}
+\item[{const {\bf Cut\+Vec} $\ast$}]{cuts, }
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+lab, }
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+tt}
+\end{DoxyParamCaption}
+)}\label{Cuts_8h_a06b33b7f0cc247e35d32a45ad35b6a6c}
+Check the whole collection of cuts given by the pointer \textquotesingle{}cuts\textquotesingle{}. Checks for nullptr and returns true in this case. If a single cut returns false, the result is false and the remaining cuts will not be evaluated. 
+\begin{DoxyParams}{Parameters}
+{\em cuts} & Vector of phase space cuts \\
+\hline
+{\em ps\+\_\+lab} & Pointer to lab-\/frame phase space (used to evaluate \textquotesingle{}d\+\_\+obs\textquotesingle{} in the cut) \\
+\hline
+{\em ps\+\_\+tt} & Pointer to tt-\/z.\+m.\+f. phase space (used to evaluate \textquotesingle{}d\+\_\+obs\textquotesingle{} in the cut) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file Cuts.\+cpp.
+

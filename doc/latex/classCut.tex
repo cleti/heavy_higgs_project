@@ -1,0 +1,41 @@
+\hypertarget{classCut}{}\section{Cut Class Reference}
+\label{classCut}\index{Cut@{Cut}}
+
+
+Represents a single phase space cut.  
+
+
+
+
+{\ttfamily \#include $<$Cuts.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCut_a924d05b3428cdd5fec4445ca759c7867}{}{\bfseries Cut} (O\+B\+S\+Fnc obs, const std\+::initializer\+\_\+list$<$ double $>$ \&il)\label{classCut_a924d05b3428cdd5fec4445ca759c7867}
+
+\item 
+\hypertarget{classCut_a00f83bc280780fd2922a6a93e6932740}{}bool {\bfseries set\+\_\+intervals} (const std\+::initializer\+\_\+list$<$ double $>$ \&il)\label{classCut_a00f83bc280780fd2922a6a93e6932740}
+
+\item 
+\hypertarget{classCut_ab98923dda43d561e4645ce4fac915f59}{}bool {\bfseries operator()} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+lab, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+tt) const \label{classCut_ab98923dda43d561e4645ce4fac915f59}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a single phase space cut. 
+
+On checking the cut via operator \textquotesingle{}()\textquotesingle{}, the observable \textquotesingle{}d\+\_\+obs\textquotesingle{} is evaluated and the result compared to the ranges given via \textquotesingle{}d\+\_\+intervals\textquotesingle{}. Each pair of values in the vector defines an interval \mbox{[}d\+\_\+in\mbox{[}i\mbox{]},d\+\_\+int\mbox{[}i+1\mbox{]}\mbox{]} for which the cut returns true if the value of \textquotesingle{}d\+\_\+obs\textquotesingle{} lies within. If an uneven number of values is given in \textquotesingle{}d\+\_\+intervals\textquotesingle{}, the last value defines an interval \mbox{[}d\+\_\+int\mbox{[}last\mbox{]}, + infinity\mbox{]} for which the cut is accepted. \begin{DoxySeeAlso}{See also}
+\hyperlink{Observables_8h}{Observables.\+h} 
+\end{DoxySeeAlso}
+
+
+Definition at line 19 of file Cuts.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\hyperlink{Cuts_8h}{Cuts.\+h}\item 
+src/Cuts.\+cpp\end{DoxyCompactItemize}
