@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Phase space classes for 2-&gt;1, 2-&gt;2 and 2-&gt;3 scattering processes.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="Global_8h_source.html">Global.h</a>&quot;</code><br />
-<code>#include &quot;Makros.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="Makros_8h_source.html">Makros.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="HistArray_8h_source.html">HistArray.h</a>&quot;</code><br />
 </div>
@@ -106,6 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPS__Named.html">PS_Named</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Named base class for phase space.  <a href="classPS__Named.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPS__2.html">PS_2</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for 2-&gt;X phase space classes.  <a href="classPS__2.html#details">More...</a><br /></td></tr>
@@ -131,63 +132,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a523e5ace154d717986e053af4e94e8df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a523e5ace154d717986e053af4e94e8df"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>lambda</b> (double const &amp;x, double const &amp;y, double const &amp;z)</td></tr>
 <tr class="separator:a523e5ace154d717986e053af4e94e8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc539fa8f2e658d5013f8df7a272c33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacc539fa8f2e658d5013f8df7a272c33"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#aacc539fa8f2e658d5013f8df7a272c33">obs_M12</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:aacc539fa8f2e658d5013f8df7a272c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes invariant mass of two 4-vectors k1 and k2. <br /></td></tr>
-<tr class="separator:aacc539fa8f2e658d5013f8df7a272c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5596b6c728f6e486c874db7a6f480558"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5596b6c728f6e486c874db7a6f480558"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_M12</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a5596b6c728f6e486c874db7a6f480558"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5785c86f2a238c7d1cf72e71f6df4d57"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#a5785c86f2a238c7d1cf72e71f6df4d57">obs_PT</a> (<a class="el" href="classFV.html">FV</a> const &amp;k)</td></tr>
-<tr class="memdesc:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = {k1_1}^2+k1_{2}^2}. <br /></td></tr>
-<tr class="separator:a5785c86f2a238c7d1cf72e71f6df4d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96699d6ec8e08f6d420006be8154627b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96699d6ec8e08f6d420006be8154627b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_PT1</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a96699d6ec8e08f6d420006be8154627b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a604f976dc828d1e22ef4ad69be965d35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a604f976dc828d1e22ef4ad69be965d35"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_PT2</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a604f976dc828d1e22ef4ad69be965d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae571978ff072d099b4baf69921afd60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae571978ff072d099b4baf69921afd60"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#aae571978ff072d099b4baf69921afd60">obs_PT12</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:aae571978ff072d099b4baf69921afd60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|. <br /></td></tr>
-<tr class="separator:aae571978ff072d099b4baf69921afd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc9f8e7f58e51b355f75bfba575d6f19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc9f8e7f58e51b355f75bfba575d6f19"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_PT12</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:abc9f8e7f58e51b355f75bfba575d6f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae677072636551874da62f32601db682e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae677072636551874da62f32601db682e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#ae677072636551874da62f32601db682e">obs_Y</a> (<a class="el" href="classFV.html">FV</a> const &amp;k)</td></tr>
-<tr class="memdesc:ae677072636551874da62f32601db682e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes rapidity of a 4-vector k1. <br /></td></tr>
-<tr class="separator:ae677072636551874da62f32601db682e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a718c2d11c1d187e6201e542dd1e6cef6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a718c2d11c1d187e6201e542dd1e6cef6"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_Y1</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a718c2d11c1d187e6201e542dd1e6cef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6efe23eb8a6194160fa1df8364f945eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6efe23eb8a6194160fa1df8364f945eb"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_Y2</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a6efe23eb8a6194160fa1df8364f945eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a325229be26684d1beaff261e9e878617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a325229be26684d1beaff261e9e878617"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#a325229be26684d1beaff261e9e878617">obs_DY</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:a325229be26684d1beaff261e9e878617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes rapidity difference of two 4-vectors k1 and k2. <br /></td></tr>
-<tr class="separator:a325229be26684d1beaff261e9e878617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3b4e438e86a4aeccc5f707b23ccfc6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade3b4e438e86a4aeccc5f707b23ccfc6"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>OBS_DY12</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:ade3b4e438e86a4aeccc5f707b23ccfc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4b7a6c82521f1c4cbf2df34b5e9c1d6"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#af4b7a6c82521f1c4cbf2df34b5e9c1d6">obs_PHI</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes spatial opening angle of two 4-vectors k1 and k2. <br /></td></tr>
-<tr class="separator:af4b7a6c82521f1c4cbf2df34b5e9c1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2a62cf7d0833ad02d41f9fd7af75b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb2a62cf7d0833ad02d41f9fd7af75b4"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#acb2a62cf7d0833ad02d41f9fd7af75b4">obs_PHIT</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2)</td></tr>
-<tr class="memdesc:acb2a62cf7d0833ad02d41f9fd7af75b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes opening angle of the spatial projections on the x-y plane. <br /></td></tr>
-<tr class="separator:acb2a62cf7d0833ad02d41f9fd7af75b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a760d56e65d1ded8929fc2986a641ce75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a760d56e65d1ded8929fc2986a641ce75"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#a760d56e65d1ded8929fc2986a641ce75">obs_TriProd</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2, <a class="el" href="classFV.html">FV</a> const &amp;k3)</td></tr>
-<tr class="memdesc:a760d56e65d1ded8929fc2986a641ce75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the spatial triple product of three 4-vectors k1,k2,k3. <br /></td></tr>
-<tr class="separator:a760d56e65d1ded8929fc2986a641ce75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b3438bc783d6ca1989435b082f6faa2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b3438bc783d6ca1989435b082f6faa2"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PhaseSpace_8h.html#a1b3438bc783d6ca1989435b082f6faa2">obs_TriProdN</a> (<a class="el" href="classFV.html">FV</a> const &amp;k1, <a class="el" href="classFV.html">FV</a> const &amp;k2, <a class="el" href="classFV.html">FV</a> const &amp;k3)</td></tr>
-<tr class="memdesc:a1b3438bc783d6ca1989435b082f6faa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the normalized spatial triple product of three 4-vectors k1,k2,k3. <br /></td></tr>
-<tr class="separator:a1b3438bc783d6ca1989435b082f6faa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Phase space classes for 2-&gt;1, 2-&gt;2 and 2-&gt;3 scattering processes. </p>

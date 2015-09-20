@@ -18,6 +18,7 @@
 #include "Functions_pp_ttX_V.h"
 #include "PhaseSpace.h"
 #include "HistArray.h"
+#include "Cuts.h"
 
 
 double Eval_UID_GG(
@@ -25,14 +26,16 @@ double Eval_UID_GG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& dist_norm = 0.0,
-		   DistVec* dist = nullptr);
+		   DistVec* dist = nullptr,
+		   CutVec*  cuts = nullptr);
 
 double Eval_UID_QG(
 		   const PS_2_3& ps,
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& dist_norm = 0.0,
-		   DistVec* dist = nullptr);
+		   DistVec* dist = nullptr,
+		   CutVec*  cuts = nullptr);
 
 
 

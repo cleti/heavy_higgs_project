@@ -125,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  AMP_PP_HX_LO_HEADER;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordtype">double</span> s = 2.0*<a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1,p2);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordtype">double</span> t10 = s * s;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">double</span> t6 = 16.0 * PREF_B_PHIxPHI/CA;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  </div>
@@ -158,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">double</span> s = 2.0*sp(p1,p2);  </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">double</span> s = 2.0*<a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1,p2);  </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordtype">double</span> t1 = s * s;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">double</span> t4 = log(MUR2 / s);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordtype">double</span> t5 = t4 * t4; <span class="comment">// cancels exactly against term in I-op.</span></div>
@@ -278,7 +278,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  </div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="keywordtype">double</span> res = 0.0;</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  <span class="keywordtype">double</span> B_phi = <a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(p1,p2,hm,1);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s12_1  = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span>&amp; s12_1  = 2.0*<a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1,p2);</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  res += Eval_DIP_DELTA(s12_1, <span class="comment">// invairant in initial-initial dipoles</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;             B_phi, <span class="comment">// uncorrelated Born</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;             MUR2,  <span class="comment">// ren./fact. scales</span></div>
@@ -318,7 +318,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    {</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      <span class="keywordtype">double</span> rx = sqrt(x);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <span class="keywordtype">double</span> B_phi_x = <a class="code" href="Functions__pp__HX_8h.html#a2cecc77291b8bfcc2ab264b924cb3162">Eval_B</a>(rx*p1,rx*p2,hm,1);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="keywordtype">double</span> s12_1   = 2.0*sp(p1,p2);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="keywordtype">double</span> s12_1   = 2.0*<a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1,p2);</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      res += Eval_DIP_CONT(s12_1, <span class="comment">// invariant s12 (initial-initial) </span></div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;               B_phi_x, <span class="comment">// uncorrelated Born                   </span></div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;               x,       <span class="comment">// boost factor            </span></div>
@@ -344,9 +344,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;{</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;  </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keywordtype">double</span> t4 = sp(p1, p2);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordtype">double</span> t5 = sp(p1, p3);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;  <span class="keywordtype">double</span> t6 = sp(p2, p3);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keywordtype">double</span> t4 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1, p2);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordtype">double</span> t5 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p1, p3);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;  <span class="keywordtype">double</span> t6 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p2, p3);</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  <span class="keywordtype">double</span> t9 = 0.16e2 * pow(t4 - t5 - t6, 0.4e1);</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <span class="keywordtype">double</span> t10 = t4 * t4;</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordtype">double</span> t11 = t10 * t10;</div>
@@ -364,15 +364,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> x (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;{</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_b);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;  <span class="keywordtype">double</span> t2 = sp(p_i, p_a);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_i, p_b);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordtype">double</span> t1 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_a, p_b);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;  <span class="keywordtype">double</span> t2 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_i, p_a);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keywordtype">double</span> t3 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_i, p_b);</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;  <span class="keywordflow">return</span> ((t1 - t2 - t3) / t1);</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;}</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggII (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;{</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keywordtype">double</span> t1 = sp(p_a, p_i);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keywordtype">double</span> t1 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_a, p_i);</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  <span class="keywordtype">double</span> t3 = x(p_i, p_a, p_b);</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;  <span class="keywordtype">double</span> t6 = 0.1e1 - t3;</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <span class="keywordflow">return</span> (0.1e1 / t1 / t3 * (t3 / t6 + t3 * t6) / 0.2e1);</div>
@@ -381,10 +381,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> VggIIc (<span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_a, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_i, <span class="keyword">const</span> <a class="code" href="classFV.html">FV</a>&amp; p_b)</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;{</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <span class="keywordtype">double</span> t1 = x(p_i, p_a, p_b);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p_a, p_b);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;  <span class="keywordtype">double</span> t5 = pow(sp(p_a, p_i),2);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <span class="keywordtype">double</span> t3 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_a, p_b);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;  <span class="keywordtype">double</span> t5 = pow(<a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_a, p_i),2);</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;  <span class="keywordtype">double</span> t8 = t1 * t1;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <span class="keywordtype">double</span> t13 = sp(p_i, p_b);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <span class="keywordtype">double</span> t13 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p_i, p_b);</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  <span class="keywordflow">return</span> ((0.1e1 - t1) * t3 / t5 / t8 / t13 / 0.2e1);</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;}</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
@@ -402,9 +402,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;{</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  AMP_PP_HX_NLO_HEADER;</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  </div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="keywordtype">double</span> t1 = sp(P1,p2);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordtype">double</span> t2 = sp(P1,p3);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keywordtype">double</span> t3 = sp(p2,p3);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="keywordtype">double</span> t1 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(P1,p2);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordtype">double</span> t2 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(P1,p3);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keywordtype">double</span> t3 = <a class="code" href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a>(p2,p3);</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  <span class="keywordflow">return</span> 1024.0 * PREF_R_PHI * (FH02 + 4.0 * FA02) * t1 * t2 * t3;</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
@@ -481,6 +481,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
 <div class="ttc" id="Functions__pp__HX_8h_html_afb9582b1e9f2302ebd9002448518225b"><div class="ttname"><a href="Functions__pp__HX_8h.html#afb9582b1e9f2302ebd9002448518225b">Eval_UID</a></div><div class="ttdeci">double Eval_UID(FV const &amp;p1, FV const &amp;p2, FV const &amp;p3, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the unintegrated dipoles for the process gg -> H + g, c.f. arXiv:hep-ph/0201036. Uses the effective Higgs-gluon coupling. NO spin/colour averaging factor included. </div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00336">Functions_pp_HX.cpp:336</a></div></div>
+<div class="ttc" id="Makros_8h_html_a85410a4ca45bc9b44d9bbbd68ca05a5d"><div class="ttname"><a href="Makros_8h.html#a85410a4ca45bc9b44d9bbbd68ca05a5d">sp</a></div><div class="ttdeci">#define sp(K1, K2)</div><div class="ttdoc">Lorentz product of two 4 vectors K1, K2. </div><div class="ttdef"><b>Definition:</b> <a href="Makros_8h_source.html#l00136">Makros.h:136</a></div></div>
 <div class="ttc" id="Functions__pp__HX_8h_html_ac73465f80cd1b0cc36d144f026f4446d"><div class="ttname"><a href="Functions__pp__HX_8h.html#ac73465f80cd1b0cc36d144f026f4446d">Eval_R_gg</a></div><div class="ttdeci">double Eval_R_gg(FV const &amp;p1, FV const &amp;p2, FV const &amp;p3, HiggsModel const &amp;hm)</div><div class="ttdoc">Evaluate the squared tree level matrix element for the process gg -> H + g. Uses the effective Higgs-...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00259">Functions_pp_HX.cpp:259</a></div></div>
 <div class="ttc" id="Functions__pp__HX_8h_html_a116a2fe3256408eeac1e698ccd4f21f1"><div class="ttname"><a href="Functions__pp__HX_8h.html#a116a2fe3256408eeac1e698ccd4f21f1">Eval_ID_X</a></div><div class="ttdeci">double Eval_ID_X(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm, double const &amp;x)</div><div class="ttdoc">Evaluate the integrated dipoles for gg -> H. This is the continuum part evaluated at the boosted phas...</div><div class="ttdef"><b>Definition:</b> <a href="Functions__pp__HX_8cpp_source.html#l00225">Functions_pp_HX.cpp:225</a></div></div>
 <div class="ttc" id="namespaceCuts_html_a4a86c8447ab5c08303431898f6faae38"><div class="ttname"><a href="namespaceCuts.html#a4a86c8447ab5c08303431898f6faae38">Cuts::IDIP_X_CUT</a></div><div class="ttdeci">double IDIP_X_CUT</div><div class="ttdoc">Technical cut for boost parameter in the continuum part of the integrated dipoles. </div><div class="ttdef"><b>Definition:</b> <a href="Global_8cpp_source.html#l00056">Global.cpp:56</a></div></div>

@@ -25,11 +25,15 @@ void PS_2::set_initial_state(double const& rs)
       p[1][0] =  E;
       p[1][3] = -E;
 }
+
+
 void PS_2::swap_initial_state()
 {
   p[0].swap(p[1]);
-  P[0].swap(P[1]);
+  //P[0].swap(P[1]);
 }
+
+
 void PS_2::print() const
 {
   std::cout << std::endl << "--------------------------------------------------------";
@@ -44,9 +48,12 @@ void PS_2::print() const
   PRINT_4VEC(p[0]);std::cout << " [ m^2 = " << MSQ(p[0]) << "]" << std::endl;
   PRINT_4VEC(p[1]);std::cout << " [ m^2 = " << MSQ(p[1]) << "]" << std::endl;
 }
+
+
 PS_2::~PS_2()
 {
 }
+
 
 const FV PS_2::nullvec(0);
 
@@ -62,6 +69,8 @@ PS_2_1::PS_2_1(const std::string& nm) :
   d_child(nullptr),
   d_x   (0.0)
 {}
+
+
 PS_2_1::PS_2_1(double const& msq, const std::string& nm) : 
   PS_2(nm),
   k(0.0),
@@ -72,11 +81,15 @@ PS_2_1::PS_2_1(double const& msq, const std::string& nm) :
   d_child(nullptr),
   d_x   (0.0)
 {}
+
+
 PS_2_1::~PS_2_1()
 {
   // remove possible references to this instance
   if (d_child != nullptr) d_child->set_parent(nullptr);
 }
+
+
 int PS_2_1::set()
 {
   static double msq_t = -1.0;
@@ -88,6 +101,8 @@ int PS_2_1::set()
   d_wgt = Constants::TwoPi;
   return 1;
 }
+
+
 void PS_2_1::print() const
 {
   PS_2::print();
@@ -101,6 +116,7 @@ void PS_2_1::print() const
   std::cout << std::endl << "Energy-momentum conservation:";
   PRINT_4VEC(Q);
 }
+
 
 void PS_2_1::FillDistributions(
 			       DistVec& dist,
@@ -256,24 +272,40 @@ int PS_2_2::set(double const& rs,
       return 0;
     }
 #endif
+
+  if (phi==0.0)
+    {
+      // set up the two outgoing momentum 4-vectors
+      k[0][0] = E1;
+      k[0][1] = P*sy;
+      k[0][2] = 0.0;
+      k[0][3] = P*y;
+
+      k[1][0] = E2;
+      k[1][1] = -P*sy;
+      k[1][2] = 0.0;
+      k[1][3] = -P*y;
+    }
+  else
+    {
+      // polar angle
+      double cphi = cos(phi);
+      // need to switch sign for phi>pi if we compute sin(phi) in this way
+      double sphi = sqrt(1.0-cphi*cphi);
+      if (phi>Constants::Pi) sphi *= (-1);
+
+      // set up the two outgoing momentum 4-vectors
+      k[0][0] = E1;
+      k[0][1] = P*sy*cphi;
+      k[0][2] = P*sy*sphi;
+      k[0][3] = P*y;
+
+      k[1][0] = E2;
+      k[1][1] = -P*sy*cphi;
+      k[1][2] = -P*sy*sphi;
+      k[1][3] = -P*y;
+    }
   
-  // polar angle
-  double cphi = cos(phi);
-  // need to switch sign for phi>pi if we compute sin(phi) in this way
-  double sphi = sqrt(1.0-cphi*cphi);
-  if (phi>Constants::Pi) sphi *= (-1);
-
-  // set up the two outgoing momentum 4-vectors
-  k[0][0] = E1;
-  k[0][1] = P*sy*cphi;
-  k[0][2] = P*sy*sphi;
-  k[0][3] = P*y;
-
-  k[1][0] = E2;
-  k[1][1] = -P*sy*cphi;
-  k[1][2] = -P*sy*sphi;
-  k[1][3] = -P*y;
-
   // store phase space variables and compute invariants
   d_rs   = rs;
   d_beta[0]= P/E1;
@@ -369,52 +401,48 @@ void PS_2_2::print() const
   std::cout << std::endl << "Energy-momentum conservation:";
   PRINT_4VEC(Q);
 }
+
+
 void PS_2_2::FillDistributions(
 			       DistVec& dist_vec,
 			       H_Index id,
 			       double const& wgt,
 			       double const& mScale) const
 {
-  
-#ifdef WITH_T_SPIN
-  ///////////////////////////////////////////////////////
-  // spin-dependent observables /////////////////////////
-  ///////////////////////////////////////////////////////
-  for (auto dist: dist_vec)
-    {
-      HistArray* hist = dist->GetHistograms();
-      double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
-      double obs_val  = (*dist)(this)*mass_dim;
-      double avg_val  = dist->Avg(this);
-      dist->GetHistograms()->FillOne(id,obs_val,avg_val*wgt);
-    }
-  ///////////////////////////////////////////////////////
-#else
-  ///////////////////////////////////////////////////////
-  // spin-independent observables ///////////////////////
-  ///////////////////////////////////////////////////////  
-  // for observables like rapidity we need the lab frame 4-vectors K1,K2 of top/antitop
+  // at the moment we are in the parton z.m.f.
+  // for observables like rapidity we need the lab frame 4-vectors
+  // in case 2->2: parton z.m.f. = tt z.m.f.
   static LT boost_to_lab_frame;
-  boost_to_lab_frame.set_boost(P[0]+P[1],0);
-  // make copies of the top/antitop 4-vectors before the boost,
-  // the vectors of this ps might be used somewhere else!!!
-  static PS_2_2 ps_lab("ps 2->2, lab frame, static in PS_2_2::FillDistributions");
-  ps_lab = *this;
-  boost_to_lab_frame.apply(ps_lab.k1());
-  boost_to_lab_frame.apply(ps_lab.k2());
-
   
+  // lab frame = z.m.f. of P[0] + P[1]
+  if (!boost_to_lab_frame.set_boost(P[0]+P[1],0))
+    {
+      WARNING("could not set boost to lab frame, skipping distributions");
+      return;
+    }
+
+  // store the lab frame 4-vectors in a new PS_2_3 instance
+  static PS_2_2 ps_lab("ps 2->2, lab frame, static in PS_2_2::FillDistributions");
+  boost_to_lab_frame.apply_cpy(P[0],ps_lab.P1());
+  boost_to_lab_frame.apply_cpy(P[1],ps_lab.P2());
+  boost_to_lab_frame.apply_cpy(k[0],ps_lab.k1());
+  boost_to_lab_frame.apply_cpy(k[1],ps_lab.k2());
+#ifdef WITH_T_SPIN
+  boost_to_lab_frame.apply_cpy(S[0],ps_lab.s1());
+  boost_to_lab_frame.apply_cpy(S[1],ps_lab.s2());
+  // do not transform s1_r / s2_r, they contain the restframe spin 4-vectors.
+#endif
+  // NOTE: if there are observables depending on others than the above transformed 4-vectors,
+  // they must be added here!
+
   for (auto dist: dist_vec)
     {
       HistArray* hist = dist->GetHistograms();
       double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
-      double obs_val  = (*dist)(&ps_lab)*mass_dim;
-      double avg_val  = dist->Avg(&ps_lab);
+      double obs_val  = dist->Obs(&ps_lab,this)*mass_dim;
+      double avg_val  = dist->Avg(&ps_lab,this);
       dist->GetHistograms()->FillOne(id,obs_val,avg_val*wgt);
-      //e.first->FillOne(id,e.second(&ps_lab)*m,wgt);
     }
-  ///////////////////////////////////////////////////////
-#endif
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////// class PS_2_3 ///////////////////////////////////////////////////////////////////////////
@@ -580,241 +608,81 @@ void PS_2_3::FillDistributions(
 			       double const & wgt,
 			       double const& mScale) const
 {
-#ifdef WITH_T_SPIN
-  ///////////////////////////////////////////////////////
-  // spin-dependent observables /////////////////////////
-  ///////////////////////////////////////////////////////  
-  // to be implemented ...
-  ERROR("the code for distributions on PS_2_3 for polarized amplitudes is still missing!");
-  ///////////////////////////////////////////////////////
-#else
-  ///////////////////////////////////////////////////////
-  // spin-independent observables ///////////////////////
-  ///////////////////////////////////////////////////////  
-  // for observables like rapidity we need the lab frame 4-vectors K1,K2 of top/antitop
+  // at the moment we are in the parton z.m.f.
+  // for observables like rapidity we need the lab frame 4-vectors
+  // as well as the 4-vectors in the tt-z.m.f.
   static LT boost_to_lab_frame;
-  boost_to_lab_frame.set_boost(P[0]+P[1],0);
-  // // make copies of the top/antitop 4-vectors before the boost,
-  // // the vectors of this ps might be used somewhere else!!!
-  // FV K1 = k[0];
-  // FV K2 = k[1];
-  // boost_to_lab_frame.apply(K1);
-  // boost_to_lab_frame.apply(K2);
-  // make copies of the top/antitop 4-vectors before the boost,
-  // the vectors of this ps might be used somewhere else!!!
+  static LT boost_to_tt_zmf;
+  
+  // lab frame = z.m.f. of P[0] + P[1]
+  if (!boost_to_lab_frame.set_boost(P[0]+P[1],0))
+    {
+      WARNING("could not set boost to lab frame, skipping distributions");
+      return;
+    }
+
+  // tt z.m.f. = z.m.f. of k[0]+k[1]
+  if (!boost_to_tt_zmf.set_boost(k[0]+k[1],0))
+    {
+      WARNING("could not set boost to tt z.m.f., skipping distributions");
+      return;
+    }
+
+  // FV K12 = k1()+k2();
+  // PRINT_4VEC(K12);
+  // PRINT_4VEC(k1());
+  // PRINT_4VEC(k2());
+  // PRINT_4VEC(P1());
+  // PRINT_4VEC(P2());
+  
+  // store the lab frame 4-vectors in a new PS_2_3 instance
   static PS_2_3 ps_lab("ps 2->3, lab frame, static in PS_2_3::FillDistributions");
-  ps_lab = *this;
-  boost_to_lab_frame.apply(ps_lab.k1());
-  boost_to_lab_frame.apply(ps_lab.k2());
-  
+  boost_to_lab_frame.apply_cpy(P[0],ps_lab.P1());
+  boost_to_lab_frame.apply_cpy(P[1],ps_lab.P2());
+  boost_to_lab_frame.apply_cpy(k[0],ps_lab.k1());
+  boost_to_lab_frame.apply_cpy(k[1],ps_lab.k2());
+#ifdef WITH_T_SPIN
+  boost_to_lab_frame.apply_cpy(S[0],ps_lab.s1());
+  boost_to_lab_frame.apply_cpy(S[1],ps_lab.s2());
+#endif
 
-	  
+  // K12 = ps_lab.k1()+ps_lab.k2();
+  // PRINT_4VEC(K12);
+  // PRINT_4VEC(ps_lab.k1());
+  // PRINT_4VEC(ps_lab.k2());
+  // PRINT_4VEC(ps_lab.P1());
+  // PRINT_4VEC(ps_lab.P2());
   
-  // // if (obs_PT12(K1,K2)*mScale < 1.0)
-  // //   {
-  // //     PRINT(obs_PT12(K1,K2)*mScale);
-  // //     PRINT(k[2][0]*mScale); // gluon energy
-  // //     PRINT((p[0][0]*k[2][0]-sp(p[0],k[2]))/(p[0][0]*k[2][0]));  // gluon scattering angle
-  // //   }
+  // store the tt z.m.f. 4-vectors in a new PS_2_3 instance
+  static PS_2_3 ps_tt("ps 2->3, tt z.m.f., static in PS_2_3::FillDistributions");  
+  // now convert the 4-vectors of this instance to the tt z.m.f.
+  boost_to_tt_zmf.apply_cpy(P[0],ps_tt.P1());
+  boost_to_tt_zmf.apply_cpy(P[1],ps_tt.P2());
+  boost_to_tt_zmf.apply_cpy(k[0],ps_tt.k1());
+  boost_to_tt_zmf.apply_cpy(k[1],ps_tt.k2());
+#ifdef WITH_T_SPIN
+  boost_to_tt_zmf.apply_cpy(S[0],ps_tt.s1());
+  boost_to_tt_zmf.apply_cpy(S[1],ps_tt.s2());
+#endif  
+
+  // K12 = ps_tt.k1()+ps_tt.k2();
+  // PRINT_4VEC(K12);
+  // PRINT_4VEC(ps_tt.k1());
+  // PRINT_4VEC(ps_tt.k2());
+  // PRINT_4VEC(ps_tt.P1());
+  // PRINT_4VEC(ps_tt.P2());
   
-  // dist[0].first->FillOne(id,obs_M12(K1,K2)*mScale,wgt);
-  // dist[1].first->FillOne(id,obs_PT(K1)*mScale    ,wgt);
-  // // dist[2]->FillOne(id,obs_PT(K2)    ,wgt);
-  // dist[2].first->FillOne(id,obs_PT12(K1,K2)*mScale,wgt);
-  // // need lab frame vectors for these
-  // dist[3].first->FillOne(id,obs_Y(K1),wgt);
-  // dist[4].first->FillOne(id,obs_Y(K2),wgt);
-  // // dist[6].first->FillOne(id,obs_DY(K1,K2) ,wgt);
-
-
+  // NOTE: only the top and antitop 4-vectors are transformed
+  // since we do not consider observables depending on the other 4-vectors
 
   for (auto dist: dist_vec)
     {
       HistArray* hist = dist->GetHistograms();
       double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
-      double obs_val  = (*dist)(&ps_lab)*mass_dim;
-      double avg_val  = dist->Avg(&ps_lab);
+      double obs_val  = dist->Obs(&ps_lab,&ps_tt)*mass_dim;
+      double avg_val  = dist->Avg(&ps_lab,&ps_tt);
       dist->GetHistograms()->FillOne(id,obs_val,avg_val*wgt);
     }
-  
-  // for (auto dist: dist_vec)
-  //   {
-  //     HistArray* hist = dist->GetHistograms();
-  //     double mass_dim = (hist->GetMassDim())?std::pow(mScale,hist->GetMassDim()):1.0;
-  //     double obs_val  = (*dist)(&ps_lab)*mass_dim;
-  //     double avg_val  = dist->Avg(&ps_lab);
-  //     dist->GetHistograms()->FillOne(id,obs_val,avg_val);
-  //     //e.first->FillOne(id,e.second(&ps_lab)*m,wgt);
-  //     // PRINT(mass_dim);
-  //     // PRINT(obs_val);
-  //     // PRINT(avg_val);
-  //   }
-  //EXIT(1);
-  ///////////////////////////////////////////////////////
-#endif
 }
 
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// definition of observables used for this project, feel free to add more ///////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// mass of 2-particle system [GeV]
-double obs_M12(FV const& k1, FV const& k2)
-{
-  return sqrt(sp(k1,k1)+sp(k2,k2)+2.0*sp(k1,k2));
-}
-double OBS_M12(const PS_2* ps)
-{
-  return obs_M12(ps->k1(),ps->k2());
-}
-
-
-// transverse momentum (transverse plane is the x-y-plane) 
-double obs_PT(FV const& k)
-{
-  return sqrt(k[1]*k[1]+k[2]*k[2]);
-}
-
-double OBS_PT1(const PS_2* ps)
-{
-  return obs_PT(ps->k1());
-}
-double OBS_PT2(const PS_2* ps)
-{
-  return obs_PT(ps->k2());
-}
-
-
-
-// transverse momentum of two particle system |k_{T,1}+k_{T,2}| 
-double obs_PT12(FV const& k1, FV const& k2)
-{
-  return sqrt(pow(k1[1]+k2[1],2)+pow(k1[2]+k2[2],2)); 
-}
-double OBS_PT12(const PS_2* ps)
-{
-  //PRINT(obs_PT12(ps->k1(),ps->k2()));
-  return obs_PT12(ps->k1(),ps->k2());
-}
-
-
-
-// pseudo-rapidity
-double obs_Y(FV const& k)
-{
-  return 0.5*log(((k[0]+k[3])/(k[0]-k[3])));
-}
-double OBS_Y1(const PS_2* ps)
-{
-  //PRINT(obs_Y(ps->k1()));
-  return obs_Y(ps->k1());
-}
-double OBS_Y2(const PS_2* ps)
-{
-  //PRINT(obs_Y(ps->k2()));
-  return obs_Y(ps->k2());
-}
-
-
-
-// difference of abs. values of transverse rapidities
-double obs_DY(FV const& k1, FV const& k2)
-{
-  return fabs(obs_Y(k1))-fabs(obs_Y(k2));
-}
-double OBS_DY12(const PS_2* ps)
-{
-  // PRINT(obs_DY(ps->k1(),ps->k2()));
-  // PRINT_4VEC(ps->k1());
-  // PRINT_4VEC(ps->k2());
-  return obs_DY(ps->k1(),ps->k2());
-}
-
-
-
-// 3-dim opening angle of the two vectors
-double obs_PHI(FV const& k1, FV const& k2)
-{
-  // k1 dot k2 / |k1| / |k2|
-  double K1 = LEN(k1);
-  double K2 = LEN(k2);
-  return (k1[1]*k2[1]+k1[2]*k2[2]+k1[3]*k2[3])/(K1*K2);
-}
-// 2-dim transversal opening angle of the two vectors
-double obs_PHIT(FV const& k1, FV const& k2)
-{
-  // k1_T dot k2_T / |k1_T| / |k2_T|
-  double K1 = sqrt(k1[1]*k1[1]+k1[2]*k1[2]);
-  double K2 = sqrt(k2[1]*k2[1]+k2[2]*k2[2]);
-  return (k1[1]*k2[1]+k1[2]*k2[2])/(K1*K2);
-}
-// spatial triple product of three 4-vectors k1,k2,k3
-double obs_TriProd(FV const& k1, FV const& k2, FV const& k3)
-{
-  // = (k1 x k2) dot k3 
-  double t3 = k1[1] * k2[2] - k1[2] * k2[1];
-  double t7 = -k1[1] * k2[3] + k1[3] * k2[1];
-  double t11 = k1[2] * k2[3] - k1[3] * k2[2];
-  return (t11 * k3[1] + t3 * k3[3] + t7 * k3[2]);
-}
-double obs_TriProdN(FV const& k1, FV const& k2, FV const& k3)
-{
-  // = (k1 x k2) dot k3 / |k1 x k2| / |k3|
-  double t3 = k1[1] * k2[2] - k1[2] * k2[1];
-  double t7 = -k1[1] * k2[3] + k1[3] * k2[1];
-  double t11 = k1[2] * k2[3] - k1[3] * k2[2];
-  double t14 = t3 * t3;
-  double t15 = t7 * t7;
-  double t16 = t11 * t11;
-  double t18 = std::pow(k3[1], 2);
-  double t19 = std::pow(k3[2], 2);
-  double t20 = std::pow(k3[3], 2);
-  double t23 = std::sqrt((t14 + t15 + t16) * (t18 + t19 + t20));
-  return (t11 * k3[1] + t3 * k3[3] + t7 * k3[2]) / t23;
-}
-
-
-
-
-
-#ifdef WITH_T_SPIN  
-double OBS_D12(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  return (-3.0)*obs_PHI(ps->s1_r(),ps->s2_r())/Constants::kappa_p/Constants::kappa_m;
-}
-
-double OBS_CP1(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  // k1 is the top momentum in the ttbar zero-momentum frame
-  return obs_TriProdN(ps->s1_r(),ps->s2_r(),ps->k1())/Constants::kappa_p/Constants::kappa_m;
-}
-double OBS_CP2(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  // k1 is the top momentum in the ttbar zero-momentum frame
-  return obs_TriProdN(ps->s1_r(),ps->s2_r(),ps->k2())/Constants::kappa_p/Constants::kappa_m;
-}
-double OBS_HEL12(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (-9.0)*obs_PHI(ps->k1(),ps->s1_r())*obs_PHI(ps->k2(),ps->s2_r())/Constants::kappa_p/Constants::kappa_m;
-}
-double OBS_B1(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (3.0)*obs_PHI(ps->k1(),ps->s1_r())/Constants::kappa_p;
-}
-double OBS_B2(const PS_2* ps)
-{
-  // s1_r, s2_r are the lepton momenta in t/tbar rest frames
-  // k1, k2 are the top/antitop momenta in the ttbar zero-momentum frame
-  return (3.0)*obs_PHI(ps->k2(),ps->s2_r())/Constants::kappa_m;
-}
-#endif

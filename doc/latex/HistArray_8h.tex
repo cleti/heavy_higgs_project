@@ -15,11 +15,12 @@ Histogram and distribution classes for the computation of differential observabl
 {\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Lorentz.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}File\+Browser.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Observables.\+h\char`\"{}}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classHistArray}{Hist\+Array}
-\begin{DoxyCompactList}\small\item\em This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This class serves as storage object for distributions. \end{DoxyCompactList}\item 
 class \hyperlink{classDistribution}{Distribution}
 \begin{DoxyCompactList}\small\item\em Class for differential distributions. \end{DoxyCompactList}\item 
 class \hyperlink{classMeanDistribution}{Mean\+Distribution}
@@ -37,9 +38,6 @@ class \hyperlink{classMeanDistribution}{Mean\+Distribution}
 
 \item 
 \hypertarget{HistArray_8h_af760c4e5f35192b647e6d4f4ecd01580}{}typedef std\+::map$<$ int, \hyperlink{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}{H\+\_\+\+Index} $>$ {\bfseries H\+\_\+\+Index\+Map}\label{HistArray_8h_af760c4e5f35192b647e6d4f4ecd01580}
-
-\item 
-\hypertarget{HistArray_8h_a399fb9ee95dfcad6d6cbd11ca1486d45}{}typedef double($\ast$ {\bfseries O\+B\+S\+Fnc}) (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$)\label{HistArray_8h_a399fb9ee95dfcad6d6cbd11ca1486d45}
 
 \item 
 \hypertarget{HistArray_8h_a52fa10237a789eab7d657d5b46942369}{}typedef std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classDistribution}{Distribution} $>$ $>$ {\bfseries Dist\+Vec}\label{HistArray_8h_a52fa10237a789eab7d657d5b46942369}
@@ -117,6 +115,12 @@ const H\+\_\+\+Index\+Map \hyperlink{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2
 \hypertarget{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a8795054ff19f73feeccb324141ac6077}{D\+Y\+\_\+\+Histograms}\label{HistArray_8h_a8795054ff19f73feeccb324141ac6077}
 
 \begin{DoxyCompactList}\small\item\em top-\/antitop rapidity difference distributions \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_ac12df85ad344396165498a1468cc8a49}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_ac12df85ad344396165498a1468cc8a49}{T1\+\_\+\+Histograms}\label{HistArray_8h_ac12df85ad344396165498a1468cc8a49}
+
+\begin{DoxyCompactList}\small\item\em top-\/polar angle distributions (Collins-\/\+Soper angle) \end{DoxyCompactList}\item 
+\hypertarget{HistArray_8h_ad4fe63235a0861ba1e0348b8ee385d56}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_ad4fe63235a0861ba1e0348b8ee385d56}{T2\+\_\+\+Histograms}\label{HistArray_8h_ad4fe63235a0861ba1e0348b8ee385d56}
+
+\begin{DoxyCompactList}\small\item\em antitop-\/polar angle distributions (Collins-\/\+Soper angle) \end{DoxyCompactList}\item 
 \hypertarget{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{}\hyperlink{classHistArray}{Hist\+Array} \hyperlink{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}{Dopen\+\_\+\+Histograms}\label{HistArray_8h_a0474c519fc5970c54984e9fc259da14f}
 
 \begin{DoxyCompactList}\small\item\em Mtt distribution of lepton opening angle correlation. \end{DoxyCompactList}\item 
@@ -145,7 +149,7 @@ Histogram and distribution classes for the computation of differential observabl
 \subsubsection[{H\+\_\+\+Index}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+\_\+\+Index}}\label{HistArray_8h_abdf25c9f0ab78c4243f63cb2bacf26d9}
 Better readable labels for the histograms in the \hyperlink{classHistArray}{Hist\+Array}. In the default setup there are 6 histograms, one for each of the following contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), virtual corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), integrated dipoles (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D) and real corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D). 
 
-Definition at line 32 of file Hist\+Array.\+h.
+Definition at line 33 of file Hist\+Array.\+h.
 
 
 

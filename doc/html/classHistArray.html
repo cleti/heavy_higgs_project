@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This class stores an array of ROOT TH1D's.  
+<p>This class serves as storage object for distributions.  
  <a href="classHistArray.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="HistArray_8h_source.html">HistArray.h</a>&gt;</code></p>
@@ -186,17 +186,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ad41461653c6d0a87d8b36db233a71a0f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#ad41461653c6d0a87d8b36db233a71a0f">ReadTable</a> (std::ifstream &amp;file, const double &amp;norm=1.0, const H_IndexMap &amp;imap=<a class="el" href="HistArray_8h.html#a8f6e68438441b2967eb8e97c8b4c2380">imap_default</a>, bool discardCurrentTable=false)</td></tr>
 <tr class="memdesc:ad41461653c6d0a87d8b36db233a71a0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data in the next table from ifstream 'file' into histogram 'i'. The IndexMap specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is:  <a href="#ad41461653c6d0a87d8b36db233a71a0f">More...</a><br /></td></tr>
 <tr class="separator:ad41461653c6d0a87d8b36db233a71a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb997e3f81ccdf02e7964dcbac1bff6e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#adb997e3f81ccdf02e7964dcbac1bff6e">Print</a> (std::ostream &amp;ost)</td></tr>
-<tr class="memdesc:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance to the specified std::ostream. <br /></td></tr>
-<tr class="separator:adb997e3f81ccdf02e7964dcbac1bff6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c4b65bc9d26ecb8da0519854bfde4e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c4b65bc9d26ecb8da0519854bfde4e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a6c4b65bc9d26ecb8da0519854bfde4e6">Print</a> (std::ostream &amp;ost, int verb=0)</td></tr>
+<tr class="memdesc:a6c4b65bc9d26ecb8da0519854bfde4e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of the <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a> instance to the specified std::ostream. <br /></td></tr>
+<tr class="separator:a6c4b65bc9d26ecb8da0519854bfde4e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e56292db3641c5b80aaf0eb089b2d41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e56292db3641c5b80aaf0eb089b2d41"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a1e56292db3641c5b80aaf0eb089b2d41">Status</a> (std::ostream &amp;ost)</td></tr>
 <tr class="memdesc:a1e56292db3641c5b80aaf0eb089b2d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows which histogram in the array is currently active. <br /></td></tr>
 <tr class="separator:a1e56292db3641c5b80aaf0eb089b2d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5957d6ee5e35e9608adbfe39b6bac23c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a5957d6ee5e35e9608adbfe39b6bac23c">GetID</a> () const </td></tr>
-<tr class="memdesc:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the unique ID of this <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance. <br /></td></tr>
+<tr class="memdesc:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the unique ID of this <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a> instance. <br /></td></tr>
 <tr class="separator:a5957d6ee5e35e9608adbfe39b6bac23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -246,21 +246,21 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="separator:ac682fdf0aeedf8f0b9fb8c4c4b1fee71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b61b8b56cd4b0ca27d16855d4e1aef3"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a2b61b8b56cd4b0ca27d16855d4e1aef3">d_id</a></td></tr>
-<tr class="memdesc:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique number for the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> instance. Derived from the static d_ID. <br /></td></tr>
+<tr class="memdesc:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique number for the <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a> instance. Derived from the static d_ID. <br /></td></tr>
 <tr class="separator:a2b61b8b56cd4b0ca27d16855d4e1aef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a01616b3115c8b243e2bd924788d47589"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01616b3115c8b243e2bd924788d47589"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html#a01616b3115c8b243e2bd924788d47589">d_ID</a> = 0</td></tr>
-<tr class="memdesc:a01616b3115c8b243e2bd924788d47589"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> ID counter. <br /></td></tr>
+<tr class="memdesc:a01616b3115c8b243e2bd924788d47589"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a> ID counter. <br /></td></tr>
 <tr class="separator:a01616b3115c8b243e2bd924788d47589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class stores an array of ROOT TH1D's. </p>
-<p>In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD) and real corrections (PHIxPHI + PHIxQCD). Use one <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a> for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a> </dd></dl>
+<div class="textblock"><p>This class serves as storage object for distributions. </p>
+<p>This class stores an array of ROOT TH1D's. In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD) and real corrections (PHIxPHI + PHIxQCD). Use one <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a> for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00062">62</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00063">63</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a4ebaa67b67958c1ee70ebdb056b5a389"></a>
 <div class="memitem">
@@ -292,7 +292,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00165">165</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00166">166</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00483">483</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00520">520</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +363,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00144">144</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00145">145</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -415,7 +415,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00152">152</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00153">153</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -485,7 +485,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00099">99</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00100">100</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
@@ -539,7 +539,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00198">198</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00235">235</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -593,7 +593,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00346">346</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00383">383</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
 
 </div>
 </div>
@@ -627,7 +627,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00180">180</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00181">181</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>

@@ -13,6 +13,8 @@ var searchData=
   ['d_5frs',['d_rs',['../classPS__2.html#a20ee7f6afb71183f2f61c7049b2e1c9e',1,'PS_2']]],
   ['d_5fwgt',['d_wgt',['../classPS__2.html#a7840687732819d92810f9a2666621650',1,'PS_2']]],
   ['deactivateall',['DeactivateAll',['../classHistArray.html#a74a91eee643bcadc657103521549d275',1,'HistArray']]],
+  ['delete_5fptr',['DELETE_PTR',['../Makros_8h.html#a676c89732dd0366a56221d6d7c45e15e',1,'Makros.h']]],
+  ['dilog',['dilog',['../Makros_8h.html#af810616cda1635bc1f906f06f5c5d1ca',1,'Makros.h']]],
   ['distribution',['Distribution',['../classDistribution.html',1,'']]],
   ['distributions',['distributions',['../classintegrand__par.html#acd322d49688d798e5f71eb9ea63a4d46',1,'integrand_par']]],
   ['dopen_5fhistograms',['Dopen_Histograms',['../HistArray_8h.html#a0474c519fc5970c54984e9fc259da14f',1,'HistArray.h']]],

@@ -18,9 +18,15 @@ This class contains a set of parameters which is handed down to the integrand ca
 \hypertarget{classintegrand__par_aac7bdde6abcb8d81db5af3a24ce51f7d}{}double \hyperlink{classintegrand__par_aac7bdde6abcb8d81db5af3a24ce51f7d}{cmp\+\_\+v\+\_\+weight} ()\label{classintegrand__par_aac7bdde6abcb8d81db5af3a24ce51f7d}
 
 \begin{DoxyCompactList}\small\item\em Compute the weight of the V\+E\+G\+A\+S algorithm at the current point. \end{DoxyCompactList}\item 
-\hypertarget{classintegrand__par_a18a461b09009de0b9f8c6139994c52c4}{}void \hyperlink{classintegrand__par_a18a461b09009de0b9f8c6139994c52c4}{Set\+P\+S} (\hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$psn)\label{classintegrand__par_a18a461b09009de0b9f8c6139994c52c4}
+\hypertarget{classintegrand__par_ac812da01c993e943a14b263c58340c06}{}void \hyperlink{classintegrand__par_ac812da01c993e943a14b263c58340c06}{Set\+P\+S} (\hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+new)\label{classintegrand__par_ac812da01c993e943a14b263c58340c06}
 
-\begin{DoxyCompactList}\small\item\em Set ps pointer, the former P\+S instance will be deleted! \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set \hyperlink{classPS__2}{P\+S\+\_\+2} pointer, all former P\+S instances will be deleted! \end{DoxyCompactList}\item 
+\hypertarget{classintegrand__par_ae6a0f7921042073a8ac6328794561299}{}void \hyperlink{classintegrand__par_ae6a0f7921042073a8ac6328794561299}{Set\+P\+S} (\hyperlink{classPS__2__2}{P\+S\+\_\+2\+\_\+2} $\ast$ps\+\_\+new)\label{classintegrand__par_ae6a0f7921042073a8ac6328794561299}
+
+\begin{DoxyCompactList}\small\item\em Set \hyperlink{classPS__2__2}{P\+S\+\_\+2\+\_\+2} pointer, all former P\+S instances will be deleted! \end{DoxyCompactList}\item 
+\hypertarget{classintegrand__par_a1428d2933660fae425da13eafdbc806b}{}void \hyperlink{classintegrand__par_a1428d2933660fae425da13eafdbc806b}{Set\+P\+S} (\hyperlink{classPS__2__3}{P\+S\+\_\+2\+\_\+3} $\ast$ps\+\_\+new)\label{classintegrand__par_a1428d2933660fae425da13eafdbc806b}
+
+\begin{DoxyCompactList}\small\item\em Set \hyperlink{classPS__2__3}{P\+S\+\_\+2\+\_\+3} pointer, all former P\+S instances will be deleted! \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,7 +38,13 @@ This class contains a set of parameters which is handed down to the integrand ca
 \begin{DoxyCompactList}\small\item\em Hadronic c.\+m.\+e. \end{DoxyCompactList}\item 
 \hypertarget{classintegrand__par_a9c52a4045c079f7314cbc8a876f98238}{}\hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ \hyperlink{classintegrand__par_a9c52a4045c079f7314cbc8a876f98238}{ps}\label{classintegrand__par_a9c52a4045c079f7314cbc8a876f98238}
 
-\begin{DoxyCompactList}\small\item\em Pointer to phase space. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pointer to phase space (needs dynamic casting). \end{DoxyCompactList}\item 
+\hypertarget{classintegrand__par_a588525dccf7b407fc34fac6b41df8f8b}{}\hyperlink{classPS__2__2}{P\+S\+\_\+2\+\_\+2} $\ast$ \hyperlink{classintegrand__par_a588525dccf7b407fc34fac6b41df8f8b}{ps\+\_\+2}\label{classintegrand__par_a588525dccf7b407fc34fac6b41df8f8b}
+
+\begin{DoxyCompactList}\small\item\em Pointer to 2-\/$>$2 phase space. \end{DoxyCompactList}\item 
+\hypertarget{classintegrand__par_a1cc9803bc5e7116240d02723ea2a963b}{}\hyperlink{classPS__2__3}{P\+S\+\_\+2\+\_\+3} $\ast$ \hyperlink{classintegrand__par_a1cc9803bc5e7116240d02723ea2a963b}{ps\+\_\+3}\label{classintegrand__par_a1cc9803bc5e7116240d02723ea2a963b}
+
+\begin{DoxyCompactList}\small\item\em Pointer to 2-\/$>$3 phase space. \end{DoxyCompactList}\item 
 \hypertarget{classintegrand__par_a082dc10e0e72baedade3f46cfffa4c15}{}L\+H\+A\+P\+D\+F\+::\+P\+D\+F $\ast$ \hyperlink{classintegrand__par_a082dc10e0e72baedade3f46cfffa4c15}{pdf}\label{classintegrand__par_a082dc10e0e72baedade3f46cfffa4c15}
 
 \begin{DoxyCompactList}\small\item\em Pointer to the parton distribution function. \end{DoxyCompactList}\item 
@@ -42,6 +54,9 @@ This class contains a set of parameters which is handed down to the integrand ca
 \hypertarget{classintegrand__par_acd322d49688d798e5f71eb9ea63a4d46}{}Dist\+Vec $\ast$ \hyperlink{classintegrand__par_acd322d49688d798e5f71eb9ea63a4d46}{distributions}\label{classintegrand__par_acd322d49688d798e5f71eb9ea63a4d46}
 
 \begin{DoxyCompactList}\small\item\em Pointer to histograms with distributions. \end{DoxyCompactList}\item 
+\hypertarget{classintegrand__par_abb97a8b27b46a93b15bcf175c2309b55}{}\hyperlink{Cuts_8h_a61e538752de0e89c62ff420ec568e582}{Cut\+Vec} $\ast$ \hyperlink{classintegrand__par_abb97a8b27b46a93b15bcf175c2309b55}{cuts}\label{classintegrand__par_abb97a8b27b46a93b15bcf175c2309b55}
+
+\begin{DoxyCompactList}\small\item\em Phase space cuts. \end{DoxyCompactList}\item 
 \hypertarget{classintegrand__par_a2227f484c28e54b55769b2fe6911a782}{}bool \hyperlink{classintegrand__par_a2227f484c28e54b55769b2fe6911a782}{collect\+\_\+dist}\label{classintegrand__par_a2227f484c28e54b55769b2fe6911a782}
 
 \begin{DoxyCompactList}\small\item\em Switch to enable distribution collection. \end{DoxyCompactList}\item 
@@ -67,7 +82,7 @@ This class contains a set of parameters which is handed down to the integrand ca
 
 In particular the model parameters contained in the \hyperlink{classHiggsModel}{Higgs\+Model} instance are needed by the functions that evaluate the matrix elements. 
 
-Definition at line 164 of file Integrator.\+h.
+Definition at line 165 of file Integrator.\+h.
 
 
 

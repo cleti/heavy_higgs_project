@@ -19,6 +19,7 @@
 #include "HistArray.h"
 #include "HiggsModel.h"
 #include "PhaseSpace.h"
+#include "Cuts.h"
 
 #include "LHAPDF/LHAPDF.h"
 
@@ -168,14 +169,20 @@ class integrand_par
   HiggsModel*              higgs_model;
   //! Hadronic c.m.e.
   double                   s_hadr;
-  //! Pointer to phase space.
-  PS_2*                    ps;
+  //! Pointer to phase space (needs dynamic casting).
+  PS_2*                    ps; 
+  //! Pointer to 2->2 phase space.
+  PS_2_2*                  ps_2;
+  //! Pointer to 2->3 phase space.
+  PS_2_3*                  ps_3;
   //! Pointer to the parton distribution function.
   LHAPDF::PDF*             pdf;
   //! Pointer to the GSL VEGAS state.
   gsl_monte_vegas_state*   v_state;
   //! Pointer to histograms with distributions.
   DistVec*                 distributions;
+  //! Phase space cuts
+  CutVec*                  cuts;
   //! Switch to enable distribution collection.
   bool                     collect_dist;
   //! Include the decays of top/antitop.
@@ -193,8 +200,48 @@ class integrand_par
   ~integrand_par();
   //! Compute the weight of the VEGAS algorithm at the current point.
   double cmp_v_weight();
-  //! Set ps pointer, the former PS instance will be deleted!
-  void SetPS(PS_2* psn) { if (ps!=nullptr) delete ps; ps = psn; }
+  //! Set PS_2 pointer, all former PS instances will be deleted!
+  void SetPS(PS_2* ps_new)
+  {
+    if (ps!=nullptr)
+      DELETE_PTR(ps);
+    
+    if (ps_2!=nullptr)
+      DELETE_PTR(ps_2);
+    
+    if (ps_3!=nullptr)
+      DELETE_PTR(ps_3);
+    
+    ps = ps_new;
+  }
+  //! Set PS_2_2 pointer, all former PS instances will be deleted!
+  void SetPS(PS_2_2* ps_new)
+  {
+    if (ps!=nullptr)
+      DELETE_PTR(ps);
+    
+    if (ps_2!=nullptr)
+      DELETE_PTR(ps_2);
+    
+    if (ps_3!=nullptr)
+      DELETE_PTR(ps_3);
+    
+    ps_2 = ps_new;
+  }
+  //! Set PS_2_3 pointer, all former PS instances will be deleted!
+  void SetPS(PS_2_3* ps_new)
+  {
+    if (ps!=nullptr)
+      DELETE_PTR(ps);
+    
+    if (ps_2!=nullptr)
+      DELETE_PTR(ps_2);
+    
+    if (ps_3!=nullptr)
+      DELETE_PTR(ps_3);
+    
+    ps_3 = ps_new;
+  }
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +263,7 @@ class Integrator {
   //! If an external state was passed  it will not be deleted after finishing the integration.
   bool d_externalGSLState;
 
-  //! Check integrand paramters and vegas parameters for consistency.
+  //! Check integrand paramters and vegas parameters for consistency before integration.
   int Init(Integral& integral, integrand_par& ip, vegas_par& vp);
 
  public:

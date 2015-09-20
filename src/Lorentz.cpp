@@ -77,6 +77,12 @@ void FV::swap(FV& other)
 {
   v.swap(other.v);
 }
+
+FV FV::norm3() const
+{
+  double L = LEN(v);
+  return FV(v)/L;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 FV operator*(FV const& v, double const& a)
@@ -104,8 +110,19 @@ FV&& operator*(FV&& v, double const& a)
   return std::move(v*=a);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+FV operator/(FV const& v, double const& a)
+{
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  FV V = v;
+  V/=a;
+  return V;
+}
+FV&& operator/(FV&& v, double const& a)
+{
+  //std::cout << std::endl << " FV: binary operator * (copy). " << std::endl;
+  return std::move(v/=a);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
 FV operator+(FV const& v1, FV const& v2)
 {
   //std::cout << std::endl << " FV: binary operator + (copy). " << std::endl;
@@ -222,70 +239,41 @@ int LT::set_FF(FV const& p1, FV const& p2)
   double B = (coshx-1.0)/(t7*t7);
 
 
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-#endif
   for (int i=0;i<4;++i)
     {
       for (int j=0;j<4;++j)
 	{
 	  M[i][j] = A*(p1[i]*p2[j]-p1[j]*p2[i]) + B*(p1_p2*(p1[i]*p2[j]+p1[j]*p2[i])-p1_p1*p2[i]*p2[j]-p2_p2*p1[i]*p1[j]);
 	  if (i==j) M[i][j] += G[i];
-#ifdef DEBUG_LT
-	  std::cout << std::setw(8) << M[i][j] << " | ";
-#endif
 	}
-#ifdef DEBUG_LT
-      std::cout << std::endl;
-#endif
     }
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-#endif
-
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-  for (int i=0;i<4;++i)
-    {
-      for (int j=0;j<4;++j)
-	{
-
-	  double test = 0.0;
-	  for (int k=0;k<4;++k)
-	    {
-	      test += M[i][k]*M[j][k]*G[k];
-	    }
-
-	  std::cout << std::setw(8) << test << " | ";
-	}
-      std::cout << std::endl;
-    }
-  std::cout << std::endl;
-#endif
-
   return 1;
 }
 
 void LT::apply(FV& v)
 {
+  // need temporary copy of v
   double temp[4] = {v[0],v[1],v[2],v[3]};
   for (int i=0;i<4;++i)
     {
       v[i] = 0.0;
       for (int j=0;j<4;++j)
 	{
+	  if (M[i][j]==0.0) continue;
 	  v[i] += M[i][j]*temp[j];
 	}
     }
 }
 void LT::apply_G(FV& v)
 {
+  // need temporary copy of v
   double temp[4] = {v[0],v[1],v[2],v[3]};
   for (int i=0;i<4;++i)
     {
       v[i] = 0.0;
       for (int j=0;j<4;++j)
 	{
+	  if (M[i][j]==0.0) continue;
 	  v[i] += M[i][j]*temp[j]*G[j];
 	}
     }
@@ -296,6 +284,7 @@ void LT::apply_cpy(FV const &src, FV &trg)
 {
   for (int i=0;i<4;++i)
     {
+      trg[i]=0.0;
       for (int j=0;j<4;++j)
 	{
 	  if (M[i][j]==0.0) continue;
@@ -307,6 +296,7 @@ void LT::apply_G_cpy(FV const &src, FV &trg)
 {
   for (int i=0;i<4;++i)
     {
+      trg[i]=0.0;
       for (int j=0;j<4;++j)
 	{
 	  if (M[i][j]==0.0) continue;
@@ -375,48 +365,15 @@ int LT::set_II(FV const& K, FV const& Kb)
   double A  = 2.0/(t1+t2+t3);
   double B  = 2.0/t1;
 
-
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-#endif
   for (int i=0;i<4;++i)
     {
       for (int j=0;j<4;++j)
 	{
 	  M[i][j] = -A*(K[i]+Kb[i])*(K[j]+Kb[j])+B*Kb[i]*K[j];	  
 	  if (i==j) M[i][j] += G[i];
-#ifdef DEBUG_LT
-	  std::cout << std::setw(8) << M[i][j] << " | ";
-#endif
 	}
-#ifdef DEBUG_LT
-      std::cout << std::endl;
-#endif
+
     }
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-#endif
-
-#ifdef DEBUG_LT
-  std::cout << std::endl;
-  for (int i=0;i<4;++i)
-    {
-      for (int j=0;j<4;++j)
-	{
-
-	  double test = 0.0;
-	  for (int k=0;k<4;++k)
-	    {
-	      test += M[i][k]*M[j][k]*G[k];
-	    }
-
-	  std::cout << std::setw(8) << test << " | ";
-	}
-      std::cout << std::endl;
-    }
-  std::cout << std::endl;
-#endif
-
   return 1;
 }
 
@@ -457,13 +414,6 @@ int LT::set_boost(FV const& P,bool INV)
       M[i][0] = M[0][i];
       for (int j=i;j<4;++j)
 	{
-	  // if (i==0)
-	  //   {
-	  //     M[i][j] = beta[j-1]*gamma;
-	  //     M[j][i] = M[i][j];
-	  //   }
-	  // else
-	  //   {
 	  if (beta2>1e-15) M[i][j] = (gamma-1.0)*beta[i]*beta[j]/beta2;
 	  else M[i][j] = 0.0;
 	      if ( std::isnan(M[i][j])  )
@@ -483,38 +433,13 @@ int LT::set_boost(FV const& P,bool INV)
 		  {
 		    M[j][i] = M[i][j];
 		  }
-		
-	    // }
 	}
     }
-
-
-#ifdef DEBUG_LT
-  print();
-
-  std::cout << std::endl;
-  for (int i=0;i<4;++i)
-    {
-      for (int j=0;j<4;++j)
-	{
-
-	  double test = 0.0;
-	  for (int k=0;k<4;++k)
-	    {
-	      test += M[i][k]*M[j][k]*G[k];
-	    }
-
-	  std::cout << std::setw(8) << test << " | ";
-	}
-      std::cout << std::endl;
-    }
-  std::cout << std::endl;
-#endif
   return 1;
 }
 
-// transforms 4-vectors from the z.m.f. of x*p1, p2
-// to the z.m.f. of p1,p2 (provieded p1,p2 in z-direction)
+// transforms 4-vectors given in the z.m.f. of x*p1, p2
+// to the z.m.f. of p1,p2 (p1,p2 in z-direction!)
 // if INV=true: tranformation from p1, x*p2 z.m.f. to p1,p2 z.m.f.
 int LT::set_boost_z(double const& x,bool INV)
 {
@@ -580,6 +505,26 @@ void LT::print()
       std::cout << std::endl;
     }
   std::cout << std::endl;
+
+#ifdef DEBUG
+  std::cout << std::endl << " Testing if L * L^{-1} = 1:" << std::endl;
+  for (int i=0;i<4;++i)
+    {
+      for (int j=0;j<4;++j)
+	{
+
+	  double test = 0.0;
+	  for (int k=0;k<4;++k)
+	    {
+	      test += M[i][k]*M[j][k]*G[k];
+	    }
+
+	  std::cout << std::setw(8) << test << " | ";
+	}
+      std::cout << std::endl;
+    }
+  std::cout << std::endl;
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -110,8 +110,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a6142dba94f0edc4eb2f8a0cc84a43ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3119b968c2cf6a9bbfb30615c01921d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a3119b968c2cf6a9bbfb30615c01921d0">apply</a> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
 <tr class="separator:a3119b968c2cf6a9bbfb30615c01921d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b58536df2aa3532e6d6055b5ce35e44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a7b58536df2aa3532e6d6055b5ce35e44">apply_cpy</a> (<a class="el" href="classFV.html">FV</a> const &amp;src, <a class="el" href="classFV.html">FV</a> &amp;trg)</td></tr>
+<tr class="separator:a7b58536df2aa3532e6d6055b5ce35e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd17d410a8436a83b03f2dd2909ee59a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#abd17d410a8436a83b03f2dd2909ee59a">apply_G</a> (<a class="el" href="classFV.html">FV</a> &amp;v)</td></tr>
 <tr class="separator:abd17d410a8436a83b03f2dd2909ee59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fbe2f64d6edc4378b7418eab68cfca0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a1fbe2f64d6edc4378b7418eab68cfca0">apply_G_cpy</a> (<a class="el" href="classFV.html">FV</a> const &amp;src, <a class="el" href="classFV.html">FV</a> &amp;trg)</td></tr>
+<tr class="separator:a1fbe2f64d6edc4378b7418eab68cfca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdccba2ab08b071219626bafb85f8e21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdccba2ab08b071219626bafb85f8e21"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_FF</b> (<a class="el" href="classFV.html">FV</a> const &amp;p1, <a class="el" href="classFV.html">FV</a> const &amp;p2)</td></tr>
 <tr class="separator:acdccba2ab08b071219626bafb85f8e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,13 +147,13 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a3ec591d3e26134d35eb127d0610c7866"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ec591d3e26134d35eb127d0610c7866"></a>
 static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLT.html#a3ec591d3e26134d35eb127d0610c7866">G</a> [4] = {1.0,-1.0,-1.0,-1.0}</td></tr>
-<tr class="memdesc:a3ec591d3e26134d35eb127d0610c7866"><td class="mdescLeft">&#160;</td><td class="mdescRight">The metric G = [+1,-1,-1,-1] is used. <br /></td></tr>
+<tr class="memdesc:a3ec591d3e26134d35eb127d0610c7866"><td class="mdescLeft">&#160;</td><td class="mdescRight">The metric tensor G = [+1,-1,-1,-1]. <br /></td></tr>
 <tr class="separator:a3ec591d3e26134d35eb127d0610c7866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lorentz transformation. </p>
 
-<p>Definition at line <a class="el" href="Lorentz_8h_source.html#l00079">79</a> of file <a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>.</p>
+<p>Definition at line <a class="el" href="Lorentz_8h_source.html#l00085">85</a> of file <a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a3119b968c2cf6a9bbfb30615c01921d0"></a>
 <div class="memitem">
@@ -171,7 +175,42 @@ static const double&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00269">269</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00253">253</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b58536df2aa3532e6d6055b5ce35e44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LT::apply_cpy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> const &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> &amp;&#160;</td>
+          <td class="paramname"><em>trg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Apply transformation to contravariant components of the 4-vector src and store result in trg. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>source 4-vector. </td></tr>
+    <tr><td class="paramname">trg</td><td>target 4-vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00283">283</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
 
 </div>
 </div>
@@ -188,14 +227,49 @@ static const double&#160;</td><td class="memItemRight" valign="bottom"><a class=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Apply transformation to contravariant components of the 4-vector. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Apply transformation to contravariant components of the 4-vector, i.e. multiplication with metric tensor G. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>4-vector to be transformed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00281">281</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00267">267</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fbe2f64d6edc4378b7418eab68cfca0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LT::apply_G_cpy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> const &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFV.html">FV</a> &amp;&#160;</td>
+          <td class="paramname"><em>trg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Apply transformation to contravariant components of the 4-vector src and store result in trg. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>source 4-vector. </td></tr>
+    <tr><td class="paramname">trg</td><td>target 4-vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00295">295</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
 
 </div>
 </div>
@@ -231,7 +305,7 @@ static const double&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if succesful, 0 if the mass of P is too small so that the restframe does not exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00403">403</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Lorentz_8cpp_source.html#l00385">385</a> of file <a class="el" href="Lorentz_8cpp_source.html">Lorentz.cpp</a>.</p>
 
 </div>
 </div>

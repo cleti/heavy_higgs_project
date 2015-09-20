@@ -128,8 +128,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordtype">int</span> num_threads = 2;<span class="comment">//omp_get_num_threads();</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordtype">int</span> this_thread = omp_get_thread_num();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  PRINT(num_threads);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  PRINT(this_thread);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="Makros_8h.html#adafe71dc847c581fb37913fc23525c57">PRINT</a>(num_threads);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="Makros_8h.html#adafe71dc847c581fb37913fc23525c57">PRINT</a>(this_thread);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordtype">double</span> res, err;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
@@ -168,7 +168,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                   &amp;res, &amp;err);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        printf (<span class="stringliteral">&quot;result = % .6f sigma = % .6f &quot;</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="stringliteral">&quot;chisq/dof = %.1f\n&quot;</span>, res, err, s-&gt;chisq);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    PRINT(difftime(time(0),INT_TIME));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="Makros_8h.html#adafe71dc847c581fb37913fc23525c57">PRINT</a>(difftime(time(0),INT_TIME));</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">while</span> (fabs (s-&gt;chisq - 1.0) &gt; 0.5);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
@@ -188,6 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="ttc" id="Makros_8h_html_adafe71dc847c581fb37913fc23525c57"><div class="ttname"><a href="Makros_8h.html#adafe71dc847c581fb37913fc23525c57">PRINT</a></div><div class="ttdeci">#define PRINT(VAR)</div><div class="ttdoc">Print variable name and value to standard output. </div><div class="ttdef"><b>Definition:</b> <a href="Makros_8h_source.html#l00126">Makros.h:126</a></div></div>
 <div class="ttc" id="structpVEGAS_1_1gsl__monte__vegas__state_html"><div class="ttname"><a href="structpVEGAS_1_1gsl__monte__vegas__state.html">pVEGAS::gsl_monte_vegas_state</a></div><div class="ttdef"><b>Definition:</b> <a href="pVEGAS_8h_source.html#l00069">pVEGAS.h:69</a></div></div>
 <div class="ttc" id="namespacepVEGAS_html"><div class="ttname"><a href="namespacepVEGAS.html">pVEGAS</a></div><div class="ttdef"><b>Definition:</b> <a href="pVEGAS_8cpp_source.html#l00072">pVEGAS.cpp:72</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

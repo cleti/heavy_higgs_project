@@ -34,16 +34,15 @@ CPP = /usr/lib/cpp
 
 
 
-
 ####################################################################
 ###################### local libraries #############################
 ####################################################################
 
-_LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Functions_Shared.o ScalarIntegrals.o FileBrowser.o
-_LIBS_PP_HX    =  $(_LIBS_COMMON) HiggsModel_.o Integrator_.o PhaseSpace_.o Integrands_pp_HX.o Functions_pp_HX.o
+_LIBS_COMMON   =  Global.o Lorentz.o HistArray.o Functions_Shared.o ScalarIntegrals.o FileBrowser.o Cuts.o
+_LIBS_PP_HX    =  $(_LIBS_COMMON) HiggsModel_.o Integrator_.o PhaseSpace_.o Observables_.o Integrands_pp_HX.o Functions_pp_HX.o
 
-_LIBS_PP_TTX   = $(_LIBS_COMMON) HiggsModel_.o  Integrator_.o  PhaseSpace_.o  Integrands_pp_ttX_.o  Functions_pp_ttX_V_.o  Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
-_LIBS_PP_TTX_S = $(_LIBS_COMMON) HiggsModel_S.o Integrator_S.o PhaseSpace_S.o Integrands_pp_ttX_S.o Functions_pp_ttX_V_S.o Functions_pp_ttX_ID_S.o Functions_pp_ttX_R_S.o Functions_pp_ttX_UID_S.o Functions_tDecay_S.o
+_LIBS_PP_TTX   = $(_LIBS_COMMON) HiggsModel_.o  Integrator_.o  PhaseSpace_.o  Observables_.o  Integrands_pp_ttX_.o  Functions_pp_ttX_V_.o  Functions_pp_ttX_ID_.o  Functions_pp_ttX_R_.o  Functions_pp_ttX_UID_.o 
+_LIBS_PP_TTX_S = $(_LIBS_COMMON) HiggsModel_S.o Integrator_S.o PhaseSpace_S.o Observables_S.o Integrands_pp_ttX_S.o Functions_pp_ttX_V_S.o Functions_pp_ttX_ID_S.o Functions_pp_ttX_R_S.o Functions_pp_ttX_UID_S.o Functions_tDecay_S.o
 ####################################################################
 ###################### object files ################################
 ####################################################################
@@ -79,6 +78,9 @@ $(BIN-PATH)/Integrate_pp_ttX_S: $(LIB-PATH)/Integrate_pp_ttX_S.o $(LIBS_COMMON) 
 	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Integrate_pp_HX: $(LIB-PATH)/Integrate_pp_HX.o $(LIBS_PP_HX)
+	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
+
+$(BIN-PATH)/Integrate_LO: $(LIB-PATH)/Integrate_LO.o $(LIBS_COMMON) $(LIBS_PP_TTX) 
 	$(CC) -o $@  $^ -L/usr/local/lib $(EXT_LIBS)
 
 $(BIN-PATH)/Test: $(LIB-PATH)/Test.o $(LIBS_COMMON) $(LIBS_PP_TTX) 

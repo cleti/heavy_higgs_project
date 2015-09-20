@@ -67,19 +67,19 @@ Flags to control the evaluation of sub amplitudes.
 \begin{DoxyCompactList}\small\item\em Evaluate all virtual P\+H\+I0x\+Q\+C\+D1 amplitudes. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_ab07c58a16fd549bd49e9492865952abf}{}\#define \hyperlink{Flags_8h_ab07c58a16fd549bd49e9492865952abf}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+\+S\+E}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 000 001 000 0)\label{Flags_8h_ab07c58a16fd549bd49e9492865952abf}
 
-\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 self-\/energy amplitude. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 (renormalized) self-\/energy amplitude. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_a884809cd7071fd93c8b13fd49b721d69}{}\#define \hyperlink{Flags_8h_a884809cd7071fd93c8b13fd49b721d69}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+\+C\+T\+S\+E}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 000 010 000 0)\label{Flags_8h_a884809cd7071fd93c8b13fd49b721d69}
 
-\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 self-\/energy counterterm. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 self-\/energy counterterm. \mbox{[}deprecated\mbox{]}. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_aaa1b79549ba41276e4327a5a1fe6f88c}{}\#define \hyperlink{Flags_8h_aaa1b79549ba41276e4327a5a1fe6f88c}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+4\+G}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 000 100 000 0)\label{Flags_8h_aaa1b79549ba41276e4327a5a1fe6f88c}
 
 \begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 4-\/gluon amplitude. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_ad330cb2a39ce0717211f1fdc17c04e63}{}\#define \hyperlink{Flags_8h_ad330cb2a39ce0717211f1fdc17c04e63}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+\+V1}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 001 000 000 0)\label{Flags_8h_ad330cb2a39ce0717211f1fdc17c04e63}
 
-\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 upper vertex correction. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 (renormalized) upper vertex correction. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_a3e72615bc9c26aea3b37d547dce1fcc3}{}\#define \hyperlink{Flags_8h_a3e72615bc9c26aea3b37d547dce1fcc3}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+\+C\+T\+V1}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 010 000 000 0)\label{Flags_8h_a3e72615bc9c26aea3b37d547dce1fcc3}
 
-\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 upper vertex counterterm. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 upper vertex counterterm. \mbox{[}deprecated\mbox{]}. \end{DoxyCompactList}\item 
 \hypertarget{Flags_8h_a73b48a44db385153b3a0a237fc428c52}{}\#define \hyperlink{Flags_8h_a73b48a44db385153b3a0a237fc428c52}{F\+\_\+\+E\+V\+A\+L\+\_\+\+V\+\_\+\+V2}~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+L\+U(000 000 000 000 100 000 000 0)\label{Flags_8h_a73b48a44db385153b3a0a237fc428c52}
 
 \begin{DoxyCompactList}\small\item\em Evaluate virtual P\+H\+I0x\+Q\+C\+D1 lower vertex correction. \end{DoxyCompactList}\item 
@@ -484,6 +484,9 @@ Flags to control the evaluation of sub amplitudes.
 \subsection{Detailed Description}
 Flags to control the evaluation of sub amplitudes. 
 
+Note that the flags that select subamplitudes are only active when compiled with D\+E\+B\+U\+G=1. Default is D\+E\+B\+U\+G=0, where all N\+L\+O subamplitudes in the files Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+R/\+V/\+I\+D/\+U\+I\+D.\+cpp get evaluated. \begin{DoxySeeAlso}{See also}
+\hyperlink{Functions__pp__ttX__V_8cpp_source}{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+V.\+cpp}, \hyperlink{Functions__pp__ttX__ID_8cpp_source}{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+I\+D.\+cpp}, \hyperlink{Functions__pp__ttX__R_8cpp_source}{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+R.\+cpp}, \hyperlink{Functions__pp__ttX__UID_8cpp_source}{Functions\+\_\+pp\+\_\+tt\+X\+\_\+\+U\+I\+D.\+cpp} 
+\end{DoxySeeAlso}
 
 
 \subsection{Macro Definition Documentation}
@@ -492,5 +495,5 @@ Flags to control the evaluation of sub amplitudes.
 \subsubsection[{I\+\_\+\+F\+L\+A\+G\+S\+\_\+\+A\+L\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+\_\+\+F\+L\+A\+G\+S\+\_\+\+A\+L\+L~B\+O\+O\+S\+T\+\_\+\+B\+I\+N\+A\+R\+Y(1 111 111 1)}\label{Flags_8h_a82849e83012283f0702b28b15bfe7e14}
 Integrate all contributions. 
 
-Definition at line 16 of file Flags.\+h.
+Definition at line 19 of file Flags.\+h.
 

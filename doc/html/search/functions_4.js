@@ -11,5 +11,6 @@ var searchData=
   ['eval_5fsigma_5fr_5fqg_5ffin',['Eval_sigma_R_qg_fin',['../Functions__pp__HX_8h.html#ad52922c79569a67d14b5f6510d95a958',1,'Functions_pp_HX.cpp']]],
   ['eval_5fsigma_5fr_5fqq_5ffin',['Eval_sigma_R_qq_fin',['../Functions__pp__HX_8h.html#a58f97431922a60a05a5974a4ecff63bb',1,'Functions_pp_HX.cpp']]],
   ['eval_5fuid',['Eval_UID',['../Functions__pp__HX_8h.html#afb9582b1e9f2302ebd9002448518225b',1,'Functions_pp_HX.cpp']]],
-  ['eval_5fv',['Eval_V',['../Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83',1,'Eval_V(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm):&#160;Functions_pp_HX.cpp'],['../Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0',1,'Eval_V(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags):&#160;Functions_pp_ttX_V.cpp']]]
+  ['eval_5fv',['Eval_V',['../Functions__pp__HX_8h.html#ae6510939d84dababa1c36762080e9e83',1,'Eval_V(FV const &amp;p1, FV const &amp;p2, HiggsModel const &amp;hm):&#160;Functions_pp_HX.cpp'],['../Functions__pp__ttX__V_8h.html#aa44bc8ccfc40b1d6e9412d530a0007b0',1,'Eval_V(const PS_2_2 &amp;ps, HiggsModel &amp;hm, const ulong &amp;flags):&#160;Functions_pp_ttX_V.cpp']]],
+  ['evalcuts',['EvalCuts',['../Cuts_8h.html#a06b33b7f0cc247e35d32a45ad35b6a6c',1,'Cuts.cpp']]]
 ];

@@ -6,6 +6,8 @@ var searchData=
   ['addscalar',['AddScalar',['../classHiggsModel.html#ab84c9016bf5a8bd87f82f214c34cce8b',1,'HiggsModel']]],
   ['amplitudeprefactors',['AmplitudePrefactors',['../structAmplitudePrefactors.html',1,'']]],
   ['apply',['apply',['../classLT.html#a3119b968c2cf6a9bbfb30615c01921d0',1,'LT']]],
+  ['apply_5fcpy',['apply_cpy',['../classLT.html#a7b58536df2aa3532e6d6055b5ce35e44',1,'LT']]],
   ['apply_5fg',['apply_G',['../classLT.html#abd17d410a8436a83b03f2dd2909ee59a',1,'LT']]],
-  ['avg',['Avg',['../classMeanDistribution.html#ad4b5ab2430e53e5f19c7819d1ae52e02',1,'MeanDistribution']]]
+  ['apply_5fg_5fcpy',['apply_G_cpy',['../classLT.html#a1fbe2f64d6edc4378b7418eab68cfca0',1,'LT']]],
+  ['avg',['Avg',['../classMeanDistribution.html#a75dbc9555e8b6777ddd6da84800633ea',1,'MeanDistribution']]]
 ];

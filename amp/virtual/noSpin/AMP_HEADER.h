@@ -1,7 +1,7 @@
 
 
-#ifndef BORN_AMP_HEADER
-#define BORN_AMP_HEADER
+#ifndef BV_AMP_HEADER
+#define BV_AMP_HEADER
 
 #define AMP_ARGS				\
   PS_2_2 const& ps,				\

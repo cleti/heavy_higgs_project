@@ -1,4 +1,12 @@
 
+
+
+
+// ignore warnings of unused variables
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma message "Note: '-Wunused-variable' disabled in file " __FILE__
+
+
 #include "../inc/Functions_pp_ttX_V.h"
 
 
@@ -12,7 +20,7 @@
 // renormalization factors ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 // delta Z_M, mass renormalization factor for a quark (MS-bar, 1-loop, 5-flavour)
-static double ZM (
+static inline double ZM (
 		  double const& MT2,
 		  double const& AlphaS,
 		  double const& MUR2)
@@ -33,7 +41,7 @@ static double ZM (
   return res;
 }
 // delta Z_1, massive quark gluon vertex renormalization factor (MS-bar, 1-loop, 5-flavour)
-inline double Z1Qg (
+static inline double Z1Qg (
 		    double const& MT2,
 		    double const& AlphaS,
 		    double const& MUR2)
@@ -41,7 +49,7 @@ inline double Z1Qg (
   return ZM(MT2,AlphaS,MUR2);
 }
 // delta Z_2, massive quark wavefunction renormalization factor (MS-bar, 1-loop, 5-flavour)
-inline double Z2 (
+static inline double Z2 (
 		  double const& MT2,
 		  double const& AlphaS,
 		  double const& MUR2)
@@ -49,7 +57,7 @@ inline double Z2 (
   return ZM(MT2,AlphaS,MUR2);
 }
 // delta (Z_2 * Z_M) = delta Z_2 + delta Z_M at one-loop order (MS-bar, 1-loop, 5-flavour)
-inline double Z2M (
+static inline double Z2M (
 		   double const& MT2,
 		   double const& AlphaS,
 		   double const& MUR2)
@@ -143,16 +151,19 @@ double Eval_B(
 	      const ulong& flags,
 	      unsigned EFF)
 {
-  PREFACTORS(hm); // defines ap and hp
+  PREFACTORS(hm); // defines references ap and hp
       
   // these have to be adjusted whenever S changes!!!
   if (EVAL_B_PHI(flags))
     {
       hm.SetHiggsPrefactors(ps.get_s(),EFF);
     }
-
-       
+  
   double B_t = 0.0;
+  
+  //////////////////////////////////////////////////////////////
+  // [PHI0]^2: gg initial state
+  //////////////////////////////////////////////////////////////
   if (flags & F_EVAL_B_PHIxPHI) 
     {
       B_t += Eval_B_PHIxPHI_withINT12(ps,hm);
@@ -160,6 +171,10 @@ double Eval_B(
       CHECKNAN(B_t);
 #endif
     }
+  
+  //////////////////////////////////////////////////////////////
+  // 2RE[PHI0 x QCD0]: gg initial state
+  //////////////////////////////////////////////////////////////
   if (flags & F_EVAL_B_PHIxQCD) 
     {
       B_t += Eval_B_2PHIxQCD(ps,ap,hp);
@@ -167,6 +182,10 @@ double Eval_B(
       CHECKNAN(B_t);
 #endif
     }
+
+  //////////////////////////////////////////////////////////////
+  // [QCD0]^2: gg initial state
+  //////////////////////////////////////////////////////////////
   if (flags & F_EVAL_B_QCDxQCD) 
     {
       B_t += Eval_B_QCDxQCD_GG(ps,ap,hp);
@@ -181,20 +200,25 @@ double Eval_B_PHIxPHI_withINT12(
 				const PS_2_2& ps,
 				const HiggsModel& hm)
 {
-  PREFACTORS(hm); // defines ap and hp 
-  double ret = Eval_B_PHIxPHI(ps,ap,hp);
+  PREFACTORS(hm); // defines references ap and hp 
 #ifdef WITH_T_SPIN
+  double ret = Eval_B_PHIxPHI(ps,ap,hp);
   // the additional interference terms are only relevant in the polarized amplitudes
   // when models with more than 1 heavy Higgs boson are considered
   if (hm.NBosons()>1)
     {
       ret += Eval_B_PHIxPHI_IM_INTab(ps,ap,hp);
     }
-#endif  
   return ret;
+#else
+  return Eval_B_PHIxPHI(ps,ap,hp);
+#endif
+  
 }
 
-// squared QCD qq->tt amplitude
+//////////////////////////////////////////////////////////////
+// [QCD0]^2: qq-bar initial state
+//////////////////////////////////////////////////////////////
 double Eval_B_QQ(
 		 const PS_2_2& ps,
 		 HiggsModel& hm)
@@ -210,7 +234,7 @@ double Eval_V(
 	      HiggsModel& hm,
 	      const ulong& flags)
 {
-  PREFACTORS(hm); // defines ap and hp 
+  PREFACTORS(hm); // defines references ap and hp 
       
   // these have to be adjusted whenever S changes!!!
   hm.SetHiggsPrefactors(ps.get_s(),1);
@@ -223,96 +247,130 @@ double Eval_V(
 	 flags);
 
   double res = 0.0;
-  // add contributions of individual diagrams according to flags in flags
+
+  
+  //////////////////////////////////////////////////////////////
+  // 2RE[PHI0 x QCD1] interference terms
+  // labels according to the conventions introduced in my thesis 
+  //////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (flags & F_EVAL_V_PHI0xQCD1)
     {
-      // 2RE[PHI0 x QCD1] interference terms classified by QCD1 diagram type
-      // self-energy diagram including ren. counter term
-#ifdef DEBUG
       if (flags & F_EVAL_V_SE)
 	{
-#endif      
+#endif
+	  //////////////////////////////////////////////////////////
+	  // self-energy insertion diagram (+ren. counter term)
 	  res += Eval_V_SE (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #ifdef DEBUG
 	  CHECKNAN(res);
 	}
 #endif
       
-      // 4g vertex diagram
+      
 #ifdef DEBUG
       if (flags & F_EVAL_V_4G)
 	{
 #endif         
+	  //////////////////////////////////////////////////////////
+	  // 4g vertex diagram
 	  res += Eval_V_4G (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #ifdef DEBUG
 	  CHECKNAN(res);
       	}
 #endif
       
-      // qg veretx correction (upper and lower vertex) including ren. counter term
+      
 #ifdef DEBUG
       if (flags & F_EVAL_V_V1)
 	{
 #endif
 #ifdef WITH_T_SPIN
+	  //////////////////////////////////////////////////////////
+	  // Qg vertex correction (+ren. counter term)
+	  // full top spin dependency: upper vertex != lower vertex
 	  res += Eval_V_V1 (ps,ap,hp);
 	  res += Eval_V_V2 (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #else
-	  // the two vertex corrections are equal if summed over top-spins
-	  // -> evaluate only once
+	  //////////////////////////////////////////////////////////
+	  // Qg vertex correction (+ren. counter term)
+	  // summed over top spin: upper vertex = lower vertex
 	  res += 2.0 * Eval_V_V1 (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #endif
 #ifdef DEBUG
 	  CHECKNAN(res);
       	}
 #endif
       
-      // box 1
+     
 #ifdef DEBUG
       if (flags & F_EVAL_V_B1)
 	{
 #endif         
+	  //////////////////////////////////////////////////////////
+	  // box diagram 1
 	  res += Eval_V_B1 (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #ifdef DEBUG
 	  CHECKNAN(res);
       	}
 #endif
       
-      // box 2
+     
 #ifdef DEBUG
       if (flags & F_EVAL_V_B2)
 	{
 #endif         
+	  //////////////////////////////////////////////////////////
+	  // box diagram 2
 	  res += Eval_V_B2 (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #ifdef DEBUG
 	  CHECKNAN(res);
       	}
 #endif
       
-      // box 3
+      
 #ifdef DEBUG
       if (flags & F_EVAL_V_B3)
 	{
 #endif         
+	  //////////////////////////////////////////////////////////
+	  // box diagram 3
 	  res += Eval_V_B3 (ps,ap,hp);
+	  //////////////////////////////////////////////////////////
 #ifdef DEBUG
 	  CHECKNAN(res);
       	}
-#endif
     }
-  
+#endif
+
+
+  //////////////////////////////////////////////////////////////
   // 2RE[PHI1 x QCD0] interference terms
+  //////////////////////////////////////////////////////////////
+#ifdef DEBUG  
   if (flags & F_EVAL_V_PHI1xQCD0)
     {
+#endif
       res += Eval_V_2RE_PHI1xQCD0(ps,ap,hp);
 #ifdef DEBUG
       CHECKNAN(res);
-#endif
     }
+#endif
 
-  // 2RE[PHI1xPHI0] interference terms
+
+  //////////////////////////////////////////////////////////////
+  // 2RE[PHI1 x PHI0] 
+  //////////////////////////////////////////////////////////////  
+#ifdef DEBUG 
   if (flags & F_EVAL_V_PHIxPHI)
     {
+#endif      
       res += Eval_V_PHIxPHI(ps,ap,hp);
 #ifdef WITH_T_SPIN
       if (hm.NBosons()>1)
@@ -322,9 +380,9 @@ double Eval_V(
 #endif
 #ifdef DEBUG
       CHECKNAN(res);
-#endif
     }
-    return res;
+#endif  
+  return res;
 }
 
 

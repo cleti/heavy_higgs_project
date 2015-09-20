@@ -30,6 +30,8 @@ int HistArray::d_ID = 0;
 // layout settings for the generated TH1D's
 double HistArray::LabelSize   = 0.025;
 double HistArray::TitleOffset = 1.3;
+double HistArray::NumLimit    = 1e-5;
+double HistArray::NumMax      = 1e5;
 
 
 HistArray::HistArray(int nbinsx,
@@ -53,7 +55,8 @@ HistArray::HistArray(int nbinsx,
   d_label_x(),
   d_label_y(),
   d_mass_dim(mass_dim),
-  d_id(d_ID)
+  d_id(d_ID),
+  d_buffer(nullptr)
 {
   for (int i=0;i<NHIST;++i)
     {
@@ -68,8 +71,88 @@ HistArray::HistArray(int nbinsx,
       d_histograms[i].SetLineColor(1);
       if (SUMW2)  d_histograms[i].Sumw2();
     }
+  d_buffer = new double[nbinsx+2]; // + underflow and overflow
+  for (int i=0; i<nbinsx+2 ; ++i) d_buffer[i]=0.0;
   d_ID++;
 }
+
+HistArray::~HistArray()
+{
+  delete d_buffer;
+}
+
+
+void HistArray::FillOne(H_Index i, double const& x, double const& wgt)
+{
+  if(IsActive(i))
+    {
+
+      d_histograms[i].Fill(x,wgt);
+      
+      // if (i == H_NLO_PHI_R)
+      // 	{
+      // 	  // use buffer in case of real corrections and unintegrated dipoles
+      // 	  // get the current bin number corresponding to x
+      // 	  int bin = d_histograms[H_NLO_PHI_R].FindBin(x);
+      // 	  // add large numbers to the buffer
+      // 	  if (fabs(wgt) > HistArray::NumLimit)
+      // 	    {
+      // 	      // add 'large' values to buffer
+      // 	      d_buffer[bin] += wgt;
+      // 	      // transfer to histogram if large numbers have cancelled
+      // 	      if (fabs(d_buffer[bin]) < NumLimit)
+      // 		{
+      // 		  std::cout << std::endl << " flushing buffer bin " << bin;
+      // 		  std::cout << " value " << d_buffer[bin] << std::endl;
+      // 		  d_histograms[H_NLO_PHI_R].AddBinContent(bin,d_buffer[bin]);
+      // 		  d_buffer[bin]=0;
+      // 		}
+      // 	    }
+      // 	  else
+      // 	    {
+      // 	      // add 'normal' values directly to histogram
+      // 	      d_histograms[H_NLO_PHI_R].AddBinContent(bin,wgt);
+      // 	    }
+      // 	}
+      // else
+      // 	{
+      // 	  d_histograms[i].Fill(x,wgt);
+      // 	}
+	    
+
+      // // normal usage
+      // if (i == H_NLO_PHI_R)
+      // 	{
+      // 	  if (fabs(wgt) > HistArray::NumLimit)
+      // 	    {
+      // 	      // 'large' values
+      // 	      d_histograms[H_NLO_PHI_ID].Fill(x,wgt);
+      // 	    }
+      // 	  else
+      // 	    {
+      // 	      // 'normal' values
+      // 	      d_histograms[H_NLO_PHI_R].Fill(x,wgt);
+      // 	    }
+      // 	}
+      // else
+      // 	{
+      // 	  d_histograms[i].Fill(x,wgt);
+      // 	}
+    }
+}
+
+void HistArray::FlushBuffer(H_Index i)
+{
+  if(IsActive(H_NLO_PHI_R))
+    {
+      for (int j=0; j<d_histograms[H_NLO_PHI_R].GetNbinsX()+2 ; ++j)
+	{
+	  d_histograms[i].AddBinContent(j,d_buffer[j]);
+	  d_buffer[j]=0.0;
+	}
+    }
+}
+
 
 void HistArray::Normalize(const double& mScale, int verb)
 {
@@ -92,6 +175,10 @@ void HistArray::Normalize(const double& mScale, int verb)
 	      binc = d_histograms[i].GetBinContent(j);
 	      // normalize to bin-width
 	      d_histograms[i].SetBinContent(j,binc*fmass/(d_histograms[i].GetBinWidth(j)));
+	      if (i==H_NLO_PHI_R)
+		{
+		  d_buffer[i] *= fmass/(d_histograms[i].GetBinWidth(j));
+		}
 	    }
 	  if (verb>1) std::cout << "  hist " << i <<  " done..\n";
 	}
@@ -105,41 +192,57 @@ void HistArray::Normalize(const double& mScale, int verb)
 
 
 
-void HistArray::Print(std::ostream& ost)
+#define PRINT_COL(OST,W,P,VAL)						\
+  OST << std::setw(W) << std::setprecision(P) << VAL;			\
+
+
+void HistArray::Print(std::ostream& ost, int verb)
 {
   const int colWidth1 = 16;
   const int colWidth2 = 20;
+  const int prec1 = 4;
+  const int prec2 = 7;
   
   ost << std::endl;
-  ost << "#  "  << d_name << std::endl;
-  ost << "#  " << std::setw(colWidth1) << "Bin low edge";
-  ost << std::setw(colWidth2) << "QCD [LO]";
-  ost << std::setw(colWidth2) << "QCD+PHI [LO]";
-  ost << std::setw(colWidth2) << "QCD [NLO]";
-  ost << std::setw(colWidth2) << "QCD+PHI [NLO]" << std::endl << std::endl;
+  ost << "#  " << d_name << std::endl;
+  ost << "#  " << std::setw(colWidth1-3) << "Bin low edge";
+  PRINT_COL(ost,colWidth2,prec2,"QCD [LO]");
+  if (verb>0)
+    {
+      PRINT_COL(ost,colWidth2,prec2,"PHI [LO]");
+    }	
+  PRINT_COL(ost,colWidth2,prec2,"QCD + PHI [LO]");	
+  PRINT_COL(ost,colWidth2,prec2,"QCD [NLO]");
+  if (verb>0)
+    {
+      PRINT_COL(ost,colWidth2,prec2,"PHI [NLO V]");
+      PRINT_COL(ost,colWidth2,prec2,"PHI [NLO ID]");
+      PRINT_COL(ost,colWidth2,prec2,"PHI [NLO R+UID]");
+    }   
+  PRINT_COL(ost,colWidth2,prec2,"QCD + PHI [NLO]");
+  ost << std::endl << std::endl;
 
-  // integrals
-  double I_QCD_LO = 0.0;
-  double I_QCD_PHI_LO = 0.0;
-  double I_QCD_NLO = 0.0;
-  double I_QCD_PHI_NLO = 0.0;
+  // integrals = sum[bin_content*bin_width]
+  double I_LO_QCD = 0.0;
+  double I_LO_QCD_PHI = 0.0;
+  double I_NLO_QCD = 0.0;
+  double I_NLO_QCD_PHI = 0.0;
 
   // current bin content
-  double QCD_LO = 0.0;
-  double QCD_PHI_LO = 0.0;
-  double QCD_NLO = 0.0;
-  double QCD_PHI_NLO = 0.0;
+  double val_LO_QCD = 0.0;
+  double val_NLO_QCD = 0.0;
+  double val_LO_PHI = 0.0;
+  double val_NLO_PHI = 0.0;
 
 
   for (int i=0;i<=d_histograms[0].GetNbinsX()+1;++i)
     {
       // get current bin values
-      QCD_LO      = d_histograms[H_LO_QCD].GetBinContent(i);
-      QCD_PHI_LO = QCD_LO
-	+ d_histograms[H_LO_PHI].GetBinContent(i);   
-      QCD_NLO     = QCD_LO + d_histograms[H_NLO_QCD].GetBinContent(i);
-      QCD_PHI_NLO = QCD_NLO
-	+ d_histograms[H_LO_PHI].GetBinContent(i) 
+      val_LO_QCD  = d_histograms[H_LO_QCD].GetBinContent(i);
+      val_NLO_QCD = val_LO_QCD
+	+ d_histograms[H_NLO_QCD].GetBinContent(i);   
+      val_LO_PHI   = d_histograms[H_LO_PHI].GetBinContent(i);
+      val_NLO_PHI = val_LO_PHI
 	+ d_histograms[H_NLO_PHI_V].GetBinContent(i)
 	+ d_histograms[H_NLO_PHI_ID].GetBinContent(i)
 	+ d_histograms[H_NLO_PHI_R].GetBinContent(i);
@@ -147,38 +250,60 @@ void HistArray::Print(std::ostream& ost)
       if (i>0 && i<=d_histograms[0].GetNbinsX())
 	{
 	  double binw = d_histograms[H_LO_QCD].GetBinWidth(i);
-	  I_QCD_LO      += QCD_LO*binw;
-	  I_QCD_PHI_LO  += QCD_PHI_LO*binw;
-	  I_QCD_NLO     += QCD_NLO*binw;
-	  I_QCD_PHI_NLO += QCD_PHI_NLO*binw;
+	  I_LO_QCD      += val_LO_QCD*binw;
+	  I_LO_QCD_PHI  += (val_LO_QCD+val_LO_PHI)*binw;
+	  I_NLO_QCD     += val_NLO_QCD*binw;
+	  I_NLO_QCD_PHI += (val_NLO_QCD+val_NLO_PHI)*binw;
+
+	  // print bin lower edge
+	  PRINT_COL(ost,colWidth1,prec1,d_histograms[0].GetBinLowEdge(i));
 	}
-      // print bin values
-      if (i>0)
+      else if (i==0)
 	{
-	  ost << std::setw(colWidth2) << std::setprecision(5)  << d_histograms[0].GetBinLowEdge(i);
+	  PRINT_COL(ost,colWidth1,prec1,"uflow");
 	}
-      else
+      else if (i==d_histograms[0].GetNbinsX()+1)
 	{
-	  ost << std::setw(colWidth2) << std::setprecision(5)  << "";
+	  PRINT_COL(ost,colWidth1,prec1,"oflow");
 	}
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_LO_QCD].GetBinContent(i);
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_NLO_QCD].GetBinContent(i);
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_LO_PHI].GetBinContent(i);
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_NLO_PHI_V].GetBinContent(i);  
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_NLO_PHI_ID].GetBinContent(i);  
-      ost << std::setw(colWidth2) << std::setprecision(10) << d_histograms[H_NLO_PHI_R].GetBinContent(i) << std::endl;    
-      // ost << std::setw(colWidth2) << std::setprecision(10) << QCD_LO;
-      // ost << std::setw(colWidth2) << std::setprecision(10) << QCD_PHI_LO;
-      // ost << std::setw(colWidth2) << std::setprecision(10) << QCD_NLO;
-      // ost << std::setw(colWidth2) << std::setprecision(10) << QCD_PHI_NLO << std::endl;
+      
+      PRINT_COL(ost,colWidth2,prec2,val_LO_QCD);
+      if (verb>0)
+	{
+	  PRINT_COL(ost,colWidth2,prec2,val_LO_PHI);
+	}      
+      PRINT_COL(ost,colWidth2,prec2,val_LO_QCD+val_LO_PHI);
+      PRINT_COL(ost,colWidth2,prec2,val_NLO_QCD);
+      if (verb>0)
+	{
+	  PRINT_COL(ost,colWidth2,prec2,d_histograms[H_NLO_PHI_V].GetBinContent(i));
+	  PRINT_COL(ost,colWidth2,prec2,d_histograms[H_NLO_PHI_ID].GetBinContent(i));
+	  PRINT_COL(ost,colWidth2,prec2,d_histograms[H_NLO_PHI_R].GetBinContent(i));
+	  ost << " [" << d_buffer[i] << "]";
+	}
+      PRINT_COL(ost,colWidth2,prec2,val_NLO_QCD+val_NLO_PHI);
+      ost  << std::endl;    
     }
   
   ost << std::endl;
-  ost << "#  " << std::setw(colWidth1) << "Integral: ";
-  ost << std::setw(colWidth2) << I_QCD_LO;
-  ost << std::setw(colWidth2) << I_QCD_PHI_LO;
-  ost << std::setw(colWidth2) << I_QCD_NLO;
-  ost << std::setw(colWidth2) << I_QCD_PHI_NLO << std::endl << std::endl;
+  ost << "#  " << std::setw(colWidth1-3) << "Integrals: ";
+
+  PRINT_COL(ost,colWidth2,prec2,I_LO_QCD);
+  if (verb>0)
+    {
+      PRINT_COL(ost,colWidth2,prec2,"---");
+    }      
+  PRINT_COL(ost,colWidth2,prec2,I_LO_QCD_PHI);
+  PRINT_COL(ost,colWidth2,prec2,I_NLO_QCD);
+  if (verb>0)
+    {
+      PRINT_COL(ost,colWidth2,prec2,"---");
+      PRINT_COL(ost,colWidth2,prec2,"---");
+      PRINT_COL(ost,colWidth2,prec2,"---");
+    }
+  PRINT_COL(ost,colWidth2,prec2,I_NLO_QCD_PHI);
+
+  ost << std::endl << std::endl;
 }
 
 
@@ -534,6 +659,14 @@ HistArray DY_Histograms(12,DIST_Y_L,DIST_Y_U,0,
 			"Distribution of top/antitop rapidity difference",
 			"#Delta |y|",
 			"#frac{d#sigma}{d #Delta |y|} [pb]");
+HistArray T1_Histograms(20,DIST_A_L,DIST_A_U,0,
+			"Distribution of Collins-Soper angle",
+			"cos(#theta_{CS}) ",
+			"#frac{d#sigma}{d cos(#theta_{CS})} [pb]");
+HistArray T2_Histograms(20,DIST_A_L,DIST_A_U,0,
+			"Distribution of Collins-Soper angle (w.r.t. antitop momentum)",
+			"cos(#theta_{CS}) ",
+			"#frac{d#sigma}{d cos(#theta_{CS})} [pb]");
 
 // spin-dependent observables
 const int NbinsS = 86;
@@ -601,10 +734,3 @@ int ReadData(
 }
 
 
-
-
-void Distribution::Fill(const PS_2* ps)
-{
-
-
-}

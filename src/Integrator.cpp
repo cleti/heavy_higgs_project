@@ -133,9 +133,12 @@ integrand_par::integrand_par(std::ostream& os):
   higgs_model(nullptr),
   s_hadr(0.0),
   ps(nullptr),
+  ps_2(nullptr),
+  ps_3(nullptr),
   pdf(nullptr),
   v_state(nullptr),
   distributions(nullptr),
+  cuts(nullptr),
   collect_dist(false),
   tDecay(false),
   ost(os),
@@ -151,25 +154,29 @@ integrand_par::~integrand_par()
       // ip holds only a copy of the GSLState pointer
       // it is deleted by the Integrator or should be handled by the user if external
       if (ps != nullptr)
-      	{
-      	  delete ps;
-      	}
+	DELETE_PTR(ps);
+      
+      if (ps_2 != nullptr)
+	DELETE_PTR(ps_2);
+      
+      if (ps_3 != nullptr)
+	DELETE_PTR(ps_3);
+      
       if (pdf != nullptr)
-      	{
-      	  delete pdf;
-      	}
+	DELETE_PTR(pdf);
+      
       if (distributions != nullptr)
-      	{
-      	  delete distributions;
-      	}
+	DELETE_PTR(distributions);
+      
+      if (cuts != nullptr)
+	DELETE_PTR(cuts);
     }
 }
 
 #define COORD(s,i,j) ((s)->xi[(i)*(s)->dim + (j)])
 double integrand_par::cmp_v_weight() {
   if (v_state == nullptr) {
-    ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-    ost << " ERROR: no integrand specified!" << std::endl;
+    SERROR_NOEXIT(ost,"no integrand specified");
     return 0.0;
   }
   // re-calculate VEGAS weight if we have a new event
@@ -259,6 +266,7 @@ int Integrator::Init(Integral& integral, integrand_par& ip, vegas_par& vp)
   int verb    = vp.verbose;
   size_t dim  = integral.GetDim();
 
+  
   if (!ip.eval_flags)
     {
       d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
@@ -301,8 +309,7 @@ int Integrator::Init(Integral& integral, integrand_par& ip, vegas_par& vp)
   // check if the integrand fnc is specified
   if (integral.GetIntegrand() == nullptr)
     {
-      d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-      d_Ost << " ERROR: no integrand function found, nullptr received!" << std::endl;
+      SERROR_NOEXIT(d_Ost,"no integrand function found, nullptr received");
       return 0;
     }
   /////////////////////////////////////////////////////////////////////////////////////
@@ -325,16 +332,14 @@ int Integrator::Init(Integral& integral, integrand_par& ip, vegas_par& vp)
     {
       if (d_GSLState==nullptr)
 	{
-	  d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-	  d_Ost << " ERROR: external state is NULL!" << std::endl;
+	  SERROR_NOEXIT(d_Ost,"external state is NULL");
 	  return 0;
 	}
       gsl_monte_vegas_init (d_GSLState);
       // check if the external state has the correct size
       if (dim != d_GSLState->dim)
 	{
-	  d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-	  d_Ost << " ERROR: External GSL state dimension does not match integral dimension!" << std::endl;
+	  SERROR_NOEXIT(d_Ost,"External GSL state dimension does not match integral dimension");
 	  d_Ost << " dim(integral) = " << dim << "   dim(state) = " << d_GSLState->dim << std::endl;
 	  return 0;
 	}
@@ -358,19 +363,19 @@ int Integrator::Init(Integral& integral, integrand_par& ip, vegas_par& vp)
   // set up the GSL Integrand struct
   d_GSLIntegrand = {integral.GetIntegrand(), dim, (void*)&ip};
 
-  if (ip.ps == nullptr)
+  // looks awkward:
+  // check if exactly one pointer is set, so that no confusions arise later on
+  if (!( (ip.ps != nullptr) || (ip.ps_2 != nullptr) || (ip.ps_3 !=nullptr) ))
     {
-      d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-      d_Ost << " ERROR: no ps found, nullptr received!" << std::endl;
+      SERROR_NOEXIT(d_Ost,"you need to provide one phase space (ps, ps_2 or ps_3)");
       return 0;
     }
   if (ip.collect_dist && ip.distributions == nullptr)
     {
-      d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-      d_Ost << " ERROR: you need to provide a HistArray to compute distributions!" << std::endl;
+      SERROR_NOEXIT(d_Ost,"you need to provide a HistArray to compute distributions");
       return 0;
     }
-  // now everything is fine
+  // now everything should be set up correctly
   return 1;
 }
 
@@ -392,31 +397,42 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
 {
   if (!Init(integral,ip,vp))
     {
-      d_Ost << std::endl << " In " << __FUNCTION__ << ", " << __LINE__ << std::endl;
-      d_Ost << " aborting integration ... " << std::endl;
+      SERROR_NOEXIT(d_Ost,"aborting integration due to errors in Init()...");
       return;
     }
 
   int ncalls = vp.calls/vp.iterations;
-
+  
   // adjust ncalls according to phase space integration complexity
-  switch (ip.ps->whattype())
+  if (ip.ps) // here we have to first determine the type
     {
-    case 21:
-      ncalls /= 10;
-      if (vp.verbose>0) d_Ost << std::endl << "  PS 2->1 , #call/iter. = " << ncalls << std::endl;
-      break;
-    case 22:
+      switch (ip.ps->whattype())
+	{
+	case 21:
+	  ncalls /= 10;
+	  if (vp.verbose>0) d_Ost << std::endl << "  PS 2->1 , #call/iter. = " << ncalls << std::endl;
+	  break;
+	case 22:
+	  if (vp.verbose>0) d_Ost << std::endl << "  PS 2->2 , #call/iter. = " << ncalls << std::endl;
+	  break;
+	case 23:
+	  ncalls *= 10;
+	  if (vp.verbose>0) d_Ost << std::endl << "  PS 2->3 , #call/iter. = " << ncalls << std::endl;
+	  break;
+	default:
+	  if (vp.verbose>0) d_Ost << std::endl << "  unrecognized PS , #call/iter. = " << ncalls << std::endl;
+	}
+    }
+  else if (ip.ps_2)
+    {
       if (vp.verbose>0) d_Ost << std::endl << "  PS 2->2 , #call/iter. = " << ncalls << std::endl;
-      break;
-    case 23:
+    }
+  else if (ip.ps_3)
+    {
       ncalls *= 10;
       if (vp.verbose>0) d_Ost << std::endl << "  PS 2->3 , #call/iter. = " << ncalls << std::endl;
-      break;
-    default:
-      if (vp.verbose>0) d_Ost << std::endl << "  unrecognized PS , #call/iter. = " << ncalls << std::endl;
-    }
-
+    }  
+  
   int     ndim         = integral.GetDim();
   double* lower_limits = integral.Lo();
   double* upper_limits = integral.Up();
@@ -515,6 +531,7 @@ void Integrator::Integrate(Integral& integral, integrand_par& ip, vegas_par& vp)
     {
       for (auto e: *dist)
 	{
+	  e->GetHistograms()->FlushBuffer(H_NLO_PHI_ID);
 	  // normalize distributions to #iterations, #runs (warm-up does not count)
 	  e->GetHistograms()->Scale(vp.iterations*vp.num_runs);
 	}

@@ -299,9 +299,11 @@ class HiggsModel
   double const& mb2() 	    const { return d_mb2; }
   double const& VH()  	    const { return d_VH; }
   double const& Scale()     const { return d_Scale; }
-  double const& Scale2()    const { return d_Scale2; }  
+  double const& Scale2()    const { return d_Scale2; }
+  
   int NBosons()             const { return d_Bosons.size(); }
   std::vector<HPtr> const& GetBosons() const { return d_Bosons; }
+  void ClearBosons() { d_Bosons.clear(); }
   
 #ifdef DEBUG
   HPtr       GetBoson(int i)

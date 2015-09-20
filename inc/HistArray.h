@@ -18,6 +18,7 @@
 #include "Global.h"
 #include "Lorentz.h"
 #include "FileBrowser.h"
+#include "Observables.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,9 +55,9 @@ extern const H_IndexMap imap_default;
 // stores a histogram for Born(QCD), Born(INT+PHI), (empty), virtual, int. dipoles and real corrections
 #define NHIST 6
 /*!
-  \brief This class stores an array of ROOT TH1D's.
+  \brief This class serves as storage object for distributions.
   
-  In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD)  and real corrections (PHIxPHI + PHIxQCD). Use one HistArray for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space.
+  This class stores an array of ROOT TH1D's. In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD)  and real corrections (PHIxPHI + PHIxQCD). Use one HistArray for each observable. Historgams in the array can be activated seperately, so that calls to FillOne/FillAll only affect the activated histograms. The PS objects are in charge for filling the histograms since the value of an observable depends on the respective phase space.
   \sa PhaseSpace.h
 */
 class HistArray {
@@ -77,11 +78,18 @@ class HistArray {
   int d_mass_dim;
   //! Unique number for the HistArray instance. Derived from the static d_ID.
   int d_id;
+  //! Buffer for weights from real corrections/unintegrated dipoles. Here we have the problem that large numerical values from real corrections and dipoles get spread over the histogram which makes the bin contents instable. 'NumLimit' defines what we consider a large number here, these numbers get collected in the buffer corresponding to each bin until the buffer value drops below the limit.
+  double *d_buffer;
+
   
   //! HistArray ID counter.
   static int d_ID;
   
  public:
+  //! Limit that seperates 'large numbers' from 'normal numbers'.
+  static double NumLimit;
+  static double NumMax;
+  
   HistArray(int nbinsx,
 	    double xlow,
 	    double xup,
@@ -90,7 +98,7 @@ class HistArray {
 	    std::string const& lab_x="",
 	    std::string const& lab_y="",
 	    bool SUMW2 = false);
-  ~HistArray() {}
+  ~HistArray();
 
   //! Access a specific histogram in the array. Returns pointer to the respective TH1D instance.
   /*!
@@ -149,8 +157,9 @@ class HistArray {
     \param x value of the observable -> specifies the bin that will be filled
     \param wgt weight to be added to the respective bin
   */
-  void FillOne(H_Index i, double const& x, double const& wgt) { if(IsActive(i)) { d_histograms[i].Fill(x,wgt);} }
-
+  void FillOne(H_Index i, double const& x, double const& wgt);
+  void FlushBuffer(H_Index i);
+  
   //! Create canvas with ratio plot and draw the histgrams.
   /*!
     \param writeToRootFile Write canvas and histograms to the ROOT file which is currently opened.
@@ -230,7 +239,7 @@ class HistArray {
 		bool discardCurrentTable=false);
    
   //! Print content of the HistArray instance to the specified std::ostream.
-  void Print(std::ostream& ost);
+  void Print(std::ostream& ost, int verb = 0);
 
   //! Shows which histogram in the array is currently active.
   void Status(std::ostream& ost);
@@ -281,7 +290,10 @@ extern HistArray Y1_Histograms;
 extern HistArray Y2_Histograms;
 //! top-antitop rapidity difference distributions
 extern HistArray DY_Histograms;
-
+//! top-polar angle distributions (Collins-Soper angle)
+extern HistArray T1_Histograms;
+//! antitop-polar angle distributions (Collins-Soper angle)
+extern HistArray T2_Histograms;
 
 // angular distributions (spin dependent)
 //! Mtt distribution of lepton opening angle correlation
@@ -300,17 +312,11 @@ extern HistArray Chel_Histograms;
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
-class PS_2;
-/*!
-\typedef Observable function type.
- */
-typedef double (*OBSFnc)(const PS_2*);
-
 /*!
   \brief Class for differential distributions.
   
-  The distribution class holds a pointer to a storage object (HistArray) and an associated observable function (OBSFnc). Some predefined OBSFnc's can be found in PhaseSpace.h.
-  \sa PhaseSpace.h
+  The distribution class holds a pointer to a storage object (HistArray) and an associated observable function (OBSFnc, see Observables.h). The phase space classes serve as the 'source' of data for the distributions. The distribution class can thus be seen as the interface between these two.
+  \sa  Observables.h, PhaseSpace.h
 */
 class Distribution {
  private:
@@ -335,21 +341,16 @@ class Distribution {
   /*!
     \param ps Phase space point
   */  
-  double         operator()(const PS_2* ps) { return d_fnc(ps);  }
-  virtual double Avg(const PS_2* ps)        { return 1.0;    }
-
-  //! Fill histograms with data obtained from the PS object.
-  /*!
-    \param ps Phase space object
-  */
-  virtual void Fill(const PS_2* ps);
+  double operator()(const PS_2* ps_lab, const PS_2* ps_tt) { return d_fnc(ps_lab,ps_tt);  }
+  double Obs(const PS_2* ps_lab, const PS_2* ps_tt)        { return d_fnc(ps_lab,ps_tt);  }
+  virtual double Avg(const PS_2*, const PS_2*)             { return 1.0; }
 };
 
 
 /*!
   \brief Class for differential distributions of mean values.
   
-  The mean distribution is an extension of the distribution class. It stores a pointer to a second observable function (OBSFnc). The class serves to compute distributions of the mean value of this second observable.
+  The mean distribution is an extension of the distribution class. It stores a pointer to a second observable function (OBSFnc). Not only the bare event weight is filled into a histogram, but it is multiplied by a second observable, thereby computing the mean value of the latter as a distribution in the first observable.
   \sa PhaseSpace.h
 */
 class MeanDistribution: public Distribution {
@@ -369,20 +370,15 @@ class MeanDistribution: public Distribution {
   /*!
     \param ps Phase space point
   */    
-  double Avg(const PS_2* ps)        { return d_fnc_mean(ps); }
-
-  //! Fill histograms with data obtained from the PS object.
-  /*!
-    \param ps Phase space object
-  */
-  void Fill(const PS_2* ps);
+  double Avg(const PS_2* ps_lab, const PS_2* ps_tt)        { return d_fnc_mean(ps_lab,ps_tt); }
 };
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 
 
 /*!
-\typedef A vector with pointers to distributions.
+\typedef A vector with pointers to distribution objects. This is actually the type of object the phase spaces are operating on when filling event data into distributions.
+  \sa PhaseSpace.h
  */
 typedef std::vector< std::shared_ptr<Distribution> > DistVec; 
 

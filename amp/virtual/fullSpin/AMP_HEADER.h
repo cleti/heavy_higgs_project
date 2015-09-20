@@ -73,14 +73,5 @@
 
 
 
-#define AP_REFS_R(AP)					\
-  double const& PREF_R       = AP.PREF_R_PHIxQCD;	\
-  double const& PREF_R_CF    = AP.PREF_R_PHIxQCD_CF;	\
-  double const& PREF_R_CA    = AP.PREF_R_PHIxQCD_CA;	\
-  double const& PREF_R_CFCA2 = AP.PREF_R_PHIxQCD_CFCA2;	\
-  double const& PREF_R_PHI    = AP.PREF_R_PHIxPHI;	\
-  double const& PREF_R_PHI_CA = AP.PREF_R_PHIxPHI_CA;	\
-  double const& PREF_R_PHI_CF = AP.PREF_R_PHIxPHI_CF;	\
-
 
 #endif

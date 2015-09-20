@@ -19,6 +19,9 @@ BEGIN { \
     print "#\tbin low\t\tval QCD LO\t\tval 2HDM";					\
 }
 #{ printf("\t%.2f\t\t%.12g\t\t%.12g\n",$1-5.0,$3*10.0*81.0/4.0/0.997,($2)*10.0*81.0/4.0/0.997)}
+### subtract 5 from 1st column (these are the Mtt bins, WB stores the bin center, I need the lower edge)
+### multiply the 2nd column (QCD only) by binw/Br/spin-analyzing factor (need unnormalized distribution as input)
+### same for 3rd column (QCD+PHI LO)
 { printf("\t%.2f\t\t%.12g\t\t%.12g\n",$1-5.0,$2*10.0*81.0/4.0/0.997,($3-$2)*10.0*81.0/4.0/0.997)}
 ' < $f > $f.b
 fi

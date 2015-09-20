@@ -38,6 +38,7 @@
   const double& AlphaS2 = hm.AlphaS2();
 
 
+#ifndef HP_REFS_PHIxQCD
 #define HP_REFS_PHIxQCD(HP)			\
   double const& At_fH_re = HP.At_fH_re;		\
   double const& At_fA_re = HP.At_fA_re;		\
@@ -46,10 +47,11 @@
   double const& At_fH_im = HP.At_fH_im;		\
   double const& At_fA_im = HP.At_fA_im;		\
   double const& Bt_fH_im = HP.Bt_fH_im;		\
-  double const& Bt_fA_im = HP.Bt_fA_im;
+  double const& Bt_fA_im = HP.Bt_fA_im;		
+#endif
 
 
-
+#ifndef HP_REFS_PHIxPHI
 #define HP_REFS_PHIxPHI(HP)				\
   double const& At2_fH2_De = HP.At2_fH2_De;		\
   double const& At2_fA2_De = HP.At2_fA2_De;		\
@@ -59,9 +61,10 @@
   double const& At_Bt_fA2_De = HP.At_Bt_fA2_De;		\
   double const& At_Bt_fH2_DeIM = HP.At_Bt_fH2_DeIM;	\
   double const& At_Bt_fA2_DeIM = HP.At_Bt_fA2_DeIM;
+#endif
 
 
-
+#ifndef AP_REFS_R
 #define AP_REFS_R(AP)					\
   double const& PREF_R       = AP.PREF_R_PHIxQCD;	\
   double const& PREF_R_CF    = AP.PREF_R_PHIxQCD_CF;	\
@@ -70,6 +73,7 @@
   double const& PREF_R_PHI    = AP.PREF_R_PHIxPHI;	\
   double const& PREF_R_PHI_CA = AP.PREF_R_PHIxPHI_CA;	\
   double const& PREF_R_PHI_CF = AP.PREF_R_PHIxPHI_CF;
+#endif
 
 
 

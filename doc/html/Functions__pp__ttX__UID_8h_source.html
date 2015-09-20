@@ -100,37 +100,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Global_8h.html">Global.h</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Flags_8h.html">Flags.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;Makros.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Makros_8h.html">Makros.h</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Functions__Shared_8h.html">Functions_Shared.h</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Functions__pp__ttX__V_8h.html">Functions_pp_ttX_V.h</a>&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PhaseSpace_8h.html">PhaseSpace.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="HistArray_8h.html">HistArray.h</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Cuts_8h.html">Cuts.h</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">double</span> Eval_UID_GG(</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;           <span class="keyword">const</span> <a class="code" href="classPS__2__3.html">PS_2_3</a>&amp; ps,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;           <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;           <span class="keyword">const</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&amp; flags,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; dist_norm = 0.0,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;           DistVec* dist = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">double</span> Eval_UID_QG(</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;           <span class="keyword">const</span> <a class="code" href="classPS__2__3.html">PS_2_3</a>&amp; ps,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;           <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;           <span class="keyword">const</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&amp; flags,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; dist_norm = 0.0,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;           DistVec* dist = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">double</span> Eval_UID_GG(</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;           <span class="keyword">const</span> <a class="code" href="classPS__2__3.html">PS_2_3</a>&amp; ps,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;           <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;           <span class="keyword">const</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&amp; flags,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; dist_norm = 0.0,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;           DistVec* dist = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;           <a class="code" href="Cuts_8h.html#a61e538752de0e89c62ff420ec568e582">CutVec</a>*  cuts = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">double</span> Eval_UID_QG(</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;           <span class="keyword">const</span> <a class="code" href="classPS__2__3.html">PS_2_3</a>&amp; ps,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;           <a class="code" href="classHiggsModel.html">HiggsModel</a>&amp; hm,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;           <span class="keyword">const</span> <a class="code" href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a>&amp; flags,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; dist_norm = 0.0,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;           DistVec* dist = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;           <a class="code" href="Cuts_8h.html#a61e538752de0e89c62ff420ec568e582">CutVec</a>*  cuts = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="Global_8h_html_a1398ea0e48e059bf4db2f4bcd7eb31fa"><div class="ttname"><a href="Global_8h.html#a1398ea0e48e059bf4db2f4bcd7eb31fa">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="Global_8h_source.html#l00029">Global.h:29</a></div></div>
+<div class="ttc" id="Makros_8h_html"><div class="ttname"><a href="Makros_8h.html">Makros.h</a></div><div class="ttdoc">Makros for printing error, warning messages, etc. </div></div>
 <div class="ttc" id="PhaseSpace_8h_html"><div class="ttname"><a href="PhaseSpace_8h.html">PhaseSpace.h</a></div><div class="ttdoc">Phase space classes for 2->1, 2->2 and 2->3 scattering processes. </div></div>
 <div class="ttc" id="Functions__pp__ttX__V_8h_html"><div class="ttname"><a href="Functions__pp__ttX__V_8h.html">Functions_pp_ttX_V.h</a></div><div class="ttdoc">Interface for the evaluation of born level amplitudes and virtual corrections to the process pp -> tt...</div></div>
-<div class="ttc" id="classPS__2__3_html"><div class="ttname"><a href="classPS__2__3.html">PS_2_3</a></div><div class="ttdoc">Phase space for 2->3 scattering. </div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00316">PhaseSpace.h:316</a></div></div>
+<div class="ttc" id="classPS__2__3_html"><div class="ttname"><a href="classPS__2__3.html">PS_2_3</a></div><div class="ttdoc">Phase space for 2->3 scattering. </div><div class="ttdef"><b>Definition:</b> <a href="PhaseSpace_8h_source.html#l00320">PhaseSpace.h:320</a></div></div>
 <div class="ttc" id="classHiggsModel_html"><div class="ttname"><a href="classHiggsModel.html">HiggsModel</a></div><div class="ttdoc">This class contains all the physical, model specific parameters. </div><div class="ttdef"><b>Definition:</b> <a href="HiggsModel_8h_source.html#l00243">HiggsModel.h:243</a></div></div>
+<div class="ttc" id="Cuts_8h_html"><div class="ttname"><a href="Cuts_8h.html">Cuts.h</a></div><div class="ttdoc">Phase space cuts and collections of cuts. </div></div>
 <div class="ttc" id="HistArray_8h_html"><div class="ttname"><a href="HistArray_8h.html">HistArray.h</a></div><div class="ttdoc">Histogram and distribution classes for the computation of differential observables. </div></div>
+<div class="ttc" id="Cuts_8h_html_a61e538752de0e89c62ff420ec568e582"><div class="ttname"><a href="Cuts_8h.html#a61e538752de0e89c62ff420ec568e582">CutVec</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Cut &gt; &gt; CutVec</div><div class="ttdoc">Collection of phase space cuts. </div><div class="ttdef"><b>Definition:</b> <a href="Cuts_8h_source.html#l00038">Cuts.h:38</a></div></div>
 <div class="ttc" id="Global_8h_html"><div class="ttname"><a href="Global_8h.html">Global.h</a></div><div class="ttdoc">Constants and technical cuts. </div></div>
 <div class="ttc" id="Functions__Shared_8h_html"><div class="ttname"><a href="Functions__Shared_8h.html">Functions_Shared.h</a></div><div class="ttdoc">Some shared helper functions. </div></div>
 <div class="ttc" id="Flags_8h_html"><div class="ttname"><a href="Flags_8h.html">Flags.h</a></div><div class="ttdoc">Flags to control the evaluation of sub amplitudes. </div></div>

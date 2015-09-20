@@ -8,5 +8,6 @@ var searchData=
   ['collect_5fdist',['collect_dist',['../classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782',1,'integrand_par']]],
   ['conv_5fgev2i_5fmbarn',['CONV_GeV2i_mbarn',['../namespaceConstants.html#a34a29f9238234188581f6a80cbe9f93d',1,'Constants']]],
   ['conv_5fgev2i_5fpbarn',['CONV_GeV2i_pbarn',['../namespaceConstants.html#afebddfeaa678e68660119f3535b159b0',1,'Constants']]],
-  ['conv_5fmev_5ffm',['CONV_MeV_fm',['../namespaceConstants.html#a87e93458211f4439996b0180c224dc9b',1,'Constants']]]
+  ['conv_5fmev_5ffm',['CONV_MeV_fm',['../namespaceConstants.html#a87e93458211f4439996b0180c224dc9b',1,'Constants']]],
+  ['cuts',['cuts',['../classintegrand__par.html#abb97a8b27b46a93b15bcf175c2309b55',1,'integrand_par']]]
 ];

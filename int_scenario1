@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-CALLS="10000000"
+CALLS="1000000"
 FLAGS="1111111"
 
 if [ $# -eq 2 ]
@@ -16,4 +16,4 @@ FLAGS=$1
 fi
 
 
-./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 13 --add_higgs 550,37.89,1.4286,0,-0.7,0 --add_higgs 510,55.11,0,1.4286,0,0.7 -L -F -v 1 -D  -r 1.0 -K -Q
+./bin/Integrate_pp_ttX -I $FLAGS -N $CALLS -E 13 --add_higgs 550,34.56,1.4286,0,0.0,0 --add_higgs 510,49.28,0,1.4286,0,0.0  -v 1 -D  -r 1.0 --QCD=qcd/binned_lhc13

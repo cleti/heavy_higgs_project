@@ -17,7 +17,8 @@ var searchData=
   ['setintegrand',['SetIntegrand',['../classIntegral.html#ad1732ff730fedb0318db082f664aa195',1,'Integral']]],
   ['setname',['SetName',['../classHistArray.html#af40b91f1863ab8e68bdf2ac11e8f9767',1,'HistArray']]],
   ['setpropagator',['SetPropagator',['../classHiggsBoson.html#afebe4ad11ea2cbc2ec0ed1b94759c293',1,'HiggsBoson']]],
-  ['setps',['SetPS',['../classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4',1,'integrand_par']]],
+  ['setps',['SetPS',['../classintegrand__par.html#ac812da01c993e943a14b263c58340c06',1,'integrand_par::SetPS(PS_2 *ps_new)'],['../classintegrand__par.html#ae6a0f7921042073a8ac6328794561299',1,'integrand_par::SetPS(PS_2_2 *ps_new)'],['../classintegrand__par.html#a1428d2933660fae425da13eafdbc806b',1,'integrand_par::SetPS(PS_2_3 *ps_new)']]],
   ['status',['Status',['../classHistArray.html#a1e56292db3641c5b80aaf0eb089b2d41',1,'HistArray']]],
+  ['swap',['swap',['../classFV.html#a4e403b1c96be31cc1572c399a61d5933',1,'FV']]],
   ['swap_5finitial_5fstate',['swap_initial_state',['../classPS__2.html#afefab6481fa7a0dde6ddc5a1f8d1642f',1,'PS_2']]]
 ];

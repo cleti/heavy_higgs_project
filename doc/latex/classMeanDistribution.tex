@@ -21,32 +21,31 @@ Inheritance diagram for Mean\+Distribution\+:\begin{figure}[H]
 \hypertarget{classMeanDistribution_a4cf60c5fcc4da56771b9e62395c89b2f}{}{\bfseries Mean\+Distribution} (\hyperlink{classHistArray}{Hist\+Array} $\ast$hist, O\+B\+S\+Fnc fnc, O\+B\+S\+Fnc fnc\+\_\+mean)\label{classMeanDistribution_a4cf60c5fcc4da56771b9e62395c89b2f}
 
 \item 
-double \hyperlink{classMeanDistribution_ad4b5ab2430e53e5f19c7819d1ae52e02}{Avg} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps)
-\begin{DoxyCompactList}\small\item\em Evaluate the observable at the given phase space point. \end{DoxyCompactList}\item 
-void \hyperlink{classMeanDistribution_a46b191391f291a6a2b169e52fdf06c23}{Fill} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps)
-\begin{DoxyCompactList}\small\item\em Fill histograms with data obtained from the P\+S object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+double \hyperlink{classMeanDistribution_a75dbc9555e8b6777ddd6da84800633ea}{Avg} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+lab, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+tt)
+\begin{DoxyCompactList}\small\item\em Evaluate the observable at the given phase space point. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Class for differential distributions of mean values. 
 
-The mean distribution is an extension of the distribution class. It stores a pointer to a second observable function (O\+B\+S\+Fnc). The class serves to compute distributions of the mean value of this second observable. \begin{DoxySeeAlso}{See also}
+The mean distribution is an extension of the distribution class. It stores a pointer to a second observable function (O\+B\+S\+Fnc). Not only the bare event weight is filled into a histogram, but it is multiplied by a second observable, thereby computing the mean value of the latter as a distribution in the first observable. \begin{DoxySeeAlso}{See also}
 \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 355 of file Hist\+Array.\+h.
+Definition at line 347 of file Hist\+Array.\+h.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classMeanDistribution_ad4b5ab2430e53e5f19c7819d1ae52e02}{}\index{Mean\+Distribution@{Mean\+Distribution}!Avg@{Avg}}
+\hypertarget{classMeanDistribution_a75dbc9555e8b6777ddd6da84800633ea}{}\index{Mean\+Distribution@{Mean\+Distribution}!Avg@{Avg}}
 \index{Avg@{Avg}!Mean\+Distribution@{Mean\+Distribution}}
 \subsubsection[{Avg}]{\setlength{\rightskip}{0pt plus 5cm}double Mean\+Distribution\+::\+Avg (
 \begin{DoxyParamCaption}
-\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps}
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+lab, }
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+tt}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classMeanDistribution_ad4b5ab2430e53e5f19c7819d1ae52e02}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classMeanDistribution_a75dbc9555e8b6777ddd6da84800633ea}
 
 
 Evaluate the observable at the given phase space point. 
@@ -62,27 +61,7 @@ Reimplemented from \hyperlink{classDistribution}{Distribution}.
 
 
 
-Definition at line 372 of file Hist\+Array.\+h.
-
-\hypertarget{classMeanDistribution_a46b191391f291a6a2b169e52fdf06c23}{}\index{Mean\+Distribution@{Mean\+Distribution}!Fill@{Fill}}
-\index{Fill@{Fill}!Mean\+Distribution@{Mean\+Distribution}}
-\subsubsection[{Fill}]{\setlength{\rightskip}{0pt plus 5cm}void Mean\+Distribution\+::\+Fill (
-\begin{DoxyParamCaption}
-\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classMeanDistribution_a46b191391f291a6a2b169e52fdf06c23}
-
-
-Fill histograms with data obtained from the P\+S object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ps} & Phase space object \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented from \hyperlink{classDistribution_a3a1c16200b22ed7253b1b9f50145ebc9}{Distribution}.
+Definition at line 364 of file Hist\+Array.\+h.
 
 
 

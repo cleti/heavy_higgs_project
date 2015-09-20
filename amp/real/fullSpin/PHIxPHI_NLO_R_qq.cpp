@@ -3,8 +3,10 @@
 
 double Eval_R_PHIxPHI_QQ (AMP_ARGS)
 {
-
-AMP_DEFINITIONS
+  
+  AMP_DEFINITIONS;
+  HP_REFS_PHIxPHI(hp);
+  AP_REFS_R(ap);
 
 
   double t1;

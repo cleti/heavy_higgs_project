@@ -27,59 +27,34 @@ Inheritance diagram for Distribution\+:\begin{figure}[H]
 \hypertarget{classDistribution_ae5b5001def9ff1fadb0d9f34bcd3f2b4}{}const char $\ast$ {\bfseries Get\+Name} ()\label{classDistribution_ae5b5001def9ff1fadb0d9f34bcd3f2b4}
 
 \item 
-double \hyperlink{classDistribution_ab5f71f14986ae6fee369e1d3e288f793}{operator()} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps)
+double \hyperlink{classDistribution_ae87b192a060ec4aed233940a2b9b060e}{operator()} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+lab, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps\+\_\+tt)
 \begin{DoxyCompactList}\small\item\em Evaluate the observable at the given phase space point. \end{DoxyCompactList}\item 
-\hypertarget{classDistribution_a2ccf70347a37bdb98f60067ee0ac4b87}{}virtual double {\bfseries Avg} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps)\label{classDistribution_a2ccf70347a37bdb98f60067ee0ac4b87}
+\hypertarget{classDistribution_a5f4c4f1a300f700e33ed3a09e2eab3be}{}virtual double {\bfseries Avg} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$, const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$)\label{classDistribution_a5f4c4f1a300f700e33ed3a09e2eab3be}
 
-\item 
-virtual void \hyperlink{classDistribution_a3a1c16200b22ed7253b1b9f50145ebc9}{Fill} (const \hyperlink{classPS__2}{P\+S\+\_\+2} $\ast$ps)
-\begin{DoxyCompactList}\small\item\em Fill histograms with data obtained from the P\+S object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Class for differential distributions. 
 
-The distribution class holds a pointer to a storage object (\hyperlink{classHistArray}{Hist\+Array}) and an associated observable function (O\+B\+S\+Fnc). Some predefined O\+B\+S\+Fnc\textquotesingle{}s can be found in \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h}. \begin{DoxySeeAlso}{See also}
-\hyperlink{PhaseSpace_8h}{Phase\+Space.\+h} 
+The distribution class holds a pointer to a storage object (\hyperlink{classHistArray}{Hist\+Array}) and an associated observable function (O\+B\+S\+Fnc, see \hyperlink{Observables_8h}{Observables.\+h}). The phase space classes serve as the \textquotesingle{}source\textquotesingle{} of data for the distributions. The distribution class can thus be seen as the interface between these two. \begin{DoxySeeAlso}{See also}
+\hyperlink{Observables_8h}{Observables.\+h}, \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 315 of file Hist\+Array.\+h.
+Definition at line 313 of file Hist\+Array.\+h.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classDistribution_a3a1c16200b22ed7253b1b9f50145ebc9}{}\index{Distribution@{Distribution}!Fill@{Fill}}
-\index{Fill@{Fill}!Distribution@{Distribution}}
-\subsubsection[{Fill}]{\setlength{\rightskip}{0pt plus 5cm}void Distribution\+::\+Fill (
-\begin{DoxyParamCaption}
-\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classDistribution_a3a1c16200b22ed7253b1b9f50145ebc9}
-
-
-Fill histograms with data obtained from the P\+S object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ps} & Phase space object \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented in \hyperlink{classMeanDistribution_a46b191391f291a6a2b169e52fdf06c23}{Mean\+Distribution}.
-
-
-
-Definition at line 606 of file Hist\+Array.\+cpp.
-
-\hypertarget{classDistribution_ab5f71f14986ae6fee369e1d3e288f793}{}\index{Distribution@{Distribution}!operator()@{operator()}}
+\hypertarget{classDistribution_ae87b192a060ec4aed233940a2b9b060e}{}\index{Distribution@{Distribution}!operator()@{operator()}}
 \index{operator()@{operator()}!Distribution@{Distribution}}
 \subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}double Distribution\+::operator() (
 \begin{DoxyParamCaption}
-\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps}
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+lab, }
+\item[{const {\bf P\+S\+\_\+2} $\ast$}]{ps\+\_\+tt}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classDistribution_ab5f71f14986ae6fee369e1d3e288f793}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classDistribution_ae87b192a060ec4aed233940a2b9b060e}
 
 
 Evaluate the observable at the given phase space point. 
@@ -91,11 +66,10 @@ Evaluate the observable at the given phase space point.
 \end{DoxyParams}
 
 
-Definition at line 338 of file Hist\+Array.\+h.
+Definition at line 336 of file Hist\+Array.\+h.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-inc/\hyperlink{HistArray_8h}{Hist\+Array.\+h}\item 
-src/Hist\+Array.\+cpp\end{DoxyCompactItemize}
+inc/\hyperlink{HistArray_8h}{Hist\+Array.\+h}\end{DoxyCompactItemize}

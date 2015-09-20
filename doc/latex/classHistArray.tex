@@ -2,7 +2,7 @@
 \label{classHistArray}\index{Hist\+Array@{Hist\+Array}}
 
 
-This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s.  
+This class serves as storage object for distributions.  
 
 
 
@@ -75,7 +75,7 @@ int \hyperlink{classHistArray_a86df487949773c027114237875ba7c94}{Read\+File} (\h
 \begin{DoxyCompactList}\small\item\em Read data in column \textquotesingle{}col\+Num\textquotesingle{} of table \textquotesingle{}tab\+Num\textquotesingle{} in the file specified by \textquotesingle{}path\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: \end{DoxyCompactList}\item 
 int \hyperlink{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}{Read\+Table} (std\+::ifstream \&file, const double \&norm=1.\+0, const H\+\_\+\+Index\+Map \&imap=\hyperlink{HistArray_8h_a8f6e68438441b2967eb8e97c8b4c2380}{imap\+\_\+default}, bool discard\+Current\+Table=false)
 \begin{DoxyCompactList}\small\item\em Read data in the next table from ifstream \textquotesingle{}file\textquotesingle{} into histogram \textquotesingle{}i\textquotesingle{}. The Index\+Map specifies which table column is read into which histogram in the array. Previous data will be erased. The method checks if the histogram binning matches the input data. The expected file format is\+: \end{DoxyCompactList}\item 
-\hypertarget{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{}void \hyperlink{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}{Print} (std\+::ostream \&ost)\label{classHistArray_adb997e3f81ccdf02e7964dcbac1bff6e}
+\hypertarget{classHistArray_a6c4b65bc9d26ecb8da0519854bfde4e6}{}void \hyperlink{classHistArray_a6c4b65bc9d26ecb8da0519854bfde4e6}{Print} (std\+::ostream \&ost, int verb=0)\label{classHistArray_a6c4b65bc9d26ecb8da0519854bfde4e6}
 
 \begin{DoxyCompactList}\small\item\em Print content of the \hyperlink{classHistArray}{Hist\+Array} instance to the specified std\+::ostream. \end{DoxyCompactList}\item 
 \hypertarget{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}{}void \hyperlink{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}{Status} (std\+::ostream \&ost)\label{classHistArray_a1e56292db3641c5b80aaf0eb089b2d41}
@@ -135,14 +135,14 @@ int \hyperlink{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}{Read\+Table} (s
 
 
 \subsection{Detailed Description}
-This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. 
+This class serves as storage object for distributions. 
 
-In the default setup there are 6 histograms, one for each of the following contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), virtual corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), integrated dipoles (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D) and real corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D). Use one \hyperlink{classHistArray}{Hist\+Array} for each observable. Historgams in the array can be activated seperately, so that calls to Fill\+One/\+Fill\+All only affect the activated histograms. The P\+S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See also}
+This class stores an array of R\+O\+O\+T T\+H1\+D\textquotesingle{}s. In the default setup there are 6 histograms, one for each of the following contribution\+: L\+O Q\+C\+D, N\+L\+O Q\+C\+D, L\+O (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), virtual corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D), integrated dipoles (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D) and real corrections (P\+H\+Ix\+P\+H\+I + P\+H\+Ix\+Q\+C\+D). Use one \hyperlink{classHistArray}{Hist\+Array} for each observable. Historgams in the array can be activated seperately, so that calls to Fill\+One/\+Fill\+All only affect the activated histograms. The P\+S objects are in charge for filling the histograms since the value of an observable depends on the respective phase space. \begin{DoxySeeAlso}{See also}
 \hyperlink{PhaseSpace_8h}{Phase\+Space.\+h} 
 \end{DoxySeeAlso}
 
 
-Definition at line 62 of file Hist\+Array.\+h.
+Definition at line 63 of file Hist\+Array.\+h.
 
 
 
@@ -165,7 +165,7 @@ Draw all histograms into the currently selected canvas. Calls the respective T\+
 \end{DoxyParams}
 
 
-Definition at line 165 of file Hist\+Array.\+h.
+Definition at line 166 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_affb2356ef7063d7dad7873fe41dd95c8}{}\index{Hist\+Array@{Hist\+Array}!Draw\+Canvas@{Draw\+Canvas}}
 \index{Draw\+Canvas@{Draw\+Canvas}!Hist\+Array@{Hist\+Array}}
@@ -185,7 +185,7 @@ Create canvas with ratio plot and draw the histgrams.
 \end{DoxyParams}
 
 
-Definition at line 483 of file Hist\+Array.\+cpp.
+Definition at line 520 of file Hist\+Array.\+cpp.
 
 \hypertarget{classHistArray_ae8d7189d1f2b9710a3228deac3eb1fa4}{}\index{Hist\+Array@{Hist\+Array}!Fill\+All@{Fill\+All}}
 \index{Fill\+All@{Fill\+All}!Hist\+Array@{Hist\+Array}}
@@ -208,7 +208,7 @@ Fill weight into all active histograms. Calls the respective T\+H1\+D member fun
 \end{DoxyParams}
 
 
-Definition at line 144 of file Hist\+Array.\+h.
+Definition at line 145 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a1f29f32f1eab7ee9315b93000387bd56}{}\index{Hist\+Array@{Hist\+Array}!Fill\+One@{Fill\+One}}
 \index{Fill\+One@{Fill\+One}!Hist\+Array@{Hist\+Array}}
@@ -234,7 +234,7 @@ Fill weight into a single histogram if activated. Calls the respective T\+H1\+D 
 \end{DoxyParams}
 
 
-Definition at line 152 of file Hist\+Array.\+h.
+Definition at line 153 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a2c7edebf7ddf7d5dcc2cbb30f46601e5}{}\index{Hist\+Array@{Hist\+Array}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!Hist\+Array@{Hist\+Array}}
@@ -275,7 +275,7 @@ Access a specific histogram in the array. Returns pointer to the respective T\+H
 \end{DoxyParams}
 
 
-Definition at line 99 of file Hist\+Array.\+h.
+Definition at line 100 of file Hist\+Array.\+h.
 
 \hypertarget{classHistArray_a86df487949773c027114237875ba7c94}{}\index{Hist\+Array@{Hist\+Array}!Read\+File@{Read\+File}}
 \index{Read\+File@{Read\+File}!Hist\+Array@{Hist\+Array}}
@@ -310,7 +310,7 @@ Read data in column \textquotesingle{}col\+Num\textquotesingle{} of table \textq
 \end{DoxyParams}
 
 
-Definition at line 198 of file Hist\+Array.\+cpp.
+Definition at line 235 of file Hist\+Array.\+cpp.
 
 \hypertarget{classHistArray_ad41461653c6d0a87d8b36db233a71a0f}{}\index{Hist\+Array@{Hist\+Array}!Read\+Table@{Read\+Table}}
 \index{Read\+Table@{Read\+Table}!Hist\+Array@{Hist\+Array}}
@@ -345,7 +345,7 @@ Read data in the next table from ifstream \textquotesingle{}file\textquotesingle
 \end{DoxyParams}
 
 
-Definition at line 346 of file Hist\+Array.\+cpp.
+Definition at line 383 of file Hist\+Array.\+cpp.
 
 \hypertarget{classHistArray_a75049ae9fb04661cdd2f3c3e67550568}{}\index{Hist\+Array@{Hist\+Array}!Reset@{Reset}}
 \index{Reset@{Reset}!Hist\+Array@{Hist\+Array}}
@@ -365,7 +365,7 @@ Reset all histograms. Calls the respective T\+H1\+D member function.
 \end{DoxyParams}
 
 
-Definition at line 180 of file Hist\+Array.\+h.
+Definition at line 181 of file Hist\+Array.\+h.
 
 
 

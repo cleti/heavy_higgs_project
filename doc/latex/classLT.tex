@@ -20,7 +20,11 @@ Lorentz transformation.
 \begin{DoxyCompactList}\small\item\em Transpose matrix. \end{DoxyCompactList}\item 
 void \hyperlink{classLT_a3119b968c2cf6a9bbfb30615c01921d0}{apply} (\hyperlink{classFV}{F\+V} \&v)
 \item 
+void \hyperlink{classLT_a7b58536df2aa3532e6d6055b5ce35e44}{apply\+\_\+cpy} (\hyperlink{classFV}{F\+V} const \&src, \hyperlink{classFV}{F\+V} \&trg)
+\item 
 void \hyperlink{classLT_abd17d410a8436a83b03f2dd2909ee59a}{apply\+\_\+\+G} (\hyperlink{classFV}{F\+V} \&v)
+\item 
+void \hyperlink{classLT_a1fbe2f64d6edc4378b7418eab68cfca0}{apply\+\_\+\+G\+\_\+cpy} (\hyperlink{classFV}{F\+V} const \&src, \hyperlink{classFV}{F\+V} \&trg)
 \item 
 \hypertarget{classLT_acdccba2ab08b071219626bafb85f8e21}{}int {\bfseries set\+\_\+\+F\+F} (\hyperlink{classFV}{F\+V} const \&p1, \hyperlink{classFV}{F\+V} const \&p2)\label{classLT_acdccba2ab08b071219626bafb85f8e21}
 
@@ -52,13 +56,13 @@ int \hyperlink{classLT_a84cf79cd6014d4ecc645c1dcc0258b5e}{set\+\_\+boost\+\_\+in
 \item 
 \hypertarget{classLT_a3ec591d3e26134d35eb127d0610c7866}{}static const double \hyperlink{classLT_a3ec591d3e26134d35eb127d0610c7866}{G} \mbox{[}4\mbox{]} = \{1.\+0,-\/1.\+0,-\/1.\+0,-\/1.\+0\}\label{classLT_a3ec591d3e26134d35eb127d0610c7866}
 
-\begin{DoxyCompactList}\small\item\em The metric G = \mbox{[}+1,-\/1,-\/1,-\/1\mbox{]} is used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The metric tensor G = \mbox{[}+1,-\/1,-\/1,-\/1\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Lorentz transformation. 
 
-Definition at line 79 of file Lorentz.\+h.
+Definition at line 85 of file Lorentz.\+h.
 
 
 
@@ -77,7 +81,26 @@ Apply transformation to covariant components of the 4-\/vector.
 \end{DoxyParams}
 
 
-Definition at line 269 of file Lorentz.\+cpp.
+Definition at line 253 of file Lorentz.\+cpp.
+
+\hypertarget{classLT_a7b58536df2aa3532e6d6055b5ce35e44}{}\index{L\+T@{L\+T}!apply\+\_\+cpy@{apply\+\_\+cpy}}
+\index{apply\+\_\+cpy@{apply\+\_\+cpy}!L\+T@{L\+T}}
+\subsubsection[{apply\+\_\+cpy}]{\setlength{\rightskip}{0pt plus 5cm}void L\+T\+::apply\+\_\+cpy (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+V} const \&}]{src, }
+\item[{{\bf F\+V} \&}]{trg}
+\end{DoxyParamCaption}
+)}\label{classLT_a7b58536df2aa3532e6d6055b5ce35e44}
+Apply transformation to contravariant components of the 4-\/vector src and store result in trg. 
+\begin{DoxyParams}{Parameters}
+{\em src} & source 4-\/vector. \\
+\hline
+{\em trg} & target 4-\/vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 283 of file Lorentz.\+cpp.
 
 \hypertarget{classLT_abd17d410a8436a83b03f2dd2909ee59a}{}\index{L\+T@{L\+T}!apply\+\_\+\+G@{apply\+\_\+\+G}}
 \index{apply\+\_\+\+G@{apply\+\_\+\+G}!L\+T@{L\+T}}
@@ -86,14 +109,33 @@ Definition at line 269 of file Lorentz.\+cpp.
 \item[{{\bf F\+V} \&}]{v}
 \end{DoxyParamCaption}
 )}\label{classLT_abd17d410a8436a83b03f2dd2909ee59a}
-Apply transformation to contravariant components of the 4-\/vector. 
+Apply transformation to contravariant components of the 4-\/vector, i.\+e. multiplication with metric tensor G. 
 \begin{DoxyParams}{Parameters}
 {\em v} & 4-\/vector to be transformed. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 281 of file Lorentz.\+cpp.
+Definition at line 267 of file Lorentz.\+cpp.
+
+\hypertarget{classLT_a1fbe2f64d6edc4378b7418eab68cfca0}{}\index{L\+T@{L\+T}!apply\+\_\+\+G\+\_\+cpy@{apply\+\_\+\+G\+\_\+cpy}}
+\index{apply\+\_\+\+G\+\_\+cpy@{apply\+\_\+\+G\+\_\+cpy}!L\+T@{L\+T}}
+\subsubsection[{apply\+\_\+\+G\+\_\+cpy}]{\setlength{\rightskip}{0pt plus 5cm}void L\+T\+::apply\+\_\+\+G\+\_\+cpy (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+V} const \&}]{src, }
+\item[{{\bf F\+V} \&}]{trg}
+\end{DoxyParamCaption}
+)}\label{classLT_a1fbe2f64d6edc4378b7418eab68cfca0}
+Apply transformation to contravariant components of the 4-\/vector src and store result in trg. 
+\begin{DoxyParams}{Parameters}
+{\em src} & source 4-\/vector. \\
+\hline
+{\em trg} & target 4-\/vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 295 of file Lorentz.\+cpp.
 
 \hypertarget{classLT_a0f1f4b9fb6a2b084908abb6bc687cd4f}{}\index{L\+T@{L\+T}!set\+\_\+boost@{set\+\_\+boost}}
 \index{set\+\_\+boost@{set\+\_\+boost}!L\+T@{L\+T}}
@@ -115,7 +157,7 @@ Set boost that relates the frame in which P is given to its restframe.
 \end{DoxyReturn}
 
 
-Definition at line 403 of file Lorentz.\+cpp.
+Definition at line 385 of file Lorentz.\+cpp.
 
 \hypertarget{classLT_a84cf79cd6014d4ecc645c1dcc0258b5e}{}\index{L\+T@{L\+T}!set\+\_\+boost\+\_\+inv@{set\+\_\+boost\+\_\+inv}}
 \index{set\+\_\+boost\+\_\+inv@{set\+\_\+boost\+\_\+inv}!L\+T@{L\+T}}

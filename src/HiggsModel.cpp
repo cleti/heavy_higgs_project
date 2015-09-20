@@ -166,56 +166,56 @@ void HiggsPrefactors::Reset()
 }
 void HiggsPrefactors::Print(std::ostream& ost)
 {
-  PRINTS(ost,At_fH_re);		
-  PRINTS(ost,At_fA_re);		
-  PRINTS(ost,Bt_fH_re);
-  PRINTS(ost,Bt_fA_re);
-  PRINTS(ost,At_fH_im);
-  PRINTS(ost,At_fA_im);
-  PRINTS(ost,Bt_fH_im);
-  PRINTS(ost,Bt_fA_im);
-  PRINTS(ost,At2_fH2_De);
-  PRINTS(ost,At2_fA2_De);
-  PRINTS(ost,Bt2_fH2_De);
-  PRINTS(ost,Bt2_fA2_De);
-  PRINTS(ost,At_Bt_fH2_De);
-  PRINTS(ost,At_Bt_fA2_De);
-  PRINTS(ost,At_Bt_fH2_DeIM);
-  PRINTS(ost,At_Bt_fA2_DeIM);
+  SPRINT(ost,At_fH_re);		
+  SPRINT(ost,At_fA_re);		
+  SPRINT(ost,Bt_fH_re);
+  SPRINT(ost,Bt_fA_re);
+  SPRINT(ost,At_fH_im);
+  SPRINT(ost,At_fA_im);
+  SPRINT(ost,Bt_fH_im);
+  SPRINT(ost,Bt_fA_im);
+  SPRINT(ost,At2_fH2_De);
+  SPRINT(ost,At2_fA2_De);
+  SPRINT(ost,Bt2_fH2_De);
+  SPRINT(ost,Bt2_fA2_De);
+  SPRINT(ost,At_Bt_fH2_De);
+  SPRINT(ost,At_Bt_fA2_De);
+  SPRINT(ost,At_Bt_fH2_DeIM);
+  SPRINT(ost,At_Bt_fA2_DeIM);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 void AmplitudePrefactors::Print(std::ostream& ost)
 {
 /* born */
-PRINTS(ost,PREF_B_PHIxPHI);
-PRINTS(ost,PREF_B_PHIxQCD);
-PRINTS(ost,PREF_B_QCDxQCD);
-PRINTS(ost,PREF_B_QCDxQCD_CF);
-PRINTS(ost,PREF_B_QCDxQCD_CA);
-PRINTS(ost,PREF_B_QCDxQCD_CFCA);
+SPRINT(ost,PREF_B_PHIxPHI);
+SPRINT(ost,PREF_B_PHIxQCD);
+SPRINT(ost,PREF_B_QCDxQCD);
+SPRINT(ost,PREF_B_QCDxQCD_CF);
+SPRINT(ost,PREF_B_QCDxQCD_CA);
+SPRINT(ost,PREF_B_QCDxQCD_CFCA);
   /* virtual */
-PRINTS(ost,PREF_V_PHIxQCD);
-PRINTS(ost,PREF_V_PHIxQCD_CF);
-PRINTS(ost,PREF_V_PHIxQCD_CA);
-PRINTS(ost,PREF_V_PHIxQCD_CFCA2);
-PRINTS(ost,PREF_V_PHIxQCD_Nf);
-PRINTS(ost,PREF_V_PHIxQCD_CT);
-PRINTS(ost,PREF_V_PHIxPHI);
-PRINTS(ost,PREF_V_PHIxPHI_CA);
-PRINTS(ost,PREF_V_PHIxPHI_CF);
+SPRINT(ost,PREF_V_PHIxQCD);
+SPRINT(ost,PREF_V_PHIxQCD_CF);
+SPRINT(ost,PREF_V_PHIxQCD_CA);
+SPRINT(ost,PREF_V_PHIxQCD_CFCA2);
+SPRINT(ost,PREF_V_PHIxQCD_Nf);
+SPRINT(ost,PREF_V_PHIxQCD_CT);
+SPRINT(ost,PREF_V_PHIxPHI);
+SPRINT(ost,PREF_V_PHIxPHI_CA);
+SPRINT(ost,PREF_V_PHIxPHI_CF);
   /* real */
-PRINTS(ost,PREF_R_PHIxQCD);
-PRINTS(ost,PREF_R_PHIxQCD_CF);
-PRINTS(ost,PREF_R_PHIxQCD_CA);
-PRINTS(ost,PREF_R_PHIxQCD_CFCA2);
-PRINTS(ost,PREF_R_PHIxPHI);
-PRINTS(ost,PREF_R_PHIxPHI_CA);
-PRINTS(ost,PREF_R_PHIxPHI_CF);
+SPRINT(ost,PREF_R_PHIxQCD);
+SPRINT(ost,PREF_R_PHIxQCD_CF);
+SPRINT(ost,PREF_R_PHIxQCD_CA);
+SPRINT(ost,PREF_R_PHIxQCD_CFCA2);
+SPRINT(ost,PREF_R_PHIxPHI);
+SPRINT(ost,PREF_R_PHIxPHI_CA);
+SPRINT(ost,PREF_R_PHIxPHI_CF);
   /* UID */
-PRINTS(ost,PREF_UID_TF);
-PRINTS(ost,PREF_UID_CA);
-PRINTS(ost,PREF_UID_CF);  
+SPRINT(ost,PREF_UID_TF);
+SPRINT(ost,PREF_UID_CA);
+SPRINT(ost,PREF_UID_CF);  
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,22 +316,83 @@ void HiggsModel::SetHiggsPrefactors(double const& S, bool EFF)
 	  double const& Atj = (*phi_j)->At();
 	  double const& Btj = (*phi_j)->Bt();
       
-	  c_double DiDj = Di*std::conj(Dj);
-	 
+	  c_double Dij  = Di*std::conj(Dj);
+	  c_double FHij_Dij = FHi*std::conj(FHj)*Dij;
+	  c_double FAij_Dij = FAi*std::conj(FAj)*Dij;
+	  
 	  // prefactors in PHIxPHI amplitudes
 	  // here we also have to sum all the phi_i * phi_j interferences    
-	  d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHi*std::conj(FHj)*DiDj).real();
-	  d_HPref.At2_fA2_De   += 2.0*Ati*Atj*(FAi*std::conj(FAj)*DiDj).real();
-	  d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHi*std::conj(FHj)*DiDj).real();
-	  d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAi*std::conj(FAj)*DiDj).real();
+	  d_HPref.At2_fH2_De   += 2.0*Ati*Atj*(FHij_Dij).real();
+	  d_HPref.At2_fA2_De   += 2.0*Ati*Atj*(FAij_Dij).real();
+	  d_HPref.Bt2_fH2_De   += 2.0*Bti*Btj*(FHij_Dij).real();
+	  d_HPref.Bt2_fA2_De   += 2.0*Bti*Btj*(FAij_Dij).real();
 #ifdef WITH_T_SPIN
 	  // only needed for polarized amplitudes:
+	  /*
+	    What is the purpose of this function?
+	    In the PHIxPHI amplitudes with 2 (or more) Higgs bosons we encounter interferences
+	    
+	      RE[D1*(D2^*) * A1*(A2^*)] =
+	          RE[D1*(D2^*)] * RE[A1*(A2^*)] - IM[D1*(D2^*)] * IM[A1*(A2^*)] = 
+
+		  RE[D1*(D2^*)] * (at1*at2*RE[fH1*(fH2^*)]*RE[A(a,H)*(A(a,H)^*)] + ... ) -
+		  RE[D1*(D2^*)] * (at1*at2*IM[fH1*(fH2^*)]*IM[A(a,H)*(A(a,H)^*)] + ... ) -
+	          IM[D1*(D2^*)] * (at1*at2*RE[fH1*(fH2^*)]*IM[A(a,H)*(A(a,H)^*)] + ... ) -
+		  IM[D1*(D2^*)] * (at1*at2*IM[fH1*(fH2^*)]*RE[A(a,H)*(A(a,H)^*)] + ... ) =
+
+		  ( RE[D1*(D2^*)]*at1*at2*RE[fH1*(fH2^*)] - 
+		    IM[D1*(D2^*)]*at1*at2*IM[fH1*(fH2^*)] ) * RE[A(a,H)*(A(a,H)^*)] + ...  -
+		  ( RE[D1*(D2^*)]*at1*at2*IM[fH1*(fH2^*)] + 
+		    IM[D1*(D2^*)]*at1*at2*RE[fH1*(fH2^*)] ) * IM[A(a,H)*(A(a,H)^*)] - ...  =		  
+		    at1*at2*RE[fH1*(fH2^*)*D1*(D2^*)] * RE[A(a,H)*(A(a,H)^*)] + ...  
+		  - at1*at2*IM[fH1*(fH2^*)*D1*(D2^*)] * IM[A(a,H)*(A(a,H)^*)] - ...  ,
+		    
+	    where Ai are the parts of the respective gg(qq/qg) -> phi (g/q) -> tt(g/q)
+	    amplitudes without the propagator.
+	    Extracting all Higgs-specific coupling factors, the first term gives
+	    
+	      RE[D1*(D2^*)] * RE[A1*(A2^*)] =
+	        RE[D1*(D2^*)] * (at1*at2*RE[fH1*(fH2^*)]*RE[A(a,H)*(A(a,H)^*)] + ... ) -
+		RE[D1*(D2^*)] * (at1*at2*IM[fH1*(fH2^*)]*IM[A(a,H)*(A(a,H)^*)] + ... )
+		
+	    ( ... = all further combinations of ati,bti,fHi,fAi).
+	    The amplitudes RE[A(a,H)*(A(a,H)^*)] are independent of all specific Higgs couplings.
+	    They have already been computed for the case of a single Higgs boson
+	      
+	      RE[D1*(D1^*) * A1*(A1^*)] =
+	        |D1|^2 * (at1^2*at1*|fH1|^2*RE[A(a,H)*(A(a,H)^*)] + ... ),
+
+	    we just have to pick up the coefficients of D1*at1*|fH1|^2 ... .
+	    Thus by replacing the prefactors
+
+	      |D1|^2 * (at1^2*at1*|fH1|^2 ->
+	      
+	        |D1|^2 * (at1^2*at1*|fH1|^2 +
+		|D2|^2 * (at2^2*at2*|fH2|^2 +
+		RE[D1*(D2^*)] * at1*at2*RE[fH1*(fH2^*)]*RE[A(a,H)*(A(a,H)^*)],
+
+	      ...
+		
+	    in these amplitudes we get all necesssary terms
+	    except those proportional to IM[A1*(A2^*).
+	    For the imaginary parts we have a similar decomposition
+	    
+	      IM[D1*(D2^*)] * IM[A1*(A2^*)] =
+	        IM[D1*(D2^*)] * (at1*at2*RE[fH1*(fH2^*)]*IM[A(a,H)*(A(a,H)^*)] + ... ) +
+		IM[D1*(D2^*)] * (at1*at2*IM[fH1*(fH2^*)]*RE[A(a,H)*(A(a,H)^*)] + ... ),
+
+	    but in our case only the terms IM[A(a,H/A)*(A(b,H/A)^*)] are nonzero
+	    and only in the case when we do not sum over top spins.
+		
+
+		
+	  */
 	  // PHIxPHI terms: at Phi1 * bt  Phi2 interferences
-	  d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHi*std::conj(FHj)*DiDj).real();
-	  d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAi*std::conj(FAj)*DiDj).real();	
+	  d_HPref.At_Bt_fH2_De += (Ati*Btj+Atj*Bti)*(FHij_Dij).real();
+	  d_HPref.At_Bt_fA2_De += (Ati*Btj+Atj*Bti)*(FAij_Dij).real();	
 	  // the Phi1 At * Phi2 Bt interference is prop. to the imaginary parts
-	  d_HPref.At_Bt_fH2_DeIM -= (Ati*Btj-Atj*Bti)*(FHi*std::conj(FHj)*DiDj).imag();
-	  d_HPref.At_Bt_fA2_DeIM -= (Ati*Btj-Atj*Bti)*(FAi*std::conj(FAj)*DiDj).imag();
+	  d_HPref.At_Bt_fH2_DeIM -= (Ati*Btj-Atj*Bti)*(FHij_Dij).imag();
+	  d_HPref.At_Bt_fA2_DeIM -= (Ati*Btj-Atj*Bti)*(FAij_Dij).imag();
 #endif
 	}
     }
@@ -452,13 +513,13 @@ void HiggsModel::Print(std::ostream& ost, double const& mScale) const
 {
   ost << std::endl << std::setfill('=') << std::setw(100) << "" << std::setfill(' ');
   ost << std::endl << " Model configuration [" << d_Name << "]: " << std::endl;
-  PRINTS(ost,d_AlphaS);
-  PRINTS(ost,d_MUR*mScale);  
-  PRINTS(ost,d_MUF*mScale);
-  PRINTS(ost,d_mt*mScale);
-  PRINTS(ost,d_mb*mScale);
-  PRINTS(ost,d_VH*mScale);
-  PRINTS(ost,d_Scale);
+  SPRINT(ost,d_AlphaS);
+  SPRINT(ost,d_MUR*mScale);  
+  SPRINT(ost,d_MUF*mScale);
+  SPRINT(ost,d_mt*mScale);
+  SPRINT(ost,d_mb*mScale);
+  SPRINT(ost,d_VH*mScale);
+  SPRINT(ost,d_Scale);
   
   ost << std::endl << " Higgs bosons:" << std::endl << std::endl;
   if (d_Bosons.size()>0)

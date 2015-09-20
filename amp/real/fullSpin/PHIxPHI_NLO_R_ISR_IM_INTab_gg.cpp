@@ -4,11 +4,12 @@
 double Eval_R_PHIxPHI_ISR_IM_INTab (AMP_ARGS)
 {
 
-AMP_DEFINITIONS
+  AMP_DEFINITIONS;
+  AP_REFS_R(ap);
 
   // need the imaginary parts of these prefactors here !!!
-  double const& At_Bt_fH2_De = At_Bt_fH2_DeIM;
-  double const& At_Bt_fA2_De = At_Bt_fA2_DeIM;
+  double const& At_Bt_fH2_De = hp.At_Bt_fH2_DeIM;
+  double const& At_Bt_fA2_De = hp.At_Bt_fA2_DeIM;
 
   double t1;
   double t11;

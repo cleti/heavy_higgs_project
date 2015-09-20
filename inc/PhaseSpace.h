@@ -30,7 +30,11 @@ inline double lambda (double const& x, double const& y, double const& z)
   return x*x+y*y+z*z-2.0*(x*y+x*z+y*z);
 }
 
-
+/*!
+  \brief Named base class for phase space.
+  
+  With this one can use the '=' operator on all derived phase space classes whereby each instance can keep its individual name.
+*/
 class PS_Named {
  protected:
   //! name of the PS instance, useful to locate errors
@@ -422,61 +426,6 @@ class PS_2_3: public PS_2 {
 			 double const& mScale=1.0) const;
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// definition of observables used for this project, feel free to add more ///////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-//! Computes invariant mass of two 4-vectors k1 and k2
-double obs_M12(FV const& k1, FV const& k2);
-double OBS_M12(const PS_2* ps);
-
-
-
-//! Computes transverse momentum of a 4-vector k1 (transverse = x-y-plane), i.e. k_{T,1} = \sqrt{k1_1}^2+k1_{2}^2}
-double obs_PT(FV const& k);
-double OBS_PT1(const PS_2* ps);
-double OBS_PT2(const PS_2* ps);
-
-
-//! Computes transverse momentum of two particle system k1,k2, k_{T,12} = |k_{T,1}+k_{T,2}|
-double obs_PT12(FV const& k1, FV const& k2);
-double OBS_PT12(const PS_2* ps);
-
-
-//! Computes rapidity of a 4-vector k1
-double obs_Y(FV const& k);
-double OBS_Y1(const PS_2* ps);
-double OBS_Y2(const PS_2* ps);
-
-
-//! Computes rapidity difference of two 4-vectors k1 and k2
-double obs_DY(FV const& k1, FV const& k2);
-double OBS_DY12(const PS_2* ps);
-
-
-
-//! Computes spatial opening angle of two 4-vectors k1 and k2
-double obs_PHI(FV const& k1, FV const& k2);
-
-//! Computes opening angle of the spatial projections on the x-y plane
-double obs_PHIT(FV const& k1, FV const& k2);
-
-//! Computes the spatial triple product of three 4-vectors k1,k2,k3
-double obs_TriProd(FV const& k1, FV const& k2, FV const& k3);
-
-//! Computes the normalized spatial triple product of three 4-vectors k1,k2,k3
-double obs_TriProdN(FV const& k1, FV const& k2, FV const& k3);
-
-
-#ifdef WITH_T_SPIN  
-double OBS_D12(const PS_2* ps);
-double OBS_CP1(const PS_2* ps);
-double OBS_CP2(const PS_2* ps);
-double OBS_HEL12(const PS_2* ps);
-double OBS_B1(const PS_2* ps);
-double OBS_B2(const PS_2* ps);
-#endif
-
 
 
 

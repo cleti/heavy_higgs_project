@@ -106,10 +106,18 @@ Public Member Functions</h2></td></tr>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#aac7bdde6abcb8d81db5af3a24ce51f7d">cmp_v_weight</a> ()</td></tr>
 <tr class="memdesc:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the weight of the VEGAS algorithm at the current point. <br /></td></tr>
 <tr class="separator:aac7bdde6abcb8d81db5af3a24ce51f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18a461b09009de0b9f8c6139994c52c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18a461b09009de0b9f8c6139994c52c4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a18a461b09009de0b9f8c6139994c52c4">SetPS</a> (<a class="el" href="classPS__2.html">PS_2</a> *psn)</td></tr>
-<tr class="memdesc:a18a461b09009de0b9f8c6139994c52c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set ps pointer, the former PS instance will be deleted! <br /></td></tr>
-<tr class="separator:a18a461b09009de0b9f8c6139994c52c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac812da01c993e943a14b263c58340c06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac812da01c993e943a14b263c58340c06"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#ac812da01c993e943a14b263c58340c06">SetPS</a> (<a class="el" href="classPS__2.html">PS_2</a> *ps_new)</td></tr>
+<tr class="memdesc:ac812da01c993e943a14b263c58340c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <a class="el" href="classPS__2.html" title="Abstract base class for 2->X phase space classes. ">PS_2</a> pointer, all former PS instances will be deleted! <br /></td></tr>
+<tr class="separator:ac812da01c993e943a14b263c58340c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a0f7921042073a8ac6328794561299"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6a0f7921042073a8ac6328794561299"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#ae6a0f7921042073a8ac6328794561299">SetPS</a> (<a class="el" href="classPS__2__2.html">PS_2_2</a> *ps_new)</td></tr>
+<tr class="memdesc:ae6a0f7921042073a8ac6328794561299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <a class="el" href="classPS__2__2.html" title="Phase space for 2->2 scattering. ">PS_2_2</a> pointer, all former PS instances will be deleted! <br /></td></tr>
+<tr class="separator:ae6a0f7921042073a8ac6328794561299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1428d2933660fae425da13eafdbc806b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1428d2933660fae425da13eafdbc806b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a1428d2933660fae425da13eafdbc806b">SetPS</a> (<a class="el" href="classPS__2__3.html">PS_2_3</a> *ps_new)</td></tr>
+<tr class="memdesc:a1428d2933660fae425da13eafdbc806b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <a class="el" href="classPS__2__3.html" title="Phase space for 2->3 scattering. ">PS_2_3</a> pointer, all former PS instances will be deleted! <br /></td></tr>
+<tr class="separator:a1428d2933660fae425da13eafdbc806b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -123,8 +131,16 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:a02a52a8cc95edeadf423f181936617d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c52a4045c079f7314cbc8a876f98238"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c52a4045c079f7314cbc8a876f98238"></a>
 <a class="el" href="classPS__2.html">PS_2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a9c52a4045c079f7314cbc8a876f98238">ps</a></td></tr>
-<tr class="memdesc:a9c52a4045c079f7314cbc8a876f98238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to phase space. <br /></td></tr>
+<tr class="memdesc:a9c52a4045c079f7314cbc8a876f98238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to phase space (needs dynamic casting). <br /></td></tr>
 <tr class="separator:a9c52a4045c079f7314cbc8a876f98238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588525dccf7b407fc34fac6b41df8f8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a588525dccf7b407fc34fac6b41df8f8b"></a>
+<a class="el" href="classPS__2__2.html">PS_2_2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a588525dccf7b407fc34fac6b41df8f8b">ps_2</a></td></tr>
+<tr class="memdesc:a588525dccf7b407fc34fac6b41df8f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to 2-&gt;2 phase space. <br /></td></tr>
+<tr class="separator:a588525dccf7b407fc34fac6b41df8f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cc9803bc5e7116240d02723ea2a963b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1cc9803bc5e7116240d02723ea2a963b"></a>
+<a class="el" href="classPS__2__3.html">PS_2_3</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a1cc9803bc5e7116240d02723ea2a963b">ps_3</a></td></tr>
+<tr class="memdesc:a1cc9803bc5e7116240d02723ea2a963b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to 2-&gt;3 phase space. <br /></td></tr>
+<tr class="separator:a1cc9803bc5e7116240d02723ea2a963b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a082dc10e0e72baedade3f46cfffa4c15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a082dc10e0e72baedade3f46cfffa4c15"></a>
 LHAPDF::PDF *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a082dc10e0e72baedade3f46cfffa4c15">pdf</a></td></tr>
 <tr class="memdesc:a082dc10e0e72baedade3f46cfffa4c15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the parton distribution function. <br /></td></tr>
@@ -137,6 +153,10 @@ gsl_monte_vegas_state *&#160;</td><td class="memItemRight" valign="bottom"><a cl
 DistVec *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#acd322d49688d798e5f71eb9ea63a4d46">distributions</a></td></tr>
 <tr class="memdesc:acd322d49688d798e5f71eb9ea63a4d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to histograms with distributions. <br /></td></tr>
 <tr class="separator:acd322d49688d798e5f71eb9ea63a4d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb97a8b27b46a93b15bcf175c2309b55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb97a8b27b46a93b15bcf175c2309b55"></a>
+<a class="el" href="Cuts_8h.html#a61e538752de0e89c62ff420ec568e582">CutVec</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#abb97a8b27b46a93b15bcf175c2309b55">cuts</a></td></tr>
+<tr class="memdesc:abb97a8b27b46a93b15bcf175c2309b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase space cuts. <br /></td></tr>
+<tr class="separator:abb97a8b27b46a93b15bcf175c2309b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2227f484c28e54b55769b2fe6911a782"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2227f484c28e54b55769b2fe6911a782"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrand__par.html#a2227f484c28e54b55769b2fe6911a782">collect_dist</a></td></tr>
 <tr class="memdesc:a2227f484c28e54b55769b2fe6911a782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to enable distribution collection. <br /></td></tr>
@@ -166,7 +186,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="textblock"><p>This class contains a set of parameters which is handed down to the integrand called by the GSL VEGAS algorithm. </p>
 <p>In particular the model parameters contained in the <a class="el" href="classHiggsModel.html" title="This class contains all the physical, model specific parameters. ">HiggsModel</a> instance are needed by the functions that evaluate the matrix elements. </p>
 
-<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00164">164</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
+<p>Definition at line <a class="el" href="Integrator_8h_source.html#l00165">165</a> of file <a class="el" href="Integrator_8h_source.html">Integrator.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="Integrator_8h_source.html">Integrator.h</a></li>
 <li>src/<a class="el" href="Integrator_8cpp_source.html">Integrator.cpp</a></li>

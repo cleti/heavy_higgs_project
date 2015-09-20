@@ -21,12 +21,15 @@ Lorentz 4-\/vector.
 \hypertarget{classFV_a64d4ea0c4b74dd2fd557c72c30987aa5}{}{\bfseries F\+V} (\hyperlink{classFV}{F\+V} \&\&rhs) noexcept\label{classFV_a64d4ea0c4b74dd2fd557c72c30987aa5}
 
 \item 
-\hypertarget{classFV_aae9c72a65282efeadacc1b2be82b8b29}{}{\bfseries F\+V} (std\+::initializer\+\_\+list$<$ double $>$ rhs)\label{classFV_aae9c72a65282efeadacc1b2be82b8b29}
+\hypertarget{classFV_af72b920827e214354d0a674187e893a3}{}{\bfseries F\+V} (std\+::initializer\+\_\+list$<$ double $>$ const \&rhs)\label{classFV_af72b920827e214354d0a674187e893a3}
+
+\item 
+\hypertarget{classFV_aef94cf9268c7b20a2c9365cc28315581}{}{\bfseries F\+V} (std\+::vector$<$ double $>$ const \&vrhs)\label{classFV_aef94cf9268c7b20a2c9365cc28315581}
 
 \item 
 \hypertarget{classFV_addb4bbcc8d3ba7d8e94c1b6fdd006acd}{}double \& \hyperlink{classFV_addb4bbcc8d3ba7d8e94c1b6fdd006acd}{operator\mbox{[}$\,$\mbox{]}} (int const \&i)\label{classFV_addb4bbcc8d3ba7d8e94c1b6fdd006acd}
 
-\begin{DoxyCompactList}\small\item\em Read/write ccess to specific component. N\+O R\+A\+N\+G\+E C\+H\+E\+C\+K! \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read/write access to specific component. N\+O R\+A\+N\+G\+E C\+H\+E\+C\+K! \end{DoxyCompactList}\item 
 \hypertarget{classFV_a8c340629f03c5f4d96aefd119dd43d6e}{}double const \& \hyperlink{classFV_a8c340629f03c5f4d96aefd119dd43d6e}{operator\mbox{[}$\,$\mbox{]}} (int const \&i) const \label{classFV_a8c340629f03c5f4d96aefd119dd43d6e}
 
 \begin{DoxyCompactList}\small\item\em Read access to specific component. N\+O R\+A\+N\+G\+E C\+H\+E\+C\+K! \end{DoxyCompactList}\item 
@@ -51,9 +54,12 @@ Lorentz 4-\/vector.
 \hypertarget{classFV_a8d74f60b130edb26fd62c590ea5ecfce}{}\hyperlink{classFV}{F\+V} \& {\bfseries operator/=} (double const \&a)\label{classFV_a8d74f60b130edb26fd62c590ea5ecfce}
 
 \item 
-\hypertarget{classFV_a4e403b1c96be31cc1572c399a61d5933}{}void {\bfseries swap} (\hyperlink{classFV}{F\+V} \&other)\label{classFV_a4e403b1c96be31cc1572c399a61d5933}
+\hypertarget{classFV_a4e403b1c96be31cc1572c399a61d5933}{}void \hyperlink{classFV_a4e403b1c96be31cc1572c399a61d5933}{swap} (\hyperlink{classFV}{F\+V} \&other)\label{classFV_a4e403b1c96be31cc1572c399a61d5933}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Swap vectors, using std\+::swap(std\+::vector) internally. \end{DoxyCompactList}\item 
+\hypertarget{classFV_abb14d2d6fc605b4101dc54ae1323b5a4}{}\hyperlink{classFV}{F\+V} \hyperlink{classFV_abb14d2d6fc605b4101dc54ae1323b5a4}{norm3} () const \label{classFV_abb14d2d6fc605b4101dc54ae1323b5a4}
+
+\begin{DoxyCompactList}\small\item\em Normalize spatial components to one. Returns a copy. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

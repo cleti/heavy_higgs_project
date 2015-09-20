@@ -7,6 +7,7 @@
 #include "../inc/Functions_Shared.h"
 #include "../inc/Integrator.h"
 #include "../inc/Integrands_pp_ttX.h"
+#include "../inc/Cuts.h"
 
 // LHAPDF header files
 #include "LHAPDF/LHAPDF.h"
@@ -61,8 +62,6 @@ int main(int argc, char** argv)
 
   // get parameters from command line arguments
   parse_arguments(argc,argv,g_options,THDM_1);
-
-
   
   // create an outpufile
   ofstream log_file;
@@ -82,8 +81,8 @@ int main(int argc, char** argv)
   
   // create teestream object to tee output to std::cout and the selected file
   teestream couT(std::cout,log_file);
-  PRINTS(couT,run_id.str());
-  PRINTS(couT,g_options.useK);
+  SPRINT(couT,run_id.str());
+  SPRINT(couT,g_options.useK);
 
   // create the PDFs
   LHAPDF::PDF* pdf_ct10nlo = LHAPDF::mkPDF("CT10nlo", 0);
@@ -123,26 +122,44 @@ int main(int argc, char** argv)
   ip.higgs_model   = &THDM_1;
   ip.s_hadr        = pow((double)g_options.cme*1000.0,2)/mScale2;
   ip.collect_dist  = g_options.dist;
+  PRINT(g_options.dist);
   ip.pdf           = pdf_ct10nlo;
+  
   ip.distributions = new DistVec{
-    std::make_shared<Distribution>(&Mtt_Histograms,&OBS_M12),
 #ifdef WITH_T_SPIN
+    std::make_shared<Distribution>(&Mtt_Histograms,&OBS_M12),
     std::make_shared<MeanDistribution>(&Chel_Histograms,&OBS_M12,&OBS_HEL12),
     std::make_shared<MeanDistribution>(&Dopen_Histograms,&OBS_M12,&OBS_D12),
     std::make_shared<MeanDistribution>(&B1_Histograms,&OBS_M12,&OBS_B1),
     // std::make_shared<MeanDistribution>(&B2_Histograms,&OBS_M12,&OBS_B2),
     std::make_shared<MeanDistribution>(&OCP1_Histograms,&OBS_M12,&OBS_CP1),
 #else
-    std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
-    std::make_shared<Distribution>(&PT12_Histograms,&OBS_PT12),
+    // QCD NLO without cuts available
+    // std::make_shared<Distribution>(&Mtt_Histograms,&OBS_M12),
+    // std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
+    // std::make_shared<Distribution>(&PT12_Histograms,&OBS_PT12),
+    // std::make_shared<Distribution>(&Y1_Histograms,&OBS_Y1),
+    // std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2),
+    
+    // QCD NLO with Mtt cut available
     std::make_shared<Distribution>(&Y1_Histograms,&OBS_Y1),
-    std::make_shared<Distribution>(&Y2_Histograms,&OBS_Y2),
-    std::make_shared<Distribution>(&PT2_Histograms,&OBS_PT2),
-    std::make_shared<Distribution>(&DY_Histograms,&OBS_DY12),
+    std::make_shared<Distribution>(&T1_Histograms,&OBS_Theta1),
+    std::make_shared<Distribution>(&PT1_Histograms,&OBS_PT1),
 #endif
   };
+
+  // at the moment all cuts are evaluated on the parton z.m.f. phase space
+  // careful with cuts on observables that are not invariant under boosts in z-direction (rapidity,...)
+  ip.cuts = new CutVec{
+    std::make_shared<Cut>(&OBS_M12,std::initializer_list<double>{390.0/mScale,540.0/mScale}),
+    // std::make_shared<Cut>(&OBS_PT1,std::initializer_list<double>{0.0,100.0/mScale}),
+    // std::make_shared<Cut>(&OBS_PT2,std::initializer_list<double>{0.0,100.0/mScale}),
+    // rapidity cut does not affect distributions as expected!!!
+    // std::make_shared<Cut>(&OBS_Y1,std::initializer_list<double>{0.0,1.0}),
+  };
+  
   double CME = sqrt(ip.s_hadr)*mScale;
-  PRINTS(couT,CME);
+  SPRINT(couT,CME);
   ////////////////////////////////////////////////////////////////////////////////
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +168,7 @@ int main(int argc, char** argv)
   // will be adjusted seperately in each integration block
   vp.calls      = g_options.n_calls;
   vp.verbose    = g_options.verb_level;
-  PRINTS(couT,vp.calls);
+  SPRINT(couT,vp.calls);
   ////////////////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -159,8 +176,8 @@ int main(int argc, char** argv)
     using namespace Cuts;
     COLL_CUT = 1.0-pow(10.0,-g_options.tech_cut);
     SOFT_CUT = pow(10.0,-g_options.tech_cut);
-    PRINTS(couT,SOFT_CUT);
-    PRINTS(couT,1-COLL_CUT);
+    SPRINT(couT,SOFT_CUT);
+    SPRINT(couT,1-COLL_CUT);
   }
   ////////////////////////////////////////////////////////////////////////////////
 
@@ -179,64 +196,20 @@ int main(int argc, char** argv)
       PRINT(filename.str());
 
       H_IndexMap imap_qcd = {
-      	{0,H_LO_QCD},
+      	{0,H_NLO_QCD},
       	//{1,H_NLO_QCD},
-	{2,H_LO_PHI},
+	//{2,H_LO_PHI},
       };
       if (!ReadData(
 		    g_options.qcdfile_path+filename.str(),
-		    ++(ip.distributions->begin()),
+		    (ip.distributions->begin()),
 		    ip.distributions->end(),
-		    4.0/81.0,
+		    1.0, // normalization factor, branching ratio 4.0/81.0 not always included
 		    imap_qcd
 		    ))
 	{
-	  couT << std::endl << " There have beend errors during data file processing. " << std::endl;
+	  couT << std::endl << " Error processing data file. " << std::endl;
 	}
-      
-      // // if (!file) std::make_shared<std::ifstream>(path.string())
-      // std::ifstream file(g_options.qcdfile_path+filename.str());
-      // while (!file.is_open())
-      // 	{
-      // 	  FileBrowser fb(g_options.qcdfile_path);
-      // 	  std::cout << std::endl << " Could not open file " << g_options.qcdfile_path << std::endl;
-      // 	  std::cout << " Pick new input file:" << std::endl;
-      // 	  file.open(fb.browse());
-      // 	}
-
-      // H_IndexMap imap1 = {
-      // 	{0,H_NLO_QCD},
-      // 	{2,H_LO_QCD},
-      // };
-
-      // if (!ip.distributions->at(1)->GetHistograms()->ReadTable(file))
-      // 	{
-      // 	  EXIT(1);
-      // 	}
-      // if (!ip.distributions->at(2)->GetHistograms()->ReadTable(file))
-      // 	{
-      // 	  EXIT(1);
-      // 	}
-       
-      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_LO_QCD,
-      // 							 g_options.qcdfile_path+filename.str(),
-      // 							 0,0);
-      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_NLO_QCD,
-      // 							 g_options.qcdfile_path+filename.str(),
-      // 							 0,1);
-      // ip.distributions->at(1)->GetHistograms()->ReadFile(H_LO_PHI,
-      // 							 g_options.qcdfile_path+filename.str(),
-      // 							 0,2);
-      // ip.distributions->at(1)->GetHistograms()->Print(cout);
-      // ip.distributions->at(2)->GetHistograms()->Print(cout);
-      
-
-      
-      //g_options.qcdfile = read_qcd_data(ip.distributions,g_options.qcdfile_path,filename.str());
-      // if (!g_options.qcdfile)
-      // 	{
-      // 	  couT << std::endl << " Error reading QCD data file. " << std::endl;
-      // 	}
     }
   ////////////////////////////////////////////////////////////////////////////////
   
@@ -254,7 +227,12 @@ int main(int argc, char** argv)
 #else
   couT << "\n Computing the process pp -> ttbar.\n\n";
 #endif
-  if (g_options.dist) couT << "\n Distributions will be computed.\n\n";
+  if (g_options.dist)
+    {
+      couT << "\n Distributions will be computed:\n";
+      for (auto &e: *ip.distributions) couT << " --" << e->GetHistograms()->GetName() << std::endl;
+      couT << std::endl;
+    }
   if (THDM_1.UseK())  couT << "\n Using eff. K-factors to rescale NLO contributions.\n\n";
 
   Integrator INT(couT);
@@ -294,7 +272,6 @@ int main(int argc, char** argv)
   Int_2_3.Up()[3]       = sqrt(ip.s_hadr); // should be sqrt(..) just for testing!!
   Int_2_3_qg_qq.Up()[3] = sqrt(ip.s_hadr);
   ///////////////////////////////////////
-
 
 
   ////////////////////////////////////////////////////////////////////
@@ -352,7 +329,7 @@ int main(int argc, char** argv)
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [LO PHIxQCD,PHIxPHI]"));
-      vp.calls      = g_options.n_calls/10;
+      vp.calls      = g_options.n_calls;
 #ifdef WITH_T_SPIN
       ip.ps->set_child(0,new PS_2_3(0,0,0,"t->bl+nu"));
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
@@ -379,7 +356,7 @@ int main(int argc, char** argv)
       ip.eval_flags = 0;
       SET_EVAL_V_ALL(ip.eval_flags);
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO virt.]"));
-      vp.calls      = g_options.n_calls/10;
+      vp.calls      = g_options.n_calls;
 #ifdef WITH_T_SPIN
       ip.ps->set_child(0,new PS_2_3(0,0,0,"t->bl+nu"));
       ip.ps->set_child(1,new PS_2_3(0,0,0,"tbar->bl-nu"));
@@ -407,8 +384,7 @@ int main(int argc, char** argv)
       ip.eval_flags = 0;
       SET_EVAL_B_PHIxQCD(ip.eval_flags);
       SET_EVAL_B_PHIxPHI(ip.eval_flags);
-      SET_FLAG(F_EVAL_D_GG_ALL,ip.eval_flags);
-      SET_FLAG(F_EVAL_D_QG_CONT,ip.eval_flags);
+      SET_FLAG(F_EVAL_D_ALL,ip.eval_flags);
       // need to implement integrated QG dipoles!
       ip.SetPS(new PS_2_2(mt2,mt2,"pp->tt [NLO int. dip.]"));
       vp.calls      = g_options.n_calls*10;
@@ -431,7 +407,7 @@ int main(int argc, char** argv)
     {
       couT << "\n [NLO (R GG)]\n"; 
       // set flags to specify which matrix elements will be evaluated
-      ip.eval_flags = F_EVAL_R_GG;
+      ip.eval_flags =  F_EVAL_R_GG;
       // USET_FLAG(F_EVAL_R_PHIxPHI_FSR,ip.eval_flags);
       // USET_FLAG(F_EVAL_R_PHIxPHI_ISR,ip.eval_flags);
       ip.SetPS(new PS_2_3(mt2,mt2,0.0,"pp->ttg [NLO real,gg]"));
@@ -439,6 +415,7 @@ int main(int argc, char** argv)
       
       // activate NLO (R) histograms 
       for (auto &e: *ip.distributions) e->GetHistograms()->SetActive(H_NLO_PHI_R);
+      for (auto &e: *ip.distributions) e->GetHistograms()->ToggleActive(H_NLO_PHI_ID);
       
       INT.Integrate(Int_2_3,ip,vp);
 
@@ -487,8 +464,8 @@ int main(int argc, char** argv)
   // PRINT RESULTS
   ////////////////////////////////////////////////////////////
   
-  double sum = 0.0;
-  double err = 0.0;
+  double sum  = 0.0;
+  double err2 = 0.0;
   for (int i=0;i<N_res;++i)
     {
       sum += results[i];
@@ -497,19 +474,15 @@ int main(int argc, char** argv)
 	  couT << endl << " results are inf/nan, exiting..." << endl;
 	  exit(1);
 	}
-      err += pow(errors[i],2);
+      err2 += pow(errors[i],2);
       if (std::isnan(errors[i]) || std::isinf(errors[i]))
 	{
 	  couT << endl << " results are inf/nan, exiting..." << endl;
 	  exit(1);
 	}
     }
-#ifndef WITH_T_SPIN
-  // // this is only for the comparison with P.G.
-  // err = sqrt(err)/4;
-  // sum /= 4;
-#endif
-  int prec = (int)log10(sum/err)+3;
+  // adjust printed # floating point digits to numerical errors
+  int prec = (int)log10(sum/sqrt(err2))+3;
   
   couT << endl;
   couT << " ============================================================================================= " << endl;
@@ -520,9 +493,9 @@ int main(int argc, char** argv)
   couT << "  Virtuell               = " << setprecision(prec) << results[2] << " +- " << setprecision(2) << errors[2] << " pb " << endl; 
   couT << "  Dipole int.            = " << setprecision(prec) << results[3] << " +- " << setprecision(2) << errors[3] << " pb " << endl; 
   couT << "  Reell(gg) - Dip. uint. = " << setprecision(prec) << results[4] << " +- " << setprecision(2) << errors[4] << " pb " << endl;
-  couT << "  Reell(qp) - Dip. uint. = " << setprecision(prec) << results[5] << " +- " << setprecision(2) << errors[4] << " pb " << endl;
+  couT << "  Reell(qp) - Dip. uint. = " << setprecision(prec) << results[5] << " +- " << setprecision(2) << errors[5] << " pb " << endl;
   couT << " --------------------------------------------------------------------------------------------- " << endl;
-  couT << "  sum                = " << setprecision(prec) << sum << " +- " << setprecision(2) << err << " pb " << endl; 
+  couT << "  sum                    = " << setprecision(prec) << sum << " +- " << setprecision(2) << sqrt(err2) << " pb " << endl; 
   couT << " ============================================================================================= " << endl;
       
 
@@ -533,7 +506,7 @@ int main(int argc, char** argv)
     {
       bool PLOT_NLO = int_flags & (I_FLAGS_V|I_FLAGS_D|I_FLAGS_R_GG|I_FLAGS_R_QQ|I_FLAGS_R_QG);
       
-      // create name for the ROOT file from process id and timestamp
+      // create unique name for the ROOT file from process id and timestamp
       stringstream rootfile_name;
       rootfile_name << "distributions_" << run_id.str();
       if (int_flags & I_FLAGS_B_QCD ) rootfile_name << "_BQCD";
@@ -559,7 +532,7 @@ int main(int argc, char** argv)
 	    }
 	}
 
-      
+      // start ROOT environment
       TApplication TheApp("MyApp",&argc, argv);
       gROOT->Reset();
       gROOT->SetStyle("Plain");
@@ -568,114 +541,34 @@ int main(int argc, char** argv)
       gStyle->SetTitleBorderSize(0);
       gStyle->SetTitleAlign(0);
 
-      
-
-      Mtt_Histograms.Print(couT);
-      
-      CanvasPtr c0 = MakeCanvas(Mtt_Histograms,1000,1000);
-      DrawDistribution(c0,
-      		       Mtt_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-
-      
-#ifdef WITH_T_SPIN
-      Dopen_Histograms.Print(couT);
-      OCP1_Histograms.Print(couT);
-      B1_Histograms.Print(couT);
-      Chel_Histograms.Print(couT);
-	
- 
-      CanvasPtr c1 = MakeCanvas(Dopen_Histograms,1000,1000);
-      DrawDistribution(c1,
-      		       Dopen_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      CanvasPtr c2 = MakeCanvas(OCP1_Histograms,1000,1000);
-      DrawDistribution(c2,
-      		       OCP1_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      CanvasPtr c31 = MakeCanvas(B1_Histograms,1000,1000);
-      DrawDistribution(c31,
-      		       B1_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      // CanvasPtr c32 = MakeCanvas(B2_Histograms,1000,1000);
-      // DrawDistribution(c32,
-      // 		       B2_Histograms,
-      // 		       THDM_1,
-      // 		       g_options.rootfile,
-      // 		       PLOT_NLO);    
-      CanvasPtr c4 = MakeCanvas(Chel_Histograms,1000,1000);
-      DrawDistribution(c4,
-      		       Chel_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      
-#else
-      PT1_Histograms.Print(couT);
-      PT2_Histograms.Print(couT);
-      PT12_Histograms.Print(couT);
-      Y1_Histograms.Print(couT);
-      Y2_Histograms.Print(couT);     
-      DY_Histograms.Print(couT);
-
-
-      CanvasPtr c11 = MakeCanvas(PT1_Histograms,1000,1000);
-      DrawDistribution(c11,
-      		       PT1_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      
-      CanvasPtr c12 = MakeCanvas(PT2_Histograms,1000,1000);
-      DrawDistribution(c12,
-      		       PT2_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);
-      
-      CanvasPtr c2 = MakeCanvas(PT12_Histograms,1000,1000);
-      DrawDistribution(c2,
-      		       PT12_Histograms,
-      		       THDM_1,
-      		       g_options.rootfile,
-      		       PLOT_NLO);   
-
-      CanvasPtr c31 = MakeCanvas(Y1_Histograms,1000,1000);
-      DrawDistribution(c31,
-		       Y1_Histograms,
-		       THDM_1,
-		       g_options.rootfile,
-		       PLOT_NLO);
-
-      CanvasPtr c32 = MakeCanvas(Y2_Histograms,1000,1000);
-      DrawDistribution(c32,
-		       Y2_Histograms,
-		       THDM_1,
-		       g_options.rootfile,
-		       PLOT_NLO);
-      
-      CanvasPtr c4 = MakeCanvas(DY_Histograms,1000,1000);
-      DrawDistribution(c4,
-		       DY_Histograms,
-		       THDM_1,
-		       g_options.rootfile,
-		       PLOT_NLO);
-
-#endif
+      // Draw all distributions in DistVec
+      for (auto &dist: *ip.distributions)
+	{
+	  HistArray* hist = (dist->GetHistograms());
+	  hist->Print(couT,g_options.verb_level);
+	  CanvasPtr c = MakeCanvas(*hist,1000,1000);
+	  DrawDistribution(c,
+			   *hist,
+			   THDM_1,
+			   g_options.rootfile,
+			   PLOT_NLO);
+	}
 
       if (file)
 	{
 	  file->Close();
 	  delete file;
 	}
+
+
+      TCanvas* c1 = new TCanvas("can_r","can_r",500,500);
+      c1->cd(1);
+      g_hist_r_wgts.Draw("hist");
+      
+      TCanvas* c2 = new TCanvas("can_uid","can_uid",500,500);
+      c2->cd(1);
+      g_hist_uid_wgts.Draw("hist");
+      
       TheApp.Run();
     }
   ////////////////////////////////////////////////////////////////////////////////

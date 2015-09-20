@@ -112,64 +112,25 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa7269a89c1c603c957891f49af7542e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49dc0f91394f9adf82f8485ba9e12a6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49dc0f91394f9adf82f8485ba9e12a6c"></a>
 <a class="el" href="classHistArray.html">HistArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a49dc0f91394f9adf82f8485ba9e12a6c">GetHistograms</a> ()</td></tr>
-<tr class="memdesc:a49dc0f91394f9adf82f8485ba9e12a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return pointer to the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a>. <br /></td></tr>
+<tr class="memdesc:a49dc0f91394f9adf82f8485ba9e12a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return pointer to the <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a>. <br /></td></tr>
 <tr class="separator:a49dc0f91394f9adf82f8485ba9e12a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b5001def9ff1fadb0d9f34bcd3f2b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5b5001def9ff1fadb0d9f34bcd3f2b4"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
 <tr class="separator:ae5b5001def9ff1fadb0d9f34bcd3f2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5f71f14986ae6fee369e1d3e288f793"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#ab5f71f14986ae6fee369e1d3e288f793">operator()</a> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="memdesc:ab5f71f14986ae6fee369e1d3e288f793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the observable at the given phase space point.  <a href="#ab5f71f14986ae6fee369e1d3e288f793">More...</a><br /></td></tr>
-<tr class="separator:ab5f71f14986ae6fee369e1d3e288f793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ccf70347a37bdb98f60067ee0ac4b87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ccf70347a37bdb98f60067ee0ac4b87"></a>
-virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>Avg</b> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="separator:a2ccf70347a37bdb98f60067ee0ac4b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a1c16200b22ed7253b1b9f50145ebc9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#a3a1c16200b22ed7253b1b9f50145ebc9">Fill</a> (const <a class="el" href="classPS__2.html">PS_2</a> *ps)</td></tr>
-<tr class="memdesc:a3a1c16200b22ed7253b1b9f50145ebc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill histograms with data obtained from the PS object.  <a href="#a3a1c16200b22ed7253b1b9f50145ebc9">More...</a><br /></td></tr>
-<tr class="separator:a3a1c16200b22ed7253b1b9f50145ebc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae87b192a060ec4aed233940a2b9b060e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html#ae87b192a060ec4aed233940a2b9b060e">operator()</a> (const <a class="el" href="classPS__2.html">PS_2</a> *ps_lab, const <a class="el" href="classPS__2.html">PS_2</a> *ps_tt)</td></tr>
+<tr class="memdesc:ae87b192a060ec4aed233940a2b9b060e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the observable at the given phase space point.  <a href="#ae87b192a060ec4aed233940a2b9b060e">More...</a><br /></td></tr>
+<tr class="separator:ae87b192a060ec4aed233940a2b9b060e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f4c4f1a300f700e33ed3a09e2eab3be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f4c4f1a300f700e33ed3a09e2eab3be"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>Avg</b> (const <a class="el" href="classPS__2.html">PS_2</a> *, const <a class="el" href="classPS__2.html">PS_2</a> *)</td></tr>
+<tr class="separator:a5f4c4f1a300f700e33ed3a09e2eab3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for differential distributions. </p>
-<p>The distribution class holds a pointer to a storage object (<a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a>) and an associated observable function (OBSFnc). Some predefined OBSFnc's can be found in <a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a> </dd></dl>
+<p>The distribution class holds a pointer to a storage object (<a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a>) and an associated observable function (OBSFnc, see <a class="el" href="Observables_8h.html" title="Defines the observables used in this program. ">Observables.h</a>). The phase space classes serve as the 'source' of data for the distributions. The distribution class can thus be seen as the interface between these two. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="Observables_8h.html" title="Defines the observables used in this program. ">Observables.h</a>, <a class="el" href="PhaseSpace_8h.html" title="Phase space classes for 2->1, 2->2 and 2->3 scattering processes. ">PhaseSpace.h</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00315">315</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00313">313</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3a1c16200b22ed7253b1b9f50145ebc9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Distribution::Fill </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPS__2.html">PS_2</a> *&#160;</td>
-          <td class="paramname"><em>ps</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Fill histograms with data obtained from the PS object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ps</td><td>Phase space object </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented in <a class="el" href="classMeanDistribution.html#a46b191391f291a6a2b169e52fdf06c23">MeanDistribution</a>.</p>
-
-<p>Definition at line <a class="el" href="HistArray_8cpp_source.html#l00606">606</a> of file <a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab5f71f14986ae6fee369e1d3e288f793"></a>
+<a class="anchor" id="ae87b192a060ec4aed233940a2b9b060e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -180,8 +141,18 @@ virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>Avg</b> (co
           <td class="memname">double Distribution::operator() </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPS__2.html">PS_2</a> *&#160;</td>
-          <td class="paramname"><em>ps</em></td><td>)</td>
+          <td class="paramname"><em>ps_lab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="classPS__2.html">PS_2</a> *&#160;</td>
+          <td class="paramname"><em>ps_tt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -199,13 +170,12 @@ virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>Avg</b> (co
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00338">338</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00336">336</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>inc/<a class="el" href="HistArray_8h_source.html">HistArray.h</a></li>
-<li>src/<a class="el" href="HistArray_8cpp_source.html">HistArray.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

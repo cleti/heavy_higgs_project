@@ -1,4 +1,12 @@
 
+
+
+// ignore warnings of unused variables
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma message "Note: '-Wunused-variable' disabled in file " __FILE__
+
+
+
 #include "../inc/Functions_pp_ttX_UID.h"
 
 
@@ -10,7 +18,7 @@
 
 
 // c.f. (5.42) in hep-ph/0201036v1
-static double X (const FV&p_i, const FV&p_j, const FV&p_a)
+static inline double X (const FV&p_i, const FV&p_j, const FV&p_a)
 {
   double t1 = sp(p_i, p_a);
   double t2 = sp(p_j, p_a);
@@ -18,14 +26,14 @@ static double X (const FV&p_i, const FV&p_j, const FV&p_a)
   return ((t1 + t2 - t3) / (t1 + t2));
 }
 // c.f. (5.42) in hep-ph/0201036v1
-static double Z (const FV& p_i, const FV& p_j, const FV& p_a)
+static inline double Z (const FV& p_i, const FV& p_j, const FV& p_a)
 {
   double t1 = sp(p_i, p_a);
   double t2 = sp(p_j, p_a);
   return (t1 / (t1 + t2));
 }
 // c.f. (5.138) in hep-ph/9605323v3
-static double x (const FV& p_i, const FV& p_a, const FV& p_b)
+static inline double x (const FV& p_i, const FV& p_a, const FV& p_b)
 {
   double t1 = sp(p_a, p_b);
   double t2 = sp(p_i, p_a);
@@ -33,7 +41,7 @@ static double x (const FV& p_i, const FV& p_a, const FV& p_b)
   return ((t1 - t2 - t3) / t1);
 }
 // c.f. (5.12) in hep-ph/0201036v1
-static double y (const FV& p_i, const FV& p_j, const FV& p_k)
+static inline double y (const FV& p_i, const FV& p_j, const FV& p_k)
 {
   double t1 = sp(p_i, p_j);
   double t2 = sp(p_i, p_k);
@@ -41,7 +49,7 @@ static double y (const FV& p_i, const FV& p_j, const FV& p_k)
   return (t1 / (t1 + t2 + t3));
 }
 // c.f. (5.12) in hep-ph/0201036v1
-static double z (const FV& p_i, const FV& p_j, const FV& p_k)
+static inline double z (const FV& p_i, const FV& p_j, const FV& p_k)
 {
   double t1 = sp(p_i, p_k);
   double t2 = sp(p_j, p_k);
@@ -51,7 +59,7 @@ static double z (const FV& p_i, const FV& p_j, const FV& p_k)
 
 // = v-tilde_ijk / v_ijk in (5.16)
 // c.f. also (5.8), (5.14) in hep-ph/0201036v1
-static double v (
+static inline double v (
 		 const FV& p_i,
 		 const FV& p_j,
 		 const FV& p_k,
@@ -71,7 +79,7 @@ static double v (
 // c.f. (5.85) in hep-ph/0201036v1
 // including the propagator 1/(2pa.pi * x_iab) in (5.71)
 // but NOT the constant factors -16 pi AlphaS CA * ColorCorr.
-static double VggIF (FV const& p_a, FV const& p_i, FV const& p_j)
+static inline double VggIF (FV const& p_a, FV const& p_i, FV const& p_j)
 {
   double t1 = sp(p_a, p_i);
   double t3 = X(p_i, p_j, p_a);
@@ -82,7 +90,7 @@ static double VggIF (FV const& p_a, FV const& p_i, FV const& p_j)
 // c.f. (5.85) in hep-ph/0201036v1
 // including the propagator 1/(2pa.pi * x_iab) in (5.71)
 // but NOT the constant factors -16 pi AlphaS CA * ColorCorr.
-static double VggIFc (const FV& p_a, const FV& p_i, const FV& p_j)
+static inline double VggIFc (const FV& p_a, const FV& p_i, const FV& p_j)
 {
   double t1 = X(p_i, p_j, p_a);
   double t3 = Z(p_i, p_j, p_a);
@@ -98,7 +106,7 @@ static double VggIFc (const FV& p_a, const FV& p_i, const FV& p_j)
 // c.f. (5.148) in hep-ph/9605323v3
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors -16 pi AlphaS CA * ColorCorr.
-static double VggII (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VggII (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   double t1 = sp(p_a, p_i);
   double t3 = x(p_i, p_a, p_b);
@@ -109,7 +117,7 @@ static double VggII (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.148) in hep-ph/9605323v3
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors -16 pi AlphaS CA * ColorCorr.
-static double VggIIc (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VggIIc (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   double t1 = x(p_i, p_a, p_b);
   double t3 = sp(p_a, p_b);
@@ -124,7 +132,7 @@ static double VggIIc (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.147) in hep-ph/9605323v3
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors 8 pi AlphaS CF * ColorCorr.
-static double VqqII (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VqqII (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   double t1 = sp(p_a, p_i);
   return (-0.1e1 / t1 / 0.2e1);
@@ -133,7 +141,7 @@ static double VqqII (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.147) in hep-ph/9605323v3
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors 8 pi AlphaS CF * ColorCorr.
-static double VqqIIc (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VqqIIc (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   return -2.0*VggIIc(p_a,p_i,p_b);
 }
@@ -143,7 +151,7 @@ static double VqqIIc (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.83) in hep-ph/0201036v1
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors 8 pi AlphaS CF * ColorCorr.
-static double VqqIF (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VqqIF (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   return VqqII(p_a,p_i,p_b);
 }
@@ -151,7 +159,7 @@ static double VqqIF (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.83) in hep-ph/0201036v1
 // including the propagator 1/(2pa.pi * x_iab) in (5.136)
 // but NOT the constant factors 8 pi AlphaS CF * ColorCorr.
-static double VqqIFc (const FV& p_a, const FV& p_i, const FV& p_b)
+static inline double VqqIFc (const FV& p_a, const FV& p_i, const FV& p_b)
 {
   return -2.0*VggIFc(p_a,p_i,p_b);
 }
@@ -161,7 +169,7 @@ static double VqqIFc (const FV& p_a, const FV& p_i, const FV& p_b)
 // c.f. (5.16) in hep-ph/0201036v1
 // including the propagator 1/(2pi.pj) in (5.2)
 // but NOT the constant factors -8 pi AlphaS CF * ColorCorr.
-static double VQgFF (const FV& p_i, const FV& p_j, const FV& p_k)
+static inline double VQgFF (const FV& p_i, const FV& p_j, const FV& p_k)
 {
   double t1 = sp(p_i, p_j);
   double t2 = 0.1e1 / t1;
@@ -177,7 +185,7 @@ static double VQgFF (const FV& p_i, const FV& p_j, const FV& p_k)
 // c.f. (5.50) in hep-ph/0201036v1
 // including the propagator 1/(2pi.pj * x_ija) in (5.40)
 // but NOT the constant factors -8 pi AlphaS CF * ColorCorr.
-static double VQgFI (const FV& p_i, const FV& p_j, const FV& p_a)
+static inline double VQgFI (const FV& p_i, const FV& p_j, const FV& p_a)
 {
   double t1;
   double t10;
@@ -254,7 +262,8 @@ double Eval_UID_GG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& norm_factor, // normalization factor for distribution weights
-		   DistVec* dist )
+		   DistVec* dist,
+		   CutVec*  cuts)
 {
   PREFACTORS(hm); // defines ap and hp
   double const& mt2    = hm.mt2();
@@ -262,6 +271,7 @@ double Eval_UID_GG(
 
   double res = 0.0;
 
+  bool CUTS = (cuts != nullptr);
   bool DIST = (dist != nullptr);
 
   // 2->3 phase space vectors serve as input for the dipole mapping
@@ -276,8 +286,11 @@ double Eval_UID_GG(
   // the initialization is only done once! problems?
   static PS_2_2 ps_red(ps.get_msq(0),ps.get_msq(1),"p1 p2 -> k1 k2 (red.) [static in Eval_UID_GG]");
   static LT lt;
-  ps_red.P1() = ps.P1();// copy also proton momenta -> needed for lab-frame boost
-  ps_red.P2() = ps.P2();// copy also proton momenta -> needed for lab-frame boost
+  if (DIST)
+    {
+      ps_red.P1() = ps.P1();// copy also proton momenta -> needed for lab-frame boost
+      ps_red.P2() = ps.P2();// copy also proton momenta -> needed for lab-frame boost
+    }
   FV& P1 = ps_red.p1();
   FV& P2 = ps_red.p2();
   FV& K1 = ps_red.k1();
@@ -293,8 +306,10 @@ double Eval_UID_GG(
   ////////////////////////////////////////////////////////////////////////////////////////////
   // INITIAL-INITIAL DIPOLES /////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_GG_II(flags))
     {
+#endif
       { // DIPOLE-CONFIGURATION: ES00
 	double dip = 0.0;
 	//==============================================================================
@@ -316,49 +331,40 @@ double Eval_UID_GG(
 	lt.apply_G(S2);
 #endif
 	ps_red.set(bx); // set invariants
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
 	//==============================================================================       		
-
-	double PF_VggII  = ap.PREF_UID_CA*VggII(p1,p3,p2);
-	double PF_VggIIc = VggIIc(p1,p3,p2);
-	if (flags & F_EVAL_UID_ES00)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_ES00(ps,ps_red,hm);
-	  }
-	if (flags & F_EVAL_R_PHIxPHI_ISR)
-	  {
-	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
-	    dip += PF_VggIIc*Eval_UID_PHIxPHI_ES00(ps,ps_red,hm);
-// #ifdef WITH_T_SPIN
-// 	    if (hm.NBosons()>1)
-// 	      {
-// 		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red,hm);
-// 	      }
-// #endif
-	  }
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-initial 2->2 impulskonfig. (ES00): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-	
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    double PF_VggII  = ap.PREF_UID_CA*VggII(p1,p3,p2);
+	    double PF_VggIIc = VggIIc(p1,p3,p2);
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    if (flags & F_EVAL_UID_ES00)
+	      {
 #endif	  
-	res += dip;
+		dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
+		dip += PF_VggIIc*Eval_UID_ES00(ps,ps_red,hm);
+#ifdef DEBUG
+	      }
+	    if (flags & F_EVAL_R_PHIxPHI_ISR)
+	      {
+#endif	  
+		dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
+		dip += PF_VggIIc*Eval_UID_PHIxPHI_ES00(ps,ps_red,hm);
+#ifdef DEBUG
+	      }
+#endif
+	    
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
+	    CHECKNAN(dip);
+#endif	  
+	    res += dip;
+	  }
       }
 
       { // DIPOLE-CONFIGURATION: SE00
@@ -382,59 +388,55 @@ double Eval_UID_GG(
 	S2 = ps.s2_r();
 #endif
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
 	//==============================================================================       	
 
-	double PF_VggII  = ap.PREF_UID_CA*VggII(p2,p3,p1);
-	double PF_VggIIc = VggIIc(p2,p3,p1);
-	if (flags & F_EVAL_UID_SE00)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	    dip += PF_VggIIc*Eval_UID_SE00(ps,ps_red,hm);
-	  }
-	if (flags & F_EVAL_R_PHIxPHI_ISR)
-	  {
-	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
-	    dip += PF_VggIIc*Eval_UID_PHIxPHI_SE00(ps,ps_red,hm);
-// #ifdef WITH_T_SPIN
-// 	    if (hm.NBosons()>1)
-// 	      {
-// 		dip += PF_VggIIc*Eval_UID_PHIxPHI_IM_INTab_SE00(ps,ps_red,hm);
-// 	      }
-// #endif
-	  }
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-initial 2->2 impulskonfig. (SE00): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    double PF_VggII  = ap.PREF_UID_CA*VggII(p2,p3,p1);
+	    double PF_VggIIc = VggIIc(p2,p3,p1);
+#ifdef DEBUG
+	    if (flags & F_EVAL_UID_SE00)
+	      {
+#endif
+		dip += PF_VggII*Eval_B_2PHIxQCD(ps_red,ap,hp);
+		dip += PF_VggIIc*Eval_UID_SE00(ps,ps_red,hm);
+#ifdef DEBUG
+	      }
+	    if (flags & F_EVAL_R_PHIxPHI_ISR)
+	      {
+#endif
+		// !!! need to change in case USE2H = true !!!
+		dip += PF_VggII*Eval_B_PHIxPHI_withINT12(ps_red,hm);
+		dip += PF_VggIIc*Eval_UID_PHIxPHI_SE00(ps,ps_red,hm);
+#ifdef DEBUG
+	      }
 #endif
 	
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif	  
-	res += dip;
+	    res += dip;
+	  }
       }
+#ifdef DEBUG
     }
+#endif
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////
   // FINAL-FINAL DIPOLES   ///////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_GG_FF(flags))
     {
+#endif
       { // DIPOLE-CONFIGURATION: 00ES
 	double dip = 0.0;
 	//==============================================================================
@@ -455,42 +457,39 @@ double Eval_UID_GG(
 	set_spins_in_tt_zmf(K1,K2,S1,S2,s1_r,s2_r);
 #endif
 	ps_red.set(2.0*(mt2+sp(k1,k2))/ps_red.get_s());
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
 	//==============================================================================
 
-	double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k1,p3,k2);
-        
-	if (flags & F_EVAL_UID_00ES)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	  }
-	if (flags & F_EVAL_R_PHIxPHI_FSR)
-	  {
-	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
-	  }
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-final 2->2 impulskonfig. (00ES): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-	
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k1,p3,k2);
+
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    if (flags & F_EVAL_UID_00ES)
+	      {
+#endif
+		dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
+#ifdef DEBUG
+	      }
+	    if (flags & F_EVAL_R_PHIxPHI_FSR)
+	      {
+#endif
+		dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
+#ifdef DEBUG
+	      }
+#endif
+	    
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
+	    CHECKNAN(dip);
 #endif	  
-	res += dip;
+	    res += dip;
+	  }
       }
   
       { // DIPOLE-CONFIGURATION: 00SE
@@ -513,51 +512,53 @@ double Eval_UID_GG(
 	set_spins_in_tt_zmf(K1,K2,S1,S2,s1_r,s2_r);
 #endif
 	ps_red.set(2.0*(mt2+sp(k1,k2))/ps_red.get_s());
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
 	//==============================================================================
-
-	double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k2,p3,k1);
-
-	if (flags & F_EVAL_UID_00SE)
+	
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
-	  }
-	if (flags & F_EVAL_R_PHIxPHI_FSR)
-	  {
-	    // !!! need to change in case USE2H = true !!!
-	    dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
-	  }
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
 
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-final 2->2 impulskonfig. (00SE): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
+	    double PF_VQgFF = ap.PREF_UID_CF*VQgFF(k2,p3,k1);
 
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
-	res += dip;
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    if (flags & F_EVAL_UID_00SE)
+	      {
 #endif
+		dip += PF_VQgFF*Eval_B_2PHIxQCD(ps_red,ap,hp);
+#ifdef DEBUG
+	      }
+	    if (flags & F_EVAL_R_PHIxPHI_FSR)
+	      {
+#endif
+		dip += PF_VQgFF*Eval_B_PHIxPHI_withINT12(ps_red,hm);
+#ifdef DEBUG
+	      }
+#endif
+	    
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
+	    CHECKNAN(dip);
+#endif
+	    res += dip;
+	  }
       }
+#ifdef DEBUG
     }
+#endif
 
-  static double f = 0.5;
+  static const double f = 0.5;
   ////////////////////////////////////////////////////////////////////////////////////////////
   // FINAL-INITIAL DIPOLES ///////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_GG_FI(flags))
     {
+#endif
       // final state emitter
       {
       	// S0E0
@@ -568,31 +569,25 @@ double Eval_UID_GG(
       	K1 = (bx-1.0)*p1 + k1 + p3;
       	K2 = k2;
 	ps_red.set(bx);
-	//(sp(K1,P2)-sp(K1,P1))/sp(P1,P2);// = -0.5*CA*beta*y
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip *= f;
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-initial 2->2 impulskonfig. (S0E0): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    //(sp(K1,P2)-sp(K1,P1))/sp(P1,P2);// = -0.5*CA*beta*y
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// 0SE0
@@ -603,30 +598,24 @@ double Eval_UID_GG(
       	K1 = (bx-1.0)*p2 + k1 + p3;
       	K2 = k2;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip *= f;
 
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-initial 2->2 impulskonfig. (0SE0): ";
-	std::cout << std::endl << "----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k1,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// S00E
@@ -637,30 +626,24 @@ double Eval_UID_GG(
       	K2 = (bx-1.0)*p1 + k2 + p3;
       	K1 = k1;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip *= f;
 
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-initial 2->2 impulskonfig. (S00E): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip -= 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// 0S0E
@@ -671,38 +654,37 @@ double Eval_UID_GG(
       	K2 = (bx-1.0)*p2 + k2 + p3;
       	K1 = k1;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip *= f;
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " final-initial 2->2 impulskonfig. (0S0E): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip += 0.25*ps_red.get_beta_y()*ap.PREF_UID_CA*VQgFI(k2,p3,p2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
+#ifdef DEBUG
     }
-	
+#endif
+
+  
   ////////////////////////////////////////////////////////////////////////////////////////////
   // INITIAL-FINAL ///////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_GG_IF(flags))
     {
+#endif
       //initial state emitter
       {
       	// E0S0
@@ -713,31 +695,25 @@ double Eval_UID_GG(
       	K1 = (bx-1.0)*p1 + k1 + p3;
       	K2 = k2;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p1,p3,k1)*Eval_UID_E0S0(ps,ps_red,hm);
-      	dip *= f;
 
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (E0S0): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip += VggIFc(p1,p3,k1)*Eval_UID_E0S0(ps,ps_red,hm);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// E00S
@@ -748,31 +724,25 @@ double Eval_UID_GG(
       	K2 = (bx-1.0)*p1 + k2 + p3;
       	K1 = k1;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p1,p3,k2)*Eval_UID_E00S(ps,ps_red,hm);
-      	dip *= f;
-	
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (E00S): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p1,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip += VggIFc(p1,p3,k2)*Eval_UID_E00S(ps,ps_red,hm);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// 0ES0
@@ -783,31 +753,25 @@ double Eval_UID_GG(
       	K1 = (bx-1.0)*p2 + k1 + p3;
       	K2 = k2;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p2,p3,k1)*Eval_UID_0ES0(ps,ps_red,hm);
-      	dip *= f;
-		
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (0ES0): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
+
+	if (EvalCuts(cuts,&ps_red,nullptr))
 	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip -= 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k1)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip += VggIFc(p2,p3,k1)*Eval_UID_0ES0(ps,ps_red,hm);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
+	    res += dip;
+	  }
       }
       {
       	// 0E0S
@@ -818,64 +782,67 @@ double Eval_UID_GG(
       	K2 = (bx-1.0)*p2 + k2 + p3;
       	K1 = k1;
 	ps_red.set(bx);
-	hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      	dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
-      	dip += VggIFc(p2,p3,k2)*Eval_UID_0E0S(ps,ps_red,hm);
-      	dip *= f;
-			
-#ifdef DUMP_DIPOLE_PS
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	std::cout << std::endl << " initial-final 2->2 impulskonfig. (0E0S): ";
-	std::cout << std::endl << "-----------------------------------------------------------------";
-	PRINT_4VEC(mScale*P1);
-	PRINT_4VEC(mScale*P2);
-	PRINT_4VEC(mScale*K1);
-	PRINT_4VEC(mScale*K2);
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-#endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+
+	if (EvalCuts(cuts,&ps_red,nullptr))
+	  {	
+	    hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	    dip += 0.5*ps_red.get_beta_y()*ap.PREF_UID_CA*VggIF(p2,p3,k2)*Eval_B_2PHIxQCD(ps_red,ap,hp);
+	    dip += VggIFc(p2,p3,k2)*Eval_UID_0E0S(ps,ps_red,hm);
+	    dip *= f;
+
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-      	res += dip;
-      }    
+	    res += dip;
+	  }
+      }
+#ifdef DEBUG
     }
+#endif
+
   
 #ifndef WITH_T_SPIN
+#ifdef DEBUG
   if (EVAL_SGA_GG(flags))
     {
+#endif
       //the real FSRxISR + FSRxINT contributions are subtracted by their SGA
-      {
-	hm.SetHiggsPrefactors(2.0*(mt2+sp(k1,k2)),1);
+      if (EvalCuts(cuts,&ps,nullptr))
+	{
+	  hm.SetHiggsPrefactors(2.0*(mt2+sp(k1,k2)),1);
 #ifdef SGA_WITH_GAUGEVEC
-	static FV gv;
-	gv[0] = +p3[0];
-	gv[1] = -p3[1];
-	gv[2] = -p3[2];
-	gv[3] = -p3[3];
-      	double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp,gv);
+	  static FV gv;
+	  gv[0] = +p3[0];
+	  gv[1] = -p3[1];
+	  gv[2] = -p3[2];
+	  gv[3] = -p3[3];
+	  double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp,gv);
 #else
-      	double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp);
+	  double sga = Eval_R_FSR_ISR_SGA(ps,ap,hp);
 #endif
-      	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-      	if (DIST)
-	  {
-	    // in case of the SGA collect distributions from 2->3 phase space
-	    ps.FillDistributions(*dist,H_NLO_PHI_R,sga*norm_factor,mScale);
-	  }
-      	////////////////////////////////////////////////////////////////////////////
+	  // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	  if (DIST)
+	    {
+	      // in case of the SGA collect distributions from 2->3 phase space
+	      ps.FillDistributions(*dist,H_NLO_PHI_R,sga*norm_factor,mScale);
+	    }
+	  ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(sga);
+	  CHECKNAN(sga);
 #endif
-      	res+= sga;
-      }
+	  res+= sga;
+	}
+#ifdef DEBUG
     }
-#endif
+#endif // DEBUG
+#endif // WITH_T_SPIN
+
   return res;
 }
 
@@ -891,7 +858,8 @@ double Eval_UID_QG(
 		   HiggsModel& hm,
 		   const ulong& flags,
 		   const double& norm_factor, // normalization factor for distribution weights
-		   DistVec* dist )
+		   DistVec* dist,
+		   CutVec*  cuts )
 {
   PREFACTORS(hm); // defines ap and hp
   using namespace Constants;
@@ -913,8 +881,11 @@ double Eval_UID_QG(
   // the initialization is only done once! problems?
   static PS_2_2 ps_red(ps.get_msq(0),ps.get_msq(1),"p1 p2 -> k1 k2 (red.) [static in Eval_UID_QG]");
   static LT lt;
-  ps_red.P1() = ps.P1();// copy also proton momenta -> needed for lab-frame boost
-  ps_red.P2() = ps.P2();// copy also proton momenta -> needed for lab-frame boost
+  if (DIST)
+    {
+      ps_red.P1() = ps.P1();// copy also proton momenta -> needed for lab-frame boost
+      ps_red.P2() = ps.P2();// copy also proton momenta -> needed for lab-frame boost
+    }
   FV& P1 = ps_red.p1();
   FV& P2 = ps_red.p2();
   FV& K1 = ps_red.k1();
@@ -925,144 +896,157 @@ double Eval_UID_QG(
   FV const& s2 = ps.s2();
   FV & S1 = ps_red.s1();
   FV & S2 = ps_red.s2();
-  S1 = s1;
-  S2 = s2;
 #endif
   ////////////////////////////////////////////////////////////////////////////////////////////
   // INITIAL-INITIAL DIPOLES /////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_QG_II(flags))
     { // DIPOLE-CONFIGURATION: ES00
+#endif
       double dip = 0.0;
       //==============================================================================
       // dipole phase space mapping
       //==============================================================================
-      double const& bx = x(p3,p1,p2);
+      double bx = x(p3,p1,p2);
       P1 = bx*p1;
       P2 = p2;
       FV Q  = p1 + p2 - p3;
       FV Qt = P1 + p2;
       lt.set_II(Q,Qt);
       // Lorentz transformation of final state vectors
-      K1 = k1;
-      K2 = k2;
-      lt.apply_G(K1);
-      lt.apply_G(K2);
+      lt.apply_G_cpy(k1,K1);
+      lt.apply_G_cpy(k2,K2);
 #ifdef WITH_T_SPIN
-      lt.apply_G(S1);
-      lt.apply_G(S2);
+      lt.apply_G_cpy(s1,S1);
+      lt.apply_G_cpy(s2,S2);
 #endif
       ps_red.set(bx);
-      hm.SetHiggsPrefactors(ps_red.get_s(),1);
-      FV PI = p3-sp(p1,p3)/sp(p1,p2)*p2;
+
+
+      if (EvalCuts(cuts,&ps_red,nullptr))
+	{
+	  hm.SetHiggsPrefactors(ps_red.get_s(),1);
+	  FV PI = p3-sp(p1,p3)/sp(p1,p2)*p2;
     	
-      double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqII(p1,p3,p2);
-      double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIIc(p1,p3,p2);
+	  double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqII(p1,p3,p2);
+	  double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIIc(p1,p3,p2);
 
-      if (flags & F_EVAL_R_PHIxQCD_QG)
-	{
-	  dip += Eval_UID_Q_QG_ES00(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
-	}
-      if (flags & F_EVAL_R_PHIxPHI_QG)
-	{
-	  dip += Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
-	}
+	  if (flags & F_EVAL_R_PHIxQCD_QG)
+	    {
+	      dip += Eval_UID_Q_QG_ES00(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
+	    }
+	  if (flags & F_EVAL_R_PHIxPHI_QG)
+	    {
+	      dip += Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
+	    }
 
-      // works
-      // double Vgg_diag = -16.0*Pi*hm.AlphaS()*VggII(p1,p3,p2);
-      // double Vgg_nond = -16.0*Pi*hm.AlphaS()*VggIIc(p1,p3,p2);
+	  // works
+	  // double Vgg_diag = -16.0*Pi*hm.AlphaS()*VggII(p1,p3,p2);
+	  // double Vgg_nond = -16.0*Pi*hm.AlphaS()*VggIIc(p1,p3,p2);
 
-      // if (flags & F_EVAL_R_ISR_ISR)
-      // 	{
-      // 	  dip += Eval_UID_Q_QG_ES00(ps,ps_red,hm,PI,Vgg_diag,Vgg_nond);
-      // 	}
-      // if (flags & F_EVAL_R_PHIxPHI_ISR)
-      // 	{
-      // 	  dip += Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,hm,PI,Vgg_diag,Vgg_nond);
-      // 	}      
+	  // if (flags & F_EVAL_R_ISR_ISR)
+	  // 	{
+	  // 	  dip += Eval_UID_Q_QG_ES00(ps,ps_red,hm,PI,Vgg_diag,Vgg_nond);
+	  // 	}
+	  // if (flags & F_EVAL_R_PHIxPHI_ISR)
+	  // 	{
+	  // 	  dip += Eval_UID_PHIxPHI_Q_QG_ES00(ps,ps_red,hm,PI,Vgg_diag,Vgg_nond);
+	  // 	}      
 
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	  // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	  if (DIST)
+	    {
+	      ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	    }
+	  ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	  CHECKNAN(dip);
 #endif	  
-	res += dip;
-  }
+	  res += dip;
+	}
+#ifdef DEBUG
+    }
+#endif
   
   ////////////////////////////////////////////////////////////////////////////////////////////
   // INITIAL-FINAL DIPOLES ///////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef DEBUG
   if (EVAL_UID_QG_IF(flags))
     {
+#endif
       {
 	// DIPOLE-CONFIGURATION: E0S0
 	double dip = 0.0;
-	double const& bx  = X(p3,k1,p1);
+	double bx  = X(p3,k1,p1);
 	P1 = bx*p1;
 	P2 = p2;
 	K1 = (bx-1.0)*p1 + k1 + p3;
 	K2 = k2;
 	ps_red.set(bx);
     
+	if (EvalCuts(cuts,&ps_red,nullptr))
+	  {
+	    hm.SetHiggsPrefactors(ps_red.get_s(),true);	
+	    double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIF(p1,p3,k1);
+	    double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIFc(p1,p3,k1);
 
-	hm.SetHiggsPrefactors(ps_red.get_s(),true);	
-	double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIF(p1,p3,k1);
-	double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIFc(p1,p3,k1);
-
-	FV PI = 1.0/Z(p3,k1,p1)*p3-1.0/Z(k1,p3,p1)*k1;
+	    FV PI = 1.0/Z(p3,k1,p1)*p3-1.0/Z(k1,p3,p1)*k1;
 	
-	if (flags & F_EVAL_R_PHIxQCD_QG)
-	  {
-	    dip += Eval_UID_Q_QG_E0S0(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
-	  }
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	    if (flags & F_EVAL_R_PHIxQCD_QG)
+	      {
+		dip += Eval_UID_Q_QG_E0S0(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
+	      }
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-	res += dip;
+	    res += dip;
+	  }
       }
       {
 	// DIPOLE-CONFIGURATION: E00S
 	double dip = 0.0;
-	double const& bx = X(p3,k2,p1);
+	double bx  = X(p3,k2,p1);
 	P1 = bx*p1;
 	P2 = p2;
 	K2 = (bx-1.0)*p1 + k2 + p3;
 	K1 = k1;
 	ps_red.set(bx);
 
+	if (EvalCuts(cuts,&ps_red,nullptr))
+	  {
+	    hm.SetHiggsPrefactors(ps_red.get_s(),true);	
+	    double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIF(p1,p3,k2);
+	    double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIFc(p1,p3,k2);
 
-	hm.SetHiggsPrefactors(ps_red.get_s(),true);	
-	double Vqq_diag = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIF(p1,p3,k2);
-	double Vqq_nond = 8.0*Pi*hm.AlphaS()*CF/CA*VqqIFc(p1,p3,k2);
-
-	FV PI = 1.0/Z(p3,k2,p1)*p3-1.0/Z(k2,p3,p1)*k2;
+	    FV PI = 1.0/Z(p3,k2,p1)*p3-1.0/Z(k2,p3,p1)*k2;
 	
-	if (flags & F_EVAL_R_PHIxQCD_QG)
-	  {
-	    dip += Eval_UID_Q_QG_E00S(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
-	  }
-	// DISTRIBUTIONS ///////////////////////////////////////////////////////////
-	if (DIST)
-	  {
-	    ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
-	  }
-	////////////////////////////////////////////////////////////////////////////
+	    if (flags & F_EVAL_R_PHIxQCD_QG)
+	      {
+		dip += Eval_UID_Q_QG_E00S(ps,ps_red,hm,PI,Vqq_diag,Vqq_nond);
+	      }
+	    // DISTRIBUTIONS ///////////////////////////////////////////////////////////
+	    if (DIST)
+	      {
+		ps_red.FillDistributions(*dist,H_NLO_PHI_R,dip*norm_factor,mScale);
+	      }
+	    ////////////////////////////////////////////////////////////////////////////
 #ifdef DEBUG
-	CHECKNAN(dip);
+	    CHECKNAN(dip);
 #endif
-	res += dip;
+	    res += dip;
+	  }
       }
+#ifdef DEBUG
     }
+#endif
   return res;
 }
 

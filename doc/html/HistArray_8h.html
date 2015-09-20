@@ -109,13 +109,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="Global_8h_source.html">Global.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Lorentz_8h_source.html">Lorentz.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="FileBrowser_8h_source.html">FileBrowser.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Observables_8h_source.html">Observables.h</a>&quot;</code><br />
 </div>
 <p><a href="HistArray_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHistArray.html">HistArray</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class stores an array of ROOT TH1D's.  <a href="classHistArray.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class serves as storage object for distributions.  <a href="classHistArray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDistribution.html">Distribution</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for differential distributions.  <a href="classDistribution.html#details">More...</a><br /></td></tr>
@@ -138,9 +139,6 @@ typedef boost::filesystem::path&#160;</td><td class="memItemRight" valign="botto
 <tr class="memitem:af760c4e5f35192b647e6d4f4ecd01580"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af760c4e5f35192b647e6d4f4ecd01580"></a>
 typedef std::map&lt; int, <a class="el" href="HistArray_8h.html#abdf25c9f0ab78c4243f63cb2bacf26d9">H_Index</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>H_IndexMap</b></td></tr>
 <tr class="separator:af760c4e5f35192b647e6d4f4ecd01580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399fb9ee95dfcad6d6cbd11ca1486d45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399fb9ee95dfcad6d6cbd11ca1486d45"></a>
-typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><b>OBSFnc</b>) (const <a class="el" href="classPS__2.html">PS_2</a> *)</td></tr>
-<tr class="separator:a399fb9ee95dfcad6d6cbd11ca1486d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52fa10237a789eab7d657d5b46942369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52fa10237a789eab7d657d5b46942369"></a>
 typedef std::vector&lt; std::shared_ptr&lt; <a class="el" href="classDistribution.html">Distribution</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DistVec</b></td></tr>
 <tr class="separator:a52fa10237a789eab7d657d5b46942369"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,6 +222,14 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>DIST_A_U</b></td></
 <a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a8795054ff19f73feeccb324141ac6077">DY_Histograms</a></td></tr>
 <tr class="memdesc:a8795054ff19f73feeccb324141ac6077"><td class="mdescLeft">&#160;</td><td class="mdescRight">top-antitop rapidity difference distributions <br /></td></tr>
 <tr class="separator:a8795054ff19f73feeccb324141ac6077"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac12df85ad344396165498a1468cc8a49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac12df85ad344396165498a1468cc8a49"></a>
+<a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#ac12df85ad344396165498a1468cc8a49">T1_Histograms</a></td></tr>
+<tr class="memdesc:ac12df85ad344396165498a1468cc8a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">top-polar angle distributions (Collins-Soper angle) <br /></td></tr>
+<tr class="separator:ac12df85ad344396165498a1468cc8a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fe63235a0861ba1e0348b8ee385d56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4fe63235a0861ba1e0348b8ee385d56"></a>
+<a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#ad4fe63235a0861ba1e0348b8ee385d56">T2_Histograms</a></td></tr>
+<tr class="memdesc:ad4fe63235a0861ba1e0348b8ee385d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">antitop-polar angle distributions (Collins-Soper angle) <br /></td></tr>
+<tr class="separator:ad4fe63235a0861ba1e0348b8ee385d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0474c519fc5970c54984e9fc259da14f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0474c519fc5970c54984e9fc259da14f"></a>
 <a class="el" href="classHistArray.html">HistArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="HistArray_8h.html#a0474c519fc5970c54984e9fc259da14f">Dopen_Histograms</a></td></tr>
 <tr class="memdesc:a0474c519fc5970c54984e9fc259da14f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mtt distribution of lepton opening angle correlation. <br /></td></tr>
@@ -259,9 +265,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>DIST_A_U</b></td></
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Better readable labels for the histograms in the <a class="el" href="classHistArray.html" title="This class stores an array of ROOT TH1D&#39;s. ">HistArray</a>. In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD) and real corrections (PHIxPHI + PHIxQCD). </p>
+<p>Better readable labels for the histograms in the <a class="el" href="classHistArray.html" title="This class serves as storage object for distributions. ">HistArray</a>. In the default setup there are 6 histograms, one for each of the following contribution: LO QCD, NLO QCD, LO (PHIxPHI + PHIxQCD), virtual corrections (PHIxPHI + PHIxQCD), integrated dipoles (PHIxPHI + PHIxQCD) and real corrections (PHIxPHI + PHIxQCD). </p>
 
-<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00032">32</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
+<p>Definition at line <a class="el" href="HistArray_8h_source.html#l00033">33</a> of file <a class="el" href="HistArray_8h_source.html">HistArray.h</a>.</p>
 
 </div>
 </div>

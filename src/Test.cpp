@@ -29,8 +29,7 @@ using namespace std;
 #include "../inc/Integrator.h"
 #include "../inc/HiggsModel.h"
 #include "../inc/ScalarIntegrals.h"
-
-#include "../ext/LoopTools-2.12/build/clooptools.h"
+#include "../inc/Cuts.h"
 
 // LHAPDF header files
 #include "LHAPDF/LHAPDF.h"
@@ -46,7 +45,6 @@ using namespace std;
 extern "C" {
 #endif
   extern void qlinit_();
-  extern c_double qli1c_(c_double*,double*,int*);
 #ifdef __cplusplus
 }
 #endif
@@ -148,7 +146,28 @@ int main(int argc, char** argv)
 {  
   using namespace Constants;
 
+  // PS_2_2 ps1;
+  
+  // ps1.set(25.0,0.9);
+  // ps1.print();
+  // Cut Mtt_cut(&OBS_M12,{5.0,60.0});
 
+  // PRINT( Mtt_cut(&ps1,nullptr) );
+  
+  // CutVec cuts;
+  // std::shared_ptr<Cut> p1 = std::make_shared<Cut>(&OBS_M12,std::initializer_list<double>{5.0,10.0});
+  // //   std::make_shared<Cut>(&OBS_M12,{5.0,10.0}),
+  // //   std::make_shared<Cut>(&OBS_M12,{15.0,100.0}),
+  // //   std::make_shared<Cut>(&OBS_M12,{200.0}),
+  // // };
+
+  // // for (auto it=cuts.begin(); it!=cuts.end(); it++)
+  // //   {
+  // //     PRINT( (*it)(&ps1,nullptr) );
+  // //   }
+
+  // EXIT(1);
+  
   qlinit_();
   //  ltini();
 
@@ -409,10 +428,10 @@ int main(int argc, char** argv)
 
   // 2HDM vergleich mit Peter G.
   THDM.AddBoson(
-		500.0,
-		32.4543905335925,//not relevant here
-		1,1,
-		0,0);
+  		500.0,
+  		32.4543905335925,//not relevant here
+  		1,1,
+  		0,0);
   THDM.AddBoson(
   		600.0,
   		67.71,//not relevant here
@@ -457,7 +476,7 @@ int main(int argc, char** argv)
     SET_EVAL_B_PHIxQCD(g_flags_eval_id);
     SET_EVAL_B_PHIxPHI(g_flags_eval_id);
     // integrated dipoles 
-    SET_FLAG(F_EVAL_D_GG_CONT,g_flags_eval_id);
+    SET_FLAG(F_EVAL_D_GG_END,g_flags_eval_id);
     USET_FLAG(F_EVAL_D_QG_CONT,g_flags_eval_id);
     
     cout << endl << " EVAL_V_FLAGS = " << bitset<32>(g_flags_eval_v ).to_string() << endl;
@@ -483,7 +502,7 @@ int main(int argc, char** argv)
 		FV const& k2 = ps_gg_tt.k2();
 		
 #ifdef WITH_T_SPIN
-		cout << endl << "Using spin dependent matrix elements. Spin 4-vectors are:" << endl;
+		cout << endl << "Using spin dependent matrix elements." << endl;
 		// ALWAYS use spin vectors with the properties
 		// s_i.s_i = -1 and s_i.k_i = 0 !!!
 		// otherwise tests will fail, since these eqs. are used in the MEs
@@ -491,8 +510,8 @@ int main(int argc, char** argv)
 		FV& s2 = ps_gg_tt.s2();
 		//////////////////////////////////////
 		// spin vectors in t/tbar restframe
-		s1 = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
-		s2 = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
+		FV s1_r = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
+		FV s2_r = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
 		// s1 = {0,0,0,0};
 		// s2 = {0,0,0,0};
 		// boost from k1 restframe to tt z.m.f.
@@ -501,19 +520,43 @@ int main(int argc, char** argv)
 		// boost from k2 restframe to tt z.m.f.
 		static LT boost_k2_RF;
 		boost_k2_RF.set_boost(k2,1);
-		boost_k1_RF.apply(s1);
-		boost_k2_RF.apply(s2);
-		PRINT(sp(k1,s2));
-		PRINT(sp(k2,s1));
-		PRINT(sp(s1,s2));
-		PRINT(sp(k1,s2)+sp(k2,s1));
-		PRINT(sp(k1,s2)*sp(k2,s1));
-		PRINT_4VEC(s1);
-		PRINT_4VEC(s2);
-		PRINT_4VEC(k1);
-		PRINT_4VEC(k2);
+		// transform spin 4-vectors from restframes to z.m.f.
+		boost_k1_RF.apply_cpy(s1_r,s1);
+		boost_k2_RF.apply_cpy(s2_r,s2);
+
+		ps_gg_tt.print();
+		PRINT(sp(k1,s1));
+		PRINT(sp(k2,s2));
+		
+		// PRINT(sp(k1,s1));
+		// PRINT(sp(k2,s2));
+		// PRINT(sp(k1,s2));
+		// PRINT(sp(k2,s1));
+		// PRINT(sp(s1,s2));
+		// PRINT(sp(k1,s2)+sp(k2,s1));
+		// PRINT(sp(k1,s2)*sp(k2,s1));
+
 		//////////////////////////////////////
-		// need to transform spin vectors to boosted frame
+		// for integrated dipoles
+		FV const& K1 = ps_gg_tt_x.k1();
+		FV const& K2 = ps_gg_tt_x.k2();
+		FV& S1 = ps_gg_tt_x.s1();
+		FV& S2 = ps_gg_tt_x.s2();
+		
+		// boost from k1 restframe to tt z.m.f.
+		static LT boost_K1_RF;
+		boost_K1_RF.set_boost(K1,1);
+		// boost from k2 restframe to tt z.m.f.
+		static LT boost_K2_RF;
+		boost_K2_RF.set_boost(K2,1);
+		// transform spin 4-vectors from restframes to z.m.f.
+		boost_K1_RF.apply_cpy(s1_r,S1);
+		boost_K2_RF.apply_cpy(s2_r,S2);
+
+		ps_gg_tt_x.print();
+		PRINT(sp(K1,S1));
+		PRINT(sp(K2,S2));
+        
 #endif
 
 
@@ -562,6 +605,38 @@ int main(int argc, char** argv)
     if ( ps_gg_ttg.set(rs_part,y_cmf,phi_cmf,M_tt,y_tt,phi_tt) )
       {
 	double const& mScale2 = THDM.Scale2();
+
+	FV const& k1 = ps_gg_ttg.k1();
+	FV const& k2 = ps_gg_ttg.k2();
+	
+#ifdef WITH_T_SPIN
+	cout << endl << "Using spin dependent matrix elements." << endl;
+	// ALWAYS use spin vectors with the properties
+	// s_i.s_i = -1 and s_i.k_i = 0 !!!
+	// otherwise tests will fail, since these eqs. are used in the MEs
+	FV& s1 = ps_gg_ttg.s1();
+	FV& s2 = ps_gg_ttg.s2();
+	//////////////////////////////////////
+	// spin vectors in t/tbar restframe
+	// FV s1_r = {0.0,0.0,sqrt(0.5),+sqrt(0.5)};
+	// FV s2_r = {0.0,sqrt(0.5),0.0,-sqrt(0.5)};
+	FV s1_r = {0,0,0,0};
+	FV s2_r = {0,0,0,0};
+	// boost from k1 restframe to tt z.m.f.
+	static LT boost_k1_RF;
+	boost_k1_RF.set_boost(k1,1);
+	// boost from k2 restframe to tt z.m.f.
+	static LT boost_k2_RF;
+	boost_k2_RF.set_boost(k2,1);
+	// transform spin 4-vectors from restframes to z.m.f.
+	boost_k1_RF.apply_cpy(s1_r,s1);
+	boost_k2_RF.apply_cpy(s2_r,s2);
+
+	ps_gg_ttg.print();
+	PRINT(sp(k1,s1));
+	PRINT(sp(k2,s2));
+#endif
+
 	
 	// FV& p1 = ps_gg_ttg.p1();
 	// FV& p2 = ps_gg_ttg.p2();
@@ -606,22 +681,25 @@ int main(int argc, char** argv)
 	// interference terms
 	g_flags_eval_r = 0;
 	SET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
-	SET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << endl;
 	cout << endl << " 2*RE[M_QCD * M_phi ]     = " << 0.25*(res_r_int = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 	cout << endl << " dip 2*RE[M_QCD * M_phi ] = " << 0.25*(res_d_int = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
-	// phi^2 terms [FSR]
-	SET_FLAG(F_EVAL_R_GG,g_flags_eval_r);
+	
+	// all PHI x QCD terms
+	g_flags_eval_r = 0;
 	USET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [FSR] " << endl;
 	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 	cout << endl << " dip [M_phi]^2        = " << 0.25*(res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
 	sum_r += res_r_phi;
 	sum_d += res_d_phi;
+	
 	// phi^2 terms [ISR]
-	USET_EVAL_R_ALL(g_flags_eval_r);
-	SET_EVAL_R_ISR_ISR(g_flags_eval_r);
+	SET_EVAL_R_ALL(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_ISR(g_flags_eval_r);
+	USET_EVAL_R_PHIxPHI_FSR(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [ISR] " << endl;
 	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_GG*Eval_R_GG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 	cout << endl << " dip [M_phi]^2        = " << 0.25*(res_d_phi = PREF_GG*Eval_UID_GG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;
@@ -630,15 +708,15 @@ int main(int argc, char** argv)
 
 	// qq
 	USET_EVAL_R_ALL(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
-	SET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_QQ(g_flags_eval_r);
+	USET_EVAL_R_PHIxQCD_QQ(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [QQ] " << endl;
 	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_QQ*Eval_R_QQ(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 
 	// qg
 	USET_EVAL_R_ALL(g_flags_eval_r);
-	USET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
-	SET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
+	SET_EVAL_R_PHIxPHI_QG(g_flags_eval_r);
+	USET_EVAL_R_PHIxQCD_QG(g_flags_eval_r);
 	cout << endl << " EVAL_R_FLAGS = " << bitset<32>(g_flags_eval_r ).to_string() << " [QG] " << endl;
 	cout << endl << " [M_phi]^2            = " << 0.25*(res_r_phi = PREF_QG*Eval_R_QG(ps_gg_ttg,THDM,g_flags_eval_r))/mScale2 << " [Gev^-2]  " << endl;
 	cout << endl << " dip [M_phi]^2        = " << 0.25*(res_d_phi = PREF_GG*Eval_UID_QG(ps_gg_ttg,THDM,g_flags_eval_r)) /mScale2 << " [Gev^-2]  " << endl;

@@ -580,7 +580,7 @@ void DrawDistribution(
 	  // add NLO PHI int. dip.
 	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_PHI_ID]);
 	  // add NLO PHI real
-	  histograms[H_NLO_PHI_R]->Smooth(1);
+	  //histograms[H_NLO_PHI_R]->Smooth(1);
 	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_PHI_R]);
 	  // add NLO QCD to LO PHI histogram
 	  histograms[H_NLO_PHI]->Add(histograms[H_NLO_QCD]);
@@ -941,6 +941,9 @@ TH1D* fabs(TH1D* hist)
   return hist;
 }
 
+
+TH1D g_hist_uid_wgts = TH1D("g_hist_uid_wgts","g_hist_uid_wgts",100,-25,25);
+TH1D g_hist_r_wgts   = TH1D("g_hist_r_wgts",  "g_hist_r_wgts",  100,-25,25);
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

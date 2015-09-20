@@ -47,6 +47,17 @@ int Eval_ID_X(
 	      const ulong& flags,
 	      double& res_gg,
 	      double& res_qg);
+double Eval_ID_X_GG(
+		    const PS_2_2& ps_x,
+		    const double& x,
+		    HiggsModel& hm,
+		    const ulong& flags);
+
+double Eval_ID_X_QG(
+		    const PS_2_2& ps_x,
+		    const double& x,
+		    HiggsModel& hm,
+		    const ulong& flags);
 
 
 #endif

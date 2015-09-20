@@ -1,6 +1,9 @@
 
 /*! \file
-\brief Flags to control the evaluation of sub amplitudes.
+  \brief Flags to control the evaluation of sub amplitudes.
+
+  Note that the flags that select the NLO subamplitudes are only active when compiled with DEBUG=1. Default is DEBUG=0, where all NLO subamplitudes defined in each of the files Functions_pp_ttX_R/V/ID/UID.cpp get evaluated.
+  \sa  Functions_pp_ttX_V.cpp, Functions_pp_ttX_ID.cpp, Functions_pp_ttX_R.cpp, Functions_pp_ttX_UID.cpp
  */
 
 
@@ -183,6 +186,8 @@
 #define F_EVAL_R_PHIxPHI_FSR  BOOST_BINARY_LU(000 100 000 000 000 0)
 #define F_EVAL_R_PHIxPHI_QQ   BOOST_BINARY_LU(001 000 000 000 000 0)
 #define F_EVAL_R_PHIxPHI_QG   BOOST_BINARY_LU(010 000 000 000 000 0)
+#define F_EVAL_R_QQ           BOOST_BINARY_LU(001 000 100 000 000 0)
+#define F_EVAL_R_QG           BOOST_BINARY_LU(010 001 000 000 000 0)
 
 // unintegrated dipole labels: g1 g2 t tb
 // initial-initial dipoles needed to make ISR-ISR real corrections finite
