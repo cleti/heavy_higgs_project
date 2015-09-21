@@ -1,10 +1,10 @@
 
-results/*
 ext/*
 trash/*
 bin/*
 lib/*
-
+misc/*
+ROOT/*
 
 # ignore temporary files
 *~

@@ -1,0 +1,62 @@
+
+ Value of         run_id.str() = RUN_1441126304_15231
+
+ Value of       g_options.useK =                    1
+
+====================================================================================================
+ Model configuration [generic 2HDM]: 
+
+ Value of             d_AlphaS =            0.0990853
+
+ Value of         d_MUR*mScale =                  325
+
+ Value of         d_MUF*mScale =                  325
+
+ Value of          d_mt*mScale =               173.34
+
+ Value of          d_mb*mScale =                 4.75
+
+ Value of          d_VH*mScale =                  246
+
+ Value of              d_Scale =               173.34
+
+ Higgs bosons:
+
+    #              M          Gamma            a_t            b_t            a_b            b_b
+----------------------------------------------------------------------------------------------------
+    1            500             30         0.8631         0.9881         -0.642         0.4842
+    2            800         146.61        -1.1572         0.9881          0.348         0.4842
+====================================================================================================
+
+ Value of                  CME =                13000
+
+ Value of             vp.calls =             10000000
+
+ Value of             SOFT_CUT =                1e-07
+
+ Value of           1-COLL_CUT =                1e-07
+
+ Error processing data file. 
+
+ Computing the process pp -> ttbar.
+
+
+ Distributions will be computed.
+
+
+ Using eff. K-factors to rescale NLO contributions.
+
+
+ [LO (PHI+INT)]
+
+ ====================================================================== 
+ ======================= INTEGRATION INIT ============================= 
+
+ EVAL_FLAGS = 00000000000000000000000000000110
+
+  rng type   : taus
+  rng seed   : 1441126304
+
+  (new v_state allocated 0x1d6f270) 
+
+  PS 2->2 , #call/iter. = 200000
